@@ -9,6 +9,7 @@ import { Items } from '/imports/api/items/items.js';
 import { ITEMS } from '/imports/constants/items/index.js';
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { autoPrecisionValue } from '../../utils.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import './woodcutting.html';
 
@@ -87,6 +88,20 @@ Template.woodcuttingPage.helpers({
       if (!/.png/.test(woodcutter.icon) && !/.svg/.test(woodcutter.icon)) {
         woodcutter.icon += '.svg';
       }
+      
+      let woodcutterAttackSpeed = woodcutter.stats.attackSpeed;
+      
+      // modifier is 100%
+      let woodcutterAttackSpeedModifier = 1;
+      
+      // add bonus attack speed modifier of 0-15% depending on if town lumber yard buff (karma) is active and at what strength
+      const townBuffLumberYardLevel = getBuffLevel('town_lumber_yard');
+      if (townBuffLumberYardLevel > 0) {
+        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per level (5% - 15%)
+      }
+      
+      // mutate attack speed by bonus attack speed modifier (100% +/- modifiers)
+      woodcutterAttackSpeed *= woodcutterAttackSpeedModifier;
 
       // Incoming hacks!
       woodcutter.description = `
@@ -96,7 +111,7 @@ Template.woodcuttingPage.helpers({
         </div>
         <div class="d-flex align-items-center">
           <i class="lilIcon-attackSpeed extra-small-icon mr-1"></i>
-          ${autoPrecisionValue(woodcutter.stats.attackSpeed)}
+          ${autoPrecisionValue(woodcutterAttackSpeed)}
         </div>
       `;
 
@@ -153,7 +168,7 @@ Template.woodcuttingPage.helpers({
         <div class="d-flex align-items-center">
           <i class="lilIcon-attack extra-small-icon mr-1"></i><b>Attack</b>
         </div>
-        Determines the best wood a woodcutter can get.
+        Determines the rarest wood a woodcutter can chop.
       </p>
       <p>
         <div class="d-flex align-items-center">
@@ -165,8 +180,8 @@ Template.woodcuttingPage.helpers({
         <div class="d-flex align-items-center">
           <i class="lilIcon-accuracy extra-small-icon mr-1"></i><b>Accuracy</b>
         </div>
-        Accuracy increases the chance of getting rarer logs <br />
-        as well as increasing the quantity of more basic logs.
+        Increases the chance of getting rarer logs as well as increasing the
+        quantity of more basic logs.
       </p>
     `;
   },

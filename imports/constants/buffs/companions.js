@@ -4,7 +4,7 @@ import _ from 'underscore';
 import uuid from 'node-uuid';
 
 import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
-import { CDbl } from '../../utils.js';
+import { CDbl, autoPrecisionValue } from '../../utils.js';
 
 // combat node/server doesn't have access to database or schema
 //import { Users } from '/imports/api/users/users';
@@ -110,35 +110,46 @@ const skillLevel = function skillLevel(playerSkills, skillName) {
   return 1;
 };
 
-const companionStatsHTML = function companionStatsHTML({buff, level, floor, playerSkills}) {
+const companionStatsHTML = function companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel}) {
   try {
     let descText = "<br />";
     
-    if (floor) {      
+    const localTownBuffLevel = townBuffLevel || 0;
+    const townBuffBonus = 1 + ((localTownBuffLevel > 0) ? ((localTownBuffLevel + 1) * 0.015) : (0));
+    
+    if (floor && playerSkills) {      
       const flexCellSize = Math.floor(maxTableAndGridSize / 4) - 40;
       
       descText += `<div class="mb-3">`;
       descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center attack.svg-tooltip-container"><img src="/icons/attack.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.attack({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})} - ${buff.constants.attackMax({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center attack.svg-tooltip-container"><img src="/icons/attack.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.attack({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')}))} - ${Math.round(townBuffBonus * buff.constants.attackMax({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')}))}</div></div>`;
       descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center attackSpeed.svg-tooltip-container"><img src="/icons/attackSpeed.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.attackSpeed({level})}</div></div>`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicPower.svg-tooltip-container"><img src="/icons/magicPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.magicPower({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic')})}</div></div>`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center accuracy.svg-tooltip-container"><img src="/icons/accuracy.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.accuracy({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')})}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicPower.svg-tooltip-container"><img src="/icons/magicPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.magicPower({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic')}))}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center accuracy.svg-tooltip-container"><img src="/icons/accuracy.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.accuracy({level, towerFloor: floor, attackSkill: skillLevel(playerSkills, 'attack')}))}</div></div>`;
       descText += `</div>`;
       descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center health.svg-tooltip-container"><img src="/icons/health.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.healthMax({level, towerFloor: floor, healthSkill: skillLevel(playerSkills, 'health')}).toLocaleString()}</div></div>`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center defense.svg-tooltip-container"><img src="/icons/defense.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.defense({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'defense')})}</div></div>`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center armor.svg-tooltip-container"><img src="/icons/armor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.armor({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'armor')}).toLocaleString()}</div></div>`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicArmor.svg-tooltip-container"><img src="/icons/magicArmor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${buff.constants.magicArmor({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic'), defenseSkill: skillLevel(playerSkills, 'defense')}).toLocaleString()}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center health.svg-tooltip-container"><img src="/icons/health.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.healthMax({level, towerFloor: floor, healthSkill: skillLevel(playerSkills, 'health')})).toLocaleString()}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center defense.svg-tooltip-container"><img src="/icons/defense.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.defense({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'defense')}))}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center armor.svg-tooltip-container"><img src="/icons/armor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.armor({level, towerFloor: floor, defenseSkill: skillLevel(playerSkills, 'armor')})).toLocaleString()}</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center magicArmor.svg-tooltip-container"><img src="/icons/magicArmor.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${Math.round(townBuffBonus * buff.constants.magicArmor({level, towerFloor: floor, magicSkill: skillLevel(playerSkills, 'magic'), defenseSkill: skillLevel(playerSkills, 'defense')})).toLocaleString()}</div></div>`;
       descText += `</div>`;
       descText += `<div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: ${maxTableAndGridSize}px">`;
-      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center healingPower.svg-tooltip-container"><img src="/icons/healingPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">+${buff.constants.healingPower({level})}%</div></div>`;
+      descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center healingPower.svg-tooltip-container"><img src="/icons/healingPower.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">+${Math.round(townBuffBonus * buff.constants.healingPower({level}))}%</div></div>`;
       descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center heartDrop.svg-tooltip-container"><img src="/icons/heartDrop.svg" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px">${100*(1-buff.constants.damageTaken({level}))}%</div></div>`;
       descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center invis.gif-tooltip-container"><img src="/icons/invis.gif" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px"></div></div>`;
       descText += `<div class="d-flex flex-row mr-1"><div class="d-flex align-items-center invis.gif-tooltip-container"><img src="/icons/invis.gif" class="extra-small-icon"></div><div class="d-flex align-items-center ml-1" style="width: ${flexCellSize}px; max-width: ${flexCellSize}px"></div></div>`;
       descText += `</div>`;
-      descText += `(stats based on your skills, tome level ${level}, and tower floor ${floor})<br />`;
+      if (localTownBuffLevel > 0) {
+        descText += `(stats based on your skills, tome level ${level}, tower floor ${floor}, and a ${autoPrecisionValue((townBuffBonus-1)*100)}% bonus from the town barracks)`;
+      } else {
+        descText += `(stats based on your skills, tome level ${level}, and tower floor ${floor})`;
+      }
     } else {
-      descText += "(stats vary on which floor you bring the cupid to)<br />";
+      if (localTownBuffLevel > 0) {
+        descText += `(stats vary based on your skills, tome level ${level}, which floor you bring the companion to, and a ${autoPrecisionValue((townBuffBonus-1)*100)}% bonus from the town barracks)`;
+      } else {
+        descText += `(stats vary based on your skills, tome level ${level}, and which floor you bring the companion to)`;
+      }
     }
     return descText;
   } catch (err) {
@@ -374,7 +385,7 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'skeletal_warrior',
     icon: 'boneWarrior.svg',
     name: 'skeletal warrior',
-    description({ buff, level, playerSkills, floor }) {
+    description({ buff, level, playerSkills, floor, townBuffLevel }) {
       let descText = '';
       
       descText += 'Summons a skeletal warrior to assist in tower combat. <br />';
@@ -414,11 +425,7 @@ export const COMPANION_BUFFS = {
       }
       
       descText += `</table>`
-
-      if (floor && playerSkills) {
-        descText += companionStatsHTML({buff, level, floor, playerSkills});
-      }
-
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
       return descText;
     },
     constants: {
@@ -554,6 +561,22 @@ export const COMPANION_BUFFS = {
               }]);
             }
             
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+              } catch (err) {
+              }
+            }
+            
             actualBattle.addUnit(companion);
           }
         }
@@ -580,7 +603,7 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'cute_pig',
     icon: 'cutePig.svg',
     name: 'cute pig',
-    description({ buff, level, playerSkills, floor }) {
+    description({ buff, level, playerSkills, floor, townBuffLevel }) {
       let descText = '';
       
       descText += 'Summons a cute pig to assist in tower combat. <br />';
@@ -620,11 +643,7 @@ export const COMPANION_BUFFS = {
       }
       
       descText += `</table>`
-
-      if (floor && playerSkills) {
-        descText += companionStatsHTML({buff, level, floor, playerSkills});
-      }
-
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
       return descText;
     },
     constants: {
@@ -772,6 +791,22 @@ export const COMPANION_BUFFS = {
               }]);
             }
             
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+              } catch (err) {
+              }
+            }
+            
             actualBattle.addUnit(companion);
           }
         }
@@ -794,7 +829,7 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'lny_pig',
     icon: 'eventLNYPig.png',
     name: 'year of the pig',
-    description({ buff, level, playerSkills, floor }) {
+    description({ buff, level, playerSkills, floor, townBuffLevel }) {
       let descText = '';
       
       descText += 'Summons a year of the pig to assist in tower combat. <br />';
@@ -838,11 +873,7 @@ export const COMPANION_BUFFS = {
       }
       
       descText += `</table>`
-
-      if (floor && playerSkills) {
-        descText += companionStatsHTML({buff, level, floor, playerSkills});
-      }
-
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
       return descText;
     },
     constants: {
@@ -979,6 +1010,21 @@ export const COMPANION_BUFFS = {
               }]);
             }
             
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+              } catch (err) {
+              }
+            }            
             actualBattle.addUnit(companion);
           }
         }
@@ -1003,7 +1049,7 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'mystic_fairy',
     icon: 'fairy2.svg',
     name: 'mystic fairy',
-    description({ buff, level, floor, playerSkills }) {
+    description({ buff, level, floor, playerSkills, townBuffLevel }) {
       let descText = '';
 
       descText += 'Summons a mystic fairy to assist in tower combat. <br />';
@@ -1048,11 +1094,7 @@ export const COMPANION_BUFFS = {
       }
       
       descText += `</table>`
-
-      if (floor && playerSkills) {
-        descText += companionStatsHTML({buff, level, floor, playerSkills});
-      }
-
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
       return descText;
     },
     constants: {
@@ -1162,6 +1204,22 @@ export const COMPANION_BUFFS = {
               }],
             };
             
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+              } catch (err) {
+              }
+            }
+            
             actualBattle.addUnit(companion);
           }
         }
@@ -1182,7 +1240,7 @@ export const COMPANION_BUFFS = {
     duplicateTag: 'vd_cupid',
     icon: 'eventVDcupid.svg',
     name: 'cupid',
-    description({ buff, level, playerSkills, floor }) {
+    description({ buff, level, playerSkills, floor, townBuffLevel }) {
       let descText = '';
       
       descText += 'Summons a cupid to assist in tower combat. <br />';
@@ -1238,11 +1296,7 @@ export const COMPANION_BUFFS = {
       }
       
       descText += `</table>`
-
-      if (floor && playerSkills) {
-        descText += companionStatsHTML({buff, level, floor, playerSkills});
-      }
-
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
       return descText;
     },
     constants: {
@@ -1345,6 +1399,26 @@ export const COMPANION_BUFFS = {
                 }
               }],
             };
+            
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+                
+                // fix companion buff description (new stats)
+                const buffBase = (buff.constants && buff.constants.constants) ? buff.constants : lookupBuff(buff.id);
+                buff.data.description = buffBase.description({ buff: buffBase, level: buff.data.level, playerSkills: target.skills, floor: actualBattle.floor, townBuffLevel: actualBattle.townBuffLevel });
+              } catch (err) {
+              }
+            }            
             
             actualBattle.addUnit(companion);
           }

@@ -17,6 +17,8 @@ import { MINING } from '/imports/constants/mining/index.js';
 import '../components/mining/mineSpace.js';
 import './mining.html';
 
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+
 let miningPageTimer;
 let hasInitGameUpdate;
 
@@ -398,11 +400,25 @@ Template.miningPage.helpers({
         // Mutate damagePerHour by base passive miner damage
         possibleMiner.minerStatDps = possibleMiner.damagePerHour * (mining.stats.miner / 100);
         possibleMiner.damagePerHour += possibleMiner.minerStatDps;
-        // Mutate damagePerHour by donator bonus (to passive miner damage)
-        if (hasMiningUpgrade) {
-          possibleMiner.donatorDps = possibleMiner.damagePerHour * (DONATORS_BENEFITS.miningBonus / 100);
-          possibleMiner.damagePerHour += possibleMiner.donatorDps;
+
+        // modifier is 100%
+        let xpPercentModifier = 1;
+        
+        // add bonus XP modifier of 0-18% depending on if town quarry buff (karma) is active and at what strength
+        const townBuffQuarryLevel = getBuffLevel('town_quarry');
+        if (townBuffQuarryLevel > 0) {
+          xpPercentModifier += ((townBuffQuarryLevel + 1) * 0.03); // 6% min, 3% per level (6% - 18%)
         }
+        
+        // add bonus XP modifier of 20% from membership benefits
+        if (hasMiningUpgrade) {
+          xpPercentModifier += (DONATORS_BENEFITS.miningBonus / 100);
+          possibleMiner.donatorDps = possibleMiner.damagePerHour * (DONATORS_BENEFITS.miningBonus / 100);
+        }
+        
+        // mutate damage-per-hour (DPH) by bonus XP modifier (100% +/- modifiers)
+        possibleMiner.damagePerHour *= xpPercentModifier;
+        
         totalDPH += possibleMiner.damagePerHour;
       } else {
         possibleMiner.amount = 0;

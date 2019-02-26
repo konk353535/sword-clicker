@@ -5,7 +5,7 @@ import Numeral from 'numeral';
 import { Users } from '/imports/api/users/users.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { CInt } from '/imports/utils';
+import { CDbl, CInt, autoPrecisionValue } from '/imports/utils';
 
 import './formatNumber.html';
 
@@ -26,31 +26,48 @@ Template.formatNumber.onCreated(function bodyOnCreated() {
 
 Template.formatNumber.helpers({
   formattedNumber() {
-    const number = Template.instance().data.number;
-    const noDecimal = Template.instance().data.noDecimal;
-    const decimal = Template.instance().data.decimal || 0;
-
-    if (CInt(number) === 0) {
-      if (Template.instance().data.blankZero) {
+    const instance = Template.instance();
+    const templateData = instance.data;
+    let number = CDbl(templateData.number);
+    const decimalPlaces = templateData.decimal || 0;
+    const wantDecimal = !templateData.noDecimal;
+    const wantShorthand = templateData.forceShorthand || instance.state.get('showNumberShorthand');
+    const wantBlankZero = templateData.blankZero;
+    const wantAutoPrecision = (typeof templateData.autoPrecision === 'undefined') ? true : templateData.autoPrecision; // true by default
+    
+    if (wantBlankZero) {
+      if (CInt(number) === 0) {
         return '';
       }
     }
     
-    if (number < 1000) {
-      if (decimal) {
-        return number.toFixed(decimal);
+    if (wantAutoPrecision) {
+      number = autoPrecisionValue(number)
+      
+      if (wantShorthand && number >= 1000) {
+        return Numeral(number).format('0.0a');
       }
+      
+      return number.toLocaleString();
+    }
+
+    
+    if (number < 1000) {
+      if (decimalPlaces) {
+        return number.toFixed(CInt(decimalPlaces));
+      }
+      
       return Math.floor(number);
     }
 
-    if (Template.instance().state.get('showNumberShorthand') || Template.instance().data.forceShorthand) {
-      if (noDecimal) {
+    if (wantShorthand && number >= 1000) {
+      if (!wantDecimal) {
         return Numeral(number).format('0a');
       }
 
       return Numeral(number).format('0.0a');
-    } else {
-      return Numeral(number).format('0,0');
     }
+    
+    return Numeral(number).format('0,0');
   }
 });

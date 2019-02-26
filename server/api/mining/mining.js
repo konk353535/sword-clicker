@@ -19,6 +19,7 @@ import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 import { CDbl } from '/imports/utils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
   let owner;
@@ -451,6 +452,8 @@ Meteor.methods({
       let gainedXp = 0;
       let gainedItems = {};
 
+      const townBuffQuarryLevel = getBuffLevel('town_quarry');
+
       // Build prospectors map
       const prospectorsMap = {};
       mining.prospectors.forEach((prospector) => {
@@ -482,6 +485,9 @@ Meteor.methods({
           ore.isCluster = false;
         }
         
+        // modifier is 100%
+        let oreSpawnRateModifier = 1;
+        
         // the emptier the mining pit, the greater the chance to spawn
         //  0 slots free = no bonus
         //  1 slot  free = no bonus
@@ -501,9 +507,19 @@ Meteor.methods({
         // 15 slots free = +190.5% bonus
         // 16 slots free = +200% bonus
         const emptyPitBonus = Math.sqrt(emptyMiningSpaces.length / 16 * 9);
+        
+        // if we have an empty-pit bonus of at least 100% (not a penalty), add it to the multiplier
         if (emptyPitBonus >= 1.0) {
-          ore.chance *= emptyPitBonus;
+          oreSpawnRateModifier += (emptyPitBonus - 1.0);
         }
+
+        // add bonus ore spawn rate modifier of 0-30% depending on if town quarry buff (karma) is active and at what strength
+        if (townBuffQuarryLevel > 0) {
+          oreSpawnRateModifier += ((townBuffQuarryLevel + 1) * 0.05); // 10% min, 5% per level (10% - 30%)
+        }
+        
+        // mutate ore spawn chance by bonus ore spawn rate modifier (100% +/- modifiers)
+        ore.chance *= oreSpawnRateModifier;
 
         return ore;
       });
@@ -550,11 +566,22 @@ Meteor.methods({
         damagePerTick *=  (1 + (mining.stats.miner / 100));
       }
 
-      // Apply membership benefits
-      if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
-        damagePerTick *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
+      // modifier is 100%
+      let xpPercentModifier = 1;
+      
+      // add bonus XP modifier of 0-18% depending on if town quarry buff (karma) is active and at what strength
+      if (townBuffQuarryLevel > 0) {
+        xpPercentModifier += ((townBuffQuarryLevel + 1) * 0.03); // 6% min, 3% per level (6% - 18%)
       }
 
+      // add bonus XP modifier of 20% from membership benefits
+      if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
+        xpPercentModifier += (DONATORS_BENEFITS.miningBonus / 100);
+      }
+
+      // mutate damage-per-tick (DPT) by bonus XP modifier (100% +/- modifiers)
+      damagePerTick *= xpPercentModifier;
+      
       let totalRemainingDamage = damagePerTick * tickCount;
 
       if (emptyMiningSpaces.length >= newOresCount || (tickCount * tickStrength < 60)) {

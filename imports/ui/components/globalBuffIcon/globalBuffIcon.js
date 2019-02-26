@@ -5,6 +5,8 @@ import './globalBuffIcon.html';
 
 import { GLOBALBUFFS } from '/imports/constants/globalbuffs/index.js';
 
+import { CInt } from '/imports/utils.js';
+
 
 Template.globalBuffIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -89,6 +91,18 @@ Template.globalBuffIcon.helpers({
       const globalBuffData = GLOBALBUFFS[instance.data.type];
       if (globalBuffData) {
         return globalBuffData;
+      }
+    }
+    
+    return false;
+  },
+  
+  buffLevel() {
+    const instance = Template.instance();
+    
+    if (instance.data.level) {
+      if (CInt(instance.data.level) > 0) {
+        return CInt(instance.data.level);
       }
     }
     

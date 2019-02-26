@@ -8,7 +8,7 @@
         src="/icons/{{computedCraftingProcess.icon}}"
         class="extra-small-icon mr-1">
 
-      {{> formatNumber number=computedCraftingProcess.percentage}}%
+      {{> formatNumber number=computedCraftingProcess.percentage autoPrecision=false}}%
     </div>
   {{else}}
     <img class="icon-box small-icon mr-1" src="/icons/{{computedCraftingProcess.icon}}" style="pointer-events: all">

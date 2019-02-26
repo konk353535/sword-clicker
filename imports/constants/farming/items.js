@@ -584,7 +584,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_lemon'
     }],
-    sellPrice: 50
+    sellPrice: 75
   },
 
   red_apple_seed: {
@@ -688,7 +688,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_banana'
     }],
-    sellPrice: 100
+    sellPrice: 250
   },
 
   sweet_potato_seed: {
@@ -714,7 +714,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_sweet_potato'
     }],
-    sellPrice: 100
+    sellPrice: 125
   },
 
   carrot_seed: {
@@ -766,7 +766,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_dragonfruit'
     }],
-    sellPrice: 100
+    sellPrice: 300
   },
 
   watermelon_seed: {
@@ -845,7 +845,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_rockmelon'
     }],
-    sellPrice: 200
+    sellPrice: 500
   },
 
   candy_cane: {
@@ -1318,7 +1318,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_lemon_honey'
     }],
-    sellPrice: 20
+    sellPrice: 2000
   },
 
   tamarind_honey: {
@@ -1333,7 +1333,7 @@ export const FARMING_ITEMS = {
     buffs: [{
       id: 'food_tamarind_honey'
     }],
-    sellPrice: 20
+    sellPrice: 2000
   },
 
   lemonade: {

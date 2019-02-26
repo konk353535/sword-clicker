@@ -4,14 +4,14 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { BUFFS } from '/imports/constants/buffs/index.js';
 
-import './abilityIconOther.html';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
+import './abilityIconOther.html';
 
 let tooltip;
 Template.abilityIconOther.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 });
-
 
 Template.abilityIconOther.helpers({
   name() {
@@ -25,7 +25,8 @@ Template.abilityIconOther.helpers({
     
     if (instance.data.ability.description !== undefined) {
       if (_.isFunction(instance.data.ability.description)) {
-        return instance.data.ability.description({ buff: BUFFS[instance.data.ability.abilityId], level: instance.data.ability.level });
+        console.log("armory level:", getBuffLevel('town_armory'));
+        return instance.data.ability.description({ buff: BUFFS[instance.data.ability.abilityId], level: instance.data.ability.level, townBuffLevel: getBuffLevel('town_armory') });
       }
       return instance.data.ability.description;
     }

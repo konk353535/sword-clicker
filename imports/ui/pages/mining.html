@@ -120,28 +120,28 @@
       <div class="d-flex flex-column ml-3">
         <div class="d-flex align-items-center">
           {{#if hasMiningUpgrade}}
-            ({{mining.stats.attack}}
+            ({{> formatNumber number=mining.stats.attack}}
             {{> memberBenefit bonusKey='miningAttackBonus' value=mining.stats.attack}})
           {{else}}
-            {{mining.stats.attack}}
+            {{> formatNumber number=mining.stats.attack}}
           {{/if}}
           <i class="lilIcon-attack mx-1"></i> Damage per click.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
+          {{> formatNumber number=mining.stats.energyStorage}} <i class="lilIcon-energyStorage mx-1"></i> Max pickaxe energy.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
+          {{> formatNumber number=mining.stats.energyPerHit}} <i class="lilIcon-energyPerHit mx-1"></i> Energy per click.
         </div>
         <div class="d-flex align-items-center">
-          {{mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
+          {{> formatNumber number=mining.stats.energyRegen}}<i class="lilIcon-energyRegen mx-1"></i> Energy regen per minute.
         </div>
         <div class="d-flex align-items-center">
           {{#if hasMiningUpgrade}}
-            ({{> formatNumber number=mining.stats.miner decimal=1}}
+            ({{> formatNumber number=mining.stats.miner}}
             {{> memberBenefit bonusKey='miningBonus' value=mining.stats.miner}})%
           {{else}}
-            {{> formatNumber number=mining.stats.miner decimal=1}}%
+            {{> formatNumber number=mining.stats.miner}}%
           {{/if}}
           <i class="lilIcon-miner mx-1"></i> Extra passive miner damage.
         </div>
@@ -156,7 +156,7 @@
       No pickaxes in inventory
     {{/each}}
 
-    <h3 class="my-1">Total DPH: {{> ceilNumber totalDPH}}</h3>
+    <h3 class="my-1">Total DPH: {{> formatNumber number=totalDPH}}</h3>
 
     {{#if $lte summaryMiners.count 3}}
       <div class="mb-1"><b>Miners passively collect ores for you, over time.</b></div>
@@ -290,12 +290,12 @@
           {{#if miner.amount}}
             <div>DPH:
               <span class="text-info">
-                {{> ceilNumber miner.damagePerHour}}
+                {{> formatNumber number=miner.damagePerHour}}
               </span>
             </div>
           {{else}}
             <div style="color: #DFDFDF">
-              DPH: {{> ceilNumber miner.damagePerHour}}
+              DPH: {{> formatNumber number=miner.damagePerHour}}
             </div>
           {{/if}}
         </span>
@@ -322,14 +322,18 @@
   </div>
 
   <div class="dps-breakdown-tooltip-content my-tooltip-inner">
-    <h3 class='popover-title text-capitalize'>DPS Breakdown</h3>
+    <h3 class='popover-title text-capitalize'>DPH Breakdown</h3>
       <div class='popover-content'>
         <div style='max-width: 350px;'>
-          Base DPS: {{> ceilNumber miner.baseDamagePerHour}}<br />
-          Level Bonus: {{> ceilNumber miner.levelDps}}<br />
-          Idol Bonus: {{> ceilNumber miner.minerStatDps}}<br />
-          {{#if miner.donatorDps}}
-            Donator Bonus: {{> ceilNumber miner.donatorDps}}
+          {{#if miner.baseDamagePerHour}}
+            Base DPS: {{> formatNumber number=miner.baseDamagePerHour}}<br />
+            Level Bonus: {{> formatNumber number=miner.levelDps}}<br />
+            Idol Bonus: {{> formatNumber number=miner.minerStatDps}}<br />
+            {{#if miner.donatorDps}}
+              Donator Bonus: {{> formatNumber number=miner.donatorDps}}
+            {{/if}}
+          {{else}}
+            Nothing to see -- hire one of these miners, first.<br />
           {{/if}}
         </div>
       </div>
@@ -338,7 +342,7 @@
 
 <template name="oreListItem">
   <div class="ore-list-item">
-    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{ore.amount}}
+    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{> formatNumber number=ore.amount}}
   </div>
 
   <div class="ore-list-item-tooltip-content my-tooltip-inner">

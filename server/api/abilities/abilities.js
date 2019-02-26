@@ -15,6 +15,7 @@ import { ITEMS } from '/imports/constants/items/index';
 import { MAGIC } from '/server/constants/magic/index';
 
 import { consumeItem } from '/server/api/items/items';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
   let owner = userId;
@@ -274,7 +275,7 @@ Meteor.methods({
         learntLevel = abilitiesMap[abilityKey];
       }
       const abilityData = {
-        description: abilityConstant.description(abilityLevel),
+        description: abilityConstant.description(abilityLevel, getBuffLevel('town_armory')),
         name: `${abilityConstant.name} (${abilityLevel})`,
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
@@ -329,7 +330,7 @@ Meteor.methods({
         abilityLevel = abilitiesMap[abilityKey];
         learntLevel = abilitiesMap[abilityKey];
       }
-      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray}) : abilityConstant.description(abilityLevel);
+      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray, armoryLevel: getBuffLevel('town_armory')}) : abilityConstant.description(abilityLevel, getBuffLevel('town_armory'));
       const abilityData = {
         description: descToUse,
         name: `${abilityConstant.name} (${abilityLevel})`,
@@ -384,7 +385,7 @@ Meteor.publish('abilities', function() {
     doc.learntAbilities.forEach((ability) => {
       const abilityConstant = ABILITIES[ability.abilityId];
 
-      ability.description = ABILITIES[ability.abilityId].description(ability.level);
+      ability.description = ABILITIES[ability.abilityId].description(ability.level, getBuffLevel('town_armory'));
       ability.name = `${abilityConstant.name} (${ability.level})`;
       ability.icon = abilityConstant.icon;
       ability.cooldown = abilityConstant.cooldown;

@@ -3,11 +3,13 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import _ from 'underscore';
 import lodash from 'lodash';
+import Numeral from 'numeral';
 
-import { Town } from '/imports/api/town/town.js';
+import { Town, calculateItemKarma, karmaLevelValues } from '/imports/api/town/town.js';
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 import { State } from '/imports/api/state/state';
+import { CInt, autoPrecisionValue } from '/imports/utils.js';
 
 import { ITEMS } from '/imports/constants/items';
 
@@ -18,6 +20,7 @@ Template.townPage.onCreated(function bodyOnCreated() {
 
   this.state = new ReactiveDict();
   
+  /*
   Tracker.autorun(() => {
     let isAdmin = false;    
     if (Meteor.user()) {
@@ -30,6 +33,7 @@ Template.townPage.onCreated(function bodyOnCreated() {
       Router.go('/overview');
     }
   });
+  */
   
   Tracker.autorun(() => {
     const myUser = Users.findOne({ _id: Meteor.userId() });
@@ -56,6 +60,41 @@ Template.townPage.helpers({
   
   numberOfDays() {
     return 1;
+  },
+  
+  thisSectionKarmaInfo() {
+    const karmaData = karmaLevelValues(Template.instance().state.get('townSection'));
+    
+    if (!karmaData.isError) {
+      //const thisSectionKarmaValue = CInt(Template.instance().state.get('thisSectionKarma'));
+      const thisSectionKarmaValue = karmaData.curVal;
+      const thisSectionKarmaNextValue = karmaData.nextVal;
+      
+      if ((thisSectionKarmaValue > 0) || (thisSectionKarmaNextValue > 0)) {
+        const thisSectionKarmaFormatted = Numeral(thisSectionKarmaValue).format('0,0');
+        const thisSectionKarmaNextFormatted = Numeral(thisSectionKarmaNextValue).format('0,0');
+        return `
+          &nbsp; &nbsp; 
+          <span style="font-size: 10pt; color: #777;">
+            <i>
+              <b>${thisSectionKarmaFormatted}</b> / <b>${thisSectionKarmaNextFormatted}</b> karma at this location
+            </i>
+          </span>`;
+      }
+    } else {
+      console.log("Exception looking up karma data:");
+      console.log(karmaData);
+    }
+    
+    return '';
+  },
+
+  yourKarma() {
+    return CInt(Template.instance().state.get('yourKarma'));
+  },
+
+  totalKarma() {
+    return CInt(Template.instance().state.get('totalKarma'));
   },
 
   townSection() {
@@ -86,6 +125,8 @@ Template.townPage.helpers({
       }
       
       if (townGoodsThisDay && townGoodsThisDay.length > 0) {
+        let totalKarma = 0;
+        let yourKarma = 0;
         let items = townGoodsThisDay.map(function(item) {
           const itemConstants = ITEMS[item.itemId];
           
@@ -101,7 +142,15 @@ Template.townPage.helpers({
             
             const newItem = Object.assign({}, itemConstants, item);
             newItem.amount = item.count;
-            newItem.customDescription = `<b>${item.count}</b> x donated by <i>${item.username}</i><hr />${baseDescription}`;
+            newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count);
+            newItem.reverseKarmaValue = 1000000000000 - newItem.karmaValue;
+            const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
+            newItem.customDescription = `<b>${item.count}</b> x donated by <i>${item.username}</i><br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`;
+            
+            totalKarma += newItem.karmaValue;
+            if (item.username === Meteor.user().username) {
+              yourKarma += newItem.karmaValue;
+            }
             
             return newItem;
           }
@@ -109,10 +158,22 @@ Template.townPage.helpers({
           return item;
         });
         
+        let karmaThisSection = 0;
         items = items.filter((item) => {
-          return item.townBuilding === townSection;
+          if (item.townBuilding === townSection) {
+            karmaThisSection += item.karmaValue;
+            return true;
+          }
+          return false;
         });
         
+        Template.instance().state.set('totalKarma', totalKarma);
+        Template.instance().state.set('yourKarma', yourKarma);        
+        Template.instance().state.set('thisSectionKarma', karmaThisSection);        
+        
+        items = _.sortBy(items, ['name']);
+        items = _.sortBy(items, ['reverseKarmaValue']);        
+
         return items;
       }
     } catch (err) {
@@ -142,17 +203,29 @@ Template.townPage.helpers({
         
         const newItem = Object.assign({}, itemConstants, item);
         
-        // todo: append to description the value associated with this donation
-        newItem.customDescription = `Donating this item will add <b>XXX</b> karma.<hr />${baseDescription}`;
         newItem.description = baseDescription; // fix description
         newItem.donateMode = true;
         newItem.donateSection = townSection;
+        newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem));
+        newItem.reverseKarmaValue = 1000000000000 - newItem.karmaValue;
+        const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
+        if (newItem.amount > 0 || newItem.count > 0) {
+          newItem.customDescription = `Donating these will add <b>${karmaValueFormatted}</b> karma each.<hr />${baseDescription}`;
+        } else {
+          newItem.customDescription = `Donating this will add <b>${karmaValueFormatted}</b> karma.<hr />${baseDescription}`;
+        }
         
         return newItem;
       }
     });
     
     filteredItems = filteredItems.filter((item) => {
+      // filter out all equipped items
+      if (item.equipped) return false;
+      
+      // filter out all hidden items
+      //if (item.hidden) return false;
+      
       if (townSection === 'dwellings') {
         if (item.category === 'food') return true;
         if (item.category === 'seed' && item.seedType === 'food') return true;
@@ -185,31 +258,12 @@ Template.townPage.helpers({
     });
     
     if (filteredItems) {
-      let anyError = false;
-      
-      /*
-      filteredItems.forEach((item, idx) => {
-        try {
-          if (ITEMS[item.itemId].stats) {
-            filteredItems[idx].tier = 1000 - (ITEMS[item.itemId].stats.attack); // axes
-          } else {
-            filteredItems[idx].tier = 10000; // logs
-          }
-        } catch (err) {
-          anyError = true;
-        }
-      });
-      */
-      
-      if (!anyError) {
-        // todo: sort items by their donation value
-        //filteredItems = _.sortBy(filteredItems, ['quality']);
-        //filteredItems = _.sortBy(filteredItems, ['tier']);
-        filteredItems = _.sortBy(filteredItems, ['name']);
-      }
+      filteredItems = _.sortBy(filteredItems, ['name']);
+      filteredItems = _.sortBy(filteredItems, ['reverseKarmaValue']);        
+      return filteredItems;
     }
-    
-    return filteredItems;
+
+    return false;    
   }
 
 });

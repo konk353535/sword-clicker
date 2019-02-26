@@ -34,7 +34,7 @@ SimpleChat.configure ({
   },
   limit: 25,
   publishChats: function(roomId, limit){ // server
-    return this.userId;
+    return this.userId; // only allow chats if we're logged in
   },
   onNewMessage: function () {
 

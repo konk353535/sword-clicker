@@ -20,6 +20,7 @@ import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
 
 import { IsValid, CInt } from '/imports/utils.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
   console.log('method - startBattle - start', moment().format('LLL hh:mm:ss SSS'));
@@ -128,6 +129,9 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }
 
+  // check town buff level for perks
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+  
   // Create clone of battle objects
   let battleConstants = lodash.cloneDeep(battleData);
 
@@ -145,7 +149,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     tickEvents: [],
     units: [],
     useStreamy,
-    enemies: []
+    enemies: [],
+    tbl: CInt(townBuffArmoryLevel)
   };
 
   // Battle participants combat stats

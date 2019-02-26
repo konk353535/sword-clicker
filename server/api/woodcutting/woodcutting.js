@@ -14,6 +14,7 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 Meteor.methods({
 
@@ -92,7 +93,18 @@ Meteor.methods({
       }
 
       const rawSwingCount = currentWoodcutter.stats.attackSpeed * localMinutesElapsed;
-      let definiteSwingCount = Math.floor(rawSwingCount);
+      
+      // modifier is 100%
+      let woodcutterAttackSpeedModifier = 1;
+      
+      // add bonus attack speed modifier of 0-15% depending on if town lumber yard buff (karma) is active and at what strength
+      const townBuffLumberYardLevel = getBuffLevel('town_lumber_yard');
+      if (townBuffLumberYardLevel > 0) {
+        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per level (5% - 15%)
+      }
+      
+      // mutate definite swing count by bonus attack speed modifier (100% +/- modifiers)
+      let definiteSwingCount = Math.floor(rawSwingCount * woodcutterAttackSpeedModifier);
       if (rawSwingCount % 1 >= Math.random()) {
         definiteSwingCount += 1;
       }

@@ -24,6 +24,7 @@ import _ from 'underscore';
 import lodash from 'lodash';
 
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 let globalXpBuffs = {};
 
@@ -60,11 +61,40 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
 
   const skillConstants = SKILLS[skill.type];
   const originalXp = skill.xp;
+  let bonusXpPercent = 0;
 
+  if (!ignoreBuff) {
+    // global buffs add a 35% XP bonus to their relevant skills
+    if (globalXpBuffs[skill.type]) {
+      bonusXpPercent += 0.35;
+    }
+    
+    // which are additive to any town/karma buff bonuses
+    if (skill.type === 'farming') {
+      const townBuffDwellingLevel = getBuffLevel('town_dwelling');
+      if (townBuffDwellingLevel > 0) {
+        bonusXpPercent += Math.ceil((townBuffDwellingLevel + 1) * 0.025); // bonus 2.5% per level (starting at 5% for level 1)
+      }
+    }
+    
+    if (skill.type === 'inscription') {
+      const townBuffLibraryLevel = getBuffLevel('town_library');
+      if (townBuffLibraryLevel > 0) {
+        bonusXpPercent += Math.ceil((townBuffLibraryLevel + 1) * 0.025); // bonus 2.5% per level (starting at 5% for level 1)
+      }
+    }
+    
+    if (skill.type === 'observatory') {
+      const townBuffObservatoryLevel = getBuffLevel('town_observatory');
+      if (townBuffObservatoryLevel > 0) {
+        bonusXpPercent += Math.ceil((townBuffObservatoryLevel + 1) * 0.025); // bonus 2.5% per level (starting at 5% for level 1)
+      }
+    }
+  }
 
 
   if (globalXpBuffs[skill.type] && !ignoreBuff) {
-    xp *= 1.35;
+    xp *= 1 + bonusXpPercent;
   }
 
   skill.xp += xp;

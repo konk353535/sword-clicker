@@ -205,7 +205,7 @@ export const INSCRIPTION_ITEMS = {
     category: 'herb',
     name: 'sorrell',
     sellPrice: 1250,
-    description: 'Used to make a red pigment.'
+    description: 'Used to make a green pigment.'
   },
 
   lavender: {

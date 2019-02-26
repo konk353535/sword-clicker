@@ -68,13 +68,11 @@
               </a>
             </li>
             {{#if $gte currentTutorialStep 17}}
-              {{#if isAdmin}}
-                <li class="nav-item">
-                  <a class="nav-link {{#if $eq currentRoute 'town'}}active{{/if}}" href="/town">
-                    Town
-                  </a>
-                </li>
-              {{/if}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'town'}}active{{/if}}" href="/town">
+                  Town
+                </a>
+              </li>
             {{/if}}
             <li class="nav-item">
               <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">

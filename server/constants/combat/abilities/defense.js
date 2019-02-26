@@ -364,12 +364,12 @@ export const DEFENSE_ABILITIES = {
     isHidden: true,
     target: 'self',
     isPacifist: true,
-    description(level) {
+    description(level, armoryLevel) {
       const BUFF = BUFFS.skeletal_warrior;
-      return BUFF.description({ buff: BUFF, level });
-    }, betterDescription({level, playerSkills}) {
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
       const BUFF = BUFFS.skeletal_warrior;
-      return BUFF.description({ buff: BUFF, level, playerSkills });
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
   
@@ -384,12 +384,12 @@ export const DEFENSE_ABILITIES = {
     isHidden: true,
     target: 'self',
     isPacifist: true,
-    description(level) {
+    description(level, armoryLevel) {
       const BUFF = BUFFS.cute_pig;
-      return BUFF.description({ buff: BUFF, level });
-    }, betterDescription({level, playerSkills}) {
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
       const BUFF = BUFFS.cute_pig;
-      return BUFF.description({ buff: BUFF, level, playerSkills });
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
   
@@ -404,12 +404,12 @@ export const DEFENSE_ABILITIES = {
     isHidden: true,
     target: 'self',
     isPacifist: true,
-    description(level) {
+    description(level, armoryLevel) {
       const BUFF = BUFFS.mystic_fairy;
-      return BUFF.description({ buff: BUFF, level });
-    }, betterDescription({level, playerSkills}) {
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
       const BUFF = BUFFS.mystic_fairy;
-      return BUFF.description({ buff: BUFF, level, playerSkills });
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
   
@@ -424,12 +424,12 @@ export const DEFENSE_ABILITIES = {
     isHidden: true,
     target: 'self',
     isPacifist: true,
-    description(level) {
+    description(level, armoryLevel) {
       const BUFF = BUFFS.lny_pig;
-      return BUFF.description({ buff: BUFF, level });
-    }, betterDescription({level, playerSkills}) {
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
       const BUFF = BUFFS.lny_pig;
-      return BUFF.description({ buff: BUFF, level, playerSkills });
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
   
@@ -444,12 +444,12 @@ export const DEFENSE_ABILITIES = {
     isHidden: true,
     target: 'self',
     isPacifist: true,
-    description(level) {
+    description(level, armoryLevel) {
       const BUFF = BUFFS.vd_cupid;
-      return BUFF.description({ buff: BUFF, level });
-    }, betterDescription({level, playerSkills}) {
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
       const BUFF = BUFFS.vd_cupid;
-      return BUFF.description({ buff: BUFF, level, playerSkills });
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
 

@@ -1,54 +1,71 @@
 <template name="townPage">
-  {{#if isAdmin}}
-    <div class="d-flex my-3 align-items-center">
-      <h2 class="ml-1 mb-0" style="margin-right: 40px;">Town Locations</h2>
-      {{#each allGlobalBuffs}}
-        {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
-      {{/each}}
+  <div class="d-flex flex-row" style="margin-top: 20px;">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><b>Total Karma Today</b></th>
+            <th><b>Your Karma Today</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{> formatNumber number=totalKarma decimal=0}}</td>
+            <td>{{> formatNumber number=yourKarma decimal=0}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <ul class="nav nav-tabs my-3">
-      <li class="nav-item town-filter" data-filter="dwellings">
-        <a class="nav-link {{#if $eq townSection 'dwellings'}}active{{/if}}" href="#">Dwellings</a>
-      </li>
-      <li class="nav-item town-filter" data-filter="quarry">
-        <a class="nav-link {{#if $eq townSection 'quarry'}}active{{/if}}" href="#">Quarry</a>
-      </li>
-      <li class="nav-item town-filter" data-filter="lumberyard">
-        <a class="nav-link {{#if $eq townSection 'lumberyard'}}active{{/if}}" href="#">Lumber Yard</a>
-      </li>
-      <li class="nav-item town-filter" data-filter="armory">
-        <a class="nav-link {{#if $eq townSection 'armory'}}active{{/if}}" href="#">Armory</a>
-      </li>
-      <li class="nav-item town-filter" data-filter="library">
-        <a class="nav-link {{#if $eq townSection 'library'}}active{{/if}}" href="#">Library</a>
-      </li>
-      <li class="nav-item town-filter" data-filter="observatory">
-        <a class="nav-link {{#if $eq townSection 'observatory'}}active{{/if}}" href="#">Observatory</a>
-      </li>
-    </ul>
+  </div>
 
-    <div class="d-flex justify-content-left align-items-left flex-column">
-      <div class="mb-1 flex-grow">
-        <h5>Your Items (You Can Donate These)</h5>
-        <div class="d-flex flex-wrap">
-          {{#each items}}
-            {{> itemIcon item=this classes="small"}}
-          {{else}}
-            You have no items that can be donated here.
+  <div class="d-flex my-3 align-items-center">
+    <h2 class="ml-1 mb-0" style="margin-right: 40px;">Town Locations</h2>
+    {{#each allGlobalBuffs}}
+      {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+    {{/each}}
+  </div>
+  <ul class="nav nav-tabs my-3">
+    <li class="nav-item town-filter" data-filter="dwellings">
+      <a class="nav-link {{#if $eq townSection 'dwellings'}}active{{/if}}" href="#">Dwellings</a>
+    </li>
+    <li class="nav-item town-filter" data-filter="quarry">
+      <a class="nav-link {{#if $eq townSection 'quarry'}}active{{/if}}" href="#">Quarry</a>
+    </li>
+    <li class="nav-item town-filter" data-filter="lumberyard">
+      <a class="nav-link {{#if $eq townSection 'lumberyard'}}active{{/if}}" href="#">Lumber Yard</a>
+    </li>
+    <li class="nav-item town-filter" data-filter="armory">
+      <a class="nav-link {{#if $eq townSection 'armory'}}active{{/if}}" href="#">Armory</a>
+    </li>
+    <li class="nav-item town-filter" data-filter="library">
+      <a class="nav-link {{#if $eq townSection 'library'}}active{{/if}}" href="#">Library</a>
+    </li>
+    <li class="nav-item town-filter" data-filter="observatory">
+      <a class="nav-link {{#if $eq townSection 'observatory'}}active{{/if}}" href="#">Observatory</a>
+    </li>
+  </ul>
+
+  <div class="d-flex justify-content-left align-items-left flex-column">
+    <div class="mb-1 flex-grow">
+      <h5>Your Items (You Can Donate These)</h5>
+      <div class="d-flex flex-wrap">
+        {{#each items}}
+          {{> itemIcon item=this classes="small"}}
+        {{else}}
+          You have no items that can be donated here.
+        {{/each}}
+      </div>
+    
+      <h5 style="margin-top: 30px;">Town Items Donated Today (By Everyone) {{{thisSectionKarmaInfo}}}</h5>
+      <div class="d-flex flex-wrap align-items-left">
+        {{#unless (townGoods 1)}}
+          <div class="mt-2 text-muted">Nothing yet.</div>
+        {{else}}
+          {{#each (townGoods 1)}}
+            {{ > itemIcon item=this classes="small" readOnly=true }}
           {{/each}}
-        </div>
-      
-        <h5 style="margin-top: 30px;">Town Items Donated Today (By Everyone)</h5>
-        <div class="d-flex flex-wrap align-items-left">
-          {{#unless (townGoods 1)}}
-            <div class="mt-2 text-muted">Nothing yet.</div>
-          {{else}}
-            {{#each (townGoods 1)}}
-              {{ > itemIcon item=this classes="small" readOnly=true }}
-            {{/each}}
-          {{/unless}}
-        </div>
+        {{/unless}}
       </div>
     </div>
-  {{/if}}
+  </div>
 </template>

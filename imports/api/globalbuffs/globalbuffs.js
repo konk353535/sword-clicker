@@ -4,6 +4,8 @@ import { State } from '/imports/api/state/state';
 
 import { GLOBALBUFFS } from '/imports/constants/globalbuffs';
 
+import { CInt } from '/imports/utils.js';
+
 export const translateGlobalBuffId = function translateGlobalBuffId(buffType) {
   if (_.isUndefined(buffType)) {
     return false;
@@ -109,4 +111,14 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt
   });
   
   return true;
+};
+
+export const getBuffLevel = function getBuffLevel(buffId) {
+  const buffByName = getActiveGlobalBuff(buffId);
+  
+  if (buffByName) {
+    return CInt(buffByName.value.level);
+  }
+  
+  return 0;
 };

@@ -103,7 +103,9 @@ export default class Battle {
     this.completedEnemies = [];
     this.bonusLoot = 0.0;
     this.allAliveUnits = [];
-
+    
+    this.townBuffLevel = battle.tbl || 0;
+    
     this.units = battle.units.map(unit => new Unit(unit, this));
     this.enemies = battle.enemies.map(unit => new Unit(unit, this));
     this.tickCount = 0;

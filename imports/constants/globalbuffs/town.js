@@ -8,8 +8,8 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town dwellings.',
     effects: function(level = 1) {
       return [
-        `+${Math.ceil(level * 1.5)}% Farming XP`,
-        'occasionally receive free food and herbs',
+        `+${(level + 1) * 2.5}% Farming XP`,
+        `occasionally receive free food and herbs`,
       ];
     },
   },
@@ -23,7 +23,8 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town quarry.',
     effects: function(level = 1) {
       return [
-        'none (yet)',
+        `+${(level + 1) * 3}% extra passive miner damage`,
+        `+${(level + 1) * 5}% faster mine pit deposits`,
       ];
     },
   },
@@ -37,7 +38,7 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town lumber yard.',
     effects: function(level = 1) {
       return [
-        'none (yet)',
+        `+${(level + 1) * 2.5}% faster woodcutters`,
       ];
     },
   },
@@ -51,7 +52,8 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town armory.',
     effects: function(level = 1) {
       return [
-        'none (yet)',
+        `${(level + 1) * 1.5}% higher companion stats in battle`,
+        `${level * 5}% better chance for rarer items`,
       ];
     },
   },
@@ -65,7 +67,7 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town library.',
     effects: function(level = 1) {
       return [
-        'none (yet)',
+        `+${(level + 1) * 2.5}% Inscription XP`,
       ];
     },
   },
@@ -79,7 +81,7 @@ export const TOWN_GLOBALBUFFS = {
     extraDescription: 'This global buff can be achieved by donating items to the town observatory.',
     effects: function(level = 1) {
       return [
-        'none (yet)',
+        `+${(level + 1) * 2.5}% Astronomy XP`,
       ];
     },
   },

@@ -18,6 +18,7 @@ import { flattenObjectForMongo } from '/server/utils';
 import { CInt, CDbl } from '/imports/utils';
 import { sendUserChatMessage } from '/imports/chatUtils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import Numeral from 'numeral';
 
@@ -51,7 +52,13 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         const upgradedRarityRoll = CDbl(Math.random() * 100.0);
         itemConstants.upgradeRarity.forEach((thisRarityData) => {
           if (!rarityId) {
-            if (upgradedRarityRoll <= CDbl(thisRarityData.chance)) {
+            let currentChance = thisRarityData.chance;
+            const townBuffArmoryLevel = getBuffLevel('town_armory');
+            if (townBuffArmoryLevel > 0) {
+              currentChance *= 1 + (townBuffArmoryLevel * 0.05)
+            }
+            
+            if (upgradedRarityRoll <= CDbl(currentChance)) {
               rarityId = thisRarityData.rarityId;
             }
           }

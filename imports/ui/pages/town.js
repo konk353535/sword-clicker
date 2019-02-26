@@ -5,6 +5,7 @@ import _ from 'underscore';
 import lodash from 'lodash';
 import Numeral from 'numeral';
 
+import { Servers } from '/imports/api/servers/servers.js';
 import { Town, calculateItemKarma, karmaLevelValues } from '/imports/api/town/town.js';
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
@@ -16,7 +17,10 @@ import { ITEMS } from '/imports/constants/items';
 import './town.html';
 
 Template.townPage.onCreated(function bodyOnCreated() {
-  Meteor.subscribe("town");
+  Tracker.autorun(() => {
+    Meteor.subscribe('servers');
+    Meteor.subscribe('town');
+  });
 
   this.state = new ReactiveDict();
   

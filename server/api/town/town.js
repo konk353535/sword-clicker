@@ -188,15 +188,19 @@ Meteor.methods({
   },
   
   // note: this isn't used by anything (we now publish and subscribe to a pseudo-collection)
-  /*
-  'town.getGoods'(whichDay = 1) {
-    whichDay = CInt(whichDay);    
-    if (whichDay < 1 || whichDay > 7) {
-      return;
-    }
-    
+  'town.getGoods'(whichDay = -1) {
     const serverDoc = Servers.findOne({name: 'Classic'});
     if (!serverDoc || !serverDoc.town) {
+      return;
+    }
+
+    whichDay = CInt(whichDay);    
+    
+    if (whichDay === -1) {
+      return serverDoc.town;
+    }
+    
+    if (whichDay < 1 || whichDay > 7) {
       return;
     }
     
@@ -220,7 +224,6 @@ Meteor.methods({
     }
     return serverDoc.town.day1goods;
   },
-  */
   
   'town.donateItem'(_id, itemId, amount, building) {
     if (!_id || !itemId || !amount || amount <= 0 || !building || (typeof building !== 'string')) {

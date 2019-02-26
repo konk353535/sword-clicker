@@ -34,7 +34,7 @@ export const TOWN_GLOBALBUFFS = {
     name: function(level = 1) {
       return `Global town lumber yard buff Lv. ${level}`;
     },
-    icon: 'lumberYard',
+    icon: 'lumberYard2',
     extraDescription: 'This global buff can be achieved by donating items to the town lumber yard.',
     effects: function(level = 1) {
       return [

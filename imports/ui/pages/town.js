@@ -10,18 +10,13 @@ import { Town, calculateItemKarma, karmaLevelValues } from '/imports/api/town/to
 import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 import { State } from '/imports/api/state/state';
-import { CInt, autoPrecisionValue } from '/imports/utils.js';
+import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
 
 import { ITEMS } from '/imports/constants/items';
 
 import './town.html';
 
 Template.townPage.onCreated(function bodyOnCreated() {
-  Tracker.autorun(() => {
-    Meteor.subscribe('servers');
-    Meteor.subscribe('town');
-  });
-
   this.state = new ReactiveDict();
   
   /*
@@ -49,6 +44,11 @@ Template.townPage.onCreated(function bodyOnCreated() {
         this.state.set('townSection', 'dwellings');
       }
     }
+  });
+
+  Tracker.autorun(() => {
+    Meteor.subscribe('servers');
+    Meteor.subscribe('town');
   });
 });
 
@@ -147,7 +147,7 @@ Template.townPage.helpers({
             const newItem = Object.assign({}, itemConstants, item);
             newItem.amount = item.count;
             newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count);
-            newItem.reverseKarmaValue = 1000000000000 - newItem.karmaValue;
+            newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue;
             const countFormatted = Numeral(item.count).format('0,0');
             const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
             newItem.customDescription = `<b>${countFormatted}</b> x donated by <i>${item.username}</i><br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`;
@@ -191,10 +191,18 @@ Template.townPage.helpers({
     const townSection = instance.state.get('townSection');
     
     if (!townSection) {
+      console.log("Can't donate any items: no town location selected.");
       return false;
     }
       
-    let filteredItems = Items.find({}).map((item) => {
+    const baseItemList = Items.find({});
+    if ((!baseItemList) || (baseItemList.count() === 0)) {
+      console.log("Can't donate any items: base item list returned no items:");
+      console.log(baseItemList.fetch());
+      return false;
+    }
+      
+    let filteredItems = baseItemList.map((item) => {
       const itemConstants = ITEMS[item.itemId];
       if (itemConstants) {
         let baseDescription = '';
@@ -211,10 +219,10 @@ Template.townPage.helpers({
         newItem.description = baseDescription; // fix description
         newItem.donateMode = true;
         newItem.donateSection = townSection;
-        newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem));
-        newItem.reverseKarmaValue = 1000000000000 - newItem.karmaValue;
+        newItem.karmaValue = CInt(autoPrecisionValue(calculateItemKarma(newItem)));
+        newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue;
         const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
-        if (newItem.amount > 0 || newItem.count > 0) {
+        if (CInt(newItem.amount) > 1) {
           newItem.customDescription = `Donating these will add <b>${karmaValueFormatted}</b> karma each.<hr />${baseDescription}`;
         } else {
           newItem.customDescription = `Donating this will add <b>${karmaValueFormatted}</b> karma.<hr />${baseDescription}`;
@@ -223,6 +231,12 @@ Template.townPage.helpers({
         return newItem;
       }
     });
+    
+    if ((!filteredItems) || (filteredItems.length === 0)) {
+      console.log("Can't donate any items: mapped item list returned no items:");
+      console.log(filteredItems);
+      return false;
+    }
     
     filteredItems = filteredItems.filter((item) => {
       // filter out all equipped items
@@ -265,9 +279,21 @@ Template.townPage.helpers({
     if (filteredItems) {
       filteredItems = _.sortBy(filteredItems, ['name']);
       filteredItems = _.sortBy(filteredItems, ['reverseKarmaValue']);        
+      
+      if ((!filteredItems) || (filteredItems.length === 0)) {
+        console.log("Can't donate any items: filtered/sorted item list returned no items:");
+        console.log("Location:", townSection);
+        console.log("Filtered list:");
+        console.log(filteredItems);
+        return false;
+      }
       return filteredItems;
     }
 
+    console.log("Can't donate any items: filtered item list returned no items:");
+    console.log("Location:", townSection);
+    console.log("Filtered list:");
+    console.log(filteredItems);
     return false;    
   }
 

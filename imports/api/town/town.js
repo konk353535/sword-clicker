@@ -80,7 +80,7 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
       if (!targetItem) {
         return 0;
       }
-      return CInt(Math.ceil(targetItem.xp / 1.5));
+      return CInt(Math.ceil(targetItem.xp / 75));
     }
     
     if (item.id === 'ore_coal') return 1;

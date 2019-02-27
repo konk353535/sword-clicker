@@ -92,10 +92,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
     }
   }
 
-
-  if (globalXpBuffs[skill.type] && !ignoreBuff) {
-    xp *= 1 + bonusXpPercent;
-  }
+  xp *= 1 + bonusXpPercent;
 
   skill.xp += xp;
 

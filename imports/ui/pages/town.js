@@ -160,6 +160,7 @@ Template.townPage.helpers({
             return newItem;
           }
           
+          console.log(`WARNING: player has item ${item.itemId} that does not exist!`);
           return item;
         });
         
@@ -274,10 +275,10 @@ Template.townPage.helpers({
           if (item.category === 'astronomy') return true;
         }
       } catch (err) {
-        console.log("Exception thrown (and ignored) while filtering:");
-        console.log(err);
-        console.log("Referenced item:");
-        console.log(item);
+        //console.log("Exception thrown (and ignored) while filtering:");
+        //console.log(err);
+        //console.log("Referenced item:");
+        //console.log(item);
       }
       return false;
     });

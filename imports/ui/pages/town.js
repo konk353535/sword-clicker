@@ -239,40 +239,46 @@ Template.townPage.helpers({
     }
     
     filteredItems = filteredItems.filter((item) => {
-      // filter out all equipped items
-      if (item.equipped) return false;
-      
-      // filter out all hidden items
-      //if (item.hidden) return false;
-      
-      if (townSection === 'dwellings') {
-        if (item.category === 'food') return true;
-        if (item.category === 'seed' && item.seedType === 'food') return true;
-        if (item.category === 'seed' && item.seedType === 'xp') return true;
-        if (item.itemId === 'ore_coal') return true;
-        if (item.itemId === 'cactus') return true;
-        if (item.itemId === 'reed') return true;
-        if (item.itemId === 'papyrus') return true;
-        if (item.itemId === 'bamboo') return true;
-        if (item.itemId === 'palm') return true;
-        if (item.itemId === 'kenaf') return true;
-        if (item.itemId === 'bamboo_shack') return true;
-      } else if (townSection === 'quarry') {
-        if (item.category === 'mining') return true;
-      } else if (townSection === 'lumberyard') {
-        if (item.category === 'woodcutting') return true;
-      } else if (townSection === 'armory') {
-        if (item.category === 'combat') return true;
-      } else if (townSection === 'library') {
-        if (item.isCraftingScroll && item.teaches) return true;
-        if (item.category === 'tome') return true;
-        if (item.category === 'pigment') return true;
-        if (item.category === 'paper') return true; // includes both crafted paper and books
-        if (item.category === 'magic_book') return true;
-      } else if (townSection === 'observatory') {
-        if (item.category === 'astronomy') return true;
+      try {
+        // filter out all equipped items
+        if (item.equipped) return false;
+        
+        // filter out all hidden items
+        //if (item.hidden) return false;
+        
+        if (townSection === 'dwellings') {
+          if (item.category === 'food') return true;
+          if (item.category === 'seed' && item.seedType === 'food') return true;
+          if (item.category === 'seed' && item.seedType === 'xp') return true;
+          if (item.itemId === 'ore_coal') return true;
+          if (item.itemId === 'cactus') return true;
+          if (item.itemId === 'reed') return true;
+          if (item.itemId === 'papyrus') return true;
+          if (item.itemId === 'bamboo') return true;
+          if (item.itemId === 'palm') return true;
+          if (item.itemId === 'kenaf') return true;
+          if (item.itemId === 'bamboo_shack') return true;
+        } else if (townSection === 'quarry') {
+          if (item.category === 'mining') return true;
+        } else if (townSection === 'lumberyard') {
+          if (item.category === 'woodcutting') return true;
+        } else if (townSection === 'armory') {
+          if (item.category === 'combat') return true;
+        } else if (townSection === 'library') {
+          if (item.isCraftingScroll && item.teaches) return true;
+          if (item.category === 'tome') return true;
+          if (item.category === 'pigment') return true;
+          if (item.category === 'paper') return true; // includes both crafted paper and books
+          if (item.category === 'magic_book') return true;
+        } else if (townSection === 'observatory') {
+          if (item.category === 'astronomy') return true;
+        }
+      } catch (err) {
+        console.log("Exception thrown (and ignored) while filtering:");
+        console.log(err);
+        console.log("Referenced item:");
+        console.log(item);
       }
-      
       return false;
     });
     

@@ -63,7 +63,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Town Dwelling Buff',
   schedule: function (parser) {
-    return parser.text('every 10 minutes');
+    return parser.text('every 3 minutes');
   },
   job: function () {
     Servers.find().fetch().forEach((thisServer) => {

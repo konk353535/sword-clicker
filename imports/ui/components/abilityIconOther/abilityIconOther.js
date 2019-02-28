@@ -25,7 +25,6 @@ Template.abilityIconOther.helpers({
     
     if (instance.data.ability.description !== undefined) {
       if (_.isFunction(instance.data.ability.description)) {
-        console.log("armory level:", getBuffLevel('town_armory'));
         return instance.data.ability.description({ buff: BUFFS[instance.data.ability.abilityId], level: instance.data.ability.level, townBuffLevel: getBuffLevel('town_armory') });
       }
       return instance.data.ability.description;

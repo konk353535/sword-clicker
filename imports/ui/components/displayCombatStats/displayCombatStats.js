@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 
-import { autoPrecisionValue } from '../../../utils.js';
+import { CDbl, autoPrecisionValue } from '../../../utils.js';
 
 import './displayCombatStats.html';
 

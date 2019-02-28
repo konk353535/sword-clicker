@@ -119,9 +119,10 @@ export const newTownDay = function newTownDay() {
     try {
       // read town data
       const serverData = lodash.cloneDeep(thisServer);
-      const serverTownData = serverData.town;
+      let serverTownData = serverData.town;
       
       if (!serverTownData) {
+        // create new town data
         serverTownData = {
           day1goods: [],
           day2goods: [],

@@ -66,77 +66,79 @@ SyncedCron.add({
     return parser.text('every 10 minutes');
   },
   job: function () {
-    try {
-      const activeUsersByMiningUpdate = Mining.find({ lastGameUpdated: { $gte: moment().subtract(8, 'hours').toDate() } }).fetch();
-      let activeUsersArray = [];
-      activeUsersByMiningUpdate.forEach((activeUser) => {
-        activeUsersArray.push(activeUser.owner);
-      });
-      const activeUserDocs = Users.find({ _id: { $in: activeUsersArray } }).fetch();
-      const activeUserCount = activeUserDocs.length;
-      
-      if (activeUserCount > 0) {
-        const townBuffDwellingLevel = getBuffLevel('town_dwelling');
+    Servers.find().fetch().forEach((thisServer) => {
+      try {
+        const activeUsersByMiningUpdate = Mining.find({ lastGameUpdated: { $gte: moment().subtract(8, 'hours').toDate() } }).fetch();
+        let activeUsersArray = [];
+        activeUsersByMiningUpdate.forEach((activeUser) => {
+          activeUsersArray.push(activeUser.owner);
+        });
+        const activeUserDocs = Users.find({ _id: { $in: activeUsersArray }, server: thisServer._id }).fetch();
+        const activeUserCount = activeUserDocs.length;
+        
+        if (activeUserCount > 0) {
+          const townBuffDwellingLevel = getBuffLevel('town_dwelling', thisServer._id);
 
-        if (townBuffDwellingLevel > 0) {
-          let foodList = [];
-          foodList.push('lettice'); // farming level 1, floors 1, 5-6, 9-13, 15, 17-20
-          foodList.push('grape_fruit'); // farming level 3
-          foodList.push('red_apple'); // farming level 5, floors 5-6, 14
-          foodList.push('rubia_flower'); // farming level 1
-          foodList.push('basil'); // farming level 4
-          if (townBuffDwellingLevel >= 2) {
-            foodList.push('pear'); // farming level 8
-            foodList.push('pineapple'); // farming level 10, floors 5-6, 16
-            foodList.push('pink_rose'); // farming level 5
-            foodList.push('lavender'); // floors 3-9
-            foodList.push('tamarind_honey'); // floor 6
-          }
-          if (townBuffDwellingLevel >= 3) {
-            foodList.push('watermelon'); // farming level 15, floor 6
-            foodList.push('potato'); // farming level 20
-            foodList.push('carrot'); // farming level 20, floor 2, 9
-            foodList.push('lemon'); // farming level 2 (but restores energy and costly), floors 5-6 (as seeds only)
-            foodList.push('endive'); // farming level 6
-            foodList.push('lemon_grass'); // floors 14 and 16
-          }
-          if (townBuffDwellingLevel >= 4) {
-            foodList.push('acai_berry'); // farming level 30
-            foodList.push('orange'); // farming level 35
-            foodList.push('juniper'); // farming level 7
-            foodList.push('chilli'); // floors 10-20
-            foodList.push('garlic'); // floors 14 and 18
-            foodList.push('chives'); // floors 15 and 17
-          }
-          if (townBuffDwellingLevel >= 5) {
-            foodList.push('banana'); // farming level 40
-            foodList.push('rockmelon'); // farming level 50 
-            foodList.push('agrimony'); // farming level 12 (valuable)
-            foodList.push('sorrel'); // floors 17 and 20
-            foodList.push('lemon_honey'); // floor 18
-          }
-          
-          // choose X random players where X is a % of the active player list (and a higher % for a higher buff level)
-          const userChance = 0.15 + (0.05 * townBuffDwellingLevel); // 20%, 25%, 30%, 35%, 40%
-          const usersToPick = Math.ceil(activeUserCount * userChance);
-
-          for (let i = 0; i < usersToPick; i++) {
-            const targetUser = _.sample(activeUserDocs);
-            const foodItemId = _.sample(foodList);
+          if (townBuffDwellingLevel > 0) {
+            let foodList = [];
+            foodList.push('lettice'); // farming level 1, floors 1, 5-6, 9-13, 15, 17-20
+            foodList.push('grape_fruit'); // farming level 3
+            foodList.push('red_apple'); // farming level 5, floors 5-6, 14
+            foodList.push('rubia_flower'); // farming level 1
+            foodList.push('basil'); // farming level 4
+            if (townBuffDwellingLevel >= 2) {
+              foodList.push('pear'); // farming level 8
+              foodList.push('pineapple'); // farming level 10, floors 5-6, 16
+              foodList.push('pink_rose'); // farming level 5
+              foodList.push('lavender'); // floors 3-9
+              foodList.push('tamarind_honey'); // floor 6
+            }
+            if (townBuffDwellingLevel >= 3) {
+              foodList.push('watermelon'); // farming level 15, floor 6
+              foodList.push('potato'); // farming level 20
+              foodList.push('carrot'); // farming level 20, floor 2, 9
+              foodList.push('lemon'); // farming level 2 (but restores energy and costly), floors 5-6 (as seeds only)
+              foodList.push('endive'); // farming level 6
+              foodList.push('lemon_grass'); // floors 14 and 16
+            }
+            if (townBuffDwellingLevel >= 4) {
+              foodList.push('acai_berry'); // farming level 30
+              foodList.push('orange'); // farming level 35
+              foodList.push('juniper'); // farming level 7
+              foodList.push('chilli'); // floors 10-20
+              foodList.push('garlic'); // floors 14 and 18
+              foodList.push('chives'); // floors 15 and 17
+            }
+            if (townBuffDwellingLevel >= 5) {
+              foodList.push('banana'); // farming level 40
+              foodList.push('rockmelon'); // farming level 50 
+              foodList.push('agrimony'); // farming level 12 (valuable)
+              foodList.push('sorrel'); // floors 17 and 20
+              foodList.push('lemon_honey'); // floor 18
+            }
             
-            // buff level 1 = 1 item
-            // buff level 2 = 1 item
-            // buff level 3 = 1-2 items
-            // buff level 4 = 1-4 items
-            // buff level 5 = 1-6 items
-            addItem(foodItemId, CInt(Math.ceil(Math.random() * Math.ceil(townBuffDwellingLevel * townBuffDwellingLevel / 4))), targetUser._id);            
+            // choose X random players where X is a % of the active player list (and a higher % for a higher buff level)
+            const userChance = 0.15 + (0.05 * townBuffDwellingLevel); // 20%, 25%, 30%, 35%, 40%
+            const usersToPick = Math.ceil(activeUserCount * userChance);
+
+            for (let i = 0; i < usersToPick; i++) {
+              const targetUser = _.sample(activeUserDocs);
+              const foodItemId = _.sample(foodList);
+              
+              // buff level 1 = 1 item
+              // buff level 2 = 1 item
+              // buff level 3 = 1-2 items
+              // buff level 4 = 1-4 items
+              // buff level 5 = 1-6 items
+              addItem(foodItemId, CInt(Math.ceil(Math.random() * Math.ceil(townBuffDwellingLevel * townBuffDwellingLevel / 4))), targetUser._id);            
+            }
           }
         }
+      } catch (err) {
+        console.log("Exception in 'Town Buffs' cron:");
+        console.log(err);
       }
-    } catch (err) {
-      console.log("Exception in 'Town Buffs' cron:");
-      console.log(err);
-    }
+    });
   }
 });
 

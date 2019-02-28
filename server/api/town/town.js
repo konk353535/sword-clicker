@@ -47,9 +47,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       //console.log(karmaData);
       
       if (!karmaData.dwellings.isError) {
-        const dwellingsBuff = getGlobalBuff('town_dwelling');
+        const dwellingsBuff = getGlobalBuff('town_dwelling', thisServer._id);
         if (!dwellingsBuff || (CInt(dwellingsBuff.value.level) != CInt(karmaData.dwellings.currentLevel))) {
-          if (dwellingsBuff) { State.remove({ name: dwellingsBuff.name, server: dwellingsBuff.server }); }
+          if (dwellingsBuff) { State.remove({ name: dwellingsBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.dwellings.currentLevel) > 0) {
             State.insert({name: 'town_dwelling', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.dwellings.currentLevel } });
           }
@@ -57,9 +57,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       }
       
       if (!karmaData.quarry.isError) {
-        const quarryBuff = getGlobalBuff('town_quarry');
+        const quarryBuff = getGlobalBuff('town_quarry', thisServer._id);
         if (!quarryBuff || (CInt(quarryBuff.value.level) != CInt(karmaData.quarry.currentLevel))) {
-          if (quarryBuff) { State.remove({ name: quarryBuff.name, server: quarryBuff.server }); }
+          if (quarryBuff) { State.remove({ name: quarryBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.quarry.currentLevel) > 0) {
             State.insert({name: 'town_quarry', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.quarry.currentLevel } });
           }
@@ -67,9 +67,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       }
       
       if (!karmaData.lumberyard.isError) {
-        const lumberyardBuff = getGlobalBuff('town_lumber_yard');
+        const lumberyardBuff = getGlobalBuff('town_lumber_yard', thisServer._id);
         if (!lumberyardBuff || (CInt(lumberyardBuff.value.level) != CInt(karmaData.lumberyard.currentLevel))) {
-          if (lumberyardBuff) { State.remove({ name: lumberyardBuff.name, server: lumberyardBuff.server }); }
+          if (lumberyardBuff) { State.remove({ name: lumberyardBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.lumberyard.currentLevel) > 0) {
             State.insert({name: 'town_lumber_yard', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.lumberyard.currentLevel } });
           }
@@ -77,9 +77,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       }
       
       if (!karmaData.armory.isError) {
-        const armoryBuff = getGlobalBuff('town_armory');
+        const armoryBuff = getGlobalBuff('town_armory', thisServer._id);
         if (!armoryBuff || (CInt(armoryBuff.value.level) != CInt(karmaData.armory.currentLevel))) {
-          if (armoryBuff) { State.remove( {name: armoryBuff.name, server: armoryBuff.server }); }
+          if (armoryBuff) { State.remove( {name: armoryBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.armory.currentLevel) > 0) {
             State.insert({name: 'town_armory', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.armory.currentLevel } });
           }
@@ -87,9 +87,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       }
       
       if (!karmaData.library.isError) {
-        const libraryBuff = getGlobalBuff('town_library');
+        const libraryBuff = getGlobalBuff('town_library', thisServer._id);
         if (!libraryBuff || (CInt(libraryBuff.value.level) != CInt(karmaData.library.currentLevel))) {
-          if (libraryBuff) { State.remove({ name: libraryBuff.name, server: libraryBuff.server }); }
+          if (libraryBuff) { State.remove({ name: libraryBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.library.currentLevel) > 0) {
             State.insert({name: 'town_library', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.library.currentLevel } });
           }
@@ -97,9 +97,9 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       }
       
       if (!karmaData.observatory.isError) {
-        const observatoryBuff = getGlobalBuff('town_observatory');
+        const observatoryBuff = getGlobalBuff('town_observatory', thisServer._id);
         if (!observatoryBuff || (CInt(observatoryBuff.value.level) != CInt(karmaData.observatory.currentLevel))) {
-          if (observatoryBuff) { State.remove({ name: observatoryBuff.name, server: observatoryBuff.server }); }
+          if (observatoryBuff) { State.remove({ name: observatoryBuff.name, server: thisServer._id }); }
           if (CInt(karmaData.observatory.currentLevel) > 0) {
             State.insert({name: 'town_observatory', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.observatory.currentLevel } });
           }

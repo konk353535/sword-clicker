@@ -40,13 +40,13 @@ export const getGlobalBuffs = function getGlobalBuffs() {
 };
 
 // look up an existing global buff by name (type ID) only if it's active
-export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType) {
+export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType, serverId) {
   const realBuffId = translateGlobalBuffId(buffType);
   if (!realBuffId) {
     return false;
   }
 
-  const serverId = serverFromUser();
+  serverId = serverId || serverFromUser();
   const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId, 'value.activeTo': { $gte: moment().toDate() }}) : State.findOne({name: realBuffId, 'value.activeTo': { $gte: moment().toDate() }});
   
   if (_.isUndefined(buffState)) {
@@ -63,13 +63,13 @@ export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType) {
 };
 
 // look up an existing global buff by name (type ID), whether it's active or not
-export const getGlobalBuff = function getGlobalBuff(buffType) {
+export const getGlobalBuff = function getGlobalBuff(buffType, serverId) {
   const realBuffId = translateGlobalBuffId(buffType);
   if (!realBuffId) {
     return false;
   }
 
-  const serverId = serverFromUser();
+  serverId = serverId || serverFromUser();
   const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId}) : State.findOne({name: realBuffId});
   
   if (_.isUndefined(buffState)) {
@@ -150,8 +150,10 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, server 
   return true;
 };
 
-export const getBuffLevel = function getBuffLevel(buffId) {
-  const buffByName = getActiveGlobalBuff(buffId);
+export const getBuffLevel = function getBuffLevel(buffId, serverId) {
+  serverId = serverId || serverFromUser();
+  
+  const buffByName = getActiveGlobalBuff(buffId, serverId);  
   
   if (buffByName) {
     return CInt(buffByName.value.level);

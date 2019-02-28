@@ -222,6 +222,18 @@ Router.route('/chat', {
   });
 });
 
+(['dev', 'developer', 'development', 'debug', 'test', 'testing']).forEach((pageAlias) => {
+  Router.route(`/${pageAlias}`, {
+    name: pageAlias,
+    title: 'Dev Page',
+    template: 'devPage',
+    yieldRegions: {
+      'nav': { to: 'nav' },
+      'footer': { to: 'footer' },
+    },
+  });
+});
+
 Router.onAfterAction(() => {
   const currentRoute = Router.current();
   if (currentRoute && currentRoute.route && currentRoute.route.options) {

@@ -48,6 +48,7 @@ import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
 import '../imports/ui/pages/shop.js';
 import '../imports/ui/pages/town.js';
+import '../imports/ui/pages/dev.js';
 
 // Start Up
 import '../imports/startup/both';

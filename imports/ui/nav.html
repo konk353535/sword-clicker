@@ -95,6 +95,13 @@
                 </li>
               {{/if}}
             {{/if}}
+            {{#if isAdmin}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'dev'}}active{{/if}}" href="/dev">
+                  Dev
+                </a>
+              </li>
+            {{/if}}
           {{/if}}
         </ul>
         <form class="form-inline my-2 my-lg-0">

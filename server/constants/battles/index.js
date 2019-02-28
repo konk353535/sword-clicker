@@ -6,66 +6,77 @@ export const BATTLES = {
       'dagger': {
         attack: 0.17,
         defense: 0.33,
+        magic: 0,
         health: 0.5
       },
 
       'spear': {
         attack: 0,
         defense: 0.5,
+        magic: 0,
         health: 0.5
       },
 
       'staff': {
         attack: 0,
         defense: 0,
+        magic: 0,
         health: 1.0
       },
 
       'wand': {
         attack: 0,
         defense: 0.17,
+        magic: 0,
         health: 0.5
       },
 
       'trident': {
         attack: 0.375,
         defense: 0.125,
+        magic: 0,
         health: 0.5
       },
 
       'longSword': {
         attack: 0.5,
         defense: 0,
+        magic: 0,
         health: 0.5
       },
 
       'shortSword': {
         attack: 0.25,
         defense: 0.25,
+        magic: 0,
         health: 0.5
       },
 
       'rapier': {
         attack: 0.17,
         defense: 0.33,
+        magic: 0,
         health: 0.5
       },
 
       'battleAxe': {
         attack: 0.5,
         defense: 0,
+        magic: 0,
         health: 0.5
       },
       
       'hammer': {
         attack: 0.125,
         defense: 0.375,
+        magic: 0,
         health: 0.5
       },
       
       'bow': {
         attack: 0.75,
         defense: 0.0,
+        magic: 0,
         health: 0.25
       },
     };

@@ -14,6 +14,7 @@ export const PAID_GLOBALBUFFS = {
         '+100% Gem Drop Rate XP',
       ];
     },
+    isServerBuff: false,
   },
 
   buffCrafting: {
@@ -30,6 +31,7 @@ export const PAID_GLOBALBUFFS = {
         '+100% Gem Drop Rate XP',
       ];
     },
+    isServerBuff: false,
   },
 
   paid_combat: {
@@ -47,6 +49,7 @@ export const PAID_GLOBALBUFFS = {
         '+35% Astronomy XP',
       ];
     },
+    isServerBuff: false,
   },
 
   buffCombat: {
@@ -63,6 +66,7 @@ export const PAID_GLOBALBUFFS = {
         '+35% Astronomy XP',
       ];
     },
+    isServerBuff: false,
   },
 
   paid_gathering: {
@@ -80,6 +84,7 @@ export const PAID_GLOBALBUFFS = {
         '+35% Farming XP',
       ];
     },
+    isServerBuff: false,
   },
 
   buffGathering: {
@@ -96,5 +101,6 @@ export const PAID_GLOBALBUFFS = {
         '+35% Farming XP',
       ];
     },
+    isServerBuff: false,
   },
 };

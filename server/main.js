@@ -29,7 +29,7 @@ import { addItem } from '/server/api/items/items';
 import { createNewServer } from '/imports/api/servers/servers';
 import { getIPFromConnection, updateUserIP } from '/imports/api/users/users.js';
 
-import { syncKarmaBuffs } from '/server/api/town/town.js';
+import { deleteKarmaBuffs, syncKarmaBuffs } from '/server/api/town/town.js';
 
 /*
 Meteor.onConnection((connection) => {
@@ -160,6 +160,7 @@ Meteor.startup(() => {
   FarmingSpace._ensureIndex({ index: 1 });
   BattleActions._ensureIndex({ battleId: 1 });
   State._ensureIndex({ name: 1 })
-  
+
+  deleteKarmaBuffs();  
   syncKarmaBuffs();
 });

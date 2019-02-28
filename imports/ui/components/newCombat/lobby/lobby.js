@@ -20,6 +20,7 @@ import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { getGlobalBuffs } from '/imports/api/globalbuffs/globalbuffs';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
@@ -492,7 +493,7 @@ Template.lobbyPage.helpers({
   },
   
   allGlobalBuffs() {
-    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    return getGlobalBuffs();
   },
   
   defenseSkill() {

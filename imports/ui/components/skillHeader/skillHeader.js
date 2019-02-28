@@ -6,6 +6,8 @@ import { State } from '/imports/api/state/state';
 import { STATE_BUFFS } from '/imports/constants/state';
 import lodash from 'lodash';
 
+import { getGlobalBuffs } from '/imports/api/globalbuffs/globalbuffs';
+
 import './skillHeader.html';
 
 Template.skillHeader.onCreated(function bodyOnCreated() {
@@ -17,7 +19,7 @@ Template.skillHeader.onCreated(function bodyOnCreated() {
 Template.skillHeader.helpers({
   
   allGlobalBuffs() {
-    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    return getGlobalBuffs();
   },
 
   xpPercentage() {

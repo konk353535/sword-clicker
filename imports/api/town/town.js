@@ -4,6 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import lodash from 'lodash';
 
 import { Servers } from '/imports/api/servers/servers';
+import { serverFromUser } from '/imports/api/users/users';
 import { CInt } from '/imports/utils';
 import { ITEMS, ITEM_RARITIES } from '/imports/constants/items';
 import { FARMING } from '/imports/constants/farming/index.js';
@@ -199,7 +200,7 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
 
 export const karmaLevelValues = function karmaLevelValues(townSection, townInfo__in) {
   try {
-    const serverInfo = lodash.cloneDeep(Servers.findOne({name: 'Classic'}));
+    const serverInfo = lodash.cloneDeep(Servers.findOne({ _id: serverFromUser() }));
     let townInfo;
     if ((!serverInfo || !serverInfo.town) && !townInfo__in) {
       townInfo = Meteor.call('town.getGoods', -1);

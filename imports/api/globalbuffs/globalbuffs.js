@@ -5,6 +5,7 @@ import { State } from '/imports/api/state/state';
 import { GLOBALBUFFS } from '/imports/constants/globalbuffs';
 
 import { CInt } from '/imports/utils.js';
+import { serverFromUser } from '/imports/api/users/users';
 
 export const translateGlobalBuffId = function translateGlobalBuffId(buffType) {
   if (_.isUndefined(buffType)) {
@@ -18,10 +19,22 @@ export const translateGlobalBuffId = function translateGlobalBuffId(buffType) {
   return ((!_.isUndefined(GLOBALBUFFS[buffType].dataBuffId)) ? GLOBALBUFFS[buffType].dataBuffId : buffType);
 };
 
-export const getGlobalBuffs = function getGlobalBuffs(buffType) {
+export const getGlobalBuffs = function getGlobalBuffs() {
   const gbCursor = State.find({'value.activeTo': {$gte: moment().toDate()}});
   if (gbCursor) {
-    return gbCursor.fetch();
+    let buffs = gbCursor.fetch();
+    
+    buffs = buffs.filter((buff) => {
+      if (GLOBALBUFFS[buff.name] && GLOBALBUFFS[buff.name].isServerBuff) {
+        if (buff.server != serverFromUser()) {
+          return false;
+        }
+      }
+      
+      return true;
+    });
+    
+    return buffs;
   }
   return [];
 };
@@ -33,9 +46,20 @@ export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType) {
     return false;
   }
 
-  const buffState = State.findOne({name: realBuffId, 'value.activeTo': { $gte: moment().toDate() }});
+  const serverId = serverFromUser();
+  const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId, 'value.activeTo': { $gte: moment().toDate() }}) : State.findOne({name: realBuffId, 'value.activeTo': { $gte: moment().toDate() }});
   
-  return ((!_.isUndefined(buffState)) ? buffState : false);
+  if (_.isUndefined(buffState)) {
+    return false;
+  }
+  
+  if (GLOBALBUFFS[realBuffId] && GLOBALBUFFS[realBuffId].isServerBuff) {
+    if (buffState.server != serverId) {
+      return false;
+    }
+  }
+  
+  return buffState;
 };
 
 // look up an existing global buff by name (type ID), whether it's active or not
@@ -45,13 +69,24 @@ export const getGlobalBuff = function getGlobalBuff(buffType) {
     return false;
   }
 
-  const buffState = State.findOne({name: realBuffId});
-
-  return ((!_.isUndefined(buffState)) ? buffState : false);
+  const serverId = serverFromUser();
+  const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId}) : State.findOne({name: realBuffId});
+  
+  if (_.isUndefined(buffState)) {
+    return false;
+  }
+  
+  if (GLOBALBUFFS[realBuffId] && GLOBALBUFFS[realBuffId].isServerBuff) {
+    if (buffState.server != serverId) {
+      return false;
+    }
+  }
+  
+  return buffState;
 };
 
 // add or insert a global buff as necessary, extending or setting time as necessary
-export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt = 1, time = 'hour', level = -1}) {
+export const activateGlobalBuff = function activateGlobalBuff({buffType, server = undefined, timeAmt = 1, time = 'hour', level = -1}) {
   const realBuffId = translateGlobalBuffId(buffType);
   if (!realBuffId) {
     return false;
@@ -88,6 +123,7 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt
       name: realBuffId
     }, {
       $set: {
+        server,
         value: curBuff.value
       }
     });
@@ -104,6 +140,7 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, timeAmt
   // insert new doc into mongo
   State.insert({
     name: realBuffId,
+    server,
     value: {
       activeTo: moment().add(timeAmt, time).toDate(),
       level

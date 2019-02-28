@@ -12,6 +12,7 @@ export const TOWN_GLOBALBUFFS = {
         `occasionally receive free food and herbs`,
       ];
     },
+    isServerBuff: true,
   },
 
   town_quarry: {
@@ -27,6 +28,7 @@ export const TOWN_GLOBALBUFFS = {
         `+${(level + 1) * 5}% faster mine pit deposits`,
       ];
     },
+    isServerBuff: true,
   },
 
   town_lumber_yard: {
@@ -41,6 +43,7 @@ export const TOWN_GLOBALBUFFS = {
         `+${(level + 1) * 2.5}% faster woodcutters`,
       ];
     },
+    isServerBuff: true,
   },
 
   town_armory: {
@@ -56,6 +59,7 @@ export const TOWN_GLOBALBUFFS = {
         `${level * 5}% better chance for rarer items`,
       ];
     },
+    isServerBuff: true,
   },
 
   town_library: {
@@ -70,6 +74,7 @@ export const TOWN_GLOBALBUFFS = {
         `+${(level + 1) * 2.5}% Inscription XP`,
       ];
     },
+    isServerBuff: true,
   },
 
   town_observatory: {
@@ -84,5 +89,6 @@ export const TOWN_GLOBALBUFFS = {
         `+${(level + 1) * 2.5}% Astronomy XP`,
       ];
     },
+    isServerBuff: true,
   },
 };

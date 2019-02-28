@@ -61,7 +61,9 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
 
   const skillConstants = SKILLS[skill.type];
   const originalXp = skill.xp;
-  let bonusXpPercent = 0;
+  
+  // 100% of XP earned
+  let bonusXpPercent = 1;
 
   if (!ignoreBuff) {
     // global buffs add a 35% XP bonus to their relevant skills
@@ -92,7 +94,8 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
     }
   }
 
-  xp *= 1 + bonusXpPercent;
+  // mutate XP earned by bonus XP
+  xp *= bonusXpPercent;
 
   skill.xp += xp;
 

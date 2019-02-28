@@ -11,6 +11,7 @@ import { Users } from '/imports/api/users/users.js';
 import { Items } from '/imports/api/items/items.js';
 import { State } from '/imports/api/state/state';
 import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
+import { getGlobalBuffs } from '/imports/api/globalbuffs/globalbuffs';
 
 import { ITEMS } from '/imports/constants/items';
 
@@ -59,7 +60,7 @@ Template.townPage.helpers({
   },
 
   allGlobalBuffs() {
-    return State.find({'value.activeTo': {$gte: moment().toDate()}}).fetch();
+    return getGlobalBuffs();
   },
   
   numberOfDays() {

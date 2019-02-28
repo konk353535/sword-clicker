@@ -199,22 +199,46 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
 };
 
 export const karmaLevelValues = function karmaLevelValues(townSection, townInfo__in) {
+  let buffNameThisSection = '';
+  
   try {
-    const serverInfo = lodash.cloneDeep(Servers.findOne({ _id: serverFromUser() }));
-    let townInfo;
-    if ((!serverInfo || !serverInfo.town) && !townInfo__in) {
-      townInfo = Meteor.call('town.getGoods', -1);
+    if (typeof townSection !== 'string') {
+      return { townSection: townSection, isError: true, exceptionDetails: 'Missing town location.', curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0, buffName: buffNameThisSection };
     }
-    if (!townInfo) {
-      if (townInfo__in) {
-        townInfo = townInfo__in;
-      } else if (serverInfo) {
+
+    townSection = townSection.toLowerCase().trim();
+    
+    if ((townSection == 'dwelling') || (townSection == 'dwellings')) {
+      buffNameThisSection = 'town_dwelling';
+    } else if (townSection == 'quarry') {
+      buffNameThisSection = 'town_quarry';
+    } else if ((townSection == 'lumberyard') || (townSection == 'lumber_yard') || (townSection == 'lumber yard')) {
+      buffNameThisSection = 'town_lumber_yard';
+    } else if (townSection == 'armory') {
+      buffNameThisSection = 'town_armory';
+    } else if (townSection == 'library') {
+      buffNameThisSection = 'town_library';
+    } else if (townSection == 'observatory') {
+      buffNameThisSection = 'town_observatory';
+    } else {
+      return { townSection: townSection, isError: true, exceptionDetails: 'Invalid town location.', curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0, buffName: buffNameThisSection };
+    }
+
+    let townInfo;
+    if (typeof townInfo__in === 'object') {
+      townInfo = townInfo__in;
+    }
+    if (!townInfo || !townInfo.day1goods) {
+      const serverInfo = lodash.cloneDeep(Servers.findOne({ _id: serverFromUser() }));
+      if (!serverInfo || !serverInfo.town) {
+        townInfo = Meteor.call('town.getGoods', -1);
+      } else {
         townInfo = serverInfo.town;
       }
     }
     
     if (!townInfo) {
-      return { townSection: townSection, isError: true, exceptionDetails: 'There are no servers yet.', curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0 };
+      return { townSection: townSection, isError: true, exceptionDetails: 'There are no servers yet.', curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0, buffName: buffNameThisSection };
     }
     
     const townGoods = [
@@ -271,8 +295,8 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
       targetLevel++;
     }
     
-    return { townSection, isError: false, curVal, nextVal, currentLevel: ((curVal >= nextVal) ? targetLevel : CInt(targetLevel - 1)), targetLevel };
+    return { townSection, isError: false, curVal, nextVal, currentLevel: ((curVal >= nextVal) ? targetLevel : CInt(targetLevel - 1)), targetLevel, buffName: buffNameThisSection };
   } catch (err) {
-    return { townSection: townSection, isError: true, exceptionDetails: err, curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0 };
+    return { townSection: townSection, isError: true, exceptionDetails: err, curVal: 0, nextLevel: 0, currentLevel: 0, targetLevel: 0, buffName: buffNameThisSection };
   }  
 };

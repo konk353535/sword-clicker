@@ -25,8 +25,6 @@ export const deleteKarmaBuffs = function deleteKarmaBuffs() {
 };
 
 export const syncKarmaBuffs = function syncKarmaBuffs() {
-  //console.log("syncKarmaBuffs() called");
-  
   Servers.find().fetch().forEach((thisServer) => {
     try {
       // read town data
@@ -35,83 +33,41 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       
       // set up karma data
       const karmaData = {
-        dwellings: karmaLevelValues('dwellings', townData),
-        quarry: karmaLevelValues('quarry', townData),
-        lumberyard: karmaLevelValues('lumberyard', townData),
-        armory: karmaLevelValues('armory', townData),
-        library: karmaLevelValues('library', townData),
+        dwellings:   karmaLevelValues('dwellings',   townData),
+        quarry:      karmaLevelValues('quarry',      townData),
+        lumberyard:  karmaLevelValues('lumberyard',  townData),
+        armory:      karmaLevelValues('armory',      townData),
+        library:     karmaLevelValues('library',     townData),
         observatory: karmaLevelValues('observatory', townData),
       };
       
       //console.log("Karma data:");
       //console.log(karmaData);
       
-      if (!karmaData.dwellings.isError) {
-        const dwellingsBuff = getGlobalBuff('town_dwelling', thisServer._id);
-        if (!dwellingsBuff || (CInt(dwellingsBuff.value.level) != CInt(karmaData.dwellings.currentLevel))) {
-          if (dwellingsBuff) { State.remove({ name: dwellingsBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.dwellings.currentLevel) > 0) {
-            State.insert({name: 'town_dwelling', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.dwellings.currentLevel } });
+      // Iterate through each town section
+      Object.keys(karmaData).forEach((karmaDataPoint) => {
+        // Make sure there are no errors parsing this section
+        if (!karmaData[karmaDataPoint].isError) {
+          // Find an existing buff
+          const locateBuff = getGlobalBuff(karmaData[karmaDataPoint].buffName, thisServer._id);
+          
+          // If there's no existing buff (or there is, but it's of a different level than our current target level)
+          if (!locateBuff || (CInt(locateBuff.value.level) != CInt(karmaData[karmaDataPoint].currentLevel))) {
+            // Delete any existing buff
+            State.remove({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id });
+            
+            // And create a new buff with the right level (or no buff at target level 0)
+            if (CInt(karmaData[karmaDataPoint].currentLevel) > 0) {
+              State.insert({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData[karmaDataPoint].currentLevel } });
+            }
           }
         }
-      }
-      
-      if (!karmaData.quarry.isError) {
-        const quarryBuff = getGlobalBuff('town_quarry', thisServer._id);
-        if (!quarryBuff || (CInt(quarryBuff.value.level) != CInt(karmaData.quarry.currentLevel))) {
-          if (quarryBuff) { State.remove({ name: quarryBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.quarry.currentLevel) > 0) {
-            State.insert({name: 'town_quarry', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.quarry.currentLevel } });
-          }
-        }
-      }
-      
-      if (!karmaData.lumberyard.isError) {
-        const lumberyardBuff = getGlobalBuff('town_lumber_yard', thisServer._id);
-        if (!lumberyardBuff || (CInt(lumberyardBuff.value.level) != CInt(karmaData.lumberyard.currentLevel))) {
-          if (lumberyardBuff) { State.remove({ name: lumberyardBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.lumberyard.currentLevel) > 0) {
-            State.insert({name: 'town_lumber_yard', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.lumberyard.currentLevel } });
-          }
-        }
-      }
-      
-      if (!karmaData.armory.isError) {
-        const armoryBuff = getGlobalBuff('town_armory', thisServer._id);
-        if (!armoryBuff || (CInt(armoryBuff.value.level) != CInt(karmaData.armory.currentLevel))) {
-          if (armoryBuff) { State.remove( {name: armoryBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.armory.currentLevel) > 0) {
-            State.insert({name: 'town_armory', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.armory.currentLevel } });
-          }
-        }
-      }
-      
-      if (!karmaData.library.isError) {
-        const libraryBuff = getGlobalBuff('town_library', thisServer._id);
-        if (!libraryBuff || (CInt(libraryBuff.value.level) != CInt(karmaData.library.currentLevel))) {
-          if (libraryBuff) { State.remove({ name: libraryBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.library.currentLevel) > 0) {
-            State.insert({name: 'town_library', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.library.currentLevel } });
-          }
-        }
-      }
-      
-      if (!karmaData.observatory.isError) {
-        const observatoryBuff = getGlobalBuff('town_observatory', thisServer._id);
-        if (!observatoryBuff || (CInt(observatoryBuff.value.level) != CInt(karmaData.observatory.currentLevel))) {
-          if (observatoryBuff) { State.remove({ name: observatoryBuff.name, server: thisServer._id }); }
-          if (CInt(karmaData.observatory.currentLevel) > 0) {
-            State.insert({name: 'town_observatory', server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData.observatory.currentLevel } });
-          }
-        }
-      }
+      });
     } catch (err) {
       console.log("syncKarmaBuffs() exception:");
       console.log(err);
     }
   });
-  
-  //console.log("syncKarmaBuffs() ending");
 };
 
 export const newTownDay = function newTownDay() {
@@ -145,10 +101,13 @@ export const newTownDay = function newTownDay() {
         serverTownData.day1goods = []; // newest day has no donated goods, no karma
       }
       
-      Servers.update(
-        { _id: thisServer._id },
-        { $set: { town: serverTownData } }
-      );
+      Servers.update({
+        _id: thisServer._id
+      }, {
+        $set: {
+          town: serverTownData
+        }
+      });
     } catch (err) {
       console.log("newTownDay() exception:");
       console.log(err);
@@ -160,6 +119,24 @@ export const newTownDay = function newTownDay() {
   syncKarmaBuffs();
 };
 
+const consolidateGoods = function consolidateGoods(inputGoods) {
+  const tempGoodsList = lodash.cloneDeep(inputGoods);
+  let consolidatedGoods = tempGoodsList.reduce((accumulator, currentValue, currentIndex, sourceArray) => {
+    let needsToBeAdded = true;
+    accumulator.forEach((item) => {
+      if ((item.itemId === currentValue.itemId) && (item.owner === currentValue.owner) && (item.townBuilding === currentValue.townBuilding) && (item.rarityId === currentValue.rarityId)) {
+        item.count = CInt(item.count) + CInt(currentValue.count);
+        needsToBeAdded = false;
+      }
+    });
+    if (needsToBeAdded) {
+      accumulator.push(currentValue);
+    }
+    return accumulator;
+  }, []);
+  return consolidatedGoods;
+};
+    
 Meteor.publish('town', function() {
   const transform = function(doc) {
     return doc.town;
@@ -206,6 +183,7 @@ Meteor.methods({
     return `Success: town created for server ${serverDoc.name} (${serverDoc._id}).`;
   },
   
+  // note: this isn't used by anything (directly, although an admin using the browser's dev console could call this)
   'server.syncBuffs'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });
     const userIsAdmin = userDoc && userDoc.isSuperMod;
@@ -218,6 +196,7 @@ Meteor.methods({
     return `Operation completed.`;
   },
   
+  // note: this isn't used by anything (directly, although an admin using the browser's dev console could call this)
   'server.forceDayRollover'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });
     const userIsAdmin = userDoc && userDoc.isSuperMod;
@@ -230,7 +209,7 @@ Meteor.methods({
     return `Operation completed.`;
   },
   
-  // note: this isn't used by anything (we now publish and subscribe to a pseudo-collection)
+  // note: this isn't usually by anything (we now publish and subscribe to a pseudo-collection), but it does get called as a last-chance backup
   'town.getGoods'(whichDay = -1) {
     const serverDoc = Servers.findOne({ _id: serverFromUser() });
     if (!serverDoc || !serverDoc.town) {
@@ -247,25 +226,20 @@ Meteor.methods({
       return;
     }
     
-    if (whichDay === 2) {
+    if (whichDay === 1) {
+      return serverDoc.town.day1goods;
+    } else if (whichDay === 2) {
       return serverDoc.town.day2goods;
-    }
-    if (whichDay === 3) {
+    } else if (whichDay === 3) {
       return serverDoc.town.day3goods;
-    }
-    if (whichDay === 4) {
+    } else if (whichDay === 4) {
       return serverDoc.town.day4goods;
-    }
-    if (whichDay === 5) {
+    } else if (whichDay === 5) {
       return serverDoc.town.day5goods;
-    }
-    if (whichDay === 6) {
+    } else if (whichDay === 6) {
       return serverDoc.town.day6goods;
     }
-    if (whichDay === 7) {
-      return serverDoc.town.day7goods;
-    }
-    return serverDoc.town.day1goods;
+    return serverDoc.town.day7goods;
   },
   
   'town.donateItem'(_id, itemId, amount, building) {
@@ -273,7 +247,7 @@ Meteor.methods({
       return;
     }
     
-    //todo: validate item qualifies for building, maybe add to ITEMS constants?
+    // todo: validate item qualifies for building, maybe add to ITEMS constants?
 
     const serverDoc = Servers.findOne({ _id: serverFromUser() });
     if (!serverDoc || !serverDoc.town) {
@@ -285,7 +259,6 @@ Meteor.methods({
       return;
     }
 
-    const itemConstants = ITEMS[currentItem.itemId];
     let amountToDonate = amount;
     
     if (amountToDonate >= currentItem.amount) {
@@ -311,49 +284,26 @@ Meteor.methods({
       }
     }
 
-    let currentDayGoods = [];
-    if (serverDoc.town.day1goods) {
-      currentDayGoods = serverDoc.town.day1goods;
-    }
-    
-    currentDayGoods = currentDayGoods.concat({
-      townBuilding: building,
-      itemId: currentItem.itemId,
-      count: amountToDonate,
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
-    
-    const consolidateGoods = function(inputGoods) {
-      const tempGoods = lodash.cloneDeep(inputGoods);
-      let consolidatedGoods = tempGoods.reduce((accumulator, currentValue, currentIndex, sourceArray) => {
-        let needsToBeAdded = true;
-        accumulator.forEach((item) => {
-          if ((item.itemId === currentValue.itemId) && (item.owner === currentValue.owner) && (item.townBuilding === currentValue.townBuilding)) {
-            item.count = CInt(item.count) + CInt(currentValue.count);
-            needsToBeAdded = false;
-          }
-        });
-        if (needsToBeAdded) {
-          accumulator.push(currentValue);
-        }
-        return accumulator;
-      }, []);
-      return consolidatedGoods;
-    };
-    
-    currentDayGoods = consolidateGoods(currentDayGoods);
-    
+    // Update the server with the additional item, consolidating using an accumulator
     Servers.update({
       _id: serverFromUser()
     }, {
       $set: {
-        'town.day1goods': currentDayGoods
+        'town.day1goods': consolidateGoods(((serverDoc.town.day1goods) ? serverDoc.town.day1goods : []).concat({
+          townBuilding: building,
+          itemId: currentItem.itemId,
+          rarityId: currentItem.rarityId,
+          count: amountToDonate,
+          owner: Meteor.userId(),
+          username: Meteor.user().username,
+        }))
       }
     });
     
+    // snychronize town/karma buffs
     syncKarmaBuffs();
 
+    // update that the user is actively playing
     updateUserActivity({userId: Meteor.userId()});    
   }
 });

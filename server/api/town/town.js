@@ -121,16 +121,28 @@ export const newTownDay = function newTownDay() {
       const serverData = lodash.cloneDeep(thisServer);
       const serverTownData = serverData.town;
       
-      // todo: give rewards to players with high scoring karma
-      
-      // reset goods by rolling data into the next day
-      serverTownData.day7goods = serverTownData.day6goods;
-      serverTownData.day6goods = serverTownData.day5goods;
-      serverTownData.day5goods = serverTownData.day4goods;
-      serverTownData.day4goods = serverTownData.day3goods;
-      serverTownData.day3goods = serverTownData.day2goods;
-      serverTownData.day2goods = serverTownData.day1goods;
-      serverTownData.day1goods = []; // newest day has no donated goods, no karma
+      if (!serverTownData) {
+        serverTownData = {
+          day1goods: [],
+          day2goods: [],
+          day3goods: [],
+          day4goods: [],
+          day5goods: [],
+          day6goods: [],
+          day7goods: []
+        };
+      } else {
+        // todo: give rewards to players with high scoring karma
+        
+        // reset goods by rolling data into the next day
+        serverTownData.day7goods = serverTownData.day6goods;
+        serverTownData.day6goods = serverTownData.day5goods;
+        serverTownData.day5goods = serverTownData.day4goods;
+        serverTownData.day4goods = serverTownData.day3goods;
+        serverTownData.day3goods = serverTownData.day2goods;
+        serverTownData.day2goods = serverTownData.day1goods;
+        serverTownData.day1goods = []; // newest day has no donated goods, no karma
+      }
       
       Servers.update(
         { _id: thisServer._id },

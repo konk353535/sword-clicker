@@ -141,11 +141,13 @@ Template.itemIcon.helpers({
   stats() {
     const instance = Template.instance();
     const item = instance.data.item;
-    const constants = ITEMS[instance.data.item.itemId];
-    const baseStats = (constants && constants.stats) ? applyRarities(constants.stats, item.rarityId) : applyRarities(item.stats, item.rarityId);
+    if (!item) {
+      return false;
+    }
+    
+    const constants = (item.itemId) ? ITEMS[item.itemId] : undefined;
+    const statsObj = (constants && constants.stats) ? applyRarities(constants.stats, item.rarityId) : applyRarities(item.stats, item.rarityId);
     const extraStats = (item.extraStats) ? applyRarities(item.extraStats, item.rarityId) : undefined;
-
-    const statsObj = Object.assign({}, baseStats);
 
     if (extraStats) {
       Object.keys(extraStats).forEach((statName) => {

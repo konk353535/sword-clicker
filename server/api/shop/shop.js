@@ -258,6 +258,9 @@ Meteor.methods({
       id: 'lemonade',
       cost: 10
     }, {
+      id: 'phasing_key',
+      cost: 150
+    }, {
       id: 'gift_box_holiday',
       cost: 10
     }, {

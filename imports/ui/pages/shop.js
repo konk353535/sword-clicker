@@ -108,6 +108,19 @@ Template.shopPage.events({
       }
       toastr.success('Successfully purchased.')
     });
+  },  
+
+  'click .buy-phasing-key'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 150) {
+      return;
+    }
+
+    Meteor.call('shop.buyItem', { itemId: 'phasing_key' }, (err, res) => {
+      if (err) {
+        return toastr.error('An unexpected error occurred when buying item.');
+      }
+      toastr.success('Successfully purchased.')
+    });
   },
 
   'click .buy-combat-30'() {

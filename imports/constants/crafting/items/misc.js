@@ -6,11 +6,27 @@ export const MISC_ITEMS = {
     name: 'enhancer key',
     sellPrice: 1,
     description: `
-      Can be consumed to increase an items quality by up to 15%.<br />
+      Can be consumed to increase an item's quality by up to 15%.<br />
       Can only be applied once per item. <br />
       Item quality can not be increased beyond 100%.`,
     shiftActionData: {
       description: 'increase an items quality by up to 15%',
+      target: 'item'
+    },
+  },
+  
+  phasing_key: {
+    id: 'phasing_key',
+    icon: 'phasingKey.svg',
+    category: 'crafting',
+    name: 'phasing key',
+    sellPrice: 1,
+    description: `
+      Can be consumed to phase an item through another plane of 
+      existance, randomizing its qualities.<br />
+      There is no undo for using this item.`,
+    shiftActionData: {
+      description: 'reroll an item',
       target: 'item'
     },
   },

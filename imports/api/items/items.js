@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import lodash from 'lodash';
 
 import { ITEM_RARITIES } from '/imports/constants/items/index.js';
 
@@ -26,25 +27,27 @@ ItemsSchema = new SimpleSchema({
 Items.attachSchema(ItemsSchema);
 
 export const applyRarities = function applyRarities(statsObj, rarityId) {
+  let localStatsObj;
+  
   try {
+    localStatsObj = lodash.cloneDeep(statsObj);
+
     if ((rarityId) && (typeof rarityId === 'string')) {
       const rarityIdConsts = ITEM_RARITIES[rarityId];
       if ((rarityIdConsts) && (rarityIdConsts.statBonuses)) {
-        const newStatsObj = Object.assign({}, statsObj);
-        Object.keys(newStatsObj).forEach((statName) => {
+        Object.keys(localStatsObj).forEach((statName) => {
           // disallow % bonuses to attack speed
           if (statName !== 'attackSpeed') {
             // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
-            if (CDbl(newStatsObj[statName]) > 0.0) {
-              newStatsObj[statName] = newStatsObj[statName] * ((100.0 + rarityIdConsts.statBonuses) / 100.0);
+            if (CDbl(localStatsObj[statName]) > 0.0) {
+              localStatsObj[statName] = localStatsObj[statName] * ((100.0 + rarityIdConsts.statBonuses) / 100.0);
             }
           }
         });
-        return newStatsObj;
       }
     }
   } catch (err) {
   }
   
-  return statsObj;
+  return ((localStatsObj) ? localStatsObj : statsObj);
 };

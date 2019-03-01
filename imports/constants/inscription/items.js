@@ -3629,6 +3629,110 @@ export const INSCRIPTION_ITEMS = {
     }
   },
 
+  denya_magic_book: {
+    id: 'denya_magic_book',
+    icon: 'magic_tome_13.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 2000,
+    magicXp: 80000,
+    description: 'Can be consumed for 80,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 80,000 Magic XP.'
+    }
+  },
+
+  gombe_magic_book: {
+    id: 'gombe_magic_book',
+    icon: 'magic_tome_14.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 3250,
+    magicXp: 125000,
+    description: 'Can be consumed for 125,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 125,000 Magic XP.'
+    }
+  },
+
+  hickory_magic_book: {
+    id: 'hickory_magic_book',
+    icon: 'magic_tome_15.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 5000,
+    magicXp: 180000,
+    description: 'Can be consumed for 180,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 180,000 Magic XP.'
+    }
+  },
+
+  larch_magic_book: {
+    id: 'larch_magic_book',
+    icon: 'magic_tome_16.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 8250,
+    magicXp: 260000,
+    description: 'Can be consumed for 260,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 260,000 Magic XP.'
+    }
+  },
+
+  poplar_magic_book: {
+    id: 'poplar_magic_book',
+    icon: 'magic_tome_17.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 13125,
+    magicXp: 400000,
+    description: 'Can be consumed for 400,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 400,000 Magic XP.'
+    }
+  },
+
+  tali_magic_book: {
+    id: 'tali_magic_book',
+    icon: 'magic_tome_18.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 20500,
+    magicXp: 625000,
+    description: 'Can be consumed for 625,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 625,000 Magic XP.'
+    }
+  },
+
+  willow_magic_book: {
+    id: 'willow_magic_book',
+    icon: 'magic_tome_19.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 31600,
+    magicXp: 1000000,
+    description: 'Can be consumed for 1,000,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 1,000,000 Magic XP.'
+    }
+  },
+
+  teak_magic_book: {
+    id: 'teak_magic_book',
+    icon: 'magic_tome_20.svg',
+    category: 'magic_book',
+    name: 'Codex of Mastery',
+    sellPrice: 48250,
+    magicXp: 1500000,
+    description: 'Can be consumed for 1,500,000 Magic XP.',
+    shiftActionData: {
+      description: 'consume for 1,500,000 Magic XP.'
+    }
+  },
+
   enchantment_nullify: {
     id: 'enchantment_nullify',
     icon: 'nullify.svg',

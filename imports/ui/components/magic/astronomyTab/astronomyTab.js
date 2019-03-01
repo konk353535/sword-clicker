@@ -1,10 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import lodash from 'lodash';
 
 import { Astronomy } from '/imports/api/astronomy/astronomy.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import './astronomyTab.html';
 
@@ -90,7 +93,7 @@ Template.astronomyTab.events({
 Template.astronomyTab.helpers({
 
   astronomy() {
-    const astronomy = Astronomy.findOne();
+    const astronomy = lodash.cloneDeep(Astronomy.findOne());
     const instance = Template.instance();
 
     if (!astronomy) {
@@ -124,7 +127,13 @@ Template.astronomyTab.helpers({
         mage.icon = "phantomMage.svg";
         mage.primaryAction = {};
       }
-
+      
+      const townBuffObservatoryLevel = getBuffLevel('town_observatory');
+      if (townBuffObservatoryLevel > 0) {
+        mage.stats.attackSpeed *= 1 + ((townBuffObservatoryLevel + 1) * 0.03); // 6% - 18%
+      }
+      
+      console.log(mage);
     });
 
     return astronomy;

@@ -33,14 +33,29 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
 
     // Custom icon undefined by default
     let customIcon;
+    
     // Adjust icon per source
     if (source === 'phantom_strikes') {
       customIcon = 'phantomStrikes';
     }
+    
     // Is this a crit?
-    if (attacker.stats.criticalChance && Math.random() <= (attacker.stats.criticalChance / 100)) {
-      rawDamage *= attacker.stats.criticalDamage;
-      customIcon = 'criticalStrike';
+    if (attacker.stats.criticalChance) {
+      let localCritMultiplier = 0;
+      let localCritChance = attacker.stats.criticalChance;
+      while (localCritChance > 100) {
+        // apply over-crit
+        localCritChance -= 100;
+        localCritMultiplier++;
+      }
+      if (Math.random() <= (localCritChance / 100)) {
+        // apply crit (if crit chance success)
+        localCritMultiplier++;
+      }
+      if (localCritMultiplier > 0) {
+        rawDamage *= attacker.stats.criticalDamage * localCritMultiplier;
+        customIcon = 'criticalStrike';
+      }
     }
 
     const damageDealt = this.dealDamage(rawDamage, {

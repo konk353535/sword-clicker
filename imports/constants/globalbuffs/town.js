@@ -9,10 +9,12 @@ export const TOWN_GLOBALBUFFS = {
     effects: function(level = 1) {
       return [
         `+${(level + 1) * 2.5}% Farming XP`,
-        `occasionally receive free food and herbs`,
+        'occasionally receive free food and herbs',
+        '<i>(better and higher quantities with higher buff levels)</i>',
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 
   town_quarry: {
@@ -29,6 +31,7 @@ export const TOWN_GLOBALBUFFS = {
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 
   town_lumber_yard: {
@@ -39,11 +42,18 @@ export const TOWN_GLOBALBUFFS = {
     icon: 'lumberYard2',
     extraDescription: 'This global buff can be achieved by donating items to the town lumber yard.',
     effects: function(level = 1) {
+      if (level === 1) {
+        return [
+          `+${(level + 1) * 2.5}% faster woodcutters`,
+        ];
+      }
       return [
         `+${(level + 1) * 2.5}% faster woodcutters`,
+        `woodcutters can chop logs +${(level - 1)} tier${(level==2)?'':'s'} higher than usual`,
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 
   town_armory: {
@@ -60,6 +70,7 @@ export const TOWN_GLOBALBUFFS = {
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 
   town_library: {
@@ -72,9 +83,12 @@ export const TOWN_GLOBALBUFFS = {
     effects: function(level = 1) {
       return [
         `+${(level + 1) * 2.5}% Inscription XP`,
+        'occasionally receive free magic codexes',
+        '<i>(better and more frequently with higher buff levels)</i>',
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 
   town_observatory: {
@@ -87,8 +101,10 @@ export const TOWN_GLOBALBUFFS = {
     effects: function(level = 1) {
       return [
         `+${(level + 1) * 2.5}% Astronomy XP`,
+        `+${(level + 1) * 3}% astronomy mage shards/hour rate`,
       ];
     },
     isServerBuff: true,
+    hasLevels: true,
   },
 };

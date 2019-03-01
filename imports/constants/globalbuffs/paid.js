@@ -15,6 +15,7 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 
   buffCrafting: {
@@ -32,6 +33,7 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 
   paid_combat: {
@@ -50,6 +52,7 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 
   buffCombat: {
@@ -67,6 +70,7 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 
   paid_gathering: {
@@ -85,6 +89,7 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 
   buffGathering: {
@@ -102,5 +107,6 @@ export const PAID_GLOBALBUFFS = {
       ];
     },
     isServerBuff: false,
+    hasLevels: false,
   },
 };

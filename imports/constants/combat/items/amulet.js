@@ -811,7 +811,7 @@ export const AMULET_ITEMS = {
     stats: {
       attack: 16,
       attackMax: 20,
-      criticalChance: 2,
+      criticalChance: 4,
       criticalDamage: 0.05,
       healthMax: 160,
       damage: 150,

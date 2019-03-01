@@ -32,6 +32,10 @@ Template.selectGearPage.helpers({
         value: combat.stats.health,
         maxValue: combat.stats.healthMax
       }, {
+        name: 'healing power',
+        icon: 'healingPower.svg',
+        value: combat.stats.healingPower
+      }, {
         name: 'defense',
         icon: 'defense.svg',
         value: combat.stats.defense
@@ -73,6 +77,14 @@ Template.selectGearPage.helpers({
         name: 'accuracy',
         icon: 'accuracy.svg',
         value: combat.stats.accuracy
+      }, {
+        name: 'critical chance',
+        icon: 'criticalChance2.svg',
+        value: combat.stats.criticalChance
+      }, {
+        name: 'critical damage',
+        icon: 'criticalDamage.svg',
+        value: combat.stats.criticalDamage
       }]);   
     }
 

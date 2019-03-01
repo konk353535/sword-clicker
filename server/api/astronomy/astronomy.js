@@ -326,13 +326,16 @@ Meteor.methods({
       // Based on total found see if we get complete shards
       const completeChance = 1 / 500;
       let foundComplete = 0;
+      let completeChances = 1;
       let completeChanceExtra = currentMage.stats.completeShard ? currentMage.stats.completeShard : 0;
       while (completeChanceExtra > 100) {
-        foundComplete++;
+        completeChances++;
         completeChanceExtra -= 100;
       }
-      if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
-        foundComplete++;
+      for (let i = 0; i < completeChances; i++) {
+        if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
+          foundComplete++;
+        }
       }
 
       // complete shard XP gain
@@ -341,13 +344,16 @@ Meteor.methods({
       // Based on total found see if we get ancient shards
       const ancientChance = 1 / 5000;
       let foundAncient = 0;
+      let ancientChances = 1;
       let ancientChanceExtra = currentMage.stats.ancientShard ? currentMage.stats.ancientShard : 0;
       while (ancientChanceExtra > 100) {
-        foundAncient++;
+        ancientChances++;
         ancientChanceExtra -= 100;
       }
-      if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
-        foundAncient++;
+      for (let i = 0; i < ancientChances; i++) {
+        if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
+          foundAncient++;
+        }
       }
 
       // ancient shard XP gain

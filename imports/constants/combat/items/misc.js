@@ -5373,7 +5373,7 @@ export const MISC_ITEMS = {
     isEquippable: true,
     stats: {
       healthMax: 150,
-      criticalChance: 10,
+      criticalChance: 25,
       accuracy: 10,
       armor: 10
     },

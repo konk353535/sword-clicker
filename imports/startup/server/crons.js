@@ -59,7 +59,7 @@ SyncedCron.add({
   }
 });
 
-// Handle town buffs
+// Handle town dwelling buff
 SyncedCron.add({
   name: 'Town Dwelling Buff',
   schedule: function (parser) {
@@ -131,6 +131,64 @@ SyncedCron.add({
               // buff level 4 = 1-4 items
               // buff level 5 = 1-6 items
               addItem(foodItemId, CInt(Math.ceil(Math.random() * Math.ceil(townBuffDwellingLevel * townBuffDwellingLevel / 4))), targetUser._id);            
+            }
+          }
+        }
+      } catch (err) {
+        console.log("Exception in 'Town Buffs' cron:");
+        console.log(err);
+      }
+    });
+  }
+});
+
+// Handle town library buff
+SyncedCron.add({
+  name: 'Town Library Buff',
+  schedule: function (parser) {
+    return parser.text('every 10 minutes');
+  },
+  job: function () {
+    Servers.find().fetch().forEach((thisServer) => {
+      try {
+        const activeUsersByMiningUpdate = Mining.find({ lastGameUpdated: { $gte: moment().subtract(8, 'hours').toDate() } }).fetch();
+        let activeUsersArray = [];
+        activeUsersByMiningUpdate.forEach((activeUser) => {
+          activeUsersArray.push(activeUser.owner);
+        });
+        const activeUserDocs = Users.find({ _id: { $in: activeUsersArray }, server: thisServer._id }).fetch();
+        const activeUserCount = activeUserDocs.length;
+        
+        if (activeUserCount > 0) {
+          const townBuffLibraryLevel = getBuffLevel('town_library', thisServer._id);
+
+          if (townBuffLibraryLevel > 0) {
+            let codexList = [];
+            codexList.push('pine_magic_book');
+            codexList.push('beech_magic_book');            
+            if (townBuffLibraryLevel >= 2) {
+              codexList.push('ash_magic_book');
+              codexList.push('oak_magic_book');
+            }
+            if (townBuffLibraryLevel >= 3) {
+              codexList.push('maple_magic_book');
+              codexList.push('walnut_magic_book');
+            }
+            if (townBuffLibraryLevel >= 4) {
+              codexList.push('cherry_magic_book');
+            }
+            if (townBuffLibraryLevel >= 5) {
+              codexList.push('mahogany_magic_book');
+            }
+            
+            // choose X random players where X the town library buff level
+            const usersToPick = townBuffLibraryLevel;
+
+            for (let i = 0; i < usersToPick; i++) {
+              const targetUser = _.sample(activeUserDocs);
+              const codexItemId = _.sample(codexList);
+
+              addItem(codexItemId, 1, targetUser._id);            
             }
           }
         }

@@ -11,7 +11,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
-    requiredInscriptionLevel: 3,
+    requiredInscriptionLevel: 2,
     required: [{
       type: 'item',
       itemId: 'pine_book',
@@ -46,7 +46,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
-    requiredInscriptionLevel: 7,
+    requiredInscriptionLevel: 6,
     required: [{
       type: 'item',
       itemId: 'beech_book',
@@ -81,7 +81,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
-    requiredInscriptionLevel: 10,
+    requiredInscriptionLevel: 9,
     required: [{
       type: 'item',
       itemId: 'ash_book',
@@ -116,7 +116,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 100,
     maxToCraft: 5,
-    requiredInscriptionLevel: 15,
+    requiredInscriptionLevel: 14,
     required: [{
       type: 'item',
       itemId: 'oak_book',
@@ -151,7 +151,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 250,
     maxToCraft: 5,
-    requiredInscriptionLevel: 20,
+    requiredInscriptionLevel: 19,
     required: [{
       type: 'item',
       itemId: 'maple_book',
@@ -186,7 +186,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 250,
     maxToCraft: 5,
-    requiredInscriptionLevel: 25,
+    requiredInscriptionLevel: 24,
     required: [{
       type: 'item',
       itemId: 'walnut_book',
@@ -221,7 +221,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 250,
     maxToCraft: 5,
-    requiredInscriptionLevel: 30,
+    requiredInscriptionLevel: 29,
     required: [{
       type: 'item',
       itemId: 'cherry_book',
@@ -256,7 +256,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 250,
     maxToCraft: 5,
-    requiredInscriptionLevel: 35,
+    requiredInscriptionLevel: 34,
     required: [{
       type: 'item',
       itemId: 'mahogany_book',
@@ -291,7 +291,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 2000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 40,
+    requiredInscriptionLevel: 39,
     required: [{
       type: 'item',
       itemId: 'elk_book',
@@ -326,7 +326,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 3000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 45,
+    requiredInscriptionLevel: 44,
     required: [{
       type: 'item',
       itemId: 'black_book',
@@ -361,7 +361,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 4000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 50,
+    requiredInscriptionLevel: 49,
     required: [{
       type: 'item',
       itemId: 'blue_gum_book',
@@ -396,7 +396,7 @@ export const MAGIC_BOOK_CRAFTS = {
     timeToCraft: 300,
     xp: 5000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 55,
+    requiredInscriptionLevel: 54,
     required: [{
       type: 'item',
       itemId: 'cedar_book',
@@ -420,5 +420,341 @@ export const MAGIC_BOOK_CRAFTS = {
       name: 'astronomy',
       level: 55
     }]
-  }
+  },
+
+  denya_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'denya_magic_book',
+    name: 'codex of wonder',
+    id: 'denya_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 6500,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 59,
+    required: [{
+      type: 'item',
+      itemId: 'denya_book',
+      icon: ITEMS['denya_book'].icon,
+      name: ITEMS['denya_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_fire_shard',
+      icon: ITEMS['complete_fire_shard'].icon,
+      name: ITEMS['complete_fire_shard'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_fire_shard',
+      icon: ITEMS['ancient_fire_shard'].icon,
+      name: ITEMS['ancient_fire_shard'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 60
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 60
+    }]
+  },
+
+  gombe_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'gombe_magic_book',
+    name: 'codex of insight',
+    id: 'gombe_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 8500,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 64,
+    required: [{
+      type: 'item',
+      itemId: 'gombe_book',
+      icon: ITEMS['gombe_book'].icon,
+      name: ITEMS['gombe_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_earth_shard',
+      icon: ITEMS['complete_earth_shard'].icon,
+      name: ITEMS['complete_earth_shard'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_earth_shard',
+      icon: ITEMS['ancient_earth_shard'].icon,
+      name: ITEMS['ancient_earth_shard'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 65
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 65
+    }]
+  },
+
+  hickory_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'hickory_magic_book',
+    name: 'codex of truth',
+    id: 'hickory_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 11000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 69,
+    required: [{
+      type: 'item',
+      itemId: 'hickory_book',
+      icon: ITEMS['hickory_book'].icon,
+      name: ITEMS['hickory_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_water_shard',
+      icon: ITEMS['complete_water_shard'].icon,
+      name: ITEMS['complete_water_shard'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_water_shard',
+      icon: ITEMS['ancient_water_shard'].icon,
+      name: ITEMS['ancient_water_shard'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 70
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 70
+    }]
+  },
+
+  larch_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'larch_magic_book',
+    name: 'codex of power',
+    id: 'larch_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 14000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 74,
+    required: [{
+      type: 'item',
+      itemId: 'larch_book',
+      icon: ITEMS['larch_book'].icon,
+      name: ITEMS['larch_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_air_shard',
+      icon: ITEMS['complete_air_shard'].icon,
+      name: ITEMS['complete_air_shard'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 2,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 75
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 75
+    }]
+  },
+
+  poplar_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'poplar_magic_book',
+    name: 'codex of the dead',
+    id: 'poplar_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 18000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 79,
+    required: [{
+      type: 'item',
+      itemId: 'poplar_book',
+      icon: ITEMS['poplar_book'].icon,
+      name: ITEMS['poplar_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_fire_shard',
+      icon: ITEMS['complete_fire_shard'].icon,
+      name: ITEMS['complete_fire_shard'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_fire_shard',
+      icon: ITEMS['ancient_fire_shard'].icon,
+      name: ITEMS['ancient_fire_shard'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 80
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 80
+    }]
+  },
+
+  tali_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'tali_magic_book',
+    name: 'codex of the ancients',
+    id: 'tali_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 23500,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 84,
+    required: [{
+      type: 'item',
+      itemId: 'tali_book',
+      icon: ITEMS['tali_book'].icon,
+      name: ITEMS['tali_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_earth_shard',
+      icon: ITEMS['complete_earth_shard'].icon,
+      name: ITEMS['complete_earth_shard'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_earth_shard',
+      icon: ITEMS['ancient_earth_shard'].icon,
+      name: ITEMS['ancient_earth_shard'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 85
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 85
+    }]
+  },
+
+  willow_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'willow_magic_book',
+    name: 'codex of the unseen',
+    id: 'willow_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 31000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 89,
+    required: [{
+      type: 'item',
+      itemId: 'willow_book',
+      icon: ITEMS['willow_book'].icon,
+      name: ITEMS['willow_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_water_shard',
+      icon: ITEMS['complete_water_shard'].icon,
+      name: ITEMS['complete_water_shard'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_water_shard',
+      icon: ITEMS['ancient_water_shard'].icon,
+      name: ITEMS['ancient_water_shard'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 90
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 90
+    }]
+  },
+
+  teak_magic_book: {
+    recipeFor: 'inscription',
+    produces: 'teak_magic_book',
+    name: 'codex of the infinite',
+    id: 'teak_magic_book',
+    category: 'magic_book',
+    timeToCraft: 300,
+    xp: 31000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 94,
+    required: [{
+      type: 'item',
+      itemId: 'teak_book',
+      icon: ITEMS['teak_book'].icon,
+      name: ITEMS['teak_book'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_air_shard',
+      icon: ITEMS['complete_air_shard'].icon,
+      name: ITEMS['complete_air_shard'].name,
+      amount: 25,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 95
+    }, {
+      type: 'skill',
+      name: 'astronomy',
+      level: 95
+    }]
+  },
 };

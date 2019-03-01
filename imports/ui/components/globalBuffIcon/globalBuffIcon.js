@@ -99,6 +99,13 @@ Template.globalBuffIcon.helpers({
   
   buffLevel() {
     const instance = Template.instance();
+
+    const globalBuffData = GLOBALBUFFS[instance.data.type];
+    if (globalBuffData) {
+      if (!globalBuffData.hasLevels) {
+        return false;
+      }
+    }
     
     if (instance.data.level) {
       if (CInt(instance.data.level) > 0) {

@@ -1431,7 +1431,7 @@ export const UseFireOpal = function (baseItem, baseItemConstants, targetItem, ta
   const attackRateMax = 1.150;
   const healthMaxRate = 1.125;
   //const magicArmorRate = 1.075;
-  const criticalChanceRate = 2;
+  const criticalChanceRate = 4;
   const criticalDamageRate = 0.05;
   
   const attack = Math.round(originalAttack * Math.pow(attackRate, level));

@@ -24,7 +24,7 @@ export const SKILLS = {
 
     statsPerLevel: {
       magicPower: 1,
-      magicArmor: 1
+      magicArmor: 1.5
     }
   },
 
@@ -128,7 +128,8 @@ export const SKILLS = {
     statsPerLevel: {
       accuracy: 1,
       attack: 0.15,
-      attackMax: 0.5
+      attackMax: 0.5,
+      criticalChance: 0.2
     }
   },
 

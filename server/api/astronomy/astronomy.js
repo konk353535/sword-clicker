@@ -285,7 +285,7 @@ Meteor.methods({
       }
     }
 
-    // Iterate through all miners for minutesElapsed
+    // Iterate through all mages for minutesElapsed
     astronomy.mages.forEach((currentMage) => {
 
       let localHoursElapsed = hoursElapsed;
@@ -304,35 +304,55 @@ Meteor.methods({
 
       // Calculate shard fragments found
       let totalFound = currentMage.stats.attackSpeed * localHoursElapsed;
-
       if (totalFound < 1 && Math.random() < totalFound) {
         totalFound = 1;
       }
 
       // Do we crit?
-      if (Math.random() <= (currentMage.stats.criticalChance / 100)) {
-        totalFound *= 2;
+      let critFinder = 1;
+      let critChance = currentMage.stats.criticalChance;
+      while (critChance > 100) {
+        critFinder++;
+        critChance -= 100;
       }
-
-      // Based on total found see if we get complete / ful shard
-      const completeChance = 1 / 500;
-      const ancientChance = 1 / 5000;
-      let foundComplete = false;
-      let foundAncient = false;
-      let completeChanceExtra = currentMage.stats.completeShard ? currentMage.stats.completeShard : 0;
-      let ancientChanceExtra = currentMage.stats.ancientShard ? currentMage.stats.ancientShard : 0;
-
-      if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
-        foundComplete = true;
-        gainedXp += 100;
+      if (Math.random() <= (critChance / 100)) {
+        critFinder++;
       }
-
-      if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
-        gainedXp += 1000;
-        foundAncient = true;
-      }
-
+      totalFound *= critFinder; // critFinder can either be 1 (didn't crit), 2 (crit or crit chance > 100), or 3+ (crit + crit chance > 100)
+      
+      // base fragment XP gain
       gainedXp += totalFound;
+
+      // Based on total found see if we get complete shards
+      const completeChance = 1 / 500;
+      let foundComplete = 0;
+      let completeChanceExtra = currentMage.stats.completeShard ? currentMage.stats.completeShard : 0;
+      while (completeChanceExtra > 100) {
+        foundComplete++;
+        completeChanceExtra -= 100;
+      }
+      if (Math.random() <= completeChance * totalFound * (1 + (completeChanceExtra / 100))) {
+        foundComplete++;
+      }
+
+      // complete shard XP gain
+      gainedXp += 100 * foundComplete;
+
+      // Based on total found see if we get ancient shards
+      const ancientChance = 1 / 5000;
+      let foundAncient = 0;
+      let ancientChanceExtra = currentMage.stats.ancientShard ? currentMage.stats.ancientShard : 0;
+      while (ancientChanceExtra > 100) {
+        foundAncient++;
+        ancientChanceExtra -= 100;
+      }
+      if (Math.random() <= ancientChance * totalFound * (1 + (ancientChanceExtra / 100))) {
+        foundAncient++;
+      }
+
+      // ancient shard XP gain
+      gainedXp += 1000 * foundAncient;
+
       if (currentMage.type) {
         const item_id = `${currentMage.type}_shard_fragment`;
         // all found are of specified type
@@ -342,23 +362,23 @@ Meteor.methods({
           gainedItems[item_id] = Math.floor(totalFound);
         }
 
-        if (foundComplete) {
+        if (foundComplete > 0) {
           const item_id = `complete_${currentMage.type}_shard`;
           // all found are of specified type
           if (gainedItems[item_id]) {
-            gainedItems[item_id] += 1;
+            gainedItems[item_id] += foundComplete;
           } else {
-            gainedItems[item_id] = 1;
+            gainedItems[item_id] = foundComplete;
           }
         }
 
-        if (foundAncient) {
+        if (foundAncient > 0) {
           const item_id = `ancient_${currentMage.type}_shard`;
           // all found are of specified type
           if (gainedItems[item_id]) {
-            gainedItems[item_id] += 1;
+            gainedItems[item_id] += foundAncient;
           } else {
-            gainedItems[item_id] = 1;
+            gainedItems[item_id] = foundAncient;
           }
         }
       } else {
@@ -388,23 +408,23 @@ Meteor.methods({
         }
 
         const randomType = _.sample(types);
-        if (foundComplete) {
+        if (foundComplete > 0) {
           const item_id = `complete_${randomType}_shard`;
           // all found are of specified type
           if (gainedItems[item_id]) {
-            gainedItems[item_id] += 1;
+            gainedItems[item_id] += foundComplete;
           } else {
-            gainedItems[item_id] = 1;
+            gainedItems[item_id] = foundComplete;
           }
         }
 
-        if (foundAncient) {
+        if (foundAncient > 0) {
           const item_id = `ancient_${randomType}_shard`;
           // all found are of specified type
           if (gainedItems[item_id]) {
-            gainedItems[item_id] += 1;
+            gainedItems[item_id] += foundAncient;
           } else {
-            gainedItems[item_id] = 1;
+            gainedItems[item_id] = foundAncient;
           }
         }
       }

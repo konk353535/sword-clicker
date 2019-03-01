@@ -94,13 +94,23 @@ Meteor.methods({
 
       const rawSwingCount = currentWoodcutter.stats.attackSpeed * localMinutesElapsed;
       
-      // modifier is 100%
+      // attack bonus is 0 (no bonus tiers)
+      let woodcutterAttackModifier = 0;
+
+      // attack speed modifier is 100%
       let woodcutterAttackSpeedModifier = 1;
+
+      // get lumber yard buff level
+      const townBuffLumberYardLevel = getBuffLevel('town_lumber_yard');
+
+      // add bonus attack modifier of 0-20 (0-4 tiers) depending on if town lumber yard buff (karma) is active and at what strength
+      if (townBuffLumberYardLevel > 1) {
+        woodcutterAttackModifier += ((townBuffLumberYardLevel - 1) * 5); // 5-20 (1-4 tiers) starting at buff level 2
+      }
       
       // add bonus attack speed modifier of 0-15% depending on if town lumber yard buff (karma) is active and at what strength
-      const townBuffLumberYardLevel = getBuffLevel('town_lumber_yard');
       if (townBuffLumberYardLevel > 0) {
-        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per level (5% - 15%)
+        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per buff level (5% - 15%)
       }
       
       // mutate definite swing count by bonus attack speed modifier (100% +/- modifiers)
@@ -113,7 +123,7 @@ Meteor.methods({
       const possibleLogs = Object.keys(WOODCUTTING.woods).map((woodKey) => {
         return WOODCUTTING.woods[woodKey];
       }).filter((log) => {
-        return currentWoodcutter.stats.attack >= log.requiredAttack;
+        return currentWoodcutter.stats.attack + woodcutterAttackModifier >= log.requiredAttack;
       });
 
       const sortedLogs = _.sortBy(possibleLogs, 'chance');

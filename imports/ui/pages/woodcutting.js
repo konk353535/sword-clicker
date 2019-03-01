@@ -89,29 +89,37 @@ Template.woodcuttingPage.helpers({
         woodcutter.icon += '.svg';
       }
       
+      let woodcutterAttack = woodcutter.stats.attack;
       let woodcutterAttackSpeed = woodcutter.stats.attackSpeed;
       
-      // modifier is 100%
+      // attack bonus is 0 (no bonus tiers)
+      let woodcutterAttackModifier = 0;
+
+      // attack speed modifier is 100%
       let woodcutterAttackSpeedModifier = 1;
       
-      // add bonus attack speed modifier of 0-15% depending on if town lumber yard buff (karma) is active and at what strength
+      // get lumber yard buff level
       const townBuffLumberYardLevel = getBuffLevel('town_lumber_yard');
-      if (townBuffLumberYardLevel > 0) {
-        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per level (5% - 15%)
+
+      // add bonus attack modifier of 0-20 (0-4 tiers) depending on if town lumber yard buff (karma) is active and at what strength
+      if (townBuffLumberYardLevel > 1) {
+        woodcutterAttackModifier += ((townBuffLumberYardLevel - 1) * 5); // 5-20 (1-4 tiers) starting at buff level 2
       }
       
-      // mutate attack speed by bonus attack speed modifier (100% +/- modifiers)
-      woodcutterAttackSpeed *= woodcutterAttackSpeedModifier;
+      // add bonus attack speed modifier of 0-15% depending on if town lumber yard buff (karma) is active and at what strength
+      if (townBuffLumberYardLevel > 0) {
+        woodcutterAttackSpeedModifier += ((townBuffLumberYardLevel + 1) * 0.025); // 5% min, 2.5% per buff level (5% - 15%)
+      }
 
       // Incoming hacks!
       woodcutter.description = `
         <div class="d-flex align-items-center">
           <i class="lilIcon-attack extra-small-icon mr-1"></i>
-          ${autoPrecisionValue(woodcutter.stats.attack)}
+          ${autoPrecisionValue(woodcutter.stats.attack + woodcutterAttackModifier)}
         </div>
         <div class="d-flex align-items-center">
           <i class="lilIcon-attackSpeed extra-small-icon mr-1"></i>
-          ${autoPrecisionValue(woodcutterAttackSpeed)}
+          ${autoPrecisionValue(woodcutterAttackSpeed * woodcutterAttackSpeedModifier)}
         </div>
       `;
 

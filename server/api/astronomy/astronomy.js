@@ -12,6 +12,7 @@ import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 Meteor.methods({
 
@@ -301,9 +302,15 @@ Meteor.methods({
           currentMage.gold -= (localHoursElapsed * costPerHour);
         }
       }
+      
+      let localMageAttackSpeed = currentMage.stats.attackSpeed;
+      const townBuffObservatoryLevel = getBuffLevel('town_observatory');
+      if (townBuffObservatoryLevel > 0) {
+        localMageAttackSpeed *= (townBuffObservatoryLevel + 1) * 0.03; // 6% - 18%
+      }
 
       // Calculate shard fragments found
-      let totalFound = currentMage.stats.attackSpeed * localHoursElapsed;
+      let totalFound = localMageAttackSpeed * localHoursElapsed;
       if (totalFound < 1 && Math.random() < totalFound) {
         totalFound = 1;
       }

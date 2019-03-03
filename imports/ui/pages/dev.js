@@ -51,7 +51,7 @@ const prepText = function prepText(text__in) {
 
 Template.devPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  this.state.set('meteorCallMethod', 'server.info');
+  this.state.set('meteorCallMethod', 'town.syncBuffs');
   
   Tracker.autorun(() => {
     let isAdmin = false;    

@@ -18,80 +18,80 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {{#if currentUser}}
-            {{#if $gte currentTutorialStep 10}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}}" href="/battle">
-                Battle
-                {{#if showPendingInvites}}
-                  <span class="red-dot"></span>
-                {{/if}}
-              </a>
-            </li>
+            {{#if canSeeCombat}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}}" href="/battle">
+                  Battle
+                  {{#if showPendingInvites}}
+                    <span class="red-dot"></span>
+                  {{/if}}
+                </a>
+              </li>
             {{/if}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
-                Mine
-              </a>
-            </li>
-            {{#if $gte currentTutorialStep 2}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
+                  Mine
+                </a>
+              </li>
+            {{#if canSeeCrafting}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
                   Craft
                 </a>
               </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 16}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
-                Inscribe
-              </a>
-            </li>
+            {{#if canSeeInscription}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
+                  Inscribe
+                </a>
+              </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 13}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
-                Farm
-              </a>
-            </li>
+            {{#if canSeeFarming}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
+                  Farm
+                </a>
+              </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 7}}
+            {{#if canSeeWoodcutting}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
                   Woodcut
                 </a>
               </li>
             {{/if}}
-            {{#if $gte currentTutorialStep 17}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
-                Magic
-              </a>
-            </li>
-            {{#if $gte currentTutorialStep 17}}
+            {{#if canSeeEntireGameMenu}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
+                  Magic
+                </a>
+              </li>
+            {{#if canSeeEntireGameMenu}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'town'}}active{{/if}}" href="/town">
                   Town
                 </a>
               </li>
             {{/if}}
-            <li class="nav-item">
-              <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">
-                Chat
-              </a>
-            </li>
-            {{/if}}
-            {{#unless currentUser.isGuest}}
-            <!-- profile was here -->
-            {{/unless}}
-            {{#if $gte currentTutorialStep 17}}
               <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'ranking'}}active{{/if}}" href="/rankings">
-                  Rankings
+                <a class="nav-link {{#if $eq currentRoute 'chat'}}active{{/if}}" href="/chat">
+                  Chat
                 </a>
               </li>
+            {{/if}}
+            {{#unless currentUser.isGuest}}
+              <!-- profile was here -->
+            {{/unless}}
+            {{#if canSeeEntireGameMenu}}
+                <li class="nav-item">
+                  <a class="nav-link {{#if $eq currentRoute 'ranking'}}active{{/if}}" href="/rankings">
+                    Rankings
+                  </a>
+                </li>
               {{#if currentUser.newUpdates}}
                 <li class="nav-item">
-                  <a class="nav-link new-update-color {{#if $eq currentRoute 'updates'}}active{{/if}}" href="/updates">New Updates!</a>
+                  <a class="nav-link {{#if $eq currentRoute 'updates'}}active{{/if}} new-update-color" href="/updates">New Updates!</a>
                 </li>
               {{/if}}
             {{/if}}

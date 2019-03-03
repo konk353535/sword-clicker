@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Random } from 'meteor/random';
 
+import { Servers, DEFAULT_SERVER } from '/imports/api/server/servers.js';
+
 import './home.html';
 
 Template.homePage.onCreated(function bodyOnCreated() {
@@ -28,7 +30,17 @@ Template.homePage.events({
   'click .play-as-guest-btn'(event, instance) {
     instance.state.set('creatingGuest', true);
 
-    Meteor.call('users.createGuest', (err, res) => {
+    // Find server doc for selected server
+    const serverDoc = Servers.findOne({
+      name: DEFAULT_SERVER
+    });
+    
+    if (!serverDoc) {
+      // todo: display error about no servers
+      return;
+    }
+    
+    Meteor.call('users.createGuest', serverDoc._id, (err, res) => {
       if (err) {
         return instance.state.get('creatingGuest', false);
       }

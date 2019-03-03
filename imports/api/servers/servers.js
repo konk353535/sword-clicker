@@ -7,10 +7,13 @@ import { createTown } from '/imports/api/town/town';
 
 export const Servers = new Mongo.Collection('servers');
 
-export const createNewServer = function createNewServer(name = 'Classic', iteration = 0) {
+export const DEFAULT_SERVER = 'Classic';
+export const CLASSIC_SERVER = 'Classic';
+
+export const createNewServer = function createNewServer(name, iteration = 0) {
   // default server name
   if (!name || (typeof name !== 'string')) {
-    name = 'Classic';
+    name = DEFAULT_SERVER;
   }
   name = name.trim();
   

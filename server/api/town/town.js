@@ -92,11 +92,11 @@ export const newTownDay = function newTownDay() {
         // todo: give rewards to players with high scoring karma
         
         // reset goods by rolling data into the next day
-        serverTownData.day7goods = serverTownData.day6goods;
-        serverTownData.day6goods = serverTownData.day5goods;
-        serverTownData.day5goods = serverTownData.day4goods;
-        serverTownData.day4goods = serverTownData.day3goods;
-        serverTownData.day3goods = serverTownData.day2goods;
+        serverTownData.day7goods = []; // serverTownData.day6goods; // because mongo isn't on the same network, this rollover was taking forever to publish data to client endpoints, so we're only tracking 1 day of history now
+        serverTownData.day6goods = []; // serverTownData.day5goods; // because mongo isn't on the same network, this rollover was taking forever to publish data to client endpoints, so we're only tracking 1 day of history now
+        serverTownData.day5goods = []; // serverTownData.day4goods; // because mongo isn't on the same network, this rollover was taking forever to publish data to client endpoints, so we're only tracking 1 day of history now
+        serverTownData.day4goods = []; // serverTownData.day3goods; // because mongo isn't on the same network, this rollover was taking forever to publish data to client endpoints, so we're only tracking 1 day of history now
+        serverTownData.day3goods = []; // serverTownData.day2goods; // because mongo isn't on the same network, this rollover was taking forever to publish data to client endpoints, so we're only tracking 1 day of history now
         serverTownData.day2goods = serverTownData.day1goods;
         serverTownData.day1goods = []; // newest day has no donated goods, no karma
       }
@@ -164,7 +164,7 @@ Meteor.publish('town', function() {
 });
 
 Meteor.methods({
-  // note: this isn't used by anything (directly, although an admin using the browser's dev console could call this)
+  // note: this isn't used by anything directly (although an admin using the 'dev' tab or a browser's dev console could call this)
   'server.createTown'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });
     const userIsAdmin = userDoc && userDoc.isSuperMod;
@@ -183,8 +183,8 @@ Meteor.methods({
     return `Success: town created for server ${serverDoc.name} (${serverDoc._id}).`;
   },
   
-  // note: this isn't used by anything (directly, although an admin using the browser's dev console could call this)
-  'server.syncBuffs'() {
+  // note: this isn't used by anything directly (although an admin using the 'dev' tab or a browser's dev console could call this)
+  'town.syncBuffs'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });
     const userIsAdmin = userDoc && userDoc.isSuperMod;
 
@@ -192,12 +192,13 @@ Meteor.methods({
       return false;
     }
     
+    deleteKarmaBuffs();
     syncKarmaBuffs();
     return `Operation completed.`;
   },
   
-  // note: this isn't used by anything (directly, although an admin using the browser's dev console could call this)
-  'server.forceDayRollover'() {
+  // note: this isn't used by anything directly (although an admin using the 'dev' tab or a browser's dev console could call this)
+  'town.forceDayRollover'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });
     const userIsAdmin = userDoc && userDoc.isSuperMod;
 

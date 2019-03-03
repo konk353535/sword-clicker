@@ -26,15 +26,26 @@
               {{moDiff buff.data.endDate moNow 'seconds'}}
             </span>
           {{/if}}
+        {{else if $lte buff.duration 9}}
+          {{#if small}}
+            <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
+              line-height: 10px;">
+              {{> formatNumber number=buff.duration blankZero=true decimal=1}}
+            </span>
+          {{else}}
+            <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
+              {{> formatNumber number=buff.duration blankZero=true decimal=1}}
+            </span>
+          {{/if}}
         {{else if $lte buff.duration 59}}
           {{#if small}}
             <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
               line-height: 10px;">
-              {{> formatNumber number=buff.duration blankZero=true}}
+              {{> formatNumber number=buff.duration blankZero=true decimal=0}}
             </span>
           {{else}}
             <span class="text-muted" style="position: absolute; bottom: 2px; right: 2px; font-size: 10px; line-height: 10px;">
-              {{> formatNumber number=buff.duration blankZero=true}}
+              {{> formatNumber number=buff.duration blankZero=true decimal=0}}
             </span>
           {{/if}}
         {{/if}}

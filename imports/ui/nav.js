@@ -3,7 +3,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Session } from 'meteor/session';
 import { Users } from '/imports/api/users/users.js';
 import { Groups } from '/imports/api/groups/groups.js';
-import { Servers } from '/imports/api/servers/servers.js';
+import { Servers, DEFAULT_SERVER, CLASSIC_SERVER } from '/imports/api/servers/servers.js';
 import { Meteor } from "meteor/meteor";
 import { ReactiveDict } from 'meteor/reactive-dict';
 
@@ -145,7 +145,7 @@ Template.nav.helpers({
       _id: Meteor.user().server
     });
 
-    if (myServer && myServer.name === 'Classic') {
+    if (myServer && myServer.name === CLASSIC_SERVER) {
       return moment().isBefore(moment('2019-03-15'));
     }
 
@@ -153,7 +153,7 @@ Template.nav.helpers({
   },
 
   serverName() {
-    let serverName = 'Classic';
+    let serverName = DEFAULT_SERVER;
     if (Template.instance().state.get('myServer')) {
       serverName = Template.instance().state.get('myServer').name;
     }

@@ -33,6 +33,8 @@ AccountsTemplates.configure({
     if (Meteor.isServer) {
       const userDoc = Users.findOne({_id: userId});
       if (userDoc) {
+        // NOTE: new players are not announced during creation anymore, but instead are announced when the tutorial is completed or skipped
+        /*
         Chats.insert({
           message: `Welcome new player ${userDoc.username} to the game!`,
           username: 'GAME',
@@ -43,6 +45,7 @@ AccountsTemplates.configure({
           },
           roomId: `General`
         });
+        */
       }
     }
   },

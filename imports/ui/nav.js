@@ -131,7 +131,37 @@ Template.nav.helpers({
 
   currentTutorialStep() {
     const myUser = Users.findOne({ _id: Meteor.userId() });
-    return myUser.tutorial ? myUser.tutorial.currentStep : 50;
+    return myUser.tutorial ? myUser.tutorial.currentStep : 10000;
+  },
+  
+  canSeeCombat() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.hideCombat) ? false : true) : (true)); // don't simplify this, properties may not exist and need non-false defaults
+  },
+  
+  canSeeCrafting() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.hideCrafting) ? false : true) : (true)); // don't simplify this, properties may not exist and need non-false defaults
+  },
+  
+  canSeeInscription() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.hideInscription) ? false : true) : (true)); // don't simplify this, properties may not exist and need non-false defaults
+  },
+  
+  canSeeFarming() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.hideFarming) ? false : true) : (true)); // don't simplify this, properties may not exist and need non-false defaults
+  },
+  
+  canSeeWoodcutting() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.hideWoodcutting) ? false : true) : (true)); // don't simplify this, properties may not exist and need non-false defaults
+  },
+  
+  canSeeEntireGameMenu() {
+    const myUser = Users.findOne({ _id: Meteor.userId() });
+    return ((myUser.tutorial) ? ((myUser.tutorial.currentStep >= 10000) ? true : false) : (true));
   },
 
   isAdmin() {

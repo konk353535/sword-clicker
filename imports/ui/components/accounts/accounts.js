@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Random } from 'meteor/random';
-import { Servers } from '/imports/api/servers/servers';
+import { Servers, DEFAULT_SERVER } from '/imports/api/servers/servers';
 
 import './accounts.html';
 
@@ -13,14 +13,14 @@ Template.serverSelector.onCreated(function bodyOnCreated() {
 
   this.autorun(() => {
     this.state.set('selectedServer', Servers.findOne({
-      name: 'Classic'
+      name: DEFAULT_SERVER
     }));
   });
 });
 
 Template.serverSelector.helpers({
   selectedServer() {
-    return Template.instance().state.get('selectedServer')
+    return Template.instance().state.get('selectedServer');
   },
 
   allServers() {
@@ -56,8 +56,18 @@ Template.playAsGuestBtn.events({
   'click .play-as-guest-btn'(event, instance) {
     instance.state.set('creatingGuest', true);
 
+    // Find server doc for selected server
+    const serverDoc = Servers.findOne({
+      name: Template.instance().state.get('selectedServer')
+    });
+    
+    if (!serverDoc) {
+      // todo: display error about invalid selected server
+      return;
+    }
+    
     // This will instead return a username and password
-    Meteor.call('users.createGuest', (err, res) => {
+    Meteor.call('users.createGuest', serverDoc._id, (err, res) => {
       if (err) {
         return instance.state.get('creatingGuest', false);
       }

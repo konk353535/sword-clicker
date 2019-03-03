@@ -49,7 +49,7 @@
       <div class="d-flex flex-column mb-3" style="width: 200px">
         <div class="d-flex align-items-center">
           <i class="lilIcon-mining extra-small-icon mr-1"></i> 
-          {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+          {{> formatNumber number=mining.stats.energy noDecimal=true}} / {{> formatNumber number=mining.stats.energyStorage noDecimal=true}}
         </div>
         <div class="progress mt-1" style="width: 100%">
           <div class="progress-bar bg-warning" role="progressbar" style="width: {{miningEnergyPercentage}}%" aria-valuenow="{{miningEnergyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -97,7 +97,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center equipped-pickaxe">
           {{> itemIcon item=equippedItemsMap.pickaxe}}
           <div class="d-flex">
-            {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+            {{> formatNumber number=mining.stats.energy noDecimal=true}} / {{> formatNumber number=mining.stats.energyStorage noDecimal=true}}
           </div>
         </div>
       {{else}}
@@ -109,7 +109,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center equipped-mining-offhand">
           {{> itemIcon item=equippedItemsMap.mining_offhand}}
           <div class="d-flex">
-            {{> formatNumber number=mining.stats.energy}} / {{> formatNumber number=mining.stats.energyStorage}}
+            {{> formatNumber number=mining.stats.energy noDecimal=true}} / {{> formatNumber number=mining.stats.energyStorage noDecimal=true}}
           </div>
         </div>
       {{else}}
@@ -312,7 +312,11 @@
         <div style="flex: 1 1 auto; display: flex; align-items: center; height: 50%">
           <div class="progress" style="height: 16px; flex: 1 1 auto;">
             <div class="progress-bar" role="progressbar" style="width: {{miner.xpPercentage}}%;" aria-valuenow="{{miner.xpPercentage}}" aria-valuemin="0" aria-valuemax="100">
-              {{> formatNumber number=miner.xp decimal=1}} / {{> formatNumber number=miner.xpToLevel decimal=1}}
+              {{#if $gte miner.xp 1000}}
+                {{> formatNumber number=miner.xp}} / {{> formatNumber number=miner.xpToLevel}}
+              {{else}}
+                {{> formatNumber number=miner.xp decimal=1}} / {{> formatNumber number=miner.xpToLevel}}
+              {{/if}}
             </div>
           </div>
         </div>
@@ -342,7 +346,7 @@
 
 <template name="oreListItem">
   <div class="ore-list-item">
-    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{> formatNumber number=ore.amount}}
+    <img src="/icons/{{ore.icon}}" class="icon-box small-icon"> {{> formatNumber number=ore.amount noDecimal=true}}
   </div>
 
   <div class="ore-list-item-tooltip-content my-tooltip-inner">

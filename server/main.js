@@ -11,7 +11,7 @@ import { Floors } from '/imports/api/floors/floors.js';
 import { BossHealthScores } from '/imports/api/floors/bossHealthScores';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 import { Battles, BattlesList } from '/imports/api/battles/battles';
-import { Servers } from '/imports/api/servers/servers';
+import { Servers, CLASSIC_SERVER } from '/imports/api/servers/servers';
 import { Crafting } from '/imports/api/crafting/crafting';
 import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
@@ -59,11 +59,11 @@ Accounts.onLogin((accountConnection) => {
 Meteor.startup(() => {
 
   const classicServer = Servers.findOne({
-    name: 'Classic'
+    name: CLASSIC_SERVER
   });
 
   if (!classicServer) {
-    const classicServerId = createNewServer('Classic', 0);
+    const classicServerId = createNewServer(CLASSIC_SERVER, 0);
     
     // Assign server to existing documents
     // -- User Doc

@@ -16,7 +16,7 @@ let tipInterval;
 Template.tutorial.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('showTip', false);
-  this.state.set('showTipTimer', 25);
+  this.state.set('showTipTimer', 15);
 
   tipInterval = Meteor.setInterval(() => {
     const showTip = this.state.get('showTip');
@@ -24,7 +24,7 @@ Template.tutorial.onCreated(function bodyOnCreated() {
 
     showTipTimer -= 1;
     if (showTipTimer <= 0) {
-      this.state.set('showTipTimer', showTip ? 25 : 6);
+      this.state.set('showTipTimer', showTip ? 15 : 6);
       this.state.set('showTip', !showTip)
     } else {
       this.state.set('showTipTimer', showTipTimer);
@@ -231,6 +231,7 @@ Template.tutorial.helpers({
       } else if (currentStep === 9) {
         const copperDagger = Items.findOne({ itemId: 'copper_dagger' });
         if (copperDagger && copperDagger.amount >= 1) {
+          Meteor.call('users.setUiState', 'newCombatType', 'solo');
           Meteor.call('users.tutorialUpdate', {
             highlightCrafting: false,
             hideCombat: false,
@@ -252,19 +253,20 @@ Template.tutorial.helpers({
       } else if (currentStep === 10) {
         const copperDagger = Items.findOne({ itemId: 'copper_dagger', equipped: true });
         if (copperDagger && copperDagger.amount >= 1) {
+          Meteor.call('users.setUiState', 'newCombatType', 'solo');
           Meteor.call('users.tutorialUpdate', {
             highlightCombatEquipment: false,
             highlightCombatAbilities: true,
             hideCombatAbilities: false,
             currentStep: 11
-          });
+          });          
         }
 
         return {
           text: 'Equip a copper dagger',
           current: 0,
           required: 1,
-          tip: 'Battle page > Loadout > Gear Edit',
+          tip: 'Battle page > Loadout > Gear [edit]',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -362,7 +364,7 @@ Template.tutorial.helpers({
         for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
         return {
-          text: 'Plant 4 lettuces',
+          text: `Plant ${required} lettuce`,
           current,
           required,
           tip: 'Farm page > Plots tab',
@@ -372,7 +374,7 @@ Template.tutorial.helpers({
       } else if (currentStep === 15) {
         const required = 4;
         const lettices = Items.findOne({ itemId: 'lettice' });
-        if (lettices && lettices.amount >= 4) {
+        if (lettices && lettices.amount >= required) {
           Meteor.call('users.tutorialUpdate', {
             currentStep: 16,
             hideInscription: false,
@@ -389,7 +391,7 @@ Template.tutorial.helpers({
         for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
 
         return {
-          text: 'Pick 4 lettuces',
+          text: `Pick ${required} lettuce`,
           current,
           required,
           tip: 'Farm page > Plots tab',
@@ -397,13 +399,96 @@ Template.tutorial.helpers({
           awaitingStepsArray
         }
       } else if (currentStep === 16) {
+        const required = 1;
+        const allFarmingSpaces = FarmingSpace.find().fetch();
+        const rubiaFlowersCount = allFarmingSpaces.filter((farmingSpace) => {
+          return farmingSpace.plantId === 'rubia_flower';
+        }).length;
+
+        if (rubiaFlowersCount >= required) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 17
+          });
+        }
+
+        const current = rubiaFlowersCount;
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
+
+        return {
+          text: `Plant ${required} rubia flowers`,
+          current,
+          required,
+          tip: 'Farm page > Plots tab',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 17) {
+        const required = 1;
+        const rubiaFlowers = Items.findOne({ itemId: 'rubia_flower' });
+        if (rubiaFlowers && rubiaFlowers.amount >= required) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 18,
+          });
+        }
+
+        const current = rubiaFlowers ? rubiaFlowers.amount : 0;
+        const completedStepsArray = [];
+        const awaitingStepsArray = [];
+        for (let i = 0; i < current; i++) { completedStepsArray.push(true); }
+        for (let i = 0; i < (required - current); i++) { awaitingStepsArray.push(true); }
+
+        return {
+          text: `Pick ${required} rubia flowers`,
+          current,
+          required,
+          tip: 'Farm page > Plots tab',
+          completedStepsArray,
+          awaitingStepsArray
+        }
+      } else if (currentStep === 18) {
+        const berserk = Items.findOne({ itemId: 'pigment_red_255' });
+        if (berserk && berserk.amount >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            highlightInscription: true,
+            currentStep: 19
+          });
+        }
+
+        return {
+          text: 'Inscribe Pigment Red (255)',
+          current: 0,
+          required: 1,
+          tip: 'Inscribe page > Pigments tab',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
+      } else if (currentStep === 19) {
+        const pinePaper = Items.findOne({ itemId: 'pine_paper' });
+        if (pinePaper && pinePaper.amount >= 1) {
+          Meteor.call('users.tutorialUpdate', {
+            currentStep: 20
+          });
+        }
+
+        return {
+          text: 'Inscribe pine paper',
+          current: 0,
+          required: 1,
+          tip: 'Inscribe page > Paper tab',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
+      } else if (currentStep === 20) {
         const berserk = Items.findOne({ itemId: 'berserk_level_1_tome' });
         if (berserk && berserk.amount >= 1) {
           Meteor.call('users.tutorialUpdate', {
             highlightInscription: false,
             highlightCombat: true,
             highlightCombatAbilities: true,
-            currentStep: 17
+            currentStep: 21
           });
         }
 
@@ -415,16 +500,42 @@ Template.tutorial.helpers({
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
-      } else if (currentStep === 17) {
+      } else if (currentStep === 21) {
         const myAbilities = Abilities.findOne({});
 
         if (myAbilities) {
-          Meteor.call('users.setUiState', 'showChat', true);
           myAbilities.learntAbilities.forEach((ability) => {
             if (ability.abilityId === 'berserk') {
               Meteor.call('users.tutorialUpdate', {
-                currentStep: 18
+                currentStep: 22
               });
+            }
+          });
+        }
+
+        return {
+          text: 'Learn Berserk',
+          current: 0,
+          required: 1,
+          tip: 'Battle page > Loadout > Abilities [edit]',
+          completedStepsArray: [],
+          awaitingStepsArray: [true]
+        }
+      } else if (currentStep === 22) {
+        let bComplete = false;
+        const myAbilities = Abilities.findOne({});
+
+        if (myAbilities) {
+          myAbilities.learntAbilities.forEach((ability) => {
+            if (ability.abilityId === 'berserk') {
+              if (!bComplete) {
+                bComplete = true;
+                Meteor.call('users.setUiState', 'showChat', true); // start fresh players with popup chat once
+                Meteor.call('users.completedTutorial');
+                Meteor.call('users.tutorialUpdate', {
+                  currentStep: 10000 // finished with tutorial, even if we add more steps in the future
+                });
+              }
             }
           });
         }

@@ -99,7 +99,7 @@
           {{/if}}
 
           {{#if item.isSpell}}
-            <b>{{item.casts}}</b> casts remaining.<br /><br />
+            <b>{{> formatNumber number=item.casts}}</b> casts remaining.<br /><br />
           {{/if}}
 
           {{#unless item.hideStats}}
@@ -164,11 +164,11 @@
               {{#if item.shiftAction}}
                 {{#if item.shiftAction.description}}
                   <div>
-                    <b>Left Click</b> to use or sell for {{constants.sellPrice}}
+                    <b>Left Click</b> to use or sell for {{> formatNumber number=constants.sellPrice}}
                   </div>
                 {{/if}}
               {{else}}
-                <b>Left Click</b> to sell for {{constants.sellPrice}}
+                <b>Left Click</b> to sell for {{> formatNumber number=constants.sellPrice}}
               {{/if}}
             {{/if}}
 
@@ -213,7 +213,7 @@
                   </form>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
-                  +{{ totalPrice sellAmount constants.sellPrice }} Gold
+                  +{{> formatNumber number=(totalPrice sellAmount constants.sellPrice)}} Gold
                 </div>
               </div>
 
@@ -260,7 +260,7 @@
                   </form>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">   
-                  {{donateAmountMax}}                
+                  {{{donateAmountMaxFormatted}}}
                 </div>
               </div>
 
@@ -296,7 +296,7 @@
                 <form class="sell-form">
                   <input class="form-control sell-amount-input" value={{sellAmount}}>
                 </form>
-                  +{{ totalPrice sellAmount constants.sellPrice }} Gold
+                  +{{> formatNumber number=(totalPrice sellAmount constants.sellPrice)}} Gold
                 <br /><br />
               </div>
             </div>

@@ -201,7 +201,7 @@ Template.itemIcon.helpers({
     return instance.state.get('donateAmount');
   },
 
-  donateAmountMax() {
+  donateAmountMaxFormatted() {
     const instance = Template.instance();
     return `You have: ${CInt(instance.state.get('donateAmountMax')).toLocaleString()}`;
   },

@@ -4,7 +4,7 @@ export const PIGMENT_CRAFTS = {
   pigment_red_255: {
     recipeFor: 'inscription',
     produces: 'pigment_red_255',
-    name: 'pigment red (255)',
+    name: 'magenta pigment',
     id: 'pigment_red_255',
     category: 'pigment',
     timeToCraft: 60,
@@ -28,7 +28,7 @@ export const PIGMENT_CRAFTS = {
   pigment_green_255: {
     recipeFor: 'inscription',
     produces: 'pigment_green_255',
-    name: 'pigment green (255)',
+    name: 'bright green pigment',
     id: 'pigment_green_255',
     category: 'pigment',
     timeToCraft: 60,
@@ -52,7 +52,7 @@ export const PIGMENT_CRAFTS = {
   pigment_green_200: {
     recipeFor: 'inscription',
     produces: 'pigment_green_200',
-    name: 'pigment green (200)',
+    name: 'yellow green pigment',
     id: 'pigment_green_200',
     category: 'pigment',
     timeToCraft: 180,
@@ -76,7 +76,7 @@ export const PIGMENT_CRAFTS = {
   pigment_red_200: {
     recipeFor: 'inscription',
     produces: 'pigment_red_200',
-    name: 'pigment red (200)',
+    name: 'pink pigment',
     id: 'pigment_red_200',
     category: 'pigment',
     timeToCraft: 120,
@@ -101,7 +101,7 @@ export const PIGMENT_CRAFTS = {
   pigment_blue_255: {
     recipeFor: 'inscription',
     produces: 'pigment_blue_255',
-    name: 'pigment blue (255)',
+    name: 'blue pigment',
     id: 'pigment_blue_255',
     category: 'pigment',
     timeToCraft: 180,
@@ -125,7 +125,7 @@ export const PIGMENT_CRAFTS = {
   pigment_purple_255: {
     recipeFor: 'inscription',
     produces: 'pigment_purple_255',
-    name: 'pigment purple (255)',
+    name: 'lavender pigment',
     id: 'pigment_purple_255',
     category: 'pigment',
     timeToCraft: 180,
@@ -149,7 +149,7 @@ export const PIGMENT_CRAFTS = {
   pigment_red_150: {
     recipeFor: 'inscription',
     produces: 'pigment_red_150',
-    name: 'pigment red (150)',
+    name: 'red pigment',
     id: 'pigment_red_150',
     category: 'pigment',
     timeToCraft: 300,
@@ -173,7 +173,7 @@ export const PIGMENT_CRAFTS = {
   pigment_white_128: {
     recipeFor: 'inscription',
     produces: 'pigment_white_128',
-    name: 'pigment white (128)',
+    name: 'yellow pigment',
     id: 'pigment_white_128',
     category: 'pigment',
     timeToCraft: 600,
@@ -197,7 +197,7 @@ export const PIGMENT_CRAFTS = {
   pigment_green_170: {
     recipeFor: 'inscription',
     produces: 'pigment_green_170',
-    name: 'pigment green (170)',
+    name: 'green pigment',
     id: 'pigment_green_170',
     category: 'pigment',
     timeToCraft: 180,
@@ -221,7 +221,7 @@ export const PIGMENT_CRAFTS = {
   pigment_purple_200: {
     recipeFor: 'inscription',
     produces: 'pigment_purple_200',
-    name: 'pigment purple (200)',
+    name: 'purple pigment',
     id: 'pigment_purple_200',
     category: 'pigment',
     timeToCraft: 600,
@@ -245,7 +245,7 @@ export const PIGMENT_CRAFTS = {
   pigment_yellow_255: {
     recipeFor: 'inscription',
     produces: 'pigment_yellow_255',
-    name: 'pigment yellow (255)',
+    name: 'white pigment',
     id: 'pigment_yellow_255',
     category: 'pigment',
     timeToCraft: 600,
@@ -269,7 +269,7 @@ export const PIGMENT_CRAFTS = {
   pigment_green_140: {
     recipeFor: 'inscription',
     produces: 'pigment_green_140',
-    name: 'pigment green (140)',
+    name: 'brown green pigment',
     id: 'pigment_green_140',
     category: 'pigment',
     timeToCraft: 600,
@@ -293,7 +293,7 @@ export const PIGMENT_CRAFTS = {
   pigment_red_100: {
     recipeFor: 'inscription',
     produces: 'pigment_red_100',
-    name: 'pigment red (100)',
+    name: 'orange pigment',
     id: 'pigment_red_100',
     category: 'pigment',
     timeToCraft: 10,
@@ -317,7 +317,7 @@ export const PIGMENT_CRAFTS = {
   pigment_yellow_200: {
     recipeFor: 'inscription',
     produces: 'pigment_yellow_200',
-    name: 'pigment yellow (200)',
+    name: 'brown pigment',
     id: 'pigment_yellow_200',
     category: 'pigment',
     timeToCraft: 900,
@@ -341,7 +341,7 @@ export const PIGMENT_CRAFTS = {
   pigment_white_190: {
     recipeFor: 'inscription',
     produces: 'pigment_white_190',
-    name: 'pigment white (190)',
+    name: 'grey pigment',
     id: 'pigment_white_190',
     category: 'pigment',
     timeToCraft: 600,
@@ -365,7 +365,7 @@ export const PIGMENT_CRAFTS = {
   pigment_purple_150: {
     recipeFor: 'inscription',
     produces: 'pigment_purple_150',
-    name: 'pigment purple (150)',
+    name: 'light purple pigment',
     id: 'pigment_purple_150',
     category: 'pigment',
     timeToCraft: 600,
@@ -389,7 +389,7 @@ export const PIGMENT_CRAFTS = {
   pigment_green_110: {
     recipeFor: 'inscription',
     produces: 'pigment_green_110',
-    name: 'pigment green (110)',
+    name: 'forest green pigment',
     id: 'pigment_green_110',
     category: 'pigment',
     timeToCraft: 900,

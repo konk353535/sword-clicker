@@ -456,21 +456,6 @@ Template.overviewPage.events({
     Meteor.call('farming.pickAll');
   },
 
-  'click .play-as-guest-btn'(event, instance) {
-    instance.state.set('creatingGuest', true);
-
-    Meteor.call('users.createGuest', (err, res) => {
-      if (err) {
-        return instance.state.get('creatingGuest', false);
-      }
-
-      const {username, password} = res;
-      Meteor.loginWithPassword(username, password, (err, res) => {
-        instance.state.get('creatingGuest', false);
-      });
-    });
-  },
-
   'click .accept-party-invite'(event, instance) {
     // Get target data
     const inviteId = instance.$(event.target).closest('.accept-party-invite').data('id');

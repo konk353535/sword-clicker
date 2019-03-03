@@ -34,28 +34,33 @@ SyncedCron.add({
     return parser.text('every 30 seconds');
   },
   job: function () {
-    // Check for existing frefab accounts
-    const existingCount = Users.find({
-      isPreFabbedGuest: true
-    }).count();
+    Servers.find().fetch().forEach((thisServer) => {
+      // Check for existing prefab accounts
+      const existingCount = Users.find({
+        isPreFabbedGuest: true,
+        server: thisServer._id
+      }).count();
 
-    const amountToCreate = 5 - existingCount;
+      const amountToCreate = 5 - existingCount;
 
-    if (amountToCreate > 0) {
-      for (let i = 0; i < amountToCreate; i++) {
-        const username = `guest_${faker.internet.userName()}`.replace('.', '');
-        console.log(username);
-        const password = uuid.v4();
+      if (amountToCreate > 0) {
+        for (let i = 0; i < amountToCreate; i++) {
+          const username = `guest_${faker.internet.userName()}`.replace('.', '');
+          console.log(username);
+          const password = uuid.v4();
 
-        Accounts.createUser({
-          username,
-          password,
-          isGuest: true,
-          isPreFabbedGuest: true
-        });
+          Accounts.createUser({
+            username,
+            password,
+            isGuest: true,
+            isPreFabbedGuest: true,
+            server: thisServer._id
+          });
+        }
+        
+        console.log(`Created ${amountToCreate} pre fabbed accounts on server ${thisServer.name}`);
       }
-      console.log(`Created ${amountToCreate} pre fabbed accounts`);
-    }
+    });
   }
 });
 

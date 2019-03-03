@@ -116,6 +116,8 @@ Meteor.methods({
     // Update username
     Accounts.setUsername(Meteor.userId(), username);
 
+    // NOTE: new players are not announced during creation anymore, but instead are announced when the tutorial is completed or skipped
+    /*
     Chats.insert({
       message: `Welcome new player ${username} to the game!`,
       username: 'GAME',
@@ -126,6 +128,7 @@ Meteor.methods({
       },
       roomId: `General`
     });
+    */
     
     // Update password
     Accounts.setPassword(Meteor.userId(), password, { logout: false });
@@ -181,10 +184,58 @@ Meteor.methods({
       }
     });
   },
+  
+  'users.skipTutorial'() {
+    const userDoc = Users.findOne({_id: Meteor.userId()});
+    if (!userDoc || !userDoc.tutorial) {
+      return false;
+    }
+
+    Chats.insert({
+      message: `Welcome new player ${userDoc.username} to the game!`,
+      username: 'GAME',
+      name: 'GAME',
+      date: new Date(),
+      custom: {
+        roomType: 'General'
+      },
+      roomId: `General`
+    });
+    
+    return Users.update({
+      _id: Meteor.userId()
+    }, {
+      $unset: {
+        tutorial: ""
+      }
+    });
+  },
+  
+  'users.completedTutorial'() {
+    const userDoc = Users.findOne({});
+    if (!userDoc || !userDoc.tutorial) {
+      return false;
+    }
+    
+    return Chats.insert({
+      message: `Welcome new player ${userDoc.username} to the game!`,
+      username: 'GAME',
+      name: 'GAME',
+      date: new Date(),
+      custom: {
+        roomType: 'General'
+      },
+      roomId: `General`
+    });
+  },
 
   'users.tutorialUpdate'(updateObject) {
-
     const userDoc = Meteor.user();
+
+    if (!userDoc || !userDoc.tutorial) {
+      return false;
+    }
+    
     const allKeys = Object.keys(updateObject);
 
     const validIds = [
@@ -236,38 +287,34 @@ Meteor.methods({
 
     const setObject = {};
 
-    let exitEarly = false;
+    let abortRequest = false;
     allKeys.forEach((key) => {
       if (!_.contains(validIds, key)) {
         console.log(`rejecting - ${key}`);
-        exitEarly = true;
+        abortRequest = true;
       } else if (!_.isBoolean(updateObject[key] && !_.isFinite((updateObject[key])))) {
         console.log(`rejecting - ${key}`);
-        exitEarly = true;
+        abortRequest = true;
       } else {
         if (key === 'currentStep' && updateObject[key] <= userDoc.tutorial.currentStep) {
-          exitEarly = true;
+          abortRequest = true;
         } else {
           setObject[`tutorial.${key}`] = updateObject[key];
         }
       }
     });
-
-    if (exitEarly || !userDoc.tutorial) {
+    if (abortRequest) {
       return;
     }
 
-    if (setObject['tutorial.currentStep'] === 16) {
-      // Check users current farming level
-      const farmingSkill = Skills.findOne({
+    if (setObject['tutorial.currentStep'] === 2) {
+      const miningSkill = Skills.findOne({
         owner: Meteor.userId(),
-        type: 'farming'
+        type: 'mining'
       });
 
-      if (farmingSkill.level === 1) {
-        addXp('farming', 21);
-        addItem('pine_paper', 1, Meteor.userId());
-        addItem('rubia_flower_seed', 1, Meteor.userId());
+      if (miningSkill.level === 1) {
+        addXp('mining', 21);
       }
     } else if (setObject['tutorial.currentStep'] === 9) {
       // Check users current farming level
@@ -280,26 +327,33 @@ Meteor.methods({
         addXp('woodcutting', 2);
         addItem('pine_log', 1, Meteor.userId());
       }
-    } else if (setObject['tutorial.currentStep'] === 2) {
-      const miningSkill = Skills.findOne({
+    } else if (setObject['tutorial.currentStep'] === 16) {
+      // Check users current farming level
+      const farmingSkill = Skills.findOne({
         owner: Meteor.userId(),
-        type: 'mining'
+        type: 'farming'
       });
 
-      if (miningSkill.level === 1) {
-        addXp('mining', 21);
+      if (farmingSkill.level === 1) {
+        addXp('farming', 21);
+        addItem('pine_log', 30, Meteor.userId());
+        //addItem('pine_paper', 1, Meteor.userId());
+        addItem('rubia_flower_seed', 1, Meteor.userId());
       }
-    } else if (setObject['tutorial.currentStep'] === 18) {
+    } else if (setObject['tutorial.currentStep'] === 10000) {
       return Users.update({
         _id: Meteor.userId()
       }, {
         $unset: {
           tutorial: ""
+        },
+        $set: {
+          newUpdates: false // don't start fresh players with a list of updates
         }
       });
     }
 
-    Users.update({
+    return Users.update({
       _id: Meteor.userId()
     }, {
       $set: setObject
@@ -323,16 +377,6 @@ Meteor.methods({
       },
       limit: 5
     }).fetch();
-  },
-
-  'users.skipTutorial'() {
-    Users.update({
-      _id: Meteor.userId()
-    }, {
-      $unset: {
-        tutorial: ""
-      }
-    });
   },
 
   'users.setUiState'(id, value) {

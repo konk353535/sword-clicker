@@ -2,7 +2,7 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Random } from 'meteor/random';
 import moment from 'moment';
 
-import { Servers } from '/imports/api/servers/servers';
+import { Servers, DEFAULT_SERVER, CLASSIC_SERVER } from '/imports/api/servers/servers';
 
 import { Skills } from '../../api/skills/skills.js';
 import { State } from '/imports/api/state/state.js';
@@ -387,13 +387,13 @@ Accounts.onCreateUser((options, user) => {
     });
   } else {
     targetServer = Servers.findOne({
-      name: 'Seasonal'
+      name: DEFAULT_SERVER
     });    
   }
 
   if (!targetServer) {
     targetServer = Servers.findOne({
-      name: 'Classic'
+      name: CLASSIC_SERVER
     });
   }
 
@@ -593,12 +593,12 @@ Accounts.onCreateUser((options, user) => {
 });
 
 if (!Servers.findOne()) {
-  createNewServer('Classic', 0);
+  createNewServer(CLASSIC_SERVER, 0);
 }
 
 if (!Floors.findOne()) {
   const targetServer = Servers.findOne({
-    name: 'Classic'
+    name: CLASSIC_SERVER
   });
 
   if (targetServer) {

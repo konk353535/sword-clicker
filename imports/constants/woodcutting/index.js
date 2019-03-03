@@ -21,7 +21,7 @@ export const WOODCUTTING = {
     farmer: {
       requiredWoodcuttingLevel: 1,
       icon: 'stoneLumberJack.png',
-      name: 'farmer',
+      name: 'stone woodcutter',
       id: 'farmer',
       axeId: 'primitive_axe',
       required: [{
@@ -45,7 +45,7 @@ export const WOODCUTTING = {
     copper_lumberjack: {
       requiredWoodcuttingLevel: 4,
       icon: 'copperLumberJack.png',
-      name: 'copper lumber jack',
+      name: 'copper woodcutter',
       id: 'copper_lumberjack',
       axeId: 'copper_axe',
       required: [{
@@ -69,7 +69,7 @@ export const WOODCUTTING = {
     tin_lumberjack: {
       requiredWoodcuttingLevel: 9,
       icon: 'tinLumberJack.png',
-      name: 'tin lumber jack',
+      name: 'tin woodcutter',
       id: 'tin_lumberjack',
       axeId: 'tin_axe',
       required: [{
@@ -93,7 +93,7 @@ export const WOODCUTTING = {
     bronze_lumberjack: {
       requiredWoodcuttingLevel: 15,
       icon: 'bronzeLumberJack.png',
-      name: 'bronze lumber jack',
+      name: 'bronze woodcutter',
       id: 'bronze_lumberjack',
       axeId: 'bronze_axe',
       required: [{
@@ -117,7 +117,7 @@ export const WOODCUTTING = {
     iron_lumberjack: {
       requiredWoodcuttingLevel: 20,
       icon: 'ironLumberJack.png',
-      name: 'iron lumber jack',
+      name: 'iron woodcutter',
       id: 'iron_lumberjack',
       axeId: 'iron_axe',
       required: [{
@@ -141,7 +141,7 @@ export const WOODCUTTING = {
     silver_lumberjack: {
       requiredWoodcuttingLevel: 25,
       icon: 'silverLumberJack.png',
-      name: 'silver lumber jack',
+      name: 'silver woodcutter',
       id: 'silver_lumberjack',
       axeId: 'silver_axe',
       required: [{
@@ -165,7 +165,7 @@ export const WOODCUTTING = {
     gold_lumberjack: {
       requiredWoodcuttingLevel: 30,
       icon: 'goldLumberJack.png',
-      name: 'gold lumber jack',
+      name: 'gold woodcutter',
       id: 'gold_lumberjack',
       axeId: 'gold_axe',
       required: [{
@@ -189,7 +189,7 @@ export const WOODCUTTING = {
     carbon_lumberjack: {
       requiredWoodcuttingLevel: 35,
       icon: 'carbonLumberJack.png',
-      name: 'carbon lumber jack',
+      name: 'carbon woodcutter',
       id: 'carbon_lumberjack',
       axeId: 'carbon_axe',
       required: [{
@@ -213,7 +213,7 @@ export const WOODCUTTING = {
     steel_lumberjack: {
       requiredWoodcuttingLevel: 40,
       icon: 'steelLumberJack.png',
-      name: 'steel lumber jack',
+      name: 'steel woodcutter',
       id: 'steel_lumberjack',
       axeId: 'steel_axe',
       required: [{
@@ -237,7 +237,7 @@ export const WOODCUTTING = {
     platinum_lumberjack: {
       requiredWoodcuttingLevel: 45,
       icon: 'platinumLumberJack.png',
-      name: 'platinum lumber jack',
+      name: 'platinum woodcutter',
       id: 'platinum_lumberjack',
       axeId: 'platinum_axe',
       required: [{
@@ -261,7 +261,7 @@ export const WOODCUTTING = {
     titanium_lumberjack: {
       requiredWoodcuttingLevel: 50,
       icon: 'titaniumLumberJack.png',
-      name: 'titanium lumber jack',
+      name: 'titanium woodcutter',
       id: 'titanium_lumberjack',
       axeId: 'titanium_axe',
       required: [{
@@ -285,7 +285,7 @@ export const WOODCUTTING = {
     tungsten_lumberjack: {
       requiredWoodcuttingLevel: 55,
       icon: 'tungstenLumberJack.png',
-      name: 'tungsten lumber jack',
+      name: 'tungsten woodcutter',
       id: 'tungsten_lumberjack',
       axeId: 'tungsten_axe',
       required: [{
@@ -309,7 +309,7 @@ export const WOODCUTTING = {
     obsidian_lumberjack: {
       requiredWoodcuttingLevel: 60,
       icon: 'obsidianLumberJack.png',
-      name: 'obsidian lumber jack',
+      name: 'obsidian woodcutter',
       id: 'obsidian_lumberjack',
       axeId: 'obsidian_axe',
       required: [{
@@ -333,7 +333,7 @@ export const WOODCUTTING = {
     cobalt_lumberjack: {
       requiredWoodcuttingLevel: 65,
       icon: 'cobaltLumberJack.png',
-      name: 'cobalt lumber jack',
+      name: 'cobalt woodcutter',
       id: 'cobalt_lumberjack',
       axeId: 'cobalt_axe',
       required: [{
@@ -357,7 +357,7 @@ export const WOODCUTTING = {
     mithril_lumberjack: {
       requiredWoodcuttingLevel: 70,
       icon: 'mithrilLumberJack.png',
-      name: 'mithril lumber jack',
+      name: 'mithril woodcutter',
       id: 'mithril_lumberjack',
       axeId: 'mithril_axe',
       required: [{
@@ -381,7 +381,7 @@ export const WOODCUTTING = {
     adamantium_lumberjack: {
       requiredWoodcuttingLevel: 75,
       icon: 'adamantiumLumberJack.png',
-      name: 'adamantium lumber jack',
+      name: 'adamantium woodcutter',
       id: 'adamantium_lumberjack',
       axeId: 'adamantium_axe',
       required: [{
@@ -405,7 +405,7 @@ export const WOODCUTTING = {
     orichalcum_lumberjack: {
       requiredWoodcuttingLevel: 80,
       icon: 'orichalcumLumberJack.png',
-      name: 'orichalcum lumber jack',
+      name: 'orichalcum woodcutter',
       id: 'orichalcum_lumberjack',
       axeId: 'orichalcum_axe',
       required: [{
@@ -429,7 +429,7 @@ export const WOODCUTTING = {
     meteorite_lumberjack: {
       requiredWoodcuttingLevel: 85,
       icon: 'meteoriteLumberJack.png',
-      name: 'meteorite lumber jack',
+      name: 'meteorite woodcutter',
       id: 'meteorite_lumberjack',
       axeId: 'meteorite_axe',
       required: [{
@@ -453,7 +453,7 @@ export const WOODCUTTING = {
     fairy_steel_lumberjack: {
       requiredWoodcuttingLevel: 90,
       icon: 'fairySteelLumberJack.png',
-      name: 'fairy steel lumber jack',
+      name: 'fairy steel woodcutter',
       id: 'fairy_steel_lumberjack',
       axeId: 'fairy_steel_axe',
       required: [{
@@ -477,7 +477,7 @@ export const WOODCUTTING = {
     elven_steel_lumberjack: {
       requiredWoodcuttingLevel: 95,
       icon: 'elvenSteelLumberJack.png',
-      name: 'elven steel lumber jack',
+      name: 'elven steel woodcutter',
       id: 'elven_steel_lumberjack',
       axeId: 'elven_steel_axe',
       required: [{
@@ -501,7 +501,7 @@ export const WOODCUTTING = {
     cursed_lumberjack: {
       requiredWoodcuttingLevel: 100,
       icon: 'cursedLumberJack.png',
-      name: 'cursed lumber jack',
+      name: 'cursed woodcutter',
       id: 'cursed_lumberjack',
       axeId: 'cursed_axe',
       required: [{
@@ -525,7 +525,7 @@ export const WOODCUTTING = {
     darksteel_lumberjack: {
       requiredWoodcuttingLevel: 105,
       icon: 'darksteelLumberJack.png',
-      name: 'darksteel lumber jack',
+      name: 'darksteel woodcutter',
       id: 'darksteel_lumberjack',
       axeId: 'darksteel_axe',
       required: [{
@@ -549,7 +549,7 @@ export const WOODCUTTING = {
     radiant_lumberjack: {
       requiredWoodcuttingLevel: 110,
       icon: 'radiantLumberJack.png',
-      name: 'radiant lumber jack',
+      name: 'radiant woodcutter',
       id: 'radiant_lumberjack',
       axeId: 'radiant_axe',
       required: [{
@@ -573,7 +573,7 @@ export const WOODCUTTING = {
     astral_lumberjack: {
       requiredWoodcuttingLevel: 115,
       icon: 'astralLumberJack.png',
-      name: 'astral lumber jack',
+      name: 'astral woodcutter',
       id: 'astral_lumberjack',
       axeId: 'astral_axe',
       required: [{
@@ -597,7 +597,7 @@ export const WOODCUTTING = {
     titanfoil_lumberjack: {
       requiredWoodcuttingLevel: 120,
       icon: 'titanfoilLumberJack.png',
-      name: 'titanfoil lumber jack',
+      name: 'titanfoil woodcutter',
       id: 'titanfoil_lumberjack',
       axeId: 'titanfoil_axe',
       required: [{
@@ -621,7 +621,7 @@ export const WOODCUTTING = {
     relicrock_lumberjack: {
       requiredWoodcuttingLevel: 125,
       icon: 'relicrockLumberJack.png',
-      name: 'relicrock lumber jack',
+      name: 'relicrock woodcutter',
       id: 'relicrock_lumberjack',
       axeId: 'relicrock_axe',
       required: [{
@@ -645,7 +645,7 @@ export const WOODCUTTING = {
     eternium_lumberjack: {
       requiredWoodcuttingLevel: 130,
       icon: 'eterniumLumberJack.png',
-      name: 'eternium lumber jack',
+      name: 'eternium woodcutter',
       id: 'eternium_lumberjack',
       axeId: 'eternium_axe',
       required: [{

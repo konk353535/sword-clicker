@@ -2,7 +2,7 @@
   <div class="ability-icon-container">
     <div class="ability-hotkey">{{ability.hotkey}}</div>
     {{#if ability.isSpell}}
-      <div class="ability-casts">{{ability.casts}}</div>
+      <div class="ability-casts">{{> formatNumber number=ability.casts decimal=0}}</div>
     {{/if}}
     <div class="ability-icon
       {{#if $gt ability.currentCooldown 0}}disabled{{/if}}
@@ -11,9 +11,15 @@
       <img src="/icons/{{ability.icon}}">
     </div>
     {{#if $gt ability.currentCooldown 0}}
-      <span class="cooldown-text">
-        {{> formatNumber number=ability.currentCooldown decimal=0}}
-      </span>
+      {{#if $gt ability.currentCooldown 10}}
+        <span class="cooldown-text">
+          {{> formatNumber number=ability.currentCooldown decimal=0}}
+        </span>
+      {{else}}
+        <span class="cooldown-text">
+          {{> formatNumber number=ability.currentCooldown decimal=1}}
+        </span>
+      {{/if}}
     {{/if}}
   </div>
 </template>

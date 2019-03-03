@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Random } from 'meteor/random';
 
-import { Servers, DEFAULT_SERVER } from '/imports/api/server/servers.js';
+import { Servers, DEFAULT_SERVER } from '/imports/api/servers/servers.js';
 
 import './home.html';
 

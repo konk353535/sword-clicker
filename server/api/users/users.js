@@ -48,7 +48,7 @@ Meteor.methods({
     }).count();
   },
 
-  'users.createGuest'() {
+  'users.createGuest'(serverId) {
     let clientIp = '';
     try {
       clientIp = getIPFromConnection(this.connection);
@@ -58,10 +58,11 @@ Meteor.methods({
     if (BlackList.findOne({ clientIp })) {
       throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
     }
-
+    
     // Fetch a prefabbed guest
     const existingGuest = Users.findOne({
-      isPreFabbedGuest: true
+      isPreFabbedGuest: true,
+      server: serverId
     });
 
     if (!existingGuest) {

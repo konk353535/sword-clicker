@@ -11,7 +11,7 @@
       <div class="d-flex align-items-center">
         <i class="lilIcon-{{this.key}} extra-small-icon mr-1"></i>
         {{#if this.requiresFormatting}}
-          {{> formatNumber number=this.rawValue decimal=0}} {{this.label}}
+          {{> formatNumber number=this.rawValue}} {{this.label}}
         {{else}}
           {{this.label}}
         {{/if}}

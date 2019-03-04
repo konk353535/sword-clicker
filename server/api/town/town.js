@@ -14,7 +14,6 @@ import { updateUserActivity, serverFromUser } from '/imports/api/users/users.js'
 import { karmaLevelValues } from '/imports/api/town/town.js';
 import { getGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
-
 export const deleteKarmaBuffs = function deleteKarmaBuffs() {
   State.remove({ name: 'town_dwelling' });
   State.remove({ name: 'town_quarry' });

@@ -161,6 +161,11 @@ Meteor.startup(() => {
   BattleActions._ensureIndex({ battleId: 1 });
   State._ensureIndex({ name: 1 })
 
-  deleteKarmaBuffs();  
-  syncKarmaBuffs();
+  // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
+  for (let i = 1; i <= 2; i++) {
+    Meteor.setTimeout(function() {
+      deleteKarmaBuffs();  
+      syncKarmaBuffs();
+    }, ((i == 1) ? 1 : 15) * 1000);
+  }
 });

@@ -232,8 +232,542 @@ export const ARCHER_ITEMS = {
     extraStats: {
       attack: 1.2 * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 5.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 2,
+      accuracy: 0.5,
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 3,
+    }],
+  },
+
+  beech_bow: {
+    id: 'beech_bow',
+    icon: 'beechBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'beech bow',
+    sellPrice: 75,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 25.2 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 11.2 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 2.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 7.6 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 6,
+    }],
+  },
+
+  ash_bow: {
+    id: 'ash_bow',
+    icon: 'ashBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'ash bow',
+    sellPrice: 175,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 9.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 32.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 14.6 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 2.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 9.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10,
+    }],
+  },
+
+  oak_bow: {
+    id: 'oak_bow',
+    icon: 'oakBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'oak bow',
+    sellPrice: 275,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 11.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 41 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 18.3 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 3.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 12.3 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15,
+    }],
+  },
+
+  maple_bow: {
+    id: 'maple_bow',
+    icon: 'mapleBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'maple bow',
+    sellPrice: 400,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 13.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 49.2 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 22 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 4.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 14.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20,
+    }],
+  },
+
+  walnut_bow: {
+    id: 'walnut_bow',
+    icon: 'walnutBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'walnut bow',
+    sellPrice: 500,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 16.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 59 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 26.4 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 4.9 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 17.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25,
+    }],
+  },
+
+  cherry_bow: {
+    id: 'cherry_bow',
+    icon: 'cherryBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'cherry bow',
+    sellPrice: 650,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 19.2 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 69 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 30.9 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 5.8 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 20.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30,
+    }],
+  },
+
+  mahogany_bow: {
+    id: 'mahogany_bow',
+    icon: 'mahoganyBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'mahogany bow',
+    sellPrice: 750,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 21.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 78 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 34.9 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 6.5 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 23.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35,
+    }],
+  },
+
+  elm_bow: {
+    id: 'elm_bow',
+    icon: 'elmBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'elm bow',
+    sellPrice: 900,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 25.8 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 92.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 41.5 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 7.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 27.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40,
+    }],
+  },
+
+  black_bow: {
+    id: 'black_bow',
+    icon: 'blackBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'black bow',
+    sellPrice: 1000,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 29.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 106.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 47.7 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 8.9 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 32 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45,
+    }],
+  },
+
+  blue_gum_bow: {
+    id: 'blue_gum_bow',
+    icon: 'blueGumBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'blue gum bow',
+    sellPrice: 1200,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 33.6 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 120.6 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 53.9 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 10.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 36.2 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50,
+    }],
+  },
+
+  cedar_bow: {
+    id: 'cedar_bow',
+    icon: 'cedarBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'cedar bow',
+    sellPrice: 1350,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 37.6 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 135.1 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 60.4 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 11.3 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 40.5 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55,
+    }],
+  },
+
+  denya_bow: {
+    id: 'denya_bow',
+    icon: 'denyaBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'denya bow',
+    sellPrice: 1500,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 42.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 151.3 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 67.6 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 12.6 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 45.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60,
+    }],
+  },
+
+  gombe_bow: {
+    id: 'gombe_bow',
+    icon: 'gombeBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'gombe bow',
+    sellPrice: 1600,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 46.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 167.9 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 75 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 14 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 50.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65,
+    }],
+  },
+
+  hickory_bow: {
+    id: 'hickory_bow',
+    icon: 'hickoryBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'hickory bow',
+    sellPrice: 1800,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 51.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 184.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 82.5 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 15.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 55.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70,
+    }],
+  },
+
+  larch_bow: {
+    id: 'larch_bow',
+    icon: 'larchBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'larch bow',
+    sellPrice: 1800,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 56 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 201.3 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 89.9 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 16.8 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 60.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75,
+    }],
   },
 
   poplar_bow: {
@@ -258,7 +792,7 @@ export const ARCHER_ITEMS = {
     extraStats: {
       attack: 18.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 67 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 29.9,
+      accuracy: 0,
     },
     upgradeRarity: [
       { chance: 5, rarityId: 'mastercrafted', },
@@ -271,6 +805,76 @@ export const ARCHER_ITEMS = {
     }],
   },
 
+  tali_bow: {
+    id: 'tali_bow',
+    icon: 'taliBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'tali bow',
+    sellPrice: 2250,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 68.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 245.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 109.8 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 20.5 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 73.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85,
+    }],
+  },
+
+  willow_bow: {
+    id: 'willow_bow',
+    icon: 'willowBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'willow bow',
+    sellPrice: 2500,
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 76.6 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 275.2 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 123 * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25,
+    },
+    extraStats: {
+      attack: 23 * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 82.6 * BATTLEAXE_TO_BOW_ATTACKMAX,
+      accuracy: 0,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90,
+    }],
+  },
+
   teak_bow: {
     id: 'teak_bow',
     icon: 'teakBow.svg',
@@ -279,7 +883,7 @@ export const ARCHER_ITEMS = {
     slot: 'mainHand',
     name: 'teak bow',
     sellPrice: 3000,
-    description: 'A slow but powerful ranged weapon of polished teak and filigree cursed metals.  Bows are useless without quivers.',
+    description: 'A slow but powerful ranged weapon.  Bows are useless without quivers.',
     isTwoHanded: true,
     isWeapon: true,
     isEquippable: true,
@@ -293,7 +897,7 @@ export const ARCHER_ITEMS = {
     extraStats: {
       attack: 25.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
       attackMax: 90 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 40.2,
+      accuracy: 0,
     },
     upgradeRarity: [
       { chance: 5, rarityId: 'mastercrafted', },
@@ -510,7 +1114,7 @@ export const ARCHER_ITEMS = {
     }]
   },
   
-  copper_quiver: { // quiver with mutated accuracy and no bonus damage
+  copper_quiver: { // quivers are knives with mutated accuracy and no bonus damage
     id: 'copper_quiver',
     icon: 'copperQuiver.svg',
     category: 'combat',
@@ -524,11 +1128,425 @@ export const ARCHER_ITEMS = {
       accuracy: 1 * KNIFE_TO_QUIVER_ACCURACY,
     },
     extraStats: {
-      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+      accuracy: 1 * KNIFE_TO_QUIVER_ACCURACY,
     },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 3,
+    }],
   },
 
-  meteorite_quiver: { // quiver with mutated accuracy and no bonus damage
+  tin_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'tin_quiver',
+    icon: 'tinQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'tin quiver',
+    sellPrice: 150,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 1.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 1 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 6,
+    }],
+  },
+
+  bronze_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'bronze_quiver',
+    icon: 'bronzeQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'bronze quiver',
+    sellPrice: 225,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 2 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 2 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 10,
+    }],
+  },
+
+  iron_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'iron_quiver',
+    icon: 'ironQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'iron quiver',
+    sellPrice: 300,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 2.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 2 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 15,
+    }],
+  },
+
+  silver_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'silver_quiver',
+    icon: 'silverQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'silver quiver',
+    sellPrice: 375,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 2 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 20,
+    }],
+  },
+
+  gold_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'gold_quiver',
+    icon: 'goldQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'gold quiver',
+    sellPrice: 450,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 3.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25,
+    }],
+  },
+
+  carbon_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'carbon_quiver',
+    icon: 'carbonQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'carbon quiver',
+    sellPrice: 525,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 30,
+    }],
+  },
+
+  steel_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'steel_quiver',
+    icon: 'steelQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'steel quiver',
+    sellPrice: 600,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 4.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 35,
+    }],
+  },
+
+  platinum_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'platinum_quiver',
+    icon: 'platinumQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'platinum quiver',
+    sellPrice: 675,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 40,
+    }],
+  },
+
+  titanium_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'titanium_quiver',
+    icon: 'titaniumQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'titanium quiver',
+    sellPrice: 750,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 5.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 3 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 45,
+    }],
+  },
+
+  tungsten_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'tungsten_quiver',
+    icon: 'tungstenQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'tungsten quiver',
+    sellPrice: 825,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 6 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 50,
+    }],
+  },
+
+  obsidian_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'obsidian_quiver',
+    icon: 'obsidianQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'obsidian quiver',
+    sellPrice: 900,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 6.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 55,
+    }],
+  },
+
+  cobalt_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'cobalt_quiver',
+    icon: 'cobaltQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'cobalt quiver',
+    sellPrice: 975,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 7 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 60,
+    }],
+  },
+
+  mithril_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'mithril_quiver',
+    icon: 'mithrilQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'mithril quiver',
+    sellPrice: 1050,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 7.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 65,
+    }],
+  },
+
+  adamantium_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'adamantium_quiver',
+    icon: 'adamantiumQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'adamantium quiver',
+    sellPrice: 1125,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 8 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 70,
+    }],
+  },
+
+  orichalcum_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'orichalcum_quiver',
+    icon: 'orichalcumQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'orichalcum quiver',
+    sellPrice: 1200,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 8.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 75,
+    }],
+  },
+
+  meteorite_quiver: { // quivers are knives with mutated accuracy and no bonus damage
     id: 'meteorite_quiver',
     icon: 'meteoriteQuiver.svg',
     category: 'combat',
@@ -539,10 +1557,10 @@ export const ARCHER_ITEMS = {
     description: 'Used with a bow.',
     isEquippable: true,
     stats: {
-      accuracy: 9 * KNIFE_TO_QUIVER_ACCURACY
+      accuracy: 9 * KNIFE_TO_QUIVER_ACCURACY,
     },
     extraStats: {
-      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
     },
     upgradeRarity: [
       { chance: 5, rarityId: 'mastercrafted', },
@@ -551,11 +1569,65 @@ export const ARCHER_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 80
-    }]
+      level: 80,
+    }],
   },
 
-  cursed_quiver: { // quiver with mutated accuracy and no bonus damage
+  fairy_steel_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'fairy_steel_quiver',
+    icon: 'fairySteelQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'fairy steel quiver',
+    sellPrice: 1350,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 9.5 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 85,
+    }],
+  },
+
+  elven_steel_quiver: { // quivers are knives with mutated accuracy and no bonus damage
+    id: 'elven_steel_quiver',
+    icon: 'elvenSteelQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'elven steel quiver',
+    sellPrice: 1425,
+    description: 'Used with a bow.',
+    isEquippable: true,
+    stats: {
+      accuracy: 10 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    extraStats: {
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
+    },
+    upgradeRarity: [
+      { chance: 5, rarityId: 'mastercrafted', },
+      { chance: 15, rarityId: 'improved', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 90,
+    }],
+  },
+
+  cursed_quiver: { // quivers are knives with mutated accuracy and no bonus damage
     id: 'cursed_quiver',
     icon: 'cursedQuiver.svg',
     category: 'combat',
@@ -563,13 +1635,13 @@ export const ARCHER_ITEMS = {
     slot: 'offHand',
     name: 'cursed quiver',
     sellPrice: 1500,
-    description: 'A fine quiver made from cursed metals and filled with teak arrows.  Bows are useless without quivers.',
+    description: 'Used with a bow.',
     isEquippable: true,
     stats: {
-      accuracy: 10.5 * KNIFE_TO_QUIVER_ACCURACY
+      accuracy: 10.5 * KNIFE_TO_QUIVER_ACCURACY,
     },
     extraStats: {
-      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY
+      accuracy: 4 * KNIFE_TO_QUIVER_ACCURACY,
     },
     upgradeRarity: [
       { chance: 5, rarityId: 'mastercrafted', },
@@ -578,8 +1650,8 @@ export const ARCHER_ITEMS = {
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
-      level: 95
-    }]
+      level: 95,
+    }],
   },
 
   darksteel_quiver: {

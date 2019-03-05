@@ -37,7 +37,16 @@ export const MISC_ITEMS = {
     category: 'crafting',
     name: 'adventure token',
     sellPrice: 10,
-    description: 'Can be traded for new adventures'
+    description: 'Can be traded for new adventures.'
+  },
+
+  companion_token: {
+    id: 'companion_token',
+    icon: 'companionToken.svg',
+    category: 'crafting',
+    name: 'companion token',
+    sellPrice: 0,
+    description: 'Automatically spent when bringing companions to battle.'
   },
   
   gift_box_holiday: {

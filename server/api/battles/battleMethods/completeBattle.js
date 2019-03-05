@@ -306,6 +306,7 @@ export const currentFloorDetails = function(actualBattle) {
   if (currentFloor) {
     return {
       id: currentFloor._id,
+      created: currentFloor.created,
       floor: currentFloor.floor,
       points: currentFloor.points,
       pointsMax: currentFloor.pointsMax,
@@ -340,7 +341,44 @@ const wasThisABossFight = function(actualBattle) {
   return (actualBattle.startingBossHp && !actualBattle.isOldBoss);
 };
 
+const floorContributionScaler = function(actualBattle) {
+  const baseBonus   = 0.01;  //  1% base
+  const bonusPerDay = 0.005; //  1% per day
+  const maxBonusCap = 0.10;  // 10% max/cap
+  let   curBonus    = baseBonus;
+  
+  const floorDetails = currentFloorDetails(actualBattle);
+  if (floorDetails.floor === 0) {
+    return curBonus;
+  }
+
+  if (floorDetails.floorComplete) {
+    return curBonus;
+  }
+  
+  const rightNow        = new moment();
+  const durationInHours = rightNow.diff(floorDetails.created, 'hours');
+  
+  if (durationInHours > 0) {
+    curBonus = baseBonus + (Math.floor(durationInHours / 24) * bonusPerDay);
+    
+    if (curBonus <= maxBonusCap) {
+      return curBonus;
+    }
+    
+    return maxBonusCap;
+  }
+  
+  return curBonus;
+};
+
 const battleHandler_DealBossDamage = function(actualBattle) {
+  actualBattle.units.forEach((unit, idx) => {
+    if (actualBattle.units[idx].skills.length === 0) {
+      actualBattle.units[idx].isCompanion = true;
+    }
+  });
+  
   const floorDetails = currentFloorDetails(actualBattle);
   if (floorDetails.floor === 0) {
     return;
@@ -378,7 +416,7 @@ const battleHandler_DealBossDamage = function(actualBattle) {
       }
 
       if (floorDetails.isAlive) {
-        temp_totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (units.length * 0.16) - 0.16);
+        temp_totalXpGain = damageDealt * (actualBattle.floor / 1.5) * (1 + (allPlayerUnits.length * 0.16) - 0.16);
       }
     } catch (err) {
       console.log('Error calcuating post-battle boss health:');
@@ -390,6 +428,12 @@ const battleHandler_DealBossDamage = function(actualBattle) {
 }
 
 const battleHandler_RecordBossDamage = function(actualBattle) {
+  actualBattle.units.forEach((unit, idx) => {
+    if (actualBattle.units[idx].skills.length === 0) {
+      actualBattle.units[idx].isCompanion = true;
+    }
+  });
+  
   // Is this a current boss battle?
   //console.log(actualBattle.startingBossHp);
   if (wasThisABossFight(actualBattle)) {
@@ -419,12 +463,12 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
       damageDealt = 0;
     }
 
-    const allFriendlyUnits = actualBattle.units.filter((unit) => {
+    const allPlayerUnits = actualBattle.units.filter((unit) => {
       return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
     });
     
     // Update players contributions
-    allFriendlyUnits.forEach((unit) => {
+    allPlayerUnits.forEach((unit) => {
       try {
         BossHealthScores.insert({
           server: actualBattle.server,
@@ -452,6 +496,14 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
 
 export const completeBattle = function(actualBattle) {
   const finalTickEvents = [];
+  
+  let hadCompanions = false;
+  actualBattle.units.forEach((unit, idx) => {
+    if (actualBattle.units[idx].skills.length === 0) {
+      actualBattle.units[idx].isCompanion = true;
+      hadCompanions = true;
+    }
+  });
 
   /*
   console.log(" ####  completeBattle()  #### ");
@@ -464,10 +516,37 @@ export const completeBattle = function(actualBattle) {
       console.log(enemy);
     }
   });
+  actualBattle.units.forEach((unit) => {
+    try {
+      console.log(`Party units ${unit.name} (${unit.id})`);
+    } catch (err) {
+      console.log(unit);
+    }
+  });
+  console.log("Had companions?", hadCompanions);
+  console.log(actualBattle);
   console.log(" ####  completeBattle()  #### ");
   */
   
-  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0 && !unit.isNPC);
+  // chance for companion tokens is 0%
+  let chanceForTokens = 0;
+  
+  // if we didn't use a companion at all and the combat took place in the tower (floor 1+)...
+  if ((!hadCompanions) && (actualBattle.floor > 0)) {
+    // chance is 1% per floor (1.25-32.5% @ 1-26)
+    chanceForTokens = actualBattle.floor * 0.0125;
+    
+    if (win && actualBattle.isExplorationRun) {
+      // double bonus (which later is multiplicative with exploration loot bonus)
+      chanceForTokens *= 2;
+    } else {
+      // give a flat bonus for the room they went to
+      chanceForTokens += actualBattle.room / 3 * chanceForTokens; // half the room x current chance, so F10R7 would be 29.167% vs only 4.167% for F10R1
+    }
+  }
+  
+  const allPlayerUnits = actualBattle.units.filter(unit => !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion);
+  const aliveUnits = actualBattle.units.filter(unit => unit.stats.health > 0 && !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion);
 
   let win = aliveUnits.length > 0;
   let ngRewards = [];
@@ -525,20 +604,20 @@ export const completeBattle = function(actualBattle) {
 
     // Update stats
     if (win && actualBattle.isExplorationRun) {
-      units.forEach((unit) => {
+      allPlayerUnits.forEach((unit) => {
         updateUserHighestFloorClear({ user: unit.owner, floor: actualBattle.floor });
       });
     }
     
     // Apply xp gains, only if not a boss battle
-    let totalXpGain = actualBattle.totalXpGain * (1 + (units.length * 0.16) - 0.16);
+    let totalXpGain = actualBattle.totalXpGain * (1 + (allPlayerUnits.length * 0.16) - 0.16);
 
     // Apply boss battle gains
     totalXpGain += battleHandler_DealBossDamage(actualBattle);
 
-    units.forEach((unit) => {
+    allPlayerUnits.forEach((unit) => {
       // Distribute xp gained evenly across units
-      const xpPortion = totalXpGain / units.length;
+      const xpPortion = totalXpGain / allPlayerUnits.length;
       Object.keys(unit.xpDistribution).forEach((skillName) => {
         // Distribute xp gained per player, per skill
         // Eg: Dagger is full attack xp, sword = 50% attack / 50% defense, ect
@@ -574,9 +653,7 @@ export const completeBattle = function(actualBattle) {
     let bonusLootMultiplier = ((actualBattle.isExplorationRun) ? 2.0 : 1.0);
     
     // +5% (or 10% for full tower runs) for each player equipped with the Lion Dance passive from the Lunar New Year event
-    actualBattle.units.filter((unit) => {
-      return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
-    }).forEach((unit) => {
+    allPlayerUnits.forEach((unit) => {
       if (unit.abilities) {
         unit.abilities.forEach((ability) => {
           if (ability.id === "lion_dance") {
@@ -596,6 +673,15 @@ export const completeBattle = function(actualBattle) {
       rewards = FLOORS.personalQuestMonsterGenerator(actualBattle.level, actualBattle.wave)[0].rewards;
     }
 
+    // add companion token rewards
+    if (chanceForTokens > 0.0) {
+      rewards = rewards.concat([{
+        chance: chanceForTokens,
+        rewards: [
+          { type: 'item', itemId: 'companion_token', amount: Math.ceil(Math.random() * allPlayerUnits.length) }
+        ]
+      }]);
+    }
 
     for (let i = 0; i < rewards.length; i++) {
       const rewardTable = rewards[i];
@@ -625,21 +711,21 @@ export const completeBattle = function(actualBattle) {
 
 
     // Each user = additional 20% chance of loot
-    const extraChance = 1 + (units.length * 0.2) - 0.2;
+    const extraChance = 1 + (allPlayerUnits.length * 0.2) - 0.2;
     for (let i = 0; i < floorRewards.length; i++) {
       const rewardTable = floorRewards[i];
       const diceRoll = Math.random();
 
       if ((rewardTable.chance * extraChance * bonusLootMultiplier) >= diceRoll) {
         rewardsGained.push(_.sample(rewardTable.rewards));
-        //if (rewardsGained >= units.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+        //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
         //  break;
         //}
       } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * bonusLootMultiplier * 1.5) >= diceRoll) {
         rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
           affectedGlobalBuff: true
         }));
-        //if (rewardsGained >= units.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+        //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
         //  break;
         //}
       }
@@ -754,15 +840,15 @@ export const completeBattle = function(actualBattle) {
       if (actualBattle.room !== 'boss' && actualBattle.floor === latestFloor.floor) {
         let totalPointsForGroup = 0;
         let wasTotalPointsExtra = false;
+        // added to allow more tower attempts (only 3 official, still -- the rest only apply toward unlock and leaderboard at a reduced rate)
+        const allowOverDaily = true;
+        //const dailyOverageMultiplier = 0.10; // currently 20% (now 10%)
+        const dailyOverageMultiplier = floorContributionScaler(actualBattle); // now scales with how long the boss has been active
 
         // Update all participants contributions
         owners.forEach((owner) => {
           // Find owner object
-          const ownerObject = _.findWhere(units, { owner });
-          
-          // added to allow more tower attempts (only 3 official, still -- the rest only apply toward unlock and leaderboard at a reduced rate)
-          const allowOverDaily = true;
-          const dailyOverageMultiplier = 0.10; // currently 20% (now 10%)
+          const ownerObject = _.findWhere(units, { owner });          
 
           if (allowOverDaily || ownerObject.towerContributions.length < 3 || pointsEarnt > ownerObject.towerContributions[0]) {
             ownerObject.newContribution = pointsEarnt;
@@ -929,7 +1015,7 @@ export const completeBattle = function(actualBattle) {
 
               // if this was a bonus run, there's only a 10% chance to add items to the community pot
               if (wasTotalPointsExtra) {
-                autoFail = (Math.random() >= 0.10);
+                autoFail = (Math.random() >= dailyOverageMultiplier);
               }
               
               if ((!autoFail) && ((rewardTable.chance * extraChance) >= diceRoll)) {
@@ -1006,11 +1092,8 @@ export const completeBattle = function(actualBattle) {
   }
 
   // Update all player units healths
-  const allFriendlyUnits = actualBattle.units.filter((unit) => {
-    return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion;
-  });
 
-  allFriendlyUnits.forEach((unit) => {
+  allPlayerUnits.forEach((unit) => {
     const combatModifier = {
       $set: {
         'stats.health': (unit.stats.health > 0 ? Math.floor(unit.stats.health) : 0),
@@ -1139,7 +1222,7 @@ export const completeBattle = function(actualBattle) {
     lootResolved: false
   });
   
-  allFriendlyUnits.forEach((unit) => {
+  allPlayerUnits.forEach((unit) => {
     for (const historyStatId in actualBattle.historyStats) {
       if (historyStatId === unit.owner && actualBattle.historyStats.hasOwnProperty(historyStatId)) {
         updateCombatHistoryStats({ user: unit.owner, historyStats: actualBattle.historyStats[historyStatId] });

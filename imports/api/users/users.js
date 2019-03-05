@@ -20,13 +20,10 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
         (['x-forwarded-for', 'X-Forwarded-For', 'x-real-ip', 'X-Real-IP', 'cf-connecting-ip', 'CF-Connecting-IP']).forEach((httpHeader) => {
           try {
             if (connectionInfo.httpHeaders[httpHeader]) {
-              let localIP = connectionInfo.httpHeaders[httpHeader]
-                .split(/[ ,]/)
-                .filter(function(a) {
-                  return a.trim()
-                })[0];
-                
-              if (localIP && (typeof localIP === 'string') && (localIP.length > 0)) {
+              let localIP = connectionInfo.httpHeaders[httpHeader].split(/[ ,]/).filter(function(a) { return a.trim(); })[0];
+
+              // no IPv6
+              if (localIP && (typeof localIP === 'string') && (localIP.length > 0) && (localIP.indexOf(':') === -1)) {
                 ipDiscovered = localIP;
               }
             }

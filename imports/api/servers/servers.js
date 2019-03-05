@@ -141,6 +141,8 @@ ServersSchema = new SimpleSchema({
   disabled: { type: Boolean },
   announcement: { type: String },
   town: { type: Object },
+  noGuests: { type: Boolean, optional: true },
+  noNewAccounts: { type: Boolean, optional: true },
   'town.day1goods': { type: Array },
   'town.day1goods.$': { type: Object },
   'town.day1goods.$.townBuilding': { type: String },

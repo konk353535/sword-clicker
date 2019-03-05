@@ -192,18 +192,19 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }).fetch();
 
-  let companionTokens = 0;
-  const companionTokensDoc = Items.findOne({
-    itemId: 'companion_token'
-  });
-  if (companionTokensDoc && companionTokensDoc.amount) {
-    companionTokens += CInt(companionTokensDoc.amount);
-  }
-  
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
     const targetUser = usersData.find((userData) => userData._id === userCombat.owner);
 
+    let companionTokens = 0;
+    const companionTokensDoc = Items.findOne({
+      owner: userCombat.owner,
+      itemId: 'companion_token'
+    });
+    if (companionTokensDoc && companionTokensDoc.amount) {
+      companionTokens += CInt(companionTokensDoc.amount);
+    }
+  
     const userCombatStats = {};
     COMBAT.statsArr.forEach((statName) => {
       if (userCombat.stats[statName] !== undefined) {

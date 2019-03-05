@@ -1331,7 +1331,7 @@ export const ATTACK_BUFFS = {
       const extraDamage = buff.constants.extraDamagePerLevel * level;
       return `
         A succession of <b>${buff.constants.minimumShots}</b> to <b>${upperRange}</b> rapid fire auto-attack shots at random targets. Each shot deals an additional <b>${(100 * extraDamage)}%</b> bonus damage. <br />
-        (+${buff.constants.extraShotsPerLevel} shot and +${(100 * buff.constants.extraDamagePerLevel)}% bonus damage per ability level)`;
+        (+${buff.constants.extraShotsPerLevel} maximum shots and +${(100 * buff.constants.extraDamagePerLevel)}% bonus damage per ability level)`;
     },
     constants: {
       minimumShots: 4,

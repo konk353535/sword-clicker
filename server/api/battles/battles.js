@@ -157,7 +157,7 @@ Meteor.methods({
         const bossId = FLOORS[floor].boss.enemy.id;
         if (bossId) {
           const bossConstants = ENEMIES[bossId];
-          const bossHealth = bossConstants.stats.healthMax * 11;
+          const bossHealth = bossConstants.stats.healthMax * 4;
 
           return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else { // couldn't find boss ID

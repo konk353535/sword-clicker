@@ -1437,7 +1437,7 @@ export const PLANTS = {
     }]
   },
 
-teak_log: {
+  teak_log: {
     produces: 'teak_log',
     name: 'teak tree',
     produceAmount: 20,

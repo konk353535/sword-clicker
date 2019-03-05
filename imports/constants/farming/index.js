@@ -581,9 +581,9 @@ export const FARMING = {
       }]
     },
 
-    teak_seed: {
-      id: 'teak_seed',
-      itemId: 'teak_seed',
+    willow_seed: {
+      id: 'willow_seed',
+      itemId: 'willow_seed',
       requiredFarmingLevel: 90,
       required: [{
         type: 'gold',
@@ -596,9 +596,9 @@ export const FARMING = {
       }]
     },
 
-    willow_seed: {
-      id: 'willow_seed',
-      itemId: 'willow_seed',
+    teak_seed: {
+      id: 'teak_seed',
+      itemId: 'teak_seed',
       requiredFarmingLevel: 95,
       required: [{
         type: 'gold',

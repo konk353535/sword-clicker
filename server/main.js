@@ -162,10 +162,13 @@ Meteor.startup(() => {
   State._ensureIndex({ name: 1 })
 
   // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
+  /*
   for (let i = 1; i <= 2; i++) {
     Meteor.setTimeout(function() {
       deleteKarmaBuffs();  
       syncKarmaBuffs();
     }, ((i == 1) ? 1 : 15) * 1000);
-  }
+  }  
+  // Note: disabled, I suspect because we don't have a user here, this causes all kinds of weird issues with duplicating buffs
+  */
 });

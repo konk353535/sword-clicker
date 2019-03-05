@@ -66,6 +66,14 @@ Template.summaryList.events({
       }
     });
   },
+  
+  'click .adventures-nav-link'(event, instance) {
+    Meteor.call('users.setUiState', 'newCombatType', 'afk');
+  },
+  
+  'click .group-nav-link'(event, instance) {
+    Meteor.call('users.setUiState', 'newCombatType', 'group');
+  },
 });
 
 Template.summaryList.helpers({

@@ -379,13 +379,13 @@ const battleHandler_DealBossDamage = function(actualBattle) {
     }
   });
   
-  const floorDetails = currentFloorDetails(actualBattle);
-  if (floorDetails.floor === 0) {
-    return;
-  }
-  
   let temp_totalXpGain = 0;
 
+  const floorDetails = currentFloorDetails(actualBattle);
+  if (floorDetails.floor === 0) {
+    return temp_totalXpGain;
+  }
+  
   if (wasThisABossFight(actualBattle)) {
     const units = actualBattle.units.filter((unit) => {
       return !!unit.owner && !unit.isNPC && unit.xpDistribution;

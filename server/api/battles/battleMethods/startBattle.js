@@ -222,6 +222,11 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     let broughtCompanion = false;
 
     const usersEquippedAbilities = usersAbilities.learntAbilities.filter((ability) => {
+      // only allow abilities that are equipped
+      if (!ability.equipped) {
+        return false;
+      }
+      
       // get some constants
       const abilityConstants = ABILITIES[ability.abilityId];      
       if (!abilityConstants) {
@@ -237,8 +242,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         broughtCompanion = true;
       }
       
-      // only allow abilities that are equipped
-      return ability.equipped;
+      return true;
     }).map((ability) => {
       if (ability.currentCooldown > 0) {
         ability.currentCooldown -= secondsElapsed;

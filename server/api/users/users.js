@@ -49,6 +49,10 @@ Meteor.methods({
   },
 
   'users.createGuest'(serverId) {
+      throw new Meteor.Error('no-guests-allowed', 'Guest accounts are forbidden at this time.');
+    
+    
+    
     let clientIp = '';
     try {
       clientIp = getIPFromConnection(this.connection);

@@ -518,6 +518,10 @@ Template.overviewPage.events({
       }
     });
   },
+  
+  'click .adventures-nav-link'(event, instance) {
+    Meteor.call('users.setUiState', 'newCombatType', 'afk');
+  },
 });
 
 Template.firstCraftingUI.events({

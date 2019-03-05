@@ -382,8 +382,11 @@ Template.lobbyPage.events({
   'click .decline-btn'(event, instance) {
     const inviteId = instance.$(event.target).closest('.decline-btn').data('id');
     Meteor.call('groups.acceptInvite', inviteId, false);
-  }
+  },
 
+  'click .battle-nav-link'(event, instance) {
+    instance.data.setPage('loadout');
+  },
 })
 
 Template.lobbyPage.rendered = function () {

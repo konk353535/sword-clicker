@@ -121,7 +121,11 @@ Template.nav.events({
 
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
     instance.$('.guestSignOffConfirmModal').modal('hide');
-  }
+  },
+
+  'click .battle-nav-link'(event, instance) {
+    Session.set('lobbyPageSetter', 'loadout');
+ },
 });
 
 Template.nav.helpers({

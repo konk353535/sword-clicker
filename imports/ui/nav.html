@@ -20,7 +20,7 @@
           {{#if currentUser}}
             {{#if canSeeCombat}}
               <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}}" href="/battle">
+                <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}} battle-nav-link" href="/battle">
                   Battle
                   {{#if showPendingInvites}}
                     <span class="red-dot"></span>

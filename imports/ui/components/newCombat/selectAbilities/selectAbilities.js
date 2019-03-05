@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 import _ from 'underscore';
 
 import { Items } from '/imports/api/items/items.js';
@@ -42,12 +43,20 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
       this.state.set('abilityLibrary', results);
     }
   });
+  
+  //Meteor.setInterval(() => {
+  //}, 250);
 });
 
 Template.selectAbilitiesPage.events({
   'click .back-to-loadout-btn'(event, instance) {
     instance.data.setPage('loadout');
-  }
+  },
+
+  'click .battle-nav-link'(event, instance) {
+    console.log("battle nav link clicked");
+    instance.data.setPage('loadout');
+  },
 })
 
 Template.selectAbilitiesPage.helpers({

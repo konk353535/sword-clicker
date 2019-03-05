@@ -3,6 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 import uuid from 'node-uuid';
 
+import { Servers } from '/imports/api/servers/servers';
 import { Users } from '/imports/api/users/users';
 import { BlackList } from '/imports/api/blacklist/blacklist';
 import { Skills } from '/imports/api/skills/skills';
@@ -49,9 +50,17 @@ Meteor.methods({
   },
 
   'users.createGuest'(serverId) {
-      throw new Meteor.Error('no-guests-allowed', 'Guest accounts are forbidden at this time.');
+    const serverDoc = Servers.findOne({
+      _id: serverId
+    });
     
-    
+    if (!serverDoc) {
+      throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+    }
+
+    if (serverDoc.noGuests) {
+      throw new Meteor.Error('no-guests-allowed', 'Guest accounts aren\'t being accepted at this time.');
+    }
     
     let clientIp = '';
     try {
@@ -60,7 +69,7 @@ Meteor.methods({
     }
     
     if (BlackList.findOne({ clientIp })) {
-      throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');
+      throw new Meteor.Error('something-is-wrong', 'Your I.P. address is banned.');
     }
     
     // Fetch a prefabbed guest

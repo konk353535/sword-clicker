@@ -18,6 +18,7 @@ import { Combat } from '/imports/api/combat/combat';
 import { Abilities } from '/imports/api/abilities/abilities';
 import { Skills } from '/imports/api/skills/skills';
 import { Users } from '/imports/api/users/users';
+import { Items } from '/imports/api/items/items';
 
 import { IsValid, CInt } from '/imports/utils.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
@@ -191,6 +192,14 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     }
   }).fetch();
 
+  let companionTokens = 0;
+  const companionTokensDoc = Items.findOne({
+    itemId: 'companion_token'
+  });
+  if (companionTokensDoc && companionTokensDoc.amount) {
+    companionTokens += CInt(companionTokensDoc.amount);
+  }
+  
   // Inject users into battles units
   usersCombatStats.forEach((userCombat) => {
     const targetUser = usersData.find((userData) => userData._id === userCombat.owner);
@@ -209,8 +218,25 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
 
     const now = moment();
     const secondsElapsed = moment.duration(now.diff(usersAbilities.lastGameUpdated)).asSeconds();
+    let broughtCompanion = false;
 
     const usersEquippedAbilities = usersAbilities.learntAbilities.filter((ability) => {
+      // get some constants
+      const abilityConstants = ABILITIES[ability.abilityId];      
+      if (!abilityConstants) {
+        return false;
+      }
+      
+      // don't allow companion abilities without tokens to spend on them
+      if (abilityConstants.slot === 'companion') {
+        if ((CInt(floor) === 0) || (companionTokens === 0)) {
+          return false;
+        }
+        
+        broughtCompanion = true;
+      }
+      
+      // only allow abilities that are equipped
       return ability.equipped;
     }).map((ability) => {
       if (ability.currentCooldown > 0) {
@@ -225,8 +251,20 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
         totalCasts: 0,
         isSpell: ability.isSpell,
         isPacifist: ability.isPacifist
-      }
+      };
     });
+    
+    // consume a companion token to bring a companion
+    if (companionTokensDoc) {
+      if (broughtCompanion) {
+        companionTokens--;
+        if (companionTokens === 0) {
+          Items.remove(companionTokensDoc._id);
+        } else {
+          Items.update({ _id: companionTokensDoc._id }, { $inc: { amount: -1 } });
+        }
+      }
+    }
     
     const usersSkills = Skills.find({
       owner: userCombat.owner

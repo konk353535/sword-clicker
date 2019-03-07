@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills } from '/imports/api/skills/skills';
 import { Items, applyRarities } from '/imports/api/items/items';
-import { Combat } from '/imports/api/combat/combat';
+import { Abilities } from '/imports/api/abilities/abilities';
+import { Combat, userAverageCombat } from '/imports/api/combat/combat';
 import { Groups } from '/imports/api/groups/groups';
 import { Users } from '/imports/api/users/users';
 import { Battles } from '/imports/api/battles/battles';
@@ -13,6 +14,7 @@ import lodash from 'lodash';
 
 import { addXp } from '/server/api/skills/skills';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { IsValid, CInt } from '/imports/utils.js';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
@@ -179,6 +181,65 @@ Meteor.methods({
         isTowerContribution: newValue
       }
     });
+  },
+  
+  'combat.changeClass'(classId) {
+    // read combat root data
+    const myCombat = Combat.findOne({ owner: Meteor.userId() }); 
+
+    // abort if no combat data!
+    if (!myCombat) {
+      throw new Meteor.Error("no-combat-data", "Error reading your user data.");
+    }
+    
+    // check class data
+    let classData = myCombat['class'];
+    if (!classData) {
+      if (classId == 'adventurer') {
+        // do nothing if they're picking the default class and have no class data
+        throw new Meteor.Error("not-eligible", "You are already that class.");
+      }
+      
+      // new class data
+      classData = { };
+    } else {
+      if (classId == classData.id) {
+        // do nothing if they're picking the same class as their existing class data`
+        throw new Meteor.Error("not-eligible", "You are already that class.");
+      }
+      
+      if (userAverageCombat() >= 100) {
+        // can swap daily
+        if (IsValid(classData.lastChanged)) {
+          if (moment().isBefore(moment(classData.lastChanged).add(24, 'hours'))) {
+            throw new Meteor.Error("not-eligible", "You aren't eligible to change your class right now.");
+          }
+        }        
+      } else {
+        if (IsValid(classData.changesAvailable)) {
+          if (CInt(classData.changesAvailable) === 0) {
+            throw new Meteor.Error("not-eligible", "You aren't eligible to change your class right now.");
+          }
+        }
+      }
+    }
+    
+    classData.id = classId; // change class
+    classData.changesAvailable = 0; // consume changes
+    classData.lastChanged = moment().toDate(); // mark when we last changed
+    
+    // write new class data
+    Combat.update({ owner: Meteor.userId() }, { $set: { 'class': classData } });
+    
+    // unequip weapons, armor, amulets, and abilities
+    Items.update({ owner: Meteor.userId(), category: 'combat' }, { $set: { equipped: false } }, { multi: true });
+    Abilities.update({ owner: Meteor.userId(), learntAbilities: { $elemMatch: { equipped: true } } }, { $set: { 'learntAbilities.$.equipped': false } });
+    
+    // relcalculate all combat stats
+    updateCombatStats(Meteor.userId(), Meteor.user().username, true);
+    
+    // update that the user was active
+    updateUserActivity({userId: Meteor.userId()});
   },
 
   'combat.updateCharacterIcon'(id) {

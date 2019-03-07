@@ -1,7 +1,60 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { Users } from '/imports/api/users/users.js';
+
+import { CLASS_LIST } from '/imports/constants/combat/classes.js';
+
+import { IsValid, CInt } from '/imports/utils.js';
+
 export const Combat = new Mongo.Collection('combat');
+
+export const userClass = function userClass(userId) {
+  try {
+    if (!IsValid(userId)) {
+      userId = Meteor.userId();
+    }
+    const combatDoc = Combat.findOne({ _id: userId });
+    
+    if (IsValid(combatDoc) && IsValid(combatDoc['class']) && IsValid(combatDoc['class'].id)) {
+      const thisClass = CLASS_LIST[combatDoc['class'].id];
+      if (IsValid(thisClass)) {
+        return thisClass;
+      }
+    }
+  } catch (err) {
+  }
+  
+  return CLASS_LIST['adventurer'];
+}
+
+export const userIsClass = function userIsClass(classId, userId) {
+  try {
+    if (!IsValid(userId)) {
+      userId = Meteor.userId();
+    }
+  } catch (err) {
+  }
+  return (classId == userClass(userId));
+}
+
+export const userAverageCombat = function userAverageCombat(userId) {
+  try {
+    if (!IsValid(userId)) {
+      userId = Meteor.userId();
+    }
+    const userDoc = Users.findOne({ _id: userId });
+    if (IsValid(userDoc)) {
+      return CInt(userDoc.averageCombat);
+    }
+  } catch (err) {
+  }
+  return 0;
+}
+
+export const changeClass = function changeClass(classId) {
+  Meteor.call('combat.changeClass', classId);
+}
 
 CombatSchema = new SimpleSchema({
   owner: { type: String, regEx: SimpleSchema.RegEx.Id },
@@ -11,9 +64,11 @@ CombatSchema = new SimpleSchema({
   boughtIcons: { type: [String], optional: true },
   characterIcon: { type: String, defaultValue: 'character.svg' },
   stats: { type: Object },
-
+  xpDistribution: { type: Object, blackbox: true, defaultValue: { attack: 0.5, health: 0.5 } },
+  
   // Deprecated
   isTowerContribution: { type: Boolean, defaultValue: false, optional: true },
+  
   // Deprecated
   towerContributionsToday: { type: Number, defaultValue: 0, optional: true },
   
@@ -43,14 +98,22 @@ CombatSchema = new SimpleSchema({
   'mainHandWeapon': { type: String, optional: true },
   'mainHandType': { type: String, optional: true },
   'offHandType': { type: String, optional: true },
+  
   buffs: { type: [Object], optional: true, defaultValue: [] },
   'buffs.$.id': { type: String },
   'buffs.$.data': { type: Object, blackbox: true },
   'buffs.$.duration': { type: Number, decimal: true, optional: true },
+  
   enchantments: { type: [String], optional: true, defaultValue: [] },
+  
   //meditatingStartDate: { type: Date, optional: true },
+  
   lastGameUpdated: { type: Date, defaultValue: new Date() },
-  xpDistribution: { type: Object, blackbox: true, defaultValue: { attack: 0.5, health: 0.5 } }
+  
+  'class': { type: Object, optional: true },
+  'class.id': { type: String, optional: true },
+  'class.changesAvailable': { type: Number, optional: true },
+  'class.lastChanged': { type: Date, optional: true },
 });
 
 Combat.attachSchema(CombatSchema);

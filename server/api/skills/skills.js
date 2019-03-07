@@ -422,9 +422,10 @@ Meteor.methods({
     }
 
     const server = Meteor.user().server;
+    let results;
 
     if (skillName === 'personalQuest') {
-      return Users.find({
+      results = Users.find({
         server
         //banned: {
         //  $ne: true
@@ -441,7 +442,7 @@ Meteor.methods({
         limit
       }).fetch();
     } else if (skillName === 'boss') {
-      return BossHealthScores.find({
+      results = BossHealthScores.find({
         server
         //banned: {
         //  $ne: true
@@ -457,7 +458,7 @@ Meteor.methods({
         limit
       }).fetch();
     } else {
-      return Skills.find({
+      results = Skills.find({
         type: skillName,
         server
         //banned: {
@@ -473,6 +474,25 @@ Meteor.methods({
     }
 
     updateUserActivity({userId: Meteor.userId()});
+    
+    results = results.filter((result) => {
+      let userDoc;
+      if (result.owner) {
+        userDoc = Users.findOne({ _id: result.owner });
+      } else if (result.username) {
+        userDoc = result;
+      }
+      
+      if (userDoc) {
+        if (userDoc.excludeFromRankings || userDoc.banned) {
+          return false;
+        }
+      }
+      
+      return true;
+    });
+    
+    return results;
   }
 });
 

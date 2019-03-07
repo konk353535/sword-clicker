@@ -121,6 +121,7 @@ UserSchema = new SimpleSchema({
   isMutedExpiry: { type: Date, optional: true },
   isMod: { type: Boolean, optional: true },
   isSuperMod: { type: Boolean, optional: true },
+  excludeFromRankings: { type: Boolean, optional: true, defaultValue: false },
 
   isGuest: { type: Boolean, optional: true },
   isPreFabbedGuest: { type: Boolean, optional: true },

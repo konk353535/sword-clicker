@@ -390,59 +390,61 @@ Accounts.validateNewUser((user) => {
     throw new Meteor.Error(403, 'Something went wrong, sorry :|');
   }
 
-  if (targetServer.noNewAccounts) {
-    throw new Meteor.Error(403, 'Account creation is temporarily disabled at this time.');
-  }
-  
-  if ((!user.username) || (typeof user.username !== 'string')) {
-    throw new Meteor.Error(403, 'Username must be valid.');
-  }
-  
-  if (user.username.length < 3) {
-    throw new Meteor.Error(403, 'Username must have at least 3 characters.');
-  }
-  
-  if (user.username.length > 15) {
-    throw new Meteor.Error(403, 'Username must have fewer than 15 characters.');
-  }
- 
-  let isInvalidName = false;
-  ([' ', '.', '_', '-', ',', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '=', '=', '[', ']', '{', '}', '\\', '|', ';', ':', '\'', '"', '<', '>', '/', '?', '`', '~']).forEach((thisChar) => {
-    isInvalidName = isInvalidName || (user.username.indexOf(thisChar) !== -1);
-  });
-  if (isInvalidName) {
-    throw new Meteor.Error(403, 'Username must not use spaces, punctuation marks, or special symbols.');
-  }
+  if (!user.isPreFabbedGuest) {
+    if (targetServer.noNewAccounts) {
+      throw new Meteor.Error(403, 'Account creation is temporarily disabled at this time.');
+    }
     
-  let nameScreener1 = user.username.toLowerCase();
-  nameScreener1 = nameScreener1.replace(/0/g, 'o');
-  nameScreener1 = nameScreener1.replace(/2/g, 'z');
-  nameScreener1 = nameScreener1.replace(/3/g, 'e');
-  nameScreener1 = nameScreener1.replace(/4/g, 'a');
-  nameScreener1 = nameScreener1.replace(/5/g, 's');
-  nameScreener1 = nameScreener1.replace(/6/g, 'b');
-  nameScreener1 = nameScreener1.replace(/7/g, 't');
-  nameScreener1 = nameScreener1.replace(/8/g, 'b');
-  nameScreener1 = nameScreener1.replace(/9/g, 'g');
+    if ((!user.username) || (typeof user.username !== 'string')) {
+      throw new Meteor.Error(403, 'Username must be valid.');
+    }
+    
+    if (user.username.length < 3) {
+      throw new Meteor.Error(403, 'Username must have at least 3 characters.');
+    }
+    
+    if (user.username.length > 15) {
+      throw new Meteor.Error(403, 'Username must have fewer than 15 characters.');
+    }
+   
+    let isInvalidName = false;
+    ([' ', '.', '_', '-', ',', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '=', '=', '[', ']', '{', '}', '\\', '|', ';', ':', '\'', '"', '<', '>', '/', '?', '`', '~']).forEach((thisChar) => {
+      isInvalidName = isInvalidName || (user.username.indexOf(thisChar) !== -1);
+    });
+    if (isInvalidName) {
+      throw new Meteor.Error(403, 'Username must not use spaces, punctuation marks, or special symbols.');
+    }
+      
+    let nameScreener1 = user.username.toLowerCase();
+    nameScreener1 = nameScreener1.replace(/0/g, 'o');
+    nameScreener1 = nameScreener1.replace(/2/g, 'z');
+    nameScreener1 = nameScreener1.replace(/3/g, 'e');
+    nameScreener1 = nameScreener1.replace(/4/g, 'a');
+    nameScreener1 = nameScreener1.replace(/5/g, 's');
+    nameScreener1 = nameScreener1.replace(/6/g, 'b');
+    nameScreener1 = nameScreener1.replace(/7/g, 't');
+    nameScreener1 = nameScreener1.replace(/8/g, 'b');
+    nameScreener1 = nameScreener1.replace(/9/g, 'g');
 
-  let nameScreener2 = nameScreener1;
-  nameScreener1 = nameScreener1.replace(/1/g, 'i');
-  nameScreener2 = nameScreener2.replace(/1/g, 'l');
-  
-  (['jesus', 'allah', 'jew', 'muslim', 'nigg', 'stupid', 'lame', 'boring', 'pussy', 'dick', 'fuck', 'assh', 'bitch', 'cunt', 'fag', 'shit', 'boner', 'cock', 'vag', 'jizz', 'poop', 'sex', 'xxx', 'twat', 'dyke', 'lesb', 'penis', 'muff', 'gay', 'queer', 'turd', 'whore', 'screw', 'balls', 'dildo']).forEach((thisWord) => {
-    isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
-    isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
-  });
-  if (isInvalidName) {
-    throw new Meteor.Error(403, 'The username you entered is likely offensive to other people and in violation of our rules.');
-  }
-  
-  (['konk', 'aess', 'sedai', 'wraith', 'game', 'server', 'root', 'admin']).forEach((thisWord) => {
-    isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
-    isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
-  });
-  if (isInvalidName) {
-    throw new Meteor.Error(403, 'Username must not contain special, reserved words.');
+    let nameScreener2 = nameScreener1;
+    nameScreener1 = nameScreener1.replace(/1/g, 'i');
+    nameScreener2 = nameScreener2.replace(/1/g, 'l');
+    
+    (['jesus', 'allah', 'jew', 'muslim', 'nigg', 'stupid', 'lame', 'boring', 'pussy', 'dick', 'fuck', 'assh', 'bitch', 'cunt', 'fag', 'shit', 'boner', 'cock', 'vag', 'jizz', 'poop', 'sex', 'xxx', 'twat', 'dyke', 'lesb', 'penis', 'muff', 'gay', 'queer', 'turd', 'whore', 'screw', 'balls', 'dildo']).forEach((thisWord) => {
+      isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
+      isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
+    });
+    if (isInvalidName) {
+      throw new Meteor.Error(403, 'The username you entered is likely offensive to other people and in violation of our rules.');
+    }
+    
+    (['konk', 'aess', 'sedai', 'wraith', 'game', 'server', 'root', 'admin']).forEach((thisWord) => {
+      isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
+      isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
+    });
+    if (isInvalidName) {
+      throw new Meteor.Error(403, 'Username must not contain special, reserved words.');
+    }
   }
   
   return true; // allow the account (which is still subjected to mongo's regex filter for the username field)

@@ -178,32 +178,32 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Craft a primitive axe',
+          text: 'Craft two primitive axes',
           current: 0,
-          required: 1,
+          required: 2,
           tip: 'Craft page',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
       } else if (currentStep === 7) {
         const woodcutting = Woodcutting.findOne({});
-        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
+        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 2) {
           Meteor.call('users.tutorialUpdate', {
             currentStep: 8
           });
         }
 
         return {
-          text: 'Hire a woodcutter',
+          text: 'Hire two woodcutters',
           current: 0,
-          required: 1,
+          required: 2,
           tip: 'Woodcut page',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
       } else if (currentStep === 8) {
         const woodcutting = Woodcutting.findOne({});
-        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 1) {
+        if (woodcutting && woodcutting.woodcutters && woodcutting.woodcutters.length >= 2) {
           let isSuiciding = false;
           woodcutting.woodcutters.forEach((woodcutter) => {
             if (woodcutter.deathTime) {
@@ -243,10 +243,10 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Craft a copper dagger',
+          text: 'Craft a copper dagger (Craft page > Combat tab)',
           current: 0,
           required: 1,
-          tip: 'Craft page > Combat tab',
+          tip: 'You will need to craft a stone furnace and a copper ingot first',
           completedStepsArray: [],
           awaitingStepsArray: [true]
         }
@@ -458,7 +458,7 @@ Template.tutorial.helpers({
         }
 
         return {
-          text: 'Inscribe Pigment Red (255)',
+          text: 'Inscribe Magenta Pigment',
           current: 0,
           required: 1,
           tip: 'Inscribe page > Pigments tab',

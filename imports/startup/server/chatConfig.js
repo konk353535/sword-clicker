@@ -21,7 +21,7 @@ import { FLOORS } from '/server/constants/floors/index.js';
 import _ from 'underscore';
 import moment from 'moment';
 
-const PUBLIC_ROOMS = ['Server', 'General', 'LFG', 'Help', 'Announcements']
+//const PUBLIC_ROOMS = ['Server', 'General', 'LFG', 'Help', 'Announcements'] // literally not used for anything
 
 SimpleChat.configure ({
   texts:{

@@ -497,7 +497,7 @@ const battleHandler_RecordBossDamage = function(actualBattle) {
 export const completeBattle = function(actualBattle) {
   const finalTickEvents = [];
 
-  console.log(" ####  completeBattle()  #### ");
+  //console.log(" ####  completeBattle()  #### ");
   
   let hadCompanions = false;
   actualBattle.units.forEach((unit, idx) => {
@@ -507,6 +507,7 @@ export const completeBattle = function(actualBattle) {
     }
   });
 
+  /*
   console.log(`Bonus loot: ${actualBattle.bonusLoot}`);
   console.log(`Extra loot table:`, actualBattle.extraLootTable);
   actualBattle.completedEnemies.forEach((enemy) => {
@@ -525,6 +526,7 @@ export const completeBattle = function(actualBattle) {
   });
   console.log("Had companions?", hadCompanions);
   console.log(actualBattle);
+  */
   
   // chance for companion tokens is 0%
   let chanceForTokens = 0;
@@ -1239,7 +1241,7 @@ export const completeBattle = function(actualBattle) {
   delete actualBattle; // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
                        // see https://www.w3schools.com/js/js_object_properties.asp
 
-  console.log(" ####  completeBattle()  #### ");
+  //console.log(" ####  completeBattle()  #### ");
 };
 
 JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {

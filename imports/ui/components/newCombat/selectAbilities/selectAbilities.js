@@ -17,7 +17,7 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    if (instance.state.get('abilityLibraryListMap') && instance.state.get('abilityLibraryExtra'))
+    if (this.state.get('abilityLibraryListMap') && this.state.get('abilityLibraryExtra'))
       return;
     
     // Fetch extra ability details that the server holds

@@ -57,11 +57,12 @@ export default function(healAmount, {
     });
   }
   
-  target.stats.health += healAmount;
-  if (target.stats.health > target.stats.healthMax) {
-    target.stats.health = target.stats.healthMax;
+  if (target.stats.health + healAmount > target.stats.healthMax) {
+    healAmount = target.stats.healthMax - target.stats.health;
   }
 
+  target.stats.health += healAmount;
+  
   let caster__id_to_use = caster.id;
     if (caster.isCompanion) {
     try {

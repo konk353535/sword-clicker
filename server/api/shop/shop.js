@@ -7,8 +7,8 @@ import moment from 'moment';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 
-import { addItem, hasGems, consumeGems, consumeOnlyRealGems } from '/server/api/items/items.js';
-import { activateGlobalBuff } from '/imports/api/globalbuffs/globalbuffs';
+import { addItem, addRealGems, hasGems, consumeGems, consumeOnlyRealGems } from '/server/api/items/items.js';
+import { getGlobalBuff, getActiveGlobalBuff, activateGlobalBuff } from '/imports/api/globalbuffs/globalbuffs';
 import { updateUserActivity } from '/imports/api/users/users.js';
 
 import _ from 'underscore';
@@ -32,6 +32,12 @@ Meteor.methods({
 
     const GEM_COST = 100;
 
+    const friendlyNames = {
+      buffCrafting: 'crafting',
+      buffCombat: 'combat',
+      buffGathering: 'gathering'
+    };
+    
     // Does the user have 100 gems?
     const userDoc = Meteor.user();
 
@@ -39,63 +45,33 @@ Meteor.methods({
       throw new Meteor.Error("gems-too-low", "You don't have enough gems");
     }
 
-    let globalBuff = State.findOne({name: type});
-
-    if (!globalBuff) {
-      return;
-    }
-
-    const friendlyNames = {
-      buffCrafting: 'crafting',
-      buffCombat: 'combat',
-      buffGathering: 'gathering'
-    };
+    let globalBuff = getActiveGlobalBuff(type);
+    const newBuff = (globalBuff === undefined) || (globalBuff === false);
 
     // Take me gems!
     if (!consumeOnlyRealGems(GEM_COST, Meteor.user())) {
       throw new Meteor.Error("gems-too-low", "You don't have enough gems");
     }
 
-    let newBuff = true;
-    if (!moment().isAfter(globalBuff.value.activeTo)) {
-      newBuff = false;
-    }
-
-    if (type === 'buffCrafting') {
-      activateGlobalBuff({buffType: 'paid_crafting'});
-    } else if (type === 'buffCombat') {
-      activateGlobalBuff({buffType: 'paid_combat'});
-    } else if (type === 'buffGathering') {
-      activateGlobalBuff({buffType: 'paid_gathering'});
+    if (!activateGlobalBuff({buffType: type, timeAmt: 1, time: 'hour'})) {
+      addRealGems(GEM_COST, Meteor.userId()); // give them back their gems on error
+      throw new Meteor.Error("exception", "Server error activating this buff.");
     }
     
-    globalBuff = State.findOne({name: type});
+    globalBuff = getGlobalBuff(type);
+    const remaining = (newBuff || !globalBuff) ? '1 hour' : moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
+    const activateMessage = `${userDoc.username} has ${((newBuff)?'activated':'extended')} the ${friendlyNames[type]} buff for all players (${remaining} remaining)!`;
     
-    if (newBuff) {
-      const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
-      Chats.insert({
-        message: `${userDoc.username} has activated the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
-        username: 'SERVER',
-        name: 'SERVER',
-        date: new Date(),
-        custom: {
-          roomType: 'Game'
-        },
-        roomId: `General`
-      });
-    } else {
-      const remaining = moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize();
-      Chats.insert({
-        message: `${userDoc.username} has extended the ${friendlyNames[type]} buff for all players (${remaining} remaining)`,
-        username: 'SERVER',
-        name: 'SERVER',
-        date: new Date(),
-        custom: {
-          roomType: 'Game'
-        },
-        roomId: 'General'
-      });
-    }
+    Chats.insert({
+      message: activateMessage,
+      username: 'SERVER',
+      name: 'SERVER',
+      date: new Date(),
+      custom: {
+        roomType: 'Game'
+      },
+      roomId: `General`
+    });
 
     updateUserActivity({userId: Meteor.userId()});
   },

@@ -1,3 +1,5 @@
+import lodash from 'lodash';
+
 import { State } from '/imports/api/state/state';
 
 import { GLOBALBUFFS } from '/imports/constants/globalbuffs';
@@ -37,28 +39,47 @@ export const getGlobalBuffs = function getGlobalBuffs() {
   return [];
 };
 
-// look up an existing global buff by name (type ID) only if it's active
-export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType, serverId) {
-  const realBuffId = translateGlobalBuffId(buffType);
-  if (!IsValid(realBuffId)) {
+const serverBuffMatch = function serverBuffMatch(buffId, serverId) {
+  if (!IsValid(buffId) || !IsValid(GLOBALBUFFS[buffId])) {
     return false;
   }
-
+  
+  if (!GLOBALBUFFS[buffId].isServerBuff) {
+    return State.findOne({name: buffId});
+  }
+  
+  // require serverId at this point
   serverId = (IsValid(serverId)) ? serverId : serverFromUser();
-  const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId, 'value.activeTo': { $gte: moment().toDate() }}) : State.findOne({name: realBuffId, 'value.activeTo': { $gte: moment().toDate() }});
   
-  if (!IsValid(buffState)) {
+  const buffState = (serverId) ? State.findOne({name: buffId, server: serverId}) : State.findOne({name: buffId});
+  
+  if ((IsValid(buffState)) && (buffState.server === serverId)) {
+    return buffState;
+  }
+  
+  return undefined;
+}
+
+const serverBuffMatchActive = function serverBuffMatchActive(buffId, serverId) {
+  if (!IsValid(buffId) || !IsValid(GLOBALBUFFS[buffId])) {
     return false;
   }
   
-  if (IsValid(GLOBALBUFFS[realBuffId]) && GLOBALBUFFS[realBuffId].isServerBuff) {
-    if (buffState.server != serverId) {
-      return false;
-    }
+  if (!GLOBALBUFFS[buffId].isServerBuff) {
+    return State.findOne({name: buffId, 'value.activeTo': { $gte: moment().toDate() }});
   }
   
-  return buffState;
-};
+  // require serverId at this point
+  serverId = (IsValid(serverId)) ? serverId : serverFromUser();
+  
+  const buffState = (serverId) ? State.findOne({name: buffId, server: serverId, 'value.activeTo': { $gte: moment().toDate() }}) : State.findOne({name: buffId, 'value.activeTo': { $gte: moment().toDate() }});
+  
+  if ((IsValid(buffState)) && (buffState.server === serverId)) {
+    return buffState;
+  }
+  
+  return undefined;
+}
 
 // look up an existing global buff by name (type ID), whether it's active or not
 export const getGlobalBuff = function getGlobalBuff(buffType, serverId) {
@@ -66,21 +87,22 @@ export const getGlobalBuff = function getGlobalBuff(buffType, serverId) {
   if (!IsValid(realBuffId)) {
     return false;
   }
-
-  serverId = (IsValid(serverId)) ? serverId : serverFromUser();
-  const buffState = (serverId) ? State.findOne({name: realBuffId, server: serverId}) : State.findOne({name: realBuffId});
   
-  if (!IsValid(buffState)) {
+  const buffState = serverBuffMatch(realBuffId, serverId);
+
+  return (IsValid(buffState)) ? buffState : false;
+};
+
+// look up an existing global buff by name (type ID) only if it's active
+export const getActiveGlobalBuff = function getActiveGlobalBuff(buffType, serverId) {
+  const realBuffId = translateGlobalBuffId(buffType);
+  if (!IsValid(realBuffId)) {
     return false;
   }
-  
-  if (IsValid(GLOBALBUFFS[realBuffId]) && GLOBALBUFFS[realBuffId].isServerBuff) {
-    if (buffState.server != serverId) {
-      return false;
-    }
-  }
-  
-  return buffState;
+
+  const buffState = serverBuffMatchActive(realBuffId, serverId);
+
+  return (IsValid(buffState)) ? buffState : false;
 };
 
 // add or insert a global buff as necessary, extending or setting time as necessary
@@ -91,30 +113,39 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, server 
   }
   
   const curBuff = getGlobalBuff(realBuffId);
-  
-  if (IsValid(curBuff)) {
+
+  if (curBuff && IsValid(curBuff)) {
+    const localBuff = lodash.cloneDeep(curBuff);
+    
+    if (!IsValid(localBuff.value)) {
+      localBuff.value = {
+        activeTo: moment().add(-1, 'week').toDate(),
+        level: 1
+      };
+    }
+    
     // update existing buff
 
-    if (moment().isAfter(curBuff.value.activeTo)) {
+    if (moment().isAfter(localBuff.value.activeTo)) {
       // if the buff is expired (current time is after buff's activeTo time)
       
-      curBuff.value.activeTo = moment().add(timeAmt, time).toDate();
+      localBuff.value.activeTo = moment().add(timeAmt, time).toDate();
     } else {
       // if the buff isn't over yet...
       
-      curBuff.value.activeTo = moment(curBuff.value.activeTo).add(timeAmt, time).toDate();
+      localBuff.value.activeTo = moment(localBuff.value.activeTo).add(timeAmt, time).toDate();
     }
 
     // if no level is specified, default it to the current buff level (or to 1 if none exists)
     if (level === -1) {
-      if (curBuff.value.level) {
-        level = curBuff.value.level;
+      if (localBuff.value.level) {
+        level = localBuff.value.level;
       } else {
         level = 1;
       }
     }
     
-    curBuff.value.level = level;
+    localBuff.value.level = level;
     
     // update existing doc in mongo
     State.update({
@@ -122,7 +153,7 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, server 
     }, {
       $set: {
         server,
-        value: curBuff.value
+        value: localBuff.value
       }
     });
     
@@ -151,11 +182,9 @@ export const activateGlobalBuff = function activateGlobalBuff({buffType, server 
 
 // locate a buff and return its level, 0 if the buff is not active or has no level
 export const getBuffLevel = function getBuffLevel(buffId, serverId) {
-  serverId = (IsValid(serverId)) ? serverId : serverFromUser();
-  
   const buffByName = getActiveGlobalBuff(buffId, serverId);  
   
-  if (IsValid(buffByName) && IsValid(buffByName.value)) {
+  if (buffByName && IsValid(buffByName) && IsValid(buffByName.value)) {
     return CInt(buffByName.value.level);
   }
   

@@ -17,21 +17,9 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    if (this.state.get('abilityLibraryListMap') && this.state.get('abilityLibraryExtra'))
+    if (this.state.get('abilityLibraryListMap'))
       return;
     
-    // Fetch extra ability details that the server holds
-    const currentInstanceRef = this;
-    Meteor.call('abilities.fetchLibraryExtra', function(err, data) {
-      if (!err) {
-        try {
-          currentInstanceRef.state.set('abilityLibraryExtra', data);
-        } catch (err) {
-          console.log("abilities.fetchLibraryExtra() API error", err);
-        }
-      }
-    });
-
     const anAbility = Abilities.findOne();
     // Pass ability so when a new abilitiy is learnt this is reactive
     const results = ReactiveMethod.call('abilities.fetchLibrary', anAbility);
@@ -45,6 +33,23 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
       // Store recipes
       this.state.set('abilityLibrary', results);
     }
+  });
+  
+  this.autorun(() => {
+    if (this.state.get('abilityLibraryExtra'))
+      return;
+    
+    // Fetch extra ability details that the server holds
+    const currentInstanceRef = this;
+    Meteor.call('abilities.fetchLibraryExtra', function(err, data) {
+      if (!err) {
+        try {
+          currentInstanceRef.state.set('abilityLibraryExtra', data);
+        } catch (err) {
+          console.log("abilities.fetchLibraryExtra() API error", err);
+        }
+      }
+    });
   });
   
   //Meteor.setInterval(() => {

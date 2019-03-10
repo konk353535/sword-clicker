@@ -17,6 +17,9 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
+    if (instance.state.get('abilityLibraryListMap') && instance.state.get('abilityLibraryExtra'))
+      return;
+    
     // Fetch extra ability details that the server holds
     const currentInstanceRef = this;
     Meteor.call('abilities.fetchLibraryExtra', function(err, data) {

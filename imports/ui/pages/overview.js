@@ -143,8 +143,8 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
     updateAdventures(this);
   }, 1000);
   
-  intervalFriendsList = updateFriendsList(this);
-  Meteor.setInterval(() => {
+  updateFriendsList(this);
+  intervalFriendsList = Meteor.setInterval(() => {
     updateFriendsList(this);
   }, 15000);
   

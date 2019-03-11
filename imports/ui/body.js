@@ -93,11 +93,12 @@ Template.body.onCreated(function () {
       }
     });
 
-    if (finishedBattle) {
-      subAbilityTimer()
-    }
+    //if (finishedBattle) {
+    //  subAbilityTimer()
+    //}
   });
 
+  /*
   let subAbilityTimer = function() {
     abilityTimer = Meteor.setInterval(() => {
       if (Meteor.userId()) {
@@ -113,7 +114,8 @@ Template.body.onCreated(function () {
 
   // call initially in case of preexisting cooldowns
   subAbilityTimer();
-
+  */
+  
   // Auto tracker for invites to groups
   Tracker.autorun(() => {
     const invitedToGroups = Groups.find({

@@ -357,6 +357,7 @@ Meteor.methods({
     return abilitiesArray;
   },
 
+  /*
   'abilities.gameUpdate'() {
     return new Promise(function(resolve, reject) {
       updateAbilityCooldowns(Meteor.userId(), (err, res) => {
@@ -368,6 +369,7 @@ Meteor.methods({
       });
     })
   }
+  */
 });
 
 const MINUTE = 60 * 1000;

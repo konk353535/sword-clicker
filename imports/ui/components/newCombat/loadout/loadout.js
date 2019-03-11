@@ -10,10 +10,17 @@ import { PLAYER_ICONS } from '/imports/constants/shop/index.js';
 
 import './loadout.html';
 
+let isFetchingLibrary = false;
+
 Template.loadoutPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
+    if (isFetchingLibrary || this.state.get('abilityLibrary'))
+      return;
+    
+    isFetchingLibrary = true;
+
     const anAbility = Abilities.findOne();
     // Pass ability so when a new abilitiy is learnt this is reactive
     const results = ReactiveMethod.call('abilities.fetchLibrary', anAbility);
@@ -27,6 +34,8 @@ Template.loadoutPage.onCreated(function bodyOnCreated() {
       // Store recipes
       this.state.set('abilityLibrary', results);
     }
+    
+    isFetchingLibrary = false;
   });
 });
 

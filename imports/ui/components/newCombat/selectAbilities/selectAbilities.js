@@ -13,12 +13,17 @@ import { BUFFS } from '/imports/constants/buffs/index.js';
 
 import './selectAbilities.html';
 
+let isFetchingLibrary = false;
+let isFetchingLibraryExtra = false;
+
 Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   this.autorun(() => {
-    if (this.state.get('abilityLibraryListMap'))
+    if (isFetchingLibrary || this.state.get('abilityLibraryListMap'))
       return;
+    
+    isFetchingLibrary = true;
     
     const anAbility = Abilities.findOne();
     // Pass ability so when a new ability is learnt this is reactive
@@ -33,11 +38,15 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
       // Store recipes
       this.state.set('abilityLibrary', results);
     }
+    
+    isFetchingLibrary = false;
   });
   
   this.autorun(() => {
-    if (this.state.get('abilityLibraryExtra'))
+    if (isFetchingLibraryExtra || this.state.get('abilityLibraryExtra'))
       return;
+    
+    isFetchingLibraryExtra = true;
     
     // Fetch extra ability details that the server holds
     const currentInstanceRef = this;
@@ -50,6 +59,8 @@ Template.selectAbilitiesPage.onCreated(function bodyOnCreated() {
         }
       }
     });
+    
+    isFetchingLibraryExtra = false;
   });
   
   //Meteor.setInterval(() => {

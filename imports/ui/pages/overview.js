@@ -21,6 +21,9 @@ let updatingAdventures = false;
 let miningPageTimer;
 let hasInitGameUpdate = false;
 
+let intervalAdventures;
+let intervalFriendsList;
+
 Template.overviewPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('showPickAll', false);
@@ -136,11 +139,11 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
     }
   });
 
-  Meteor.setInterval(() => {
+  intervalAdventures = Meteor.setInterval(() => {
     updateAdventures(this);
   }, 1000);
   
-  updateFriendsList(this);
+  intervalFriendsList = updateFriendsList(this);
   Meteor.setInterval(() => {
     updateFriendsList(this);
   }, 15000);
@@ -158,6 +161,8 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
 
 Template.overviewPage.onDestroyed(function bodyOnDestroyed() {
   Meteor.clearInterval(miningPageTimer);
+  Meteor.clearInterval(intervalAdventures);
+  Meteor.clearInterval(intervalFriendsList);
 });
 
 Template.overviewPage.helpers({

@@ -306,7 +306,7 @@ Meteor.methods({
       let localMageAttackSpeed = currentMage.stats.attackSpeed;
       const townBuffObservatoryLevel = getBuffLevel('town_observatory');
       if (townBuffObservatoryLevel > 0) {
-        localMageAttackSpeed *= (townBuffObservatoryLevel + 1) * 0.03; // 6% - 18%
+        localMageAttackSpeed *= 1 + ((townBuffObservatoryLevel + 1) * 0.03); // 6% - 18%
       }
 
       // Calculate shard fragments found

@@ -1188,7 +1188,7 @@ export const completeBattle = function(actualBattle) {
               if (abilityToUpdate.isSpell) {
                 ability.casts = abilityToUpdate.casts;
               }
-              ability.currentCooldown = abilityToUpdate.currentCooldown;
+              ability.currentCooldown = 0; // abilityToUpdate.currentCooldown; // we don't track cooldowns anymore
             }
           });
 

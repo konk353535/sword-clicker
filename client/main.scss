@@ -125,6 +125,15 @@ body { padding-right: 0 !important }
   }
 }
 
+.battle-unit-name {
+  display: inline-block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: center;
+  height: 50px;
+}
+
 .battle-unit-border-red {
   border-color: $brand-danger;
 }
@@ -144,7 +153,6 @@ body { padding-right: 0 !important }
   & > .text-capitalize {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     max-width: 100px;
   }
 }

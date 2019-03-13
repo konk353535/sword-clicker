@@ -7852,40 +7852,6 @@ export const MISC_ITEMS = {
       level: 25,
     }]
   },
-
-  event_vd_rose_quartz_amulet: {
-    id: "event_vd_rose_quartz_amulet",
-    icon: "eventVDnecklace.svg",
-    category: "combat",
-    slot: "neck",
-    name: "rose quartz amulet",
-    sellPrice: 1,
-    description: "Glowing with an abundance of healing power.",
-    isEquippable: true,
-    stats: {
-      healingPower: 40,
-      defense: 30,
-      magicArmor: 30,
-    },
-    extraStats: {
-      healingPower: 10,
-      defense: 20,
-      magicArmor: 20,
-    },
-    enchantments: ['rose_quartz_amulet'],
-    upgradeRarity: [
-      { chance: 100, rarityId: 'prized', },
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'magic',
-      level: 25,
-    }, {
-      type: 'skill',
-      name: 'defense',
-      level: 25,
-    }]
-  },
   
   // like a fiery_bow (radiant/T22) but more accuracy and 3x damage to charmed enemies during autoattack
   cupids_bow: {
@@ -8011,5 +7977,35 @@ export const MISC_ITEMS = {
       level: 75
     }],
     enchantments: ['witchs_cauldron']
+  },
+  
+  event_spd_jeweled_greaves: {
+    id: "event_spd_jeweled_greaves",
+    icon: "eventSPDJeweledPlatelegs.png",
+    category: "combat",
+    slot: "legs",
+    name: "jeweled greaves",
+    sellPrice: 0,
+    description: "This leg armor is adorned with numerous fantastic gems and precious jewels.",
+    isEquippable: true,
+    stats: {
+      healthMax: 5,
+      defense: 5,
+      armor: 20
+    },
+    extraStats: {
+      healthMax: 5,
+      defense: 2.5,
+      armor: 10
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 30
+    }],
+    enchantments: ['event_spd_jeweled_greaves']
   },
 };

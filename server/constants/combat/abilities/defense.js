@@ -452,5 +452,24 @@ export const DEFENSE_ABILITIES = {
       return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
     }
   },
-
+  
+  spd_leprechaun: {
+    icon: 'eventSPDleprechaun.jpg',
+    name: 'cupid',
+    id: 'spd_leprechaun',
+    buffs: ['spd_leprechaun'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'companion',
+    isHidden: true,
+    target: 'self',
+    isPacifist: true,
+    description(level, armoryLevel) {
+      const BUFF = BUFFS.spd_leprechaun;
+      return BUFF.description({ buff: BUFF, level, townBuffLevel: armoryLevel });
+    }, betterDescription({level, playerSkills, armoryLevel}) {
+      const BUFF = BUFFS.spd_leprechaun;
+      return BUFF.description({ buff: BUFF, level, playerSkills, townBuffLevel: armoryLevel });
+    }
+  },
 };

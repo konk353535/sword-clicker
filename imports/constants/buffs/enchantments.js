@@ -1171,6 +1171,42 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  event_spd_jeweled_greaves: {
+    duplicateTag: 'event_spd_jeweled_greaves', // Used to stop duplicate buffs
+    icon: 'eventSPDJeweledPlatelegs.png',
+    name: 'jeweled greaves',
+    description() {
+      return `Brings you back from the brink of death during combat. This effect can only occur once per battle.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      usedUp: false,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.usedUp = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+      
+      onBeforeDeath({ buff, target, actualBattle }) {
+        if (!buff.data.usedUp) {
+          target.stats.health = Math.round(target.stats.healthMax / 2);
+          buff.data.usedUp = true;
+          removeBuff({ target, buff, caster: target, actualBattle })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
   demons_heart: {
     duplicateTag: 'demons_heart', // Used to stop duplicate buffs
     icon: 'demonsHeart.svg',

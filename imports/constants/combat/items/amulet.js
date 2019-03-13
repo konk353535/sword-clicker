@@ -828,5 +828,289 @@ export const AMULET_ITEMS = {
       level: 75
     }],
     enchantments: ['fireopal_amulet']
-  }
+  },
+
+  event_vd_rose_quartz_amulet: {
+    id: "event_vd_rose_quartz_amulet",
+    icon: "eventVDnecklace.svg",
+    category: "combat",
+    slot: "neck",
+    name: "rose quartz amulet",
+    sellPrice: 1,
+    description: "Glowing with an abundance of healing power.",
+    isEquippable: true,
+    stats: {
+      healingPower: 40,
+      defense: 30,
+      magicArmor: 30,
+    },
+    extraStats: {
+      healingPower: 10,
+      defense: 20,
+      magicArmor: 20,
+    },
+    enchantments: ['rose_quartz_amulet'],
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 25,
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25,
+    }]
+  },
+
+  event_spd_four_leaf_clover_amulet: {
+    id: 'event_spd_four_leaf_clover_amulet',
+    icon: 'eventSPDCloverAmulet.svg',
+    category: 'combat',
+    slot: 'neck',
+    name: 'four-leaf clover amulet',
+    sellPrice: 0,
+    description: 'Wearing this good luck charm inspires you, giving you +8% to all of your stats.',
+    isEquippable: true,
+    stats: {
+      defense: 4,
+      armor: 12,
+      magicArmor: 12,
+    },
+    extraStats: {
+      defense: 1,
+      armor: 3,
+      magicArmor: 3,
+    },
+    percentTotalStats: {
+      attack: 8,
+      attackMax: 8,
+      criticalChance: 8,
+      criticalDamage: 8,
+      accuracy: 8,
+      armor: 8,
+      defense: 8,
+      magicPower: 8,
+      magicArmor: 8,
+      healthMax: 8,
+      healingPower: 8,
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+  },
+
+  event_spd_five_leaf_clover_amulet: {
+    id: 'event_spd_five_leaf_clover_amulet',
+    icon: 'eventSPDCloverAmulet.svg',
+    category: 'combat',
+    slot: 'neck',
+    name: 'five-leaf clover amulet',
+    sellPrice: 0,
+    description: 'Wearing this good luck charm inspires you, giving you +10% to all of your stats.',
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      armor: 15,
+      magicArmor: 15,
+    },
+    extraStats: {
+      defense: 1,
+      armor: 3,
+      magicArmor: 3,
+    },
+    percentTotalStats: {
+      attack: 10,
+      attackMax: 10,
+      criticalChance: 10,
+      criticalDamage: 10,
+      accuracy: 10,
+      armor: 10,
+      defense: 10,
+      magicPower: 10,
+      magicArmor: 10,
+      healthMax: 10,
+      healingPower: 10,
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+  },
+
+  event_spd_six_leaf_clover_amulet: {
+    id: 'event_spd_six_leaf_clover_amulet',
+    icon: 'eventSPDCloverAmulet.svg',
+    category: 'combat',
+    slot: 'neck',
+    name: 'six-leaf clover amulet',
+    sellPrice: 0,
+    description: 'Wearing this good luck charm inspires you, giving you +12% to all of your stats.',
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      armor: 15,
+      magicArmor: 15,
+    },
+    extraStats: {
+      defense: 2,
+      armor: 6,
+      magicArmor: 6,
+    },
+    percentTotalStats: {
+      attack: 12,
+      attackMax: 12,
+      criticalChance: 12,
+      criticalDamage: 12,
+      accuracy: 12,
+      armor: 12,
+      defense: 12,
+      magicPower: 12,
+      magicArmor: 12,
+      healthMax: 12,
+      healingPower: 12,
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+  },
+
+  event_spd_seven_leaf_clover_amulet: {
+    id: 'event_spd_seven_leaf_clover_amulet',
+    icon: 'eventSPDCloverAmulet.svg',
+    category: 'combat',
+    slot: 'neck',
+    name: 'seven-leaf clover amulet',
+    sellPrice: 0,
+    description: 'Wearing this good luck charm inspires you, giving you +14% to all of your stats.',
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      armor: 15,
+      magicArmor: 15,
+    },
+    extraStats: {
+      defense: 3,
+      armor: 9,
+      magicArmor: 9,
+    },
+    percentTotalStats: {
+      attack: 14,
+      attackMax: 14,
+      criticalChance: 14,
+      criticalDamage: 14,
+      accuracy: 14,
+      armor: 14,
+      defense: 14,
+      magicPower: 14,
+      magicArmor: 14,
+      healthMax: 14,
+      healingPower: 14,
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+  },
+
+  event_spd_eight_leaf_clover_amulet: {
+    id: 'event_spd_eight_leaf_clover_amulet',
+    icon: 'eventSPDCloverAmulet.svg',
+    category: 'combat',
+    slot: 'neck',
+    name: 'eight-leaf clover amulet',
+    sellPrice: 0,
+    description: 'Wearing this good luck charm inspires you, giving you +16% to all of your stats.',
+    isEquippable: true,
+    stats: {
+      defense: 5,
+      armor: 15,
+      magicArmor: 15,
+    },
+    extraStats: {
+      defense: 4,
+      armor: 12,
+      magicArmor: 12,
+    },
+    percentTotalStats: {
+      attack: 16,
+      attackMax: 16,
+      criticalChance: 16,
+      criticalDamage: 16,
+      accuracy: 16,
+      armor: 16,
+      defense: 16,
+      magicPower: 16,
+      magicArmor: 16,
+      healthMax: 16,
+      healingPower: 16,
+    },
+    upgradeRarity: [
+      { chance: 100, rarityId: 'prized', },
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 25
+    }, {
+      type: 'skill',
+      name: 'magic',
+      level: 25
+    }],
+  },
 };

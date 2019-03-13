@@ -36,7 +36,7 @@
         >
       {{/if}}
       <div class="health-bar d-flex justify-content-center" style="white-space: nowrap;">
-        {{> formatNumber number=unit.stats.health}} / {{> formatNumber number=unit.stats.healthMax}}
+        {{> formatNumber number=unit.stats.health noDecimal=true}} / {{> formatNumber number=unit.stats.healthMax noDecimal=true}}
       </div>      
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>

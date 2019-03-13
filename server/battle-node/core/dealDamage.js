@@ -25,6 +25,16 @@ export default function(rawDamage, {
   if (attacker.isPacifist) {
     return 0;
   }
+  
+  // if the attacker wants to flip phys to magic or magic to phys
+  if (attacker.effectFlipDamageType) {
+    isMagic = (isMagic) ? false : true;
+  }
+
+  // if the defender wants to flip phys to magic or magic to phys
+  if (defender.effectFlipDamageType) {
+    isMagic = (isMagic) ? false : true;
+  }
 
   let damage = rawDamage;
   if (damage && damage > 0) {

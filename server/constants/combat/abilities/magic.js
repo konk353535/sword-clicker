@@ -695,4 +695,20 @@ export const MAGIC_ABILITIES = {
       return BUFF.description({ buff: BUFF, level });
     }
   },
+
+  tricky_step: {
+    icon: 'eventSPDTrickyStep.svg',
+    name: 'tricky step',
+    id: 'tricky_step',
+    buffs: ['tricky_step'],
+    cooldown: 5,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    isPacifist: true,
+    description(level) {
+      const BUFF = BUFFS.tricky_step;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
 };

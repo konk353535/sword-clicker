@@ -83,8 +83,8 @@ export const NEED_GREED_ITEMS = {
     return RegExp('dwarven_staff', 'g').test(str)
   },
   event_items: (str) => {
-    // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome|lny_pig_tome_level_x|cheer_tome|vd_cupid_tome_level_x)
-    return RegExp('festive_hat|ornamental_hat|event_ny_balloons|event_lny_lion_claws|event_lny_lion_body|event_lny_lion_head|event_lny_lunar_shield|event_vd_bear_slippers|event_vd_rose_quartz_amulet', 'g').test(str)
+    // tomes are already need greed (holiday_cheer_tome|raise_your_glass_tome|lny_pig_tome_level_x|cheer_tome|vd_cupid_tome_level_x|event_spd_tricky_step_tome|spd_leprechaun_tome_level_x)
+    return RegExp('festive_hat|ornamental_hat|event_ny_balloons|event_lny_lion_claws|event_lny_lion_body|event_lny_lion_head|event_lny_lunar_shield|event_vd_bear_slippers|event_vd_rose_quartz_amulet|event_spd_jeweled_greaves|_leaf_clover_amulet', 'g').test(str)
   },
   special_items: (str) => {
     return RegExp('enhancer_key|lemonade', 'g').test(str)

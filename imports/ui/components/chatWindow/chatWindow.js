@@ -16,7 +16,7 @@ SimpleChat.scrollToEnd = function () {
   if ($(window).width() > 500) {
     Template.chatWindow.endScroll = true;
     const messages = $('.direct-chat-messages');
-    messages.animate({scrollTop: 10000}, 300);
+    messages.animate({scrollTop: 100000}, 300);
     messages.trigger('scroll');
   }
 };

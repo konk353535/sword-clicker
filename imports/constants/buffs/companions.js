@@ -587,6 +587,223 @@ export const COMPANION_BUFFS = {
     }
   },
   
+  
+  // Level 1: can auto-attack (speed 1.0) and can use Slash (with 10s CD) at level 2
+  // Level 2: can Penetrating Slash at level 2 (with 10s CD) and upgrades Slash to level 4
+  // Level 3: can use Bleed at level 3 (with 30s CD) and upgrades Penetrating Slash to level 4
+  // Level 4: has Phantom Strikes 2 passive and upgrades Bleed to level 5 and Slash to level 5
+  // Level 5: has Heist trait
+  // All levels:  gain attack damage, accuracy, and health for each level
+  spd_leprechaun: {
+    duplicateTag: 'spd_leprechaun',
+    icon: 'eventSPDleprechaun.jpg',
+    name: 'tricky leprechaun',
+    description({ buff, level, playerSkills, floor, townBuffLevel }) {
+      let descText = '';
+      
+      descText += 'Summons a tricky leprechaun to assist in tower combat. <br />';
+      descText += '<br />';
+      
+      descText += `<table style="border: none; max-width: ${maxTableAndGridSize}px;" cellspacing="4" cellpadding="0">`
+      descText += `  <tr>`;
+      descText += `    <td valign="top">Role&nbsp;&nbsp;&nbsp;</td>`;
+      descText += `    <td valign="top"><b>physical damage</b></td>`;
+      descText += `  </tr>`;
+      
+      if (level === 1) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Slash Lv. 2</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 2) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Penetrating Slash Lv. 2</b>, <b>Slash Lv. 4</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 3) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 3</b>, <b>Penetrating Slash Lv. 4</b>, <b>Slash Lv. 4</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 4) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 5</b>, <b>Penetrating Slash Lv. 4</b>, <b>Phantom Strikes Lv. 2</b>, <b>Slash Lv. 5</b></td>`;
+        descText += `  </tr>`;
+      } else if (level === 5) {
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Abilities&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Bleed Lv. 5</b>, <b>Penetrating Slash Lv. 4</b>, <b>Phantom Strikes Lv. 2</b>, <b>Slash Lv. 5</b></td>`;
+        descText += `  </tr>`;
+        descText += `  <tr>`;
+        descText += `    <td valign="top">Traits&nbsp;&nbsp;&nbsp;</td>`;
+        descText += `    <td valign="top"><b>Heist</b> (rampant thievery)</td>`;
+        descText += `  </tr>`;
+      }
+      
+      descText += `</table>`
+      descText += companionStatsHTML({buff, level, floor, playerSkills, townBuffLevel});
+      return descText;
+    },
+    constants: {
+      accuracy: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 3) * minTowerFloor / 1.85) + (35 * level));
+      },
+      attack: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 4) * minTowerFloor / 3.5) + (13 * level));
+      },
+      attackMax: function({level, towerFloor, attackSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(attackSkill * 4.25) * minTowerFloor / 2.5) + (40 * level));
+      },
+      attackSpeed: function({level}) {
+        return 1.0;
+      },
+      healthMax: function({level, towerFloor, healthSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(healthSkill * 2.75) * minTowerFloor * 6.5) + (65 * level));
+      },
+      defense: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 3) + (3 * level));
+      },
+      armor: function({level, towerFloor, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(defenseSkill * 3) * minTowerFloor / 2.5) + (5 * level));
+      },
+      magicArmor: function({level, towerFloor, magicSkill, defenseSkill}) {
+        const minTowerFloor = towerFloor < 5 ? 5 : towerFloor;
+        return Math.round((Math.sqrt(magicSkill * 2) * minTowerFloor / 5) + (Math.sqrt(defenseSkill * 2) * minTowerFloor / 5) + (2 * level));
+      },
+      magicPower: function({level, towerFloor, magicSkill}) {
+        return magicSkill;
+      },
+      damageTaken: function({level}) {
+        return 1;
+      },
+      healingPower: function({level}) {
+        return 0;
+      },
+    },
+    data: {
+      //hideBuff: true
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (!buff.data.isSpawned) {
+          const buffConsts = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
+          buff.data.isSpawned = true;
+          //buff.data.hideBuff = true;
+
+          // ** OLD **
+          // this companion won't help in personal quests
+          // this companion won't help in battle with other solo companions
+          //if ((actualBattle.isTower()) && (!actualBattle.haveAnySoloCompanions())) {
+
+          // ** NEW **
+          // this companion won't help in personal quests
+          // this companion won't help in battle if the unit roster is full
+          if ((actualBattle.isTower()) && (actualBattle.soloCompanions().length + actualBattle.alliedPlayers().length < 5)) {            
+            const attackSkill = target.attackSkill();
+            const defenseSkill = target.defenseSkill();
+            const magicSkill = target.magicSkill();
+            const healthSkill = target.healthSkill();
+            
+            let companion = {
+              owner: target.id + '_companion',
+              id: uuid.v4(),
+              tickOffset: 0,
+              isNPC: true,
+              isCompanion: true,
+              isSoloCompanion: true,
+              icon: 'eventSPDleprechaun.jpg',
+              name: target.name + '\'s leprechaun',
+              stats: {
+                attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackMax: buffConsts.attackMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                attackSpeed: buffConsts.attackSpeed({level: buff.data.level}),
+                accuracy: buffConsts.accuracy({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
+                health: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                healthMax: buffConsts.healthMax({level: buff.data.level, towerFloor: actualBattle.towerFloor(), healthSkill}),
+                defense: buffConsts.defense({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                armor: buffConsts.armor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), defenseSkill}),
+                magicArmor: buffConsts.magicArmor({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill, defenseSkill}),
+                magicPower: buffConsts.magicPower({level: buff.data.level, towerFloor: actualBattle.towerFloor(), magicSkill}),
+                damageTaken: buffConsts.damageTaken({level: buff.data.level}),
+                healingPower: buffConsts.healingPower({level: buff.data.level}),
+              },
+              buffs: [],
+            };
+            
+            companion.buffs = companion.buffs.concat([{
+              id: 'spd_leprechaun_logic',
+              data: {
+                duration: Infinity,
+                totalDuration: Infinity,
+                name: 'companion leprechaun',
+                icon: 'eventSPDleprechaun.jpg',
+                level: buff.data.level,
+                custom: true,
+              }
+            }]);
+            
+            if (buff.data.level >= 4) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'phantom_strikes',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'phantom strikes',
+                  icon: 'phantomStrikes.svg',
+                  level: 2,
+                }
+              }]);
+            }
+            
+            if (buff.data.level >= 5) {
+              companion.buffs = companion.buffs.concat([{
+                id: 'spd_leprechaun_heist',
+                data: {
+                  duration: Infinity,
+                  totalDuration: Infinity,
+                  name: 'heist',
+                  icon: 'eventSPDheist.svg',
+                  level: 1,
+                }
+              }]);
+            }
+            
+            if (actualBattle.townBuffLevel > 0) {
+              const townBarracksBonus = (actualBattle.townBuffLevel + 1) * 0.015; // 3% - 9%
+              try {
+                Object.keys(companion.stats).forEach((statName) => {
+                  // disallow % bonuses to attack speed or damage taken
+                  if ((statName !== 'attackSpeed') && (statName !== 'damageTaken')) {
+                    // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
+                    if (CDbl(companion.stats[statName]) > 0.0) {
+                      companion.stats[statName] *= 1 + townBarracksBonus;
+                    }
+                  }
+                });
+              } catch (err) {
+              }
+            }
+            
+            actualBattle.addUnit(companion);
+          }
+        }
+      },
+
+      onRemove({ buff, target }) {
+      }
+    }
+  },
+  
   // Level 1: can auto-attack (speed 0.6) and knows how to taunt random targets that aren't
   //          targeting the pig (with 7s CD)
   // Level 2: can auto-attack (speed 0.65) and modifies taunt so that it taunts random targets
@@ -1589,6 +1806,263 @@ export const COMPANION_BUFFS = {
     }
   },
     
+  spd_leprechaun_logic: {
+    duplicateTag: 'spd_leprechaun_logic',
+    icon: 'eventSPDleprechaun.jpg',
+    name: 'companion leprechaun',
+    description() {
+      return `Companion will use combat abilities to deal damage.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeTillAction = 0.4;
+        buff.data.CDSlash = 0.0;
+        buff.data.CDPSlash = 0.0;
+        buff.data.CDBleed = 0.0;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.CDSlash > 0.0) {
+          buff.data.CDSlash -= secondsElapsed;
+        }
+        if (buff.data.CDPSlash > 0.0) {
+          buff.data.CDPSlash -= secondsElapsed;
+        }
+        if (buff.data.CDBleed > 0.0) {
+          buff.data.CDBleed -= secondsElapsed;
+        }
+        
+        if (buff.data.timeTillAction > 0) {
+          buff.data.timeTillAction -= secondsElapsed;
+        } else {
+          // Do nothing with a third of our available ticks (except the above CD redux)
+          if (Math.random() <= 0.333) {
+            return;
+          }
+        
+          // Note: always accept whatever target we're on automatically, no re-targeting
+          
+          // START: logic for targets
+          const ourTargetUnit = target.targetUnit;
+          if (!ourTargetUnit) {
+            return;
+          }
+          const targetIsArmored = ourTargetUnit.hasBuff('crab_monster');
+          const targetIsDodging = ourTargetUnit.hasBuff('evasive_maneuvers');      
+          // END: logic for targets
+          
+          try {
+            if (!targetIsDodging && !targetIsArmored) {
+              if (buff.data.level >= 3 && buff.data.CDBleed <= 0.0 && ourTargetUnit.stats.health >= 400) {
+                // START: use Bleed
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'bleed', 
+                    buffData: {
+                      duration: 15,
+                      level: buff.data.level === 3 ? 3 : 5,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
+                buff.data.CDBleed = 30.0;
+                // END: use Bleed
+              }
+              
+              if (buff.data.CDSlash <= 0.0) {
+                // START: use Slash
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'slash', 
+                    buffData: {
+                      level: buff.data.level === 1 ? 2 : buff.data.level === 2 ? 4 : buff.data.level === 3 ? 4 : 5,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
+                buff.data.CDSlash = 10.0;
+                // END: use Slash
+              }
+
+              if (buff.data.level >= 2 && buff.data.CDPSlash <= 0.0) {
+                // START: use Penetrating Slash
+                target.applyBuffTo({
+                  buff: target.generateBuff({
+                    buffId: 'penetrating_slash', 
+                    buffData: {
+                      level: buff.data.level === 2 ? 2 : 4,
+                    },
+                  }),
+                  target: ourTargetUnit,
+                });
+                buff.data.CDPSlash = 10.0;
+                // END: use Penetrating Slash
+              }
+            }
+          } catch (err) {
+            console.log("Problem with leprechaun logic");
+            console.log(err);
+          }
+          
+          buff.data.timeTillAction = 0.4;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+    
+  spd_leprechaun_heist: {
+    duplicateTag: 'spd_leprechaun_heist',
+    icon: 'eventSPDheist.svg',
+    name: 'heist',
+    description() {
+      return `Companion loot stuff in combat.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.timeTillAction = 0.4;
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+        if (buff.data.timeTillAction > 0) {
+          buff.data.timeTillAction -= secondsElapsed;
+        } else {
+          // Do nothing with a third of our available ticks (except the above CD redux)
+          if (Math.random() <= 0.333) {
+            return;
+          }
+        
+          // START: logic for targets
+          const ourTargetUnit = target.targetUnit;
+          if (!ourTargetUnit) {
+            return;
+          }
+          // END: logic for targets
+          
+          if (!ourTargetUnit.hasBuff('spd_leprechaun_theft')) {
+            if (Math.random() <= 0.05) { // 5% chance (every 0.6 seconds after 1/3 ticks wasted) to steal
+              target.applyBuffTo({
+                buff: target.generateBuff({ buffId: 'spd_leprechaun_theft' }),
+                target: ourTargetUnit,
+              });
+              try {
+                if (!ourTargetUnit.extraLootTable || ourTargetUnit.extraLootTable.length === 0) {
+                  ourTargetUnit.extraLootTable = [];
+                }
+                
+                const curFloor = (actualBattle.floor && actualBattle.floor > 0) ? actualBattle.floor : actualBattle.pqTowerEquivalence();
+                const curRoom = (actualBattle.room && actualBattle.room > 0) ? actualBattle.room : 4; // '4' is the average level between 1-7 if we're in PQ or fighting boss
+                const thisOre = actualBattle.lookupOreTier(curFloor);
+                const nextOre = actualBattle.lookupOreTier(curFloor + 1);
+                const thisMetal = actualBattle.lookupMetalTier(curFloor);
+                const thisMetalCapped20 = actualBattle.lookupMetalTier((curFloor > 20) ? 20 : curFloor);
+                const thisWood = actualBattle.lookupWoodTier(curFloor);
+                const nextWood = actualBattle.lookupWoodTier(curFloor + 1);
+
+                const itemToSteal = lodash.sample([
+                  'poison_shard_fragment',
+                  'poison_shard_fragment',
+                  'poison_shard_fragment',
+                  'poison_shard_fragment',
+                  'poison_shard_fragment',
+                  'fire_shard_fragment',
+                  'fire_shard_fragment',
+                  'fire_shard_fragment',
+                  'water_shard_fragment',
+                  'water_shard_fragment',
+                  'water_shard_fragment',
+                  'earth_shard_fragment',
+                  'earth_shard_fragment',
+                  'earth_shard_fragment',
+                  'air_shard_fragment',
+                  'air_shard_fragment',
+                  'air_shard_fragment',
+                  'complete_fire_shard',
+                  'complete_water_shard',
+                  'complete_earth_shard',
+                  'complete_air_shard',
+                  'lavender',
+                  'lavender',
+                  'lavender',
+                  'chilli',
+                  'chilli',
+                  'nasturtium',
+                  'feverfew',
+                  'celery',
+                  'lemon_honey',
+                  'tamarind_honey',
+                  'cardoon',
+                  'sorrell',
+                  'catnip',
+                  `ore_${thisOre}`,
+                  `ore_${thisOre}`,
+                  `ore_${thisOre}`,
+                  `ore_${nextOre}`,
+                  `ore_${nextOre}`,
+                  `ore_${thisWood}`,
+                  `ore_${thisWood}`,
+                  `ore_${thisWood}`,
+                  `ore_${nextWood}`,
+                  `ore_${nextWood}`,
+                  'companion_token',
+                ]);
+                
+                ourTargetUnit.extraLootTable = ourTargetUnit.extraLootTable.concat([
+                  { id: itemToSteal, chance: 1.00 }
+                ]);
+              } catch (err) {
+                console.log("Problem in leprechaun Heist trait logic:");
+                console.log(err);
+              }
+            }
+          }
+          
+          buff.data.timeTillAction = 0.4;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },  
+  
+  spd_leprechaun_theft: {
+    duplicateTag: 'spd_leprechaun_theft',
+    icon: 'eventSPDtheft.svg',
+    name: 'theft',
+    description({ buff, level }) {
+      return ''
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
   companion_pig_logic: {
     duplicateTag: 'companion_pig_logic',
     icon: 'cutePig.svg',

@@ -3122,6 +3122,19 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to learn the charm ability.'
   },
 
+  event_spd_tricky_step_tome: {
+    id: 'event_spd_tricky_step_tome',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'tricky step tome',
+    teaches: {
+      abilityId: 'tricky_step',
+      level: 1
+    },
+    sellPrice: 1,
+    description: 'Can be consumed to learn the tricky step ability.'
+  },
+
   baby_fox_tome: {
     id: 'baby_fox_tome',
     icon: 'tome.svg',
@@ -3406,6 +3419,71 @@ export const INSCRIPTION_ITEMS = {
     },
     sellPrice: 40500,
     description: 'Can be consumed to bring a cupid to battle, a companion ability.'
+  },
+
+  spd_leprechaun_tome_level_1: {
+    id: 'spd_leprechaun_tome_level_1',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Leprechaun tome Lv. 1',
+    teaches: {
+      abilityId: 'spd_leprechaun',
+      level: 1
+    },
+    sellPrice: 500,
+    description: 'Can be consumed to bring a leprechaun to battle, a companion ability.'
+  },
+
+  spd_leprechaun_tome_level_2: {
+    id: 'spd_leprechaun_tome_level_2',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Leprechaun tome Lv. 2',
+    teaches: {
+      abilityId: 'spd_leprechaun',
+      level: 2
+    },
+    sellPrice: 1500,
+    description: 'Can be consumed to bring a leprechaun to battle, a companion ability.'
+  },
+
+  spd_leprechaun_tome_level_3: {
+    id: 'spd_leprechaun_tome_level_3',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Leprechaun tome Lv. 3',
+    teaches: {
+      abilityId: 'spd_leprechaun',
+      level: 3
+    },
+    sellPrice: 4500,
+    description: 'Can be consumed to bring a leprechaun to battle, a companion ability.'
+  },
+
+  spd_leprechaun_tome_level_4: {
+    id: 'spd_leprechaun_tome_level_4',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Leprechaun tome Lv. 4',
+    teaches: {
+      abilityId: 'spd_leprechaun',
+      level: 4
+    },
+    sellPrice: 13500,
+    description: 'Can be consumed to bring a leprechaun to battle, a companion ability.'
+  },
+
+  spd_leprechaun_tome_level_5: {
+    id: 'spd_leprechaun_tome_level_5',
+    icon: 'tomeEvent.svg',
+    category: 'tome',
+    name: 'Leprechaun tome Lv. 5',
+    teaches: {
+      abilityId: 'spd_leprechaun',
+      level: 5
+    },
+    sellPrice: 40500,
+    description: 'Can be consumed to bring a leprechaun to battle, a companion ability.'
   },
 
   lny_pig_tome_level_1: {

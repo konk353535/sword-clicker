@@ -116,6 +116,20 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
   }
   
+  // Apply combat items with % stat bonuses after flat bonuses
+  for (let i = 0; i < combatItems.length; i++) {
+    const combatItem = combatItems[i];
+    combatItem.constants = ITEMS[combatItem.itemId];
+    // todo: count each section cumulatively so that one item with % bonuses and another with % bonuses don't multiply, they add    
+    if (combatItem.constants.percentStats) {
+      Object.keys(combatItem.constants.percentStats).forEach((percentStatName) => {
+        if (playerData.stats[percentStatName] !== undefined) {
+          playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentStats[percentStatName] / 100.0);
+        }
+      });
+    }
+  }
+
   // Fetch all users skill levels
   const combatSkills = Skills.find({
     owner: userId,
@@ -140,7 +154,20 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       });
     }
   });
-
+  
+  // Apply combat items with % total stat bonuses after flat+skill bonuses
+  for (let i = 0; i < combatItems.length; i++) {
+    const combatItem = combatItems[i];
+    combatItem.constants = ITEMS[combatItem.itemId];
+    // todo: count each section cumulatively so that one item with % bonuses and another with % bonuses don't multiply, they add    
+    if (combatItem.constants.percentTotalStats) {
+      Object.keys(combatItem.constants.percentTotalStats).forEach((percentStatName) => {
+        if (playerData.stats[percentStatName] !== undefined) {
+          playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentTotalStats[percentStatName] / 100.0);
+        }
+      });
+    }
+  }
   // If no weapon default to 0.25 attackspeed
   if (playerData.stats.attackSpeed <= 0) {
     playerData.stats.attackSpeed = 0.25;

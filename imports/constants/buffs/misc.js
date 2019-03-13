@@ -411,4 +411,41 @@ export const MISC_BUFFS = {
       }
     }
   },
+  
+  tricky_step: {
+    duplicateTag: 'tricky_step', // Used to stop duplicate buffs
+    icon: 'eventSPDTrickyStep.svg',
+    name: 'tricky step',
+    description({ buff, level }) {
+      return `You treat all physical damage you receive as magical damage and all magical damage you receive as physical damage.`;
+    },
+    constants: {
+      allowTicks: true
+    },
+    data: {
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        if (!target.effectFlipDamageType) {
+          // toggle buff: activated
+          target.effectFlipDamageType = true;
+        } else {
+          // toggle buff: deactivated
+          target.effectFlipDamageType = false;
+        }
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (!target.effectFlipDamageType) {
+          removeBuff({ buff, target, caster, actualBattle });
+        }
+      },
+      
+      onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
+      },
+
+      onRemove({ buff, target, caster, actualBattle }) {
+      }
+    }
+  },
 };

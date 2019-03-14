@@ -758,11 +758,11 @@ export const ENCHANTMENT_BUFFS = {
     icon: 'magicBlade.svg',
     name: 'magic blade',
     description() {
-      return `Deals 25% auto-attack damage as additional magic damage.  This amount is increased by twice your magic power.`;
+      return `Deals 25% auto-attack damage as additional magic damage.  This amount is increased by your magic power.`;
     },
     constants: {
       damageDecimal: 0.25,
-      bonusMPMultiplier: 2.00,
+      bonusMPMultiplier: 1.00,
     },
     data: {
       duration: Infinity,

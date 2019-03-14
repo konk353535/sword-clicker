@@ -271,28 +271,43 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
       }
     }
     
-    // baseline level 1 = 10000
-    // baseline level 2 = 25118.864315095801110850320677993
-    // baseline level 3 = 69183.097091893648753368432697723
-    // baseline level 4 = 210862.81499332894382109922486219
-    // baseline level 5 = 718455.70879259680886927766047396
+    // baseline level 1 = 1000
+    // baseline level 2 = 7943.2823472428150206591828283639  
+    // baseline level 3 = 47863.009232263834392208773933365  
+    // baseline level 4 = 240990.54286865948713077025766237  
+    // baseline level 5 = 832146.90068679357239584603696727 
     
-    const baseLineLevel1 = 10000;
-    const baseLineLevel5 = Math.ceil(Math.pow(Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.1), 1.1), 1.1), 1.1)); // = 718455.70879259680886927766047396; = 718456
+    const baseLineLevel1 = 1000;
+    const baseLineLevel5 = Math.ceil(Math.pow(Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.300), 1.200), 1.150), 1.100)); // = 832146.90068679357239584603696727 = 832147
     
-    let targetForCurrentDayLevel1 = lastDayVal / (baseLineLevel5 / baseLineLevel1);
+    let targetForCurrentDayLevel1 = lastDayVal / (((baseLineLevel4 + baseLineLevel5) / 2.0) / baseLineLevel1);
     if (targetForCurrentDayLevel1 < baseLineLevel1) {
       targetForCurrentDayLevel1 = baseLineLevel1;
     }
     
+    const valLevel1 = targetForCurrentDayLevel1;
+    const valLevel2 = Math.pow(valLevel1, 1.300);
+    const valLevel3 = Math.pow(valLevel2, 1.200);
+    const valLevel4 = Math.pow(valLevel3, 1.15);
+    const valLevel5 = Math.pow(valLevel4, 1.100);
+
     nextVal = targetForCurrentDayLevel1;
     let targetLevel = 1;
     while (curVal >= nextVal) {
       if (targetLevel === 5) {
         break;
       }
-      nextVal = Math.pow(nextVal, 1.1);
+      
       targetLevel++;
+      if (targetLevel === 2) {
+        nextVal = valLevel2;
+      } else if (targetLevel === 3) {
+        nextVal = valLevel3;
+      } else if (targetLevel === 4) {
+        nextVal = valLevel4;
+      } else if (targetLevel === 5) {
+        nextVal = valLevel5;
+      }
     }
     
     return { townSection, isError: false, curVal, nextVal, currentLevel: ((curVal >= nextVal) ? targetLevel : CInt(targetLevel - 1)), targetLevel, buffName: buffNameThisSection };

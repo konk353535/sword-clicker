@@ -416,7 +416,7 @@ export const ENCHANTMENT_BUFFS = {
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
         buff.data.extraStat = target.stats.magicArmor * 2.5;
-        target.stats.health += buff.data.extraStat;
+        //target.stats.health += buff.data.extraStat;
         target.stats.healthMax += buff.data.extraStat;
         target.stats.healthMaxOrig += buff.data.extraStat;
       },
@@ -453,9 +453,12 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onRemove({ buff, target, caster }) {
-        target.stats.health -= buff.data.extraStat;
+        //target.stats.health -= buff.data.extraStat;
         target.stats.healthMax -= buff.data.extraStat;
         target.stats.healthMaxOrig -= buff.data.extraStat;
+        if (target.stats.health > target.stats.healthMax) {
+          target.stats.health = target.stats.healthMax;
+        }
       }
     }
   },

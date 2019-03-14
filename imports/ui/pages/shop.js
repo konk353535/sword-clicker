@@ -267,6 +267,19 @@ Template.shopPage.events({
       toastr.success('Successfully purchased.')
     });
   },
+ 
+  /* 'click .buy-gift_box_SPD2019'() {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
+      return;
+    }
+
+    Meteor.call('shop.buyItem', { itemId: 'gift_box_stpatricks' }, (err, res) => {
+      if (err) {
+        return toastr.error('An unexpected error occurred when buying item.');
+      }
+      toastr.success('Successfully purchased.')
+    });
+  }, */
 });
 
 Template.shopPage.rendered = function () {

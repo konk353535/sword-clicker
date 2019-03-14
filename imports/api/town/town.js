@@ -278,6 +278,7 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
     // baseline level 5 = 832146.90068679357239584603696727 
     
     const baseLineLevel1 = 1000;
+    const baseLineLevel4 = Math.ceil(         Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.300), 1.200), 1.150)        ); // = 240990.54286865948713077025766237 = 240991
     const baseLineLevel5 = Math.ceil(Math.pow(Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.300), 1.200), 1.150), 1.100)); // = 832146.90068679357239584603696727 = 832147
     
     let targetForCurrentDayLevel1 = lastDayVal / (((baseLineLevel4 + baseLineLevel5) / 2.0) / baseLineLevel1);
@@ -291,7 +292,7 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
     const valLevel4 = Math.pow(valLevel3, 1.15);
     const valLevel5 = Math.pow(valLevel4, 1.100);
 
-    nextVal = targetForCurrentDayLevel1;
+    nextVal = valLevel1;
     let targetLevel = 1;
     while (curVal >= nextVal) {
       if (targetLevel === 5) {

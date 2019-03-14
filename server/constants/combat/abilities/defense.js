@@ -455,7 +455,7 @@ export const DEFENSE_ABILITIES = {
   
   spd_leprechaun: {
     icon: 'eventSPDleprechaun.jpg',
-    name: 'cupid',
+    name: 'leprechaun',
     id: 'spd_leprechaun',
     buffs: ['spd_leprechaun'],
     cooldown: 0,

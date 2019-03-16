@@ -118,7 +118,7 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'worn_tome', amount: 1 }
       ]
     }, {
-      chance: 1 / 18,
+      chance: 1 / 16,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]

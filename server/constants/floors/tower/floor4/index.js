@@ -28,12 +28,12 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'item', itemId: 'iron_knife', amount: 1 }
       ]
-    }/* , {
+    }, {
       chance: 1 / 40,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
-    } */]))
+    }]))
   },
   4: {
     name: 'Deep Mine',
@@ -53,12 +53,12 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'item', itemId: 'iron_wand', amount: 1 }
       ]
-    }/* , {
+    }, {
       chance: 1 / 32,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
-    } */]))
+    }]))
   },
   5: {
     name: 'Small Water Altar',
@@ -84,12 +84,12 @@ export const TOWER_FLOOR_4 = {
       rewards: [
         { type: 'item', itemId: 'iron_buckler', amount: 1 }
       ]
-    }/* , {
+    }, {
       chance: 1 / 24,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
-    } */]))
+    }]))
   },
   6: {
     name: 'Suspicious Mine',
@@ -117,12 +117,12 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'malformed_orb', amount: 1 },
         { type: 'item', itemId: 'worn_tome', amount: 1 }
       ]
-    }/* , {
+    }, {
       chance: 1 / 18,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
-    } */]))
+    }]))
   },
   7: {
     name: 'Earthen Mage',
@@ -144,12 +144,12 @@ export const TOWER_FLOOR_4 = {
         { type: 'item', itemId: 'iron_broad_sword', amount: 1 },
         { type: 'item', itemId: 'iron_horned_helmet', amount: 1 }
       ]
-    }/* , {
+    }, {
       chance: 1 / 8,
       rewards: [
         { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
-    } */]))
+    }]))
   },
 
   boss: {

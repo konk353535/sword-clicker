@@ -23,11 +23,15 @@ export const DEFENSE_BUFFS = {
       return `Increase armor & magic armor by ${armorBuff}. (+${constants.armorPerLevel } per lvl)<br />
         After 10 seconds, erupts dealing ${damageBuff}% (+${constants.damagePerLevel * 100}% per lvl) weapon damage to all enemies`;
     },
+    data: {
+      duration: 10,
+      totalDuration: 10,
+    },
     constants: {
       armorBase: 75,
       armorPerLevel: 25,
       damageBase: 2,
-      damagePerLevel: .5
+      damagePerLevel: 0.5
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {

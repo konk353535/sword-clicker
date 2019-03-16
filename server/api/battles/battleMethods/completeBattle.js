@@ -343,8 +343,8 @@ const wasThisABossFight = function(actualBattle) {
 
 const floorContributionScaler = function(actualBattle) {
   const baseBonus   = 0.01;  //  1% base
-  const bonusPerDay = 0.005; //  1% per day
-  const maxBonusCap = 0.10;  // 10% max/cap
+  const bonusPerDay = 0.01;  //  1% per day
+  const maxBonusCap = 0.15;  // 15% max/cap
   let   curBonus    = baseBonus;
   
   const floorDetails = currentFloorDetails(actualBattle);

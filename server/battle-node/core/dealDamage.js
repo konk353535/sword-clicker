@@ -27,12 +27,12 @@ export default function(rawDamage, {
   }
   
   // if the attacker wants to flip phys to magic or magic to phys
-  if (attacker.effectFlipDamageType) {
+  if (attacker.effectFlipDamageTypeAttack) {
     isMagic = (isMagic) ? false : true;
   }
 
   // if the defender wants to flip phys to magic or magic to phys
-  if (defender.effectFlipDamageType) {
+  if (defender.effectFlipDamageTypeDefense) {
     isMagic = (isMagic) ? false : true;
   }
 

@@ -426,17 +426,17 @@ export const MISC_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
-        if (!target.effectFlipDamageType) {
+        if (!target.effectFlipDamageTypeDefense) {
           // toggle buff: activated
-          target.effectFlipDamageType = true;
+          target.effectFlipDamageTypeDefense = true;
         } else {
           // toggle buff: deactivated
-          target.effectFlipDamageType = false;
+          target.effectFlipDamageTypeDefense = false;
         }
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-        if (!target.effectFlipDamageType) {
+        if (!target.effectFlipDamageTypeDefense) {
           removeBuff({ buff, target, caster, actualBattle });
         }
       },

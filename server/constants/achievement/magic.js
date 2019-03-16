@@ -470,7 +470,7 @@ export const MAGIC_ACHIEVEMENTS = {
     hidden: false,
     description: 'Cast at least 40,000 spells',
     condition({ user }) {
-      return ((user.stats) && ((user.stats.spellsCast || 0) >= 30000));
+      return ((user.stats) && ((user.stats.spellsCast || 0) >= 40000));
     },
     rewards: [{
       type: 'item',

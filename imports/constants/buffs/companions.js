@@ -596,7 +596,7 @@ export const COMPANION_BUFFS = {
   // All levels:  gain attack damage, accuracy, and health for each level
   spd_leprechaun: {
     duplicateTag: 'spd_leprechaun',
-    icon: 'eventSPDleprechaun.jpg',
+    icon: 'eventSPDleprechaun.png',
     name: 'tricky leprechaun',
     description({ buff, level, playerSkills, floor, townBuffLevel }) {
       let descText = '';
@@ -721,7 +721,7 @@ export const COMPANION_BUFFS = {
               isNPC: true,
               isCompanion: true,
               isSoloCompanion: true,
-              icon: 'eventSPDleprechaun.jpg',
+              icon: 'eventSPDleprechaun.png',
               name: target.name + '\'s leprechaun',
               stats: {
                 attack: buffConsts.attack({level: buff.data.level, towerFloor: actualBattle.towerFloor(), attackSkill}),
@@ -746,7 +746,7 @@ export const COMPANION_BUFFS = {
                 duration: Infinity,
                 totalDuration: Infinity,
                 name: 'companion leprechaun',
-                icon: 'eventSPDleprechaun.jpg',
+                icon: 'eventSPDleprechaun.png',
                 level: buff.data.level,
                 custom: true,
               }
@@ -1808,7 +1808,7 @@ export const COMPANION_BUFFS = {
     
   spd_leprechaun_logic: {
     duplicateTag: 'spd_leprechaun_logic',
-    icon: 'eventSPDleprechaun.jpg',
+    icon: 'eventSPDleprechaun.png',
     name: 'companion leprechaun',
     description() {
       return `Companion will use combat abilities to deal damage.`;

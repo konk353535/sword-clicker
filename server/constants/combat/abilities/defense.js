@@ -454,7 +454,7 @@ export const DEFENSE_ABILITIES = {
   },
   
   spd_leprechaun: {
-    icon: 'eventSPDleprechaun.jpg',
+    icon: 'eventSPDleprechaun.png',
     name: 'leprechaun',
     id: 'spd_leprechaun',
     buffs: ['spd_leprechaun'],

@@ -68,13 +68,13 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
       // Generate unique stats for each item
       const extraStats = {};
       let myRoll = 0;
-      let maxRoll = 0;
+      let maxRoll = 0; // track how many extraStats we're rolling on
 
       // Roll for each of the stats
       Object.keys(itemConstants.extraStats).forEach((statName) => {
         const extra = itemConstants.extraStats[statName] * Math.random();
         // Determine how good this roll was
-        maxRoll += 1;
+        maxRoll++;
         if (extra > 0) {
           extraStats[statName] = extra /* math.round(extra, 1) */ ;
           

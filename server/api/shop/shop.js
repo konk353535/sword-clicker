@@ -248,10 +248,10 @@ Meteor.methods({
     }, {
       id: 'gift_box_valentines',
       cost: 10
-    } /*, {
+    }, {
       id: 'gift_box_stpatricks',
       cost: 10
-    } */];
+    }];
 
     const itemToBuy = _.findWhere(validItems, { id: itemId });
     if (!itemToBuy) {

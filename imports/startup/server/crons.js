@@ -344,6 +344,7 @@ SyncedCron.add({
 
             // Insert the next floor (To do, make this pass a valid active tower users number)
             const activeTowerUsers = FloorWaveScores.find({
+              server: currentFloor.server,
               floor: currentFloor.floor,
               points: {
                 $gte: 25

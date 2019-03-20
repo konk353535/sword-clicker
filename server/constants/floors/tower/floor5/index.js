@@ -40,11 +40,6 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'silver_knife', amount: 1 }
       ]
-    }, {
-      chance: 1 / 80,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
-      ]
     }]))
   },
   4: {
@@ -64,11 +59,6 @@ export const TOWER_FLOOR_5 = {
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'silver_wand', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 64,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
     }]))
   },
@@ -109,11 +99,6 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'blue_trident', amount: 1 }
       ]
-    }, {
-      chance: 1 / 48,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
-      ]
     }]))
   },
   6: {
@@ -141,11 +126,6 @@ export const TOWER_FLOOR_5 = {
       rewards: [
         { type: 'item', itemId: 'pale_orb', amount: 1 },
         { type: 'item', itemId: 'dull_tome', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
     }]))
   },
@@ -177,11 +157,6 @@ export const TOWER_FLOOR_5 = {
         { type: 'item', itemId: 'poison_shard_fragment', amount: 15 },
         { type: 'item', itemId: 'poison_shard_fragment', amount: 25 },
         { type: 'item', itemId: 'poison_shard_fragment', amount: 40 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'gift_box_stpatricks', amount: 1 }
       ]
     }]))
   },

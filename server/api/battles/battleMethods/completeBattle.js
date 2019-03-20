@@ -306,7 +306,7 @@ export const currentFloorDetails = function(actualBattle) {
   if (currentFloor) {
     return {
       id: currentFloor._id,
-      created: currentFloor.created,
+      created: currentFloor.createdAt,
       floor: currentFloor.floor,
       points: currentFloor.points,
       pointsMax: currentFloor.pointsMax,
@@ -323,6 +323,7 @@ export const currentFloorDetails = function(actualBattle) {
       
   return {
     id: '',
+    created: new moment(),
     floor: 0,
     points: 1,
     pointsMax: 1,
@@ -342,9 +343,9 @@ const wasThisABossFight = function(actualBattle) {
 };
 
 const floorContributionScaler = function(actualBattle) {
-  const baseBonus   = 0.01;  //  1% base
-  const bonusPerDay = 0.01;  //  1% per day
-  const maxBonusCap = 0.15;  // 15% max/cap
+  const baseBonus   = 0.02;  //   2% base
+  const bonusPerDay = 0.01;  //   1% per day
+  const maxBonusCap = 0.15;  //  15% max/cap
   let   curBonus    = baseBonus;
   
   const floorDetails = currentFloorDetails(actualBattle);
@@ -360,16 +361,10 @@ const floorContributionScaler = function(actualBattle) {
   const durationInHours = rightNow.diff(floorDetails.created, 'hours');
   
   if (durationInHours > 0) {
-    curBonus = baseBonus + (Math.floor(durationInHours / 24) * bonusPerDay);
-    
-    if (curBonus <= maxBonusCap) {
-      return curBonus;
-    }
-    
-    return maxBonusCap;
+    curBonus += (Math.floor(durationInHours / 24) * bonusPerDay);
   }
   
-  return curBonus;
+  return ((curBonus <= maxBonusCap) ? curBonus : maxBonusCap);
 };
 
 const battleHandler_DealBossDamage = function(actualBattle) {

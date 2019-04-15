@@ -422,6 +422,33 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
           return false;
         }
       }
+      
+      try {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+          let recipeData = undefined;
+          recipes.data.forEach((thisRecipe) => {
+            if (thisRecipe.produces === item.itemId) {
+              recipeData = thisRecipe;
+            }
+          });
+          
+          if (recipeData) {
+            if (!item.rarityId) {
+              item.rarityId = 'standard';
+            }
+            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            if (successChance > 95) {
+              successChance = 95;
+            }
+            if (successChance < 0) {
+              successChance = 0;
+            }
+            
+            item.reforgeChance = `${Math.round(successChance)}%`;
+          }
+        }
+      } catch (err) {
+      }      
     }
     return true;
   });
@@ -452,6 +479,33 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
           return false;
         }
       }
+      
+      try {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+          let recipeData = undefined;
+          recipes.data.forEach((thisRecipe) => {
+            if (thisRecipe.produces === item.itemId) {
+              recipeData = thisRecipe;
+            }
+          });
+          
+          if (recipeData) {
+            if (!item.rarityId) {
+              item.rarityId = 'standard';
+            }
+            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            if (successChance > 95) {
+              successChance = 95;
+            }
+            if (successChance < 0) {
+              successChance = 0;
+            }
+            
+            item.reforgeChance = `${Math.round(successChance)}%`;
+          }
+        }
+      } catch (err) {
+      }
     }
     return true;
   });
@@ -476,6 +530,33 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
         if (itemConstants.tier < highestFurnaceTier) {
           return false;
         }
+      }
+
+      try {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+          let recipeData = undefined;
+          recipes.data.forEach((thisRecipe) => {
+            if (thisRecipe.produces === item.itemId) {
+              recipeData = thisRecipe;
+            }
+          });
+          
+          if (recipeData) {
+            if (!item.rarityId) {
+              item.rarityId = 'standard';
+            }
+            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            if (successChance > 95) {
+              successChance = 95;
+            }
+            if (successChance < 0) {
+              successChance = 0;
+            }
+            
+            item.reforgeChance = `${Math.round(successChance)}%`;
+          }
+        }
+      } catch (err) {
       }
     }
     return true;

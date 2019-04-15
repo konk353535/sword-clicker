@@ -296,7 +296,25 @@ Meteor.methods({
     return (reforgeData.isError) ? -1 : reforgeData.chance;
   },
   
-  'crafting.reforgeItem'(_id) {
+  'crafting.reforgeItem'(_id) {    
+    const user = Meteor.user();
+    if (!user){
+      return false;
+    }
+    
+    const currentItem = Items.findOne({ _id, owner: Meteor.userId() });
+    if (!currentItem) {
+      return false;
+    }
+
+    if (currentItem.category !== "combat") {
+      throw new Meteor.Error("cant-reforge", "That item can't be reforged.");
+    }
+
+    if (currentItem.slot === "neck") {
+      throw new Meteor.Error("cant-reforge", "That item can't be reforged.");
+    }
+
     const reforgeData = getReforgeData(_id);
 
     if (reforgeData.isError) {
@@ -313,16 +331,6 @@ Meteor.methods({
       throw new Meteor.Error("cant-reforge", "You have no chance to reforge that item.");
     }
     
-    const user = Meteor.user();
-    if (!user){
-      return false;
-    }
-    
-    const currentItem = Items.findOne({ _id, owner: Meteor.userId() });
-    if (!currentItem) {
-      return false;
-    }
-
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
     
     if (crafting.currentlyReforging && crafting.currentlyReforging.itemId) {

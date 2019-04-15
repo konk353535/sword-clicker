@@ -130,6 +130,10 @@
               </div>
             {{/each}}
           {{/if}}
+          
+          {{#if item.reforgeChance}}
+            <b>{{{item.reforgeChance}}}</b> chance to reforge to higher rarity<br />
+          {{/if}}
                   
           {{#if constants.isTwoHanded}}
             <b>Two Handed</b><br />
@@ -225,6 +229,9 @@
                 <button type="button" class="btn btn-info primary-action">Equip</button>
               </div>
               -->
+              {{#if item.reforgeChance}}
+                <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
+              {{/if}}
               <button type="button" class="btn btn-secondary hide-btn">
                 {{#if item.hidden}}
                   Show
@@ -323,5 +330,39 @@
       </div>
     </div>
   {{/if}}
+
+  <!-- Modal -->
+  <div class="modal reforgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reforge Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Reforging equipment gives you a chance to improve the rarity of something you can craft.  The chance 
+          of success to reforge is based on your crafting level and the required crafting level of the item you are 
+          reforging. Success will improve the rarity by one tier after some time and failure will reduce the 
+          rarity by a tier. Quality will not be affected at all.<br />
+          <br />
+          You can only reforge one item at a time.<br />
+          <br />
+          Are you sure you want to reforge your <b> {{item.name}} </b> with a <b> {{item.reforgeChance}} </b> success chance?<br />
+        </div>
+        <div class="modal-footer">
+          <div class="row" style="width:100%">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-success reforge-confirm-btn pull-left">Reforge</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </template>

@@ -25,22 +25,69 @@ export const ITEM_RARITIES = {
     label: '',
     color: '',
     statBonuses: 0.0,
+    nextRarity: {
+      rarityId: 'improved',
+      successChance: 75.0, // 75% chance (plus 5% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'standard'
+    },
   },
   
-  // Crafting T2
+  // Crafting T2 (last + 20)
   improved: {
     rarityId: 'improved',
     label: 'Improved',
     color: '998800',
     statBonuses: 20.0,
+    nextRarity: {
+      rarityId: 'mastercrafted',
+      successChance: 50.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'standard'
+    },
   },
   
-  // Crafting T3
+  // Crafting T3 (last + 30)
   mastercrafted: {
     rarityId: 'mastercrafted',
     label: 'Mastercrafted',
     color: 'cc7700',
     statBonuses: 50.0,
+    nextRarity: {
+      rarityId: 'masterforged',
+      successChance: 25.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'improved'
+    },
+  },
+  
+  // Crafting T4 (last + 50)
+  masterforged: {
+    rarityId: 'masterforged',
+    label: 'Masterforged',
+    color: 'ee6622',
+    statBonuses: 100.0,
+    nextRarity: {
+      rarityId: 'ascended',
+      successChance: 10.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'mastercrafted'
+    },
+  },
+  
+  // Crafting T5 (last + 75)
+  ascended: {
+    rarityId: 'ascended',
+    label: 'Ascended',
+    color: 'ff2266',
+    statBonuses: 175.0,
+    prevRarity: {
+      rarityId: 'masterforged'
+    },
   },
   
   // Looted T1
@@ -51,7 +98,7 @@ export const ITEM_RARITIES = {
     statBonuses: 0.0,
   },
   
-  // Looted T2
+  // Looted T2 (last + 18.75)
   fine: {
     label: 'Fine',
     rarityId: 'fine',
@@ -59,7 +106,7 @@ export const ITEM_RARITIES = {
     statBonuses: 18.75,
   },
  
-  // Looted T3  
+  // Looted T3 (last + 18.75)
   rare: {
     label: 'Rare',
     rarityId: 'rare',
@@ -67,7 +114,7 @@ export const ITEM_RARITIES = {
     statBonuses: 37.5,
   },
  
-  // Looted T4
+  // Looted T4 (last + 37.5)
   extraordinary: {
     rarityId: 'extraordinary',
     label: 'Extraordinary',
@@ -75,12 +122,20 @@ export const ITEM_RARITIES = {
     statBonuses: 75.0,
   },
   
-  // Looted T5
+  // Looted T5 (last + 75)
   phenomenal: {
     rarityId: 'phenomenal',
     label: 'Phenomenal',
     color: '0055cc',
     statBonuses: 150.0,
+  },
+  
+  // Looted T6 (last + 150)
+  epic: {
+    rarityId: 'epic',
+    label: 'Epic',
+    color: '0022ee',
+    statBonuses: 300.0,
   },
   
   // Special (non-tiered): for boss drops
@@ -95,15 +150,15 @@ export const ITEM_RARITIES = {
   legendary: {
     rarityId: 'legendary',
     label: 'Legendary',
-    color: 'cc44cc',
+    color: '6633ff',
     statBonuses: 0.0,
   },
   
-  // Special (non-tiered): for legendary items
+  // Special (non-tiered): for artifact items
   artifact: {
     rarityId: 'artifact',
     label: 'Artifact',
-    color: 'ff4422',
+    color: '44cc44',
     statBonuses: 0.0,
   },
 };

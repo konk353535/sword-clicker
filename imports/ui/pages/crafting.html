@@ -4,11 +4,20 @@
     {{> skillHeader skill=craftingSkill}}
 
     <div class="my-3 {{#unless inCurrentBattle}}{{#unless summaryListDisabled}}hidden-xl-up{{/unless}}{{/unless}}">
-      <div class="d-flex flex-row align-items-center">
-        {{#each crafting.currentlyCrafting}}
-          {{> craftingDuration craftingProcess=this isCrafting=true}}
-        {{/each}}
-      </div>
+      {{#if crafting.currentlyCrafting}}
+        <div class="d-flex flex-row align-items-center">
+          <span style="min-width: 100px;">Crafting: &nbsp; </span> 
+          {{#each crafting.currentlyCrafting}}
+            {{> craftingDuration craftingProcess=this isCrafting=true}}
+          {{/each}}
+        </div>
+      {{/if}}
+      {{#if reforging}}
+        <div class="d-flex flex-row align-items-center">
+          <span style="min-width: 100px;">Reforging: &nbsp; </span>
+          {{> craftingDuration craftingProcess=reforging isReforging=true}}
+        </div>
+      {{/if}}
     </div>
 
     <h2>Items</h2>

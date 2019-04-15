@@ -10,7 +10,7 @@ import lodash from 'lodash';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
 import { CRAFTING } from '/imports/constants/crafting/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 import { CInt } from '/imports/utils.js';
@@ -214,7 +214,178 @@ const craftItem = function (recipeId, amountToCraft = 1) {
   });
 };
 
+const getReforgeData = function getReforgeData(_id) {
+  const user = Meteor.user();
+  if (!user) {
+    return { isError: true, chance: -1, rarityData: undefined };
+  }
+      
+  const craftingSkill = Skills.findOne({
+    owner: Meteor.userId(),
+    type: 'crafting'
+  });
+
+  const currentItem = Items.findOne({ _id, owner: Meteor.userId() });
+  if (!currentItem) {
+    return { isError: true, chance: -2, rarityData: undefined };
+  }
+  
+  const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
+    const recipeConstant = lodash.cloneDeep(CRAFTING.recipes[craftingKey]);
+    const itemConstant = ITEMS[recipeConstant.produces];
+
+    recipeConstant.icon = itemConstant.icon;
+    recipeConstant.description = itemConstant.description;
+    recipeConstant.isTwoHanded = itemConstant.isTwoHanded;
+
+    if (itemConstant.stats) {
+      recipeConstant.baseStats = itemConstant.stats;
+      recipeConstant.extraStats = itemConstant.extraStats;
+    }
+
+    if (itemConstant.requiredEquip) {
+      recipeConstant.requiredEquip = itemConstant.requiredEquip;
+    }
+
+    return recipeConstant;
+  });
+  
+  let recipeData = undefined;
+  recipesArray.forEach((thisRecipe) => {
+    if (thisRecipe.produces === currentItem.itemId) {
+      recipeData = thisRecipe;
+    }
+  });
+  
+  if (!currentItem.rarityId) {
+    currentItem.rarityId = 'standard';
+  }
+  
+  if (!recipeData) {
+    return { isError: true, chance: -3, rarityData: undefined };
+  }
+  
+  if (!ITEM_RARITIES[currentItem.rarityId]) {
+    return { isError: true, chance: -4, rarityData: undefined };
+  }
+  
+  const currentRarityData = ITEM_RARITIES[currentItem.rarityId];
+  
+  if (!currentRarityData.nextRarity) {
+    return { isError: true, chance: -5, rarityData: currentRarityData.nextRarity };
+  }
+  
+  const currentCraftingLevel = craftingSkill.level;
+  
+  if (craftingSkill.level < recipeData.requiredCraftingLevel) {
+    return { isError: true, chance: -6, rarityData: currentRarityData.nextRarity, recipeData };
+  }
+  
+  let chanceToSucceed = (currentRarityData.nextRarity.successChance + (currentCraftingLevel - recipeData.requiredCraftingLevel)) / 100.0;
+  if (chanceToSucceed > 0.95) {
+    chanceToSucceed = 0.95;
+  }
+
+  return { isError: false, chance: (chanceToSucceed <= 0.0) ? 0 : chanceToSucceed, rarityData: currentRarityData.nextRarity, recipeData };
+};
+
 Meteor.methods({
+  'crafting.reforgeChance'(_id) {
+    const reforgeData = getReforgeData(_id);
+    
+    return (reforgeData.isError) ? -1 : reforgeData.chance;
+  },
+  
+  'crafting.reforgeItem'(_id) {
+    const reforgeData = getReforgeData(_id);
+
+    if (reforgeData.isError) {
+      if ((reforgeData.chance === -3) || (reforgeData.chance === -5)) {
+        throw new Meteor.Error("cant-reforge", "That item can't be reforged.");
+      }
+      if (reforgeData.chance === -6) {
+        throw new Meteor.Error("cant-reforge", "You don't have enough crafting skill to reforge this item.");
+      }
+      throw new Meteor.Error("cant-reforge", `Internal error during reforging: ${-reforgeData.chance}.`);
+    }
+
+    if (reforgeData.chance <= 0)     {
+      throw new Meteor.Error("cant-reforge", "You have no chance to reforge that item.");
+    }
+    
+    const user = Meteor.user();
+    if (!user){
+      return false;
+    }
+    
+    const currentItem = Items.findOne({ _id, owner: Meteor.userId() });
+    if (!currentItem) {
+      return false;
+    }
+
+    const crafting = Crafting.findOne({ owner: Meteor.userId() });
+    
+    if (crafting.currentlyReforging && crafting.currentlyReforging.itemId) {
+      throw new Meteor.Error("cant-reforge", "You are already reforging something.");
+    }
+    
+    if (!currentItem.rarityId) {
+      currentItem.rarityId = 'standard';
+    }
+    
+    const whatWereReforging = {
+      itemId: currentItem.itemId,
+      currentRarityId: currentItem.rarityId,
+      itemData: JSON.stringify(currentItem),
+      reforgeData: JSON.stringify(reforgeData),
+      startDate: moment().toDate(),
+      endDate: moment().add((reforgeData.recipeData.requiredCraftingLevel * 5) + 15, 'seconds').toDate()
+    };
+    
+    const updatedCount = Crafting.update({
+      _id: crafting._id
+    }, {
+      $set: {
+        currentlyReforging: whatWereReforging,
+        anythingReforging: true
+      }
+    });
+    
+    if (updatedCount < 1) {
+      throw new Meteor.Error("cant-reforge", "Error setting reforging data.");
+    }
+    
+    Items.remove(currentItem._id);    
+
+    updateUserActivity({userId: Meteor.userId()});
+  },
+  
+  'crafting.cancelReforge'() {
+    const crafting = Crafting.findOne({
+      owner: Meteor.userId()
+    });
+    
+    if (!crafting || !crafting.currentlyReforging) {
+      return false;
+    }
+
+    const originalItem = JSON.parse(crafting.currentlyReforging.itemData);
+    
+    Items.insert({
+      itemId: originalItem.itemId,
+      owner: originalItem.owner,
+      category: originalItem.category,
+      extraStats: originalItem.extraStats,
+      quality: originalItem.quality,
+      rarityId: originalItem.rarityId
+    });
+      
+    Crafting.update(crafting._id, {
+      $unset: { currentlyReforging: "" },
+      $set: { anythingReforging: false }
+    });
+  },
+  
   'crafting.craftItem'(recipeId, amount) {
     if (Meteor.user().logEvents) {
       Events.insert({
@@ -373,50 +544,92 @@ Meteor.methods({
     // If existing crafts done, remove from crafting table
     const crafting = Crafting.findOne({ owner: Meteor.userId() });
 
-    if (!crafting || !crafting.currentlyCrafting) {
+    if (!crafting) {
       return;
     }
 
-    let craftingXp = 0;
-    const newItems = [];
-    const popValues = []; // Store array of currentCrafting endDates
+    if (crafting.currentlyCrafting) {
+      let craftingXp = 0;
+      const newItems = [];
+      const popValues = []; // Store array of currentCrafting endDates
 
-    crafting.currentlyCrafting.forEach((currentCraft) => {
-      if (moment().isAfter(currentCraft.endDate)) {
-        popValues.push(currentCraft.endDate);
-        newItems.push({
-          itemId: `${currentCraft.itemId}`,
-          amount: CInt(currentCraft.amount)
-        });
-        craftingXp += (CRAFTING.recipes[currentCraft.recipeId].xp * currentCraft.amount);
-      }
-    });
+      crafting.currentlyCrafting.forEach((currentCraft) => {
+        if (moment().isAfter(currentCraft.endDate)) {
+          popValues.push(currentCraft.endDate);
+          newItems.push({
+            itemId: `${currentCraft.itemId}`,
+            amount: CInt(currentCraft.amount)
+          });
+          craftingXp += (CRAFTING.recipes[currentCraft.recipeId].xp * currentCraft.amount);
+        }
+      });
 
-    const updatedCount = Crafting.update({
-      _id: crafting._id,
-      currentlyCrafting: crafting.currentlyCrafting
-    }, {
-      $pull: {
-        currentlyCrafting: {
-          endDate: {
-            $in: popValues
+      const updatedCount = Crafting.update({
+        _id: crafting._id,
+        currentlyCrafting: crafting.currentlyCrafting
+      }, {
+        $pull: {
+          currentlyCrafting: {
+            endDate: {
+              $in: popValues
+            }
           }
         }
-      }
-    });
+      });
 
-    if (updatedCount === 0) {
-      return;
+      if (updatedCount === 0) {
+        return;
+      }
+
+      // Add new items to user
+      newItems.forEach((item) => {
+        addItem(item.itemId, item.amount);
+      });
+
+      // Add crafting exp
+      if (_.isNumber(craftingXp)) {
+        addXp('crafting', craftingXp);
+      }
     }
 
-    // Add new items to user
-    newItems.forEach((item) => {
-      addItem(item.itemId, item.amount);
-    });
-
-    // Add crafting exp
-    if (_.isNumber(craftingXp)) {
-      addXp('crafting', craftingXp);
+    if (crafting.currentlyReforging) {
+      if (moment().isAfter(crafting.currentlyReforging.endDate)) {
+        const originalItem = JSON.parse(crafting.currentlyReforging.itemData);
+        const reforgeData = JSON.parse(crafting.currentlyReforging.reforgeData);
+        
+        if (!originalItem.rarityId) {
+          originalItem.rarityId = 'standard';
+        }
+        
+        const userRoll = Math.random();
+        if (userRoll <= reforgeData.chance) {
+          // success!  rarity goes UP
+          Items.insert({
+            itemId: originalItem.itemId,
+            owner: originalItem.owner,
+            category: originalItem.category,
+            extraStats: originalItem.extraStats,
+            quality: originalItem.quality,
+            rarityId: reforgeData.rarityData.rarityId
+          });
+        } else {
+          // failure!  rarity goes DOWN
+          const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
+          Items.insert({
+            itemId: originalItem.itemId,
+            owner: originalItem.owner,
+            category: originalItem.category,
+            extraStats: originalItem.extraStats,
+            quality: originalItem.quality,
+            rarityId: prevRarityId
+          });
+        }
+        
+        Crafting.update(crafting._id, {
+          $unset: { currentlyReforging: "" },
+          $set: { anythingReforging: false }
+        });
+      }
     }
   }
 });

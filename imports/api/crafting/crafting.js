@@ -12,6 +12,14 @@ CraftingSchema = new SimpleSchema({
   'currentlyCrafting.$.startDate': { type: Date },
   'currentlyCrafting.$.endDate': { type: Date },
   'currentlyCrafting.$.amount': { type: Number },
+  currentlyReforging: { type: Object, optional: true },
+  'currentlyReforging.itemId': { type: String },
+  'currentlyReforging.currentRarityId': { type: String },
+  'currentlyReforging.itemData': { type: String },
+  'currentlyReforging.reforgeData': { type: String },
+  'currentlyReforging.startDate': { type: Date },
+  'currentlyReforging.endDate': { type: Date },
+  anythingReforging: { type: Boolean, defaultValue: false },
   learntCrafts: { type: Object, blackbox: true, optional: true },
   expiringCrafts: { type: Object, blackbox: true, optional: true }
 });

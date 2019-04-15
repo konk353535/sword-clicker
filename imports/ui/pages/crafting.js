@@ -5,7 +5,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
 import { DONATORS_BENEFITS } from '/imports/constants/shop/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 
 import { Crafting } from '/imports/api/crafting/crafting.js';
 import { Skills } from '/imports/api/skills/skills.js';
@@ -255,7 +255,14 @@ Template.craftingPage.helpers({
   },
 
   crafting() {
-    return Crafting.findOne();
+    return Crafting.findOne({});
+  },
+
+  reforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+    const crafting = Crafting.findOne({});
+    if (crafting && crafting.anythingReforging)
+      return crafting.currentlyReforging;
+    return false;
   },
 
   maxCraftAmount() {
@@ -477,6 +484,9 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
 
 
 const FetchAllVisibleItems = function (highestFurnaceTier) {
+  const recipes = Session.get('recipeCache');
+  const craftingSkill = Skills.findOne({ type: 'crafting' });
+  
   return Items.find(
     {
       equipped: false,
@@ -498,6 +508,31 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
         if (itemConstants.tier < highestFurnaceTier) {
           return false;
         }
+      }
+
+      try {
+        let recipeData = undefined;
+        recipes.data.forEach((thisRecipe) => {
+          if (thisRecipe.produces === item.itemId) {
+            recipeData = thisRecipe;
+          }
+        });
+        
+        if (recipeData) {
+          if (!item.rarityId) {
+            item.rarityId = 'standard';
+          }
+          let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+          if (successChance > 95) {
+            successChance = 95;
+          }
+          if (successChance < 0) {
+            successChance = 0;
+          }
+          
+          item.reforgeChance = `${Math.round(successChance)}%`;
+        }
+      } catch (err) {
       }
     }
     return true;

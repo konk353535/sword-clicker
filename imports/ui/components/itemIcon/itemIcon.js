@@ -131,11 +131,24 @@ Template.itemIcon.helpers({
     
     if (item.rarityId) {
       if (ITEM_RARITIES[item.rarityId]) {
-        return { rare: true, label: ITEM_RARITIES[item.rarityId].label, color: ITEM_RARITIES[item.rarityId].color };
+        if (ITEM_RARITIES[item.rarityId].label.length > 0) {
+          return { rare: true, label: ITEM_RARITIES[item.rarityId].label, color: ITEM_RARITIES[item.rarityId].color };
+        }
       }
     }
     
     return { rare: false, label: '', color: '000' };
+  },
+  
+  reforgeChance() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (item.reforgeChance) {
+      return item.reforgeChance;
+    }
+    
+    return false;
   },
   
   stats() {
@@ -467,6 +480,25 @@ Template.itemIcon.events({
 
   'click .donate-btn'(event, instance) {
     donateItem(event, instance);
+  },
+  
+  'click .reforge-btn'(event, instance) {
+    if (instance.data.hideTooltip) return;
+
+    Template.instance().$('.sellModal').modal('hide');
+    Template.instance().$('.reforgeModal').modal('show');
+  },
+  
+  'click .reforge-confirm-btn'(event, instance) {
+    if (instance.data.hideTooltip) return;
+
+    Template.instance().$('.reforgeModal').modal('hide');
+
+    const itemData = instance.data.item;
+    Meteor.call('crafting.reforgeItem', itemData._id, (err, res) => {
+      if (err)
+        toastr.warning(err.reason);
+    });
   },
   
   'click .use-btn'(event, instance) {

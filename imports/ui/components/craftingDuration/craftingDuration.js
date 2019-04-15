@@ -3,6 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import moment from 'moment';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+
 import './craftingDuration.html';
 
 let called = false;
@@ -49,6 +51,12 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
     if (craftingProcess.percentage < 0) {
       craftingProcess.percentage = 0;
     }
+    
+    if (!craftingProcess.icon) {
+      if (craftingProcess.itemId) {
+        craftingProcess.icon = ITEMS[craftingProcess.itemId].icon;
+      }
+    }
 
     this.state.set('computedCraftingProcess', craftingProcess);
   });
@@ -63,6 +71,8 @@ Template.craftingDuration.events({
     } else if (instance.data.isInscription) {
       // Cancel the craft for this
       Meteor.call('inscription.cancelCraft', instance.data.craftingProcess.endDate);      
+    } else if (instance.data.isReforging) {
+      Meteor.call('crafting.cancelReforge');            
     }
   },
 });

@@ -253,10 +253,11 @@ export const MISC_ITEMS = {
       accuracy: 0.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
   "tin_kite_shield": {
@@ -283,10 +284,11 @@ export const MISC_ITEMS = {
       accuracy: 1.3 * 1.15 * 0.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -318,10 +320,11 @@ export const MISC_ITEMS = {
       accuracy: 1.0
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -353,10 +356,11 @@ export const MISC_ITEMS = {
       accuracy: 1.1 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -388,10 +392,11 @@ export const MISC_ITEMS = {
       accuracy: 1.3 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -423,10 +428,11 @@ export const MISC_ITEMS = {
       accuracy: 1.5 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -458,10 +464,11 @@ export const MISC_ITEMS = {
       accuracy: 1.8 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -493,10 +500,11 @@ export const MISC_ITEMS = {
       accuracy: 2 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -528,10 +536,11 @@ export const MISC_ITEMS = {
       accuracy: 2.4 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -563,10 +572,11 @@ export const MISC_ITEMS = {
       accuracy: 2.7 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -598,10 +608,11 @@ export const MISC_ITEMS = {
       accuracy: 3.1 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -633,10 +644,11 @@ export const MISC_ITEMS = {
       accuracy: 3.5 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -668,10 +680,11 @@ export const MISC_ITEMS = {
       accuracy: 3.9 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -703,10 +716,11 @@ export const MISC_ITEMS = {
       accuracy: 4.3 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -738,10 +752,11 @@ export const MISC_ITEMS = {
       accuracy: 4.8 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -773,10 +788,11 @@ export const MISC_ITEMS = {
       accuracy: 5.2 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -808,10 +824,11 @@ export const MISC_ITEMS = {
       accuracy: 5.7 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -843,10 +860,11 @@ export const MISC_ITEMS = {
       accuracy: 6.3 * 1.15,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -878,10 +896,11 @@ export const MISC_ITEMS = {
       accuracy: 7.1 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -913,10 +932,11 @@ export const MISC_ITEMS = {
       accuracy: 6.7 * 1.15
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -949,10 +969,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -985,10 +1006,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1021,10 +1043,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1057,10 +1080,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1093,10 +1117,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1129,10 +1154,11 @@ export const MISC_ITEMS = {
       accuracy: 15.3 * 1.15 * 0.5 * 1.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1313,10 +1339,11 @@ export const MISC_ITEMS = {
       accuracy: 0.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -1343,10 +1370,11 @@ export const MISC_ITEMS = {
       accuracy: 1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1382,10 +1410,11 @@ export const MISC_ITEMS = {
       accuracy: 1.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1421,10 +1450,11 @@ export const MISC_ITEMS = {
       accuracy: 1.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1460,10 +1490,11 @@ export const MISC_ITEMS = {
       accuracy: 1.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1499,10 +1530,11 @@ export const MISC_ITEMS = {
       accuracy: 1.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1538,10 +1570,11 @@ export const MISC_ITEMS = {
       accuracy: 2.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1577,10 +1610,11 @@ export const MISC_ITEMS = {
       accuracy: 2.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1616,10 +1650,11 @@ export const MISC_ITEMS = {
       accuracy: 2.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1655,10 +1690,11 @@ export const MISC_ITEMS = {
       accuracy: 3.3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1694,10 +1730,11 @@ export const MISC_ITEMS = {
       accuracy: 3.7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1733,10 +1770,11 @@ export const MISC_ITEMS = {
       accuracy: 4.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1772,10 +1810,11 @@ export const MISC_ITEMS = {
       accuracy: 4.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1811,10 +1850,11 @@ export const MISC_ITEMS = {
       accuracy: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1850,10 +1890,11 @@ export const MISC_ITEMS = {
       accuracy: 5.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1889,10 +1930,11 @@ export const MISC_ITEMS = {
       accuracy: 6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1928,10 +1970,11 @@ export const MISC_ITEMS = {
       accuracy: 6.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1967,10 +2010,11 @@ export const MISC_ITEMS = {
       accuracy: 7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2006,10 +2050,11 @@ export const MISC_ITEMS = {
       accuracy: 7.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2045,10 +2090,11 @@ export const MISC_ITEMS = {
       accuracy: 8.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2084,10 +2130,11 @@ export const MISC_ITEMS = {
       accuracy: 8.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2123,10 +2170,11 @@ export const MISC_ITEMS = {
       accuracy: 9.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2162,10 +2210,11 @@ export const MISC_ITEMS = {
       accuracy: 9.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2201,10 +2250,11 @@ export const MISC_ITEMS = {
       accuracy: 10.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2240,10 +2290,11 @@ export const MISC_ITEMS = {
       accuracy: 11.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2279,10 +2330,11 @@ export const MISC_ITEMS = {
       accuracy: 11.7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2318,10 +2370,11 @@ export const MISC_ITEMS = {
       accuracy: 1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -2346,10 +2399,11 @@ export const MISC_ITEMS = {
       accuracy: 1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2379,10 +2433,11 @@ export const MISC_ITEMS = {
       accuracy: 2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2412,10 +2467,11 @@ export const MISC_ITEMS = {
       accuracy: 2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2445,10 +2501,11 @@ export const MISC_ITEMS = {
       accuracy: 2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2478,10 +2535,11 @@ export const MISC_ITEMS = {
       accuracy: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2511,10 +2569,11 @@ export const MISC_ITEMS = {
       accuracy: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2544,10 +2603,11 @@ export const MISC_ITEMS = {
       accuracy: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2577,10 +2637,11 @@ export const MISC_ITEMS = {
       accuracy: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2610,10 +2671,11 @@ export const MISC_ITEMS = {
       accuracy: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2643,10 +2705,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2676,10 +2739,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2709,10 +2773,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2742,10 +2807,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2775,10 +2841,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2808,10 +2875,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2841,10 +2909,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2874,10 +2943,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2907,10 +2977,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2940,10 +3011,11 @@ export const MISC_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2973,10 +3045,11 @@ export const MISC_ITEMS = {
       accuracy: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3006,10 +3079,11 @@ export const MISC_ITEMS = {
       accuracy: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3039,10 +3113,11 @@ export const MISC_ITEMS = {
       accuracy: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3072,10 +3147,11 @@ export const MISC_ITEMS = {
       accuracy: 6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3105,10 +3181,11 @@ export const MISC_ITEMS = {
       accuracy: 6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3138,10 +3215,11 @@ export const MISC_ITEMS = {
       accuracy: 6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3281,10 +3359,11 @@ export const MISC_ITEMS = {
       accuracy: 0.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -3323,10 +3402,11 @@ export const MISC_ITEMS = {
       accuracy: 1.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3370,10 +3450,11 @@ export const MISC_ITEMS = {
       accuracy: 2.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3417,10 +3498,11 @@ export const MISC_ITEMS = {
       accuracy: 3.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3464,10 +3546,11 @@ export const MISC_ITEMS = {
       accuracy: 5.3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3511,10 +3594,11 @@ export const MISC_ITEMS = {
       accuracy: 7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3558,10 +3642,11 @@ export const MISC_ITEMS = {
       accuracy: 8.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3605,10 +3690,11 @@ export const MISC_ITEMS = {
       accuracy: 10.7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3652,10 +3738,11 @@ export const MISC_ITEMS = {
       accuracy: 12.7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3699,10 +3786,11 @@ export const MISC_ITEMS = {
       accuracy: 14.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3746,10 +3834,11 @@ export const MISC_ITEMS = {
       accuracy: 17.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3793,10 +3882,11 @@ export const MISC_ITEMS = {
       accuracy: 19.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3840,10 +3930,11 @@ export const MISC_ITEMS = {
       accuracy: 22.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3887,10 +3978,11 @@ export const MISC_ITEMS = {
       accuracy: 24.6
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3934,10 +4026,11 @@ export const MISC_ITEMS = {
       accuracy: 27.3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -3981,10 +4074,11 @@ export const MISC_ITEMS = {
       accuracy: 30.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4028,10 +4122,11 @@ export const MISC_ITEMS = {
       accuracy: 32.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4075,10 +4170,11 @@ export const MISC_ITEMS = {
       accuracy: 35.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4122,10 +4218,11 @@ export const MISC_ITEMS = {
       accuracy: 38.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4169,10 +4266,11 @@ export const MISC_ITEMS = {
       accuracy: 41.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4216,10 +4314,11 @@ export const MISC_ITEMS = {
       accuracy: 45.1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4263,10 +4362,11 @@ export const MISC_ITEMS = {
       accuracy: 48.3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4310,10 +4410,11 @@ export const MISC_ITEMS = {
       accuracy: 51.7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4357,10 +4458,11 @@ export const MISC_ITEMS = {
       accuracy: 55
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4404,10 +4506,11 @@ export const MISC_ITEMS = {
       accuracy: 58.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4451,10 +4554,11 @@ export const MISC_ITEMS = {
       accuracy: 62
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4580,10 +4684,11 @@ export const MISC_ITEMS = {
       magicArmor: 2.9,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -4606,10 +4711,11 @@ export const MISC_ITEMS = {
       magicArmor: 3.8,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4637,10 +4743,11 @@ export const MISC_ITEMS = {
       magicArmor: 5,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4668,10 +4775,11 @@ export const MISC_ITEMS = {
       magicArmor: 6.3,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4699,10 +4807,11 @@ export const MISC_ITEMS = {
       magicArmor: 7.8,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4730,10 +4839,11 @@ export const MISC_ITEMS = {
       magicArmor: 9.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4761,10 +4871,11 @@ export const MISC_ITEMS = {
       magicArmor: 11.1,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4792,10 +4903,11 @@ export const MISC_ITEMS = {
       magicArmor: 13,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4823,10 +4935,11 @@ export const MISC_ITEMS = {
       magicArmor: 15,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4854,10 +4967,11 @@ export const MISC_ITEMS = {
       magicArmor: 17,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4885,10 +4999,11 @@ export const MISC_ITEMS = {
       magicArmor: 19.2,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4916,10 +5031,11 @@ export const MISC_ITEMS = {
       magicArmor: 21.5,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4947,10 +5063,11 @@ export const MISC_ITEMS = {
       magicArmor: 23.8,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -4978,10 +5095,11 @@ export const MISC_ITEMS = {
       magicArmor: 26.3,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5009,10 +5127,11 @@ export const MISC_ITEMS = {
       magicArmor: 28.8,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5040,10 +5159,11 @@ export const MISC_ITEMS = {
       magicArmor: 31.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5071,10 +5191,11 @@ export const MISC_ITEMS = {
       magicArmor: 34,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5102,10 +5223,11 @@ export const MISC_ITEMS = {
       magicArmor: 36.8,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5133,10 +5255,11 @@ export const MISC_ITEMS = {
       magicArmor: 39.6,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5164,10 +5287,11 @@ export const MISC_ITEMS = {
       magicArmor: 42.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5195,10 +5319,11 @@ export const MISC_ITEMS = {
       magicArmor: 45.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5226,10 +5351,11 @@ export const MISC_ITEMS = {
       magicArmor: 48.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5257,10 +5383,11 @@ export const MISC_ITEMS = {
       magicArmor: 51.4,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5288,10 +5415,11 @@ export const MISC_ITEMS = {
       magicArmor: 54.6,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5319,10 +5447,11 @@ export const MISC_ITEMS = {
       magicArmor: 57.7,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5350,10 +5479,11 @@ export const MISC_ITEMS = {
       magicArmor: 61,
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5535,10 +5665,11 @@ export const MISC_ITEMS = {
       magicArmor: 20
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5851,10 +5982,11 @@ export const MISC_ITEMS = {
       healingPower: 1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -5882,10 +6014,11 @@ export const MISC_ITEMS = {
       healingPower: 2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5918,10 +6051,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5954,10 +6088,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -5990,10 +6125,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6026,10 +6162,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6062,10 +6199,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6098,10 +6236,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6134,10 +6273,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6170,10 +6310,11 @@ export const MISC_ITEMS = {
       healingPower: 3
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6206,10 +6347,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6242,10 +6384,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6278,10 +6421,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6315,10 +6459,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6351,10 +6496,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6387,10 +6533,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6423,10 +6570,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6459,10 +6607,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6495,10 +6644,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6531,10 +6681,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6567,10 +6718,11 @@ export const MISC_ITEMS = {
       healingPower: 4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6603,10 +6755,11 @@ export const MISC_ITEMS = {
       healingPower: 5.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6639,10 +6792,11 @@ export const MISC_ITEMS = {
       healingPower: 5.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6675,10 +6829,11 @@ export const MISC_ITEMS = {
       healingPower: 5.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6711,10 +6866,11 @@ export const MISC_ITEMS = {
       healingPower: 7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6747,10 +6903,11 @@ export const MISC_ITEMS = {
       healingPower: 7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6783,10 +6940,11 @@ export const MISC_ITEMS = {
       healingPower: 7
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6815,10 +6973,11 @@ export const MISC_ITEMS = {
       healingPower: 2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -6842,10 +7001,11 @@ export const MISC_ITEMS = {
       healingPower: 3.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6874,10 +7034,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6906,10 +7067,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6938,10 +7100,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -6970,10 +7133,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7002,10 +7166,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7034,10 +7199,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7066,10 +7232,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7098,10 +7265,11 @@ export const MISC_ITEMS = {
       healingPower: 5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7130,10 +7298,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7162,10 +7331,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7194,10 +7364,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7226,10 +7397,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7258,10 +7430,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7290,10 +7463,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7322,10 +7496,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7354,10 +7529,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7386,10 +7562,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7418,10 +7595,11 @@ export const MISC_ITEMS = {
       healingPower: 6.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7450,10 +7628,11 @@ export const MISC_ITEMS = {
       healingPower: 8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7482,10 +7661,11 @@ export const MISC_ITEMS = {
       healingPower: 8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7514,10 +7694,11 @@ export const MISC_ITEMS = {
       healingPower: 8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7546,10 +7727,11 @@ export const MISC_ITEMS = {
       healingPower: 11.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7578,10 +7760,11 @@ export const MISC_ITEMS = {
       healingPower: 11.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -7610,10 +7793,11 @@ export const MISC_ITEMS = {
       healingPower: 12
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',

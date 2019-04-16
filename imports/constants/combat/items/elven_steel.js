@@ -111,10 +111,11 @@ export const ELVEN_STEEL_ITEMS = {
       "accuracy": 27.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -180,10 +181,11 @@ export const ELVEN_STEEL_ITEMS = {
       "accuracy": 36.9
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -244,10 +246,11 @@ export const ELVEN_STEEL_ITEMS = {
       "accuracy": 4.8
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',

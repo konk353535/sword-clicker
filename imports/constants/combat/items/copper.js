@@ -99,10 +99,11 @@ export const COPPER_ITEMS = {
       accuracy: 1.5
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -160,10 +161,11 @@ export const COPPER_ITEMS = {
       accuracy: 2.4
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 
@@ -217,10 +219,11 @@ export const COPPER_ITEMS = {
       accuracy: 1
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance: 0.01, rarityId: 'epic', },
+      { chance: 0.4,  rarityId: 'phenomenal', },
+      { chance: 1.55, rarityId: 'extraordinary', },
+      { chance: 6.25, rarityId: 'rare', },
+      { chance: 25,   rarityId: 'fine', },
     ],
   },
 

@@ -19,6 +19,36 @@ export const ITEMS = Object.assign(
 );
 
 export const ITEM_RARITIES = {
+  // Crafting T-1 (next - 30)
+  crude: {
+    rarityId: 'crude',
+    label: '',
+    color: '',
+    statBonuses: -50.0,
+    nextRarity: {
+      rarityId: 'rough',
+      successChance: 75.0, // 75% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'crude'
+    },
+  },
+  
+  // Crafting T0 (next - 20)
+  rough: {
+    rarityId: 'rough',
+    label: '',
+    color: '',
+    statBonuses: -20.0,
+    nextRarity: {
+      rarityId: 'standard',
+      successChance: 60.0, // 60% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'crude'
+    },
+  },
+  
   // Crafting T1
   standard: {
     rarityId: 'standard',
@@ -27,10 +57,10 @@ export const ITEM_RARITIES = {
     statBonuses: 0.0,
     nextRarity: {
       rarityId: 'improved',
-      successChance: 75.0, // 75% chance (plus 5% chance per crafting skill level above recipe to craft this)
+      successChance: 45.0, // 45% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
-      rarityId: 'standard'
+      rarityId: 'rough'
     },
   },
   
@@ -42,7 +72,7 @@ export const ITEM_RARITIES = {
     statBonuses: 20.0,
     nextRarity: {
       rarityId: 'mastercrafted',
-      successChance: 50.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+      successChance: 30.0, // 30% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
       rarityId: 'standard'
@@ -57,7 +87,7 @@ export const ITEM_RARITIES = {
     statBonuses: 50.0,
     nextRarity: {
       rarityId: 'masterforged',
-      successChance: 25.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+      successChance: 15.0, // 15% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
       rarityId: 'improved'
@@ -72,21 +102,36 @@ export const ITEM_RARITIES = {
     statBonuses: 100.0,
     nextRarity: {
       rarityId: 'ascended',
-      successChance: 10.0, // 40% chance (plus 5% chance per crafting skill level above recipe to craft this)
+      successChance: 5.0, // 5% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
       rarityId: 'mastercrafted'
     },
   },
   
-  // Crafting T5 (last + 75)
+  // Crafting T5 (last + 70)
   ascended: {
     rarityId: 'ascended',
     label: 'Ascended',
     color: 'ff2266',
-    statBonuses: 175.0,
+    statBonuses: 170.0,
+    nextRarity: {
+      rarityId: 'ethereal',
+      successChance: -5.0, // -5% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
     prevRarity: {
       rarityId: 'masterforged'
+    },
+  },
+  
+  // Crafting T6 (last + 90)
+  ethereal: {
+    rarityId: 'ethereal',
+    label: 'Ethereal',
+    color: 'FF5599',
+    statBonuses: 260.0,
+    prevRarity: {
+      rarityId: 'ascended'
     },
   },
   
@@ -136,6 +181,14 @@ export const ITEM_RARITIES = {
     label: 'Epic',
     color: '0022ee',
     statBonuses: 300.0,
+  },
+  
+  // Looted T7 (last + 200)
+  divine: {
+    rarityId: 'divine',
+    label: 'Divine',
+    color: '0022ee',
+    statBonuses: 500.0,
   },
   
   // Special (non-tiered): for boss drops

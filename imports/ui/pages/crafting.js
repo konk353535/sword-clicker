@@ -424,7 +424,7 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
       }
       
       try {
-        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck") && (item.extraStats)) {
           let recipeData = undefined;
           recipes.data.forEach((thisRecipe) => {
             if (thisRecipe.produces === item.itemId) {
@@ -481,7 +481,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
       }
       
       try {
-        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck") && (item.extraStats)) {
           let recipeData = undefined;
           recipes.data.forEach((thisRecipe) => {
             if (thisRecipe.produces === item.itemId) {
@@ -533,7 +533,7 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
       }
 
       try {
-        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck") && (item.extraStats)) {
           let recipeData = undefined;
           recipes.data.forEach((thisRecipe) => {
             if (thisRecipe.produces === item.itemId) {
@@ -592,7 +592,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
       }
 
       try {
-        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck")) {
+        if ((itemConstants.category == "combat") && (itemConstants.slot != "neck") && (item.extraStats)) {
           let recipeData = undefined;
           recipes.data.forEach((thisRecipe) => {
             if (thisRecipe.produces === item.itemId) {

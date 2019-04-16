@@ -17,6 +17,8 @@ import { MiningSpace, Mining } from '/imports/api/mining/mining.js';
 import '../components/mining/mineSpace.js';
 import './overview.html';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+
 let updatingAdventures = false;
 let miningPageTimer;
 let hasInitGameUpdate = false;
@@ -352,6 +354,13 @@ Template.overviewPage.helpers({
 
     return crafting.currentlyCrafting.slice(1);
   },
+  
+  reforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+    const crafting = Crafting.findOne({});
+    if (crafting && crafting.anythingReforging)
+      return crafting.currentlyReforging;
+    return false;
+  },
 
   firstInscription() {
     const inscription = Inscription.findOne({});
@@ -584,6 +593,11 @@ Template.firstCraftingUI.helpers({
   computedCraftingProcess() {
     const instance = Template.instance();
     return instance.state.get('computedCraftingProcess');
+  },
+  
+  icon() {
+    const instance = Template.instance();
+    return ((instance.data.data.icon) ? instance.data.data.icon : ITEMS[instance.data.data.itemId].icon);
   }
 });
 

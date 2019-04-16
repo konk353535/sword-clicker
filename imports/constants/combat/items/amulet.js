@@ -15,8 +15,10 @@ export const AMULET_ITEMS = {
       energyRegen: 10 // Per minute
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -42,8 +44,10 @@ export const AMULET_ITEMS = {
       criticalChance: 3
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -70,8 +74,10 @@ export const AMULET_ITEMS = {
       defense: 2
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -98,8 +104,10 @@ export const AMULET_ITEMS = {
       magicArmor: 15
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -127,8 +135,10 @@ export const AMULET_ITEMS = {
       accuracy: 2
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -158,8 +168,10 @@ export const AMULET_ITEMS = {
       magicPower: 1
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -189,8 +201,10 @@ export const AMULET_ITEMS = {
       magicPower: 3
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -217,8 +231,10 @@ export const AMULET_ITEMS = {
       defense: 4
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -245,8 +261,10 @@ export const AMULET_ITEMS = {
       magicArmor: 30
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -274,8 +292,10 @@ export const AMULET_ITEMS = {
       accuracy: 4
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -305,8 +325,10 @@ export const AMULET_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -333,8 +355,10 @@ export const AMULET_ITEMS = {
       defense: 6
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -361,8 +385,10 @@ export const AMULET_ITEMS = {
       magicArmor: 45
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -390,8 +416,10 @@ export const AMULET_ITEMS = {
       accuracy: 6
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -421,8 +449,10 @@ export const AMULET_ITEMS = {
       attackMax: 9
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -449,8 +479,10 @@ export const AMULET_ITEMS = {
       defense: 8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -477,8 +509,10 @@ export const AMULET_ITEMS = {
       magicArmor: 60
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -506,8 +540,10 @@ export const AMULET_ITEMS = {
       accuracy: 8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -538,8 +574,10 @@ export const AMULET_ITEMS = {
 
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -566,8 +604,10 @@ export const AMULET_ITEMS = {
       defense: 8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -594,8 +634,10 @@ export const AMULET_ITEMS = {
       magicArmor: 75
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -623,8 +665,10 @@ export const AMULET_ITEMS = {
       accuracy: 10
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',

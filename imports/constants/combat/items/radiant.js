@@ -54,8 +54,10 @@ export const RADIANT_ITEMS = {
       "defense": 9.8 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -86,8 +88,10 @@ export const RADIANT_ITEMS = {
       "accuracy": 29.8 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -118,11 +122,12 @@ export const RADIANT_ITEMS = {
       "accuracy": 29.8 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -154,8 +159,10 @@ export const RADIANT_ITEMS = {
       "accuracy": 40.2 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -188,11 +195,12 @@ export const RADIANT_ITEMS = {
       "accuracy": 40.2 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -225,8 +233,10 @@ export const RADIANT_ITEMS = {
       "attackMax": 90 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -255,11 +265,12 @@ export const RADIANT_ITEMS = {
       "accuracy": 9.2
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -288,8 +299,10 @@ export const RADIANT_ITEMS = {
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -317,8 +330,10 @@ export const RADIANT_ITEMS = {
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -346,8 +361,10 @@ export const RADIANT_ITEMS = {
       "armor": 25.1 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -376,8 +393,10 @@ export const RADIANT_ITEMS = {
       "armor": 50.3 * RADIANT_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',

@@ -47,8 +47,10 @@ export const ORICHALCUM_ITEMS = {
       "defense": 6.6
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -79,8 +81,10 @@ export const ORICHALCUM_ITEMS = {
       "accuracy": 20
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -111,11 +115,12 @@ export const ORICHALCUM_ITEMS = {
       "accuracy": 20
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -147,8 +152,10 @@ export const ORICHALCUM_ITEMS = {
       "accuracy": 27
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -181,11 +188,12 @@ export const ORICHALCUM_ITEMS = {
       "accuracy": 27
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -217,8 +225,10 @@ export const ORICHALCUM_ITEMS = {
       "attackMax": 60.4
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -246,11 +256,12 @@ export const ORICHALCUM_ITEMS = {
       "accuracy": 3.5
     },
     upgradeRarity: [
-      { chance: 0.01, rarityId: 'epic', },
-      { chance: 0.4,  rarityId: 'phenomenal', },
-      { chance: 1.55, rarityId: 'extraordinary', },
-      { chance: 6.25, rarityId: 'rare', },
-      { chance: 25,   rarityId: 'fine', },
+      { chance:  0.111111, rarityId: 'divine', },
+      { chance:  0.333333, rarityId: 'epic', },
+      { chance:  1.000000, rarityId: 'phenomenal', },
+      { chance:  3.000000, rarityId: 'extraordinary', },
+      { chance:  9.000000, rarityId: 'rare', },
+      { chance: 27.000000, rarityId: 'fine', },
     ],
     requiredEquip: [{
       type: 'skill',
@@ -278,8 +289,10 @@ export const ORICHALCUM_ITEMS = {
       "armor": 16.8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -307,8 +320,10 @@ export const ORICHALCUM_ITEMS = {
       "armor": 16.8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -336,8 +351,10 @@ export const ORICHALCUM_ITEMS = {
       "armor": 16.8
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -366,8 +383,10 @@ export const ORICHALCUM_ITEMS = {
       "armor": 33.7
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10, rarityId: 'improved', }, // 10% chance
+      { chance: 20, rarityId: 'crude', },    // 10% chance
+      { chance: 40, rarityId: 'rough', },    // 20% chance
+                                             // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',

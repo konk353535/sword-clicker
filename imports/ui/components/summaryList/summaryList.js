@@ -83,7 +83,14 @@ Template.summaryList.helpers({
   },
 
   crafting() {
-    return Crafting.findOne();
+    return Crafting.findOne({});
+  },
+  
+  reforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+    const crafting = Crafting.findOne({});
+    if (crafting && crafting.anythingReforging)
+      return crafting.currentlyReforging;
+    return false;
   },
 
   inCurrentBattle() {

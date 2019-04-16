@@ -168,6 +168,15 @@
               {{/each}}
             </div>
 
+            <h6 class="mt-3"><a href="/crafting">Reforging</a></h6>
+            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
+              {{#if reforging}}
+                {{> craftingDuration craftingProcess=reforging isReforging=true}}
+              {{else}}
+                <i>(nothing reforging)</i>
+              {{/if}}
+            </div>
+
             <h6 class="mt-3"><a href="/inscription">Inscription</a></h6>
             <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
               {{#each inscription.currentlyCrafting}}

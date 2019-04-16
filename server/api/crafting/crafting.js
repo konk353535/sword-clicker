@@ -367,11 +367,16 @@ Meteor.methods({
       owner: Meteor.userId()
     });
     
-    if (!crafting || !crafting.currentlyReforging) {
+    if (!crafting || !crafting.currentlyReforging || !crafting.anythingReforging) {
       return false;
     }
 
     const originalItem = JSON.parse(crafting.currentlyReforging.itemData);
+    
+    Crafting.update(crafting._id, {
+      $unset: { currentlyReforging: "" },
+      $set: { anythingReforging: false }
+    }); 
     
     Items.insert({
       itemId: originalItem.itemId,
@@ -381,12 +386,9 @@ Meteor.methods({
       quality: originalItem.quality,
       rarityId: originalItem.rarityId,
       enhanced: originalItem.enhanced
-    });
-      
-    Crafting.update(crafting._id, {
-      $unset: { currentlyReforging: "" },
-      $set: { anythingReforging: false }
-    });
+    });   
+
+    updateUserActivity({userId: Meteor.userId()});
   },
   
   'crafting.craftItem'(recipeId, amount) {
@@ -604,7 +606,13 @@ Meteor.methods({
           originalItem.rarityId = 'standard';
         }
         
+        Crafting.update(crafting._id, {
+          $unset: { currentlyReforging: "" },
+          $set: { anythingReforging: false }
+        });
+        
         const userRoll = Math.random();
+        
         if (userRoll <= reforgeData.chance) {
           // success!  rarity goes UP
           Items.insert({
@@ -629,11 +637,6 @@ Meteor.methods({
             enhanced: originalItem.enhanced
           });
         }
-        
-        Crafting.update(crafting._id, {
-          $unset: { currentlyReforging: "" },
-          $set: { anythingReforging: false }
-        });
       }
     }
   }

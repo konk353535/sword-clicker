@@ -290,12 +290,6 @@ const getReforgeData = function getReforgeData(_id) {
 };
 
 Meteor.methods({
-  'crafting.reforgeChance'(_id) {
-    const reforgeData = getReforgeData(_id);
-    
-    return (reforgeData.isError) ? -1 : reforgeData.chance;
-  },
-  
   'crafting.reforgeItem'(_id) {    
     const user = Meteor.user();
     if (!user){
@@ -385,7 +379,8 @@ Meteor.methods({
       category: originalItem.category,
       extraStats: originalItem.extraStats,
       quality: originalItem.quality,
-      rarityId: originalItem.rarityId
+      rarityId: originalItem.rarityId,
+      enhanced: originalItem.enhanced
     });
       
     Crafting.update(crafting._id, {
@@ -618,7 +613,8 @@ Meteor.methods({
             category: originalItem.category,
             extraStats: originalItem.extraStats,
             quality: originalItem.quality,
-            rarityId: reforgeData.rarityData.rarityId
+            rarityId: reforgeData.rarityData.rarityId,
+            enhanced: originalItem.enhanced
           });
         } else {
           // failure!  rarity goes DOWN
@@ -629,7 +625,8 @@ Meteor.methods({
             category: originalItem.category,
             extraStats: originalItem.extraStats,
             quality: originalItem.quality,
-            rarityId: prevRarityId
+            rarityId: prevRarityId,
+            enhanced: originalItem.enhanced
           });
         }
         

@@ -372,9 +372,9 @@ Template.lobbyPage.events({
         });        
       }
     } else if (type === 'solo') {
-      const level = instance.state.get('currentLevel');      
+      const level = instance.state.get('currentLevel');   
 
-      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), energyUse, function (err, res) {
+      Meteor.call('battles.findPersonalBattle', parseInt(level), energyUse, function (err, res) {
         if (err) {
           toastr.warning(err.reason);
         }

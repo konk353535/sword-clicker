@@ -197,6 +197,18 @@ Meteor.methods({
     updateUserActivity({userId: Meteor.userId()});
   },
 
+  'groups.anyStart'(anyStart) {
+    Groups.update({
+      leader: Meteor.userId()
+    }, {
+      $set: {
+        allowAnyStartCombat: anyStart
+      }
+    });
+
+    updateUserActivity({userId: Meteor.userId()});
+  },
+
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({

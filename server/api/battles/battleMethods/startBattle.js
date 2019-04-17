@@ -53,7 +53,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   });
 
   let battleParticipants = [Meteor.userId()];
-  if (currentGroup && currentGroup.leader !== Meteor.userId()) {
+  if (currentGroup && currentGroup.leader !== Meteor.userId() && !currentGroup.allowAnyStartCombat) {
     throw new Meteor.Error('not-leader', 'You must be the leader to start a battle in a group');
   } else if (currentGroup) {
     battleParticipants = currentGroup.members;

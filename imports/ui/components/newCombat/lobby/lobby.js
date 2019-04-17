@@ -285,6 +285,14 @@ Template.lobbyPage.events({
   'click .btn-lock-close'(event) {
     Meteor.call('groups.lock', true);
   },
+  
+  'click .btn-allow-any-start'(event) {
+    Meteor.call('groups.anyStart', true);
+  },
+
+  'click .btn-deny-any-start'(event) {
+    Meteor.call('groups.anyStart', false);
+  },
 
   'click .btn-kick'(event, instance) {
     const ownerId = instance.$(event.target).closest('.btn-kick').data('owner');

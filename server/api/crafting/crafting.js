@@ -262,6 +262,14 @@ const getReforgeData = function getReforgeData(_id) {
   }
   
   if (!recipeData) {
+    if (ITEMS[currentItem.itemId].reforgeRecipe && ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting) {
+      recipeData = {
+        requiredCraftingLevel: ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting
+      };
+    }
+  }
+  
+  if (!recipeData) {
     return { isError: true, chance: -3, rarityData: undefined };
   }
   

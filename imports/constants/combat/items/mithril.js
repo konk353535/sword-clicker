@@ -47,10 +47,10 @@ export const MITHRIL_ITEMS = {
       "defense": 5.5
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -81,10 +81,10 @@ export const MITHRIL_ITEMS = {
       "accuracy": 16.7
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -115,18 +115,22 @@ export const MITHRIL_ITEMS = {
       "accuracy": 16.7
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 70
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 70
+    },
   },
   "mithril_long_sword": {
     "id": "mithril_long_sword",
@@ -152,10 +156,10 @@ export const MITHRIL_ITEMS = {
       "accuracy": 22.5
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -188,18 +192,22 @@ export const MITHRIL_ITEMS = {
       "accuracy": 22.5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 70
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 70
+    },
   },
   "mithril_battle_axe": {
     "id": "mithril_battle_axe",
@@ -225,10 +233,10 @@ export const MITHRIL_ITEMS = {
       "attackMax": 50.4
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -256,18 +264,22 @@ export const MITHRIL_ITEMS = {
       "accuracy": 2.9
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 65
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 70
+    },
   },
   "mithril_helmet": {
     "id": "mithril_helmet",
@@ -289,10 +301,10 @@ export const MITHRIL_ITEMS = {
       "armor": 14
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -320,10 +332,10 @@ export const MITHRIL_ITEMS = {
       "armor": 14
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -351,10 +363,10 @@ export const MITHRIL_ITEMS = {
       "armor": 14
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -383,10 +395,10 @@ export const MITHRIL_ITEMS = {
       "armor": 28.1
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',

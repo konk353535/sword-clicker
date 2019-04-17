@@ -432,11 +432,20 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
             }
           });
           
+          let successChance;
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (!item.rarityId) {
+              item.rarityId = 'uncommon';
+            }
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+          }
+
+          if (successChance) {
             if (successChance > 95) {
               successChance = 95;
             }
@@ -489,11 +498,20 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
             }
           });
           
+          let successChance;
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (!item.rarityId) {
+              item.rarityId = 'uncommon';
+            }
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+          }
+
+          if (successChance) {
             if (successChance > 95) {
               successChance = 95;
             }
@@ -510,7 +528,6 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
     return true;
   });
 };
-
 
 
 const FetchAllHiddenItems = function(highestFurnaceTier) {
@@ -541,11 +558,20 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
             }
           });
           
+          let successChance;
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (!item.rarityId) {
+              item.rarityId = 'uncommon';
+            }
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+          }
+
+          if (successChance) {
             if (successChance > 95) {
               successChance = 95;
             }
@@ -600,11 +626,20 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
             }
           });
           
+          let successChance;
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            let successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (!item.rarityId) {
+              item.rarityId = 'uncommon';
+            }
+            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+          }
+
+          if (successChance) {
             if (successChance > 95) {
               successChance = 95;
             }

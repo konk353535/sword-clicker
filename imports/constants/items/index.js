@@ -137,26 +137,47 @@ export const ITEM_RARITIES = {
   
   // Looted T1
   uncommon: {
-    rarityId: '',
-    label: 'Uncommon',
-    color: '66aa00',
+    rarityId: 'uncommon',
+    label: '',
+    color: '',
     statBonuses: 0.0,
+    nextRarity: {
+      rarityId: 'fine',
+      successChance: 45.0, // 45% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'uncommon'
+    },
   },
   
   // Looted T2 (last + 18.75)
   fine: {
-    label: 'Fine',
     rarityId: 'fine',
+    label: 'Fine',
     color: '66aaaa',
     statBonuses: 18.75,
+    nextRarity: {
+      rarityId: 'rare',
+      successChance: 30.0, // 30% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'uncommon'
+    },
   },
  
   // Looted T3 (last + 18.75)
   rare: {
-    label: 'Rare',
     rarityId: 'rare',
+    label: 'Rare',
     color: '3388aa',
     statBonuses: 37.5,
+    nextRarity: {
+      rarityId: 'fine',
+      successChance: 15.0, // 1% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'extraordinary'
+    },
   },
  
   // Looted T4 (last + 37.5)
@@ -165,6 +186,13 @@ export const ITEM_RARITIES = {
     label: 'Extraordinary',
     color: '3366aa',
     statBonuses: 75.0,
+    nextRarity: {
+      rarityId: 'phenomenal',
+      successChance: 5.0, // 5% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'rare'
+    },
   },
   
   // Looted T5 (last + 75)
@@ -173,6 +201,13 @@ export const ITEM_RARITIES = {
     label: 'Phenomenal',
     color: '0055cc',
     statBonuses: 150.0,
+    nextRarity: {
+      rarityId: 'epic',
+      successChance: -5.0, // -5% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'extraordinary'
+    },
   },
   
   // Looted T6 (last + 150)
@@ -181,14 +216,24 @@ export const ITEM_RARITIES = {
     label: 'Epic',
     color: '0022ee',
     statBonuses: 300.0,
+    nextRarity: {
+      rarityId: 'divine',
+      successChance: -15.0, // -15% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'phenomenal'
+    },
   },
   
   // Looted T7 (last + 200)
   divine: {
     rarityId: 'divine',
     label: 'Divine',
-    color: '0022ee',
+    color: '4444ff',
     statBonuses: 500.0,
+    prevRarity: {
+      rarityId: 'epic'
+    },
   },
   
   // Special (non-tiered): for boss drops

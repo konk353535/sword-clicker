@@ -49,10 +49,10 @@ export const STAFF_ITEMS = {
       magicPower: 8
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     extraStats: {
       magicPower: 2
@@ -82,10 +82,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -117,10 +117,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -152,10 +152,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -187,10 +187,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -222,10 +222,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -257,10 +257,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -292,10 +292,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -327,10 +327,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -362,10 +362,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -397,10 +397,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -432,10 +432,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -467,10 +467,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -502,10 +502,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -537,10 +537,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -572,10 +572,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -607,10 +607,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -642,10 +642,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -677,10 +677,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -712,10 +712,10 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance: 10, rarityId: 'improved', }, // 10% chance
-      { chance: 20, rarityId: 'crude', },    // 10% chance
-      { chance: 40, rarityId: 'rough', },    // 20% chance
-                                             // 60% chance (for standard)
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -751,12 +751,13 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -794,12 +795,13 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -827,12 +829,13 @@ export const STAFF_ITEMS = {
       magicPower: 6.75
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     extraStats: {
       magicPower: 2
@@ -861,12 +864,13 @@ export const STAFF_ITEMS = {
       magicPower: 2
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -897,12 +901,13 @@ export const STAFF_ITEMS = {
       magicPower: 3
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -933,12 +938,13 @@ export const STAFF_ITEMS = {
       magicPower: 3
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -969,12 +975,13 @@ export const STAFF_ITEMS = {
       magicPower: 3
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1005,12 +1012,13 @@ export const STAFF_ITEMS = {
       magicPower: 4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1041,12 +1049,13 @@ export const STAFF_ITEMS = {
       magicPower: 4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1077,12 +1086,13 @@ export const STAFF_ITEMS = {
       magicPower: 4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1113,12 +1123,13 @@ export const STAFF_ITEMS = {
       magicPower: 4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1149,12 +1160,13 @@ export const STAFF_ITEMS = {
       magicPower: 4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1185,12 +1197,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1221,12 +1234,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1257,12 +1271,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1293,12 +1308,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1329,12 +1345,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1365,12 +1382,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1401,12 +1419,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1437,12 +1456,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1473,12 +1493,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1509,12 +1530,13 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1545,12 +1567,13 @@ export const STAFF_ITEMS = {
       magicPower: 6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1581,12 +1604,13 @@ export const STAFF_ITEMS = {
       magicPower: 6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1617,12 +1641,13 @@ export const STAFF_ITEMS = {
       magicPower: 6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1653,12 +1678,13 @@ export const STAFF_ITEMS = {
       magicPower: 8
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1689,12 +1715,13 @@ export const STAFF_ITEMS = {
       magicPower: 8
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1725,12 +1752,13 @@ export const STAFF_ITEMS = {
       magicPower: 10
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1766,12 +1794,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1807,12 +1836,13 @@ export const STAFF_ITEMS = {
       magicPower: 1
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1848,12 +1878,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1889,12 +1920,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1930,12 +1962,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -1971,12 +2004,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2012,12 +2046,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2053,12 +2088,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2094,12 +2130,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2135,12 +2172,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2176,12 +2214,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2217,12 +2256,13 @@ export const STAFF_ITEMS = {
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -2499,6 +2539,9 @@ export const STAFF_ITEMS = {
       magicArmor: 3,
       magicPower: 1.5
     },
+    reforgeRecipe: {
+      requiresCrafting: 6
+    },
   },
 
   tin_hammer: {
@@ -2530,18 +2573,22 @@ export const STAFF_ITEMS = {
       magicPower: 1.7
     },    
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 5
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 10
+    },
   },
 
   bronze_hammer: {
@@ -2573,18 +2620,22 @@ export const STAFF_ITEMS = {
       magicPower: 1.9
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 10
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 15
+    },
   },
 
   iron_hammer: {
@@ -2616,18 +2667,22 @@ export const STAFF_ITEMS = {
       magicPower: 2.1
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 15
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 20
+    },
   },
 
   silver_hammer: {
@@ -2659,18 +2714,22 @@ export const STAFF_ITEMS = {
       magicPower: 2.4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 20
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 25
+    },
   },
 
   gold_hammer: {
@@ -2702,18 +2761,22 @@ export const STAFF_ITEMS = {
       magicPower: 2.7
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 25
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 30
+    },
   },
 
   carbon_hammer: {
@@ -2745,18 +2808,22 @@ export const STAFF_ITEMS = {
       magicPower: 3
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 30
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 35
+    },
   },
 
   steel_hammer: {
@@ -2788,18 +2855,22 @@ export const STAFF_ITEMS = {
       magicPower: 3.4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 35
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 40
+    },
   },
 
   platinum_hammer: {
@@ -2831,18 +2902,22 @@ export const STAFF_ITEMS = {
       magicPower: 3.8
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 40
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 45
+    },
   },
 
   titanium_hammer: {
@@ -2874,18 +2949,22 @@ export const STAFF_ITEMS = {
       magicPower: 4.2
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 45
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 50
+    },
   },
 
   tungsten_hammer: {
@@ -2917,18 +2996,22 @@ export const STAFF_ITEMS = {
       magicPower: 4.6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 50
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 55
+    },
   },
 
   obsidian_hammer: {
@@ -2960,18 +3043,22 @@ export const STAFF_ITEMS = {
       magicPower: 5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 55
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 60
+    },
   },
 
   cobalt_hammer: {
@@ -3003,18 +3090,22 @@ export const STAFF_ITEMS = {
       magicPower: 5.5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 60
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 65
+    },
   },
 
   mithril_hammer: {
@@ -3046,18 +3137,22 @@ export const STAFF_ITEMS = {
       magicPower: 5.9
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 65
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 70
+    },
   },
 
   adamantium_hammer: {
@@ -3089,18 +3184,22 @@ export const STAFF_ITEMS = {
       magicPower: 6.4
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 70
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 75
+    },
   },
 
   orichalcum_hammer: {
@@ -3132,18 +3231,22 @@ export const STAFF_ITEMS = {
       magicPower: 6.9
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 75
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 80
+    },
   },
 
   meteorite_hammer: {
@@ -3175,18 +3278,22 @@ export const STAFF_ITEMS = {
       magicPower: 7.5
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 80
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 85
+    },
   },
 
   fairy_steel_hammer: {
@@ -3218,18 +3325,22 @@ export const STAFF_ITEMS = {
       magicPower: 8
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 85
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 90
+    },
   },
 
   elven_steel_hammer: {
@@ -3261,18 +3372,22 @@ export const STAFF_ITEMS = {
       magicPower: 8.6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 90
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 95
+    },
   },
 
   cursed_hammer: {
@@ -3304,18 +3419,22 @@ export const STAFF_ITEMS = {
       magicPower: 9.1
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 95
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 100
+    },
   },
 
   darksteel_hammer: {
@@ -3347,18 +3466,22 @@ export const STAFF_ITEMS = {
       magicPower: 10
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 100
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 105
+    },
   },
 
   radiant_hammer: {
@@ -3390,18 +3513,22 @@ export const STAFF_ITEMS = {
       magicPower: 11
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 105
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 110
+    },
   },
 
   astral_hammer: {
@@ -3433,18 +3560,22 @@ export const STAFF_ITEMS = {
       magicPower: 11.9
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 110
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 115
+    },
   },
 
   titanfoil_hammer: {
@@ -3476,18 +3607,22 @@ export const STAFF_ITEMS = {
       magicPower: 12.8
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 115
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 120
+    },
   },
 
   relicrock_hammer: {
@@ -3519,18 +3654,22 @@ export const STAFF_ITEMS = {
       magicPower: 13.7
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 120
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 125
+    },
   },
 
   eternium_hammer: {
@@ -3562,18 +3701,22 @@ export const STAFF_ITEMS = {
       magicPower: 14.6
     },
     upgradeRarity: [
-      { chance:  0.111111, rarityId: 'divine', },
-      { chance:  0.333333, rarityId: 'epic', },
-      { chance:  1.000000, rarityId: 'phenomenal', },
-      { chance:  3.000000, rarityId: 'extraordinary', },
-      { chance:  9.000000, rarityId: 'rare', },
-      { chance: 27.000000, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'defense',
       level: 125
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 130
+    },
   },
 
 };

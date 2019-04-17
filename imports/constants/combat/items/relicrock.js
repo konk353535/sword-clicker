@@ -55,8 +55,10 @@ export const RELICROCK_ITEMS = {
       "defense": 9.8 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -87,8 +89,10 @@ export const RELICROCK_ITEMS = {
       "accuracy": 29.8 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -119,16 +123,22 @@ export const RELICROCK_ITEMS = {
       "accuracy": 29.8 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 120
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 125
+    },
   },
   "relicrock_long_sword": {
     "id": "relicrock_long_sword",
@@ -154,8 +164,10 @@ export const RELICROCK_ITEMS = {
       "accuracy": 40.2 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -188,16 +200,22 @@ export const RELICROCK_ITEMS = {
       "accuracy": 40.2 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 120
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 125
+    },
   },
   
   "relicrock_battle_axe": {
@@ -224,8 +242,10 @@ export const RELICROCK_ITEMS = {
       "attackMax": 90 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -254,16 +274,22 @@ export const RELICROCK_ITEMS = {
       "accuracy": 17.2
     },
     upgradeRarity: [
-      { chance: 0.1, rarityId: 'phenomenal', },
-      { chance: 1, rarityId: 'extraordinary', },
-      { chance: 5, rarityId: 'rare', },
-      { chance: 15, rarityId: 'fine', },
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
     ],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
       level: 120
-    }]
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 125
+    },
   },
 
   "relicrock_helmet": {
@@ -286,8 +312,10 @@ export const RELICROCK_ITEMS = {
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -315,8 +343,10 @@ export const RELICROCK_ITEMS = {
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -344,8 +374,10 @@ export const RELICROCK_ITEMS = {
       "armor": 25.1 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',
@@ -374,8 +406,10 @@ export const RELICROCK_ITEMS = {
       "armor": 50.3 * RELICROCK_MULTIPLIER
     },
     upgradeRarity: [
-      { chance: 5, rarityId: 'mastercrafted', },
-      { chance: 15, rarityId: 'improved', },
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
     ],
     requiredEquip: [{
       type: 'skill',

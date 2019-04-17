@@ -115,6 +115,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
   } else {
     this.state.set('usersCurrentRoom', 'All');
   }
+  this.state.set('energyUse', 1);
   this.state.set('usersCurrentFloor', 1);
   this.state.set('floorDetails', {});
   this.state.set('waveDetails', {});
@@ -208,7 +209,7 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
 Template.lobbyPage.events({
 
   'click .battle-boss-btn'(event, instance) {
-    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', function (err, res) {
+    Meteor.call('battles.findTowerBattle', instance.state.get('usersCurrentFloor'), 'boss', 5, function (err, res) {
       if (err) {
         toastr.warning(err.reason);
       }
@@ -331,14 +332,22 @@ Template.lobbyPage.events({
     Meteor.call('users.setUiState', 'questLevel', parseInt(selectedLevel));
   },
 
+  'click .select-energyUse'(event, instance) {
+    const energyUse = $(event.target).closest('.select-energyUse')[0].getAttribute('data-energyUse');
+    instance.state.set('energyUse', parseInt(energyUse));
+    Meteor.call('users.setUiState', 'energyUse', parseInt(energyUse));
+  },
+
   'click .battle-btn'(event, instance) {
     instance.state.set('newBattleLoading', true);
     const type = instance.state.get('type');
+    const energyUse = parseInt(instance.state.get('energyUse'));
+    
     if (type === 'group') {
       const floor = instance.state.get('usersCurrentFloor');
       const room = instance.state.get('usersCurrentRoom');
       if (room === 'Boss') {
-        Meteor.call('battles.findTowerBattle', floor, 'boss', function (err, res) {
+        Meteor.call('battles.findTowerBattle', floor, 'boss', 0, function (err, res) {
           if (err) {
             toastr.warning(err.reason);
           }
@@ -346,7 +355,7 @@ Template.lobbyPage.events({
           instance.state.set('newBattleLoading', false);
         });
       } else if (room === 'All') {
-        Meteor.call('battles.findTowerBattle', floor, 0, function (err, res) {
+        Meteor.call('battles.findTowerBattle', floor, 0, energyUse, function (err, res) {
           if (err) {
             toastr.warning(err.reason);
           }
@@ -354,7 +363,7 @@ Template.lobbyPage.events({
           instance.state.set('newBattleLoading', false);
         });
       } else {
-        Meteor.call('battles.findTowerBattle', floor, room, function (err, res) {
+        Meteor.call('battles.findTowerBattle', floor, room, energyUse, function (err, res) {
           if (err) {
             toastr.warning(err.reason);
           }
@@ -363,10 +372,9 @@ Template.lobbyPage.events({
         });        
       }
     } else if (type === 'solo') {
-      const level = instance.state.get('currentLevel');
-      const targetWave = instance.state.get('maxLevelCurrentWave');
+      const level = instance.state.get('currentLevel');      
 
-      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), function (err, res) {
+      Meteor.call('battles.findPersonalBattle', parseInt(level), parseInt(targetWave), energyUse, function (err, res) {
         if (err) {
           toastr.warning(err.reason);
         }
@@ -411,6 +419,12 @@ Template.lobbyPage.rendered = function () {
         instance.state.set('usersCurrentFloor', myUser.uiState.towerFloor);
       } else {
         instance.state.set('usersCurrentFloor', 1);
+      }
+
+      if (myUser.uiState && myUser.uiState.energyUse !== undefined) {
+        instance.state.set('energyUse', myUser.uiState.energyUse);
+      } else {
+        instance.state.set('energyUse', 1);
       }
 
       if (myUser.uiState && myUser.uiState.questLevel !== undefined) {
@@ -491,6 +505,10 @@ Template.lobbyPage.helpers({
 
   usersCurrentRoom() {
     return Template.instance().state.get('usersCurrentRoom');
+  },
+
+  energyUse() {
+    return Template.instance().state.get('energyUse');
   },
 
   floorResetDate() {

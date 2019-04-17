@@ -28,10 +28,10 @@
       {{#if $eq typeKey 'solo'}}
         <div class="mr-2 hidden-sm-down">Level</div>
         <div class="dropdown level-dropdown">
-          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButtonLevel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{usersCurrentLevel}}
           </button>
-          <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButtonLevel">
             {{#each levelsList}}
               <a class="dropdown-item select-level" data-level="{{this}}" href="#">{{this}}</a>
             {{/each}}
@@ -40,6 +40,21 @@
         {{#if $eq usersCurrentLevel maxLevel}}
           <div class="flex-grow-sm justify-content-center-sm d-flex">
             Wave {{maxLevelCurrentWave}}
+          </div>
+        {{else}}
+          <div class="mr-2 ml-2 hidden-sm-down">Energy Use</div>
+          <div class="dropdown energyUse-dropdown">
+            <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButtonEnergyUse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{energyUse}}
+            </button>
+            <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButtonEnergyUse">
+              <a class="dropdown-item select-energyUse" data-energyUse="1" href="#">1</a>
+              <a class="dropdown-item select-energyUse" data-energyUse="5" href="#">5</a>
+              <a class="dropdown-item select-energyUse" data-energyUse="10" href="#">10</a>
+              <a class="dropdown-item select-energyUse" data-energyUse="20" href="#">20</a>
+              <a class="dropdown-item select-energyUse" data-energyUse="30" href="#">30</a>
+              <a class="dropdown-item select-energyUse" data-energyUse="40" href="#">40</a>
+            </div>
           </div>
         {{/if}}
       {{else if $eq typeKey 'group'}}
@@ -83,6 +98,20 @@
             {{waveDetails.health}} / {{waveDetails.healthMax}} hp
           {{/if}}
         {{/if}}
+        <div class="mr-2 ml-2 hidden-sm-down">Energy Use</div>
+        <div class="dropdown energyUse-dropdown">
+          <button class="btn btn-secondary mr-3 dropdown-toggle" type="button" id="dropdownMenuButtonEnergyUse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{energyUse}}
+          </button>
+          <div class="dropdown-menu" style="max-height: 300px; overflow-y: scroll;" aria-labelledby="dropdownMenuButtonEnergyUse">
+            <a class="dropdown-item select-energyUse" data-energyUse="1" href="#">1</a>
+            <a class="dropdown-item select-energyUse" data-energyUse="5" href="#">5</a>
+            <a class="dropdown-item select-energyUse" data-energyUse="10" href="#">10</a>
+            <a class="dropdown-item select-energyUse" data-energyUse="20" href="#">20</a>
+            <a class="dropdown-item select-energyUse" data-energyUse="30" href="#">30</a>
+            <a class="dropdown-item select-energyUse" data-energyUse="40" href="#">40</a>
+          </div>
+        </div>
       {{/if}}
 
       {{#if showInvites}}

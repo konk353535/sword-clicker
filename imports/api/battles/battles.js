@@ -13,6 +13,8 @@ BattlesListSchema = new SimpleSchema({
   wave: { type: Number, optional: true },
   activated: { type: Boolean },
 
+  energyUse: { type: Number, defaultValue: 1, optional: true },
+  
   group: { type: String, optional: true },
 
   createdAt: { type: Date },

@@ -46,7 +46,7 @@ Meteor.methods({
     updateUserActivity({userId: Meteor.userId()});
   },
 
-  'battles.findPersonalBattle'(level) {
+  'battles.findPersonalBattle'(level, energyUse) {
     console.log('battles.findPersonalBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
 
@@ -86,16 +86,16 @@ Meteor.methods({
     }
 
     const server = userDoc.server;
-
-    startBattle({ level, wave, server });
+    
+    startBattle({ level, wave, server, energyUse });
 
     updateUserActivity({userId: Meteor.userId()});
   },
 
-  'battles.findTowerBattle'(floor, room) {
+  'battles.findTowerBattle'(floor, room, energyUse) {
     console.log('battles.findTowerBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
-
+    
     if (floor > 26) {
       throw new Meteor.Error("no-sir", "The tower doesn't have that many floors!");
     }
@@ -157,7 +157,7 @@ Meteor.methods({
         const bossId = FLOORS[floor].boss.enemy.id;
         if (bossId) {
           const bossConstants = ENEMIES[bossId];
-          const bossHealth = bossConstants.stats.healthMax * 4;
+          const bossHealth = bossConstants.stats.healthMax * 4;          
 
           return startBattle({ floor, room, server, health: bossHealth, isTowerContribution: true, isOldBoss: true });
         } else { // couldn't find boss ID
@@ -172,11 +172,11 @@ Meteor.methods({
     if (FLOORS[floor].hasOwnProperty('unlocks') && !FLOORS[floor].unlocks) {
       isExplorationRun = true;
       room = 1;
-      return startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
+      return startBattle({ floor, room, server, isTowerContribution, isExplorationRun, energyUse });
     }
 
     // Eventually select a random battle appropriate to users level
-    startBattle({ floor, room, server, isTowerContribution, isExplorationRun });
+    startBattle({ floor, room, server, isTowerContribution, isExplorationRun, energyUse });
 
     updateUserActivity({userId: Meteor.userId()});
   },

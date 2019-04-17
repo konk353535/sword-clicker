@@ -436,7 +436,8 @@ Meteor.methods({
       'miningMultihit',
       'recipeTileConsumables',
       'craftingShowMore',
-      'townSection'
+      'townSection',
+      'energyUse'
     ];
 
     if (_.contains(validIds, id)) {

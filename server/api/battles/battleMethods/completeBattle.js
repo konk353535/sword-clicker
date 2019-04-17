@@ -270,6 +270,27 @@ export const resolveLoot = function(battle) {
   });
 };
 
+export const battleEnergyUse = function(battleId) {
+  const targetBattle = BattlesList.findOne({
+    _id: battleId
+  });
+
+  if (!targetBattle) {
+    return 0;
+  }
+
+  try {
+    let energyUse = parseInt(targetBattle.energyUse);
+    if (energyUse < 0) {
+      energyUse = 1;
+    }
+    return energyUse;
+  } catch (err) {
+  }
+  
+  return 1;
+}
+
 export const removeBattle = function(battleId) {
   const targetBattle = BattlesList.findOne({
     _id: battleId
@@ -548,6 +569,23 @@ export const completeBattle = function(actualBattle) {
 
   const hasCombatGlobalBuff = !_.isUndefined(State.findOne({name: STATE_BUFFS.combat, 'value.activeTo': {$gte: moment().toDate()}}));
 
+  // How much energy they wanted to use
+  const energyUse = battleEnergyUse(actualBattle.id);
+  let energyUseMultiplier = 1;
+  if (energyUse === 5) {
+    energyUseMultiplier = 4;
+  } else if (energyUse === 10) {
+    energyUseMultiplier = 7;
+  } else if (energyUse === 20) {
+    energyUseMultiplier = 13;
+  } else if (energyUse === 30) {
+    energyUseMultiplier = 18;
+  } else if (energyUse === 40) {
+    energyUseMultiplier = 22;
+  }
+  
+  console.log("Battle finished:energy use", energyUse, energyUseMultiplier);
+  
   // Remove from battle list
   const battlesDeleted = removeBattle(actualBattle.id)
 
@@ -608,6 +646,8 @@ export const completeBattle = function(actualBattle) {
     // Apply xp gains, only if not a boss battle
     let totalXpGain = actualBattle.totalXpGain * (1 + (allPlayerUnits.length * 0.16) - 0.16);
 
+    totalXpGain *= energyUseMultiplier;
+    
     // Apply boss battle gains
     totalXpGain += battleHandler_DealBossDamage(actualBattle);
 
@@ -660,6 +700,8 @@ export const completeBattle = function(actualBattle) {
     });
     
     bonusLootMultiplier += actualBattle.bonusLoot;
+    
+    bonusLootMultiplier *= energyUseMultiplier;
 
     // Apply rewards for killing monsters
     const rewardsGained = [];

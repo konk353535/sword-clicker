@@ -23,10 +23,16 @@ import { Items } from '/imports/api/items/items';
 import { IsValid, CInt } from '/imports/utils.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
-export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server }) {
+export const startBattle = function ({ floor, room, level, wave, health, isTowerContribution, isExplorationRun, isOldBoss, server, energyUse }) {
   console.log('method - startBattle - start', moment().format('LLL hh:mm:ss SSS'));
   const ticksPerSecond = 1000 / BATTLES.tickDuration;
 
+  console.log("energyUse:", energyUse);
+  
+  if (!IsValid(energyUse)) {
+    energyUse = 1;
+  }
+  
   let battleData = { enemies: [] };
   if (level) {
     // Is personalQuest (To Do)
@@ -162,7 +168,7 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
   }).fetch();
 
   let hasEnergy = true;
-  let battleEnergyCost = COMBAT.energyConsumption[room] || 1;
+  let battleEnergyCost = (COMBAT.energyConsumption[room] || 1) * energyUse;
 
   if (isOldBoss) {
     battleEnergyCost = 5;
@@ -501,7 +507,8 @@ export const startBattle = function ({ floor, room, level, wave, health, isTower
     group: currentGroup ? currentGroup._id : false,
     createdAt: new Date(),
     activated: false,
-    isBigBoss: (hasBoss && !newBattle.isOldBoss) ? true : false
+    isBigBoss: (hasBoss && !newBattle.isOldBoss) ? true : false,
+    energyUse
   });
 
   if (currentGroup) {

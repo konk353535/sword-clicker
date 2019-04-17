@@ -22,8 +22,8 @@ export const ITEM_RARITIES = {
   // Crafting T-1 (next - 30)
   crude: {
     rarityId: 'crude',
-    label: '',
-    color: '',
+    label: 'Crude',
+    color: '555555',
     statBonuses: -50.0,
     nextRarity: {
       rarityId: 'rough',
@@ -37,8 +37,8 @@ export const ITEM_RARITIES = {
   // Crafting T0 (next - 20)
   rough: {
     rarityId: 'rough',
-    label: '',
-    color: '',
+    label: 'Rough',
+    color: '666644',
     statBonuses: -20.0,
     nextRarity: {
       rarityId: 'standard',

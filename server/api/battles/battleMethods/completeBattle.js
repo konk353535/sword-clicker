@@ -882,7 +882,7 @@ export const completeBattle = function(actualBattle) {
         
         for (let i = 0; i < finalTickEvents.length; i++) {
           for (let j = 0; j < finalTickEvents.length; j++) {
-            if ((i !== j) && (finalTickEvents[i].owner === finalTickEvents[i].owner)) {
+            if ((i !== j) && (finalTickEvents[i].owner === finalTickEvents[j].owner)) {
               if ((finalTickEvents[i].type === 'gold') && (finalTickEvents[j].type === 'gold')) {
                 foundAnyThisPass = true;
               } else if ((finalTickEvents[i].type === 'item') && (finalTickEvents[j].type === 'item') && (finalTickEvents[i].itemId === finalTickEvents[j].itemId)) {

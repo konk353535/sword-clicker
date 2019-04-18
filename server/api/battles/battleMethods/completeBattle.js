@@ -686,7 +686,7 @@ export const completeBattle = function(actualBattle) {
     
     // Added a new bonus: in full exploration runs at the tower, loot drop chance is doubled as an incentive to take on tougher challenges as a team.
     // This bonus is not applied to the community pot of boss loot.
-    let bonusLootMultiplier = ((actualBattle.isExplorationRun) ? 2.0 : 1.0);
+    let bonusLootMultiplier = 1.0; //((actualBattle.isExplorationRun) ? 2.0 : 1.0);
     
     // +5% (or 10% for full tower runs) for each player equipped with the Lion Dance passive from the Lunar New Year event
     allPlayerUnits.forEach((unit) => {
@@ -701,7 +701,7 @@ export const completeBattle = function(actualBattle) {
     
     bonusLootMultiplier += actualBattle.bonusLoot;
     
-    bonusLootMultiplier *= energyUseMultiplier;
+    //bonusLootMultiplier *= energyUseMultiplier;
 
     // Apply rewards for killing monsters
     const rewardsGained = [];
@@ -721,13 +721,15 @@ export const completeBattle = function(actualBattle) {
       }]);
     }
 
-    for (let i = 0; i < rewards.length; i++) {
-      const rewardTable = rewards[i];
-      const diceRoll = Math.random();
+    for (let iEUM = 0; iEUM < (energyUseMultiplier * (actualBattle.isExplorationRun ? 2.0 : 1.0)); iEUM++) {
+      for (let i = 0; i < rewards.length; i++) {
+        const rewardTable = rewards[i];
+        const diceRoll = Math.random();
 
-      if (rewardTable.chance * bonusLootMultiplier >= diceRoll) {
-        rewardsGained.push(_.sample(rewardTable.rewards));
-        //break; // changed by psouza4 2018-11-07: why block more rewards with their own drop rate/chance?
+        if (rewardTable.chance * bonusLootMultiplier >= diceRoll) {
+          rewardsGained.push(_.sample(rewardTable.rewards));
+          //break; // changed by psouza4 2018-11-07: why block more rewards with their own drop rate/chance?
+        }
       }
     }
 
@@ -749,45 +751,49 @@ export const completeBattle = function(actualBattle) {
 
 
     // Each user = additional 20% chance of loot
-    const extraChance = 1 + (allPlayerUnits.length * 0.2) - 0.2;
-    for (let i = 0; i < floorRewards.length; i++) {
-      const rewardTable = floorRewards[i];
-      const diceRoll = Math.random();
+    for (let iEUM = 0; iEUM < (energyUseMultiplier * (actualBattle.isExplorationRun ? 2.0 : 1.0)); iEUM++) {
+      const extraChance = 1 + (allPlayerUnits.length * 0.2) - 0.2;
+      for (let i = 0; i < floorRewards.length; i++) {
+        const rewardTable = floorRewards[i];
+        const diceRoll = Math.random();
 
-      if ((rewardTable.chance * extraChance * bonusLootMultiplier) >= diceRoll) {
-        rewardsGained.push(_.sample(rewardTable.rewards));
-        //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
-        //  break;
-        //}
-      } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * bonusLootMultiplier * 1.5) >= diceRoll) {
-        rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
-          affectedGlobalBuff: true
-        }));
-        //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
-        //  break;
-        //}
+        if ((rewardTable.chance * extraChance * bonusLootMultiplier) >= diceRoll) {
+          rewardsGained.push(_.sample(rewardTable.rewards));
+          //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+          //  break;
+          //}
+        } else if (hasCombatGlobalBuff && (rewardTable.chance * extraChance * bonusLootMultiplier * 1.5) >= diceRoll) {
+          rewardsGained.push(Object.assign({}, _.sample(rewardTable.rewards), {
+            affectedGlobalBuff: true
+          }));
+          //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
+          //  break;
+          //}
+        }
       }
     }
     
     
     // Add special loot tables
-    actualBattle.extraLootTable.forEach((extraLoot) => {
-      try {
-        if (!extraLoot.type || extraLoot.type === 'item') {
-          if (ITEMS[extraLoot.id] && ITEMS[extraLoot.id].name && ITEMS[extraLoot.id].name.trim().length > 0) {
+    for (let iEUM = 0; iEUM < (energyUseMultiplier * (actualBattle.isExplorationRun ? 2.0 : 1.0)); iEUM++) {
+      actualBattle.extraLootTable.forEach((extraLoot) => {
+        try {
+          if (!extraLoot.type || extraLoot.type === 'item') {
+            if (ITEMS[extraLoot.id] && ITEMS[extraLoot.id].name && ITEMS[extraLoot.id].name.trim().length > 0) {
+              if (extraLoot.chance >= Math.random()) {
+                rewardsGained.push({ type: 'item', itemId: extraLoot.id, amount: (extraLoot.quantity || 1) });
+              }
+            }
+          } else {
             if (extraLoot.chance >= Math.random()) {
-              rewardsGained.push({ type: 'item', itemId: extraLoot.id, amount: (extraLoot.quantity || 1) });
+              rewardsGained.push({ type: extraLoot.type, amount: (extraLoot.quantity || 1) });
             }
           }
-        } else {
-          if (extraLoot.chance >= Math.random()) {
-            rewardsGained.push({ type: extraLoot.type, amount: (extraLoot.quantity || 1) });
-          }
+        } catch (err) {
         }
-      } catch (err) {
-      }
-    });
-
+      });
+    }
+    
 
     // Process rewards to peeps
     const owners = _.uniq(units.map((unit) => unit.owner));
@@ -867,6 +873,46 @@ export const completeBattle = function(actualBattle) {
         console.log("Exception in completeBattle with 'rewardGained'", err, rewardGained);
       }
     });
+    
+    
+    // Consolidate rewards
+    for (;;) {
+      try {
+        let foundAnyThisPass = false;
+        
+        for (let i = 0; i < finalTickEvents.length; i++) {
+          for (let j = 0; j < finalTickEvents.length; j++) {
+            if ((i !== j) && (finalTickEvents[i].owner === finalTickEvents[i].owner)) {
+              if ((finalTickEvents[i].type === 'gold') && (finalTickEvents[j].type === 'gold')) {
+                foundAnyThisPass = true;
+              } else if ((finalTickEvents[i].type === 'item') && (finalTickEvents[j].type === 'item') && (finalTickEvents[i].itemId === finalTickEvents[j].itemId)) {
+                foundAnyThisPass = true;
+              }
+              
+              if (foundAnyThisPass) {
+                finalTickEvents[i].amount += finalTickEvents[j].amount;
+                finalTickEvents.splice(j, 1);
+              }
+            }
+            
+            if (foundAnyThisPass) {
+              break;
+            }
+          }
+            
+          if (foundAnyThisPass) {
+            break;
+          }
+        }
+        
+        if (!foundAnyThisPass) {
+          break;
+        }
+      } catch (err) {
+        break;
+      }
+    }
+    
 
     if (actualBattle.floor && actualBattle.room) {
       // Latest floor

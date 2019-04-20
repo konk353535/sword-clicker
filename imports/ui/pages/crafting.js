@@ -12,6 +12,7 @@ import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { Users } from '/imports/api/users/users';
 import { BattlesList } from '/imports/api/battles/battles.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 // Component used in the template
 import './crafting.html';
@@ -404,6 +405,8 @@ Template.craftingPage.helpers({
 
 
 const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+  
   return Items.find({
     equipped: false,
     hidden: true
@@ -449,6 +452,9 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
             if (successChance > 95) {
               successChance = 95;
             }
+            if (townBuffArmoryLevel > 0) {
+              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+            }
             if (successChance < 0) {
               successChance = 0;
             }
@@ -465,6 +471,8 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
 
 
 const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+  
   return Items.find(
     {
       equipped: false,
@@ -515,6 +523,9 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
             if (successChance > 95) {
               successChance = 95;
             }
+            if (townBuffArmoryLevel > 0) {
+              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+            }
             if (successChance < 0) {
               successChance = 0;
             }
@@ -531,6 +542,8 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
 
 
 const FetchAllHiddenItems = function(highestFurnaceTier) {
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+  
   return Items.find({
     equipped: false,
     hidden: true
@@ -575,6 +588,9 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
             if (successChance > 95) {
               successChance = 95;
             }
+            if (townBuffArmoryLevel > 0) {
+              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+            }
             if (successChance < 0) {
               successChance = 0;
             }
@@ -593,7 +609,8 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
 const FetchAllVisibleItems = function (highestFurnaceTier) {
   const recipes = Session.get('recipeCache');
   const craftingSkill = Skills.findOne({ type: 'crafting' });
-  
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+
   return Items.find(
     {
       equipped: false,
@@ -642,6 +659,9 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
           if (successChance) {
             if (successChance > 95) {
               successChance = 95;
+            }
+            if (townBuffArmoryLevel > 0) {
+              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
             }
             if (successChance < 0) {
               successChance = 0;

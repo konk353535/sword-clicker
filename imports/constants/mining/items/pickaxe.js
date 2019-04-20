@@ -172,7 +172,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 2,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 3
+    }]
   },
 
   tin_mining_anvil: {
@@ -196,7 +201,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 3
+    }]
   },
 
   bronze_mining_hammer: {
@@ -219,7 +229,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 2,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 6
+    }]
   },
 
   bronze_mining_anvil: {
@@ -243,7 +258,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 6
+    }]
   },
 
   iron_mining_hammer: {
@@ -266,7 +286,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 10
+    }]
   },
 
   iron_mining_anvil: {
@@ -290,7 +315,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 10
+    }]
   },
 
   silver_mining_hammer: {
@@ -313,7 +343,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 15
+    }]
   },
 
   silver_mining_anvil: {
@@ -337,7 +372,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 15
+    }]
   },
 
   gold_mining_hammer: {
@@ -360,7 +400,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 20
+    }]
   },
 
   gold_mining_anvil: {
@@ -384,7 +429,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 20
+    }]
   },
 
   carbon_mining_hammer: {
@@ -407,7 +457,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 25
+    }]
   },
 
   carbon_mining_anvil: {
@@ -431,7 +486,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 25
+    }]
   },
 
   steel_mining_hammer: {
@@ -454,7 +514,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 30
+    }]
   },
 
   steel_mining_anvil: {
@@ -478,7 +543,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 30
+    }]
   },
 
   platinum_mining_hammer: {
@@ -501,7 +571,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 35
+    }]
   },
 
   platinum_mining_anvil: {
@@ -525,7 +600,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 35
+    }]
   },
 
   titanium_mining_hammer: {
@@ -548,7 +628,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 40
+    }]
   },
 
   titanium_mining_anvil: {
@@ -572,7 +657,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 40
+    }]
   },
 
   tungsten_mining_hammer: {
@@ -595,7 +685,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 45
+    }]
   },
 
   tungsten_mining_anvil: {
@@ -619,7 +714,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 45
+    }]
   },
 
   obsidian_mining_hammer: {
@@ -642,7 +742,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 50
+    }]
   },
 
   obsidian_mining_anvil: {
@@ -666,7 +771,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 50
+    }]
   },
 
   cobalt_mining_hammer: {
@@ -689,7 +799,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 55
+    }]
   },
 
   cobalt_mining_anvil: {
@@ -713,7 +828,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 55
+    }]
   },
 
   mithril_mining_hammer: {
@@ -736,7 +856,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 60
+    }]
   },
 
   mithril_mining_anvil: {
@@ -760,7 +885,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 60
+    }]
   },
 
   adamantium_mining_hammer: {
@@ -783,7 +913,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 65
+    }]
   },
 
   adamantium_mining_anvil: {
@@ -807,7 +942,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 65
+    }]
   },
 
   orichalcum_mining_hammer: {
@@ -830,7 +970,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 70
+    }]
   },
 
   orichalcum_mining_anvil: {
@@ -854,7 +999,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 70
+    }]
   },
 
   meteorite_mining_hammer: {
@@ -877,7 +1027,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 75
+    }]
   },
 
   meteorite_mining_anvil: {
@@ -901,7 +1056,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 75
+    }]
   },
 
   fairy_steel_mining_hammer: {
@@ -924,7 +1084,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 4,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 80
+    }]
   },
 
   fairy_steel_mining_anvil: {
@@ -948,7 +1113,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 80
+    }]
   },
 
   elven_steel_mining_hammer: {
@@ -971,7 +1141,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 4,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 85
+    }]
   },
 
   elven_steel_mining_anvil: {
@@ -995,7 +1170,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 85
+    }]
   },
 
   cursed_mining_hammer: {
@@ -1018,7 +1198,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 5,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 90
+    }]
   },
 
   cursed_mining_anvil: {
@@ -1042,7 +1227,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 90
+    }]
   },
   
   darksteel_mining_hammer: {
@@ -1065,7 +1255,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 10,
       attack: 10,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 95
+    }]
   },
 
   darksteel_mining_anvil: {
@@ -1089,7 +1284,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 95
+    }]
   },
   
   radiant_mining_hammer: {
@@ -1112,7 +1312,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 15,
       attack: 15,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 100
+    }]
   },
 
   radiant_mining_anvil: {
@@ -1136,7 +1341,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 100
+    }]
   },
   
   astral_mining_hammer: {
@@ -1159,7 +1369,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 20,
       attack: 20,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 105
+    }]
   },
 
   astral_mining_anvil: {
@@ -1183,7 +1398,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 200,
       miner: 3,
       attack: 30,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 105
+    }]
   },
   
   titanfoil_mining_hammer: {
@@ -1206,7 +1426,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 30,
       attack: 25,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 110
+    }]
   },
 
   titanfoil_mining_anvil: {
@@ -1230,7 +1455,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 225,
       miner: 3,
       attack: 100,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 110
+    }]
   },
   
   relicrock_mining_hammer: {
@@ -1253,7 +1483,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 40,
       attack: 35,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 115
+    }]
   },
 
   relicrock_mining_anvil: {
@@ -1277,7 +1512,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 250,
       miner: 3,
       attack: 100,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 115
+    }]
   },
   
   eternium_mining_hammer: {
@@ -1300,7 +1540,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 50,
       attack: 50,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 120
+    }]
   },
 
   eternium_mining_anvil: {
@@ -1324,7 +1569,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 300,
       miner: 3,
       attack: 250,
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 120
+    }]
   },
 
   // Passive heavy pickaxes
@@ -1380,7 +1630,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 3
+    }]
   },
 
   bronze_dwarven_idol: {
@@ -1398,7 +1653,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 6
+    }]
   },
 
   ash_idol: {
@@ -1416,7 +1676,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 6
+    }]
   },
 
   iron_dwarven_idol: {
@@ -1434,7 +1699,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 10
+    }]
   },
 
   silver_dwarven_idol: {
@@ -1452,7 +1722,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 15
+    }]
   },
 
   maple_idol: {
@@ -1470,7 +1745,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 15
+    }]
   },
 
   gold_dwarven_idol: {
@@ -1488,7 +1768,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 20
+    }]
   },
 
 
@@ -1507,7 +1792,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 15
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 25
+    }]
   },
 
   cherry_idol: {
@@ -1525,7 +1815,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 25
+    }]
   },
 
   steel_dwarven_idol: {
@@ -1543,7 +1838,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 30
+    }]
   },
 
   platinum_dwarven_idol: {
@@ -1561,7 +1861,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 35
+    }]
   },
 
   elk_idol: {
@@ -1579,7 +1884,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 35
+    }]
   },
 
   titanium_dwarven_idol: {
@@ -1597,7 +1907,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 40
+    }]
   },
 
   tungsten_dwarven_idol: {
@@ -1615,7 +1930,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 45
+    }]
   },
 
   blue_gum_idol: {
@@ -1633,7 +1953,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 45
+    }]
   },
 
   obsidian_dwarven_idol: {
@@ -1651,7 +1976,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 10
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 50
+    }]
   },
 
   cobalt_dwarven_idol: {
@@ -1669,7 +1999,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 55
+    }]
   },
 
   denya_idol: {
@@ -1687,9 +2022,13 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 55
+    }]
   },
-
 
   mithril_dwarven_idol: {
     id: 'mithril_dwarven_idol',
@@ -1706,7 +2045,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 60
+    }]
   },
 
   adamantium_dwarven_idol: {
@@ -1724,7 +2068,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 65
+    }]
   },
 
   hickory_idol: {
@@ -1742,7 +2091,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 65
+    }]
   },
 
   orichalcum_dwarven_idol: {
@@ -1760,9 +2114,13 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 24
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 70
+    }]
   },
-
 
   meteorite_dwarven_idol: {
     id: 'meteorite_dwarven_idol',
@@ -1779,7 +2137,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 27
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 75
+    }]
   },
 
   poplar_idol: {
@@ -1797,9 +2160,13 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 75
+    }]
   },
-
 
   fairy_steel_dwarven_idol: {
     id: 'fairy_steel_dwarven_idol',
@@ -1816,7 +2183,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 30
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 80
+    }]
   },
 
   elven_steel_dwarven_idol: {
@@ -1834,7 +2206,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 30
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 85
+    }]
   },
 
   willow_idol: {
@@ -1852,7 +2229,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 5
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 85
+    }]
   },
 
   cursed_dwarven_idol: {
@@ -1870,7 +2252,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 33
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 90
+    }]
   },
 
   darksteel_dwarven_idol: {
@@ -1888,7 +2275,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 33
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 95
+    }]
   },
 
   radiant_dwarven_idol: {
@@ -1906,7 +2298,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 33
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 100
+    }]
   },
 
   astral_dwarven_idol: {
@@ -1924,7 +2321,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 33
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 105
+    }]
   },
 
   titanfoil_dwarven_idol: {
@@ -1942,7 +2344,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 33
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 110
+    }]
   },
 
   relicrock_dwarven_idol: {
@@ -1960,7 +2367,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 35
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 115
+    }]
   },
 
   eternium_dwarven_idol: {
@@ -1978,7 +2390,12 @@ export const PICKAXE_ITEMS = {
     },
     extraStats: {
       miner: 50
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 120
+    }]
   },
 
   // Starter Pickaxe
@@ -2070,7 +2487,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 12,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 3
+    }]
   },
 
   bronze_pickaxe: {
@@ -2093,7 +2515,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 12,
       attack: 3,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 6
+    }]
   },
 
   iron_pickaxe: {
@@ -2116,7 +2543,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 14,
       attack: 5,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 10
+    }]
   },
 
   silver_pickaxe: {
@@ -2139,7 +2571,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 14,
       attack: 5,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 15
+    }]
   },
 
   gold_pickaxe: {
@@ -2162,7 +2599,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 14,
       attack: 5,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 20
+    }]
   },
 
   carbon_pickaxe: {
@@ -2185,7 +2627,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 20,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 25
+    }]
   },
 
   steel_pickaxe: {
@@ -2208,7 +2655,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 16,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 30
+    }]
   },
 
   platinum_pickaxe: {
@@ -2231,7 +2683,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 16,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 35
+    }]
   },
 
   titanium_pickaxe: {
@@ -2254,7 +2711,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 16,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 40
+    }]
   },
 
   tungsten_pickaxe: {
@@ -2277,7 +2739,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 16,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 45
+    }]
   },
 
   obsidian_pickaxe: {
@@ -2300,7 +2767,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 16,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 50
+    }]
   },
 
   cobalt_pickaxe: {
@@ -2323,7 +2795,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 28,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 55
+    }]
   },
 
   mithril_pickaxe: {
@@ -2346,7 +2823,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 22,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 60
+    }]
   },
 
   adamantium_pickaxe: {
@@ -2369,7 +2851,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 25,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 65
+    }]
   },
 
   orichalcum_pickaxe: {
@@ -2392,7 +2879,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 28,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 70
+    }]
   },
 
   meteorite_pickaxe: {
@@ -2415,7 +2907,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 28,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 75
+    }]
   },
 
   fairy_steel_pickaxe: {
@@ -2438,7 +2935,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 31,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 80
+    }]
   },
 
   elven_steel_pickaxe: {
@@ -2461,7 +2963,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 31,
       attack: 5,
       energyRegen: 2
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 85
+    }]
   },
 
   cursed_pickaxe: {
@@ -2484,7 +2991,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 31,
       attack: 10,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 90
+    }]
   },
 
   darksteel_pickaxe: {
@@ -2507,7 +3019,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 35,
       attack: 12,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 95
+    }]
   },
 
   radiant_pickaxe: {
@@ -2530,7 +3047,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 39,
       attack: 14,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 100
+    }]
   },  
 
   astral_pickaxe: {
@@ -2553,7 +3075,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 42,
       attack: 16,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 105
+    }]
   },  
 
   titanfoil_pickaxe: {
@@ -2576,7 +3103,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 50,
       attack: 20,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 110
+    }]
   },  
 
   relicrock_pickaxe: {
@@ -2599,7 +3131,12 @@ export const PICKAXE_ITEMS = {
       energyStorage: 55,
       attack: 25,
       energyRegen: 3
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 115
+    }]
   },  
 
   eternium_pickaxe: {
@@ -2622,6 +3159,11 @@ export const PICKAXE_ITEMS = {
       energyStorage: 65,
       attack: 30,
       energyRegen: 4
-    }
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 120
+    }]
   },  
 };

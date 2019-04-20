@@ -53,10 +53,12 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
         itemConstants.upgradeRarity.forEach((thisRarityData) => {
           if (!rarityId) {
             let currentChance = thisRarityData.chance;
-            const townBuffArmoryLevel = getBuffLevel('town_armory');
+            
+            // this perk doesn't exist anymore, it was converted to reforge chance
+            /*const townBuffArmoryLevel = getBuffLevel('town_armory');
             if (townBuffArmoryLevel > 0) {
-              currentChance *= 1 + (townBuffArmoryLevel * 0.05)
-            }
+              currentChance *= 1 + (townBuffArmoryLevel * 0.05);
+            }*/
             
             if (upgradedRarityRoll <= CDbl(currentChance)) {
               rarityId = thisRarityData.rarityId;

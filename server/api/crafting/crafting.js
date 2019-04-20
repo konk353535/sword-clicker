@@ -15,6 +15,7 @@ import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 import { CInt } from '/imports/utils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
+import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 // Take a list of requirements
 // If met will return true and take items
@@ -257,15 +258,20 @@ const getReforgeData = function getReforgeData(_id) {
     }
   });
   
-  if (!currentItem.rarityId) {
-    currentItem.rarityId = 'standard';
-  }
-  
   if (!recipeData) {
     if (ITEMS[currentItem.itemId].reforgeRecipe && ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting) {
       recipeData = {
-        requiredCraftingLevel: ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting
+        requiredCraftingLevel: ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting,
+        isLooted: true
       };
+    }
+  }
+  
+  if (!currentItem.rarityId) {
+    if (recipeData && recipeData.isLooted) {
+      currentItem.rarityId = 'uncommon';
+    } else {
+      currentItem.rarityId = 'standard';
     }
   }
   
@@ -290,6 +296,12 @@ const getReforgeData = function getReforgeData(_id) {
   }
   
   let chanceToSucceed = (currentRarityData.nextRarity.successChance + (currentCraftingLevel - recipeData.requiredCraftingLevel)) / 100.0;
+  
+  const townBuffArmoryLevel = getBuffLevel('town_armory');
+  if (townBuffArmoryLevel > 0) {
+    chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+  }
+  
   if (chanceToSucceed > 0.95) {
     chanceToSucceed = 0.95;
   }
@@ -611,7 +623,11 @@ Meteor.methods({
         const reforgeData = JSON.parse(crafting.currentlyReforging.reforgeData);
         
         if (!originalItem.rarityId) {
-          originalItem.rarityId = 'standard';
+          if (reforgeData.recipeData && reforgeData.recipeData.isLooted) {
+            originalItem.rarityId = 'uncommon';
+          } else {
+            originalItem.rarityId = 'standard';
+          }          
         }
         
         Crafting.update(crafting._id, {

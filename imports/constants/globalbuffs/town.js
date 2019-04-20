@@ -66,7 +66,7 @@ export const TOWN_GLOBALBUFFS = {
     effects: function(level = 1) {
       return [
         `${(level + 1) * 1.5}% higher companion stats in battle`,
-        `${level * 5}% better chance for rarer items`,
+        `${level * 5}% better chance to reforge equipment`,
       ];
     },
     isServerBuff: true,

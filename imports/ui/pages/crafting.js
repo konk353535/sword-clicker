@@ -453,7 +453,7 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
               successChance = 95;
             }
             if (townBuffArmoryLevel > 0) {
-              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+              successChance *= 1.00 + (townBuffArmoryLevel * 0.05);
             }
             if (successChance < 0) {
               successChance = 0;
@@ -524,7 +524,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
               successChance = 95;
             }
             if (townBuffArmoryLevel > 0) {
-              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+              successChance *= 1.00 + (townBuffArmoryLevel * 0.05);
             }
             if (successChance < 0) {
               successChance = 0;
@@ -589,7 +589,7 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
               successChance = 95;
             }
             if (townBuffArmoryLevel > 0) {
-              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+              successChance *= 1.00 + (townBuffArmoryLevel * 0.05);
             }
             if (successChance < 0) {
               successChance = 0;
@@ -661,7 +661,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
               successChance = 95;
             }
             if (townBuffArmoryLevel > 0) {
-              chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+              successChance *= 1.00 + (townBuffArmoryLevel * 0.05);
             }
             if (successChance < 0) {
               successChance = 0;

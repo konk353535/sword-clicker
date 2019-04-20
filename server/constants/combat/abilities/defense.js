@@ -324,7 +324,7 @@ export const DEFENSE_ABILITIES = {
     icon: 'babyFox.svg',
     name: 'baby fox',
     id: 'baby_fox',
-    buffs: ['baby_fox_ability'],
+    buffs: ['baby_fox'],
     cooldown: 0,
     isPassive: true,
     slot: 'companion',
@@ -332,7 +332,7 @@ export const DEFENSE_ABILITIES = {
     target: 'self',
     isPacifist: true,
     description(level) {
-      const BUFF = BUFFS.baby_fox_ability;
+      const BUFF = BUFFS.baby_fox;
       return BUFF.description({ buff: BUFF, level });
     }
   },

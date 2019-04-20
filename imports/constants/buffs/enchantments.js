@@ -131,8 +131,9 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
-  baby_fox: {
-    duplicateTag: 'baby_fox', // Used to stop duplicate buffs
+  /*
+  baby_fox__outdated: {
+    duplicateTag: 'baby_fox__outdated', // Used to stop duplicate buffs
     icon: 'babyFox.svg',
     name: 'babyFox',
     description() {
@@ -265,7 +266,8 @@ export const ENCHANTMENT_BUFFS = {
       }
     }
   },
-
+  */
+  
   bison_axe: {
     duplicateTag: 'bison_axe', // Used to stop duplicate buffs
     icon: 'bisonAxe.svg',

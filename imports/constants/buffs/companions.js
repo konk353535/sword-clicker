@@ -159,8 +159,8 @@ const companionStatsHTML = function companionStatsHTML({buff, level, floor, play
 }
 
 export const COMPANION_BUFFS = {
-  baby_fox_ability: {
-    duplicateTag: 'baby_fox_ability',
+  baby_fox: {
+    duplicateTag: 'baby_fox',
     icon: 'babyFox.svg',
     name: 'baby fox',
     description() {
@@ -181,12 +181,13 @@ export const COMPANION_BUFFS = {
           buff.data.hideBuff = true;
           // Spawn our fox
           const foxToSpawn = lodash.sample(['fire', 'water', 'air', 'earth']);
-          let fox = {
+          const fox = {
             owner: target.id + '_companion',
             id: uuid.v4(),
             tickOffset: 0,
             isNPC: true,
             isCompanion: true,
+            isSoloCompanion: false
           };
 
           if (foxToSpawn === 'fire') {
@@ -289,7 +290,7 @@ export const COMPANION_BUFFS = {
               }
             }]
           }
-
+          
           actualBattle.addUnit(fox);
         }
       },

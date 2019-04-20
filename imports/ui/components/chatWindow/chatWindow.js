@@ -83,9 +83,9 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
       minimized = !myUserDoc.uiState.showChat;      
     }
 
-    if (myUserDoc && myUserDoc.isMutedExpiry && moment().isBefore(myUserDoc.isMutedExpiry)) {
-      toastr.error(`You will be unmuted in ${moment(myUserDoc.isMutedExpiry).fromNow()}. Please keep things civil.`);
-    }
+    //if (myUserDoc && myUserDoc.isMutedExpiry && moment().isBefore(myUserDoc.isMutedExpiry)) {
+    //  toastr.error(`You will be unmuted in ${moment(myUserDoc.isMutedExpiry).fromNow()}. Please keep things civil.`);
+    //}
 
     this.state.set('minimized', minimized);
   });
@@ -242,6 +242,12 @@ Template.chatWindow.events({
     const command = contents[0].trim().toLowerCase();
     const text = contents.length > 1 ? contents.slice(1).join(' ') : '';
 
+    let myUserDoc = Users.findOne({ _id: Meteor.userId() });
+    if (myUserDoc && myUserDoc.isMutedExpiry && moment().isBefore(myUserDoc.isMutedExpiry)) {
+      toastr.error(`You will be unmuted in ${moment(myUserDoc.isMutedExpiry).fromNow()}. Please keep things civil.`);      
+      return;
+    }
+    
     // Check for client commands
     if (command === '/party' || command === '/p') {
       $message.val(text);

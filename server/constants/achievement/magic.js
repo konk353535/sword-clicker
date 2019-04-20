@@ -85,11 +85,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 25000
+      amount: 15000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 25000
+      amount: 15000
     }]
   },
     
@@ -108,11 +108,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 50000
+      amount: 25000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 50000
+      amount: 25000
     }]
   },
  
@@ -139,11 +139,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 75000
+      amount: 40000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 75000
+      amount: 40000
     }]
   },
   
@@ -170,11 +170,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 100000
+      amount: 65000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 100000
+      amount: 65000
     }]
   },
   
@@ -193,11 +193,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 250000
+      amount: 90000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 250000
+      amount: 90000
     }]
   },
 
@@ -224,11 +224,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 500000
+      amount: 135000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 500000
+      amount: 135000
     }]
   },
   
@@ -255,11 +255,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 750000
+      amount: 185000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 750000
+      amount: 185000
     }]
   },
   
@@ -278,11 +278,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 1000000
+      amount: 285000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 1000000
+      amount: 285000
     }]
   },
 
@@ -309,11 +309,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 1250000
+      amount: 450000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 1250000
+      amount: 450000
     }]
   },
   
@@ -340,11 +340,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 1500000
+      amount: 675000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 1500000
+      amount: 675000
     }]
   },
   
@@ -371,11 +371,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 1750000
+      amount: 800000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 1750000
+      amount: 800000
     }]
   },
   
@@ -394,11 +394,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 2000000
+      amount: 1150000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 2000000
+      amount: 1150000
     }]
   },
   
@@ -425,11 +425,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 2400000
+      amount: 1550000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 2400000
+      amount: 1550000
     }]
   },
   
@@ -456,11 +456,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 2800000
+      amount: 1900000
     }, {
       type: 'xp',
       skill: 'inscription',
-      amount: 2800000
+      amount: 1900000
     }]
   },
   
@@ -487,11 +487,11 @@ export const MAGIC_ACHIEVEMENTS = {
     }, {
       type: 'xp',
       skill: 'magic',
-      amount: 3500000
+      amount: 2500000
     }, {
       type: 'xp',
       skill: 'astronomy',
-      amount: 3500000
+      amount: 2500000
     }]
   },
 };

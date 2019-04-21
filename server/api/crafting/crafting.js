@@ -299,7 +299,7 @@ const getReforgeData = function getReforgeData(_id) {
   
   const townBuffArmoryLevel = getBuffLevel('town_armory');
   if (townBuffArmoryLevel > 0) {
-    chanceToSucceed *= 1.00 + (townBuffArmoryLevel * 0.05);
+    chanceToSucceed += townBuffArmoryLevel * 5;
   }
   
   if (chanceToSucceed > 0.95) {

@@ -107,9 +107,13 @@
         <form class="form-inline my-2 my-lg-0">
           {{#if currentUser}}
             <div class="p-2 d-flex align-items-center text-white">
-              <span class="mr-1">
+              <span class="mr-2">
                 <img src="/icons/goldCoin.svg" class="extra-small-icon">
                 {{> formatNumber number=currentUser.gold}}
+              </span>
+              <span class="mr-2">
+                <img src="/icons/companionToken.svg" class="extra-small-icon">
+                {{> formatNumber number=companionTokens}}
               </span>
               <span>
                 <a style="color: white; text-decoration: none !important;" href="/shop">

@@ -6,12 +6,14 @@ import { Groups } from '/imports/api/groups/groups.js';
 import { Servers, DEFAULT_SERVER, CLASSIC_SERVER } from '/imports/api/servers/servers.js';
 import { Meteor } from "meteor/meteor";
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Items } from '/imports/api/items/items.js';
 
 import './nav.html';
 
 Template.nav.onCreated(function bodyOnCreated() {
   Meteor.subscribe("userData");
   Meteor.subscribe("servers");
+  Meteor.subscribe("items");
 
   this.state = new ReactiveDict();
 
@@ -246,6 +248,14 @@ Template.nav.helpers({
     }
   },
 
+  companionTokens() {
+    const companionTokens = Items.findOne({itemId: 'companion_token'});
+    if (companionTokens) {
+      return parseInt(companionTokens.amount);
+    }
+    return 0;
+  },
+  
   combinedGems() {
     return (Meteor.user().gems || 0) + (Meteor.user().fakeGems || 0);
   },

@@ -10,10 +10,11 @@ import { Groups } from '/imports/api/groups/groups.js';
 import { Combat } from '/imports/api/combat/combat.js';
 import { Battles, BattlesList } from '/imports/api/battles/battles.js';
 
-import { ITEMS } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { FARMING } from '/imports/constants/farming/index.js';
 import { MINING } from '/imports/constants/mining/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
+import { GLOBALBUFFS } from '/imports/constants/globalbuffs/index.js';
 
 import './components/accounts/accounts.html';
 import './components/accounts/accounts.js';
@@ -40,6 +41,8 @@ let cachedAdventures = {};
 
 window.gameConstants = {
   ITEMS,
+  ITEM_RARITIES,
+  GLOBALBUFFS,
   FARMING,
   MINING,
   WOODCUTTING

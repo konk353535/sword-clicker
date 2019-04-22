@@ -15,6 +15,7 @@ import lodash from 'lodash';
 import { addXp } from '/server/api/skills/skills';
 import { updateUserActivity } from '/imports/api/users/users.js';
 import { IsValid, CInt } from '/imports/utils.js';
+import { getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
@@ -350,7 +351,7 @@ Meteor.methods({
         baseEnergyRegen *= (1 + (DONATORS_BENEFITS.energyBonus / 100));
       }
 
-      currentCombat.stats.energy += baseEnergyRegen;
+      currentCombat.stats.energy += baseEnergyRegen * ((getActiveGlobalBuff('paid_combat')) ? 3 : 1);
 
       if (currentCombat.stats.energy > currentCombat.stats.energyMax) {
         currentCombat.stats.energy = currentCombat.stats.energyMax;

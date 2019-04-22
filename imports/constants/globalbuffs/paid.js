@@ -51,7 +51,7 @@ export const PAID_GLOBALBUFFS = {
         '+20% Combat XP',
         '+50% Drop Chance',
         '+35% Astronomy XP',
-        'Double combat energy regeneration',
+        'Triple combat energy regeneration',
       ];
     },
     isServerBuff: false,
@@ -70,7 +70,7 @@ export const PAID_GLOBALBUFFS = {
         '+20% Combat XP',
         '+50% Drop Chance',
         '+35% Astronomy XP',
-        'Double combat energy regeneration',
+        'Triple combat energy regeneration',
       ];
     },
     isServerBuff: false,

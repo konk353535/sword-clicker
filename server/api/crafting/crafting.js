@@ -661,6 +661,17 @@ Meteor.methods({
               rarityId: prevRarityId,
               enhanced: originalItem.enhanced
             });
+          } else {
+            // failure!  rarity stays the same
+            Items.insert({
+              itemId: originalItem.itemId,
+              owner: originalItem.owner,
+              category: originalItem.category,
+              extraStats: originalItem.extraStats,
+              quality: originalItem.quality,
+              rarityId: originalItem.rarityId,
+              enhanced: originalItem.enhanced
+            });
           }
         }
       }

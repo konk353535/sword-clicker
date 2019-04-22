@@ -17,7 +17,7 @@ import { MINING } from '/imports/constants/mining/index.js';
 import '../components/mining/mineSpace.js';
 import './mining.html';
 
-import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+import { getBuffLevel, getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
 let miningPageTimer;
 let hasInitGameUpdate;
@@ -470,6 +470,10 @@ Template.miningPage.helpers({
 
       return possibleProspector;
     });
+  },
+  
+  hasGlobalGatheringBuff() {
+    return getActiveGlobalBuff('paid_gathering');
   },
 
   currentTab() {

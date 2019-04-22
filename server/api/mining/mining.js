@@ -19,7 +19,7 @@ import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
 import { CDbl } from '/imports/utils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
-import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+import { getBuffLevel, getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
 export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = false) {
   let owner;
@@ -81,15 +81,15 @@ export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = f
     miningStats.miner = 0;
   }
 
-  const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
-  
   if (!miningStats.attack) { miningStats.attack = 1; }
   if (!miningStats.energyStorage) { miningStats.energyStorage = 10; }
   if (!miningStats.energyRegen) { miningStats.energyRegen = 10; }
   if (!miningStats.energyPerHit) { miningStats.energyPerHit = 1; }
 
+  const miningSkill = Skills.findOne({ owner, type: 'mining' });
+  
   if (miningSkill && miningSkill.level) {
-    miningStats.energyRegen += miningSkill.level / 7.5;
+    miningStats.energyRegen += miningSkill.level * 0.125;
   }
   
   // New users get full energy on their pick instantly.
@@ -342,7 +342,7 @@ Meteor.methods({
     const minutesElapsed = secondsElapsed / 60;
 
     if (mining.stats.energy < mining.stats.energyStorage) {
-      mining.stats.energy += (minutesElapsed * mining.stats.energyRegen);
+      mining.stats.energy += (minutesElapsed * mining.stats.energyRegen) * ((getActiveGlobalBuff('paid_gathering')) ? 2 : 1);
       if (mining.stats.energy > mining.stats.energyStorage) {
         mining.stats.energy = mining.stats.energyStorage;
       }

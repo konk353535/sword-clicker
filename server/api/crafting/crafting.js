@@ -15,7 +15,7 @@ import { addItem } from '/server/api/items/items.js';
 import { addXp } from '/server/api/skills/skills.js';
 import { CInt } from '/imports/utils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
-import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+import { getBuffLevel, getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
 // Take a list of requirements
 // If met will return true and take items
@@ -649,17 +649,19 @@ Meteor.methods({
             enhanced: originalItem.enhanced
           });
         } else {
-          // failure!  rarity goes DOWN
-          const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
-          Items.insert({
-            itemId: originalItem.itemId,
-            owner: originalItem.owner,
-            category: originalItem.category,
-            extraStats: originalItem.extraStats,
-            quality: originalItem.quality,
-            rarityId: prevRarityId,
-            enhanced: originalItem.enhanced
-          });
+          if (!getActiveGlobalBuff('paid_crafting')) {
+            // failure!  rarity goes DOWN
+            const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
+            Items.insert({
+              itemId: originalItem.itemId,
+              owner: originalItem.owner,
+              category: originalItem.category,
+              extraStats: originalItem.extraStats,
+              quality: originalItem.quality,
+              rarityId: prevRarityId,
+              enhanced: originalItem.enhanced
+            });
+          }
         }
       }
     }

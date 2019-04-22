@@ -81,11 +81,17 @@ export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = f
     miningStats.miner = 0;
   }
 
+  const miningSkill = Skills.findOne({ owner: this.userId, type: 'mining' });
+  
   if (!miningStats.attack) { miningStats.attack = 1; }
   if (!miningStats.energyStorage) { miningStats.energyStorage = 10; }
   if (!miningStats.energyRegen) { miningStats.energyRegen = 10; }
   if (!miningStats.energyPerHit) { miningStats.energyPerHit = 1; }
 
+  if (miningSkill && miningSkill.level) {
+    miningStats.energyRegen += miningSkill.level / 7.5;
+  }
+  
   // New users get full energy on their pick instantly.
   if (isNewUser) {
     miningStats.energy = miningStats.energyStorage;

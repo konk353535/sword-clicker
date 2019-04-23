@@ -395,6 +395,77 @@ Meteor.methods({
     updateUserActivity({userId: Meteor.userId()});
   },
   
+  // Invite the user to your current group or create a group if not in one
+  'groups.inviteOwner'(owner) {
+    const isMutedExpiry = Meteor.user().isMutedExpiry;
+    if (isMutedExpiry && moment().isBefore(isMutedExpiry)) {
+      throw new Meteor.Error('sorry-sir', 'sorry no can do :(');
+    }
+
+    // Does the specified username exist
+    const targetUser = Users.findOne({
+      server: Meteor.user().server,
+      _id: owner
+    });
+
+    if (!targetUser) {
+      return;
+    }
+
+    // Are we currently in a group?
+    let currentGroup = Groups.findOne({
+      members: this.userId
+    });
+
+    // Must be leader to invite users
+    if (currentGroup && currentGroup.leader !== this.userId) {
+      return;
+    }
+
+    // Cannot invite self into group
+    if (targetUser._id === this.userId) {
+      return;
+    }
+
+    // Can't invite / add already added / invited users
+    if (currentGroup && (_.contains(currentGroup.invites, targetUser._id) ||
+      _.contains(currentGroup.members, targetUser._id))) {
+      return;
+    }
+
+    // Make sure there is room for target user
+    if (currentGroup && currentGroup.members.length + currentGroup.invites.length + 1 > BATTLES.maxBossPartySize) {
+      throw new Meteor.Error('group-full',
+        `Group is full (${currentGroup.members.length + currentGroup.invites.length} / ${BATTLES.maxBossPartySize}) members`);
+    }
+
+    if (currentGroup) {
+      // Add target user to group
+      Groups.update(currentGroup._id, {
+        $push: {
+          invites: targetUser._id
+        }
+      });
+    } else {
+      // Create group with myself and the target user
+      Groups.insert({
+        balancer: uuid.v4(),
+        server: Meteor.user().server,
+        leaderName: Meteor.user().username,
+        leader: this.userId,
+        members: [this.userId],
+        membersObject: [{
+          name: Meteor.user().username,
+          averageCombat: Meteor.user().averageCombat,
+          id: this.userId
+        }],
+        invites: [targetUser._id]
+      });
+    }
+
+    updateUserActivity({userId: Meteor.userId()});
+  },
+  
   // Create a new group
   'groups.create'() {
     const isMutedExpiry = Meteor.user().isMutedExpiry;

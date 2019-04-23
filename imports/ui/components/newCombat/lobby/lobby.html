@@ -245,6 +245,9 @@
                     <img src="/icons/boot.svg" width="16" height="16" />
                   </button>
                   {{#unless this.isInvitee}}
+                    <button class="btn btn-danger btn-kick-invite btn-sm mr-1" data-owner="{{this.owner}}">
+                      <img src="/icons/kickInvite.svg" width="16" height="16" />
+                    </button>
                     <button class="btn btn-warning btn-promote btn-sm" data-owner="{{this.owner}}">
                       <img src="/icons/leaderCrown.svg" width="16" height="16" />
                     </button>

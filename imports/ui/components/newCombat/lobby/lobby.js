@@ -299,6 +299,21 @@ Template.lobbyPage.events({
     const ownerId = instance.$(event.target).closest('.btn-kick').data('owner');
     Meteor.call('groups.kick', { ownerId });
   },
+  
+  'click .btn-kick-invite'(event, instance) {
+    const ownerId = instance.$(event.target).closest('.btn-kick-invite').data('owner');
+    Meteor.call('groups.kick', { ownerId }, (err, res) => {
+      if (err) {
+        toastr.warning(err.reason);
+      } else {
+        Meteor.call('groups.inviteOwner', ownerId, (err, res) => {
+          if (err) {
+            toastr.warning(err.reason);
+          }
+        });
+      }
+    });
+  },
 
   'click .btn-promote'(event, instance) {
     const ownerId = instance.$(event.target).closest('.btn-promote').data('owner');

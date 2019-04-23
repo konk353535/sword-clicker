@@ -374,6 +374,14 @@ Template.shopPage.helpers({
     }
   },
 
+  freeGems() {
+    return Meteor.user().fakeGems;
+  },
+
+  paidGems() {
+    return Meteor.user().gems;
+  },
+
   totalGems() {
     return Meteor.user().gems + Meteor.user().fakeGems;
   },

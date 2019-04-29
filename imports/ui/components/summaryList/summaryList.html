@@ -3,13 +3,13 @@
     {{#unless summaryListDisabled}}
       {{#unless inCurrentBattle}}
         <div
-          class="hidden-lg-down"
+          class="hidden-lg-down summaryList"
           style="border-left: 1px solid #DFDFDF; padding: 20px; min-width: 300px; margin-left: 30px;">          
           <div style="position: fixed;">
           
             {{#if adventures}}
               <h6><a href="/battle" class="adventures-nav-link">Adventures</a></h6>
-              <div class="d-flex flex-wrap align-items-center">
+              <div class="d-flex flex-wrap align-items-center summary-adventures">
                 {{#each adventures}}
                   {{#if this.rewards}}
                     <div
@@ -30,12 +30,12 @@
               </div>
             {{else unless currentGroup}}
               <h6><a href="/battle" class="adventures-nav-link">Adventures</a></h6>
-              <div class="d-flex flex-wrap align-items-center">
+              <div class="d-flex flex-wrap align-items-center summary-adventures">
                 <i>(nothing queued)</i>
               </div>
               
               <h6 class="mt-3"><a href="/battle" class="group-nav-link">Abilities</a></h6>
-              <div class="d-flex flex-wrap align-items-center">
+              <div class="d-flex flex-wrap align-items-center summary-abilities">
                 {{#if equippedAbilitiesMap.mainHand}}
                   {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
                 {{else}}
@@ -86,7 +86,7 @@
               </div>
             {{else}}
               <h6><a href="/battle" class="group-nav-link">Abilities</a></h6>
-              <div class="d-flex flex-wrap align-items-center">
+              <div class="d-flex flex-wrap align-items-center summary-abilities">
                 {{#if equippedAbilitiesMap.mainHand}}
                   {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand classes='tiny'}}
                 {{else}}
@@ -139,7 +139,7 @@
             
             {{#if currentGroup}}
               <h6 class="mt-3"><a href="/battle" class="group-nav-link">Group</a></h6>
-              <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center summary-group">
                 <div class="d-flex flex-row flex-wrap" style="max-width: 280px;">
                   {{#each currentGroupMembers}}
                     <div class="flex-column d-flex justify-content-center" style="margin-right: 3px">
@@ -151,7 +151,7 @@
             {{/if}}
             
             <h6 class="mt-3"><a href="/mining">Mining</a></h6>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center summary-mining">
               <div class="d-flex flex-row flex-wrap mine-pit-container" style="max-width: 160px;">
                 {{#each miningSpaces}}
                   {{> mineSpace mineSpace=this tiny=true}}
@@ -160,7 +160,7 @@
             </div>
             
             <h6 class="mt-3"><a href="/crafting">Crafting</a></h6>
-            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
+            <div class="d-flex flex-row flex-wrap align-items-center summary-crafting" style="max-width: 280px;">
               {{#each crafting.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isCrafting=true}}
               {{else}}
@@ -169,7 +169,7 @@
             </div>
 
             <h6 class="mt-3"><a href="/crafting">Reforging</a></h6>
-            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
+            <div class="d-flex flex-row flex-wrap align-items-center summary-reforging" style="max-width: 280px;">
               {{#if reforging}}
                 {{> craftingDuration craftingProcess=reforging isReforging=true}}
               {{else}}
@@ -178,7 +178,7 @@
             </div>
 
             <h6 class="mt-3"><a href="/inscription">Inscription</a></h6>
-            <div class="d-flex flex-row flex-wrap align-items-center" style="max-width: 280px;">
+            <div class="d-flex flex-row flex-wrap align-items-center summary-inscription" style="max-width: 280px;">
               {{#each inscription.currentlyCrafting}}
                 {{> craftingDuration craftingProcess=this isInscription=true}}
               {{else}}
@@ -187,7 +187,7 @@
             </div>
 
             <h6 class="mt-3"><a href="/farming">Farming</a></h6>
-            <div class="d-flex flex-wrap" style="max-width: 280px;">
+            <div class="d-flex flex-wrap summary-farming" style="max-width: 280px;">
               {{#each farmingSpaces}}
                 {{> farmSpace farmSpace=this classes="small-icon"}}
               {{/each}}

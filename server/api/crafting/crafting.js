@@ -345,57 +345,156 @@ Meteor.methods({
       throw new Meteor.Error("cant-reforge", "You have no chance to reforge that item.");
     }
     
-    const crafting = Crafting.findOne({ owner: Meteor.userId() });
-    
-    if (crafting.currentlyReforging && crafting.currentlyReforging.itemId) {
-      throw new Meteor.Error("cant-reforge", "You are already reforging something.");
+    let crafting = Crafting.findOne({ owner: Meteor.userId() });
+
+    const maxConcurrentReforges = CRAFTING.getMaxReforges(crafting.craftingLevel);
+
+    if (crafting) {
+     if (crafting.currentlyReforging === undefined || crafting.currentlyReforging === null) {
+      Crafting.update(crafting._id, {
+        $set: {
+          currentlyReforging: []
+        }
+      });
+       crafting = Crafting.findOne({ owner: Meteor.userId() });
+     } else if (!crafting.currentlyReforging.hasOwnProperty('length')) {
+       // Handle migration case where currentlyReforging used to just be a properly, not an array
+       Crafting.update(crafting._id, {
+         $set: {
+           currentlyReforging: [crafting.currentlyReforging]
+         }
+       });
+       crafting = Crafting.findOne({ owner: Meteor.userId() });
+     }
     }
-    
+
+    // Are we already reforging?
+    if (crafting.currentlyReforging && crafting.currentlyReforging.length >= maxConcurrentReforges) {
+      throw new Meteor.Error("cant-reforge", "You are already reforging as many items as you can.");
+    }
+
+    const reforgingItems = crafting.currentlyReforging.map(item => item.itemId);
+    if (reforgingItems.includes(currentItem.itemId)) {
+      const itemName = ITEMS[currentItem.itemId].name.toLowerCase().split(' ').map(word => word.replace(word[0], word[0].toUpperCase())).join(' ');
+      throw new Meteor.Error("cant-reforge", `You are already reforging a${['a', 'e', 'i', 'o', 'u'].includes(itemName.charAt(0).toLowerCase()) ? 'n' : ''} ${itemName}.`);
+    }
+
     if (!currentItem.rarityId) {
       currentItem.rarityId = 'standard';
     }
-    
+
+    let startDate = new Date();
+
+    if (crafting.currentlyReforging && crafting.currentlyReforging.length > 0) {
+      // Get latest reforging time and use that for next items reforging start time
+      // This will make reforging sequential
+      startDate = _.sortBy(crafting.currentlyReforging, 'endDate').reverse()[0].endDate;
+    }
+
     const whatWereReforging = {
       itemId: currentItem.itemId,
       currentRarityId: currentItem.rarityId,
       itemData: JSON.stringify(currentItem),
       reforgeData: JSON.stringify(reforgeData),
-      startDate: moment().toDate(),
-      endDate: moment().add((reforgeData.recipeData.requiredCraftingLevel * 5) + 15, 'seconds').toDate()
+      startDate: startDate,
+      endDate: moment(startDate).add((reforgeData.recipeData.requiredCraftingLevel * 5) + 15, 'seconds').toDate()
     };
-    
-    const updatedCount = Crafting.update({
-      _id: crafting._id
-    }, {
+
+    // Add to currently reforging...
+    const updatedCount = Crafting.update(crafting._id, {
+      $push: {
+        currentlyReforging: whatWereReforging
+      },
       $set: {
-        currentlyReforging: whatWereReforging,
         anythingReforging: true
       }
     });
-    
+
     if (updatedCount < 1) {
       throw new Meteor.Error("cant-reforge", "Error setting reforging data.");
     }
     
-    Items.remove(currentItem._id);    
+    Items.remove(currentItem._id);
 
     updateUserActivity({userId: Meteor.userId()});
   },
   
-  'crafting.cancelReforge'() {
+  'crafting.cancelReforge'(targetEndDate) {
     const crafting = Crafting.findOne({
       owner: Meteor.userId()
     });
+
+    const userDoc = Meteor.user();
     
-    if (!crafting || !crafting.currentlyReforging || !crafting.anythingReforging) {
+    if (!crafting || !crafting.currentlyReforging) {
       return false;
     }
 
-    const originalItem = JSON.parse(crafting.currentlyReforging.itemData);
-    
+    if (!crafting.currentlyReforging.hasOwnProperty('length')) {
+      // Handle migration case where currentlyReforging used to just be a properly, not an array
+      Crafting.update(crafting._id, {
+        $set: {
+          currentlyReforging: [crafting.currentlyReforging]
+        }
+      });
+    }
+
+    const newReforging = lodash.cloneDeep(crafting.currentlyReforging);
+
+    // Target Reforging Item
+    let targetReforging;
+    newReforging.forEach((currentlyReforging, index) => {
+      if (moment(currentlyReforging.endDate).diff(targetEndDate) === 0) {
+        targetReforging = currentlyReforging;
+      }
+    });
+
+    // Remove targetReforging from the array
+    const filteredReforging = newReforging.filter((reforging) => {
+      return reforging !== targetReforging;
+    });
+
+    // Reorder crafts and recalculate start / end date
+    const sortedReforges = _.sortBy(filteredReforging, 'startDate');
+
+    // Reconstruct start and end dates
+    sortedReforges.forEach((reforge, index) => {
+      if (moment().isBefore(reforge.startDate)) {
+        const reforgeData = JSON.parse(reforge.reforgeData);
+        let reforgeDuration = (reforgeData.recipeData.requiredCraftingLevel * 5) + 15;
+        if (userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo)) {
+          craftDuration *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
+        }
+        if (index === 0) {
+          reforge.startDate = moment().toDate();
+          reforge.endDate = moment().add(reforgeDuration, 'seconds').toDate();
+        } else {
+          reforge.startDate = moment(sortedReforges[index - 1].endDate).toDate();
+          reforge.endDate = moment(reforge.startDate).add(reforgeDuration, 'seconds').toDate();
+        }
+      }
+    });
+
+    // Remove targetCrafting from current crafting array
+    const updatedCount = Crafting.update({
+      _id: crafting._id,
+      currentlyReforging: crafting.currentlyReforging
+    }, {
+      $set: {
+        currentlyReforging: sortedReforges
+      }
+    });
+
+    if (updatedCount === 0) {
+      return;
+    }
+
+    const originalItem = JSON.parse(targetReforging.itemData);
+
     Crafting.update(crafting._id, {
-      $unset: { currentlyReforging: "" },
-      $set: { anythingReforging: false }
+      $set: {
+        anythingReforging: crafting.currentlyReforging.length > 0
+      }
     }); 
     
     Items.insert({
@@ -618,25 +717,39 @@ Meteor.methods({
     }
 
     if (crafting.currentlyReforging) {
-      if (moment().isAfter(crafting.currentlyReforging.endDate)) {
-        const originalItem = JSON.parse(crafting.currentlyReforging.itemData);
-        const reforgeData = JSON.parse(crafting.currentlyReforging.reforgeData);
-        
+      if (!crafting.currentlyReforging.hasOwnProperty('length')) {
+        // Handle migration case where currentlyReforging used to just be a properly, not an array
+        Crafting.update(crafting._id, {
+          $set: {
+            currentlyReforging: [crafting.currentlyReforging]
+          }
+        });
+      }
+
+      const newItems = [];
+      const popValues = []; // Store array of currentCrafting endDates
+
+      crafting.currentlyReforging.forEach((currentReforge) => {
+        if (moment().isAfter(currentReforge.endDate)) {
+          popValues.push(currentReforge.endDate);
+          newItems.push(currentReforge);
+        }
+      });
+
+      newItems.forEach((item) => {
+        const originalItem = JSON.parse(item.itemData);
+        const reforgeData = JSON.parse(item.reforgeData);
+
         if (!originalItem.rarityId) {
           if (reforgeData.recipeData && reforgeData.recipeData.isLooted) {
             originalItem.rarityId = 'uncommon';
           } else {
             originalItem.rarityId = 'standard';
-          }          
+          }
         }
-        
-        Crafting.update(crafting._id, {
-          $unset: { currentlyReforging: "" },
-          $set: { anythingReforging: false }
-        });
-        
+
         const userRoll = Math.random();
-        
+
         if (userRoll <= reforgeData.chance) {
           // success!  rarity goes UP
           Items.insert({
@@ -649,7 +762,18 @@ Meteor.methods({
             enhanced: originalItem.enhanced
           });
         } else {
-          if (!getActiveGlobalBuff('paid_crafting')) {
+          if (getActiveGlobalBuff('paid_crafting')) {
+            // failure!  rarity stays the same
+            Items.insert({
+              itemId: originalItem.itemId,
+              owner: originalItem.owner,
+              category: originalItem.category,
+              extraStats: originalItem.extraStats,
+              quality: originalItem.quality,
+              rarityId: originalItem.rarityId,
+              enhanced: originalItem.enhanced
+            });
+          } else {
             // failure!  rarity goes DOWN
             const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
             Items.insert({
@@ -661,20 +785,25 @@ Meteor.methods({
               rarityId: prevRarityId,
               enhanced: originalItem.enhanced
             });
-          } else {
-            // failure!  rarity stays the same
-            Items.insert({
-              itemId: originalItem.itemId,
-              owner: originalItem.owner,
-              category: originalItem.category,
-              extraStats: originalItem.extraStats,
-              quality: originalItem.quality,
-              rarityId: originalItem.rarityId,
-              enhanced: originalItem.enhanced
-            });
           }
         }
-      }
+      });
+
+      const updatedCount = Crafting.update({
+        _id: crafting._id,
+        currentlyReforging: crafting.currentlyReforging
+      }, {
+        $pull: {
+          currentlyReforging: {
+            endDate: {
+              $in: popValues
+            }
+          }
+        },
+        $set: {
+          anythingReforging: crafting.currentlyReforging.length > 0
+        }
+      });
     }
   }
 });

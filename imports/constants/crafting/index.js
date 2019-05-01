@@ -72,6 +72,20 @@ export const CRAFTING = {
     return maxCrafts;
   },
 
+  getMaxReforges(craftingLevel) {
+    let maxReforges = 1;
+
+    if (craftingLevel >= 30) {
+      maxReforges = 2;
+    }
+
+    if (craftingLevel >= 60) {
+      maxReforges = 3;
+    }
+
+    return maxReforges;
+  },
+
   tiers: {
     copper: {
       requiredCraftingLevel: 2,

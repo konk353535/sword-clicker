@@ -19,7 +19,6 @@ CraftingSchema = new SimpleSchema({
   'currentlyReforging.$.reforgeData': { type: String },
   'currentlyReforging.$.startDate': { type: Date },
   'currentlyReforging.$.endDate': { type: Date },
-  anythingReforging: { type: Boolean, defaultValue: false },
   learntCrafts: { type: Object, blackbox: true, optional: true },
   expiringCrafts: { type: Object, blackbox: true, optional: true }
 });

@@ -259,9 +259,9 @@ Template.craftingPage.helpers({
     return Crafting.findOne({});
   },
 
-  reforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+  reforging() {
     const crafting = Crafting.findOne({});
-    if (crafting && crafting.anythingReforging)
+    if (crafting && crafting.currentlyReforging)
       return crafting.currentlyReforging;
     return false;
   },

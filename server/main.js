@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Migrations } from 'meteor/percolate:migrations';
 import '/imports/startup/both';
 import '/imports/startup/server';
 
@@ -57,6 +58,8 @@ Accounts.onLogin((accountConnection) => {
 });
 
 Meteor.startup(() => {
+
+  Migrations.migrateTo('latest');
 
   const classicServer = Servers.findOne({
     name: CLASSIC_SERVER

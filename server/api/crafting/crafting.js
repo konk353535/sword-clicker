@@ -349,25 +349,6 @@ Meteor.methods({
 
     const maxConcurrentReforges = CRAFTING.getMaxReforges(crafting.craftingLevel);
 
-    if (crafting) {
-     if (crafting.currentlyReforging === undefined || crafting.currentlyReforging === null) {
-      Crafting.update(crafting._id, {
-        $set: {
-          currentlyReforging: []
-        }
-      });
-       crafting = Crafting.findOne({ owner: Meteor.userId() });
-     } else if (!crafting.currentlyReforging.hasOwnProperty('length')) {
-       // Handle migration case where currentlyReforging used to just be a properly, not an array
-       Crafting.update(crafting._id, {
-         $set: {
-           currentlyReforging: [crafting.currentlyReforging]
-         }
-       });
-       crafting = Crafting.findOne({ owner: Meteor.userId() });
-     }
-    }
-
     // Are we already reforging?
     if (crafting.currentlyReforging && crafting.currentlyReforging.length >= maxConcurrentReforges) {
       throw new Meteor.Error("cant-reforge", "You are already reforging as many items as you can.");
@@ -404,9 +385,6 @@ Meteor.methods({
     const updatedCount = Crafting.update(crafting._id, {
       $push: {
         currentlyReforging: whatWereReforging
-      },
-      $set: {
-        anythingReforging: true
       }
     });
 
@@ -428,15 +406,6 @@ Meteor.methods({
     
     if (!crafting || !crafting.currentlyReforging) {
       return false;
-    }
-
-    if (!crafting.currentlyReforging.hasOwnProperty('length')) {
-      // Handle migration case where currentlyReforging used to just be a properly, not an array
-      Crafting.update(crafting._id, {
-        $set: {
-          currentlyReforging: [crafting.currentlyReforging]
-        }
-      });
     }
 
     const newReforging = lodash.cloneDeep(crafting.currentlyReforging);
@@ -490,12 +459,6 @@ Meteor.methods({
     }
 
     const originalItem = JSON.parse(targetReforging.itemData);
-
-    Crafting.update(crafting._id, {
-      $set: {
-        anythingReforging: crafting.currentlyReforging.length > 0
-      }
-    }); 
     
     Items.insert({
       itemId: originalItem.itemId,
@@ -717,15 +680,6 @@ Meteor.methods({
     }
 
     if (crafting.currentlyReforging) {
-      if (!crafting.currentlyReforging.hasOwnProperty('length')) {
-        // Handle migration case where currentlyReforging used to just be a properly, not an array
-        Crafting.update(crafting._id, {
-          $set: {
-            currentlyReforging: [crafting.currentlyReforging]
-          }
-        });
-      }
-
       const newItems = [];
       const popValues = []; // Store array of currentCrafting endDates
 
@@ -799,9 +753,6 @@ Meteor.methods({
               $in: popValues
             }
           }
-        },
-        $set: {
-          anythingReforging: crafting.currentlyReforging.length > 0
         }
       });
     }

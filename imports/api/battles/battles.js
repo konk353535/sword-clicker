@@ -44,6 +44,9 @@ BattlesSchema = new SimpleSchema({
   tick: { type: Number, defaultValue: 0, optional: true },
   lootResolved: { type: Boolean, optional: true },
 
+  energyUse: { type: Number, defaultValue: 1, optional: true },
+  battlesEquivalent: { type: Number, defaultValue: 1, optional: true },
+
   units: { type: [Object], optional: true }, // Usually just your player, but leave options open for pets
   'units.$.stats': { type: Object, blackbox: true },
   'units.$.amulet': { type: Object, blackbox: true, optional: true },

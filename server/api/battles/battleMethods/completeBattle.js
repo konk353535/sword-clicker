@@ -1303,7 +1303,9 @@ export const completeBattle = function(actualBattle) {
     loot: ngRewards,
     updatedAt: new Date(),
     createdAt: new Date(),
-    lootResolved: false
+    lootResolved: false,
+    energyUse,
+    battlesEquivalent: energyUseMultiplier
   });
   
   allPlayerUnits.forEach((unit) => {

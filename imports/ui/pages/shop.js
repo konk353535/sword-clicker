@@ -311,7 +311,7 @@ Template.shopPage.rendered = function () {
     handler.open({
       name: 'Eternity Tower',
       image: 'https://eternitytower.net/icons/tower.svg',
-      description: 'Bunch Of Gems',
+      description: 'Bunch Of Gems (500)',
       currency: 'usd',
       amount: 499
     });
@@ -325,7 +325,7 @@ Template.shopPage.rendered = function () {
     handler.open({
       name: 'Eternity Tower',
       image: 'https://eternitytower.net/icons/tower.svg',
-      description: 'Bag Of Gems',
+      description: 'Bag Of Gems (2,200)',
       currency: 'usd',
       amount: 1999
     });
@@ -339,7 +339,7 @@ Template.shopPage.rendered = function () {
     handler.open({
       name: 'Eternity Tower',
       image: 'https://eternitytower.net/icons/tower.svg',
-      description: 'Box Of Gems',
+      description: 'Box Of Gems (6,000)',
       currency: 'usd',
       amount: 4999
     });
@@ -359,21 +359,6 @@ Template.shopPage.helpers({
     return Template.instance().state.get('processing');
   },
 
-  onPaymentConfirmed() {
-    const instance = Template.instance();
-    return ({ token, item_id }) => {
-      Meteor.call('shop.purchaseWithRaiBlocks', { token, item_id }, (err, res) => {
-        if (err) {
-          toastr.error('An error occurred while purchasing gems.');
-        } else {
-          toastr.success('Successfully purchased');
-        }
-
-        instance.state.set('processing', false);
-      });
-    }
-  },
-
   freeGems() {
     return Meteor.user().fakeGems;
   },
@@ -389,11 +374,7 @@ Template.shopPage.helpers({
   globalBuffs() {
     return Template.instance().state.get('globalBuffs');
   },
-
-  public_key() {
-    return Meteor.settings.public.RAI_PAYS_PUBLIC_KEY;
-  },
-
+  
   someGemsPayment() {
     return {
       amount: 5,

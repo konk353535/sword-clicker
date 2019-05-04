@@ -169,6 +169,10 @@ Template.overviewPage.onDestroyed(function bodyOnDestroyed() {
 
 Template.overviewPage.helpers({
 
+  icon(itemId) {
+    return (ITEMS[itemId].icon);
+  },
+
   otherBattlers() {
     const otherBattlers = Groups.find({
       lastBattleStarted: {
@@ -354,12 +358,35 @@ Template.overviewPage.helpers({
 
     return crafting.currentlyCrafting.slice(1);
   },
-  
-  reforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+
+  firstReforging() {
     const crafting = Crafting.findOne({});
-    if (crafting && crafting.anythingReforging)
-      return crafting.currentlyReforging;
-    return false;
+
+    if (!crafting || crafting.currentlyReforging.length === 0) {
+      return false;
+    }
+
+    return crafting.currentlyReforging[0];
+  },
+
+  lastReforging() {
+    const crafting = Crafting.findOne({});
+
+    if (!crafting || crafting.currentlyReforging.length === 0) {
+      return;
+    }
+
+    return crafting.currentlyReforging[crafting.currentlyReforging.length - 1];
+  },
+
+  otherReforging() { // work around a stupid bug where $unset on an object doesn't cause variables to react
+    const crafting = Crafting.findOne({});
+
+    if (!crafting || crafting.currentlyReforging.length <= 1) {
+      return false;
+    }
+
+    return crafting.currentlyReforging.slice(1);
   },
 
   firstInscription() {
@@ -542,8 +569,13 @@ Template.firstCraftingUI.events({
   'click .cancel-crafting'(event, instance) {
     const endDate = instance.$(event.target).closest('.cancel-crafting').attr('data-enddate');
     Meteor.call('crafting.cancelCraft', moment(endDate).toDate());
+  },
+
+  'click .cancel-reforging'(event, instance) {
+    const endDate = instance.$(event.target).closest('.cancel-crafting').attr('data-enddate');
+    Meteor.call('crafting.cancelReforge', moment(endDate).toDate());
   }
-})
+});
 
 Template.firstCraftingUI.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();

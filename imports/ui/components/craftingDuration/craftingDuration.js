@@ -31,7 +31,7 @@ Template.craftingDuration.onCreated(function bodyOnCreated() {
     if (now.isAfter(endDate)) {
       if (!called) {
         called = true;
-        if (this.data.isCrafting) {
+        if (this.data.isCrafting || this.data.isReforging) {
           Meteor.call('crafting.updateGame', (err, res) => {
             Meteor.setTimeout(() => {
               called = false;              
@@ -72,7 +72,7 @@ Template.craftingDuration.events({
       // Cancel the craft for this
       Meteor.call('inscription.cancelCraft', instance.data.craftingProcess.endDate);      
     } else if (instance.data.isReforging) {
-      Meteor.call('crafting.cancelReforge');            
+      Meteor.call('crafting.cancelReforge', instance.data.craftingProcess.endDate);
     }
   },
 });

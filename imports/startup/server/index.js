@@ -633,7 +633,8 @@ Accounts.onCreateUser((options, user) => {
 
     Crafting.insert({
       owner: userId,
-      currentlyCrafting: []
+      currentlyCrafting: [],
+      currentlyReforging: []
     });
 
     Combat.insert({

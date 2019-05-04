@@ -12,7 +12,7 @@
           {{/each}}
         </div>
       {{/if}}
-      {{#if reforging}}
+        {{#if crafting.currentlyReforging}}
         <div class="d-flex flex-row align-items-center">
           <span style="min-width: 100px;">Reforging: &nbsp; </span>
           {{> craftingDuration craftingProcess=reforging isReforging=true}}

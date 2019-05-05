@@ -117,4 +117,17 @@ export const LEVEL_FIVE_CRAFTS = {
     requiredInscriptionLevel: 18,
     required: [UTIL.PURPLE_200, UTIL.BLUE_255, UTIL.MAPLE_PAPER, UTIL.LEVEL_18]
   },
+
+  haste_5_tome: {
+    recipeFor: 'inscription',
+    produces: 'haste_level_5_tome',
+    name: 'Haste Lv. 5',
+    id: 'haste_5_tome',
+    category: 'tome',
+    timeToCraft: 24 * 60 * 60,
+    xp: 50000,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 75,
+    required: [UTIL.MANY_WHITE_190, UTIL.MANY_PURPLE_150, UTIL.MANY_GREEN_110, UTIL.MANY_TALI_PAPER, UTIL.LEVEL_75]
+  }
 };

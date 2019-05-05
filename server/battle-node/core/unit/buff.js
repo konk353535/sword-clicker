@@ -65,6 +65,12 @@ export default class Buff {
   get customText() { return this._customText; }
   set customText(value) {
     this._customText = value;
+    if (this.data && this.data.custom) {
+      this.custom = true;
+    } else {
+      this.custom = false;
+    }
+    this.delta('custom');
     this.delta('customText');
   }
 
@@ -86,6 +92,7 @@ export default class Buff {
     this.unit = unit;
     this._isBuffClass = true;
     this.battleRef = battleRef;
+    this.custom = buff.custom || buff.data.custom;
     this._duration = Infinity;
     if (IsValid(buff.data.duration)) {
       this._duration = buff.data.duration;
@@ -192,6 +199,7 @@ export default class Buff {
       duration: this.duration,
       stacks: this.stacks,
       icon: this.icon,
+      custom: this.custom,
       customText: this.customText,
       data: this.data
     }

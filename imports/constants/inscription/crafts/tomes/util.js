@@ -55,7 +55,6 @@ export const UTIL = {
     consumes: true
   },
 
-
   MANY_RED_100: {
     type: 'item',
     itemId: 'pigment_red_100',
@@ -146,7 +145,6 @@ export const UTIL = {
     consumes: true
   },
 
-
   MANY_GREEN_110: {
     type: 'item',
     itemId: 'pigment_green_110',
@@ -236,7 +234,6 @@ export const UTIL = {
     amount: 1,
     consumes: true
   },
-
 
   MANY_YELLOW_200: {
     type: 'item',
@@ -535,6 +532,114 @@ export const UTIL = {
     consumes: true
   },
 
+  MANY_HICKORY_PAPER: {
+    type: 'item',
+    itemId: 'hickory_paper',
+    icon: ITEMS['hickory_paper'].icon,
+    name: ITEMS['hickory_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  HICKORY_PAPER: {
+    type: 'item',
+    itemId: 'hickory_paper',
+    icon: ITEMS['hickory_paper'].icon,
+    name: ITEMS['hickory_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
+  MANY_LARCH_PAPER: {
+    type: 'item',
+    itemId: 'larch_paper',
+    icon: ITEMS['larch_paper'].icon,
+    name: ITEMS['larch_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  LARCH_PAPER: {
+    type: 'item',
+    itemId: 'larch_paper',
+    icon: ITEMS['larch_paper'].icon,
+    name: ITEMS['larch_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
+  MANY_POPLAR_PAPER: {
+    type: 'item',
+    itemId: 'poplar_paper',
+    icon: ITEMS['poplar_paper'].icon,
+    name: ITEMS['poplar_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  POPLAR_PAPER: {
+    type: 'item',
+    itemId: 'poplar_paper',
+    icon: ITEMS['poplar_paper'].icon,
+    name: ITEMS['poplar_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
+  MANY_TALI_PAPER: {
+    type: 'item',
+    itemId: 'tali_paper',
+    icon: ITEMS['tali_paper'].icon,
+    name: ITEMS['tali_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  TALI_PAPER: {
+    type: 'item',
+    itemId: 'tali_paper',
+    icon: ITEMS['tali_paper'].icon,
+    name: ITEMS['tali_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
+  MANY_WILLOW_PAPER: {
+    type: 'item',
+    itemId: 'willow_paper',
+    icon: ITEMS['willow_paper'].icon,
+    name: ITEMS['willow_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  WILLOW_PAPER: {
+    type: 'item',
+    itemId: 'willow_paper',
+    icon: ITEMS['willow_paper'].icon,
+    name: ITEMS['willow_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
+  MANY_TEAK_PAPER: {
+    type: 'item',
+    itemId: 'teak_paper',
+    icon: ITEMS['teak_paper'].icon,
+    name: ITEMS['teak_paper'].name,
+    amount: 3,
+    consumes: true
+  },
+
+  TEAK_PAPER: {
+    type: 'item',
+    itemId: 'teak_paper',
+    icon: ITEMS['teak_paper'].icon,
+    name: ITEMS['teak_paper'].name,
+    amount: 1,
+    consumes: true
+  },
+
   LEVEL_1: { type: 'skill', name: 'inscription', level: 1 },
   LEVEL_2: { type: 'skill', name: 'inscription', level: 2 },
   LEVEL_3: { type: 'skill', name: 'inscription', level: 3 },
@@ -594,5 +699,25 @@ export const UTIL = {
   LEVEL_57: { type: 'skill', name: 'inscription', level: 57 },
   LEVEL_58: { type: 'skill', name: 'inscription', level: 58 },
   LEVEL_59: { type: 'skill', name: 'inscription', level: 59 },
-  LEVEL_60: { type: 'skill', name: 'inscription', level: 60 }
+  LEVEL_60: { type: 'skill', name: 'inscription', level: 60 },
+  LEVEL_61: { type: 'skill', name: 'inscription', level: 61 },
+  LEVEL_62: { type: 'skill', name: 'inscription', level: 62 },
+  LEVEL_63: { type: 'skill', name: 'inscription', level: 63 },
+  LEVEL_64: { type: 'skill', name: 'inscription', level: 64 },
+  LEVEL_65: { type: 'skill', name: 'inscription', level: 65 },
+  LEVEL_66: { type: 'skill', name: 'inscription', level: 66 },
+  LEVEL_67: { type: 'skill', name: 'inscription', level: 67 },
+  LEVEL_68: { type: 'skill', name: 'inscription', level: 68 },
+  LEVEL_69: { type: 'skill', name: 'inscription', level: 69 },
+  LEVEL_70: { type: 'skill', name: 'inscription', level: 70 },
+  LEVEL_71: { type: 'skill', name: 'inscription', level: 71 },
+  LEVEL_72: { type: 'skill', name: 'inscription', level: 72 },
+  LEVEL_73: { type: 'skill', name: 'inscription', level: 73 },
+  LEVEL_74: { type: 'skill', name: 'inscription', level: 74 },
+  LEVEL_75: { type: 'skill', name: 'inscription', level: 75 },
+  LEVEL_76: { type: 'skill', name: 'inscription', level: 76 },
+  LEVEL_77: { type: 'skill', name: 'inscription', level: 77 },
+  LEVEL_78: { type: 'skill', name: 'inscription', level: 78 },
+  LEVEL_79: { type: 'skill', name: 'inscription', level: 79 },
+  LEVEL_80: { type: 'skill', name: 'inscription', level: 80 }
 };

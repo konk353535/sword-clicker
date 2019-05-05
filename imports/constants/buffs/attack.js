@@ -254,6 +254,60 @@ export const ATTACK_BUFFS = {
       }
     }
   },
+  
+  haste: {
+    duplicateTag: 'haste', // Used to stop duplicate buffs
+    icon: 'attackSpeed.svg',
+    name: 'haste',
+    description({ buff, level }) {
+      const attackSpeedBase = buff.constants.attackSpeedBase;
+      const attackSpeedPerLevel = buff.constants.attackSpeedPerLevel * level;
+      const attackSpeedIncrease = attackSpeedBase + attackSpeedPerLevel;
+      return `
+        Increases attack speed by ${attackSpeedIncrease}%. <br />
+        (+${buff.constants.attackSpeedPerLevel}% attack speed per lvl)`;
+    },
+    constants: {
+      attackSpeedBase: 5,
+      attackSpeedPerLevel: 5
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      custom: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
+        const attackSpeedBase = constants.attackSpeedBase;
+        const attackSpeedPerLevel = constants.attackSpeedPerLevel * buff.data.level;
+        const attackSpeedIncrease = attackSpeedBase + attackSpeedPerLevel;
+        
+        buff.data.attackSpeedIncrease = target.stats.attackSpeed * (attackSpeedIncrease / 100);
+        target.stats.attackSpeed += buff.data.attackSpeedIncrease; // causes relcalcuation in getAttackSpeedTicks()
+
+        buff.custom = true;
+        buff.data.custom = true;
+        buff.customText = `+${buff.data.attackSpeedIncrease}`;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+        if (buff.data.attackSpeedIncrease) {
+          target.stats.attackSpeed -= buff.data.attackSpeedIncrease; // causes relcalcuation in getAttackSpeedTicks()
+        }
+        buff.customText = '';
+      }
+    }
+  },
 
   vampirism: {
     duplicateTag: 'vampirism', // Used to stop duplicate buffs

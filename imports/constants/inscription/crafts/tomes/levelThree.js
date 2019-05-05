@@ -144,6 +144,19 @@ export const LEVEL_THREE_CRAFTS = {
     requiredInscriptionLevel: 40,
     required: [UTIL.YELLOW_255, UTIL.MANY_RED_100, UTIL.BLACK_PAPER, UTIL.LEVEL_40]
   },
+
+  haste_3_tome: {
+    recipeFor: 'inscription',
+    produces: 'haste_level_3_tome',
+    name: 'Haste Lv. 3',
+    id: 'haste_3_tome',
+    category: 'tome',
+    timeToCraft: 600,
+    xp: 3000,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 64,
+    required: [UTIL.YELLOW_255, UTIL.MANY_BLUE_255, UTIL.MANY_PURPLE_150, UTIL.MANY_RED_100, UTIL.MANY_LARCH_PAPER, UTIL.LEVEL_64]
+  },
   
   berserk_level_3_tome: {
     recipeFor: 'inscription',

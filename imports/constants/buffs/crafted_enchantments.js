@@ -282,9 +282,5 @@ LEG
         target.stats.healthMax -= buff.data.healthMax;
       }
     }
-<<<<<<< HEAD
-  }
-}
-=======
   }*/
 };

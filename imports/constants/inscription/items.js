@@ -2485,6 +2485,71 @@ export const INSCRIPTION_ITEMS = {
     description: 'Can be consumed to upgrade the critical up ability.'
   },
 
+  haste_level_1_tome: {
+    id: 'haste_level_1_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'haste tome Lv. 1',
+    teaches: {
+      abilityId: 'haste',
+      level: 1
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to learn the haste ability.'
+  },
+
+  haste_level_2_tome: {
+    id: 'haste_level_2_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'haste tome Lv. 2',
+    teaches: {
+      abilityId: 'haste',
+      level: 2
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the haste ability.'
+  },
+
+  haste_level_3_tome: {
+    id: 'haste_level_3_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'haste tome Lv. 3',
+    teaches: {
+      abilityId: 'haste',
+      level: 3
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the haste ability.'
+  },
+
+  haste_level_4_tome: {
+    id: 'haste_level_4_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'haste tome Lv. 4',
+    teaches: {
+      abilityId: 'haste',
+      level: 4
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the haste ability.'
+  },
+
+  haste_level_5_tome: {
+    id: 'haste_level_5_tome',
+    icon: 'tomeUncommon.svg',
+    category: 'tome',
+    name: 'haste tome Lv. 5',
+    teaches: {
+      abilityId: 'haste',
+      level: 5
+    },
+    sellPrice: 100,
+    description: 'Can be consumed to upgrade the haste ability.'
+  },
+
   armor_up_new_level_1_tome: {
     id: 'armor_up_new_level_1_tome',
     icon: 'tomeUncommon.svg',

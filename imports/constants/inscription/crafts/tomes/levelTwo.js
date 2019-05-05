@@ -158,6 +158,19 @@ export const LEVEL_TWO_CRAFTS = {
     required: [UTIL.MANY_RED_150, UTIL.MANY_GREEN_200, UTIL.WALNUT_PAPER, UTIL.LEVEL_20]
   },
 
+  haste_2_tome: {
+    recipeFor: 'inscription',
+    produces: 'haste_level_2_tome',
+    name: 'Haste Lv. 2',
+    id: 'haste_2_tome',
+    category: 'tome',
+    timeToCraft: 300,
+    xp: 1000,
+    maxToCraft: 1,
+    requiredInscriptionLevel: 42,
+    required: [UTIL.MANY_GREEN_200, UTIL.MANY_WHITE_190, UTIL.MANY_RED_150, UTIL.MANY_HICKORY_PAPER, UTIL.LEVEL_42]
+  },
+
   berserk_level_2_tome: {
     recipeFor: 'inscription',
     produces: 'berserk_level_2_tome',

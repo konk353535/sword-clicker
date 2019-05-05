@@ -278,6 +278,22 @@ export const ATTACK_ABILITIES = {
     }
   },
 
+  haste: {
+    icon: 'attackSpeed.svg',
+    name: 'haste',
+    id: 'haste',
+    buffs: ['haste'],
+    cooldown: 0,
+    isPassive: true,
+    slot: 'any',
+    isHidden: true,
+    target: 'self',
+    description(level) {
+      const BUFF = BUFFS.haste;
+      return BUFF.description({ buff: BUFF, level });
+    }
+  },
+
   execute: {
     icon: 'execute.svg',
     name: 'execute',

@@ -78,6 +78,11 @@ export const TOWER_FLOOR_15 = {
       rewards: [
         { type: 'item', itemId: 'crimson_trident', amount: 1 }
       ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'haste_level_1_tome', amount: 1 }
+      ]
     }]))
   },
   6: {

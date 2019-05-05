@@ -36,6 +36,22 @@ Template.buffIcon.helpers({
     return false;
   },
 
+  buffCustom() {
+    try {
+      const localData = Template.instance().data;
+
+      if (localData.buff.data.custom)
+        return true;
+
+      if (localData.buff.custom)
+        return true;
+    }
+    catch (err) {
+    }
+    
+    return false;
+  },
+
   hideBuff() {
     try {
       const localData = Template.instance().data;

@@ -96,7 +96,7 @@ Meteor.methods({
     console.log('battles.findTowerBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
     
-    if (floor > 26) {
+    if (floor > 27) {
       throw new Meteor.Error("no-sir", "The tower doesn't have that many floors!");
     }
     
@@ -187,7 +187,7 @@ Meteor.methods({
     return {
       points: Math.floor(currentFloor.points),
       pointsMax: currentFloor.pointsMax,
-      maxFloor: currentFloor.floor > 26 ? 26 : currentFloor.floor
+      maxFloor: currentFloor.floor > 27 ? 27 : currentFloor.floor
     }
   },
 
@@ -238,7 +238,7 @@ Meteor.methods({
             { room: 7, name: specifiedFloorConstants[7].name }
           ]
         },
-        maxFloor: currentFloor.floor > 26 ? 26 : currentFloor.floor
+        maxFloor: currentFloor.floor > 27 ? 27 : currentFloor.floor
       }
     }
 
@@ -256,7 +256,7 @@ Meteor.methods({
           { room: 7, name: specifiedFloorConstants[7].name }
         ]
       },
-      maxFloor: currentFloor.floor > 26 ? 26 : currentFloor.floor
+      maxFloor: currentFloor.floor > 27 ? 27 : currentFloor.floor
     }
   },
 

@@ -2,7 +2,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
-import { CInt } from '../../utils';
+import { CInt, autoPrecisionValue } from '../../utils.js';
 
 export const ATTACK_BUFFS = {
 
@@ -288,7 +288,7 @@ export const ATTACK_BUFFS = {
 
         buff.custom = true;
         buff.data.custom = true;
-        buff.customText = `+${buff.data.attackSpeedIncrease}`;
+        buff.customText = `+${autoPrecisionValue(buff.data.attackSpeedIncrease)}`;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

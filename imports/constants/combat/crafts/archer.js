@@ -1212,6 +1212,60 @@ export const ARCHER_CRAFTS = {
       level: 125
     }]
   },
+  
+  spiritroot_bow: {
+    produces: 'spiritroot_bow',
+    name: 'spiritroot bow',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'spiritroot_bow',
+    isHidden: true,
+    timeToCraft: 3 * 60 * 60, // 180 minutes (3 hours)
+    xp: 15000000,
+    maxToCraft: 1,
+    tags: ['weapon'],
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'purestone_essence',
+      icon: ITEMS['purestone_essence'].icon,
+      name: ITEMS['purestone_essence'].name,
+      amount: 12,
+      consumes: true
+    },  {
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_bow',
+      icon: ITEMS['ancient_bow'].icon,
+      name: ITEMS['ancient_bow'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
+  },
 
   copper_quiver: {
     produces: 'copper_quiver',
@@ -2411,6 +2465,60 @@ export const ARCHER_CRAFTS = {
       type: 'skill',
       name: 'crafting',
       level: 125
+    }]
+  },
+  
+  prismatic_quiver: {
+    produces: 'prismatic_quiver',
+    name: 'prismatic quiver',
+    recipeFor: 'crafting',
+    category: 'combat',
+    id: 'prismatic_quiver',
+    isHidden: true,
+    timeToCraft: 3 * 60 * 60, // 120 minutes (2 hours)
+    xp: 15000000,
+    maxToCraft: 1,
+    tags: ['weapon'],
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'purestone_essence',
+      icon: ITEMS['purestone_essence'].icon,
+      name: ITEMS['purestone_essence'].name,
+      amount: 12,
+      consumes: true
+    },  {
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 20,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'eternium_quiver',
+      icon: ITEMS['eternium_quiver'].icon,
+      name: ITEMS['eternium_quiver'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
     }]
   },
 };

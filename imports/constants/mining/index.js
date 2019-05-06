@@ -1064,9 +1064,46 @@ export const MINING = {
       }],
       max: 3,
       damagePerSecond: 0.35
+    },    
+
+    prismatic_miner: {
+      requiredMiningLevel: 130,
+      icon: 'prismaticMiner.png',
+      name: 'prismatic miner',
+      id: 'prismatic_miner',
+      required: [{
+        type: 'item',
+        itemId: 'prismatic_pickaxe',
+        icon: ITEMS['prismatic_pickaxe'].icon,
+        name: ITEMS['prismatic_pickaxe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 25000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 130
+      }],
+      max: 3,
+      damagePerSecond: 0.375
     },
   },
+
   ores: {
+    gem: {
+      requiredLevel: 1,
+      healthMax: 150,
+      xp: 40,
+      id: 'gem',
+      icon: 'gem.png',
+      name: 'gem',
+      itemId: 'gem',
+      chance: 0.002
+    },
+
     stone: {
       requiredLevel: 1,
       healthMax: 10,
@@ -1161,23 +1198,12 @@ export const MINING = {
     silver_essence: {
       requiredLevel: 20,
       healthMax: 500,
-      xp: 50,
+      xp: 55,
       id: 'silver_essence',
       icon: 'silverEssence.png',
       name: 'silver essence',
       itemId: 'silver_essence',
       chance: 0.00008
-    },
-
-    gem: {
-      requiredLevel: 1,
-      healthMax: 150,
-      xp: 40,
-      id: 'gem',
-      icon: 'gem.png',
-      name: 'gem',
-      itemId: 'gem',
-      chance: 0.002
     },
 
     gold: {
@@ -1538,6 +1564,17 @@ export const MINING = {
       name: 'cursed essence',
       itemId: 'cursed_essence',
       chance: 0.0000012
+    },
+
+    purestone: {
+      requiredLevel: 130,
+      healthMax: 250000,
+      xp: 50000,
+      id: 'purestone',
+      icon: 'purestone.png',
+      name: 'purestone',
+      itemId: 'ore_purestone',
+      chance: 0.00005
     },
 
     // Do Later

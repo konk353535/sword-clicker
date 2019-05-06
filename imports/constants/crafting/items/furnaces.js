@@ -270,4 +270,14 @@ export const FURNACE_ITEMS = {
     tier: 27,
     description: 'Used to combine bars'
   }, 
+
+  prismatic_furnace: {
+    id: 'prismatic_furnace',
+    icon: 'prismaticFurnace.svg',
+    category: 'crafting',
+    name: 'prismatic furnace',
+    sellPrice: 1,
+    tier: 28,
+    description: 'Used to combine bars'
+  }, 
 };

@@ -1767,6 +1767,45 @@ export const STAFF_ITEMS = {
     }]
   },
   
+  
+
+  prismatic_wand: {
+    id: 'prismatic_wand',
+    icon: 'prismaticWand.png',
+    category: 'combat',
+    weaponType: 'wand',
+    slot: 'mainHand',
+    name: 'prismatic wand',
+    sellPrice: 9100*1.09375,
+    description: 'What seems like an prismatic wand',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 1,
+      attackMax: 50*1.09375,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 54*1.09375,
+      magicPower: 50*1.09375
+    },
+    extraStats: {
+      magicPower: 10*1.09375
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 75
+    }]
+  },
+  
   brown_trident: {
     id: 'brown_trident',
     icon: 'brownTrident.png',
@@ -3716,6 +3755,53 @@ export const STAFF_ITEMS = {
     }],
     reforgeRecipe: {
       requiresCrafting: 130
+    },
+  },
+  
+  prismatic_hammer: {
+    id: 'prismatic_hammer',
+    icon: 'prismaticHammer.png',
+    category: 'combat',
+    weaponType: 'hammer',
+    slot: 'mainHand',
+    name: 'prismatic hammer',
+    sellPrice: 2470*1.09375,
+    description: 'What seems like an prismatic hammer.',
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 116.5*1.09375,
+      attackMax: 183.8*1.09375,
+      attackSpeed: 0.5*1.09375,
+      accuracy: 170.7*1.09375,
+      defense: 61.1*1.09375,
+      magicArmor: 116.5*1.09375,
+      magicPower: 48.6*1.09375
+    },
+    extraStats: {
+      attack: 35*1.09375,
+      attackMax: 55.1*1.09375,
+      accuracy: 51.2*1.09375,
+      defense: 18.3*1.09375,
+      magicArmor: 35*1.09375,
+      magicPower: 14.6*1.09375
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 130
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
     },
   },
 

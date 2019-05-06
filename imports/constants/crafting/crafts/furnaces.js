@@ -730,5 +730,37 @@ export const FURNACE_CRAFTS = {
     timeToCraft: 40 * 60,
     xp: 2000,
     maxToCraft: 1
+  },
+
+  prismatic_furnace: {
+    produces: 'prismatic_furnace',
+    recipeFor: 'crafting',
+    name: 'prismatic furnace',
+    id: 'prismatic_furnace',
+    isHidden: true,
+    category: 'crafting',
+    requiredCraftingLevel: 134,
+    required: [{
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 10,
+      consumes: true // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false // If true, this required item will disappear once the item is crafted
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 134
+    }],
+    timeToCraft: 60 * 60,
+    xp: 3000,
+    maxToCraft: 1
   }
 };

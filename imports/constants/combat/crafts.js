@@ -24,6 +24,7 @@ import { ASTRAL_CRAFTS } from './crafts/astral';
 import { TITANFOIL_CRAFTS } from './crafts/titanfoil';
 import { RELICROCK_CRAFTS } from './crafts/relicrock';
 import { ETERNIUM_CRAFTS } from './crafts/eternium';
+import { PRISMATIC_CRAFTS } from './crafts/prismatic';
 
 import { AMULET_CRAFTS } from './crafts/amulet';
 import { STAFF_CRAFTS } from './crafts/staff';
@@ -56,6 +57,7 @@ export const COMBAT_CRAFTS = Object.assign(
   TITANFOIL_CRAFTS,
   RELICROCK_CRAFTS,
   ETERNIUM_CRAFTS,
+  PRISMATIC_CRAFTS,
   AMULET_CRAFTS,
   STAFF_CRAFTS,
   ARCHER_CRAFTS);

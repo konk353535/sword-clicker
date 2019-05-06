@@ -176,6 +176,14 @@ export const TOWER_FLOOR_26 = {
   floorRewards: [
     {
       type: 'item',
+      itemId: 'prismatic_dwarven_idol',
+      icon: ITEMS['prismatic_dwarven_idol'].icon,
+      name: ITEMS['prismatic_dwarven_idol'].name,
+      baseStats: ITEMS['prismatic_dwarven_idol'].stats,
+      extraStats: ITEMS['prismatic_dwarven_idol'].extraStats
+    },
+    {
+      type: 'item',
       itemId: 'enhancer_key',
       icon: ITEMS['enhancer_key'].icon,
       name: ITEMS['enhancer_key'].name,

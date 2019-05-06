@@ -141,7 +141,7 @@ export const MISC_ITEMS = {
     category: 'mining',
     name: 'elven steel essence',
     sellPrice: 1000,
-    description: 'Required to bond elven_steel together.'
+    description: 'Required to bond elven steel together.'
   },
 
   cursed_essence: {
@@ -150,7 +150,16 @@ export const MISC_ITEMS = {
     category: 'mining',
     name: 'cursed essence',
     sellPrice: 1250,
-    description: 'Required to bond cursed together.'
+    description: 'Required to bond cursed ore together.'
+  },
+  
+  purestone_essence: {
+    id: 'purestone_essence',
+    icon: 'purestoneEssence.png',
+    category: 'mining',
+    name: 'purestone essence',
+    sellPrice: 35000,
+    description: 'Required to bond purestone together.'
   },
 
   farplane_mysterious_dust: {

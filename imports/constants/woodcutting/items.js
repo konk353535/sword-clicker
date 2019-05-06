@@ -485,7 +485,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'titanfoil axe',
-    sellPrice: 4000,
+    sellPrice: 4500,
     description: 'A titanfoil axe. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -505,7 +505,7 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'relicrock axe',
-    sellPrice: 4000,
+    sellPrice: 5000,
     description: 'A relicrock axe. Used for woodcutting',
     isAxe: true,
     stats: {
@@ -525,13 +525,33 @@ export const WOODCUTTING_ITEMS = {
     category: 'woodcutting',
     slot: 'axe',
     name: 'eternium axe',
-    sellPrice: 4000,
+    sellPrice: 4500,
     description: 'A eternium axe. Used for woodcutting',
     isAxe: true,
     stats: {
       attack: 130,
       attackSpeed: 3,
       accuracy: 160
+    },
+    extraStats: {
+      accuracy: 100,
+      attackSpeed: 1
+    }
+  },
+
+  prismatic_axe: {
+    id: 'prismatic_axe',
+    icon: 'prismaticAxe.svg',
+    category: 'woodcutting',
+    slot: 'axe',
+    name: 'prismatic axe',
+    sellPrice: 6000,
+    description: 'A prismatic axe. Used for woodcutting',
+    isAxe: true,
+    stats: {
+      attack: 135,
+      attackSpeed: 3.25,
+      accuracy: 180
     },
     extraStats: {
       accuracy: 100,
@@ -771,5 +791,14 @@ export const WOODCUTTING_ITEMS = {
     name: 'ancient log',
     description: 'A chopped log from a mysterious and ancient tree, suitable for crafting.',
     sellPrice: 230
+  },
+
+  spiritroot_log: {
+    id: 'spiritroot_log',
+    icon: 'spiritrootLog.png',
+    category: 'woodcutting',
+    name: 'spirit root',
+    description: 'A neatly-trimmed root from a magnificent spirit tree, suitable for crafting.',
+    sellPrice: 240
   },
 };

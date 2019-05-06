@@ -759,5 +759,64 @@ export const BAR_CRAFTS = {
       name: 'crafting',
       level: 95
     }]
+  },
+
+  purestone_bar: {
+    produces: 'purestone_bar',
+    recipeFor: 'crafting',
+    name: 'purestone bar',
+    id: 'purestone_bar',
+    category: 'crafting',
+    timeToCraft: 70,
+    xp: 350,
+    maxToCraft: 100,
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_purestone',
+      icon: ITEMS['ore_purestone'].icon,
+      name: ITEMS['ore_purestone'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_fire_shard',
+      icon: ITEMS['complete_fire_shard'].icon,
+      name: ITEMS['complete_fire_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_water_shard',
+      icon: ITEMS['complete_water_shard'].icon,
+      name: ITEMS['complete_water_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_earth_shard',
+      icon: ITEMS['complete_earth_shard'].icon,
+      name: ITEMS['complete_earth_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'complete_air_shard',
+      icon: ITEMS['complete_air_shard'].icon,
+      name: ITEMS['complete_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
   }
 };

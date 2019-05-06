@@ -24,6 +24,7 @@ import { ASTRAL_ITEMS } from './items/astral';
 import { TITANFOIL_ITEMS } from './items/titanfoil';
 import { RELICROCK_ITEMS } from './items/relicrock';
 import { ETERNIUM_ITEMS } from './items/eternium';
+import { PRISMATIC_ITEMS } from './items/prismatic';
 
 import { MISC_ITEMS } from './items/misc';
 import { AMULET_ITEMS } from './items/amulet';
@@ -59,6 +60,7 @@ export const COMBAT_ITEMS = Object.assign(
   TITANFOIL_ITEMS,
   RELICROCK_ITEMS,
   ETERNIUM_ITEMS,
+  PRISMATIC_ITEMS,
   MISC_ITEMS,
   AMULET_ITEMS,
   STAFF_ITEMS,

@@ -1577,6 +1577,65 @@ export const PICKAXE_ITEMS = {
     }]
   },
 
+  
+  
+  prismatic_mining_hammer: {
+    id: 'prismatic_mining_hammer',
+    icon: 'prismaticMiningHammer.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'prismatic mining hammer',
+    sellPrice: 12500,
+    description: 'A prismatic hammer. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 900,
+      attack: 350,
+      energyPerHit: 1,
+      energyRegen: 5,
+    },
+    extraStats: {
+      energyStorage: 55,
+      attack: 55,
+      energyRegen: 4
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 125
+    }]
+  },
+
+  prismatic_mining_anvil: {
+    id: 'prismatic_mining_anvil',
+    icon: 'prismaticMiningAnvil.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'prismatic mining anvil',
+    sellPrice: 2000,
+    description: 'A hammer forged with an anvil. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 700, // Maximum energy stored
+      attack: 3000, // Damage per hit
+      energyPerHit: 35, // Energy used per hit
+      energyRegen: 1,
+      miner: 120
+    },
+    extraStats: {
+      energyStorage: 500,
+      miner: 30,
+      attack: 1000,
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 125
+    }]
+  },
+  
   // Passive heavy pickaxes
   copper_dwarven_idol: {
     id: 'copper_dwarven_idol',
@@ -2397,6 +2456,29 @@ export const PICKAXE_ITEMS = {
       level: 120
     }]
   },
+  
+  prismatic_dwarven_idol: {
+    id: 'prismatic_dwarven_idol',
+    icon: 'prismaticDwarvenIdol.svg',
+    category: 'mining',
+    slot: 'mining_offhand',
+    name: 'prismatic dwarven Idol',
+    sellPrice: 5000,
+    description: 'An idol used to inspire miners.',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      miner: 300
+    },
+    extraStats: {
+      miner: 60
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 125
+    }]
+  },
 
   // Starter Pickaxe
   sharp_rock_pickaxe: {
@@ -3165,5 +3247,33 @@ export const PICKAXE_ITEMS = {
       name: 'mining',
       level: 120
     }]
-  },  
+  },   
+
+  prismatic_pickaxe: {
+    id: 'prismatic_pickaxe',
+    icon: 'prismaticPickaxe.svg',
+    category: 'mining',
+    slot: 'pickaxe',
+    name: 'prismatic pickaxe',
+    sellPrice: 3000,
+    description: 'A prismatic pickaxe. Used for mining',
+    isPickaxe: true,
+    isEquippable: true,
+    stats: {
+      energyStorage: 200,
+      attack: 450,
+      energyPerHit: 1,
+      energyRegen: 5,
+    },
+    extraStats: {
+      energyStorage: 75,
+      attack: 50,
+      energyRegen: 5
+    },
+    requiredEquip: [{
+      type: 'skill',
+      name: 'mining',
+      level: 125
+    }]
+  },
 };

@@ -178,5 +178,14 @@ export const BAR_ITEMS = {
     name: 'cursed bar',
     sellPrice: 120,
     description: 'Used to craft cursed tools and weapons'
+  },
+
+  purestone_bar: {
+    id: 'pruestone_bar',
+    icon: 'purestoneBar.svg',
+    category: 'crafting',
+    name: 'purestone bar',
+    sellPrice: 450,
+    description: 'Used to craft prismatic tools and weapons'
   }
 };

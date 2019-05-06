@@ -1154,4 +1154,50 @@ export const WOODCUTTING_CRAFTS = {
       level: 129
     }]
   }, 
+
+  prismatic_axe: {
+    produces: 'prismatic_axe',
+    recipeFor: 'crafting',
+    name: 'prismatic axe',
+    id: 'prismatic_axe',
+    isHidden: true,
+    category: 'woodcutting',
+    timeToCraft: 60 * 60 * 1, // 60
+    xp: 10000000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 134,
+    required: [{
+      type: 'item',
+      itemId: 'purestone_essence',
+      icon: ITEMS['purestone_essence'].icon,
+      name: ITEMS['purestone_essence'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 12,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'eternium_axe',
+      icon: ITEMS['eternium_axe'].icon,
+      name: ITEMS['eternium_axe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 134
+    }]
+  }, 
 };

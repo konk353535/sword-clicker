@@ -150,6 +150,7 @@ export default class Battle {
     if (tier === 17) { return 'meteorite'; }
     if (tier === 18) { return 'fairy_steel'; }
     if (tier === 19) { return 'elvent_steel'; }
+    if (tier === 27) { return 'purestone'; }
     if (tier >= 20) { return 'cursed'; }
     return 'copper';
   }
@@ -180,6 +181,7 @@ export default class Battle {
     if (tier === 24) { return 'titanfoil'; }
     if (tier === 25) { return 'relicrock'; }
     if (tier === 26) { return 'eternium'; }
+    if (tier === 27) { return 'prismatic'; }
     return 'copper';
   }
   

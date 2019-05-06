@@ -37,7 +37,8 @@ const localGetNewPointCount = function(floor, activeTowerUsers) {
     24: 9,
     25: 10,
     26: 10,
-    27: 10,
+    27: 11,
+    28: 11,
   };
 
   let maxPoints = 0;
@@ -75,6 +76,7 @@ const local_FLOOR_BOSSES = Object.assign({
   24: { boss: { enemy: { id: 'boss_ruiner' } } },
   25: { boss: { enemy: { id: 'boss_witch' } } },
   26: { boss: { enemy: { id: 'the_lich' } } },
+  27: { boss: { enemy: { id: 'the_lich' } } },
 });
 
 const local_BOSS_ENEMIES = {

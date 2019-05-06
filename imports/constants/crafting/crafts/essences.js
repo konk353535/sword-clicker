@@ -568,5 +568,65 @@ export const ESSENCE_CRAFTS = {
       name: 'crafting',
       level: 98
     }]
+  },
+
+  purestone_essence: {
+    produces: 'purestone_essence',
+    recipeFor: 'crafting',
+    name: 'purestone essence',
+    id: 'purestone_essence',
+    category: 'crafting',
+    timeToCraft: 900,
+    xp: 2500,
+    maxToCraft: 10,
+    isHidden: false,
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'ore_purestone',
+      icon: ITEMS['ore_purestone'].icon,
+      name: ITEMS['ore_purestone'].name,
+      amount: 4,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_fire_shard',
+      icon: ITEMS['ancient_fire_shard'].icon,
+      name: ITEMS['ancient_fire_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_water_shard',
+      icon: ITEMS['ancient_water_shard'].icon,
+      name: ITEMS['ancient_water_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_earth_shard',
+      icon: ITEMS['ancient_earth_shard'].icon,
+      name: ITEMS['ancient_earth_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'ancient_air_shard',
+      icon: ITEMS['ancient_air_shard'].icon,
+      name: ITEMS['ancient_air_shard'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
   }
 };

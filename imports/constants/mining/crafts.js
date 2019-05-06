@@ -1576,6 +1576,59 @@ export const MINING_CRAFTS = {
       level: 125
     }]
   },  
+
+  prismatic_pickaxe: {
+    produces: 'prismatic_pickaxe',
+    recipeFor: 'crafting',
+    name: 'prismatic pickaxe',
+    id: 'prismatic_pickaxe',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 10000000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'purestone_essence',
+      icon: ITEMS['purestone_essence'].icon,
+      name: ITEMS['purestone_essence'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 12,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'eternium_pickaxe',
+      icon: ITEMS['eternium_pickaxe'].icon,
+      name: ITEMS['eternium_pickaxe'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
+  },
   
   copper_mining_anvil: {
     produces: 'copper_mining_anvil',
@@ -2885,4 +2938,57 @@ export const MINING_CRAFTS = {
       level: 125
     }]
   },  
+
+  prismatic_mining_anvil: {
+    produces: 'prismatic_mining_anvil',
+    recipeFor: 'crafting',
+    name: 'prismatic mining anvil',
+    id: 'prismatic_mining_anvil',
+    isHidden: true,
+    category: 'mining',
+    timeToCraft: 60 * MINUTE,
+    xp: 10000000,
+    maxToCraft: 1,
+    requiredCraftingLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'eternium_furnace',
+      icon: ITEMS['eternium_furnace'].icon,
+      name: ITEMS['eternium_furnace'].name,
+      amount: 1,
+      consumes: false
+    }, {
+      type: 'item',
+      itemId: 'purestone_essence',
+      icon: ITEMS['purestone_essence'].icon,
+      name: ITEMS['purestone_essence'].name,
+      amount: 3,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'purestone_bar',
+      icon: ITEMS['purestone_bar'].icon,
+      name: ITEMS['purestone_bar'].name,
+      amount: 5,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 12,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'eternium_mining_anvil',
+      icon: ITEMS['eternium_mining_anvil'].icon,
+      name: ITEMS['eternium_mining_anvil'].name,
+      amount: 1,
+      consumes: false
+    },  {
+      type: 'skill',
+      name: 'crafting',
+      level: 130
+    }]
+  }, 
 };

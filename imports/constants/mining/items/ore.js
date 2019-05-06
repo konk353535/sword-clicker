@@ -197,6 +197,15 @@ export const ORE_ITEMS = {
     sellPrice: 175
   },
 
+  ore_purestone: {
+    id: 'ore_purestone',
+    icon: 'purestone.png',
+    category: 'mining',
+    name: 'purestone',
+    description: 'Some unprocessed purestone, suitable for crafting.',
+    sellPrice: 350
+  },
+
   jade: {
     id: 'jade',
     icon: 'jade.png',

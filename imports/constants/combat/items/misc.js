@@ -1253,7 +1253,8 @@ export const MISC_ITEMS = {
     reforgeRecipe: {
       requiresCrafting: 125
     },
-  },  
+  },
+  
   "eternium_kite_shield": {
     "id": "eternium_kite_shield",
     "icon": "eterniumKiteShield.png",
@@ -1277,6 +1278,49 @@ export const MISC_ITEMS = {
       "armor": 50.3 * 1.70 * 1.6,
       attackSpeed: -0.15,
       accuracy: 15.3 * 1.15 * 0.5 * 1.6
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'defense',
+      level: 130
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
+    },
+  },
+  
+  "prismatic_kite_shield": {
+    "id": "prismatic_kite_shield",
+    "icon": "prismaticKiteShield.png",
+    "category": "combat",
+    "weaponType": "shield",
+    "slot": "offHand",
+    "name": "prismatic kite shield",
+    "sellPrice": Math.round(3000 * 1.75),
+    "description": "Provides high defense bonuses",
+    "isEquippable": true,
+    "stats": {
+      "healthMax": 32.7 * 1.75,
+      "defense": 51.1 * 1.15 * 1.75,
+      "armor": 167.6 * 1.70 * 1.75,
+      attackSpeed: -0.15,
+      accuracy: -51.1 * 1.15 * 0.5 * 1.75
+    },
+    "extraStats": {
+      "healthMax": 9.8 * 1.75,
+      "defense": 15.3 * 1.15 * 1.75,
+      "armor": 50.3 * 1.70 * 1.75,
+      attackSpeed: -0.15,
+      accuracy: 15.3 * 1.15 * 0.5 * 1.75
     },
     upgradeRarity: [
       { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
@@ -2607,6 +2651,50 @@ export const MISC_ITEMS = {
     },
   },
 
+  prismatic_buckler: {
+    id: 'prismatic_buckler',
+    icon: 'prismaticBuckler.svg',
+    category: 'combat',
+    weaponType: 'buckler',
+    slot: 'offHand',
+    name: 'prismatic buckler',
+    sellPrice: 1865,
+    description: 'Provides average defense bonuses',
+    isEquippable: true,
+    stats: {
+      healthMax: 205 * 1.09375,
+      defense: 67 * 1.09375,
+      armor: 187.4 * 1.09375,
+      accuracy: 29.3 * 1.09375
+    },
+    extraStats: {
+      healthMax: 61.5 * 1.09375,
+      defense: 20.1 * 1.09375,
+      armor: 75 * 1.09375,
+      accuracy: 11.7 * 1.09375
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 130
+    }, {
+      type: 'skill',
+      name: 'defense',
+      level: 125
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
+    },
+  },
   
   /* Knife - Off handed weapon, minor accuracy and damage increases */
   copper_knife: {
@@ -3615,6 +3703,45 @@ export const MISC_ITEMS = {
     }],
     reforgeRecipe: {
       requiresCrafting: 130
+    },
+  },
+  
+  prismatic_knife: {
+    id: 'prismatic_knife',
+    icon: 'prismaticKnife.png',
+    category: 'combat',
+    weaponType: 'knife',
+    slot: 'offHand',
+    name: 'prismatic knife',
+    sellPrice: 1950,
+    description: 'Provides minor offensive bonuses',
+    isEquippable: true,
+    stats: {
+      attack: 8.5*1.09375,
+      attackMax: 16.7*1.09375,
+      accuracy: 13.5*1.09375
+    },
+    extraStats: {
+      attack: 6*1.09375,
+      attackMax: 8*1.09375,
+      accuracy: 6*1.09375
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 130
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
     },
   },
 
@@ -5087,6 +5214,49 @@ export const MISC_ITEMS = {
     },
   },
   
+  prismatic_rapiers: {
+    id: 'prismatic_rapiers',
+    icon: 'prismaticRapiers.png',
+    category: 'combat',
+    weaponType: 'rapier',
+    slot: 'mainHand',
+    name: 'prismatic rapiers',
+    sellPrice: 2210*1.09375,
+    description: 'Elegant and difficult to defend against.',
+    isWeapon: true,
+    isEquippable: true,
+    isTwoHanded: true,
+    stats: {
+      attack: 97.1*1.09375,
+      attackMax: 171.7*1.09375,
+      attackSpeed: 1.0*1.09375,
+      accuracy: 201.6*1.09375,
+      defense: -32.5*1.09375
+    },
+    extraStats: {
+      attack: 25.9*1.09375,
+      attackMax: 59.1*1.09375,
+      accuracy: 62*1.09375
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 130
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
+    },
+  },
+  
   /* Spirit shields */
   /*
   spirit_shield: {
@@ -6139,6 +6309,43 @@ export const MISC_ITEMS = {
     }],
     reforgeRecipe: {
       requiresCrafting: 130
+    },
+  },
+  
+  prismatic_spirit_shield: {
+    id: 'prismatic_spirit_shield',
+    icon: 'prismaticSpiritShield.png',
+    category: 'combat',
+    weaponType: 'shield',
+    slot: 'offHand',
+    name: 'prismatic spirit shield',
+    sellPrice: 1865*1.09375,
+    description: 'The shield pulls at your spirit',
+    isEquippable: true,
+    stats: {
+      healthMax: 175.7*1.09375,
+      magicArmor: 152.4*1.09375,
+    },
+    extraStats: {
+      healthMax: 52.7*1.09375,
+      magicArmor: 61*1.09375,
+    },
+    upgradeRarity: [
+      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
+      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
+      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
+      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
+      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
+      { chance: 30,      rarityId: 'fine', },          // 18%      chance
+                                                       // 70%      chance (for uncommon)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'magic',
+      level: 73
+    }],
+    reforgeRecipe: {
+      requiresCrafting: 135
     },
   },
 

@@ -1356,4 +1356,186 @@ export const SCROLL_ITEMS = {
       description: 'Learn hidden recipe'
     }
   }, 
+
+  prismatic_pickaxe_scroll: {
+    id: 'prismatic_pickaxe_scroll',
+    icon: 'prismaticPickaxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic pickaxe scroll',
+    teaches: 'prismatic_pickaxe',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_mining_anvil_scroll: {
+    id: 'prismatic_mining_anvil_scroll',
+    icon: 'prismaticMiningAnvilScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic mining anvil scroll',
+    teaches: 'prismatic_mining_anvil',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_axe_scroll: {
+    id: 'prismatic_axe_scroll',
+    icon: 'prismaticAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic axe scroll',
+    teaches: 'prismatic_axe',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_battle_axe_scroll: {
+    id: 'prismatic_battle_axe_scroll',
+    icon: 'prismaticBattleAxeScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic battle axe scroll',
+    teaches: 'prismatic_battle_axe',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_chest_plate_scroll: {
+    id: 'prismatic_chest_plate_scroll',
+    icon: 'prismaticChestPlateScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic chest plate scroll',
+    teaches: 'prismatic_chest_plate',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_dagger_scroll: {
+    id: 'prismatic_dagger_scroll',
+    icon: 'prismaticDaggerScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic dagger scroll',
+    teaches: 'prismatic_dagger',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_furnace_scroll: {
+    id: 'prismatic_furnace_scroll',
+    icon: 'prismaticFurnaceScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic furnace scroll',
+    teaches: 'prismatic_furnace',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_helmet_scroll: {
+    id: 'prismatic_helmet_scroll',
+    icon: 'prismaticHelmetScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic helmet scroll',
+    teaches: 'prismatic_helmet',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_long_sword_scroll: {
+    id: 'prismatic_long_sword_scroll',
+    icon: 'prismaticLongSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic long sword scroll',
+    teaches: 'prismatic_long_sword',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_plate_legs_scroll: {
+    id: 'prismatic_plate_legs_scroll',
+    icon: 'prismaticPlateLegsScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic plate legs scroll',
+    teaches: 'prismatic_plate_legs',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_shield_scroll: {
+    id: 'prismatic_shield_scroll',
+    icon: 'prismaticShieldScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic shield scroll',
+    teaches: 'prismatic_shield',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_short_sword_scroll: {
+    id: 'prismatic_short_sword_scroll',
+    icon: 'prismaticShortSwordScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic short sword scroll',
+    teaches: 'prismatic_short_sword',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  },
+
+  prismatic_spear_scroll: {
+    id: 'prismatic_spear_scroll',
+    icon: 'prismaticSpearScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic spear scroll',
+    teaches: 'prismatic_spear',
+    sellPrice: 3000,
+    description: `A prismatic scroll, made from purestone and spiritroot.`,
+    shiftActionData: {
+      description: 'Learn hidden recipe'
+    }
+  }, 
 };

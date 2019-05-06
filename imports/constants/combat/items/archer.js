@@ -6,6 +6,7 @@ const ASTRAL_MULTIPLIER = 1.3;
 const TITANFOIL_MULTIPLIER = 1.4;
 const RELICROCK_MULTIPLIER = 1.5;
 const ETERNIUM_MULTIPLIER = 1.7;
+const PRISMATIC_MULTIPLIER = 1.85;
 
 const BATTLEAXE_TO_BOW_ATTACKMIN = 1.75;
 const BATTLEAXE_TO_BOW_ATTACKMAX = 1.00;
@@ -205,6 +206,20 @@ export const ARCHER_ITEMS = {
     teaches: 'eternium_quiver',
     sellPrice: 1500,
     description: `An ancient scroll, made from eternium inks.`,
+    shiftActionData: {
+      description: 'Learn a hidden recipe'
+    },
+  },
+
+  prismatic_quiver_scroll: {
+    id: 'prismatic_quiver_scroll',
+    icon: 'prismaticQuiverScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'prismatic quiver scroll',
+    teaches: 'prismatic_quiver',
+    sellPrice: 1500,
+    description: `An ancient scroll, made from purestone inks.`,
     shiftActionData: {
       description: 'Learn a hidden recipe'
     },
@@ -1166,6 +1181,42 @@ export const ARCHER_ITEMS = {
     }]
   },
   
+  spiritroot_bow: {
+    id: 'spiritroot_bow',
+    icon: 'spiritrootBow.svg',
+    category: 'combat',
+    weaponType: 'bow',
+    slot: 'mainHand',
+    name: 'spiritroot bow',
+    sellPrice: Math.round(3000 * PRISMATIC_MULTIPLIER),
+    description: 'A slow but powerful ranged weapon of spiritroot and unblemished purestone metals.  Bows are useless without quivers.',
+    isTwoHanded: true,
+    isWeapon: true,
+    isEquippable: true,
+    stats: {
+      attack: 83.5 * PRISMATIC_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 300 * PRISMATIC_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX,
+      attackSpeed: SLOW_SPEED,
+      accuracy: 134.1 * PRISMATIC_MULTIPLIER * BATTLEAXE_TO_BOW_ACCURACY,
+      criticalChance: 25
+    },
+    extraStats: {
+      attack: 25.1 * PRISMATIC_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMIN,
+      attackMax: 90 * PRISMATIC_MULTIPLIER * BATTLEAXE_TO_BOW_ATTACKMAX
+    },
+    upgradeRarity: [
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 130
+    }]
+  },
+  
   copper_quiver: { // quivers are knives with mutated accuracy and no bonus damage
     id: 'copper_quiver',
     icon: 'copperQuiver.svg',
@@ -1917,6 +1968,35 @@ export const ARCHER_ITEMS = {
       type: 'skill',
       name: 'attack',
       level: 125
+    }]
+  },
+
+  prismatic_quiver: {
+    id: 'prismatic_quiver',
+    icon: 'prismaticQuiver.svg',
+    category: 'combat',
+    weaponType: 'quiver',
+    slot: 'offHand',
+    name: 'prismatic quiver',
+    sellPrice: 6500,
+    description: 'A fine quiver made from purestone metals and filled with spiritroot arrows.  Bows are useless without quivers.',
+    isEquippable: true,
+    stats: {
+      accuracy: 26 * KNIFE_TO_QUIVER_ACCURACY
+    },
+    extraStats: {
+      accuracy: 18 * KNIFE_TO_QUIVER_ACCURACY
+    },
+    upgradeRarity: [
+      { chance: 10,  rarityId: 'crude', },    // 10% chance
+      { chance: 30,  rarityId: 'rough', },    // 20% chance
+      { chance: 40,  rarityId: 'improved', }, // 10% chance
+                                              // 60% chance (for standard)
+    ],
+    requiredEquip: [{
+      type: 'skill',
+      name: 'attack',
+      level: 130
     }]
   },
 

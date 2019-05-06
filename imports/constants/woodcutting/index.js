@@ -665,6 +665,30 @@ export const WOODCUTTING = {
         level: 130
       }]
     },
+  
+    prismatic_lumberjack: {
+      requiredWoodcuttingLevel: 130,
+      icon: 'prismaticLumberJack.png',
+      name: 'prismatic woodcutter',
+      id: 'prismatic_lumberjack',
+      axeId: 'prismatic_axe',
+      required: [{
+        type: 'item',
+        itemId: 'prismatic_axe',
+        icon: ITEMS['prismatic_axe'].icon,
+        name: ITEMS['prismatic_axe'].name,
+        amount: 1,
+        consumes: true
+      }, {
+        type: 'gold',
+        amount: 3000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'woodcutting',
+        level: 135
+      }]
+    },
   },
 
   woods: {
@@ -915,17 +939,27 @@ export const WOODCUTTING = {
       icon: 'petrifiedLog.png',
       name: 'petrified log',
       itemId: 'petrified_log',
-      chance: 0.01/4
+      chance: 0.01/5
     },
 
-    ancient_log: { // 21
+    ancient_log: { // 26
       requiredAttack: 125, // relicrock
       xp: 1500*4,
       id: 'ancient_log',
       icon: 'ancientLog.png',
       name: 'ancient log',
       itemId: 'ancient_log',
-      chance: 0.01/4
+      chance: 0.01/6
+    },
+
+    spiritroot_log: { // 27
+      requiredAttack: 130, // eterniuym
+      xp: 2000*4,
+      id: 'spiritroot_log',
+      icon: 'spiritrootLog.png',
+      name: 'spiritroot',
+      itemId: 'spiritroot_log',
+      chance: 0.01/7
     },
 
   }

@@ -40,5 +40,10 @@ Template.ngLoot.events({
   'click .ng-selector-greed'(event, instance) {
     const target = $(event.currentTarget);
     Meteor.call('combat.clickedNeedGreed', target.data('loot-id'), 'greed');
+  },
+  
+  'click .ng-selector-pass'(event, instance) {
+    const target = $(event.currentTarget);
+    Meteor.call('combat.clickedNeedGreed', target.data('loot-id'), 'pass');
   }
 });

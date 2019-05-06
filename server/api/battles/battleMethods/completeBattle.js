@@ -233,8 +233,14 @@ export const resolveLoot = function(battle) {
   battle.loot.forEach((loot, lootIdx) => {
     if (loot.owners.length === 0) return;
 
-    const needMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'need'; });
-    const greedMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'greed'; });
+    const needMembers  = loot.owners.filter((owner) => { return owner.ngChoice === 'need';  });
+    let   greedMembers = loot.owners.filter((owner) => { return owner.ngChoice === 'greed'; });
+    const passMembers  = loot.owners.filter((owner) => { return owner.ngChoice === 'pass';  });
+    
+    if (needMembers.length === 0 && greedMembers.length === 0) { 
+      greedMembers = passMembers;
+    }
+    
     if (needMembers.length === 0 && greedMembers.length === 0) return;
     let winner = undefined;
     if (needMembers.length) {

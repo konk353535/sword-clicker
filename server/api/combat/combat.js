@@ -405,7 +405,7 @@ Meteor.methods({
   },
 
   'combat.clickedNeedGreed'(lootId, choice) {
-    if (!lootId || !(choice === 'need' || choice === 'greed')) {
+    if (!lootId || !(choice === 'need' || choice === 'greed' || choice === 'pass')) {
       return;
     }
 

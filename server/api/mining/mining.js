@@ -188,8 +188,8 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
     if (mineSpace.isCluster) {
       amount = 8 + Math.round(Math.random() * 4);
     }
-
-    addXp('mining', oreConstants.xp * amount);
+    
+    addXp('mining', oreConstants.xp * amount * 2.25); // making mining faster since it lags
 
     if (oreConstants.itemId === 'gem') {
       addFakeGems(1, Meteor.userId());
@@ -438,8 +438,8 @@ Meteor.methods({
           } else {
             gainedItems[oreConstants.itemId] = { amount: newAmount };
           }
-
-          gainedXp += (oreConstants.xp * newAmount);
+          
+          gainedXp += (oreConstants.xp * newAmount * 2.25); // making mining faster since it lags
         } else {
           miningSpace.health -= damage;
           damage = 0;

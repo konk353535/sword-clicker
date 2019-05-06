@@ -522,6 +522,10 @@ Meteor.methods({
       const recipeConstant = lodash.cloneDeep(CRAFTING.recipes[craftingKey]);
       const itemConstant = ITEMS[recipeConstant.produces];
 
+      if (!itemConstant) {
+        console.log(`Failed - ${recipeConstant.produces} missing constants`);
+      }
+
       recipeConstant.icon = itemConstant.icon;
       recipeConstant.description = itemConstant.description;
       recipeConstant.isTwoHanded = itemConstant.isTwoHanded;

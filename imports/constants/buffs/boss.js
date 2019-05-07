@@ -2560,6 +2560,7 @@ export const BOSS_BUFFS = {
                 buff: target.generateBuff({
                   buffId: 'bleed_proper', 
                   buffData: {
+                    realDuration: 10,
                     duration: 10,
                     dps: opponent.stats.healthMax / 10,
                     timeTillDamage: 1,

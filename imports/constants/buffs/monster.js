@@ -1699,6 +1699,7 @@ export const MONSTER_BUFFS = {
             buff: attacker.generateBuff({
               buffId: 'bleed_proper', 
               buffData: {
+                realDuration: 3,
                 duration: 3,
                 dps: attacker.stats.attackMax / 6,
                 timeTillDamage: 1,
@@ -2146,6 +2147,7 @@ export const MONSTER_BUFFS = {
             buff: attacker.generateBuff({
               buffId: 'bleed_proper', 
               buffData: {
+                realDuration: 6,
                 duration: 6,
                 dps: attacker.stats.attackMax / 6,
                 timeTillDamage: 1,

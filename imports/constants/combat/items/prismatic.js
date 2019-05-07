@@ -30,6 +30,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_spear": {
     "id": "prismatic_spear",
     "icon": "prismaticSpear.png",
@@ -54,6 +55,7 @@ export const PRISMATIC_ITEMS = {
       "accuracy": 25.1 * PRISMATIC_MULTIPLIER,
       "defense": 9.8 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_spear'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -66,6 +68,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_short_sword": {
     "id": "prismatic_short_sword",
     "icon": "prismaticShortsword.png",
@@ -88,6 +91,7 @@ export const PRISMATIC_ITEMS = {
       "attackMax": 29.8 * PRISMATIC_MULTIPLIER,
       "accuracy": 29.8 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['magic_blade'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -100,6 +104,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_scimitar": {
     "id": "prismatic_scimitar",
     "icon": "prismaticScimitar.png",
@@ -140,6 +145,7 @@ export const PRISMATIC_ITEMS = {
       requiresCrafting: 130
     },
   },
+  
   "prismatic_long_sword": {
     "id": "prismatic_long_sword",
     "icon": "prismaticLongsword.png",
@@ -163,6 +169,7 @@ export const PRISMATIC_ITEMS = {
       "attackMax": 60.2 * PRISMATIC_MULTIPLIER,
       "accuracy": 40.2 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_long_sword'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -175,6 +182,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_broad_sword": {
     "id": "prismatic_broad_sword",
     "icon": "prismaticBroadsword.png",
@@ -247,6 +255,7 @@ export const PRISMATIC_ITEMS = {
       { chance: 40,  rarityId: 'improved', }, // 10% chance
                                               // 60% chance (for standard)
     ],
+    enchantments: ['axe_cleave__prismatic_battle_axe'],
     requiredEquip: [{
       type: 'skill',
       name: 'attack',
@@ -311,6 +320,7 @@ export const PRISMATIC_ITEMS = {
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
       "armor": 25.1 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_helmet'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -323,6 +333,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_chest_plate": {
     "id": "prismatic_chest_plate",
     "icon": "prismaticChestplate.png",
@@ -342,6 +353,7 @@ export const PRISMATIC_ITEMS = {
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
       "armor": 25.1 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_chestplate'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -354,6 +366,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_plate_legs": {
     "id": "prismatic_plate_legs",
     "icon": "prismaticPlatelegs.png",
@@ -373,6 +386,7 @@ export const PRISMATIC_ITEMS = {
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
       "armor": 25.1 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_plate_legs'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance
@@ -385,6 +399,7 @@ export const PRISMATIC_ITEMS = {
       level: 125
     }]
   },
+  
   "prismatic_shield": {
     "id": "prismatic_shield",
     "icon": "prismaticShield.png",
@@ -405,6 +420,7 @@ export const PRISMATIC_ITEMS = {
       "defense": 15.3 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
       "armor": 50.3 * PRISMATIC_MULTIPLIER
     },
+    enchantments: ['prismatic_shield'],
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
       { chance: 30,  rarityId: 'rough', },    // 20% chance

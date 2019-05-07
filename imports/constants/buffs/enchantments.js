@@ -537,6 +537,7 @@ export const ENCHANTMENT_BUFFS = {
               buffId: 'bleed_proper', 
               buffData: {
                 description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`,
+                realDuration: 3,
                 duration: 3,
                 allowDuplicates: true,
                 dps: CDbl(attacker.stats.attackMax) / 10,
@@ -758,6 +759,55 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  axe_cleave__prismatic_battle_axe: {
+    duplicateTag: 'axe_cleave__prismatic_battle_axe', // Used to stop duplicate buffs
+    icon: 'prismaticBattleAxe.png',
+    name: 'axe cleave',
+    description() {
+      return `Deal 40% weapon damage to another enemy.`;
+    },
+    constants: {
+      damageDecimal: 0.40,
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onDidDamage({ buff, defender, attacker, actualBattle, rawDamage }) {
+        const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;
+        const baseDamage = attacker.stats.attack;
+        const totalDamage = rawDamage * constants.damageDecimal;
+
+        let target;
+        actualBattle.enemies.forEach((enemy) => {
+          if (!target && enemy.id !== defender.id) {
+            target = enemy;
+          }
+        });
+
+        if (target) {
+         actualBattle.dealDamage(totalDamage, {
+            attacker,
+            defender: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats
+          });
+        }
+      },
+
+      onTick({buff, target, caster, secondsElapsed, actualBattle}) {
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
   magic_blade: {
     duplicateTag: 'magic_blade', // Used to stop duplicate buffs
     icon: 'magicBlade.svg',
@@ -1140,6 +1190,74 @@ export const ENCHANTMENT_BUFFS = {
     }
   },
 
+  prismatic_spear: {
+    duplicateTag: 'prismatic_spear', // Used to stop duplicate buffs
+    icon: 'prismaticSpear.png',
+    name: 'prismatic spear',
+    description() {
+      return `Slowly heals you during combat and can also remove poisons and stop bleeding.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.delay = 1.0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.delay > 0.0) {
+          buff.data.delay -= secondsElapsed;
+          return;
+        }
+        
+        if (Math.random() <= 0.2) { // average once per second, self-heal 5-15 health (plus healingPower % bonus)
+          buff.data.delay = 1.0;
+          actualBattle.healTarget(5 + (Math.random() * 10), {
+            caster: target,
+            target: target,
+            tickEvents: actualBattle.tickEvents,
+            historyStats: actualBattle.historyStats,
+            healSource: buff
+          });
+        }
+        
+        if (Math.random() <= 0.02) { // average once per 10 seconds, remove a bleed
+          let tempBleedBuff = undefined;
+          target.buffs.forEach((tempBuff) => {
+            if ((tempBuff.id === 'bleed') || (tempBuff.id === 'bleed_proper')) {
+              tempBleedBuff = tempBuff;
+            }
+          });
+          if (tempBleedBuff) {
+            buff.data.delay = 1.0;
+            removeBuff({ buff: tempBleedBuff, target: target, caster: target, actualBattle });
+          }
+        }
+        
+        if (Math.random() <= 0.01) { // average once per 20 seconds, remove a poison
+          let tempPoisonBuff = undefined;
+          target.buffs.forEach((tempBuff) => {
+            if (tempBuff.id === 'basic_poison') {
+              tempPoisonBuff = tempBuff;
+            }
+          });
+          if (tempPoisonBuff) {
+            buff.data.delay = 1.0;
+            removeBuff({ buff: tempPoisonBuff, target: target, caster: target, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
   holy_plate: {
     duplicateTag: 'holy_plate', // Used to stop duplicate buffs
     icon: 'holyChestplate.png',
@@ -1202,6 +1320,42 @@ export const ENCHANTMENT_BUFFS = {
       onBeforeDeath({ buff, target, actualBattle }) {
         if (!buff.data.usedUp) {
           target.stats.health = Math.round(target.stats.healthMax / 2);
+          buff.data.usedUp = true;
+          removeBuff({ target, buff, caster: target, actualBattle })
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+
+  prismatic_chestplate: {
+    duplicateTag: 'prismatic_chestplate', // Used to stop duplicate buffs
+    icon: 'prismaticChestplate.png',
+    name: 'prismatic chestplate',
+    description() {
+      return `Brings you back from the brink of death during combat. This effect can only occur once per battle.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      usedUp: false,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.data.usedUp = false;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+      
+      onBeforeDeath({ buff, target, actualBattle }) {
+        if (!buff.data.usedUp) {
+          target.stats.health = Math.round(target.stats.healthMax * 0.667);
           buff.data.usedUp = true;
           removeBuff({ target, buff, caster: target, actualBattle })
         }
@@ -1657,6 +1811,77 @@ export const ENCHANTMENT_BUFFS = {
       onRemove({ buff, target, caster }) {
       }
     }
+  },  
+  
+  prismatic_helmet: {
+    duplicateTag: 'prismatic_helmet', // Used to stop duplicate buffs
+    icon: 'prismaticHelmet.png',
+    name: 'prismatic helmet',
+    description() {
+      return `Whenever you take damage, a temporary elemental shield will be cast on you, shielding you and increasing your damage.  This effect can only occur once every ten seconds.`;
+    },
+    constants: {
+    },
+    data: {
+      name: 'Prismatic Helmet',
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+      timeToApply: 0.0,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+        buff.stacks = 0;
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.data.timeToApply > 0.0) {
+          buff.data.timeToApply -= secondsElapsed;
+        }
+        
+        buff.stacks = Math.ceil(buff.data.timeToApply);
+      },
+      
+      onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+        if (buff.data.timeToApply <= 0.0) {
+          // store max health
+          const curHealthMax = defender.stats.healthMax;
+          
+          const newBuff = {
+            id: 'elemental_shield',
+            data: {
+              duration: 3,
+              totalDuration: 3,
+              icon: 'elementalShield.svg',
+              description: `Temporary elemental shield.`,
+              name: 'elemental shield'
+            },
+            constants: lookupBuff('elemental_shield')
+          };
+          
+          newBuff.constants.constants = {
+            damageBase: 25,
+            baseShield: 250,
+            shieldMPRatio: 1.0,
+            healthCost: 0, // no health cost
+            healthCostMPRatio: 0 // no health cost
+          };
+          
+          newBuff.duration = 3,
+          newBuff.totalDuration = 3;
+
+          addBuff({ buff: newBuff, target: defender, caster: defender, actualBattle });
+          
+          // revert max health
+          defender.stats.healthMax = curHealthMax;
+          
+          buff.data.timeToApply = 10.0;
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
   },
   
   lion_claws: {
@@ -1692,6 +1917,58 @@ export const ENCHANTMENT_BUFFS = {
                 buffId: 'bleed_proper', 
                 buffData: {
                   description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`,
+                  realDuration: 3,
+                  duration: 3,
+                  allowDuplicates: true,
+                  dps: CDbl(attacker.stats.attackMax) / 10,
+                  timeTillDamage: 1,
+                },
+              }),
+              target: defender, // alternatively can use attacker.targetUnit
+            });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  prismatic_long_sword: {
+    duplicateTag: 'prismatic_long_sword', // Used to stop duplicate buffs
+    icon: 'prismaticLongsword.png',
+    name: 'prismatic long sword',
+    description() {
+      return `Your auto-attacks are especially deadly and can rip flesh easily, leaving bloody wounds on your target.`;
+    },
+    constants: {
+    },
+    data: {
+      name: 'Prismatic Long Sword',
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: {
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+      },
+      
+      onDidDamage({ originalAutoAttack, secondsElapsed, buff, defender, attacker, actualBattle, damageDealt, rawDamage }) {
+        if (damageDealt >= 1.0) {
+          const bleedChance = 0.2;
+
+          if (Math.random() <= bleedChance) {
+            // Add bleed debuff
+            attacker.applyBuffTo({
+              buff: attacker.generateBuff({
+                buffId: 'bleed_proper', 
+                buffData: {
+                  description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2)} damage`,
+                  realDuration: 3,
                   duration: 3,
                   allowDuplicates: true,
                   dps: CDbl(attacker.stats.attackMax) / 10,
@@ -1841,6 +2118,39 @@ export const ENCHANTMENT_BUFFS = {
             }
             target.stats.health = newHealth;
           }          
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  }, 
+  
+  prismatic_shield: {
+    duplicateTag: 'prismatic_shield', // Used to stop duplicate buffs
+    icon: 'prismaticShield.svg',
+    name: 'prismatic shield',
+    description() {
+      return `Automatically taunts all enemies every round.`;
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (actualBattle.enemies) {
+          actualBattle.enemies.forEach((enemy) => {
+            if (enemy && enemy.target !== target.id) {
+              enemy.target = target.id;
+            }
+          });
         }
       },
 
@@ -2042,6 +2352,7 @@ export const ENCHANTMENT_BUFFS = {
                   buff: target.generateBuff({
                     buffId: 'bleed_proper', 
                     buffData: {
+                      realDuration: 10,
                       duration: 10,
                       dps: opponent.stats.healthMax / 10,
                       timeTillDamage: 1,
@@ -2228,6 +2539,53 @@ export const ENCHANTMENT_BUFFS = {
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
           source: 'damage_reflect'
+        });
+      },
+
+      onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+        if (buff.duration !== Infinity) {
+          buff.duration -= secondsElapsed;
+          if (buff.duration <= 0) {
+            removeBuff({ buff, target, caster, actualBattle });
+          }
+        }
+      },
+
+      onRemove({ buff, target, caster }) {
+      }
+    }
+  },
+  
+  prismatic_plate_legs: {
+    duplicateTag: 'prismatic_plate_legs', // Used to stop duplicate buffs
+    icon: 'prismaticPlatelegs.png',
+    name: 'prismatic platelegs',
+    description() {
+      return 'Reflect (25% of received damage) + 150 as magic damage.';
+    },
+    constants: {
+    },
+    data: {
+      duration: Infinity,
+      totalDuration: Infinity,
+      isEnchantment: true,
+    },
+    events: { // This can be rebuilt from the buff id
+      onApply({ buff, target, caster, actualBattle }) {
+      },
+
+      onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
+        if (source === 'prismatic_plate_legs') {
+          return;
+        }
+        
+        actualBattle.dealDamage((damageDealt * 0.25) + 150, {
+          attacker: defender,
+          defender: attacker,
+          isMagic: true,
+          tickEvents: actualBattle.tickEvents,
+          historyStats: actualBattle.historyStats,
+          source: 'prismatic_plate_legs'
         });
       },
 

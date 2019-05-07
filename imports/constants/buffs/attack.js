@@ -1184,6 +1184,7 @@ export const ATTACK_BUFFS = {
         const newBuff = {
           id: 'bleed_proper',
           data: {
+            realDuration: 12,
             duration: 12,
             totalDuration: 12,
             dps: buff.data.dps,
@@ -1236,6 +1237,13 @@ export const ATTACK_BUFFS = {
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
+        if (CInt(buff.data.realDuration) > 0) {
+          buff.duration = CInt(buff.data.realDuration);
+          buff.totalDuration = CInt(buff.data.realDuration);
+          buff.data.duration = CInt(buff.data.realDuration);
+          buff.data.totalDuration = CInt(buff.data.realDuration);
+        }
+        
         buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
 
         const constants = (buff.constants && buff.constants.constants) ? buff.constants.constants : lookupBuff(buff.id).constants;

@@ -463,7 +463,7 @@ Meteor.methods({
       // Build prospectors map
       const prospectorsMap = {};
       mining.prospectors.forEach((prospector) => {
-        prospectorsMap[prospector.id] = prospector.amount;
+        prospectorsMap[prospector.id] = (prospector.amount > 0) ? prospector.amount * 2.5 : 0;
       });
 
       // Prepare easy arrays for which ore is about to spawn
@@ -512,7 +512,7 @@ Meteor.methods({
         // 14 slots free = +180.6% bonus
         // 15 slots free = +190.5% bonus
         // 16 slots free = +200% bonus
-        const emptyPitBonus = Math.sqrt(emptyMiningSpaces.length / 16 * 9);
+        let emptyPitBonus = Math.sqrt(emptyMiningSpaces.length / 16 * 9); // range 1-3 (representing 100% to 300% of base spawn rate)
         
         // if we have an empty-pit bonus of at least 100% (not a penalty), add it to the multiplier
         if (emptyPitBonus >= 1.0) {

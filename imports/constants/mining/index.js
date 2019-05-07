@@ -364,6 +364,118 @@ export const MINING = {
       }],
       max: 5
     },
+    darksteel: {
+      requiredMiningLevel: 100,
+      icon: 'darksteelProspector.svg',
+      name: 'darksteel prospector',
+      id: 'darksteel',
+      required: [{
+        type: 'gold',
+        amount: 1500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 100
+      }],
+      max: 5
+    },
+    radiant: {
+      requiredMiningLevel: 105,
+      icon: 'radiantProspector.svg',
+      name: 'radiant prospector',
+      id: 'radiant',
+      required: [{
+        type: 'gold',
+        amount: 2500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 105
+      }],
+      max: 5
+    },
+    astral: {
+      requiredMiningLevel: 110,
+      icon: 'astralProspector.svg',
+      name: 'astral prospector',
+      id: 'astral',
+      required: [{
+        type: 'gold',
+        amount: 5000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 110
+      }],
+      max: 5
+    },
+    titanfoil: {
+      requiredMiningLevel: 115,
+      icon: 'titanfoilProspector.svg',
+      name: 'titanfoil prospector',
+      id: 'titanfoil',
+      required: [{
+        type: 'gold',
+        amount: 7500000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 115
+      }],
+      max: 5
+    },
+    relicrock: {
+      requiredMiningLevel: 120,
+      icon: 'relicrockProspector.svg',
+      name: 'relicrock prospector',
+      id: 'relicrock',
+      required: [{
+        type: 'gold',
+        amount: 10000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 120
+      }],
+      max: 5
+    },
+    eternium: {
+      requiredMiningLevel: 125,
+      icon: 'eterniumProspector.svg',
+      name: 'eternium prospector',
+      id: 'eternium',
+      required: [{
+        type: 'gold',
+        amount: 15000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 125
+      }],
+      max: 5
+    },
+    purestone: {
+      requiredMiningLevel: 130,
+      icon: 'purestoneProspector.svg',
+      name: 'purestone prospector',
+      id: 'purestone',
+      required: [{
+        type: 'gold',
+        amount: 25000000,
+        consumes: true
+      }, {
+        type: 'skill',
+        name: 'mining',
+        level: 130
+      }],
+      max: 5
+    },
     jewel: {
       requiredMiningLevel: 10,
       icon: 'jewelProspector.svg',
@@ -1528,7 +1640,7 @@ export const MINING = {
       icon: 'elvenSteel.png',
       name: 'elven steel',
       itemId: 'ore_elven_steel',
-      chance: 0.00008
+      chance: 0.000095
     },
 
     elven_steel_essence: {
@@ -1552,7 +1664,7 @@ export const MINING = {
       icon: 'cursed.png',
       name: 'cursed',
       itemId: 'ore_cursed',
-      chance: 0.00006
+      chance: 0.00009
     },
 
     cursed_essence: {
@@ -1566,15 +1678,93 @@ export const MINING = {
       chance: 0.0000012
     },
 
+    darksteel: {
+      requiredLevel: 100,
+      healthMax: 150000,
+      xp: 16000,
+      id: 'darksteel',
+      icon: 'darksteel.png',
+      clusterIcon: 'darksteelCluster.png',
+      canCluster: true,
+      name: 'darksteel',
+      itemId: 'ore_darksteel',
+      chance: 0.000095
+    },
+
+    radiant: {
+      requiredLevel: 105,
+      healthMax: 200000,
+      xp: 25000,
+      id: 'radiant',
+      icon: 'radiant.png',
+      clusterIcon: 'radiantCluster.png',
+      canCluster: true,
+      name: 'radiant',
+      itemId: 'ore_radiant',
+      chance: 0.00008
+    },
+
+    astral: {
+      requiredLevel: 110,
+      healthMax: 250000,
+      xp: 40000,
+      id: 'astral',
+      icon: 'astral.png',
+      clusterIcon: 'astralCluster.png',
+      canCluster: true,
+      name: 'astral',
+      itemId: 'ore_astral',
+      chance: 0.000085
+    },
+
+    titanfoil: {
+      requiredLevel: 115,
+      healthMax: 325000,
+      xp: 65000,
+      id: 'titanfoil',
+      icon: 'titanfoil.png',
+      clusterIcon: 'titanfoilCluster.png',
+      canCluster: true,
+      name: 'titanfoil',
+      itemId: 'ore_titanfoil',
+      chance: 0.00008
+    },
+
+    relicrock: {
+      requiredLevel: 120,
+      healthMax: 400000,
+      xp: 100000,
+      id: 'relicrock',
+      icon: 'relicrock.png',
+      clusterIcon: 'relicrockCluster.png',
+      canCluster: true,
+      name: 'relicrock',
+      itemId: 'ore_relicrock',
+      chance: 0.000075
+    },
+
+    eternium: {
+      requiredLevel: 125,
+      healthMax: 500000,
+      xp: 150000,
+      id: 'eternium',
+      icon: 'eternium.png',
+      clusterIcon: 'eterniumCluster.png',
+      canCluster: true,
+      name: 'eternium',
+      itemId: 'ore_eternium',
+      chance: 0.00007
+    },
+
     purestone: {
       requiredLevel: 130,
-      healthMax: 250000,
-      xp: 50000,
+      healthMax: 650000,
+      xp: 250000,
       id: 'purestone',
       icon: 'purestone.png',
       name: 'purestone',
       itemId: 'ore_purestone',
-      chance: 0.00005
+      chance: 0.000065
     },
 
     // Do Later

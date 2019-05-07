@@ -43,6 +43,18 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
     return;
   }
   
+  if (itemConstants.itemSplit) {
+    try {
+      itemConstants.itemSplit.forEach((itemSplitItemId) => {
+        addItem(itemSplitItemId, amount, owner);
+      });
+    } catch (err) {
+      console.log(`Couldn't add split item '${itemId}':`);
+      console.log(err);
+    }
+    return;
+  }
+  
   // Roll for stats if required
   if (itemConstants.extraStats) {
     for (let i = 0; i < amount; i++) {

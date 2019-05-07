@@ -209,6 +209,18 @@ Meteor.methods({
     updateUserActivity({userId: Meteor.userId()});
   },
 
+  'groups.isHidden'(isHidden) {
+    Groups.update({
+      leader: Meteor.userId()
+    }, {
+      $set: {
+        isHidden
+      }
+    });
+
+    updateUserActivity({userId: Meteor.userId()});
+  },
+
   'groups.join'(id) {
     const userDoc = Meteor.user();
     const targetGroup = Groups.findOne({

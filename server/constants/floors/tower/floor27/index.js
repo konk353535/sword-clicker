@@ -69,7 +69,7 @@ export const TOWER_FLOOR_27 = {
   },
   5: {
     name: 'Love To Hate It',
-    enemies: ['seething_hatred', 'seething_hatred', 'seething_hatred', 'wither', 'tormentor'],
+    enemies: ['seething_hatred', 'wither', 'seething_hatred', 'seething_hatred', 'wither', 'tormentor'],
     rewards: orderLootTable(LEVEL_TWENTY_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 1280,
       rewards: [
@@ -103,7 +103,7 @@ export const TOWER_FLOOR_27 = {
   },
   6: {
     name: 'Upset',
-    enemies: ['ripper', 'troglodyte', 'troglodyte', 'ripper'],
+    enemies: ['ripper', 'troglodyte', 'ripper', 'troglodyte', 'ripper'],
     rewards: orderLootTable(LEVEL_TWENTY_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 96,
       rewards: [
@@ -126,7 +126,7 @@ export const TOWER_FLOOR_27 = {
   },
   7: {
     name: 'Suffering',
-    enemies: ['eternal_warden', 'boss_mage', 'boss_high_angel'],
+    enemies: ['eternal_warden', 'boss_mage', 'boss_high_angel', 'eternal_warden'],
     rewards: orderLootTable(LEVEL_TWENTY_SEVEN_LOOT_TABLE.concat([{
       chance: 1 / 96,
       rewards: [

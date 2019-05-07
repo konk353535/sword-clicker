@@ -31,35 +31,19 @@ export const LEVEL_TWENTY_SEVEN_MONSTERS = [{
 }];
 
 export const LEVEL_TWENTY_SEVEN_LOOT_TABLE = orderLootTable([{}, {}, {
-  chance: 1 / 256,
+  chance: 1 / 96,
   rewards: [
     { type: 'item', itemId: 'purestone_ore', amount: 1 }
   ]
 }, {
-  chance: 1 / 256,
+  chance: 1 / 144,
   rewards: [
     { type: 'item', itemId: 'spiritroot_log', amount: 1 }
   ]
 }, {
-  chance: 1 / 1024,
+  chance: 1 / 768,
   rewards: [
     { type: 'item', itemId: 'purestone_essence', amount: 1 }
-  ]
-}, {
-  chance: 1 / 8,
-  rewards: [
-    { type: 'item', itemId: 'ore_cursed', amount: 1 },
-    { type: 'item', itemId: 'cursed_bar', amount: 1 },
-    { type: 'item', itemId: 'magic_log', amount: 1 },
-    { type: 'item', itemId: 'magic_log', amount: 2 }
-  ]
-}, {
-  chance: 1 / 8,
-  rewards: [
-    { type: 'item', itemId: 'ore_mithril', amount: 1 },
-    { type: 'item', itemId: 'fairy_steel_bar', amount: 1 },
-    { type: 'item', itemId: 'fiery_log', amount: 1 },
-    { type: 'item', itemId: 'fiery_log', amount: 2 }
   ]
 }, {
   chance: 1 / 4,

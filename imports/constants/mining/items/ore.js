@@ -197,13 +197,73 @@ export const ORE_ITEMS = {
     sellPrice: 175
   },
 
+  ore_darksteel: {
+    id: 'ore_darksteel',
+    icon: 'darksteel.png',
+    category: 'mining',
+    name: 'darksteel',
+    description: 'Some unprocessed darksteel, suitable for crafting.',
+    sellPrice: 190,
+    itemSplit: ['ore_cursed', 'ore_adamantium']
+  },
+
+  ore_radiant: {
+    id: 'ore_radiant',
+    icon: 'radiant.png',
+    category: 'mining',
+    name: 'radiant ore',
+    description: 'Some unprocessed radiant ore, suitable for crafting.',
+    sellPrice: 230,
+    itemSplit: ['ore_cursed', 'ore_orichalcum']
+  },
+
+  ore_astral: {
+    id: 'ore_astral',
+    icon: 'astral.png',
+    category: 'mining',
+    name: 'astral ore',
+    description: 'Some unprocessed astral ore, suitable for crafting.',
+    sellPrice: 280,
+    itemSplit: ['ore_cursed', 'meteorite']
+  },
+
+  ore_titanfoil: {
+    id: 'ore_titanfoil',
+    icon: 'titanfoil.png',
+    category: 'mining',
+    name: 'titanfoil',
+    description: 'Some unprocessed titanfoil, suitable for crafting.',
+    sellPrice: 340,
+    itemSplit: ['ore_cursed', 'ore_fairy_steel']
+  },
+
+  ore_relicrock: {
+    id: 'ore_relicrock',
+    icon: 'relicrock.png',
+    category: 'mining',
+    name: 'relicrock',
+    description: 'Some unprocessed relicrock, suitable for crafting.',
+    sellPrice: 425,
+    itemSplit: ['ore_cursed', 'ore_elven_steel']
+  },
+
+  ore_eternium: {
+    id: 'ore_eternium',
+    icon: 'eternium.png',
+    category: 'mining',
+    name: 'eternium',
+    description: 'Some unprocessed eternium ore, suitable for crafting.',
+    sellPrice: 550,
+    itemSplit: ['ore_cursed', 'ore_mithril']
+  },
+
   ore_purestone: {
     id: 'ore_purestone',
     icon: 'purestone.png',
     category: 'mining',
     name: 'purestone',
     description: 'Some unprocessed purestone, suitable for crafting.',
-    sellPrice: 350
+    sellPrice: 700
   },
 
   jade: {

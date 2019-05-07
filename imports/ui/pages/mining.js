@@ -212,6 +212,8 @@ Template.miningPage.helpers({
     const rawOres = Object.keys(MINING.ores).map((oreKey) => {
       return MINING.ores[oreKey];
     }).filter((recipe) => {
+      // skip tiers 21-26 (darksteel, radiant, astral, titanfoil, relicrock, and eternium)
+      if ((recipe.requiredLevel > 95) && (recipe.requiredLevel < 130)) return false;
       return miningSkill.level >= recipe.requiredLevel;
     }).sort((a, b) => {
       return b.requiredLevel - a.requiredLevel;

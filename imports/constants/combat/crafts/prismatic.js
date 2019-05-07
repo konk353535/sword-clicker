@@ -102,6 +102,13 @@ export const PRISMATIC_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
+      itemId: 'prismatic_dagger',
+      icon: ITEMS['prismatic_dagger'].icon,
+      name: ITEMS['prismatic_dagger'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'eternium_spear',
       icon: ITEMS['eternium_spear'].icon,
       name: ITEMS['eternium_spear'].name,
@@ -153,6 +160,13 @@ export const PRISMATIC_CRAFTS = {
       icon: ITEMS['spiritroot_log'].icon,
       name: ITEMS['spiritroot_log'].name,
       amount: 50,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'prismatic_dagger',
+      icon: ITEMS['prismatic_dagger'].icon,
+      name: ITEMS['prismatic_dagger'].name,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',
@@ -210,6 +224,13 @@ export const PRISMATIC_CRAFTS = {
       consumes: true
     }, {
       type: 'item',
+      itemId: 'prismatic_dagger',
+      icon: ITEMS['prismatic_dagger'].icon,
+      name: ITEMS['prismatic_dagger'].name,
+      amount: 1,
+      consumes: true
+    }, {
+      type: 'item',
       itemId: 'eternium_long_sword',
       icon: ITEMS['eternium_long_sword'].icon,
       name: ITEMS['eternium_long_sword'].name,
@@ -261,6 +282,13 @@ export const PRISMATIC_CRAFTS = {
       icon: ITEMS['spiritroot_log'].icon,
       name: ITEMS['spiritroot_log'].name,
       amount: 100,
+      consumes: true
+    }, {
+      type: 'item',
+      itemId: 'prismatic_dagger',
+      icon: ITEMS['prismatic_dagger'].icon,
+      name: ITEMS['prismatic_dagger'].name,
+      amount: 1,
       consumes: true
     }, {
       type: 'item',

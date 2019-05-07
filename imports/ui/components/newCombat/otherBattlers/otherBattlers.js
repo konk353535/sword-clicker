@@ -24,7 +24,16 @@ Template.otherBattlersPage.helpers({
     const otherBattlers = Groups.find({
       lastBattleStarted: {
         $gte: moment().subtract(24, 'hours').toDate()
-      }
+      },
+      '$or': [
+        {
+          'isHidden': {
+            '$exists': false
+          }
+        }, {
+          'isHidden': false
+        }
+      ]
     }, {
       limit: 100,
       sort: {

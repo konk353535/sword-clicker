@@ -294,6 +294,14 @@ Template.lobbyPage.events({
   'click .btn-deny-any-start'(event) {
     Meteor.call('groups.anyStart', false);
   },
+  
+  'click .btn-hide-group'(event) {
+    Meteor.call('groups.isHidden', true);
+  },
+
+  'click .btn-unhide-group'(event) {
+    Meteor.call('groups.isHidden', false);
+  },
 
   'click .btn-kick'(event, instance) {
     const ownerId = instance.$(event.target).closest('.btn-kick').data('owner');
@@ -587,6 +595,15 @@ Template.lobbyPage.helpers({
 
   otherBattlers() {
     const otherBattlers = Groups.find({
+      '$or': [
+        {
+          'isHidden': {
+            '$exists': false
+          }
+        }, {
+          'isHidden': false
+        }
+      ]
     }, {
       limit: 3,
       sort: {

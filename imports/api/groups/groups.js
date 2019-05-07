@@ -13,8 +13,10 @@ GroupsSchema = new SimpleSchema({
   invites: { type: [String], optional: true },
   balancer: { type: String },
   membersObject: { type: [Object], blackbox: true },
-  locked: { type: Boolean, optional: true },
-  allowAnyStartCombat: { type: Boolean, optional: true },
+  
+  locked: { type: Boolean, optional: true, defaultValue: false },
+  allowAnyStartCombat: { type: Boolean, optional: true, defaultValue: false },
+  isHidden: { type: Boolean, optional: true, defaultValue: false },
 
   floor: { type: Number, optional: true },
   inBattle: { type: Boolean, optional: true },

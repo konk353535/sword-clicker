@@ -155,7 +155,7 @@ export const PIGMENT_CRAFTS = {
     timeToCraft: 300,
     xp: 25,
     maxToCraft: 5,
-    requiredInscriptionLevel: 10,
+    requiredInscriptionLevel: 9,
     required: [{
       type: 'item',
       itemId: 'chilli',
@@ -179,7 +179,7 @@ export const PIGMENT_CRAFTS = {
     timeToCraft: 600,
     xp: 100,
     maxToCraft: 5,
-    requiredInscriptionLevel: 10,
+    requiredInscriptionLevel: 12,
     required: [{
       type: 'item',
       itemId: 'agrimony',

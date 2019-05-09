@@ -577,12 +577,30 @@ export const INSCRIPTION_ITEMS = {
     description: 'Provides inscription insight.'
   },
 
+  ebony_paper: {
+    id: 'ebony_paper',
+    icon: 'ebonyPaper.png',
+    category: 'paper',
+    name: 'ebony paper',
+    sellPrice: 1300,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  ebony_book: {
+    id: 'ebony_book',
+    icon: 'ebonyBook.png',
+    category: 'paper',
+    name: 'ebony book',
+    sellPrice: 6500,
+    description: 'Provides inscription insight.'
+  },
+
   fiery_paper: {
     id: 'fiery_paper',
     icon: 'fieryPaper.png',
     category: 'paper',
     name: 'fiery paper',
-    sellPrice: 1300,
+    sellPrice: 1400,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -591,7 +609,25 @@ export const INSCRIPTION_ITEMS = {
     icon: 'fieryBook.png',
     category: 'paper',
     name: 'fiery book',
-    sellPrice: 6500,
+    sellPrice: 7000,
+    description: 'Provides inscription insight.'
+  },
+
+  tamarind_paper: {
+    id: 'tamarind_paper',
+    icon: 'tamarindPaper.png',
+    category: 'paper',
+    name: 'tamarind paper',
+    sellPrice: 1500,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  tamarind_book: {
+    id: 'tamarind_book',
+    icon: 'tamarindBook.png',
+    category: 'paper',
+    name: 'tamarind book',
+    sellPrice: 8000,
     description: 'Provides inscription insight.'
   },
 
@@ -600,7 +636,7 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magicPaper.png',
     category: 'paper',
     name: 'magic paper',
-    sellPrice: 1400,
+    sellPrice: 1600,
     description: 'Used in inscription with pigments to make ability books'
   },
 
@@ -609,10 +645,64 @@ export const INSCRIPTION_ITEMS = {
     icon: 'magicBook.png',
     category: 'paper',
     name: 'magic book',
-    sellPrice: 7000,
+    sellPrice: 9000,
     description: 'Provides inscription insight.'
   },
 
+  petrified_paper: {
+    id: 'petrified_paper',
+    icon: 'petrifiedPaper.png',
+    category: 'paper',
+    name: 'petrified paper',
+    sellPrice: 1700,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  petrified_book: {
+    id: 'petrified_book',
+    icon: 'petrifiedBook.png',
+    category: 'paper',
+    name: 'petrified book',
+    sellPrice: 10000,
+    description: 'Provides inscription insight.'
+  },
+
+  ancient_paper: {
+    id: 'ancient_paper',
+    icon: 'ancientPaper.png',
+    category: 'paper',
+    name: 'ancient paper',
+    sellPrice: 1800,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  ancient_book: {
+    id: 'ancient_book',
+    icon: 'ancientBook.png',
+    category: 'paper',
+    name: 'ancient book',
+    sellPrice: 11000,
+    description: 'Provides inscription insight.'
+  },
+
+  spiritroot_paper: {
+    id: 'spiritroot_paper',
+    icon: 'spiritrootPaper.png',
+    category: 'paper',
+    name: 'spiritroot paper',
+    sellPrice: 1900,
+    description: 'Used in inscription with pigments to make ability books'
+  },
+
+  spiritroot_book: {
+    id: 'spiritroot_book',
+    icon: 'spiritrootBook.png',
+    category: 'paper',
+    name: 'spiritroot book',
+    sellPrice: 12000,
+    description: 'Provides inscription insight.'
+  },
+  
   eel_taunt_tome: {
     id: 'eel_taunt_tome',
     icon: 'tome.svg',

@@ -961,6 +961,54 @@ export const PAPER_CRAFTS = {
     }]
   },
 
+  ebony_paper: {
+    recipeFor: 'inscription',
+    produces: 'ebony_paper',
+    name: 'ebony paper',
+    id: 'ebony_paper',
+    category: 'paper',
+    timeToCraft: 120,
+    xp: 310,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 95,
+    required: [{
+      type: 'item',
+      itemId: 'ebony_log',
+      icon: ITEMS['ebony_log'].icon,
+      name: ITEMS['ebony_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 95
+    }]
+  },
+
+  ebony_book: {
+    recipeFor: 'inscription',
+    produces: 'ebony_book',
+    name: 'ebony book',
+    id: 'ebony_book',
+    category: 'book',
+    timeToCraft: 900,
+    xp: 5300,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 100,
+    required: [{
+      type: 'item',
+      itemId: 'ebony_paper',
+      icon: ITEMS['ebony_paper'].icon,
+      name: ITEMS['ebony_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 100
+    }]
+  },
+
   fiery_paper: {
     recipeFor: 'inscription',
     produces: 'fiery_paper',
@@ -970,7 +1018,7 @@ export const PAPER_CRAFTS = {
     timeToCraft: 160,
     xp: 350,
     maxToCraft: 100,
-    requiredInscriptionLevel: 95,
+    requiredInscriptionLevel: 100,
     required: [{
       type: 'item',
       itemId: 'fiery_log',
@@ -981,7 +1029,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 95
+      level: 100
     }]
   },
 
@@ -994,7 +1042,7 @@ export const PAPER_CRAFTS = {
     timeToCraft: 1200,
     xp: 6000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 100,
+    requiredInscriptionLevel: 105,
     required: [{
       type: 'item',
       itemId: 'fiery_paper',
@@ -1005,7 +1053,55 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 100
+      level: 105
+    }]
+  },
+
+  tamarind_paper: {
+    recipeFor: 'inscription',
+    produces: 'tamarind_paper',
+    name: 'tamarind paper',
+    id: 'tamarind_paper',
+    category: 'paper',
+    timeToCraft: 160,
+    xp: 400,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 105,
+    required: [{
+      type: 'item',
+      itemId: 'tamarind_log',
+      icon: ITEMS['tamarind_log'].icon,
+      name: ITEMS['tamarind_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 105
+    }]
+  },
+
+  tamarind_book: {
+    recipeFor: 'inscription',
+    produces: 'tamarind_book',
+    name: 'tamarind book',
+    id: 'tamarind_book',
+    category: 'book',
+    timeToCraft: 1200,
+    xp: 8000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 110,
+    required: [{
+      type: 'item',
+      itemId: 'tamarind_paper',
+      icon: ITEMS['tamarind_paper'].icon,
+      name: ITEMS['tamarind_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 110
     }]
   },
 
@@ -1016,9 +1112,9 @@ export const PAPER_CRAFTS = {
     id: 'magic_paper',
     category: 'paper',
     timeToCraft: 160,
-    xp: 400,
+    xp: 475,
     maxToCraft: 100,
-    requiredInscriptionLevel: 100,
+    requiredInscriptionLevel: 110,
     required: [{
       type: 'item',
       itemId: 'magic_log',
@@ -1029,7 +1125,7 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 100
+      level: 110
     }]
   },
 
@@ -1040,9 +1136,9 @@ export const PAPER_CRAFTS = {
     id: 'magic_book',
     category: 'book',
     timeToCraft: 1200,
-    xp: 7500,
+    xp: 12000,
     maxToCraft: 5,
-    requiredInscriptionLevel: 105,
+    requiredInscriptionLevel: 115,
     required: [{
       type: 'item',
       itemId: 'magic_paper',
@@ -1053,7 +1149,151 @@ export const PAPER_CRAFTS = {
     }, {
       type: 'skill',
       name: 'inscription',
-      level: 105
+      level: 115
+    }]
+  },
+
+  petrified_paper: {
+    recipeFor: 'inscription',
+    produces: 'petrified_paper',
+    name: 'petrified paper',
+    id: 'petrified_paper',
+    category: 'paper',
+    timeToCraft: 160,
+    xp: 600,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 115,
+    required: [{
+      type: 'item',
+      itemId: 'petrified_log',
+      icon: ITEMS['petrified_log'].icon,
+      name: ITEMS['petrified_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 115
+    }]
+  },
+
+  petrified_book: {
+    recipeFor: 'inscription',
+    produces: 'petrified_book',
+    name: 'petrified book',
+    id: 'petrified_book',
+    category: 'book',
+    timeToCraft: 1200,
+    xp: 18000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 120,
+    required: [{
+      type: 'item',
+      itemId: 'petrified_paper',
+      icon: ITEMS['petrified_paper'].icon,
+      name: ITEMS['petrified_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 120
+    }]
+  },
+
+  ancient_paper: {
+    recipeFor: 'inscription',
+    produces: 'ancient_paper',
+    name: 'ancient paper',
+    id: 'ancient_paper',
+    category: 'paper',
+    timeToCraft: 160,
+    xp: 850,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 120,
+    required: [{
+      type: 'item',
+      itemId: 'ancient_log',
+      icon: ITEMS['ancient_log'].icon,
+      name: ITEMS['ancient_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 120
+    }]
+  },
+
+  ancient_book: {
+    recipeFor: 'inscription',
+    produces: 'ancient_book',
+    name: 'ancient book',
+    id: 'ancient_book',
+    category: 'book',
+    timeToCraft: 1200,
+    xp: 27500,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 125,
+    required: [{
+      type: 'item',
+      itemId: 'ancient_paper',
+      icon: ITEMS['ancient_paper'].icon,
+      name: ITEMS['ancient_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 125
+    }]
+  },
+
+  spiritroot_paper: {
+    recipeFor: 'inscription',
+    produces: 'spiritroot_paper',
+    name: 'spiritroot paper',
+    id: 'spiritroot_paper',
+    category: 'paper',
+    timeToCraft: 160,
+    xp: 1250,
+    maxToCraft: 100,
+    requiredInscriptionLevel: 125,
+    required: [{
+      type: 'item',
+      itemId: 'spiritroot_log',
+      icon: ITEMS['spiritroot_log'].icon,
+      name: ITEMS['spiritroot_log'].name,
+      amount: 50,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 125
+    }]
+  },
+
+  spiritroot_book: {
+    recipeFor: 'inscription',
+    produces: 'spiritroot_book',
+    name: 'spiritroot book',
+    id: 'spiritroot_book',
+    category: 'book',
+    timeToCraft: 1200,
+    xp: 50000,
+    maxToCraft: 5,
+    requiredInscriptionLevel: 130,
+    required: [{
+      type: 'item',
+      itemId: 'spiritroot_paper',
+      icon: ITEMS['spiritroot_paper'].icon,
+      name: ITEMS['spiritroot_paper'].name,
+      amount: 10,
+      consumes: true
+    }, {
+      type: 'skill',
+      name: 'inscription',
+      level: 130
     }]
   },
 };

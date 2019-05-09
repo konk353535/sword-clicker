@@ -316,7 +316,7 @@ SyncedCron.add({
             distributeRewards({ floor: currentFloor.floor, server: currentFloor.server });
 
             // Notify general chat
-            if (currentFloor.floor === 27) {
+            if (currentFloor.floor === Meteor.settings.shared.maxFloor) {
               Chats.insert({
                 message: `The boss on floor ${currentFloor.floor} has been defeated!
                 THE TOWER HAS BEEN COMPLETED!`,

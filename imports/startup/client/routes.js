@@ -80,6 +80,18 @@ Router.route('/achievements', {
   });
 });
 
+(['info', 'data']).forEach((pageAlias) => {
+  Router.route(`/${pageAlias}`, {
+    name: pageAlias,
+    title: 'Info And Data',
+    template: 'infoPage',
+    yieldRegions: {
+      'nav': { to: 'nav' },
+      'footer': { to: 'footer' },
+    },
+  });
+});
+
 (['shop', 'store', 'gems', 'gemShop', 'buy']).forEach((pageAlias) => {
   Router.route(`/${pageAlias}`, {
     name: pageAlias,

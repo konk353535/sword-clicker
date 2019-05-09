@@ -44,6 +44,7 @@ import '../imports/ui/pages/inscription.js';
 import '../imports/ui/pages/woodcutting.js';
 import '../imports/ui/pages/rankings.js';
 import '../imports/ui/pages/faq.js';
+import '../imports/ui/pages/info.js';
 import '../imports/ui/pages/combat.js';
 import '../imports/ui/pages/farming.js';
 import '../imports/ui/pages/shop.js';

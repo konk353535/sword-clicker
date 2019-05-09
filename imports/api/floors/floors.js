@@ -77,6 +77,7 @@ const local_FLOOR_BOSSES = Object.assign({
   25: { boss: { enemy: { id: 'boss_witch' } } },
   26: { boss: { enemy: { id: 'the_lich' } } },
   27: { boss: { enemy: { id: 'the_lich' } } },
+  28: { boss: { enemy: { id: 'the_lich' } } },
 });
 
 const local_BOSS_ENEMIES = {

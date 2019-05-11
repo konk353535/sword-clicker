@@ -145,6 +145,21 @@ export const TOWER_FLOOR_27 = {
         { type: 'item', itemId: 'prismatic_broad_sword', amount: 1 },
         { type: 'item', itemId: 'prismatic_horned_helmet', amount: 1 }
       ]
+    }, {
+      chance: 1 / 32,
+      rewards: [
+        { type: 'item', itemId: 'purestone_ore', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 64,
+      rewards: [
+        { type: 'item', itemId: 'spiritroot_log', amount: 1 }
+      ]
+    }, {
+      chance: 1 / 256,
+      rewards: [
+        { type: 'item', itemId: 'purestone_essence', amount: 1 }
+      ]
     }]))
   },
   

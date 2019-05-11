@@ -112,6 +112,20 @@ export const ARCHER_ITEMS = {
       description: 'Learn a hidden recipe'
     },
   },
+  
+  spiritroot_bow_scroll: {
+    id: 'spiritroot_bow_scroll',
+    icon: 'spiritrootBowScroll.svg',
+    category: 'crafting',
+    isCraftingScroll: true,
+    name: 'spiritroot bow scroll',
+    teaches: 'spiritroot_bow',
+    sellPrice: 1500,
+    description: `An spiritroot scroll, made from purestone inks.`,
+    shiftActionData: {
+      description: 'Learn a hidden recipe'
+    },
+  },
 
   cursed_quiver_scroll: {
     id: 'cursed_quiver_scroll',

@@ -148,7 +148,7 @@ export const TOWER_FLOOR_27 = {
     }, {
       chance: 1 / 32,
       rewards: [
-        { type: 'item', itemId: 'purestone_ore', amount: 1 }
+        { type: 'item', itemId: 'ore_purestone', amount: 1 }
       ]
     }, {
       chance: 1 / 64,

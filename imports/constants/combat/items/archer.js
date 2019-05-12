@@ -227,7 +227,7 @@ export const ARCHER_ITEMS = {
 
   prismatic_quiver_scroll: {
     id: 'prismatic_quiver_scroll',
-    icon: 'prismaticQuiverScroll.svg',
+    icon: 'prismaticQuiverScroll2.svg',
     category: 'crafting',
     isCraftingScroll: true,
     name: 'prismatic quiver scroll',

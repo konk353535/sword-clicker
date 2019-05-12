@@ -76,7 +76,7 @@ export const TOWER_FLOOR_27 = {
         { type: 'item', itemId: 'prismatic_kite_shield', amount: 1 }
       ]
     }, {
-      chance: 1 / 96,
+      chance: 1 / 1280,
       rewards: [
         { type: 'item', itemId: 'prismatic_spirit_shield', amount: 1 }
       ]

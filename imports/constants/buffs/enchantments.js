@@ -2128,7 +2128,7 @@ export const ENCHANTMENT_BUFFS = {
   
   prismatic_shield: {
     duplicateTag: 'prismatic_shield', // Used to stop duplicate buffs
-    icon: 'prismaticShield.svg',
+    icon: 'prismaticShield.png',
     name: 'prismatic shield',
     description() {
       return `Automatically taunts all enemies every round.`;

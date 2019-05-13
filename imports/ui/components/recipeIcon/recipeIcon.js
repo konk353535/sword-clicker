@@ -5,6 +5,9 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Items } from '/imports/api/items/items.js';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
+import { ITEMS } from '/imports/constants/items/index.js';
+import { BUFFS } from '/imports/constants/buffs/index.js';
+
 import './recipeIcon.html';
 
 Template.recipeIcon.onCreated(function bodyOnCreated() {
@@ -185,6 +188,24 @@ Template.recipeIcon.helpers({
   recipeTileConsumablesDisabled() {
     return Session.get('recipeTileConsumablesDisabled')
   },
+  
+  enchantments() {
+    try {
+      const instance = Template.instance();
+      const recipeProduces = instance.data.recipe.produces;
+      const constants = ITEMS[recipeProduces];
+
+      if (!constants || !constants.enchantments) {
+        return false;
+      }
+
+      return constants.enchantments.map((buffId) => {
+        return BUFFS[buffId].description();
+      });
+    } catch (err) {
+    }
+  },
+
 });
 
 Template.recipeIcon.onDestroyed(function () {

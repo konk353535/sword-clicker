@@ -11,7 +11,7 @@ export const STEEL_CRAFTS = {
     xp: 3000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -57,7 +57,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -103,7 +103,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -149,7 +149,7 @@ export const STEEL_CRAFTS = {
     xp: 12000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -195,7 +195,7 @@ export const STEEL_CRAFTS = {
     xp: 12000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -241,7 +241,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -287,7 +287,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -333,7 +333,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',
@@ -379,7 +379,7 @@ export const STEEL_CRAFTS = {
     xp: 6000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 35,
+    requiredCraftingLevel: 34,
     required: [{
       type: 'item',
       itemId: 'carbon_furnace',

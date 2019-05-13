@@ -17,7 +17,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 2) + (BONUS_XP * 2)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -92,7 +92,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -167,7 +167,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -242,7 +242,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 8) + (BONUS_XP * 8)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -317,7 +317,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 8) + (BONUS_XP * 8)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -392,7 +392,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -467,7 +467,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -542,7 +542,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',
@@ -617,7 +617,7 @@ export const ETERNIUM_CRAFTS = {
     xp: ((CURSED_ESS_XP * 4) + (BONUS_XP * 4)) * ETERNIUM_BONUS_XP,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 125,
+    requiredCraftingLevel: 124,
     required: [{
       type: 'item',
       itemId: 'relicrock_furnace',

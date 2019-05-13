@@ -11,7 +11,7 @@ export const IRON_CRAFTS = {
     xp: 60,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -50,7 +50,7 @@ export const IRON_CRAFTS = {
     xp: 120,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -89,7 +89,7 @@ export const IRON_CRAFTS = {
     xp: 120,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -128,7 +128,7 @@ export const IRON_CRAFTS = {
     xp: 120,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -167,7 +167,7 @@ export const IRON_CRAFTS = {
     xp: 160,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -206,7 +206,7 @@ export const IRON_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -245,7 +245,7 @@ export const IRON_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -284,7 +284,7 @@ export const IRON_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',
@@ -323,7 +323,7 @@ export const IRON_CRAFTS = {
     xp: 100,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 15,
+    requiredCraftingLevel: 14,
     required: [{
       type: 'item',
       itemId: 'bronze_furnace',

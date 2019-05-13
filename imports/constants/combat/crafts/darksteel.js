@@ -15,7 +15,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 2) + (ADA_ESS_XP * 2),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -83,7 +83,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -151,7 +151,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -219,7 +219,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (ADA_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -287,7 +287,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 8) + (ADA_ESS_XP * 8),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -355,7 +355,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -423,7 +423,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -491,7 +491,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',
@@ -559,7 +559,7 @@ export const DARKSTEEL_CRAFTS = {
     xp: (CURSED_ESS_XP * 4) + (ADA_ESS_XP * 4),
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 100,
+    requiredCraftingLevel: 99,
     required: [{
       type: 'item',
       itemId: 'cursed_furnace',

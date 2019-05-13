@@ -11,7 +11,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 12500,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -57,7 +57,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -103,7 +103,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -149,7 +149,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 50000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -195,7 +195,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 50000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -241,7 +241,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -287,7 +287,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -333,7 +333,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',
@@ -379,7 +379,7 @@ export const TUNGSTEN_CRAFTS = {
     xp: 25000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 50,
+    requiredCraftingLevel: 49,
     required: [{
       type: 'item',
       itemId: 'titanium_furnace',

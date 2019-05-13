@@ -17,7 +17,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 20000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -71,7 +71,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -132,7 +132,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -193,7 +193,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 100000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -254,7 +254,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 100000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -315,7 +315,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -369,7 +369,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -423,7 +423,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',
@@ -477,7 +477,7 @@ export const PRISMATIC_CRAFTS = {
     xp: 50000000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 130,
+    requiredCraftingLevel: 129,
     required: [{
       type: 'item',
       itemId: 'eternium_furnace',

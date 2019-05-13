@@ -11,7 +11,7 @@ export const PLATINUM_CRAFTS = {
     xp: 5000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -57,7 +57,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -103,7 +103,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -149,7 +149,7 @@ export const PLATINUM_CRAFTS = {
     xp: 20000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -195,7 +195,7 @@ export const PLATINUM_CRAFTS = {
     xp: 20000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -241,7 +241,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -287,7 +287,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -333,7 +333,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',
@@ -379,7 +379,7 @@ export const PLATINUM_CRAFTS = {
     xp: 10000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 40,
+    requiredCraftingLevel: 39,
     required: [{
       type: 'item',
       itemId: 'steel_furnace',

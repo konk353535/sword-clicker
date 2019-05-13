@@ -11,7 +11,7 @@ export const COBALT_CRAFTS = {
     xp: 30000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -57,7 +57,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -103,7 +103,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -149,7 +149,7 @@ export const COBALT_CRAFTS = {
     xp: 120000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -195,7 +195,7 @@ export const COBALT_CRAFTS = {
     xp: 120000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -241,7 +241,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -287,7 +287,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -333,7 +333,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',
@@ -379,7 +379,7 @@ export const COBALT_CRAFTS = {
     xp: 60000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 60,
+    requiredCraftingLevel: 59,
     required: [{
       type: 'item',
       itemId: 'obsidian_furnace',

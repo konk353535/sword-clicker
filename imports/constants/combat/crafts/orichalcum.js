@@ -11,7 +11,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 125000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -57,7 +57,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -103,7 +103,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -149,7 +149,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 500000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -195,7 +195,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 500000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -241,7 +241,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -287,7 +287,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -333,7 +333,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',
@@ -379,7 +379,7 @@ export const ORICHALCUM_CRAFTS = {
     xp: 250000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 75,
+    requiredCraftingLevel: 74,
     required: [{
       type: 'item',
       itemId: 'adamantium_furnace',

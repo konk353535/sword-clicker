@@ -11,7 +11,7 @@ export const TIN_CRAFTS = {
     xp: 37,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -50,7 +50,7 @@ export const TIN_CRAFTS = {
     xp: 76,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -89,7 +89,7 @@ export const TIN_CRAFTS = {
     xp: 76,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -128,7 +128,7 @@ export const TIN_CRAFTS = {
     xp: 76,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -167,7 +167,7 @@ export const TIN_CRAFTS = {
     xp: 76,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -206,7 +206,7 @@ export const TIN_CRAFTS = {
     xp: 60,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -245,7 +245,7 @@ export const TIN_CRAFTS = {
     xp: 60,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -284,7 +284,7 @@ export const TIN_CRAFTS = {
     xp: 60,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',
@@ -323,7 +323,7 @@ export const TIN_CRAFTS = {
     xp: 60,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 6,
+    requiredCraftingLevel: 5,
     required: [{
       type: 'item',
       itemId: 'copper_furnace',

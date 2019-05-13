@@ -11,7 +11,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 87500,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -57,7 +57,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -103,7 +103,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -149,7 +149,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 350000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -195,7 +195,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 350000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -241,7 +241,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -287,7 +287,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -333,7 +333,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',
@@ -379,7 +379,7 @@ export const ADAMANTIUM_CRAFTS = {
     xp: 175000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 70,
+    requiredCraftingLevel: 69,
     required: [{
       type: 'item',
       itemId: 'mithril_furnace',

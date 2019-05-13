@@ -11,7 +11,7 @@ export const SILVER_CRAFTS = {
     xp: 500,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -57,7 +57,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -103,7 +103,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -149,7 +149,7 @@ export const SILVER_CRAFTS = {
     xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -195,7 +195,7 @@ export const SILVER_CRAFTS = {
     xp: 2000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -241,7 +241,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -287,7 +287,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -333,7 +333,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['armor'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',
@@ -379,7 +379,7 @@ export const SILVER_CRAFTS = {
     xp: 1000,
     maxToCraft: 1,
     tags: ['weapon'],
-    requiredCraftingLevel: 20,
+    requiredCraftingLevel: 19,
     required: [{
       type: 'item',
       itemId: 'iron_furnace',

@@ -2528,7 +2528,7 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
-        if (source === 'damage_reflect') {
+        if (source !== 'autoattack') {
           return;
         }
         
@@ -2575,7 +2575,11 @@ export const ENCHANTMENT_BUFFS = {
       },
 
       onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
-        if (source === 'prismatic_plate_legs') {
+        if (source !== 'autoattack') {
+          return;
+        }
+        
+        if (attacker.stats.health <= 0) {
           return;
         }
         

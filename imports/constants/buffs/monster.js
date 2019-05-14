@@ -1374,6 +1374,14 @@ export const MONSTER_BUFFS = {
       },
 
       onTookDamage({ buff, defender, attacker, actualBattle }) {
+        if (source !== 'autoattack') {
+          return;
+        }
+
+        if (defender.stats.health <= 0) {
+          return;
+        }
+        
         let randChance = 0.05;
         if (defender.name === 'fiery wizard') {
           randChance = 0.125;
@@ -1395,6 +1403,10 @@ export const MONSTER_BUFFS = {
       },
 
       onDidDamage({ buff, defender, attacker, actualBattle }) {
+        if (defender.stats.health <= 0) {
+          return;
+        }
+        
         if (Math.random() <= 0.5) {
           const newBuff = {
             id: 'fire_dart',

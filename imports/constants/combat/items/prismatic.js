@@ -47,13 +47,17 @@ export const PRISMATIC_ITEMS = {
       "attackMax": 83.5 * PRISMATIC_MULTIPLIER,
       "attackSpeed": 0.5,
       "accuracy": 83.5 * PRISMATIC_MULTIPLIER,
-      "defense": 32.7 * PRISMATIC_MULTIPLIER
+      "defense": 32.7 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * PRISMATIC_MULTIPLIER,
       "attackMax": 25.1 * PRISMATIC_MULTIPLIER,
       "accuracy": 25.1 * PRISMATIC_MULTIPLIER,
-      "defense": 9.8 * PRISMATIC_MULTIPLIER
+      "defense": 9.8 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_spear'],
     upgradeRarity: [
@@ -84,12 +88,16 @@ export const PRISMATIC_ITEMS = {
       "attack": 66.7 * PRISMATIC_MULTIPLIER,
       "attackMax": 99.5 * PRISMATIC_MULTIPLIER,
       "attackSpeed": 0.7,
-      "accuracy": 99.5 * PRISMATIC_MULTIPLIER
+      "accuracy": 99.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * PRISMATIC_MULTIPLIER,
       "attackMax": 29.8 * PRISMATIC_MULTIPLIER,
-      "accuracy": 29.8 * PRISMATIC_MULTIPLIER
+      "accuracy": 29.8 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['magic_blade'],
     upgradeRarity: [
@@ -120,12 +128,16 @@ export const PRISMATIC_ITEMS = {
       "attack": 66.7 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * PRISMATIC_MULTIPLIER,
       "attackMax": 99.5 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * PRISMATIC_MULTIPLIER,
       "attackSpeed": 0.7,
-      "accuracy": 99.5 * PRISMATIC_MULTIPLIER
+      "accuracy": 99.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 20 * SHORTSWORD_TO_SCIMITAR_ATTACK_MIN * PRISMATIC_MULTIPLIER,
       "attackMax": 29.8 / SHORTSWORD_TO_SCIMITAR_ATTACK_MAX * PRISMATIC_MULTIPLIER,
-      "accuracy": 29.8 * PRISMATIC_MULTIPLIER
+      "accuracy": 29.8 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     upgradeRarity: [
       { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
@@ -162,12 +174,16 @@ export const PRISMATIC_ITEMS = {
       "attack": 116.7 * PRISMATIC_MULTIPLIER,
       "attackMax": 200.5 * PRISMATIC_MULTIPLIER,
       "attackSpeed": 0.5,
-      "accuracy": 134.1 * PRISMATIC_MULTIPLIER
+      "accuracy": 134.1 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 35 * PRISMATIC_MULTIPLIER,
       "attackMax": 60.2 * PRISMATIC_MULTIPLIER,
-      "accuracy": 40.2 * PRISMATIC_MULTIPLIER
+      "accuracy": 40.2 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_long_sword'],
     upgradeRarity: [
@@ -201,11 +217,15 @@ export const PRISMATIC_ITEMS = {
       "attackSpeed": 0.5,
       "accuracy": 134.1 * PRISMATIC_MULTIPLIER,
       "criticalChance": 10,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 35 / LONGSWORD_TO_BROADSWORD_ATTACK_MIN * PRISMATIC_MULTIPLIER,
       "attackMax": 60.2 / LONGSWORD_TO_BROADSWORD_ATTACK_MAX * PRISMATIC_MULTIPLIER,
-      "accuracy": 40.2 * PRISMATIC_MULTIPLIER
+      "accuracy": 40.2 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     upgradeRarity: [
       { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
@@ -243,11 +263,15 @@ export const PRISMATIC_ITEMS = {
       "attackMax": 300 * PRISMATIC_MULTIPLIER,
       "attackSpeed": 0.3,
       "accuracy": 134.1 * PRISMATIC_MULTIPLIER,
-      "criticalChance": 35
+      "criticalChance": 35,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 25.1 * PRISMATIC_MULTIPLIER,
-      "attackMax": 90 * PRISMATIC_MULTIPLIER
+      "attackMax": 90 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -275,12 +299,16 @@ export const PRISMATIC_ITEMS = {
     "stats": {
       "attack": 35,
       "attackMax": 35,
-      "accuracy": 40
+      "accuracy": 40,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "attack": 25,
       "attackMax": 25,
-      "accuracy": 25
+      "accuracy": 25,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER,
+      "healthMax": 5.5 * PRISMATIC_MULTIPLIER
     },
     upgradeRarity: [
       { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
@@ -313,12 +341,14 @@ export const PRISMATIC_ITEMS = {
     "stats": {
       "healthMax": 17.4 * PRISMATIC_MULTIPLIER,
       "defense": 17.4 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 83.5 * PRISMATIC_MULTIPLIER
+      "armor": 83.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * PRISMATIC_MULTIPLIER,
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 25.1 * PRISMATIC_MULTIPLIER
+      "armor": 25.1 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_helmet'],
     upgradeRarity: [
@@ -346,12 +376,16 @@ export const PRISMATIC_ITEMS = {
     "stats": {
       "healthMax": 17.4 * PRISMATIC_MULTIPLIER,
       "defense": 17.4 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 83.5 * PRISMATIC_MULTIPLIER
+      "armor": 83.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
+      "healthMax": 17.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * PRISMATIC_MULTIPLIER,
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 25.1 * PRISMATIC_MULTIPLIER
+      "armor": 25.1 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_chestplate'],
     upgradeRarity: [
@@ -379,12 +413,14 @@ export const PRISMATIC_ITEMS = {
     "stats": {
       "healthMax": 17.4 * PRISMATIC_MULTIPLIER,
       "defense": 17.4 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 83.5 * PRISMATIC_MULTIPLIER
+      "armor": 83.5 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * PRISMATIC_MULTIPLIER,
       "defense": 5.2 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 25.1 * PRISMATIC_MULTIPLIER
+      "armor": 25.1 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_plate_legs'],
     upgradeRarity: [
@@ -413,12 +449,14 @@ export const PRISMATIC_ITEMS = {
     "stats": {
       "healthMax": 32.7 * PRISMATIC_MULTIPLIER,
       "defense": 51.1 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 167.6 * PRISMATIC_MULTIPLIER
+      "armor": 167.6 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 9.8 * PRISMATIC_MULTIPLIER,
       "defense": 15.3 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
-      "armor": 50.3 * PRISMATIC_MULTIPLIER
+      "armor": 50.3 * PRISMATIC_MULTIPLIER,
+      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
     },
     enchantments: ['prismatic_shield'],
     upgradeRarity: [

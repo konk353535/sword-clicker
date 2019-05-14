@@ -291,11 +291,11 @@ export const consumeItem = function (itemObject, amount) {
       date: new Date(),
       data: { itemId: itemObject.itemId, id: itemObject._id, owner: itemObject.owner }
     }, () => {});
-    Items.remove(itemObject._id);
+    Items.remove({_id: itemObject._id}, {tx: true});
   } else {
-    Items.update(itemObject._id, {
+    Items.update({_id: itemObject._id}, {
       $inc: { amount: (-1 * amount) }
-    });
+    }, {tx: true});
   }
 };
 

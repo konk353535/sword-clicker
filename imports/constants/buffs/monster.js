@@ -1373,7 +1373,7 @@ export const MONSTER_BUFFS = {
       onApply({ buff, target, caster, actualBattle }) {
       },
 
-      onTookDamage({ buff, defender, attacker, actualBattle }) {
+      onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
         if (source !== 'autoattack') {
           return;
         }

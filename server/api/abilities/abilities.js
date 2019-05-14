@@ -128,14 +128,17 @@ Meteor.methods({
   },
 
   'abilities.equip'(abilityId) {
+    tx.start("Equip ability");
+
     // Make sure the user actually has the specified ability
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, {tx: true});
     const targetEquip = _.findWhere(myAbilities.learntAbilities, { abilityId });
 
     if (!targetEquip) {
+      tx.cancel();
       throw new Meteor.Error("not-learnt", "You haven't learnt this ability.");
     }
-
+    
     const targetEquipConstants = ABILITIES[targetEquip.abilityId];
 
     if (targetEquipConstants.slot === 'any') {
@@ -175,14 +178,19 @@ Meteor.methods({
       $set: {
         learntAbilities: myAbilities.learntAbilities
       }
-    });
+    }, {tx: true});
+    
+    tx.commit(); // commit transaction: "Equip ability"
   },
 
   'abilities.learn'(_id, itemId) {
+    //tx.start("Learn ability" /*, {rethrowCommitError: true} */);
+
     // Make sure we have this item
-    const tome = Items.findOne({ owner: Meteor.userId(), itemId });
+    const tome = Items.findOne({ owner: Meteor.userId(), itemId }, {tx: true});
 
     if (!tome) {
+      //tx.cancel();
       return;
     }
 
@@ -190,7 +198,7 @@ Meteor.methods({
     const tomeConstants = ITEMS[itemId];
 
     // Fetch existing abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, {tx: true});
 
     // Filter down to existing ability
     const hasTargetAbility = _.findWhere(myAbilities.learntAbilities, {
@@ -199,12 +207,13 @@ Meteor.methods({
 
     // Is existing ability equal or above level off target tomb?
     if (hasTargetAbility && hasTargetAbility.level >= tomeConstants.teaches.level) {
+      //tx.cancel();
       throw new Meteor.Error("already-learnt", "You've already learnt this ability.");
     }
 
     // Make sure if this is above level 1, we already have the previous level
-    if (tomeConstants.teaches.level > 1 && 
-      (!hasTargetAbility || (hasTargetAbility.level + 1) !== tomeConstants.teaches.level)) {
+    if (tomeConstants.teaches.level > 1 && (!hasTargetAbility || (hasTargetAbility.level + 1) !== tomeConstants.teaches.level)) {
+      //tx.cancel();
       throw new Meteor.Error("not-learnt-previous", "You must learn the earlier levels of this ability first.");
     }
 
@@ -223,8 +232,11 @@ Meteor.methods({
       }, {
         $set: {
           "learntAbilities.$.level": tomeConstants.teaches.level
+          // because of positional $ operator, this can't be used with the transaction module
+          // see: https://docs.mongodb.com/manual/reference/operator/update/positional/#up._S_
+          // see: https://github.com/JackAdams/meteor-transactions ("Thing's it's helpful to know")
         }
-      });
+      } /*, {tx: true} */);
     } else {
       Abilities.update(myAbilities._id, {
         $push: {
@@ -237,9 +249,17 @@ Meteor.methods({
             currentCooldown: 0
           }
         }
-      })
+      } /*, {tx: true} */);
     }
-
+    
+    /*
+    tx.commit((err,res) => { // Commit transaction: "Learn ability"
+      if (err) {
+        console.log(this, err, res);
+        throw new Meteor.Error("transaction-error", `Couldn't learn this ability due to technical issues.<br /><br />${err}`);
+      }
+    });
+    */
   },
 
   'abilities.unlearn'(_id) {  

@@ -59,6 +59,8 @@ Accounts.onLogin((accountConnection) => {
 
 Meteor.startup(() => {
 
+  tx.logging = false; // Disable transaction logging to console (very spammy): https://github.com/JackAdams/meteor-transactions
+
   Migrations.migrateTo('latest');
 
   const classicServer = Servers.findOne({

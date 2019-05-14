@@ -265,9 +265,11 @@ Meteor.methods({
     userAbilities.learntAbilities.forEach((ability) => {
       abilitiesMap[ability.abilityId] = ability.level;
     });
+    
+    const townArmoryBuffLevel = getBuffLevel('town_armory');
 
     const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
-      const abilityConstant = lodash.cloneDeep(ABILITIES[abilityKey]);
+      const abilityConstant = ABILITIES[abilityKey]; // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
       let abilityLevel = 1;
       let learntLevel = 0;
       if (abilitiesMap[abilityKey]) {
@@ -275,7 +277,7 @@ Meteor.methods({
         learntLevel = abilitiesMap[abilityKey];
       }
       const abilityData = {
-        description: abilityConstant.description(abilityLevel, getBuffLevel('town_armory')),
+        description: abilityConstant.description(abilityLevel, townArmoryBuffLevel),
         name: `${abilityConstant.name} (${abilityLevel})`,
         icon: abilityConstant.icon,
         isHidden: abilityConstant.isHidden,
@@ -321,16 +323,18 @@ Meteor.methods({
     userAbilities.learntAbilities.forEach((ability) => {
       abilitiesMap[ability.abilityId] = ability.level;
     });
+    
+    const townArmoryBuffLevel = getBuffLevel('town_armory');
 
     const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
-      const abilityConstant = lodash.cloneDeep(ABILITIES[abilityKey]);
+      const abilityConstant = ABILITIES[abilityKey]; // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
       let abilityLevel = 1;
       let learntLevel = 0;
       if (abilitiesMap[abilityKey]) {
         abilityLevel = abilitiesMap[abilityKey];
         learntLevel = abilitiesMap[abilityKey];
       }
-      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray, armoryLevel: getBuffLevel('town_armory')}) : abilityConstant.description(abilityLevel, getBuffLevel('town_armory'));
+      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray, armoryLevel: townArmoryBuffLevel}) : abilityConstant.description(abilityLevel, townArmoryBuffLevel);
       const abilityData = {
         description: descToUse,
         name: `${abilityConstant.name} (${abilityLevel})`,

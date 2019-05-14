@@ -280,13 +280,13 @@ const getReforgeData = function getReforgeData(_id) {
   }
   
   if (!ITEM_RARITIES[currentItem.rarityId]) {
-    return { isError: true, chance: -4, rarityData: undefined };
+    return { isError: true, chance: -4, rarityData: undefined, recipeData };
   }
   
   const currentRarityData = ITEM_RARITIES[currentItem.rarityId];
   
   if (!currentRarityData.nextRarity) {
-    return { isError: true, chance: -5, rarityData: currentRarityData.nextRarity };
+    return { isError: true, chance: -5, rarityData: undefined, recipeData };
   }
   
   const currentCraftingLevel = craftingSkill.level;
@@ -386,7 +386,7 @@ Meteor.methods({
       $push: {
         currentlyReforging: whatWereReforging
       }
-    });
+    }, {tx: true});
 
     if (updatedCount < 1) {
       throw new Meteor.Error("cant-reforge", "Error setting reforging data.");
@@ -432,7 +432,7 @@ Meteor.methods({
         const reforgeData = JSON.parse(reforge.reforgeData);
         let reforgeDuration = (reforgeData.recipeData.requiredCraftingLevel * 5) + 15;
         if (userDoc.craftingUpgradeTo && moment().isBefore(userDoc.craftingUpgradeTo)) {
-          craftDuration *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
+          reforgeDuration *= (1 - (DONATORS_BENEFITS.craftingBonus / 100));
         }
         if (index === 0) {
           reforge.startDate = moment().toDate();
@@ -452,7 +452,7 @@ Meteor.methods({
       $set: {
         currentlyReforging: sortedReforges
       }
-    });
+    }, {tx: true});
 
     if (updatedCount === 0) {
       return;
@@ -612,7 +612,7 @@ Meteor.methods({
       $set: {
         currentlyCrafting: sortedCrafts
       }
-    });
+    }, {tx: true});
 
     if (updatedCount === 0) {
       return;
@@ -629,6 +629,48 @@ Meteor.methods({
     });
 
     updateUserActivity({userId: Meteor.userId()});
+  },
+  
+  'crafting.fixRarityId'(_id) {
+    tx.start("Fix rarity ID of item");
+    
+    const itemData = Items.findOne({ _id, owner: Meteor.userId() });
+    
+    if (!itemData) {
+      tx.cancel();
+      return;
+    }
+    
+    const reforgeData = getReforgeData(itemData._id);
+    
+    if (reforgeData.isError && reforgeData.chance !== -5) { // "-5" means it can't be upgraded, but we should still have other reforge data that we need
+      tx.cancel();
+      return;
+    }
+    
+    if (!reforgeData.recipeData || !reforgeData.recipeData.isLooted) {
+      tx.cancel();
+      return;
+    }
+    
+    let newRarity = '';
+    
+    if (itemData.rarityId === 'crude')         { newRarity = 'uncommon'; }
+    if (itemData.rarityId === 'rough')         { newRarity = 'uncommon'; }
+    if (itemData.rarityId === 'standard')      { newRarity = 'uncommon'; }
+    if (itemData.rarityId === 'improved')      { newRarity = 'fine'; }
+    if (itemData.rarityId === 'mastercrafted') { newRarity = 'rare'; }
+    if (itemData.rarityId === 'masterforged')  { newRarity = 'extraordinary'; }
+    if (itemData.rarityId === 'ascended')      { newRarity = 'phenomenal'; }
+    if (itemData.rarityId === 'ethereal')      { newRarity = 'epic'; }
+    
+    if (newRarity !== '') {
+      Items.update({_id }, {
+        $set: { rarityId: newRarity } 
+      }, {tx: true});
+    }
+    
+    tx.commit(); // Commit transaction: "Fix rarity ID of item"
   },
 
   'crafting.updateGame'() {
@@ -684,6 +726,8 @@ Meteor.methods({
     }
 
     if (crafting.currentlyReforging) {
+      tx.start("Reforging crafting.updateGame()");
+      
       const newItems = [];
       const popValues = []; // Store array of currentCrafting endDates
 
@@ -718,7 +762,7 @@ Meteor.methods({
             quality: originalItem.quality,
             rarityId: reforgeData.rarityData.rarityId,
             enhanced: originalItem.enhanced
-          });
+          }, {tx: true});
         } else {
           if (getActiveGlobalBuff('paid_crafting')) {
             // failure!  rarity stays the same
@@ -730,19 +774,33 @@ Meteor.methods({
               quality: originalItem.quality,
               rarityId: originalItem.rarityId,
               enhanced: originalItem.enhanced
-            });
+            }, {tx: true});
           } else {
             // failure!  rarity goes DOWN
-            const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
-            Items.insert({
-              itemId: originalItem.itemId,
-              owner: originalItem.owner,
-              category: originalItem.category,
-              extraStats: originalItem.extraStats,
-              quality: originalItem.quality,
-              rarityId: prevRarityId,
-              enhanced: originalItem.enhanced
-            });
+            if (reforgeData.recipeData.isLooted && (originalItem.rarityId === 'uncommon')) {
+              // (except for looted items, they can't go below their uncommon/base rarity)
+              Items.insert({
+                itemId: originalItem.itemId,
+                owner: originalItem.owner,
+                category: originalItem.category,
+                extraStats: originalItem.extraStats,
+                quality: originalItem.quality,
+                rarityId: originalItem.rarityId,
+                enhanced: originalItem.enhanced
+              }, {tx: true});
+            } else {
+              // reduce rarity
+              const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
+              Items.insert({
+                itemId: originalItem.itemId,
+                owner: originalItem.owner,
+                category: originalItem.category,
+                extraStats: originalItem.extraStats,
+                quality: originalItem.quality,
+                rarityId: prevRarityId,
+                enhanced: originalItem.enhanced
+              }, {tx: true});
+            }
           }
         }
       });
@@ -758,7 +816,9 @@ Meteor.methods({
             }
           }
         }
-      });
+      }, {tx: true});
+      
+      tx.commit(); // commit transaction: "Reforging crafting.updateGame()"
     }
   }
 });

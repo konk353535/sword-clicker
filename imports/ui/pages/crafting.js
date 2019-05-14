@@ -438,16 +438,43 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
           });
           
           let successChance;
+          let isReforgableLooted = false;
+          
+          if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            isReforgableLooted = true;
+          }
+          
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
-          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            }
+          } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            }
+          }
+          
+          if (isReforgableLooted) {
+            let newRarity = '';
+            
+            if (item.rarityId === 'crude')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'rough')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'standard')      { newRarity = 'uncommon'; }
+            if (item.rarityId === 'improved')      { newRarity = 'fine'; }
+            if (item.rarityId === 'mastercrafted') { newRarity = 'rare'; }
+            if (item.rarityId === 'masterforged')  { newRarity = 'extraordinary'; }
+            if (item.rarityId === 'ascended')      { newRarity = 'phenomenal'; }
+            if (item.rarityId === 'ethereal')      { newRarity = 'epic'; }
+            
+            if (newRarity !== '') {
+              item.wantReforgeRepair = true;
+            }
           }
 
           if (successChance) {
@@ -511,18 +538,45 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
           });
           
           let successChance;
+          let isReforgableLooted = false;
+          
+          if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            isReforgableLooted = true;
+          }
+          
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
-          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            }
+          } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            }
           }
-
+          
+          if (isReforgableLooted) {
+            let newRarity = '';
+            
+            if (item.rarityId === 'crude')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'rough')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'standard')      { newRarity = 'uncommon'; }
+            if (item.rarityId === 'improved')      { newRarity = 'fine'; }
+            if (item.rarityId === 'mastercrafted') { newRarity = 'rare'; }
+            if (item.rarityId === 'masterforged')  { newRarity = 'extraordinary'; }
+            if (item.rarityId === 'ascended')      { newRarity = 'phenomenal'; }
+            if (item.rarityId === 'ethereal')      { newRarity = 'epic'; }
+            
+            if (newRarity !== '') {
+              item.wantReforgeRepair = true;
+            }
+          }
+          
           if (successChance) {
             if (townBuffArmoryLevel > 0) {
               successChance += townBuffArmoryLevel * 5;
@@ -578,16 +632,43 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
           });
           
           let successChance;
+          let isReforgableLooted = false;
+          
+          if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            isReforgableLooted = true;
+          }
+          
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
-          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            }
+          } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            }
+          }
+          
+          if (isReforgableLooted) {
+            let newRarity = '';
+            
+            if (item.rarityId === 'crude')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'rough')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'standard')      { newRarity = 'uncommon'; }
+            if (item.rarityId === 'improved')      { newRarity = 'fine'; }
+            if (item.rarityId === 'mastercrafted') { newRarity = 'rare'; }
+            if (item.rarityId === 'masterforged')  { newRarity = 'extraordinary'; }
+            if (item.rarityId === 'ascended')      { newRarity = 'phenomenal'; }
+            if (item.rarityId === 'ethereal')      { newRarity = 'epic'; }
+            
+            if (newRarity !== '') {
+              item.wantReforgeRepair = true;
+            }
           }
 
           if (successChance) {
@@ -650,16 +731,43 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
           });
           
           let successChance;
+          let isReforgableLooted = false;
+          
+          if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            isReforgableLooted = true;
+          }
+          
           if (recipeData) {
             if (!item.rarityId) {
               item.rarityId = 'standard';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
-          } else if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+            }
+          } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
-            successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
+              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+            }
+          }
+          
+          if (isReforgableLooted) {
+            let newRarity = '';
+            
+            if (item.rarityId === 'crude')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'rough')         { newRarity = 'uncommon'; }
+            if (item.rarityId === 'standard')      { newRarity = 'uncommon'; }
+            if (item.rarityId === 'improved')      { newRarity = 'fine'; }
+            if (item.rarityId === 'mastercrafted') { newRarity = 'rare'; }
+            if (item.rarityId === 'masterforged')  { newRarity = 'extraordinary'; }
+            if (item.rarityId === 'ascended')      { newRarity = 'phenomenal'; }
+            if (item.rarityId === 'ethereal')      { newRarity = 'epic'; }
+            
+            if (newRarity !== '') {
+              item.wantReforgeRepair = true;
+            }
           }
 
           if (successChance) {

@@ -390,6 +390,15 @@ Template.itemIcon.events({
       Session.set('multiHideItems', currentItems);
       return;
     }
+    
+    try {
+      const itemData = instance.data.item;
+      
+      if (itemData.wantReforgeRepair) {
+        Meteor.call('crafting.fixRarityId', itemData._id);
+      }
+    } catch (err) {
+    }
 
     if(Session.get('tooltipInput') === 'touch') {
       if (!Template.instance().data.hideTooltip) {

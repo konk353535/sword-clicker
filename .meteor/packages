@@ -51,3 +51,4 @@ service-configuration
 sergeyt:typeahead
 standard-minifier-js
 percolate:migrations
+babrahams:transactions

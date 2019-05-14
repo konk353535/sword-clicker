@@ -24,7 +24,9 @@ export const deleteKarmaBuffs = function deleteKarmaBuffs() {
 };
 
 export const syncKarmaBuffs = function syncKarmaBuffs() {
-  Servers.find().fetch().forEach((thisServer) => {
+  tx.start("Sync town karma buffs");
+  
+  Servers.find({}, {tx: true}).fetch().forEach((thisServer) => {
     try {
       // read town data
       const serverData = lodash.cloneDeep(thisServer);
@@ -53,11 +55,17 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
           // If there's no existing buff (or there is, but it's of a different level than our current target level)
           if (!locateBuff || (CInt(locateBuff.value.level) != CInt(karmaData[karmaDataPoint].currentLevel))) {
             // Delete any existing buff
-            State.remove({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id });
+            const curBuffCursor = State.find({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id }, {tx: true});
+            
+            if (curBuffCursor.count() > 0) {
+              const curBuffRemoveId = curBuffCursor.fetch()[0]._id;
+
+              State.remove({ _id: curBuffRemoveId }, {tx: true});
+            }
             
             // And create a new buff with the right level (or no buff at target level 0)
             if (CInt(karmaData[karmaDataPoint].currentLevel) > 0) {
-              State.insert({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData[karmaDataPoint].currentLevel } });
+              State.insert({ name: karmaData[karmaDataPoint].buffName, server: thisServer._id, value: { activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(), level: karmaData[karmaDataPoint].currentLevel } }, {tx: true});
             }
           }
         }
@@ -67,6 +75,8 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
       console.log(err);
     }
   });
+  
+  tx.commit(); // Commit transaction: "Sync town karma buffs"
 };
 
 export const newTownDay = function newTownDay() {
@@ -249,13 +259,17 @@ Meteor.methods({
     
     // todo: validate item qualifies for building, maybe add to ITEMS constants?
 
-    const serverDoc = Servers.findOne({ _id: serverFromUser() });
+    tx.start("Donate item to town");
+    
+    const serverDoc = Servers.findOne({ _id: serverFromUser() }, {tx: true});
     if (!serverDoc || !serverDoc.town) {
+      tx.cancel();
       return;
     }
     
-    const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId });
+    const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId }, {tx: true});
     if (!currentItem || currentItem.equipped) {
+      tx.cancel();
       return;
     }
 
@@ -268,8 +282,9 @@ Meteor.methods({
       amountToDonate = currentItem.amount;
       
       // Delete item
-      const itemsUpdated = Items.remove(currentItem._id);
+      const itemsUpdated = Items.remove(currentItem._id, {tx: true});
       if (itemsUpdated <= 0) {
+        tx.cancel();
         return;
       }
     } else {
@@ -278,8 +293,9 @@ Meteor.methods({
       // Decrement item quantity
       const itemsUpdated = Items.update(currentItem._id, {
         $inc: { amount: (amountToDonate * -1) }
-      });
+      }, {tx: true});
       if (itemsUpdated <= 0) {
+        tx.cancel();
         return;
       }
     }
@@ -298,12 +314,14 @@ Meteor.methods({
           username: Meteor.user().username,
         }))
       }
-    });
+    }, {tx: true});
     
+    tx.commit(); // Commit transaction: "Donate item to town"
+
     // snychronize town/karma buffs
     syncKarmaBuffs();
-
+    
     // update that the user is actively playing
-    updateUserActivity({userId: Meteor.userId()});    
+    updateUserActivity({userId: Meteor.userId()});
   }
 });

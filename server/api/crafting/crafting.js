@@ -219,7 +219,7 @@ const craftItem = function (recipeId, amountToCraft = 1) {
 const getReforgeData = function getReforgeData(_id) {
   const user = Meteor.user();
   if (!user) {
-    return { isError: true, chance: -1, rarityData: undefined };
+    return { isError: true, chance: -1, unadjustedChance: -1000, rarityData: undefined };
   }
       
   const craftingSkill = Skills.findOne({
@@ -229,7 +229,7 @@ const getReforgeData = function getReforgeData(_id) {
 
   const currentItem = Items.findOne({ _id, owner: Meteor.userId() });
   if (!currentItem) {
-    return { isError: true, chance: -2, rarityData: undefined };
+    return { isError: true, chance: -2, unadjustedChance: -1000, rarityData: undefined };
   }
   
   const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
@@ -277,23 +277,23 @@ const getReforgeData = function getReforgeData(_id) {
   }
   
   if (!recipeData) {
-    return { isError: true, chance: -3, rarityData: undefined };
+    return { isError: true, chance: -3, unadjustedChance: -1000, rarityData: undefined };
   }
   
   if (!ITEM_RARITIES[currentItem.rarityId]) {
-    return { isError: true, chance: -4, rarityData: undefined, recipeData };
+    return { isError: true, chance: -4, unadjustedChance: -1000, rarityData: undefined, recipeData };
   }
   
   const currentRarityData = ITEM_RARITIES[currentItem.rarityId];
   
   if (!currentRarityData.nextRarity) {
-    return { isError: true, chance: -5, rarityData: undefined, recipeData };
+    return { isError: true, chance: -5, unadjustedChance: -1000, rarityData: undefined, recipeData };
   }
   
   const currentCraftingLevel = craftingSkill.level;
   
   if (craftingSkill.level < recipeData.requiredCraftingLevel) {
-    return { isError: true, chance: -6, rarityData: currentRarityData.nextRarity, recipeData };
+    return { isError: true, chance: -6, unadjustedChance: -1000, rarityData: currentRarityData.nextRarity, recipeData };
   }
   
   let chanceToSucceed = (currentRarityData.nextRarity.successChance + (currentCraftingLevel - recipeData.requiredCraftingLevel)) / 100.0;
@@ -307,7 +307,7 @@ const getReforgeData = function getReforgeData(_id) {
     chanceToSucceed = 0.95;
   }
 
-  return { isError: false, chance: (chanceToSucceed <= 0.0) ? 0 : chanceToSucceed, rarityData: currentRarityData.nextRarity, recipeData };
+  return { isError: false, chance: (chanceToSucceed <= 0.0) ? 0 : chanceToSucceed, unadjustedChance: chanceToSucceed, rarityData: currentRarityData.nextRarity, recipeData };
 };
 
 Meteor.methods({

@@ -14,6 +14,8 @@ import { Users } from '/imports/api/users/users';
 import { BattlesList } from '/imports/api/battles/battles.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
+import { CInt, CDbl } from '/imports/utils.js';
+
 // Component used in the template
 import './crafting.html';
 import '../components/craftingDuration/craftingDuration.js';
@@ -437,7 +439,7 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
             }
           });
           
-          let successChance;
+          let successChance = -1000;
           let isReforgableLooted = false;
           
           if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
@@ -449,14 +451,22 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
               item.rarityId = 'standard';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              if (craftingSkill.level > recipeData.requiredCraftingLevel) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              } else {
+                successChance = 0;
+              }
             }
           } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              if (craftingSkill.level > itemConstants.reforgeRecipe.requiresCrafting) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              } else {
+                successChance = 0;
+              }
             }
           }
           
@@ -477,7 +487,12 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
             }
           }
 
-          if (successChance) {
+          let unadjustedSuccessChance = CDbl(successChance);
+          if (successChance !== -1000 && townBuffArmoryLevel > 0) {
+            unadjustedSuccessChance += townBuffArmoryLevel * 5;
+          }
+          
+          if (successChance !== -1000) {
             if (townBuffArmoryLevel > 0) {
               successChance += townBuffArmoryLevel * 5;
             }
@@ -490,6 +505,8 @@ const FetchSomeHiddenItems = function(highestFurnaceTier, itemViewLimit) {
             
             item.reforgeChance = `${Math.round(successChance)}%`;
           }
+          
+          item.unadjustedReforgeChance = unadjustedSuccessChance;
         }
       } catch (err) {
       }      
@@ -537,7 +554,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
             }
           });
           
-          let successChance;
+          let successChance = -1000;
           let isReforgableLooted = false;
           
           if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
@@ -549,14 +566,22 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
               item.rarityId = 'standard';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              if (craftingSkill.level > recipeData.requiredCraftingLevel) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              } else {
+                successChance = 0;
+              }
             }
           } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              if (craftingSkill.level > itemConstants.reforgeRecipe.requiresCrafting) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              } else {
+                successChance = 0;
+              }
             }
           }
           
@@ -576,8 +601,13 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
               item.wantReforgeRepair = true;
             }
           }
+
+          let unadjustedSuccessChance = CDbl(successChance);
+          if (successChance !== -1000 && townBuffArmoryLevel > 0) {
+            unadjustedSuccessChance += townBuffArmoryLevel * 5;
+          }
           
-          if (successChance) {
+          if (successChance !== -1000) {
             if (townBuffArmoryLevel > 0) {
               successChance += townBuffArmoryLevel * 5;
             }
@@ -590,6 +620,8 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
             
             item.reforgeChance = `${Math.round(successChance)}%`;
           }
+          
+          item.unadjustedReforgeChance = unadjustedSuccessChance;
         }
       } catch (err) {
       }
@@ -631,7 +663,7 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
             }
           });
           
-          let successChance;
+          let successChance = -1000;
           let isReforgableLooted = false;
           
           if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
@@ -643,14 +675,22 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
               item.rarityId = 'standard';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              if (craftingSkill.level > recipeData.requiredCraftingLevel) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              } else {
+                successChance = 0;
+              }
             }
           } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              if (craftingSkill.level > itemConstants.reforgeRecipe.requiresCrafting) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              } else {
+                successChance = 0;
+              }
             }
           }
           
@@ -671,7 +711,12 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
             }
           }
 
-          if (successChance) {
+          let unadjustedSuccessChance = CDbl(successChance);
+          if (successChance !== -1000 && townBuffArmoryLevel > 0) {
+            unadjustedSuccessChance += townBuffArmoryLevel * 5;
+          }
+          
+          if (successChance !== -1000) {
             if (townBuffArmoryLevel > 0) {
               successChance += townBuffArmoryLevel * 5;
             }
@@ -684,6 +729,8 @@ const FetchAllHiddenItems = function(highestFurnaceTier) {
             
             item.reforgeChance = `${Math.round(successChance)}%`;
           }
+          
+          item.unadjustedReforgeChance = unadjustedSuccessChance;
         }
       } catch (err) {
       }
@@ -730,7 +777,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
             }
           });
           
-          let successChance;
+          let successChance = -1000;
           let isReforgableLooted = false;
           
           if (!recipeData && itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
@@ -742,14 +789,22 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
               item.rarityId = 'standard';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              if (craftingSkill.level > recipeData.requiredCraftingLevel) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - recipeData.requiredCraftingLevel);
+              } else {
+                successChance = 0;
+              }
             }
           } else if (isReforgableLooted) {
             if (!item.rarityId) {
               item.rarityId = 'uncommon';
             }
             if (ITEM_RARITIES[item.rarityId] && ITEM_RARITIES[item.rarityId].nextRarity) {
-              successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              if (craftingSkill.level > itemConstants.reforgeRecipe.requiresCrafting) {
+                successChance = ITEM_RARITIES[item.rarityId].nextRarity.successChance + (craftingSkill.level - itemConstants.reforgeRecipe.requiresCrafting);
+              } else {
+                successChance = 0;
+              }
             }
           }
           
@@ -770,7 +825,12 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
             }
           }
 
-          if (successChance) {
+          let unadjustedSuccessChance = CDbl(successChance);
+          if (successChance !== -1000 && townBuffArmoryLevel > 0) {
+            unadjustedSuccessChance += townBuffArmoryLevel * 5;
+          }
+          
+          if (successChance !== -1000) {
             if (townBuffArmoryLevel > 0) {
               successChance += townBuffArmoryLevel * 5;
             }
@@ -783,6 +843,8 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
             
             item.reforgeChance = `${Math.round(successChance)}%`;
           }
+          
+          item.unadjustedReforgeChance = unadjustedSuccessChance;
         }
       } catch (err) {
       }

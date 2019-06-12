@@ -131,8 +131,10 @@
             {{/each}}
           {{/if}}
           
-          {{#if item.reforgeChance}}
+          {{#if reforgeChance}}
             <b>{{{item.reforgeChance}}}</b> chance to reforge to higher rarity<br />
+          {{else if unadjustedReforgeChance}}
+            No chance to reforge to higher rarity<br />
           {{/if}}
                   
           {{#if constants.isTwoHanded}}
@@ -229,7 +231,9 @@
                 <button type="button" class="btn btn-info primary-action">Equip</button>
               </div>
               -->
-              {{#if item.reforgeChance}}
+              {{#if reforgeChance}}
+                <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
+              {{else if unadjustedReforgeChance}}
                 <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
               {{/if}}
               <button type="button" class="btn btn-secondary hide-btn">
@@ -345,16 +349,26 @@
           Reforging equipment gives you a chance to improve the rarity of something you can craft.  The chance 
           of success to reforge is based on your crafting level and the required crafting level of the item you are 
           reforging. Success will improve the rarity by one tier after some time and failure will reduce the 
-          rarity by a tier. Quality will not be affected at all.<br />
+          rarity by a tier with a <b>5%</b> chance the item will break and be lost entirely.  The item quality will
+          not be affected at all whether you succeed or fail.<br />
           <br />
-          You can only reforge one item at a time.<br />
+          You can only reforge one item at a time.  During a global combat buff, failing to reforge will not reduce
+          the rarity level nor have any chance to break the item.<br />
           <br />
-          Are you sure you want to reforge your <b> {{item.name}} </b> with a <b> {{item.reforgeChance}} </b> success chance?<br />
+          {{#if reforgeChance}}
+            Are you sure you want to reforge your <b> {{item.name}} </b> with a <b> {{reforgeChance}} </b> success chance?<br />
+          {{else if unadjustedReforgeChance}}
+            Your base crafting skill level isn't high enough to attempt to reforge your <b>{{item.name}}</b>.<br />
+          {{/if}}
         </div>
         <div class="modal-footer">
           <div class="row" style="width:100%">
             <div class="col-md-6">
-              <button type="button" class="btn btn-success reforge-confirm-btn pull-left">Reforge</button>
+              {{#if reforgeChance}}
+                <button type="button" class="btn btn-success reforge-confirm-btn pull-left">Reforge</button>
+              {{else if unadjustedReforgeChance}}
+                <button type="button" class="btn btn-danger reforge-confirm-btn pull-left">Reforge Anyway</button>
+              {{/if}}
             </div>
           </div>
           <div class="col-md-6">

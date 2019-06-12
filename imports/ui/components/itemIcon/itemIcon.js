@@ -144,8 +144,19 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.reforgeChance) {
+    if (item.reforgeChance && item.unadjustedReforgeChance && item.reforgeChance !== '0%' && item.unadjustedReforgeChance >= 1) {
       return item.reforgeChance;
+    }
+    
+    return false;
+  },
+  
+  unadjustedReforgeChance() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (item.unadjustedReforgeChance) {
+      return item.unadjustedReforgeChance;
     }
     
     return false;

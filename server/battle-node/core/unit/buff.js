@@ -88,34 +88,42 @@ export default class Buff {
     //if (unit.name === 'psouza4dev') {
     //  console.log("new Buff(): " + buff.id);
     //}
-    this.id = buff.id;
-    this.unit = unit;
-    this._isBuffClass = true;
-    this.battleRef = battleRef;
-    this.custom = buff.custom || buff.data.custom;
-    this._duration = Infinity;
-    if (IsValid(buff.data.duration)) {
-      this._duration = buff.data.duration;
-    } else if (IsValid(buff.duration)) {
-      this._duration = buff.duration;
+    try {
+      this.id = buff.id;
+      this.unit = unit;
+      this._isBuffClass = true;
+      this.battleRef = battleRef;
+      this.custom = buff.custom || buff.data.custom;
+      this._duration = Infinity;
+      if (IsValid(buff.data.duration)) {
+        this._duration = buff.data.duration;
+      } else if (IsValid(buff.duration)) {
+        this._duration = buff.duration;
+      }
+      this._stacks = buff.stacks;
+      if (!buff.stacks && buff.data && buff.data.stacks) {
+        this._stacks = buff.data.stacks;
+      }
+      this._icon = buff.icon;
+      if (!buff.icon && buff.data && buff.data.icon) {
+        this._icon = buff.data.icon;
+      }
+      this._customText = buff.customText;
+      if (!buff.customText && buff.data && buff.data.customText) {
+        this._customText = buff.data.customText;
+      }
+      this.data = buff.data;
+      this.data.didApply = (buff.data.didApply) ? true: false;
+      
+      this._uid = uuid.v4();
+      this.delta('uid');
+    } catch (err) {
+      console.log("EXCEPTION THROWN INITIALIZING BUFF!");
+      console.log("Buff data:");
+      console.log(buff);
+      console.log("Exception data:");
+      console.log(err);
     }
-    this._stacks = buff.stacks;
-    if (!buff.stacks && buff.data && buff.data.stacks) {
-      this._stacks = buff.data.stacks;
-    }
-    this._icon = buff.icon;
-    if (!buff.icon && buff.data && buff.data.icon) {
-      this._icon = buff.data.icon;
-    }
-    this._customText = buff.customText;
-    if (!buff.customText && buff.data && buff.data.customText) {
-      this._customText = buff.data.customText;
-    }
-    this.data = buff.data;
-    this.data.didApply = (buff.data.didApply) ? true: false;
-    
-    this._uid = uuid.v4();
-    this.delta('uid');
   }
 
   onApply(options) {

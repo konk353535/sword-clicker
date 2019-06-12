@@ -111,7 +111,7 @@ Template.shopPage.events({
   },  
 
   'click .buy-phasing-key'() {
-    if (Meteor.user().gems + Meteor.user().fakeGems < 150) {
+    if (Meteor.user().gems + Meteor.user().fakeGems < 25) {
       return;
     }
 
@@ -216,6 +216,7 @@ Template.shopPage.events({
     });
   },
 
+  /*
   'click .buy-gift_box_holiday2018'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
       return;
@@ -280,6 +281,7 @@ Template.shopPage.events({
       toastr.success('Successfully purchased.')
     });
   },
+  */
 });
 
 Template.shopPage.rendered = function () {

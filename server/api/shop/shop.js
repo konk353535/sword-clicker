@@ -235,8 +235,8 @@ Meteor.methods({
       cost: 10
     }, {
       id: 'phasing_key',
-      cost: 150
-    }, {
+      cost: 25
+    } /*, {
       id: 'gift_box_holiday',
       cost: 10
     }, {
@@ -251,7 +251,7 @@ Meteor.methods({
     }, {
       id: 'gift_box_stpatricks',
       cost: 10
-    }];
+    } */];
 
     const itemToBuy = _.findWhere(validItems, { id: itemId });
     if (!itemToBuy) {

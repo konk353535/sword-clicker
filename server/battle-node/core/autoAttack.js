@@ -4,8 +4,16 @@ export const TICK_DURATION = 200;
 export const secondsElapsed = TICK_DURATION / 1000;
 
 export default function({ attacker, defender, originalAutoAttack = true, damageModifier = 0, source }) {
+  // new 'force' stat has a flat % to ignore all target defense (but not armor)
+  let defenderDefense = defender.stats.defense;
+  if (attacker.stats.force && attacker.stats.force > 0) {
+    if (Math.random() <= (attacker.stats.force / 100.0)) {
+      defenderDefense = 0;
+    }
+  }
+  
   // Do we hit?
-  let hitGap = attacker.stats.accuracy - defender.stats.defense;
+  let hitGap = attacker.stats.accuracy - defenderDefense;
   let hitChance = 0.5;
 
   if (hitGap > 0) {

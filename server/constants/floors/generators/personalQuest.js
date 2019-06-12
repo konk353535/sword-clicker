@@ -111,7 +111,17 @@ export const personalQuestMonsterGenerator = function(level, wave) {
       damageTaken: 1
     },
     rewards: TABLE_LIST[rewardLevel]
-  };
+  };  
+    
+  if (level >= 160) {
+    const tweakedLevel = level - 159;
+    monster.stats.force = tweakedLevel / 10.0; // 0.1% - 15% from levels 160-309 (capped)
+    if (monster.stats.force >= 15) {
+      monster.stats.force = 15;
+    }
+    monster.stats.shred = 1 + (tweakedLevel * 2.25); // armor formula
+    monster.stats.focus = 1 + (tweakedLevel * 1.8); // magic armor formula
+  }
 
   if (selectedMonster.statBuffs) {
     selectedMonster.statBuffs.forEach((statBuff) => {

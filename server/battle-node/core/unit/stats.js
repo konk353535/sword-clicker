@@ -50,6 +50,9 @@ export default class Stats {
     this.armor = this.origStats.armor;
     this.magicArmor = this.origStats.magicArmor;
     this.healingReduction = this.origStats.healingReduction || 1;
+    this.force = this.origStats.force || 0;
+    this.shred = this.origStats.shred || 0;
+    this.focus = this.origStats.focus || 0;
   };
 
   get attackSpeed() {
@@ -120,6 +123,9 @@ export default class Stats {
     this.armor = stats.armor;
     this.magicArmor = stats.magicArmor;
     this.healingReduction = stats.healingReduction || 1;
+    this.force = stats.force || 0;
+    this.shred = stats.shred || 0;
+    this.focus = stats.focus || 0;
     this.damageOutput = 1.0;
     
     this.origStats = stats;
@@ -143,6 +149,9 @@ export default class Stats {
       armor: this.armor,
       magicArmor: this.magicArmor,
       attackSpeedTicks: this.attackSpeedTicks,
+      force: this.force,
+      shred: this.shred,
+      focus: this.focus,
     }
   }
 }

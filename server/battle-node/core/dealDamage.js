@@ -40,7 +40,17 @@ export default function(rawDamage, {
   if (damage && damage > 0) {
     // true damage penetrates armor and all abilities that allow damage reduction (or fake-dodging like evasive manuevers)
     if (!isTrueDamage) {
+      // original armor
+      const origPhyscArmor = defender.stats.armor;
+      const origMagicArmor = defender.stats.magicArmor;
+      
+      defender.stats.armor      = origPhyscArmor - attacker.stats.shred; // triggers a calculation of 'defender.stats.damageReduction'
+      defender.stats.magicArmor = origMagicArmor - attacker.stats.focus; // triggers a calculation of 'defender.stats.magicDamageReduction'
+      
       let dmgReduction = isMagic ? ((defender.stats.magicDamageReduction) ? defender.stats.magicDamageReduction : 0) : ((defender.stats.damageReduction) ? defender.stats.damageReduction : 0);
+
+      defender.stats.armor      = origPhyscArmor; // triggers a calculation of 'defender.stats.damageReduction'
+      defender.stats.magicArmor = origMagicArmor; // triggers a calculation of 'defender.stats.magicDamageReduction'
       
       damage = (rawDamage * (1 - dmgReduction)) * ((defender.stats.damageTaken) ? defender.stats.damageTaken : 1.0);
     }

@@ -2200,6 +2200,13 @@ export const BOSS_BUFFS = {
               },
               rewards: []
             };
+            
+            if (floor >= 16) {
+              const tweakedFloor = floor - 15;
+              monster.stats.force = tweakedFloor; // 1% - 12% from floors 16 - 27
+              monster.stats.shred = (room / 2.4) * 25 * (tweakedFloor / 4); // armor formula
+              monster.stats.focus = (room / 2) * 25 * (tweakedFloor / 3); // magic armor formula
+            }
 
             if (selectedMonster.statBuffs) {
               selectedMonster.statBuffs.forEach((statBuff) => {

@@ -27,6 +27,9 @@ function descriptors(str) {
     'ancientShard': '% bonus ancient shards',
     'gold': 'deposited gold',
     'damage': 'click damage',
+    'force': 'force',
+    'shred': 'shred',
+    'focus': 'focus',
   };
   if (terms.hasOwnProperty(str)) {
     return terms[str];

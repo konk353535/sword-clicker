@@ -70,6 +70,21 @@
           </div>
         {{/each}}
       </div>
+      <div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: 600px">
+        {{#each offenseStats2}}
+          <div class="d-flex flex-row mr-1">
+            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
+              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+            </div>
+            <div class="d-flex align-items-center ml-1" style="max-width: 150px">
+              {{> formatNumber number=this.value}}{{#if $eq this.name 'attack speed'}}/s{{/if}}{{#if $eq this.name 'critical chance'}}%{{/if}}{{#if $eq this.name 'critical damage'}}x{{/if}}
+              {{#if this.maxValue}}
+                - {{> formatNumber number=this.maxValue}}
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
       <div class="d-flex flex-wrap justify-content-between" style="max-width: 600px">
         {{#each defenseStats}}
           <div class="d-flex flex-row mr-1">

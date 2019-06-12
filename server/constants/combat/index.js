@@ -39,6 +39,9 @@ export const COMBAT = {
     'damageTaken',
     'magicPower',
     'armor',
-    'magicArmor'
+    'magicArmor',
+    'force',
+    'shred',
+    'focus'
   ]
 };

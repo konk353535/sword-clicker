@@ -77,7 +77,20 @@ Template.selectGearPage.helpers({
         name: 'accuracy',
         icon: 'accuracy.svg',
         value: combat.stats.accuracy
-      }, {
+      }]);   
+    }
+
+    return Template.instance().state.get('offenseStats');
+  },
+
+  offenseStats2() {
+    const combat = Combat.findOne({
+      owner: Meteor.userId()
+    });
+    if (!combat) {
+      Template.instance().state.set('offenseStats2', []);
+    } else {
+      Template.instance().state.set('offenseStats2', [{
         name: 'critical chance',
         icon: 'criticalChance2.svg',
         value: combat.stats.criticalChance
@@ -85,10 +98,22 @@ Template.selectGearPage.helpers({
         name: 'critical damage',
         icon: 'criticalDamage.svg',
         value: combat.stats.criticalDamage
+      }, {
+        name: 'force',
+        icon: 'force.svg',
+        value: combat.stats.force
+      }, {
+        name: 'shred',
+        icon: 'shred.svg',
+        value: combat.stats.shred
+      }, {
+        name: 'focus',
+        icon: 'focus.svg',
+        value: combat.stats.focus
       }]);   
     }
 
-    return Template.instance().state.get('offenseStats');
+    return Template.instance().state.get('offenseStats2');
   },
 
 

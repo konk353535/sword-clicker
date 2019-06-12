@@ -19,7 +19,7 @@ import { State } from '/imports/api/state/state';
 import { Groups } from '/imports/api/groups/groups.js';
 import { Items } from '/imports/api/items/items.js';
 import { Combat } from '/imports/api/combat/combat.js';
-import { Battles, BattlesList } from '/imports/api/battles/battles.js';
+import { Battles, BattlesList, getMaxEnergyUse } from '/imports/api/battles/battles.js';
 import { getGlobalBuffs } from '/imports/api/globalbuffs/globalbuffs';
 
 import { STATE_BUFFS } from '/imports/constants/state';
@@ -356,7 +356,10 @@ Template.lobbyPage.events({
   },
 
   'click .select-energyUse'(event, instance) {
-    const energyUse = $(event.target).closest('.select-energyUse')[0].getAttribute('data-energyUse');
+    let energyUse = $(event.target).closest('.select-energyUse')[0].getAttribute('data-energyUse');
+    if (energyUse > getMaxEnergyUse()) {
+      energyUse = getMaxEnergyUse();
+    }
     instance.state.set('energyUse', parseInt(energyUse));
     Meteor.call('users.setUiState', 'energyUse', parseInt(energyUse));
   },
@@ -364,7 +367,11 @@ Template.lobbyPage.events({
   'click .battle-btn'(event, instance) {
     instance.state.set('newBattleLoading', true);
     const type = instance.state.get('type');
-    const energyUse = parseInt(instance.state.get('energyUse'));
+    let energyUse = parseInt(instance.state.get('energyUse'));
+
+    if (energyUse > getMaxEnergyUse()) {
+      energyUse = getMaxEnergyUse();
+    }
     
     if (type === 'group') {
       const floor = instance.state.get('usersCurrentFloor');
@@ -446,6 +453,10 @@ Template.lobbyPage.rendered = function () {
       }
 
       if (myUser.uiState && myUser.uiState.energyUse !== undefined) {
+        let localEnergyUse = myUser.uiState.energyUse;
+        if (localEnergyUse > getMaxEnergyUse()) {
+          localEnergyUse = getMaxEnergyUse();
+        }
         instance.state.set('energyUse', myUser.uiState.energyUse);
       } else {
         instance.state.set('energyUse', 1);
@@ -529,6 +540,10 @@ Template.lobbyPage.helpers({
 
   usersCurrentRoom() {
     return Template.instance().state.get('usersCurrentRoom');
+  },
+  
+  maxEnergyUse() {
+    return getMaxEnergyUse();
   },
 
   energyUse() {

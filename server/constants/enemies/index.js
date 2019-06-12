@@ -81,6 +81,10 @@ export const ENEMIES = Object.assign({
       type: 'plus',
       key: 'accuracy',
       amount: 25
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.25
     }]
   },
   
@@ -144,6 +148,10 @@ export const ENEMIES = Object.assign({
         name: 'Ninja Reflexes',
         hideBuff: true
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.5
     }]
   },
 
@@ -159,6 +167,10 @@ export const ENEMIES = Object.assign({
         totalDuration: Infinity,
         hideBuff: true
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.25
     }]
   },
 
@@ -252,6 +264,10 @@ export const ENEMIES = Object.assign({
         name: 'Frost Armor',
         icon: 'frostArmor.svg'
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 3
     }]
   },
 
@@ -268,6 +284,10 @@ export const ENEMIES = Object.assign({
         description: 'Will randomly fade into the ether, becoming invulnerable',
         hideBuff: true
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.5
     }]
   },
 
@@ -614,6 +634,10 @@ export const ENEMIES = Object.assign({
         icon: 'angryMiner.svg',
         name: 'angry miner'
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.25
     }]
   },
 
@@ -630,6 +654,14 @@ export const ENEMIES = Object.assign({
       type: 'plus',
       key: 'criticalDamage',
       amount: 2
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 3
+    }, {
+      type: 'times',
+      key: 'force',
+      amount: 1.25
     }]
   },
 
@@ -698,6 +730,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'attackSpeed',
       amount: 0.3
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 2
     }]
   },
 
@@ -726,6 +762,10 @@ export const ENEMIES = Object.assign({
         level: 3,
         icon: 'spikedArmor.svg'
       }
+    }, {
+      type: 'times',
+      key: 'focus',
+      amount: 1.5
     }]
   },
 
@@ -737,7 +777,7 @@ export const ENEMIES = Object.assign({
     statBuffs: [{
       type: 'times',
       key: 'armor',
-      amount: 2
+      amount: 2.5
     }, {
       type: 'times',
       key: 'health',
@@ -762,6 +802,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'healthMax',
       amount: 1.3
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.75
     }]
   },
 
@@ -958,6 +1002,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'healthMax',
       amount: 1.0
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 2
     }]
   },
 
@@ -1036,6 +1084,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'healthMax',
       amount: 2
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 3
     }]
   },
   
@@ -1084,6 +1136,10 @@ export const ENEMIES = Object.assign({
       type: 'plus',
       key: 'accuracy',
       amount: 50
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 2
     }],
   },
 
@@ -1161,6 +1217,10 @@ export const ENEMIES = Object.assign({
       type: 'plus',
       key: 'accuracy',
       amount: 100
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.25
     }],
   },
   
@@ -1178,6 +1238,10 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 2
     }],
   },
   
@@ -1263,6 +1327,14 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'focus',
+      amount: 2.5
     }],
   },
   
@@ -1294,6 +1366,10 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'attackSpeed',
       amount: 0.7
+    }, {
+      type: 'times',
+      key: 'force',
+      amount: 2
     }]
   },
   
@@ -1393,6 +1469,18 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'magicArmor',
       amount: 1.5
+    }, {
+      type: 'times',
+      key: 'force',
+      amount: 1.25
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'focus',
+      amount: 1.25
     }]
   },
 
@@ -1416,6 +1504,14 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'attackMax',
       amount: 1.5
+    }, {
+      type: 'times',
+      key: 'force',
+      amount: 1.5
+    }, {
+      type: 'times',
+      key: 'shred',
+      amount: 2.5
     }]
   },
 }, BOSS_ENEMIES);

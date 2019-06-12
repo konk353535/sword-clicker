@@ -148,7 +148,8 @@ export const ENEMIES = Object.assign({
         name: 'Ninja Reflexes',
         hideBuff: true
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 1.5
@@ -167,7 +168,8 @@ export const ENEMIES = Object.assign({
         totalDuration: Infinity,
         hideBuff: true
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 1.25
@@ -264,7 +266,8 @@ export const ENEMIES = Object.assign({
         name: 'Frost Armor',
         icon: 'frostArmor.svg'
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 3
@@ -284,7 +287,8 @@ export const ENEMIES = Object.assign({
         description: 'Will randomly fade into the ether, becoming invulnerable',
         hideBuff: true
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 1.5
@@ -634,7 +638,8 @@ export const ENEMIES = Object.assign({
         icon: 'angryMiner.svg',
         name: 'angry miner'
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 1.25
@@ -762,7 +767,8 @@ export const ENEMIES = Object.assign({
         level: 3,
         icon: 'spikedArmor.svg'
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'focus',
       amount: 1.5
@@ -1238,11 +1244,12 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 2
-    }],
+    }]
   },
   
   tormentor: {
@@ -1327,7 +1334,8 @@ export const ENEMIES = Object.assign({
       data: {
         hideBuff: true
       }
-    }, {
+    }],
+    statBuffs: [{
       type: 'times',
       key: 'shred',
       amount: 1.5
@@ -1335,7 +1343,7 @@ export const ENEMIES = Object.assign({
       type: 'times',
       key: 'focus',
       amount: 2.5
-    }],
+    }]
   },
   
   horrible_eye: {

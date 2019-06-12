@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Users } from '/imports/api/users/users';
 import { Combat } from '/imports/api/combat/combat';
 import { State } from '/imports/api/state/state';
+import { Servers, DEFAULT_SERVER } from '/imports/api/servers/servers';
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import moment from 'moment';
 
@@ -230,28 +231,40 @@ Meteor.methods({
 
   'shop.buyItem'({ itemId }) {
 
-    const validItems = [{
-      id: 'lemonade',
-      cost: 10
-    }, {
-      id: 'phasing_key',
-      cost: 25
-    } /*, {
-      id: 'gift_box_holiday',
-      cost: 10
-    }, {
-      id: 'gift_box_fireworks',
-      cost: 10
-    }, {
-      id: 'gift_box_red_envelope',
-      cost: 10
-    }, {
-      id: 'gift_box_valentines',
-      cost: 10
-    }, {
-      id: 'gift_box_stpatricks',
-      cost: 10
-    } */];
+    let validItems;
+  
+    if (Servers.findOne({_id: Meteor.user().server}).name === 'Classic') {
+      validItems = [{
+        id: 'lemonade',
+        cost: 10
+      }, {
+        id: 'phasing_key',
+        cost: 25
+      } , {
+        id: 'gift_box_holiday',
+        cost: 10
+      }, {
+        id: 'gift_box_fireworks',
+        cost: 10
+      }, {
+        id: 'gift_box_red_envelope',
+        cost: 10
+      }, {
+        id: 'gift_box_valentines',
+        cost: 10
+      }, {
+        id: 'gift_box_stpatricks',
+        cost: 10
+      }];
+    } else {
+      validItems = [{
+        id: 'lemonade',
+        cost: 10
+      }, {
+        id: 'phasing_key',
+        cost: 25
+      }];
+    }
 
     const itemToBuy = _.findWhere(validItems, { id: itemId });
     if (!itemToBuy) {

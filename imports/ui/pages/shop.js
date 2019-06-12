@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { STATE_BUFFS } from '/imports/constants/state';
 import { State } from '/imports/api/state/state';
+import { Servers, DEFAULT_SERVER } from '/imports/api/servers/servers';
 
 import lodash from 'lodash';
 
@@ -216,7 +217,6 @@ Template.shopPage.events({
     });
   },
 
-  /*
   'click .buy-gift_box_holiday2018'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
       return;
@@ -281,7 +281,6 @@ Template.shopPage.events({
       toastr.success('Successfully purchased.')
     });
   },
-  */
 });
 
 Template.shopPage.rendered = function () {
@@ -359,6 +358,15 @@ Template.shopPage.rendered = function () {
 Template.shopPage.helpers({
   processing() {
     return Template.instance().state.get('processing');
+  },
+
+  serverName() {
+    const serverDoc = Servers.findOne({_id: Meteor.user().server});    
+    return serverDoc.name;
+  },
+
+  playingOnClassic() {
+    return Servers.findOne({_id: Meteor.user().server}).name === 'Classic';
   },
 
   freeGems() {

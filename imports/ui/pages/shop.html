@@ -1,6 +1,9 @@
 <template name="shopPage">
   <h2 class="my-2">Your Gems</h2>
   <div class="d-flex flex-wrap">
+    <span>Free gems will occasionally appear in your mine pit (maximum of 15 per day) and can also be earned by participating in official top-floor tower battles when the tower has not been fully cleared (seasonal server).<br /><br /></span>
+  </div>
+  <div class="d-flex flex-wrap">
     <div
       class="d-flex mb-1 mr-1 p-2 flex-column align-items-center justify-content-center"
       style="border: 1px solid #dfdfdf; border-radius: 4px; width: 150px">
@@ -77,24 +80,24 @@
 
   <h2 class="my-2">Global Buffs</h2>
   <div class="d-flex flex-wrap">
-    <span>Global buffs can only be purchased with paid gems.</span>
+    <span>Global buffs can only be purchased with paid gems and affect all players across all servers while active.</span>
   </div>
   <div class="row mb-3">
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
           {{#if globalBuffs.buffCombat}}
-            <span class="my-1" alt="{{globalBuffs.buffCombat}}">{{moFromNow globalBuffs.buffCombat true}}</span>
+            <span class="my-1" alt="{{globalBuffs.buffCombat}}">Combat: {{moFromNow globalBuffs.buffCombat true}}</span>
           {{else}}
-            <span class="my-1">Inactive</span>
+            <span class="my-1">Combat: Inactive</span>
           {{/if}}
         </p>
         <div class="d-flex justify-content-center">
           <img src="/icons/attack.svg" class="medium-icon my-3">
         </div>
         <p class="mb-1">+20% Combat XP</p>
-        <p class="mb-1">+50% Drop Chance</p>
         <p class="mb-1">+35% Astronomy XP</p>
+        <p class="mb-1">+50% Combat Items Drop Chance</p>
         <p class="mb-1">Triple combat energy regeneration</p>
         <button class="btn btn-secondary buy-global-combat {{#if $gte currentUser.gems 100}}{{else}}disabled{{/if}}">
           100 <img src="/icons/gemPaid.svg" class="extra-small-icon"> +1 hour
@@ -105,9 +108,9 @@
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
           {{#if globalBuffs.buffCrafting}}
-            <span class="my-1" alt="{{globalBuffs.buffCrafting}}">{{moFromNow globalBuffs.buffCrafting true}}</span>
+            <span class="my-1" alt="{{globalBuffs.buffCrafting}}">Crafting: {{moFromNow globalBuffs.buffCrafting true}}</span>
           {{else}}
-            <span class="my-1">Inactive</span>
+            <span class="my-1">Crafting: Inactive</span>
           {{/if}}
         </p>
         <div class="d-flex justify-content-center">
@@ -117,6 +120,7 @@
         <p class="mb-1">+35% Inscription XP</p>
         <p class="mb-1">+100% Jewel Drop Rate</p>
         <p class="mb-1">Failing to reforge won't reduce the rarity level</p>
+        <p class="mb-1">No chance to break items during reforging</p>
         <button class="btn btn-secondary buy-global-crafting {{#if $gte currentUser.gems 100}}{{else}}disabled{{/if}}">
           100 <img src="/icons/gemPaid.svg" class="extra-small-icon"> +1 hour
         </button>
@@ -126,9 +130,9 @@
       <div class="card text-center mt-3 p-3">
         <p class="mb-1">
           {{#if globalBuffs.buffGathering}}
-            <span class="my-1" alt="{{globalBuffs.buffGathering}}">{{moFromNow globalBuffs.buffGathering true}}</span>
+            <span class="my-1" alt="{{globalBuffs.buffGathering}}">Gathering: {{moFromNow globalBuffs.buffGathering true}}</span>
           {{else}}
-            <span class="my-1">Inactive</span>
+            <span class="my-1">Gathering: Inactive</span>
           {{/if}}
         </p>
         <div class="d-flex justify-content-center">
@@ -148,6 +152,9 @@
   
   <!-- List of all upgrades + Time Left on them -->
   <h2 class="my-2">Your Upgrades</h2>
+  <div class="d-flex flex-wrap">
+    <span>Personal upgrades/buffs also let you spend more energy per fight with each upgrade you have (up to 40 energy spent with 5+ upgrades active).<br /><br /></span>
+  </div>
   <div class="d-flex flex-wrap">
     {{#each currentUpgrades}}
       <div
@@ -170,10 +177,13 @@
   <br />
   
   <h2 class="my-2">Shop</h2>
+  <div class="d-flex flex-wrap">
+    <span>Spend your gems here!</span>
+  </div>
   <div class="row">
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>All Upgrades</h4>
+        <h4>All Personal Upgrades</h4>
         <div class="d-flex flex-column justify-content-start align-items-start mb-3">
           <li>+20% mining damage</li>
           <li>+20% woodcutting speed</li>
@@ -193,7 +203,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Mining Upgrade</h4>
+        <h4>Personal Mining Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/mining.svg" class="medium-icon my-3">
         </div>
@@ -207,7 +217,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Crafting Upgrade</h4>
+        <h4>Personal Crafting Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/crafting.svg" class="medium-icon my-3">
         </div>
@@ -221,7 +231,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Combat Upgrade</h4>
+        <h4>Personal Combat Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/attack.svg" class="medium-icon my-3">
         </div>
@@ -235,7 +245,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Woodcutting Upgrade</h4>
+        <h4>Personal Woodcutting Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/woodcutting.svg" class="medium-icon my-3">
         </div>
@@ -249,7 +259,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Farming Upgrade</h4>
+        <h4>Personal Farming Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/farming.svg" class="medium-icon my-3">
         </div>
@@ -263,7 +273,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Inscription Upgrade</h4>
+        <h4>Personal Inscription Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/inscription.svg" class="medium-icon my-3">
         </div>
@@ -277,7 +287,7 @@
     </div>
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
-        <h4>Astronomy Upgrade</h4>
+        <h4>Personal Astronomy Upgrade</h4>
         <div class="d-flex justify-content-center">
           <img src="/icons/astronomy.svg" class="medium-icon my-3">
         </div>
@@ -316,8 +326,8 @@
           <li>Includes stats, rarity, quality, etc.</li>
           <li>Key is consumed on use</li>
         </div>
-        <button class="buy-phasing-key btn btn-secondary mt-1 {{#if $gte totalGems 150}}{{else}}disabled{{/if}}">
-          150 <img src="/icons/gems.svg" class="extra-small-icon">
+        <button class="buy-phasing-key btn btn-secondary mt-1 {{#if $gte totalGems 25}}{{else}}disabled{{/if}}">
+          25 <img src="/icons/gems.svg" class="extra-small-icon">
         </button>
       </div>
     </div>
@@ -335,6 +345,7 @@
         </button>
       </div>
     </div>
+    <!--
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <h4>2018 Holiday Gift Box</h4>
@@ -438,6 +449,7 @@
         </button>
       </div>
     </div>
+    -->
     <div class="col-md-4">
       <div class="card text-center mt-3 p-3">
         <h4>T2 Tank Icon</h4>

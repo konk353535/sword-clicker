@@ -4,6 +4,7 @@ import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills';
 import { Items } from '/imports/api/items/items';
 import { Events } from '/imports/api/events/events';
+import { Chats } from 'meteor/cesarve:simple-chat/collections';
 import moment from 'moment';
 import _ from 'underscore';
 import lodash from 'lodash';
@@ -741,6 +742,8 @@ Meteor.methods({
       newItems.forEach((item) => {
         const originalItem = JSON.parse(item.itemData);
         const reforgeData = JSON.parse(item.reforgeData);
+        
+        const itemConstants = ITEMS[originalItem.itemId];
 
         if (!originalItem.rarityId) {
           if (reforgeData.recipeData && reforgeData.recipeData.isLooted) {
@@ -763,6 +766,17 @@ Meteor.methods({
             rarityId: reforgeData.rarityData.rarityId,
             enhanced: originalItem.enhanced
           }, {tx: true});
+          
+          Chats.insert({
+            message: `You were successful at reforging your ${itemConstants.name}, improving its structure (rarity increased)!`,
+            username: 'Game',
+            name: 'Game',
+            date: new Date(),
+            custom: {
+              roomType: 'Game'
+            },
+            roomId: `Game-${originalItem.owner}`
+          });
         } else {
           if (getActiveGlobalBuff('paid_crafting')) {
             // failure!  rarity stays the same
@@ -775,9 +789,36 @@ Meteor.methods({
               rarityId: originalItem.rarityId,
               enhanced: originalItem.enhanced
             }, {tx: true});
+            
+            Chats.insert({
+              message: `You were not successful at reforging your ${itemConstants.name}.`,
+              username: 'Game',
+              name: 'Game',
+              date: new Date(),
+              custom: {
+                roomType: 'Game'
+              },
+              roomId: `Game-${originalItem.owner}`
+            });
           } else {
-            // failure!  rarity goes DOWN
-            if (reforgeData.recipeData.isLooted && (originalItem.rarityId === 'uncommon')) {
+            // failure!  if the item breaks (5% chance), do not insert it back into the database, it is gone
+            if (Math.random() <= 0.05) {
+              // do nothing -- they lost the item
+              
+              Chats.insert({
+                message: `While attempting to reforge your ${itemConstants.name}, the item cracked and fell to pieces.`,
+                username: 'Game',
+                name: 'Game',
+                date: new Date(),
+                custom: {
+                  roomType: 'Game'
+                },
+                roomId: `Game-${originalItem.owner}`
+              });              
+            } 
+            
+            // if it didn't break, and the item is looted and at the lowest rarity already...
+            else if (reforgeData.recipeData.isLooted && (originalItem.rarityId === 'uncommon')) {
               // (except for looted items, they can't go below their uncommon/base rarity)
               Items.insert({
                 itemId: originalItem.itemId,
@@ -788,8 +829,19 @@ Meteor.methods({
                 rarityId: originalItem.rarityId,
                 enhanced: originalItem.enhanced
               }, {tx: true});
+              
+              Chats.insert({
+                message: `You were not successful at reforging your ${itemConstants.name}.`,
+                username: 'Game',
+                name: 'Game',
+                date: new Date(),
+                custom: {
+                  roomType: 'Game'
+                },
+                roomId: `Game-${originalItem.owner}`
+              });
             } else {
-              // reduce rarity
+              // if it didn't break and it's an item that can have lowered rarity, then reduce rarity
               const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
               Items.insert({
                 itemId: originalItem.itemId,
@@ -800,6 +852,17 @@ Meteor.methods({
                 rarityId: prevRarityId,
                 enhanced: originalItem.enhanced
               }, {tx: true});
+              
+              Chats.insert({
+                message: `You were not successful at reforging your ${itemConstants.name}, worsening its structure (rarity decreased).`,
+                username: 'Game',
+                name: 'Game',
+                date: new Date(),
+                custom: {
+                  roomType: 'Game'
+                },
+                roomId: `Game-${originalItem.owner}`
+              });
             }
           }
         }

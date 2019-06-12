@@ -8,7 +8,7 @@ import { Floors } from '/imports/api/floors/floors';
 import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
 
-import { Battles, BattlesList } from '/imports/api/battles/battles';
+import { Battles, BattlesList, getMaxEnergyUse } from '/imports/api/battles/battles.js';
 import { BattleActions, BattleActionsSchema } from '/imports/api/battles/battleActions';
 import { Groups } from '/imports/api/groups/groups';
 import { Servers } from '/imports/api/servers/servers';
@@ -50,6 +50,10 @@ Meteor.methods({
     console.log('battles.findPersonalBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
 
+    if (energyUse > getMaxEnergyUse()) {
+      energyUse = getMaxEnergyUse();
+    }
+    
     // Ensure user has access to specified wave
     const maxLevel = userDoc.personalQuest.level;
     const maxWave = userDoc.personalQuest.wave;
@@ -95,6 +99,10 @@ Meteor.methods({
   'battles.findTowerBattle'(floor, room, energyUse) {
     console.log('battles.findTowerBattle', moment().format('LLL hh:mm:ss SSS'));
     const userDoc = Meteor.user();
+    
+    if (energyUse > getMaxEnergyUse()) {
+      energyUse = getMaxEnergyUse();
+    }
     
     if (floor > Meteor.settings.shared.maxFloor) {
       throw new Meteor.Error("no-sir", "The tower doesn't have that many floors!");

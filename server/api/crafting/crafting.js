@@ -886,14 +886,18 @@ Meteor.methods({
   }
 });
 
-const MINUTE = 60 * 1000;
+const MILLISECOND = 1;
+const SECOND = MILLISECOND * 1000;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * MINUTE;
+
 const userId = function userId(userId) {
   return userId;
 };
 
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.craftItem', userId }, 10, 20000);
 DDPRateLimiter.addRule({ type: 'method', name: 'crafting.fetchRecipes', userId }, 5, 10000);
-DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 5, 10000);
+DDPRateLimiter.addRule({ type: 'method', name: 'crafting.updateGame', userId }, 1, 3 * SECOND);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish('crafting', function() {

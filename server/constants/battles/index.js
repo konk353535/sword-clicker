@@ -53,8 +53,8 @@ export const BATTLES = {
       },
 
       'rapier': {
-        attack: 0.17,
-        defense: 0.33,
+        attack: 0.66,
+        defense: 0.00,
         magic: 0,
         health: 0.5
       },

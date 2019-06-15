@@ -243,6 +243,10 @@ SimpleChat.configure ({
         activateGlobalBuff({buffType: 'town_observatory'});
         sendUserChatMessage({ userId: userDoc._id, message: `Added all town buffs.` });
         return;
+      } else if (/\/loottest/i.test(message) && userDoc.isSuperMod) {
+        Meteor.call('debug.loottest');
+        sendUserChatMessage({ userId: userDoc._id, message: `Test complete.` });
+        return;
       } else if (/\/permamute/.test(message)) {
         // Find user
         const targetUser = Users.findOne({ username: message.split('/permamute')[1].trim() });

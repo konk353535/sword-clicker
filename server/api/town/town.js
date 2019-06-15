@@ -14,6 +14,8 @@ import { updateUserActivity, serverFromUser } from '/imports/api/users/users.js'
 import { karmaLevelValues } from '/imports/api/town/town.js';
 import { getGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
+import { FLOORS } from '/server/constants/floors/index';
+
 export const deleteKarmaBuffs = function deleteKarmaBuffs() {
   State.remove({ name: 'town_dwelling' });
   State.remove({ name: 'town_quarry' });
@@ -172,7 +174,29 @@ Meteor.publish('town', function() {
   self.ready();
 });
 
-Meteor.methods({
+Meteor.methods({  
+  // note: this isn't used by anything directly (although an admin using the 'dev' tab or a browser's dev console could call this)
+  'debug.loottest'() {
+    const userDoc = Users.findOne({ _id: Meteor.userId() });
+    const userIsAdmin = userDoc && userDoc.isSuperMod;
+
+    if (!userIsAdmin) {
+      return false;
+    }
+    
+    const floor = 1;
+    
+    /*
+    for (var room = 1; room <= 7; room++) {
+      const rewards = FLOORS[floor][room].rewards;
+      console.log(rewards);
+    }
+    console.log("");
+    */
+    
+    console.log(FLOORS[floor]);
+    return `Operation completed.`;
+  },
   // note: this isn't used by anything directly (although an admin using the 'dev' tab or a browser's dev console could call this)
   'server.createTown'() {
     const userDoc = Users.findOne({ _id: Meteor.userId() });

@@ -57,7 +57,7 @@ export const TOWER_FLOOR_1 = {
   5: {
     name: 'Abandoned Mine',
     enemies: ['angry_miner'],
-    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
       chance: 1 / 128,
       rewards: [
         { type: 'item', itemId: 'copper_kite_shield', amount: 1 }
@@ -90,23 +90,23 @@ export const TOWER_FLOOR_1 = {
         { type: 'item', itemId: 'copper_dwarven_idol', amount: 1 },
         { type: 'item', itemId: 'copper_mining_hammer', amount: 1 }
       ]
-    }])
+    }]))
   },
   6: {
     name: 'Honey Mine',
     enemies: ['bee'],
-    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'diminished_orb', amount: 1 },
         { type: 'item', itemId: 'ripped_tome', amount: 1 }
       ]
-    }])
+    }]))
   },
   7: {
     name: 'String Fortress',
     enemies: ['wasp'],
-    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat[{
+    rewards: orderLootTable(LEVEL_ONE_LOOT_TABLE.concat([{
       chance: 1 / 64,
       rewards: [
         { type: 'item', itemId: 'copper_hammer', amount: 1 }
@@ -118,7 +118,7 @@ export const TOWER_FLOOR_1 = {
         { type: 'item', itemId: 'copper_broad_sword', amount: 1 },
         { type: 'item', itemId: 'copper_horned_helmet', amount: 1 }
       ]
-    }])
+    }]))
   },
 
   boss: {

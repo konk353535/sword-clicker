@@ -711,24 +711,20 @@ Meteor.methods({
         }
       });
 
-      if (updatedCount === 0) {
-        return;
-      }
+      if (updatedCount > 0) {
+        // Add new items to user
+        newItems.forEach((item) => {
+          addItem(item.itemId, item.amount);
+        });
 
-      // Add new items to user
-      newItems.forEach((item) => {
-        addItem(item.itemId, item.amount);
-      });
-
-      // Add crafting exp
-      if (_.isNumber(craftingXp)) {
-        addXp('crafting', craftingXp);
+        // Add crafting exp
+        if (_.isNumber(craftingXp)) {
+          addXp('crafting', craftingXp);
+        }
       }
     }
 
     if (crafting.currentlyReforging) {
-      tx.start("Reforging crafting.updateGame()");
-      
       const newItems = [];
       const popValues = []; // Store array of currentCrafting endDates
 
@@ -738,60 +734,51 @@ Meteor.methods({
           newItems.push(currentReforge);
         }
       });
-
-      newItems.forEach((item) => {
-        const originalItem = JSON.parse(item.itemData);
-        const reforgeData = JSON.parse(item.reforgeData);
-        
-        const itemConstants = ITEMS[originalItem.itemId];
-
-        if (!originalItem.rarityId) {
-          if (reforgeData.recipeData && reforgeData.recipeData.isLooted) {
-            originalItem.rarityId = 'uncommon';
-          } else {
-            originalItem.rarityId = 'standard';
+      
+      const updatedCount = Crafting.update({
+        _id: crafting._id,
+        currentlyReforging: crafting.currentlyReforging
+      }, {
+        $pull: {
+          currentlyReforging: {
+            endDate: {
+              $in: popValues
+            }
           }
         }
-
-        const userRoll = Math.random();
-
-        if (userRoll <= reforgeData.chance) {
-          // success!  rarity goes UP
-          Items.insert({
-            itemId: originalItem.itemId,
-            owner: originalItem.owner,
-            category: originalItem.category,
-            extraStats: originalItem.extraStats,
-            quality: originalItem.quality,
-            rarityId: reforgeData.rarityData.rarityId,
-            enhanced: originalItem.enhanced
-          }, {tx: true});
+      });
+      
+      if (updatedCount > 0) {      
+        newItems.forEach((item) => {
+          const originalItem = JSON.parse(item.itemData);
+          const reforgeData = JSON.parse(item.reforgeData);
           
-          Chats.insert({
-            message: `You were successful at reforging your ${itemConstants.name}, improving its structure (rarity increased)!`,
-            username: 'Game',
-            name: 'Game',
-            date: new Date(),
-            custom: {
-              roomType: 'Game'
-            },
-            roomId: `Game-${originalItem.owner}`
-          });
-        } else {
-          if (getActiveGlobalBuff('paid_crafting')) {
-            // failure!  rarity stays the same
+          const itemConstants = ITEMS[originalItem.itemId];
+
+          if (!originalItem.rarityId) {
+            if (reforgeData.recipeData && reforgeData.recipeData.isLooted) {
+              originalItem.rarityId = 'uncommon';
+            } else {
+              originalItem.rarityId = 'standard';
+            }
+          }
+
+          const userRoll = Math.random();
+
+          if (userRoll <= reforgeData.chance) {
+            // success!  rarity goes UP
             Items.insert({
               itemId: originalItem.itemId,
               owner: originalItem.owner,
               category: originalItem.category,
               extraStats: originalItem.extraStats,
               quality: originalItem.quality,
-              rarityId: originalItem.rarityId,
+              rarityId: reforgeData.rarityData.rarityId,
               enhanced: originalItem.enhanced
-            }, {tx: true});
+            });
             
             Chats.insert({
-              message: `You were not successful at reforging your ${itemConstants.name}.`,
+              message: `You were successful at reforging your ${itemConstants.name}, improving its structure (rarity increased)!`,
               username: 'Game',
               name: 'Game',
               date: new Date(),
@@ -801,25 +788,8 @@ Meteor.methods({
               roomId: `Game-${originalItem.owner}`
             });
           } else {
-            // failure!  if the item breaks (5% chance), do not insert it back into the database, it is gone
-            if (Math.random() <= 0.05) {
-              // do nothing -- they lost the item
-              
-              Chats.insert({
-                message: `While attempting to reforge your ${itemConstants.name}, the item cracked and fell to pieces.`,
-                username: 'Game',
-                name: 'Game',
-                date: new Date(),
-                custom: {
-                  roomType: 'Game'
-                },
-                roomId: `Game-${originalItem.owner}`
-              });              
-            } 
-            
-            // if it didn't break, and the item is looted and at the lowest rarity already...
-            else if (reforgeData.recipeData.isLooted && (originalItem.rarityId === 'uncommon')) {
-              // (except for looted items, they can't go below their uncommon/base rarity)
+            if (getActiveGlobalBuff('paid_crafting')) {
+              // failure!  rarity stays the same
               Items.insert({
                 itemId: originalItem.itemId,
                 owner: originalItem.owner,
@@ -828,7 +798,7 @@ Meteor.methods({
                 quality: originalItem.quality,
                 rarityId: originalItem.rarityId,
                 enhanced: originalItem.enhanced
-              }, {tx: true});
+              });
               
               Chats.insert({
                 message: `You were not successful at reforging your ${itemConstants.name}.`,
@@ -841,47 +811,73 @@ Meteor.methods({
                 roomId: `Game-${originalItem.owner}`
               });
             } else {
-              // if it didn't break and it's an item that can have lowered rarity, then reduce rarity
-              const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
-              Items.insert({
-                itemId: originalItem.itemId,
-                owner: originalItem.owner,
-                category: originalItem.category,
-                extraStats: originalItem.extraStats,
-                quality: originalItem.quality,
-                rarityId: prevRarityId,
-                enhanced: originalItem.enhanced
-              }, {tx: true});
+              // failure!  if the item breaks (5% chance), do not insert it back into the database, it is gone
+              if (Math.random() <= 0.05) {
+                // do nothing -- they lost the item
+                
+                Chats.insert({
+                  message: `While attempting to reforge your ${itemConstants.name}, the item cracked and fell to pieces.`,
+                  username: 'Game',
+                  name: 'Game',
+                  date: new Date(),
+                  custom: {
+                    roomType: 'Game'
+                  },
+                  roomId: `Game-${originalItem.owner}`
+                });              
+              } 
               
-              Chats.insert({
-                message: `You were not successful at reforging your ${itemConstants.name}, worsening its structure (rarity decreased).`,
-                username: 'Game',
-                name: 'Game',
-                date: new Date(),
-                custom: {
-                  roomType: 'Game'
-                },
-                roomId: `Game-${originalItem.owner}`
-              });
+              // if it didn't break, and the item is looted and at the lowest rarity already...
+              else if (reforgeData.recipeData.isLooted && (originalItem.rarityId === 'uncommon')) {
+                // (except for looted items, they can't go below their uncommon/base rarity)
+                Items.insert({
+                  itemId: originalItem.itemId,
+                  owner: originalItem.owner,
+                  category: originalItem.category,
+                  extraStats: originalItem.extraStats,
+                  quality: originalItem.quality,
+                  rarityId: originalItem.rarityId,
+                  enhanced: originalItem.enhanced
+                });
+                
+                Chats.insert({
+                  message: `You were not successful at reforging your ${itemConstants.name}.`,
+                  username: 'Game',
+                  name: 'Game',
+                  date: new Date(),
+                  custom: {
+                    roomType: 'Game'
+                  },
+                  roomId: `Game-${originalItem.owner}`
+                });
+              } else {
+                // if it didn't break and it's an item that can have lowered rarity, then reduce rarity
+                const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId;
+                Items.insert({
+                  itemId: originalItem.itemId,
+                  owner: originalItem.owner,
+                  category: originalItem.category,
+                  extraStats: originalItem.extraStats,
+                  quality: originalItem.quality,
+                  rarityId: prevRarityId,
+                  enhanced: originalItem.enhanced
+                });
+                
+                Chats.insert({
+                  message: `You were not successful at reforging your ${itemConstants.name}, worsening its structure (rarity decreased).`,
+                  username: 'Game',
+                  name: 'Game',
+                  date: new Date(),
+                  custom: {
+                    roomType: 'Game'
+                  },
+                  roomId: `Game-${originalItem.owner}`
+                });
+              }
             }
           }
-        }
-      });
-
-      const updatedCount = Crafting.update({
-        _id: crafting._id,
-        currentlyReforging: crafting.currentlyReforging
-      }, {
-        $pull: {
-          currentlyReforging: {
-            endDate: {
-              $in: popValues
-            }
-          }
-        }
-      }, {tx: true});
-      
-      tx.commit(); // commit transaction: "Reforging crafting.updateGame()"
+        });
+      }
     }
   }
 });

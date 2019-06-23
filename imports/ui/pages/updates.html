@@ -1,10 +1,24 @@
 <template name="updatesPage">
   <div style="height: 10px; line-height: 10px;"><br /></div>
+  <h2 class="my-3">Sunday 23rd June 2019 </h2>
+  <ul>
+    <li><b>UI Changes</b></li>
+    <ul>
+      <li>Crafting time will now be shown in days/hours/minutes/seconds format instead of always seconds.  For example, <i>7200s</i> will now show <i>2h0m</i> (2 hours, 0 minutes).</li>
+      <li>The Inscription page will now show ability descriptions.</li>
+      <li>Descriptions for spells have been updated to indicate a <i>max health</i> cost in combat (not simply <i>health</i>).</li>
+    </ul>
+    <li><b>Bugfixes</b></li>
+    <ul>
+      <li>Enhancer keys can now be used on bows and will no longer pop up an error about quality.</li>
+      <li>Bows have no stat range for bonus accuracy but were originally programmed to have a range of 0-0 bonus accuracy.  This means the % quality on all existing bows is being measured against an extra stat, so the quality % shows a number that is artificially lower than it should be.  Crafting a new bow (or using an enhancer key) will fix the visual display of the quality % but this is really a visual bug only with old bows and does not affect their actual stats or performance.  For example, an old bow that 'rolls' +5 out of 0-10 for min damage and +15 out of 10-20 for max damage should be a 50% quality bow for two stats, but the accuracy of 0 out of 0 was showing quality at 33% instead.  Using an enhancer key to fix this will seem like the quality is increasing by more than 15% because it will recalculate the quality before applying the +15% quality bonus.</li>
+    </ul>
+  </ul>
   <h2 class="my-3">Thursday 20th June 2019 </h2>
   <ul>
     <li><b>Bugfixes</b></li>
     <ul>
-      <li>Another fix attmept for reforging items causing duplication and mixed messages in chat.</li>
+      <li>Another fix attempt for reforging items causing duplication and mixed messages in chat.</li>
       <li>Last season's scores were expunged from the tower contribution roster.</li>
     </ul>
   </ul>

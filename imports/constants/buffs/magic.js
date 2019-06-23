@@ -110,7 +110,7 @@ export const MAGIC_BUFFS = {
       return `
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
         For ${c.attacksCount} auto attacks. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. `;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `;
     },
     constants: {
       attacksCount: 10,
@@ -175,7 +175,7 @@ export const MAGIC_BUFFS = {
       return `
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
         Decrease your attack speed by the same amount <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -242,7 +242,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Increases all allies attack speed by ${c.attackSpeedBase}% + (${Math.round(c.attackSpeedMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -300,7 +300,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Increases targets armor by ${c.armorBase} + (${Math.round(c.armorMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -358,7 +358,7 @@ export const MAGIC_BUFFS = {
       return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
         Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. `;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `;
     },
     constants: {
       damageBase: 25,
@@ -441,7 +441,7 @@ export const MAGIC_BUFFS = {
       return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
         Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. `;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). `;
     },
     constants: {
       damageBase: 25,
@@ -512,7 +512,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -577,7 +577,7 @@ export const MAGIC_BUFFS = {
       const c = (buff && buff.constants) ? buff.constants : lookupBuff('water_wave').constants;
       return `
         Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per ally`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per ally).`;
     },
     constants: {
       healBase: 15,
@@ -636,7 +636,7 @@ export const MAGIC_BUFFS = {
       return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
         Increases targets armor by 20 + (${Math.round(c.armorMPRatio * 100)}% of MP) for ${c.duration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       healBase: 3,
@@ -708,7 +708,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       healBase: 3,
@@ -762,7 +762,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       healBase: 10,
@@ -816,7 +816,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       healBase: 50,
@@ -870,7 +870,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 4 seconds. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -945,7 +945,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 4 seconds. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per ally. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per ally). <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -1020,7 +1020,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Resurrects all fallen allies. Heals all allies to full hp<br />
-        At a cost of ${c.healthCost} health`;
+        At a cost of ${c.healthCost} max health.`;
     },
     constants: {
       healthCost: 1000
@@ -1070,7 +1070,7 @@ export const MAGIC_BUFFS = {
       return `
         Poisons the enemy dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage every 5 seconds.<br />
         Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageMPRatio: 0.4,
@@ -1148,7 +1148,7 @@ export const MAGIC_BUFFS = {
       return `
         Deals (${Math.round(c.damageMPRatio * 100)}% of MP) damage at the start and end of affliction. <br />
         Reduces enemy magic armor by (${c.magicArmorReductionBase} + ${Math.round(c.magicArmorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       magicArmorReductionBase: 35,
@@ -1229,7 +1229,7 @@ export const MAGIC_BUFFS = {
 
       return `
         Reduces enemy armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       armorReductionBase: 2,
@@ -1292,7 +1292,7 @@ export const MAGIC_BUFFS = {
       return `
         Strikes the target with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage. <br />
         And reducing their armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       armorReductionBase: 2,
@@ -1365,7 +1365,7 @@ export const MAGIC_BUFFS = {
       return `
         Strikes all enemies with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
         And reducing their armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target)`;
     },
     constants: {
       armorReductionBase: 2,
@@ -1437,7 +1437,7 @@ export const MAGIC_BUFFS = {
 
       return `
         Reduces enemy armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       armorReductionBase: 10,
@@ -1501,7 +1501,7 @@ export const MAGIC_BUFFS = {
         Freezes all enemies, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
         and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
         Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageMPRatio: 0.2,
@@ -1582,7 +1582,7 @@ export const MAGIC_BUFFS = {
         Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage 
         and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
         Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageMPRatio: 1.0,
@@ -1663,7 +1663,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageBase: 2,
@@ -1715,7 +1715,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageBase: 10,
@@ -1769,7 +1769,7 @@ export const MAGIC_BUFFS = {
       return `
         Strikes the target with earth, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
         and stunning them for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageMPRatio: 1,
@@ -1914,7 +1914,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Damages target for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) every second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -2040,7 +2040,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Damages target for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) every second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -2155,7 +2155,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Damages all enemies for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) twice a second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per target. <br />
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
         Lasts for ${buff.data.totalDuration}s`;
     },
     constants: {
@@ -2228,7 +2228,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage to all enemies. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health per enemy.`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per enemy).`;
     },
     constants: {
       damageBase: 2,
@@ -2281,7 +2281,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageBase: 2,
@@ -2334,7 +2334,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageBase: 20,
@@ -2387,7 +2387,7 @@ export const MAGIC_BUFFS = {
       const c = buff.constants;
       return `
         Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) health`;
+        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`;
     },
     constants: {
       damageBase: 20,

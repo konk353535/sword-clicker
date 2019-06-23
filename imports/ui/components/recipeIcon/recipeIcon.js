@@ -7,6 +7,8 @@ import { determineRequiredItems } from '/imports/ui/utils.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
+//import { ABILITIES } from '/imports/api/abilities/abilities.js';
+//import { ABILITIES } from '/imports/constants/combat/index.js';
 
 import './recipeIcon.html';
 
@@ -38,7 +40,44 @@ const updateCraftable = function (instance) {
 Template.recipeIcon.rendered = function () {
   const instance = Template.instance();
   updateCraftable(instance);
-
+  
+  try {
+    if (instance && instance.data && instance.data.recipe && instance.data.recipe.id) {
+      const recipeConstants = instance.data.recipe;
+      const itemId = recipeConstants.produces;
+      const itemConstants = ITEMS[itemId];
+      //console.log("recipe", instance.data.recipe, "produces", itemId);
+      //console.log(recipeConstants);
+      //console.log("produces", itemId);
+      //console.log(itemConstants);
+      
+      if (itemConstants && itemConstants.teaches && itemConstants.teaches.abilityId) {
+        const abilityId = itemConstants.teaches.abilityId;
+        const level = itemConstants.teaches.level;        
+        //console.log("ability", abilityId, "level", level);
+        
+        Meteor.call('abilities.getAbilityInfo', abilityId, level, (res, data) => {
+          const abilityConstants = (data && data.ability) ? data.ability : undefined;
+          //console.log(abilityConstants);
+          
+          if (abilityConstants && abilityConstants.buffs && abilityConstants.buffs[0]) {
+            const buffId = abilityConstants.buffs[0];
+            //console.log("buff", buffId);
+            
+            const buffConstants = BUFFS[buffId];
+            //console.log(buffConstants);
+            
+            instance.state.set('isInscriptionAbility', true);
+            instance.state.set('isInscriptionAbilityPassive', abilityConstants.isPassive);            
+            instance.state.set('isInscriptionAbilityMagic', abilityConstants.isMagic);            
+            instance.state.set('inscriptionAbilityDetails', `At level <b>${level}</b>:<br />${data.description}`);
+          }
+        });        
+      }        
+    }
+  } catch (err) {
+  }
+  
   // Should autorun when its reagents change
   Tracker.autorun(() => {
     const recipe = instance.data.recipe;
@@ -205,6 +244,22 @@ Template.recipeIcon.helpers({
     } catch (err) {
     }
   },
+  
+  isInscriptionAbility() {
+    return Template.instance().state.get('isInscriptionAbility')
+  },
+  
+  isInscriptionAbilityPassive() {
+    return Template.instance().state.get('isInscriptionAbilityPassive')
+  },
+  
+  isInscriptionAbilityMagic() {
+    return Template.instance().state.get('isInscriptionAbilityMagic')
+  },
+  
+  inscriptionAbilityDetails() {
+    return Template.instance().state.get('inscriptionAbilityDetails')
+  }
 
 });
 

@@ -60,7 +60,7 @@
           <div class="modal-header">
             <div class="d-flex flex-column">
               <h5 class="modal-title text-capitalize" id="recipeModal">
-                {{{recipe.name}}}
+                {{{recipe.name}}} {{#if isInscriptionAbility}} &nbsp; <small><i>({{#if isInscriptionAbilityPassive}}passive{{else if isInscriptionAbilityMagic}}magic{{else}}active{{/if}})</i></small>{{/if}}
               </h5>
               <small>{{{recipe.description}}}</small>
             </div>
@@ -102,6 +102,15 @@
                   {{{enchantment}}}<br />
                 {{/each}}
               {{/if}}
+              
+              {{#if isInscriptionAbility}}
+                <br />
+                {{#if recipe.isLearnt}}
+                  <b><span style="color: red;">You already know this {{#if isInscriptionAbilityMagic}}spell{{else}}ability{{/if}}!</span></b><br />
+                  <br />
+                {{/if}}
+                {{{inscriptionAbilityDetails}}}
+              {{/if}}              
             </div>
             <div class="modal-footer">
               <div style="display: flex; flex: 1 1 auto;">

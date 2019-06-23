@@ -453,14 +453,15 @@ Meteor.methods({
 
       if (targetItemConstants.extraStats && targetItem.quality < 100 && !targetItem.enhanced) {
       
-
         // Get the current quality
         const originalQuality = targetItem.quality;
         const targetItemClone = lodash.cloneDeep(targetItem);
 
         // Mutate the targetItems stats until we get to target quality
         const increaseOptions = [];
-        const extraStatKeys = Object.keys(targetItemConstants.extraStats);
+        const extraStatKeys = Object.keys(targetItemConstants.extraStats).filter((extraStatKey) => {
+          return (targetItemConstants.extraStats[extraStatKey] !== 0); // filter any keys that have a max roll of 0 (avoid divide by 0 NaN and also avoid quality counting a null stat)
+        });
         extraStatKeys.forEach((extraStatKey) => {
           const maxStat = targetItemConstants.extraStats[extraStatKey];
           const currentStat = targetItem.extraStats[extraStatKey];
@@ -523,8 +524,10 @@ Meteor.methods({
           targetItemClone.quality = 0;
           extraStatKeys.forEach((extraStatKey) => {
             const maxValue = targetItemConstants.extraStats[extraStatKey];
-            const currentValue = targetItemClone.extraStats[extraStatKey] || 0;
-            targetItemClone.quality += ((currentValue / maxValue) * 100);
+            if (maxValue !== 0) { // shouldn't be possible since .filter() earlier catches this, but just to be safe
+              const currentValue = targetItemClone.extraStats[extraStatKey] || 0;
+              targetItemClone.quality += ((currentValue / maxValue) * 100);
+            }
           });
 
           targetItemClone.quality = Math.round(targetItemClone.quality / extraStatKeys.length);

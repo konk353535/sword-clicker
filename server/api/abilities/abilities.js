@@ -318,6 +318,11 @@ Meteor.methods({
 
     return abilitiesArray;
   },
+  
+  'abilities.getAbilityInfo'(abilityId, level) {
+    level = level || 1;
+    return { ability: ABILITIES[abilityId], description: ABILITIES[abilityId].description(level) };
+  },
 
   'abilities.fetchLibraryExtra'() {
     const userAbilities = Abilities.findOne({

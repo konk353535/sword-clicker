@@ -170,11 +170,11 @@
               {{#if item.shiftAction}}
                 {{#if item.shiftAction.description}}
                   <div>
-                    <b>Left Click</b> to use or sell for {{> formatNumber number=constants.sellPrice}}
+                    <b>Left Click</b> to use or sell for <img src="/icons/goldCoin.svg" class="extra-small-icon"> {{> formatNumber number=constants.sellPrice}}
                   </div>
                 {{/if}}
               {{else}}
-                <b>Left Click</b> to sell for {{> formatNumber number=constants.sellPrice}}
+                <b>Left Click</b> to sell for <img src="/icons/goldCoin.svg" class="extra-small-icon"> {{> formatNumber number=constants.sellPrice}}
               {{/if}}
             {{/if}}
 

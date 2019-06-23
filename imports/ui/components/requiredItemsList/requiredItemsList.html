@@ -46,7 +46,7 @@
         {{/if}}
       {{/each}}
       {{#if duration}}
-        Craft Time {{duration}}s
+        Craft Time {{#if betterDuration}}{{betterDuration}}{{else}}{{duration}}s{{/if}}
       {{/if}}
     </div>
   </div>

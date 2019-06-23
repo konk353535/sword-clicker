@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { determineRequiredItems } from '/imports/ui/utils.js';
 
+import { CInt } from '/imports/utils';
+
 import './requiredItemsList.html';
 
 let tooltip;
@@ -72,5 +74,28 @@ Template.requiredItemsList.helpers({
 
   hasSkillRequirements() {
     return Template.instance().state.get('hasSkillRequirements');
+  },
+  
+  betterDuration() {
+    const inst = Template.instance();
+    if (inst && inst.data && CInt(inst.data.duration) > 0) {
+      const duration = CInt(inst.data.duration);
+      
+      const seconds = duration % 60;
+      const minutes = Math.floor(duration / 60) % 60;
+      const hours = Math.floor(duration / (60 * 60)) % 24;
+      const days = Math.floor(duration / (24 * 60  * 60));
+      
+      if (days > 0) {
+        return `${days}d${hours}h`;
+      } else if (hours > 0) {
+        return `${hours}h${minutes}m`;
+      } else if (minutes > 0) {
+        return `${minutes}m${seconds}s`;
+      } else {
+        return `${seconds}s`;
+      }
+    }
+    return false;
   }
 });

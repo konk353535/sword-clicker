@@ -260,8 +260,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 1.2 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 5.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0.5,
+      attackMax: 5.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -297,8 +296,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 2.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 7.6 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 7.6 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -334,8 +332,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 2.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 9.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 9.8 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -371,8 +368,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 3.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 12.3 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 12.3 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -408,8 +404,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 4.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 14.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 14.8 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -445,8 +440,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 4.9 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 17.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 17.7 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -482,8 +476,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 5.8 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 20.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 20.7 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -519,8 +512,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 6.5 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 23.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 23.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -556,8 +548,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 7.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 27.8 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 27.8 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -593,8 +584,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 8.9 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 32 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 32 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -630,8 +620,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 10.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 36.2 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 36.2 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -667,8 +656,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 11.3 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 40.5 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 40.5 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -704,8 +692,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 12.6 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 45.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 45.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -741,8 +728,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 14 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 50.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 50.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -778,8 +764,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 15.4 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 55.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 55.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -815,8 +800,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 16.8 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 60.4 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 60.4 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -852,8 +836,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 18.7 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 67 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 67 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -889,8 +872,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 20.5 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 73.7 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 73.7 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -926,8 +908,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 23 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 82.6 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 82.6 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance
@@ -963,8 +944,7 @@ export const ARCHER_ITEMS = {
     },
     extraStats: {
       attack: 25.1 * BATTLEAXE_TO_BOW_ATTACKMIN,
-      attackMax: 90 * BATTLEAXE_TO_BOW_ATTACKMAX,
-      accuracy: 0,
+      attackMax: 90 * BATTLEAXE_TO_BOW_ATTACKMAX
     },
     upgradeRarity: [
       { chance: 10,  rarityId: 'crude', },    // 10% chance

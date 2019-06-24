@@ -200,6 +200,8 @@ UserSchema = new SimpleSchema({
   'stats.combatMostDamageDone': { type: Number, defaultValue: 0 },
   'stats.combatMostHealingDone': { type: Number, defaultValue: 0 },
   'stats.combatMostDamageTaken': { type: Number, defaultValue: 0 },
+  
+  townKarma: { type: Number, optional: true, defaultValue: 0 },
 });
 
 Meteor.users.attachSchema(UserSchema);

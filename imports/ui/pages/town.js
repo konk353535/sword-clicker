@@ -8,6 +8,7 @@ import Numeral from 'numeral';
 import { Servers } from '/imports/api/servers/servers.js';
 import { Town, calculateItemKarma, karmaLevelValues } from '/imports/api/town/town.js';
 import { Users } from '/imports/api/users/users.js';
+import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
 import { State } from '/imports/api/state/state';
 import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
@@ -96,6 +97,18 @@ Template.townPage.helpers({
 
   yourKarma() {
     return CInt(Template.instance().state.get('yourKarma'));
+  },
+  
+  karmaXPBonus(skillName) {
+    const playerKarma = CDbl(Template.instance().state.get('yourKarma'));
+    let skillLevel = 0;
+    
+    const skillDoc = Skills.findOne({ type: skillName });
+    if (skillDoc) {
+      skillLevel = CInt(skillDoc.level);
+    }
+    
+    return (skillLevel > 0 ? autoPrecisionValue(playerKarma / (Math.pow(1.045, (CDbl(skillLevel) / 2.5)) * 75)) : 0);
   },
 
   totalKarma() {

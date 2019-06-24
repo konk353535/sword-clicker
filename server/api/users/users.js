@@ -504,7 +504,8 @@ Meteor.publish("userData", function () {
         'isSuperMod': 1,
         'isGuest': 1,
         'isMutedExpiry': 1,
-        'stats': 1
+        'stats': 1,
+        'townKarma': 1
       }
     });
   } else {

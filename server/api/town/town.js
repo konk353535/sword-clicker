@@ -8,10 +8,9 @@ import { State } from '/imports/api/state/state';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 
-import { CInt } from '/imports/utils';
-import { createTown } from '/imports/api/town/town';
+import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
+import { createTown, calculateItemKarma, karmaLevelValues } from '/imports/api/town/town.js';
 import { updateUserActivity, serverFromUser } from '/imports/api/users/users.js';
-import { karmaLevelValues } from '/imports/api/town/town.js';
 import { getGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import { FLOORS } from '/server/constants/floors/index';
@@ -274,6 +273,46 @@ Meteor.methods({
       return serverDoc.town.day6goods;
     }
     return serverDoc.town.day7goods;
+  },
+  
+  'town.updatePersonalKarma'() {
+    const serverDoc = Servers.findOne({ _id: serverFromUser() }, {tx: true});
+    if (!serverDoc || !serverDoc.town) {
+      tx.cancel();
+      return;
+    }
+    
+    // update personal karma
+    try {
+      let yourKarma = 0;
+      const townGoodsThisDay = serverDoc.town.day1goods;
+      
+      if (townGoodsThisDay && townGoodsThisDay.length > 0) {
+        constitems = townGoodsThisDay.map((item) => {
+          const itemConstants = ITEMS[item.itemId];
+          
+          if (itemConstants) {
+            if (item.username === Meteor.user().username) {
+              const newItem = Object.assign({}, itemConstants, item);
+              newItem.amount = item.count;
+              newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count);
+              yourKarma += autoPrecisionValue(calculateItemKarma(newItem) * item.count);
+              return newItem;
+            }
+          }
+          return item;
+        });
+      }
+      
+      Users.update(Meteor.userId(), {
+        $set: { townKarma: yourKarma }
+      });
+      
+      //console.log(Meteor.user().username, "karma is now", yourKarma);
+    } catch (err) {
+      console.log("Couldn't update personal karma for:", Meteor.user().username);
+      console.log(err);
+    }
   },
   
   'town.donateItem'(_id, itemId, amount, building) {

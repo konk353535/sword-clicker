@@ -22,7 +22,7 @@ Router.route('/', {
   },
 });
 
-(['gameHome', 'overview']).forEach((pageAlias) => {
+(['overview', 'gameHome']).forEach((pageAlias) => {
   Router.route(`/${pageAlias}`, {
     name: pageAlias,
     title: 'Overview',

@@ -1,17 +1,54 @@
 <template name="townPage">
+  <h2 class="ml-1 mb-0" style="margin-right: 40px;">Daily Town Kharma Overview</h2>
   <div class="d-flex flex-row" style="margin-top: 20px;">
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th><b>Total Karma Today</b></th>
-            <th><b>Your Karma Today</b></th>
+            <th><b>Total Karma From Everyone Today</b></th>
+            <th><b>Your Personal Karma Today</b></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{> formatNumber number=totalKarma decimal=0}}</td>
             <td>{{> formatNumber number=yourKarma decimal=0}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <h2 class="ml-1 mb-0" style="margin-right: 40px;">Daily Personal Karma Rewards</h2>
+  <div class="d-flex flex-row" style="margin-top: 20px;">
+    <div class="table-responsive">
+      <table class="table table-bordered" style="text-align: center;">
+        <thead>
+          <tr>
+            <th><i class="lilIcon-attack extra-small-icon mr-3"></i><b>Attack</b></th>
+            <th><i class="lilIcon-defense extra-small-icon mr-3"></i><b>Defense</b></th>
+            <th><i class="lilIcon-magic extra-small-icon mr-3"></i><b>Magic</b></th>
+            <th><i class="lilIcon-health extra-small-icon mr-3"></i><b>Health</b></th>
+            <th><i class="lilIcon-mining extra-small-icon mr-3"></i><b>Mining</b></th>
+            <th><i class="lilIcon-crafting extra-small-icon mr-3"></i><b>Crafting</b></th>
+            <th><i class="lilIcon-inscription extra-small-icon mr-3"></i><b>Inscription</b></th>
+            <th><i class="lilIcon-farming extra-small-icon mr-3"></i><b>Farming</b></th>
+            <th><i class="lilIcon-woodcutting extra-small-icon mr-3"></i><b>Woodcutting</b></th>
+            <th><i class="lilIcon-astronomy extra-small-icon mr-3"></i><b>Astronomy</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{#if $gt (karmaXPBonus 'attack') 0}}+{{> formatNumber number=(karmaXPBonus 'attack')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'defense') 0}}+{{> formatNumber number=(karmaXPBonus 'defense')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'magic') 0}}+{{> formatNumber number=(karmaXPBonus 'magic')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'health') 0}}+{{> formatNumber number=(karmaXPBonus 'health')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'mining') 0}}+{{> formatNumber number=(karmaXPBonus 'mining')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'crafting') 0}}+{{> formatNumber number=(karmaXPBonus 'crafting')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'inscription') 0}}+{{> formatNumber number=(karmaXPBonus 'inscription')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'farming') 0}}+{{> formatNumber number=(karmaXPBonus 'farming')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'woodcutting') 0}}+{{> formatNumber number=(karmaXPBonus 'woodcutting')}}%{{else}}<i>none</i>{{/if}}</td>
+            <td>{{#if $gt (karmaXPBonus 'astronomy') 0}}+{{> formatNumber number=(karmaXPBonus 'astronomy')}}%{{else}}<i>none</i>{{/if}}</td>
           </tr>
         </tbody>
       </table>

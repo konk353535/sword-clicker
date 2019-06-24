@@ -25,6 +25,7 @@ import lodash from 'lodash';
 
 import { updateUserActivity } from '/imports/api/users/users.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
 
 let globalXpBuffs = {};
 
@@ -91,6 +92,16 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
       if (townBuffObservatoryLevel > 0) {
         bonusXpPercent += Math.ceil((townBuffObservatoryLevel + 1) * 0.025); // bonus 2.5% per level (starting at 5% for level 1)
       }
+    }
+  }
+  
+  // new 2019-06-24, bonus based on personal karma
+  const userDoc = Users.findOne({ _id: owner });
+  if (userDoc) {
+    if (userDoc.townKarma && (CInt(userDoc.townKarma) > 0)) {
+      const personalKarmaBonus = (CDbl(userDoc.townKarma) / (Math.pow(1.045, (CDbl(skill.level) / 2.5)) * 0.75)) / 100.0;
+      //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
+      bonusXpPercent += personalKarmaBonus;
     }
   }
 

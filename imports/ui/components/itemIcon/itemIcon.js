@@ -333,7 +333,9 @@ const donateItem = function (event, instance) {
   Template.instance().$('.useModal').modal('hide');
 
   const itemData = instance.data.item;
-  Meteor.call('town.donateItem', itemData._id, itemData.itemId, instance.state.get('donateAmount'), itemData.donateSection);
+  Meteor.call('town.donateItem', itemData._id, itemData.itemId, instance.state.get('donateAmount'), itemData.donateSection, () => {
+    Meteor.call('town.updatePersonalKarma');
+  });
 };
 
 const hideItem = function (event, instance) {

@@ -216,6 +216,22 @@ SyncedCron.add({
   }
 });
 
+
+// Reset personal karma
+SyncedCron.add({
+  name: 'Reset Personal Karma (karma)',
+  schedule: function (parser) {
+    return parser.cron('0 0 * * * * *');
+  },
+  job: function() {
+    Users.update(
+      { townKarma: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+      { $set: { townKarma: 0 } },
+      { multi: true }
+    );
+  }
+});
+
 // Reset tower things (daily)
 SyncedCron.add({
   name: 'Reset Offs',

@@ -99,7 +99,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
   const userDoc = Users.findOne({ _id: owner });
   if (userDoc) {
     if (userDoc.townKarma && (CInt(userDoc.townKarma) > 0)) {
-      const personalKarmaBonus = (CDbl(userDoc.townKarma) / (Math.pow(1.045, (CDbl(skill.level) / 2.5)) * 0.75)) / 100.0;
+      const personalKarmaBonus = (CDbl(userDoc.townKarma) / (Math.pow(1.045, (CDbl(skill.level) / 2.5)) * 75)) / 100.0;
       //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
       bonusXpPercent += personalKarmaBonus;
     }

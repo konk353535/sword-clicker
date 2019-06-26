@@ -99,15 +99,17 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
       const itemStats = lodash.cloneDeep(combatItemBaseStats);
       if (combatItemExtraStats) {
         Object.keys(combatItemExtraStats).forEach((extraStatName) => {
-          if (itemStats[extraStatName]) {
-            itemStats[extraStatName] += combatItemExtraStats[extraStatName];
+          if (!itemStats[extraStatName]) {
+            itemStats[extraStatName] = 0;
           }
+          itemStats[extraStatName] += combatItemExtraStats[extraStatName];
         });
       }
       Object.keys(itemStats).forEach((statKey) => {
-        if (playerData.stats[statKey] !== undefined) {
-          playerData.stats[statKey] += itemStats[statKey];
+        if (playerData.stats[statKey] === undefined) {
+          playerData.stats[statKey] = 0;
         }
+        playerData.stats[statKey] += itemStats[statKey];
       });
 
       if (combatItem.constants.slot === 'mainHand') {
@@ -127,9 +129,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     // todo: count each section cumulatively so that one item with % bonuses and another with % bonuses don't multiply, they add    
     if (combatItem.constants.percentStats) {
       Object.keys(combatItem.constants.percentStats).forEach((percentStatName) => {
-        if (playerData.stats[percentStatName] !== undefined) {
-          playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentStats[percentStatName] / 100.0);
+        if (playerData.stats[percentStatName] === undefined) {
+          playerData.stats[percentStatName] = 0;
         }
+        playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentStats[percentStatName] / 100.0);
       });
     }
   }
@@ -152,9 +155,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     if (combatSkill.constants.statsPerLevel) {
       const skillStatsPerLevel = lodash.cloneDeep(combatSkill.constants.statsPerLevel);
       Object.keys(skillStatsPerLevel).forEach((statKey) => {
-        if (playerData.stats[statKey] !== undefined) {
-          playerData.stats[statKey] += (skillStatsPerLevel[statKey] * skillLevel);
+        if (playerData.stats[statKey] === undefined) {
+          playerData.stats[statKey] = 0;
         }
+        playerData.stats[statKey] += (skillStatsPerLevel[statKey] * skillLevel);
       });
     }
   });
@@ -166,9 +170,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     // todo: count each section cumulatively so that one item with % bonuses and another with % bonuses don't multiply, they add    
     if (combatItem.constants.percentTotalStats) {
       Object.keys(combatItem.constants.percentTotalStats).forEach((percentStatName) => {
-        if (playerData.stats[percentStatName] !== undefined) {
-          playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentTotalStats[percentStatName] / 100.0);
+        if (playerData.stats[percentStatName] === undefined) {
+          playerData.stats[percentStatName] = 0;
         }
+        playerData.stats[percentStatName] *= 1.0 + (combatItem.constants.percentTotalStats[percentStatName] / 100.0);
       });
     }
   }

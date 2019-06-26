@@ -68,9 +68,10 @@ export const updateMiningStats = function (userId, slot='pickaxe', isNewUser = f
         });
         if (equipment.extraStats) {
           Object.keys(equipment.extraStats).forEach((extraStatName) => {
-            if (miningStats[extraStatName]) {
-              miningStats[extraStatName] += equipment.extraStats[extraStatName];
+            if (!miningStats[extraStatName]) {
+              miningStats[extraStatName] = 0;
             }
+            miningStats[extraStatName] += equipment.extraStats[extraStatName];
           });
         }
       }

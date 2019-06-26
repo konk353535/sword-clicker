@@ -225,9 +225,10 @@ Meteor.methods({
 
     if (axeToUse.extraStats) {
       Object.keys(axeToUse.extraStats).forEach((stat) => {
-        if(stats[stat] !== undefined) {
-          stats[stat] += axeToUse.extraStats[stat];
+        if(stats[stat] === undefined) {
+          stats[stat] = 0;
         }
+        stats[stat] += axeToUse.extraStats[stat];
       });
     }
 

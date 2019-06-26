@@ -7,7 +7,7 @@ import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
 
-import { applyRarities } from '/imports/api/items/items.js';
+import { applyRarities, getStatsMap } from '/imports/api/items/items.js';
 
 import './itemIcon.html';
 
@@ -175,9 +175,10 @@ Template.itemIcon.helpers({
 
     if (extraStats) {
       Object.keys(extraStats).forEach((statName) => {
-        if (statsObj[statName]) {
-          statsObj[statName] += extraStats[statName];
+        if (!statsObj[statName]) {
+          statsObj[statName] = 0;
         }
+        statsObj[statName] += extraStats[statName];
       });
     }
 

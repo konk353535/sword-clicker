@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 
+import { combineStatsMap } from '/imports/api/items/items.js';
+
 import { CDbl, autoPrecisionValue } from '../../../utils.js';
 
 import './displayCombatStats.html';
@@ -43,7 +45,7 @@ Template.displayCombatStats.helpers({
   },
 
   withExtraStats() {
-    const statsMap = Template.instance().data.stats;
+    const statsMap = combineStatsMap(Template.instance().data.stats, Template.instance().data.extraStats); //Template.instance().data.stats;
     const extraStatsMap = Template.instance().data.extraStats;
     const statsArr = [];
 

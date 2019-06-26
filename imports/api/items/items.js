@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import lodash from 'lodash';
 
-import { ITEM_RARITIES } from '/imports/constants/items/index.js';
+import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 
 import { CDbl } from '/imports/utils.js';
 
@@ -50,4 +50,50 @@ export const applyRarities = function applyRarities(statsObj, rarityId) {
   }
   
   return ((localStatsObj) ? localStatsObj : statsObj);
+};
+
+export const getStatsMap = function getStatsMap(actualItem) {
+  try {
+    const clonedItem = lodash.cloneDeep(actualItem);
+    
+    let localItem;
+    
+    if (!clonedItem.stats) {
+      localItem = { ...(ITEMS[localItem.itemId]), ...(localItem) };
+    } else {
+      localItem = clonedItem;
+    }
+    
+    Object.keys(localItem.extraStats).forEach((key) => {
+      if ((!localItem.stats[key]) || (localItem.stats[key] === undefined)) {
+        localItem.stats[key] = 0;
+      }
+    });
+    
+    return localItem.stats;
+  } catch (err) {
+    console.log("Problem in 'getStatsMap' utility:");
+    console.log(err);
+  }
+  return [];
+};
+
+export const combineStatsMap = function combineStatsMap(origStats, origExtraStats) {
+  try {
+    let clonedStats = lodash.cloneDeep(origStats);
+    
+    if (origExtraStats) {
+      Object.keys(origExtraStats).forEach((key) => {
+        if ((!clonedStats[key]) || (clonedStats[key] === undefined)) {
+          clonedStats[key] = 0;
+        }
+      });
+    }
+    
+    return clonedStats;
+  } catch (err) {
+    console.log("Problem in 'combineStatsMap' utility:");
+    console.log(err);
+  }
+  return [];
 };

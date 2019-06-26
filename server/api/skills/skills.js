@@ -368,9 +368,10 @@ Meteor.methods({
         item.isEquippable = itemConstants.isEquippable;
         if (item.extraStats) {
           Object.keys(item.extraStats).forEach((statName) => {
-            if (item.stats[statName]) {
-              item.stats[statName] += item.extraStats[statName];
+            if (!item.stats[statName]) {
+              item.stats[statName] = 0;
             }
+            item.stats[statName] += item.extraStats[statName];
           });
         }
       }

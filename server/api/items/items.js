@@ -613,6 +613,47 @@ Meteor.methods({
       } else {
         throw new Meteor.Error("invalid-target", 'Invalid target item');
       }
+    }  else if (baseItem.itemId === 'debug_key') {
+      if (targetItemConstants.extraStats) {
+        // Remove the key
+        if (baseItem.amount === 1) {
+          Events.insert({
+            owner: Meteor.userId(),
+            event: 'items.consumeItem',
+            date: new Date(),
+            data: { itemId: baseItem.itemId, id: baseItem._id, baseItem: baseItem.owner }
+          }, () => {});
+          Items.remove({
+            owner: Meteor.userId(),
+            _id: baseItem._id
+          });
+        } else {
+          Items.update({
+            owner: Meteor.userId(),
+            _id: baseItem._id
+          }, {
+            $inc: {
+              amount: -1
+            }
+          });
+        }
+
+        clonedTargetItem = lodash.cloneDeep(targetItem);
+        
+        Object.keys(baseItem.extraStats).forEach((key) => {
+          if (clonedTargetItem.extraStats[key] === undefined) {
+            clonedTargetItem.extraStats[key] = 0;
+          }
+          clonedTargetItem.extraStats[key] += baseItem.extraStats[key];
+        });
+        
+        // Update item quantity
+        Items.update(targetItem._id, {
+          $set: { extraStats: clonedTargetItem.extraStats }
+        });        
+      } else {
+        throw new Meteor.Error("invalid-target", 'Invalid target item');
+      }
     } else if (baseItemConstants.isCraftingScroll) {
       // Learn the craft if we don't already have it
       const crafting = Crafting.findOne({

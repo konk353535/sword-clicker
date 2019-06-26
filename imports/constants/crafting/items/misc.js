@@ -30,6 +30,25 @@ export const MISC_ITEMS = {
       target: 'item'
     },
   },
+  
+  debug_key: {
+    id: 'debug_key',
+    icon: 'phasingKey.svg',
+    category: 'crafting',
+    name: 'debug key',
+    sellPrice: 1,
+    description: `
+      Debug add item effect.<br />
+      There is no undo for using this item.`,
+    shiftActionData: {
+      description: 'test a new feature on an item',
+      target: 'item'
+    },
+    extraStats: {
+      attack: 15,
+      attackMax: 40
+    },
+  },
 
   adventure_token: {
     id: 'adventure_token',

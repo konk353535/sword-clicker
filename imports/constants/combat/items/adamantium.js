@@ -317,7 +317,7 @@ export const ADAMANTIUM_ITEMS = {
     "icon": "adamantiumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "adamantium Chestplate",
+    "name": "adamantium chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,

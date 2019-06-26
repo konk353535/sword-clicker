@@ -317,7 +317,7 @@ export const SILVER_ITEMS = {
     "icon": "silverChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "silver Chestplate",
+    "name": "silver chestplate",
     "sellPrice": 400,
     "description": "Protect your heart",
     "isEquippable": true,

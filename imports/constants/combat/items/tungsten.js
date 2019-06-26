@@ -317,7 +317,7 @@ export const TUNGSTEN_ITEMS = {
     "icon": "tungstenChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "tungsten Chestplate",
+    "name": "tungsten chestplate",
     "sellPrice": 1200,
     "description": "Protect your heart",
     "isEquippable": true,

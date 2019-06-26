@@ -317,7 +317,7 @@ export const CURSED_ITEMS = {
     "icon": "cursedChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "cursed Chestplate",
+    "name": "cursed chestplate",
     "sellPrice": 3000,
     "description": "Protect your heart",
     "isEquippable": true,

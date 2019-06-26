@@ -326,7 +326,7 @@ export const DARKSTEEL_ITEMS = {
     "icon": "darksteelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "darksteel Chestplate",
+    "name": "darksteel chestplate",
     "sellPrice": Math.round(3000 * DARKSTEEL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

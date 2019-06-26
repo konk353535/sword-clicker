@@ -317,7 +317,7 @@ export const ELVEN_STEEL_ITEMS = {
     "icon": "elvenSteelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "elven steel Chestplate",
+    "name": "elven steel chestplate",
     "sellPrice": 2500,
     "description": "Protect your heart",
     "isEquippable": true,

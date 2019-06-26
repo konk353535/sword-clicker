@@ -317,7 +317,7 @@ export const IRON_ITEMS = {
     "icon": "ironChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "iron Chestplate",
+    "name": "iron chestplate",
     "sellPrice": 275,
     "description": "Protect your heart",
     "isEquippable": true,

@@ -328,7 +328,7 @@ export const RELICROCK_ITEMS = {
     "icon": "relicrockChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "relicrock Chestplate",
+    "name": "relicrock chestplate",
     "sellPrice": Math.round(3000 * RELICROCK_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

@@ -320,7 +320,7 @@ export const TITANIUM_ITEMS = {
     "icon": "titaniumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "titanium Chestplate",
+    "name": "titanium chestplate",
     "sellPrice": 1000,
     "description": "Protect your heart",
     "isEquippable": true,

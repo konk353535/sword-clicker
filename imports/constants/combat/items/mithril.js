@@ -317,7 +317,7 @@ export const MITHRIL_ITEMS = {
     "icon": "mithrilChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "mithril Chestplate",
+    "name": "mithril chestplate",
     "sellPrice": 1600,
     "description": "Protect your heart",
     "isEquippable": true,

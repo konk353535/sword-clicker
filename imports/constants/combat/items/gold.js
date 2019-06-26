@@ -317,7 +317,7 @@ export const GOLD_ITEMS = {
     "icon": "goldChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "gold Chestplate",
+    "name": "gold chestplate",
     "sellPrice": 500,
     "description": "Protect your heart",
     "isEquippable": true,

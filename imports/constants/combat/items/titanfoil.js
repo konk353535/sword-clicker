@@ -328,7 +328,7 @@ export const TITANFOIL_ITEMS = {
     "icon": "titanfoilChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "titanfoil Chestplate",
+    "name": "titanfoil chestplate",
     "sellPrice": Math.round(3000 * TITANFOIL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

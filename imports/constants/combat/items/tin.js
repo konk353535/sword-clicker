@@ -317,7 +317,7 @@ export const TIN_ITEMS = {
     "icon": "tinChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "tin Chestplate",
+    "name": "tin chestplate",
     "sellPrice": 75,
     "description": "Protect your heart",
     "isEquippable": true,

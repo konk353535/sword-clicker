@@ -317,7 +317,7 @@ export const OBSIDIAN_ITEMS = {
     "icon": "obsidianChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "obsidian Chestplate",
+    "name": "obsidian chestplate",
     "sellPrice": 1350,
     "description": "Protect your heart",
     "isEquippable": true,

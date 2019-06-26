@@ -317,7 +317,7 @@ export const PLATINUM_ITEMS = {
     "icon": "platinumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "platinum Chestplate",
+    "name": "platinum chestplate",
     "sellPrice": 900,
     "description": "Protect your heart",
     "isEquippable": true,

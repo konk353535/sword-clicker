@@ -317,7 +317,7 @@ export const COBALT_ITEMS = {
     "icon": "cobaltChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "cobalt Chestplate",
+    "name": "cobalt chestplate",
     "sellPrice": 1500,
     "description": "Protect your heart",
     "isEquippable": true,

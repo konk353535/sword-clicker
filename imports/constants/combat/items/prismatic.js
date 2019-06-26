@@ -369,7 +369,7 @@ export const PRISMATIC_ITEMS = {
     "icon": "prismaticChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "prismatic Chestplate",
+    "name": "prismatic chestplate",
     "sellPrice": Math.round(3000 * PRISMATIC_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

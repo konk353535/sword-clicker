@@ -317,7 +317,7 @@ export const FAIRY_STEEL_ITEMS = {
     "icon": "fairySteelChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "fairy steel Chestplate",
+    "name": "fairy steel chestplate",
     "sellPrice": 2250,
     "description": "Protect your heart",
     "isEquippable": true,

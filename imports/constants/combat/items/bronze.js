@@ -317,7 +317,7 @@ export const BRONZE_ITEMS = {
     "icon": "bronzeChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "bronze Chestplate",
+    "name": "bronze chestplate",
     "sellPrice": 175,
     "description": "Protect your heart",
     "isEquippable": true,

@@ -317,7 +317,7 @@ export const CARBON_ITEMS = {
     "icon": "carbonChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "carbon Chestplate",
+    "name": "carbon chestplate",
     "sellPrice": 650,
     "description": "Protect your heart",
     "isEquippable": true,

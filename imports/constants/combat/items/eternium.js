@@ -328,7 +328,7 @@ export const ETERNIUM_ITEMS = {
     "icon": "eterniumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "eternium Chestplate",
+    "name": "eternium chestplate",
     "sellPrice": Math.round(3000 * ETERNIUM_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

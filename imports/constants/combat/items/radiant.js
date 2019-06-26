@@ -327,7 +327,7 @@ export const RADIANT_ITEMS = {
     "icon": "radiantChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "radiant Chestplate",
+    "name": "radiant chestplate",
     "sellPrice": Math.round(3000 * RADIANT_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

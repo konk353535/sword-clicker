@@ -327,7 +327,7 @@ export const ASTRAL_ITEMS = {
     "icon": "astralChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "astral Chestplate",
+    "name": "astral chestplate",
     "sellPrice": Math.round(3000 * ASTRAL_MULTIPLIER),
     "description": "Protect your heart",
     "isEquippable": true,

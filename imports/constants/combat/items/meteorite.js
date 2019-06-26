@@ -317,7 +317,7 @@ export const METEORITE_ITEMS = {
     "icon": "meteoriteChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "meteorite Chestplate",
+    "name": "meteorite chestplate",
     "sellPrice": 2000,
     "description": "Protect your heart",
     "isEquippable": true,

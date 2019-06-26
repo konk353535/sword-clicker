@@ -317,7 +317,7 @@ export const ORICHALCUM_ITEMS = {
     "icon": "orichalcumChestplate.png",
     "category": "combat",
     "slot": "chest",
-    "name": "orichalcum Chestplate",
+    "name": "orichalcum chestplate",
     "sellPrice": 1800,
     "description": "Protect your heart",
     "isEquippable": true,

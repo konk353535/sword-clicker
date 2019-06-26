@@ -368,7 +368,7 @@ Meteor.methods({
     let startDate = new Date();
 
     if (crafting.currentlyReforging && crafting.currentlyReforging.length > 0) {
-      // Get latest reforging time and use that for next items reforging start time
+      // Get latest reforging time and use that for next item's reforging start time
       // This will make reforging sequential
       startDate = _.sortBy(crafting.currentlyReforging, 'endDate').reverse()[0].endDate;
     }

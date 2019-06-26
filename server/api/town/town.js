@@ -130,12 +130,20 @@ export const newTownDay = function newTownDay() {
 };
 
 const consolidateGoods = function consolidateGoods(inputGoods) {
-  const tempGoodsList = lodash.cloneDeep(inputGoods);
-  let consolidatedGoods = tempGoodsList.reduce((accumulator, currentValue, currentIndex, sourceArray) => {
+  //const tempGoodsList = lodash.cloneDeep(inputGoods);
+  //const tempGoodsList = JSON.parse(JSON.stringify(inputGoods));
+  
+  let goodsListLength = inputGoods.length;
+  let tempGoodsList = Array(goodsListLength);
+  while (goodsListLength--) {
+    tempGoodsList[goodsListLength] = inputGoods[goodsListLength];
+  }
+  
+  const consolidatedGoods = tempGoodsList.reduce((accumulator, currentValue, currentIndex, sourceArray) => {
     let needsToBeAdded = true;
     accumulator.forEach((item) => {
       if ((item.itemId === currentValue.itemId) && (item.owner === currentValue.owner) && (item.townBuilding === currentValue.townBuilding) && (item.rarityId === currentValue.rarityId)) {
-        item.count = CInt(item.count) + CInt(currentValue.count);
+        item.count = item.count + currentValue.count;
         needsToBeAdded = false;
       }
     });

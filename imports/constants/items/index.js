@@ -172,11 +172,11 @@ export const ITEM_RARITIES = {
     color: '3388aa',
     statBonuses: 37.5,
     nextRarity: {
-      rarityId: 'fine',
+      rarityId: 'extraordinary',
       successChance: 15.0, // 1% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
-      rarityId: 'extraordinary'
+      rarityId: 'fine'
     },
   },
  

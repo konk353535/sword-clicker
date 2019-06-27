@@ -54,6 +54,36 @@ Template.townPage.onCreated(function bodyOnCreated() {
   });
 });
 
+Template.townPage.events({
+  'click .multiDonateStart'(event, instance) {
+    Session.set('multiDonate', true);
+    Session.set('multiDonateItems', {});
+  },
+
+  'click .multiDonateConfirm'(event, instance) {
+    instance.$('.confirmDonateModal').modal('show');
+  },
+
+  'click .multiDonateCancel'(event, instance) {
+    Session.set('multiDonate', false);
+    Session.set('multiDonateItems', {});
+  },
+
+  'click .modalButtonConfirm'(event, instance) {
+    instance.$('.confirmDonateModal').modal('hide');
+    Session.set('multiDonate', false);
+    const items = Session.get('multiDonateItems');
+    Object.keys(items).forEach((item) => {
+      Meteor.call('town.donateItem', items[item].id, items[item].itemId, items[item].amount, Template.instance().state.get('townSection'));
+    });
+    Session.set('multiDonateItems', {});
+  },
+  
+  'click .modalButtonCancel'(event, instance) {
+    instance.$('.confirmDonateModal').modal('hide');
+  },
+});
+
 Template.townPage.helpers({
   isAdmin() {
     const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });
@@ -117,6 +147,10 @@ Template.townPage.helpers({
 
   townSection() {
     return Template.instance().state.get('townSection');
+  },
+  
+  multiDonating() {
+    return Session.get('multiDonate');
   },
   
   townGoods(day = 1) {

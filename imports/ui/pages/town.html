@@ -84,13 +84,23 @@
 
   <div class="d-flex justify-content-left align-items-left flex-column">
     <div class="mb-1 flex-grow">
-      <h5>Your Items (You Can Donate These)</h5>
-      <div class="d-flex flex-wrap">
-        {{#each items}}
-          {{> itemIcon item=this classes="small"}}
-        {{else}}
-          You have no items that can be donated here.
-        {{/each}}
+      <div class="mb-1">
+        <div class="d-flex align-items-center mb-1">
+          <h5 class="mb-0 mr-auto">Your Items (You Can Donate These)</h5>
+          {{#if multiDonating}}
+            <i class="material-icons icon-danger multiDonateConfirm">thumb_up</i>
+            <i class="material-icons multiDonateCancel">clear</i>
+          {{else}}
+            <i class="material-icons multiDonateStart">thumb_up</i>
+          {{/if}}
+        </div>
+        <div class="d-flex flex-wrap">
+          {{#each items}}
+            {{> itemIcon item=this classes="small"}}
+          {{else}}
+            You have no items that can be donated here.
+          {{/each}}
+        </div>
       </div>
     
       <h5 style="margin-top: 30px;">Town Items Donated Today (By Everyone) {{{thisSectionKarmaInfo}}}</h5>
@@ -102,6 +112,26 @@
             {{ > itemIcon item=this classes="small" readOnly=true }}
           {{/each}}
         {{/unless}}
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal confirmDonateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Donate Items</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Really donate the selected items?</p>
+          <div class="d-flex">
+            <button class="btn btn-danger modalButtonConfirm ml-auto">Yes</button>
+            <button class="btn btn-success modalButtonCancel ml-2">No</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

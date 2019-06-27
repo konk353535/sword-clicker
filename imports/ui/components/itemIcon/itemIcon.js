@@ -250,6 +250,15 @@ Template.itemIcon.helpers({
     return selling;
   },
   
+  multiDonating() {
+    const instance = Template.instance();
+    let donating = false;
+    if(!_.isUndefined(Session.get('multiDonateItems'))) {
+      donating = Session.get('multiDonateItems').hasOwnProperty(instance.data.item._id);
+    }
+    return donating;
+  },
+  
   multiShowing() {
     const instance = Template.instance();
     let showing = false;
@@ -372,6 +381,21 @@ Template.itemIcon.events({
         };
       }
       Session.set('multiSellItems', currentItems);
+      return;
+    }
+
+    if(Session.get('multiDonate')) {
+      let currentItems = Session.get('multiDonateItems');
+      if(currentItems.hasOwnProperty(instance.data.item._id)) {
+        delete currentItems[instance.data.item._id];
+      } else {
+        currentItems[instance.data.item._id] = {
+          id: instance.data.item._id,
+          itemId: instance.data.item.itemId,
+          amount: instance.data.item.amount
+        };
+      }
+      Session.set('multiDonateItems', currentItems);
       return;
     }
 

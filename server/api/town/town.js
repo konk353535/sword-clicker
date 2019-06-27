@@ -129,6 +129,27 @@ export const newTownDay = function newTownDay() {
   syncKarmaBuffs();
 };
 
+const addDonatedItem = function addDonatedItem(inputGoods, inputItem) {
+  let alreadyExistedIndex = -1;
+  
+  const keys = Object.keys(inputGoods);
+  
+  for (let i = 0; i < keys.length; i++) {
+    if ((inputGoods[i].itemId === inputItem.itemId) && (inputGoods[i].owner === inputItem.owner) && (inputGoods[i].townBuilding === inputItem.townBuilding) && (inputGoods[i].rarityId === inputItem.rarityId)) {
+      alreadyExistedIndex = i;
+      break;
+    }
+  }
+  
+  if (alreadyExistedIndex !== -1) {
+    inputGoods[alreadyExistedIndex].count = CInt(inputGoods[alreadyExistedIndex].count) + CInt(inputItem.count);
+  } else {
+    inputGoods = inputGoods.concat(inputItem);
+  }
+  
+  return inputGoods;
+}
+
 const consolidateGoods = function consolidateGoods(inputGoods) {
   //const tempGoodsList = lodash.cloneDeep(inputGoods);
   //const tempGoodsList = JSON.parse(JSON.stringify(inputGoods));
@@ -370,20 +391,24 @@ Meteor.methods({
         return;
       }
     }
+    
+    let updatedGoods = ((serverDoc.town.day1goods) ? serverDoc.town.day1goods : []);
+    
+    updatedGoods = addDonatedItem(updatedGoods, {
+      townBuilding: building,
+      itemId: currentItem.itemId,
+      rarityId: currentItem.rarityId,
+      count: amountToDonate,
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
+    });
 
     // Update the server with the additional item, consolidating using an accumulator
     Servers.update({
       _id: serverFromUser()
     }, {
       $set: {
-        'town.day1goods': consolidateGoods(((serverDoc.town.day1goods) ? serverDoc.town.day1goods : []).concat({
-          townBuilding: building,
-          itemId: currentItem.itemId,
-          rarityId: currentItem.rarityId,
-          count: amountToDonate,
-          owner: Meteor.userId(),
-          username: Meteor.user().username,
-        }))
+        'town.day1goods': updatedGoods
       }
     }, {tx: true});
     

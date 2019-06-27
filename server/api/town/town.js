@@ -129,6 +129,127 @@ export const newTownDay = function newTownDay() {
   syncKarmaBuffs();
 };
 
+const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
+  // todo: validate item qualifies for building, maybe add to ITEMS constants?
+
+  const serverDoc = Servers.findOne({ _id: serverFromUser() });
+  if (!serverDoc || !serverDoc.town) {
+    return;
+  }
+  
+  const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId });
+  if (!currentItem || currentItem.equipped) {
+    return;
+  }
+
+  let amountToDonate = amount;
+  
+  if (amountToDonate >= currentItem.amount) {
+    // USE UP ALL OF AN ITEM (delete)
+    
+    // Cap amount donated to actual item amount;
+    amountToDonate = currentItem.amount;
+    
+    // Delete item
+    const itemsUpdated = Items.remove(currentItem._id);
+    if (itemsUpdated <= 0) {
+      return;
+    }
+  } else {
+    // USE UP SOME OF AN ITEM (decrement)
+    
+    // Decrement item quantity
+    const itemsUpdated = Items.update(currentItem._id, {
+      $inc: { amount: (amountToDonate * -1) }
+    });
+    if (itemsUpdated <= 0) {
+      return;
+    }
+  }
+  
+  const inputItem = {
+    townBuilding: building,
+    itemId: currentItem.itemId,
+    rarityId: currentItem.rarityId,
+    count: amountToDonate,
+    owner: Meteor.userId(),
+    username: Meteor.user().username,
+  };
+  
+  // note: tried reading all data, changing it locally, and writing out the entire array but the net
+  //       operations back to mlabs.com where the database lives was killing the CPU because meteor
+  //       will block until the operation completes
+  //
+  // note: also tried setting data with $inc: but it didn't like the query, so now we pull the matching
+  //       element from the array, read its count, and insert it back with the combined counts
+  
+  const existingItemData = donatedItemExistsData(serverDoc.town.day1goods, inputItem);
+  
+  if (existingItemData.exists) {
+    inputItem.count += CInt(existingItemData.data.count);
+    
+    if ((inputItem.rarityId) && (inputItem.rarityId !== undefined) && (typeof inputItem.rarityId === 'string')) {
+      Servers.update({
+          _id: serverFromUser()
+        }, {
+          $pull: {
+            'town.day1goods': {
+              itemId: inputItem.itemId,
+              owner: inputItem.owner,
+              townBuilding: inputItem.townBuilding,
+              rarityId: inputItem.rarityId
+            }
+          }
+        }
+      );   
+    } else {
+      Servers.update({
+          _id: serverFromUser()
+        }, {
+          $pull: {
+            'town.day1goods': {
+              itemId: inputItem.itemId,
+              owner: inputItem.owner,
+              townBuilding: inputItem.townBuilding
+            }
+          }
+        }
+      );   
+    }
+  }
+  
+  Servers.update({
+      _id: serverFromUser()
+    }, {
+      $push: {
+        'town.day1goods': inputItem
+      }
+    }
+  );
+  
+  return true;
+};
+
+const donatedItemExistsData = function donatedItemExistsData(inputGoods, inputItem) {
+  let alreadyExistedIndex = -1;
+  
+  const keys = Object.keys(inputGoods);
+  
+  for (let i = 0; i < keys.length; i++) {
+    if ((inputGoods[i].itemId === inputItem.itemId) && (inputGoods[i].owner === inputItem.owner) && (inputGoods[i].townBuilding === inputItem.townBuilding) && (inputGoods[i].rarityId === inputItem.rarityId)) {
+      alreadyExistedIndex = i;
+      break;
+    }
+  }
+  
+  if (alreadyExistedIndex !== -1) {
+    return { missing: false, exists: true, index: alreadyExistedIndex, data: inputGoods[alreadyExistedIndex] };
+  }
+  
+  return { missing: true, exists: false, index: -1, data: {} };
+};
+
+/*
 const addDonatedItem = function addDonatedItem(inputGoods, inputItem) {
   let alreadyExistedIndex = -1;
   
@@ -148,7 +269,7 @@ const addDonatedItem = function addDonatedItem(inputGoods, inputItem) {
   }
   
   return inputGoods;
-}
+};
 
 const consolidateGoods = function consolidateGoods(inputGoods) {
   //const tempGoodsList = lodash.cloneDeep(inputGoods);
@@ -175,7 +296,8 @@ const consolidateGoods = function consolidateGoods(inputGoods) {
   }, []);
   return consolidatedGoods;
 };
-    
+*/
+
 Meteor.publish('town', function() {
   const transform = function(doc) {
     return doc.town;
@@ -344,76 +466,31 @@ Meteor.methods({
     }
   },
   
+  'town.donateItems'(arrayOfItems, building) {
+    if (!arrayOfItems || (typeof arrayOfItems !== 'object') || (!Array.isArray(arrayOfItems)) || !building || (typeof building !== 'string')) {
+      return;
+    }
+    
+    arrayOfItems.forEach((thisItem) => {
+      if (thisItem._id && thisItem.itemId && thisItem.amount) {
+        donateThisItem(thisItem._id, thisItem.itemId, thisItem.amount, building);        
+      }
+    });
+    
+    // snychronize town/karma buffs
+    syncKarmaBuffs();
+    
+    // update that the user is actively playing
+    updateUserActivity({userId: Meteor.userId()});
+  },
+  
   'town.donateItem'(_id, itemId, amount, building) {
     if (!_id || !itemId || !amount || amount <= 0 || !building || (typeof building !== 'string')) {
       return;
     }
     
-    // todo: validate item qualifies for building, maybe add to ITEMS constants?
-
-    tx.start("Donate item to town");
+    donateThisItem(_id, itemId, amount, building);
     
-    const serverDoc = Servers.findOne({ _id: serverFromUser() }, {tx: true});
-    if (!serverDoc || !serverDoc.town) {
-      tx.cancel();
-      return;
-    }
-    
-    const currentItem = Items.findOne({ _id, owner: Meteor.userId(), itemId: itemId }, {tx: true});
-    if (!currentItem || currentItem.equipped) {
-      tx.cancel();
-      return;
-    }
-
-    let amountToDonate = amount;
-    
-    if (amountToDonate >= currentItem.amount) {
-      // USE UP ALL OF AN ITEM (delete)
-      
-      // Cap amount donated to actual item amount;
-      amountToDonate = currentItem.amount;
-      
-      // Delete item
-      const itemsUpdated = Items.remove(currentItem._id, {tx: true});
-      if (itemsUpdated <= 0) {
-        tx.cancel();
-        return;
-      }
-    } else {
-      // USE UP SOME OF AN ITEM (decrement)
-      
-      // Decrement item quantity
-      const itemsUpdated = Items.update(currentItem._id, {
-        $inc: { amount: (amountToDonate * -1) }
-      }, {tx: true});
-      if (itemsUpdated <= 0) {
-        tx.cancel();
-        return;
-      }
-    }
-    
-    let updatedGoods = ((serverDoc.town.day1goods) ? serverDoc.town.day1goods : []);
-    
-    updatedGoods = addDonatedItem(updatedGoods, {
-      townBuilding: building,
-      itemId: currentItem.itemId,
-      rarityId: currentItem.rarityId,
-      count: amountToDonate,
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
-
-    // Update the server with the additional item, consolidating using an accumulator
-    Servers.update({
-      _id: serverFromUser()
-    }, {
-      $set: {
-        'town.day1goods': updatedGoods
-      }
-    }, {tx: true});
-    
-    tx.commit(); // Commit transaction: "Donate item to town"
-
     // snychronize town/karma buffs
     syncKarmaBuffs();
     

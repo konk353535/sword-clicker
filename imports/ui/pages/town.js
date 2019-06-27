@@ -73,9 +73,15 @@ Template.townPage.events({
     instance.$('.confirmDonateModal').modal('hide');
     Session.set('multiDonate', false);
     const items = Session.get('multiDonateItems');
+    
+    let itemsToDonate = [];
+    
     Object.keys(items).forEach((item) => {
-      Meteor.call('town.donateItem', items[item].id, items[item].itemId, items[item].amount, Template.instance().state.get('townSection'));
+      itemsToDonate = itemsToDonate.concat({_id: items[item].id, itemId: items[item].itemId, amount: items[item].amount});
     });
+    
+    Meteor.call('town.donateItems', itemsToDonate, Template.instance().state.get('townSection'));
+    
     Session.set('multiDonateItems', {});
   },
   

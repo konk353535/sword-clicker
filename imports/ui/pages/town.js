@@ -303,8 +303,8 @@ Template.townPage.helpers({
         
         if (townSection === 'dwellings') {
           if (item.category === 'food') return true;
-          if (item.category === 'seed' && item.seedType === 'food') return true;
-          if (item.category === 'seed' && item.seedType === 'xp') return true;
+          //if (item.category === 'seed' && item.seedType === 'food') return true;
+          //if (item.category === 'seed' && item.seedType === 'xp') return true;
           if (item.itemId === 'ore_coal') return true;
           if (item.itemId === 'cactus') return true;
           if (item.itemId === 'reed') return true;
@@ -363,6 +363,8 @@ Template.townPage.helpers({
 Template.townPage.events({
   'click .town-filter'(event, instance) {
     const filter = instance.$(event.target).closest('.town-filter').data('filter');
+    Session.set('multiDonate', false);
+    Session.set('multiDonateItems', {});
     Meteor.call('users.setUiState', 'townSection', filter);
   },
 });

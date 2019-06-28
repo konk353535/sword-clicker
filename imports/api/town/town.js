@@ -68,7 +68,6 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
       return CInt(item.sellPrice);
     }
 
-    /*
     if (item.category === 'seed' && item.seedType === 'food') {
       const targetItem = ITEMS[item.id.substring(0, item.id.length - 5)];
       if (!targetItem) {
@@ -84,7 +83,6 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
       }
       return CInt(Math.ceil(targetItem.xp / 75));
     }
-    */
     
     if (item.id === 'ore_coal') return 1;
     if (item.id === 'cactus') return 8;

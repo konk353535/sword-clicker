@@ -44,7 +44,7 @@ Template.combatAbilitiesTab.helpers({
             if (err) {
               toastr.warning(err.reason);
             } else {
-              toastr.success(`Successfully learnt ${item.name}`)
+              toastr.success(`Successfully learned ${item.name}`)
             }
           });
         }

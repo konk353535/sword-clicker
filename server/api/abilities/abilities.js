@@ -136,7 +136,7 @@ Meteor.methods({
 
     if (!targetEquip) {
       tx.cancel();
-      throw new Meteor.Error("not-learnt", "You haven't learnt this ability.");
+      throw new Meteor.Error("not-learnt", "You haven't learned this ability.");
     }
     
     const targetEquipConstants = ABILITIES[targetEquip.abilityId];
@@ -208,7 +208,7 @@ Meteor.methods({
     // Is existing ability equal or above level off target tomb?
     if (hasTargetAbility && hasTargetAbility.level >= tomeConstants.teaches.level) {
       //tx.cancel();
-      throw new Meteor.Error("already-learnt", "You've already learnt this ability.");
+      throw new Meteor.Error("already-learnt", "You've already learned this ability.");
     }
 
     // Make sure if this is above level 1, we already have the previous level

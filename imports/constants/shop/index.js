@@ -102,3 +102,26 @@ export const PLAYER_ICONS = {
     }]
   }
 };
+
+export const getAvailablePlayerIcons = function getAvailablePlayerIcons(combatDoc) {
+  if (!combatDoc) {
+    return { playerIconsConsts: PLAYER_ICONS, availableIcons: [] };
+  }
+
+  let local_PLAYER_ICONS = PLAYER_ICONS;
+  
+  const local_bonusIcons = combatDoc.bonusIcons.map((thisIcon) => {
+    if ((thisIcon.indexOf('.png') !== -1) || (thisIcon.indexOf('.jpg') !== -1)) {
+      return {name: thisIcon.substring(0, thisIcon.length - 4), icon: thisIcon};
+    }
+    return {name: thisIcon, icon: `${thisIcon}.svg`};
+  });
+
+  local_bonusIcons.forEach((localIcon) => {
+    local_PLAYER_ICONS[localIcon.name] = localIcon;
+  });
+
+  const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(combatDoc.boughtIcons).concat(local_bonusIcons.map((localIcon) => { return localIcon.name; }));
+
+  return { playerIconsConsts: local_PLAYER_ICONS, availableIcons };
+};

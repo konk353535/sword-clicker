@@ -6,7 +6,7 @@ import { Items } from '/imports/api/items/items.js';
 import { Abilities } from '/imports/api/abilities/abilities.js';
 import { Combat } from '/imports/api/combat/combat.js';
 
-import { PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { getAvailablePlayerIcons } from '/imports/constants/shop/index.js';
 
 import './loadout.html';
 
@@ -98,21 +98,21 @@ Template.loadoutPage.helpers({
     if (!myCombat) {
       return [];
     }
+    
+    const availablePlayerIcons = getAvailablePlayerIcons(myCombat);
 
-    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
-
-    return Object.keys(PLAYER_ICONS).map((key) => {
+    return Object.keys(availablePlayerIcons.playerIconsConsts).map((key) => {
       let disabled = true;
       let selected = false;
-      if (_.contains(availableIcons, key)) {
-        disabled = false
+      if (_.contains(availablePlayerIcons.availableIcons, key)) {
+        disabled = false;
       }
 
-      if (myCombat.characterIcon === PLAYER_ICONS[key].icon) {
+      if (myCombat.characterIcon === availablePlayerIcons.playerIconsConsts[key].icon) {
         selected = true;
       }
 
-      return Object.assign({}, PLAYER_ICONS[key], {
+      return Object.assign({}, availablePlayerIcons.playerIconsConsts[key], {
         selected,
         disabled,
         id: key

@@ -61,7 +61,7 @@ Template.skinTab.helpers({
       owner: Meteor.userId()
     });
 
-    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons).concat(myCombat.bonusIcons);
 
     return Object.keys(PLAYER_ICONS).map((key) => {
       let disabled = true;

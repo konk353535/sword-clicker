@@ -198,6 +198,10 @@ Meteor.methods({
       throw new Meteor.Error("already-own", "Already own that icon");
     }
 
+    if (userCombat.bonusIcons && _.contains(userCombat.bonusIcons, iconToBuy.id)) {
+      throw new Meteor.Error("already-own", "Already own that icon");
+    }
+
     if (consumeGems(iconToBuy.cost, Meteor.user())) {
       // Add the icon
       if (!userCombat.boughtIcons) {
@@ -206,13 +210,17 @@ Meteor.methods({
         userCombat.boughtIcons.push(iconToBuy.id);
       }
     }
+    
+    if (!userCombat.bonusIcons) {
+      userCombat.bonusIcons = [];
+    }
 
     if (iconToBuy.id === 'crow_t2') {
-      if (!_.contains(userCombat.boughtIcons, 'crow_t1')) {
+      if (!_.contains(userCombat.boughtIcons, 'crow_t1') && !_.contains(userCombat.bonusIcons, 'crow_t1')) {
         userCombat.boughtIcons.push('crow_t1');
       }
     } else if (iconToBuy.id === 'phoenix_t2') {
-      if (!_.contains(userCombat.boughtIcons, 'phoenix_t1')) {
+      if (!_.contains(userCombat.boughtIcons, 'phoenix_t1') && !_.contains(userCombat.bonusIcons, 'phoenix_t1')) {
         userCombat.boughtIcons.push('phoenix_t1');
       }
     }

@@ -62,6 +62,7 @@ CombatSchema = new SimpleSchema({
   username: { type: String, optional: true },
   foughtBoss: { type: Boolean, defaultValue: false },
   boughtIcons: { type: [String], optional: true },
+  bonusIcons: { type: [String], optional: true },
   characterIcon: { type: String, defaultValue: 'character.svg' },
   stats: { type: Object },
   xpDistribution: { type: Object, blackbox: true, defaultValue: { attack: 0.5, health: 0.5 } },

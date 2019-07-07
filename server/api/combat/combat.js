@@ -17,7 +17,7 @@ import { updateUserActivity } from '/imports/api/users/users.js';
 import { IsValid, CInt } from '/imports/utils.js';
 import { getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
-import { DONATORS_BENEFITS, PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { DONATORS_BENEFITS, getAvailablePlayerIcons } from '/imports/constants/shop/index.js';
 import { ITEMS } from '/imports/constants/items/index.js';
 import { SKILLS } from '/server/constants/skills/index.js';
 import { BATTLES } from '/server/constants/battles/index.js';
@@ -283,14 +283,14 @@ Meteor.methods({
       owner: Meteor.userId()
     });
 
-    const availableIcons = ['default', 'mage_t1', 'tank_t1', 'damage_t1'].concat(myCombat.boughtIcons);
+    const availablePlayerIcons = getAvailablePlayerIcons(myCombat);
 
     // Check if we own it
-    if (!_.contains(availableIcons, id)) {
+    if (!_.contains(availablePlayerIcons.availableIcons, id)) {
       return;
     }
 
-    const targetIcon = PLAYER_ICONS[id];
+    const targetIcon = availablePlayerIcons.playerIconsConsts[id];
     if (!targetIcon) { return; }
 
     // Can we equip the specified item?

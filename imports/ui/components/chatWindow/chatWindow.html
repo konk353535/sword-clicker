@@ -36,10 +36,16 @@
                       {{#if wantCondensedChat}}
                           <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                                id="{{_id}}">
-                              <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
+                              <div class="direct-chat-text chat-{{this.custom.roomType}}">
                                   <span class="direct-chat-timestamp" style="margin-left: 0px;">
                                     {{moFormat date "ddd hh:mma"}}
                                   </span>
+                                  {{#if this.isAdmin}}
+                                    <span style="margin: 0px;"><img src="/icons/cat.svg" style="height: 18px; margin: 0px;" /></span>
+                                  {{/if}}
+                                  {{#if this.avatar}}
+                                    <span style="margin: 0px;"><img src="{{this.avatar}}" style="height: 18px; margin: 0px;" /></span>
+                                  {{/if}}
                                   {{#if $eq name 'Game'}}
                                     <span class="direct-chat-name chat-{{this.custom.roomType}}">
                                       {{name}}
@@ -79,6 +85,12 @@
                           <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                                id="{{_id}}">
                               <div class="direct-chat-info clearfix">
+                                {{#if this.isAdmin}}
+                                  <span style="margin: 0px;"><img src="/icons/cat.svg" style="height: 18px; margin: 0px;" /></span>
+                                {{/if}}
+                                {{#if this.avatar}}
+                                  <span style="margin: 0px;"><img src="{{this.avatar}}" style="height: 18px; margin: 0px;" /></span>
+                                {{/if}}
                                 {{#if $eq name 'Game'}}
                                   <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
                                     {{name}}
@@ -99,7 +111,7 @@
                                 </span>
                               </div>
                               <!-- /.direct-chat-info -->
-                              <div class="direct-chat-text chat-{{this.custom.roomType}}" style="{{#unless avatar}}margin: 5px 0 0 0{{/unless}}">
+                              <div class="direct-chat-text chat-{{this.custom.roomType}}">
                                   {{{message}}}
                                   {{#if me}}
                                       <div class="direct-chat-checks">

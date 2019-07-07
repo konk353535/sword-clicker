@@ -10,6 +10,9 @@ import moment from 'moment';
 import { Users } from '/imports/api/users/users';
 import { Groups } from '/imports/api/groups/groups.js';
 
+import { PLAYER_ICONS } from '/imports/constants/shop/index.js';
+import { Combat } from '/imports/api/combat/combat.js';
+
 import './chatWindow.html';
 
 SimpleChat.scrollToEnd = function () {
@@ -288,7 +291,18 @@ Template.chatWindow.events({
         roomId = `${currentChatId}`;
       }
 
-      Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, '', Meteor.user().username, custom, function (err, res) {
+      let playerIcon = 'character.svg';
+      const myCombat = Combat.findOne({
+        owner: Meteor.userId()
+      });
+      if (myCombat && myCombat.characterIcon) {
+        try {
+          playerIcon = `/icons/${myCombat.characterIcon}`;
+        } catch (err) {
+        }
+      }
+      
+      Meteor.call('SimpleChat.newMessage', text, roomId, Meteor.user().username, playerIcon, Meteor.user().username, custom, function (err, res) {
           if (err) {
               $message.val(text);
           }
@@ -362,8 +376,21 @@ Template.chatWindow.helpers({
         $(window).trigger('SimpleChat.newMessage', [id, doc])
       }
     });
-
-    return chats;
+    
+    const localChats = chats.map((chat) => {
+      return chat;
+    });
+    
+    localChats.forEach((chat, idx) => {
+      if (chat.userId) {
+        const userDoc = Users.findOne({_id: chat.userId});
+        if (userDoc) {
+          localChats[idx].isAdmin = userDoc.isMod || userDoc.isSuperMod;
+        }
+      }
+    });
+    
+    return localChats;
   },
 
   hasMore: function () {

@@ -873,7 +873,11 @@ export const completeBattle = function(actualBattle) {
             luckyOwnerCombat.boughtIcons = [];
           }
 
-          if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
+          if (luckyOwnerCombat && luckyOwnerCombat.bonusIcons == null) {
+            luckyOwnerCombat.bonusIcons = [];
+          }
+
+          if (!_.contains(luckyOwnerCombat.bonusIcons, rewardGained.iconId)) {
             finalTickEvents.push({
               type: 'icon',
               iconId: rewardGained.iconId,
@@ -884,7 +888,7 @@ export const completeBattle = function(actualBattle) {
               owner: luckyOwner
             }, {
               $set: {
-                boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+                bonusIcons: luckyOwnerCombat.bonusIcons.concat([rewardGained.iconId])
               }
             });
           }

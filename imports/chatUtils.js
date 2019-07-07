@@ -1,6 +1,6 @@
 import { Chats } from 'meteor/cesarve:simple-chat/collections';
 
-export const sendUserChatMessage = function sendUserChatMessage({ userId, message }) {
+export const sendUserChatMessage = function sendUserChatMessage({ userId, message, avatar }) {
   try {
     Chats.insert({
       message: message,
@@ -10,7 +10,8 @@ export const sendUserChatMessage = function sendUserChatMessage({ userId, messag
       custom: {
         roomType: 'Game'
       },
-      roomId: `Game-${userId}`
+      roomId: `Game-${userId}`,
+      avatar: avatar
     });
   } catch (err) {
   }

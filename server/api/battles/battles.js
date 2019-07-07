@@ -26,6 +26,18 @@ const setBattleAgain = function(floor, room) {
   Meteor.call('users.setUiState', 'battleAgain', {floor: floor, room: room});
 };
 
+const MAX_FLOOR_FAILSAFE = 27;
+
+const serverMaxFloor = function serverMaxFloor() {
+  if (Meteor && Meteor.settings && Meteor.settings.shared && Meteor.settings.shared.maxFloor) {
+    const maxFloorRead = CInt(Meteor.settings.shared.maxFloor);
+    if (maxFloorRead === 0) {
+      return MAX_FLOOR_FAILSAFE;
+    }
+  }
+  return MAX_FLOOR_FAILSAFE;
+};
+
 Meteor.methods({
 
   'battles.killBattle'() {
@@ -104,7 +116,7 @@ Meteor.methods({
       energyUse = getMaxEnergyUse();
     }
     
-    if (floor > Meteor.settings.shared.maxFloor) {
+    if (floor > serverMaxFloor()) {
       throw new Meteor.Error("no-sir", "The tower doesn't have that many floors!");
     }
     
@@ -195,7 +207,7 @@ Meteor.methods({
     return {
       points: Math.floor(currentFloor.points),
       pointsMax: currentFloor.pointsMax,
-      maxFloor: currentFloor.floor > Meteor.settings.shared.maxFloor ? Meteor.settings.shared.maxFloor : currentFloor.floor
+      maxFloor: currentFloor.floor > serverMaxFloor() ? serverMaxFloor() : currentFloor.floor
     }
   },
 
@@ -246,7 +258,7 @@ Meteor.methods({
             { room: 7, name: specifiedFloorConstants[7].name }
           ]
         },
-        maxFloor: currentFloor.floor > Meteor.settings.shared.maxFloor ? Meteor.settings.shared.maxFloor : currentFloor.floor
+        maxFloor: currentFloor.floor > serverMaxFloor() ? serverMaxFloor() : currentFloor.floor
       }
     }
 
@@ -264,7 +276,7 @@ Meteor.methods({
           { room: 7, name: specifiedFloorConstants[7].name }
         ]
       },
-      maxFloor: currentFloor.floor > Meteor.settings.shared.maxFloor ? Meteor.settings.shared.maxFloor : currentFloor.floor
+      maxFloor: currentFloor.floor > serverMaxFloor() ? serverMaxFloor() : currentFloor.floor
     }
   },
 

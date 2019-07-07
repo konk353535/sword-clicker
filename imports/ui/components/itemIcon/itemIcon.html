@@ -1,20 +1,14 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}}" style="position: relative" data-id="{{item._id}}">
-    {{#if multiSelling}}
-      <i class="material-icons icon-success item-multisell">check_circle</i>
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative" data-id="{{item._id}}">
+    {{#if item.locked}}
+      <i class="material-icons item-locked">lock</i>
     {{/if}}
-
-    {{#if multiDonating}}
-      <i class="material-icons icon-success item-multidonate">check_circle</i>
-    {{/if}}
-
-    {{#if multiShowing}}
-      <i class="material-icons icon-success item-multishow">check_circle</i>
-    {{/if}}
-
-    {{#if multiHiding}}
-      <i class="material-icons icon-success item-multihide">check_circle</i>
-    {{/if}}
+    
+    {{#if multiSelling}}  <i class="material-icons icon-success item-multisell">check_circle</i>    {{/if}}
+    {{#if multiDonating}} <i class="material-icons icon-success item-multidonate">check_circle</i>  {{/if}}
+    {{#if multiShowing}}  <i class="material-icons icon-success item-multishow">check_circle</i>    {{/if}}
+    {{#if multiHiding}}   <i class="material-icons icon-success item-multihide">check_circle</i>    {{/if}}
+    {{#if multiLocking}}  <i class="material-icons icon-success item-multilock">check_circle</i>    {{/if}}
 
     {{#if item.quality}}
       <div class="item-quality">{{item.quality}}%</div>    
@@ -230,11 +224,6 @@
               <br /><br />
             </div>
             <div class="modal-footer">
-              <!--
-              <div class="d-flex flex-grow">
-                <button type="button" class="btn btn-info primary-action">Equip</button>
-              </div>
-              -->
               {{#if reforgeChance}}
                 <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
               {{else if unadjustedReforgeChance}}
@@ -245,6 +234,13 @@
                   Show
                 {{else}}
                   Hide
+                {{/if}}
+              </button>
+              <button type="button" class="btn btn-secondary lock-btn">
+                {{#if item.locked}}
+                  Unlock
+                {{else}}
+                  Lock
                 {{/if}}
               </button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -317,22 +313,23 @@
             </div>
           </div>
           <div class="modal-footer">
-            <div class="row" style="width:100%">
-              <div class="col-md-6">
-                <button type="button" class="btn btn-success use-btn pull-left">Use</button>
-                <button type="button" class="btn btn-secondary hide-btn">
-                {{#if item.hidden}}
-                  Show
-                {{else}}
-                  Hide
-                {{/if}}
-              </button>
-            </div>
-                <div class="col-md-6">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger sell-btn">Sell</button>
-            </div>
-            </div>
+            <button type="button" class="btn btn-success use-btn pull-left">Use</button>
+            <button type="button" class="btn btn-secondary hide-btn">
+              {{#if item.hidden}}
+                Show
+              {{else}}
+                Hide
+              {{/if}}
+            </button>
+            <button type="button" class="btn btn-secondary lock-btn">
+              {{#if item.locked}}
+                Unlock
+              {{else}}
+                Lock
+              {{/if}}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger sell-btn">Sell</button>
           </div>
         </div>
       </div>

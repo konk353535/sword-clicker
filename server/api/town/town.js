@@ -141,6 +141,10 @@ const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
   if (!currentItem || currentItem.equipped) {
     return;
   }
+  
+  if (currentItem.locked) {
+    throw new Meteor.Error("cant-donate", "That item is locked, preventing it from being sold, donated, or reforged.");
+  }
 
   let amountToDonate = amount;
   

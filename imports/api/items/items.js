@@ -21,7 +21,8 @@ ItemsSchema = new SimpleSchema({
   rarityId: { type: String, optional: true },
   enchantmentId: { type: String, optional: true },
   enchantmentDescription: { type: String, optional: true },
-  hidden: { type: Boolean, optional: true }
+  hidden: { type: Boolean, optional: true, defaultValue: false },
+  locked: { type: Boolean, optional: true, defaultValue: false }
 });
 
 Items.attachSchema(ItemsSchema);

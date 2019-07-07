@@ -329,6 +329,11 @@ Meteor.methods({
     if (currentItem.slot === "neck") {
       throw new Meteor.Error("cant-reforge", "That item can't be reforged.");
     }
+    
+    if (currentItem.locked) {
+      throw new Meteor.Error("cant-reforge", "That item is locked, preventing it from being sold, donated, or reforged.");
+    }
+
 
     const reforgeData = getReforgeData(_id);
 

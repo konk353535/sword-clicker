@@ -277,6 +277,15 @@ Template.itemIcon.helpers({
     return hiding;
   },
   
+  multiLocking() {
+    const instance = Template.instance();
+    let locking = false;
+    if(!_.isUndefined(Session.get('multiLockItems'))) {
+      locking = Session.get('multiLockItems').hasOwnProperty(instance.data.item._id);
+    }
+    return locking;
+  },
+  
   scaledCooldownVal() {
     const instance = Template.instance();
     
@@ -333,7 +342,10 @@ const sellItem = function (event, instance) {
   Template.instance().$('.useModal').modal('hide');
 
   const itemData = instance.data.item;
-  Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'));
+  Meteor.call('items.sellItem', itemData._id, itemData.itemId, instance.state.get('sellAmount'), (err, res) => {
+    if (err)
+      toastr.warning(err.reason);
+  });
 };
 
 const donateItem = function (event, instance) {
@@ -343,19 +355,30 @@ const donateItem = function (event, instance) {
   Template.instance().$('.useModal').modal('hide');
 
   const itemData = instance.data.item;
-  Meteor.call('town.donateItem', itemData._id, itemData.itemId, instance.state.get('donateAmount'), itemData.donateSection, () => {
-    Meteor.call('town.updatePersonalKarma');
+  Meteor.call('town.donateItem', itemData._id, itemData.itemId, instance.state.get('donateAmount'), itemData.donateSection, (err, res) => {
+    if (err)
+      toastr.warning(err.reason);
+    else
+      Meteor.call('town.updatePersonalKarma');
   });
 };
 
 const hideItem = function (event, instance) {
-
   Template.instance().$('.sellModal').modal('hide');
   Template.instance().$('.useModal').modal('hide');
 
   const itemData = instance.data.item;
 
   Meteor.call('items.hide', itemData._id);
+};
+
+const lockItem = function (event, instance) {
+  Template.instance().$('.sellModal').modal('hide');
+  Template.instance().$('.useModal').modal('hide');
+
+  const itemData = instance.data.item;
+
+  Meteor.call('items.lock', itemData._id);
 };
 
 Template.itemIcon.events({
@@ -426,6 +449,21 @@ Template.itemIcon.events({
         };
       }
       Session.set('multiHideItems', currentItems);
+      return;
+    }
+
+    if(Session.get('multiLock')) {
+      let currentItems = Session.get('multiLockItems');
+      if(currentItems.hasOwnProperty(instance.data.item._id)) {
+        delete currentItems[instance.data.item._id];
+      } else {
+        currentItems[instance.data.item._id] = {
+          id: instance.data.item._id,
+          itemId: instance.data.item.itemId,
+          amount: instance.data.item.amount
+        };
+      }
+      Session.set('multiLockItems', currentItems);
       return;
     }
     
@@ -561,5 +599,9 @@ Template.itemIcon.events({
 
   'click .hide-btn'(event, instance) {
     hideItem(event, instance);
+  },
+
+  'click .lock-btn'(event, instance) {
+    lockItem(event, instance);
   }
 });

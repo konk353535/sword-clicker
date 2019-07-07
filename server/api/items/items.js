@@ -356,6 +356,29 @@ Meteor.methods({
     updateUserActivity({userId: Meteor.userId()});
   },
 
+  'items.lock'(baseItemId) {
+    //    
+    const baseItem = Items.findOne({
+      owner: Meteor.userId(),
+      _id: baseItemId
+    });
+
+    if (!baseItem || baseItem.amount <= 0) {
+      return;
+    }
+
+    Items.update({
+      owner: Meteor.userId(),
+      _id: baseItem._id
+    }, {
+      $set: {
+        locked: !baseItem.locked
+      }
+    });
+    
+    updateUserActivity({userId: Meteor.userId()});
+  },
+
   'items.use'({ baseItemId, targetItemId }) {
 
     // Fetch both items
@@ -958,6 +981,10 @@ Meteor.methods({
 
     if (!currentItem) {
       return;
+    }
+    
+    if (currentItem.locked) {
+      throw new Meteor.Error("cant-sell", "That item is locked, preventing it from being sold, donated, or reforged.");
     }
 
     const itemConstants = ITEMS[currentItem.itemId];

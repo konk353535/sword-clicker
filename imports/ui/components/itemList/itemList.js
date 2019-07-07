@@ -15,6 +15,22 @@ Template.itemList.events({
     Session.set('multiSellItems', {});
   },
 
+  'click .multiSellSelectAll'(event, instance) {
+    let currentItems = {};
+    
+    instance.data.items.forEach((thisItem) => {
+      if (!thisItem.locked) {
+        currentItems[thisItem._id] = {
+          id: thisItem._id,
+          itemId: thisItem.itemId,
+          amount: thisItem.amount
+        };
+      }
+    });
+    
+    Session.set('multiSellItems', currentItems);
+  },
+  
   'click .multiSellConfirm'(event, instance) {
     instance.$('.confirmSellModal').modal('show');
   },
@@ -29,7 +45,10 @@ Template.itemList.events({
     Session.set('multiSell', false);
     const items = Session.get('multiSellItems');
     Object.keys(items).forEach((item) => {
-      Meteor.call('items.sellItem', items[item].id, items[item].itemId, items[item].amount);
+      Meteor.call('items.sellItem', items[item].id, items[item].itemId, items[item].amount, (err, res) => {
+        if (err)
+          toastr.warning(err.reason);
+      });
     });
     Session.set('multiSellItems', {});
   },
@@ -48,6 +67,22 @@ Template.itemList.events({
     Session.set('multiHideItems', {});
   },
 
+  'click .multiHideSelectAll'(event, instance) {
+    let currentItems = {};
+    
+    instance.data.items.forEach((thisItem) => {
+      if (!thisItem.hidden) {
+        currentItems[thisItem._id] = {
+          id: thisItem._id,
+          itemId: thisItem.itemId,
+          amount: thisItem.amount
+        };
+      }
+    });
+    
+    Session.set('multiHideItems', currentItems);
+  },
+  
   'click .multiHideConfirm'(event, instance) {
     Session.set('multiHide', false);
     const items = Session.get('multiHideItems');
@@ -67,6 +102,22 @@ Template.itemList.events({
     Session.set('multiShowItems', {});
   },
   
+  'click .multiShowSelectAll'(event, instance) {
+    let currentItems = {};
+    
+    instance.data.items.forEach((thisItem) => {
+      if (thisItem.hidden) {
+        currentItems[thisItem._id] = {
+          id: thisItem._id,
+          itemId: thisItem.itemId,
+          amount: thisItem.amount
+        };
+      }
+    });
+    
+    Session.set('multiShowItems', currentItems);
+  },
+  
   'click .multiShowConfirm'(event, instance) {
     Session.set('multiShow', false);
     const items = Session.get('multiShowItems');
@@ -74,6 +125,39 @@ Template.itemList.events({
       Meteor.call('items.hide', items[item].id, items[item].itemId, items[item].amount);
     });
     Session.set('multiShowItems', {});
+  },
+  
+  'click .multiLockStart'(event, instance) {
+    Session.set('multiLock', true);
+    Session.set('multiLockItems', {});
+  },
+
+  'click .multiLockCancel'(event, instance) {
+    Session.set('multiLock', false);
+    Session.set('multiLockItems', {});
+  },
+
+  'click .multiLockSelectAll'(event, instance) {
+    let currentItems = {};
+    
+    instance.data.items.forEach((thisItem) => {
+      currentItems[thisItem._id] = {
+        id: thisItem._id,
+        itemId: thisItem.itemId,
+        amount: thisItem.amount
+      };
+    });
+    
+    Session.set('multiLockItems', currentItems);
+  },
+  
+  'click .multiLockConfirm'(event, instance) {
+    Session.set('multiLock', false);
+    const items = Session.get('multiLockItems');
+    Object.keys(items).forEach((item) => {
+      Meteor.call('items.lock', items[item].id);
+    });
+    Session.set('multiLockItems', {});
   },
 });
 
@@ -89,6 +173,10 @@ Template.itemList.helpers({
 
   hideItems() {
     return Session.get('multiHide');
+  },
+
+  lockItems() {
+    return Session.get('multiLock');
   },
   
   allItems() {

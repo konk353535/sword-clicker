@@ -6,14 +6,22 @@
         <h3 class="mb-0 mr-auto">All Items</h3>
         {{#if sellItems}}
           <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
+          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
           <i class="material-icons multiSellCancel">clear</i>
         {{else if showItems}}
           <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
+          <i class="material-icons multiShowSelectAll" style="color: orange;">done_all</i>
           <i class="material-icons multiShowCancel">clear</i>
         {{else if hideItems}}
           <i class="material-icons icon-danger multiHideConfirm">archive</i>
+          <i class="material-icons multiHideSelectAll" style="color: orange;">done_all</i>
           <i class="material-icons multiHideCancel">clear</i>
+        {{else if lockItems}}
+          <i class="material-icons icon-danger multiLockConfirm">lock</i>
+          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
+          <i class="material-icons multiLockCancel">clear</i>
         {{else}}
+          <i class="material-icons multiLockStart">lock</i>
           <i class="material-icons multiShowStart">unarchive</i>
           <i class="material-icons multiHideStart">archive</i>
           <i class="material-icons multiSellStart">shopping_cart</i>
@@ -32,11 +40,18 @@
           <h3 class="mb-0 mr-auto">Visible Items</h3>
           {{#if sellItems}}
             <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
+          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiSellCancel">clear</i>
           {{else if hideItems}}
             <i class="material-icons icon-danger multiHideConfirm">archive</i>
+          <i class="material-icons multiHideSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiHideCancel">clear</i>
+          {{else if lockItems}}
+            <i class="material-icons icon-danger multiLockConfirm">lock</i>
+          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
+            <i class="material-icons multiLockCancel">clear</i>
           {{else}}
+            <i class="material-icons multiLockStart">lock</i>
             <i class="material-icons multiHideStart">archive</i>
             <i class="material-icons multiSellStart">shopping_cart</i>
           {{/if}}
@@ -55,11 +70,18 @@
           <h3 class="mb-0 mr-auto">Hidden Items</h3>
           {{#if sellItems}}
             <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
+          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiSellCancel">clear</i>
           {{else if showItems}}
             <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
+          <i class="material-icons multiShowSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiShowCancel">clear</i>
+          {{else if lockItems}}
+            <i class="material-icons icon-danger multiLockConfirm">lock</i>
+          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
+            <i class="material-icons multiLockCancel">clear</i>
           {{else}}
+            <i class="material-icons multiLockStart">lock</i>
             <i class="material-icons multiShowStart">unarchive</i>
             <i class="material-icons multiSellStart">shopping_cart</i>
           {{/if}}

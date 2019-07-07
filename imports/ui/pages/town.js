@@ -18,6 +18,123 @@ import { ITEMS } from '/imports/constants/items';
 
 import './town.html';
 
+const getDonatableItems = function getDonatableItems(instance) {
+  const townSection = instance.state.get('townSection');
+  
+  if (!townSection) {
+    console.log("Can't donate any items: no town location selected.");
+    return false;
+  }
+    
+  const baseItemList = Items.find({});
+  if ((!baseItemList) || (baseItemList.count() === 0)) {
+    console.log("Can't donate any items: base item list returned no items:");
+    console.log(baseItemList.fetch());
+    return false;
+  }
+    
+  let filteredItems = baseItemList.map((item) => {
+    const itemConstants = ITEMS[item.itemId];
+    if (itemConstants) {
+      let baseDescription = '';
+      if (itemConstants.description) {
+        if (_.isFunction(itemConstants.description)) {
+          baseDescription = itemConstants.description();
+        } else {
+          baseDescription = itemConstants.description;
+        }
+      }
+      
+      const newItem = Object.assign({}, itemConstants, item);
+      
+      newItem.description = baseDescription; // fix description
+      newItem.donateMode = true;
+      newItem.donateSection = townSection;
+      newItem.karmaValue = CInt(autoPrecisionValue(calculateItemKarma(newItem)));
+      newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue;
+      const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
+      if (CInt(newItem.amount) > 1) {
+        newItem.customDescription = `Donating these will add <b>${karmaValueFormatted}</b> karma each.<hr />${baseDescription}`;
+      } else {
+        newItem.customDescription = `Donating this will add <b>${karmaValueFormatted}</b> karma.<hr />${baseDescription}`;
+      }
+      
+      return newItem;
+    }
+  });
+  
+  if ((!filteredItems) || (filteredItems.length === 0)) {
+    console.log("Can't donate any items: mapped item list returned no items:");
+    console.log(filteredItems);
+    return false;
+  }
+  
+  filteredItems = filteredItems.filter((item) => {
+    try {
+      // filter out all equipped items
+      if (item.equipped) return false;
+      
+      // filter out all hidden and items
+      //if (item.hidden) return false;
+      //if (item.locked) return false;
+      
+      if (townSection === 'dwellings') {
+        if (item.category === 'food') return true;
+        //if (item.category === 'seed' && item.seedType === 'food') return true;
+        //if (item.category === 'seed' && item.seedType === 'xp') return true;
+        if (item.itemId === 'ore_coal') return true;
+        if (item.itemId === 'cactus') return true;
+        if (item.itemId === 'reed') return true;
+        if (item.itemId === 'papyrus') return true;
+        if (item.itemId === 'bamboo') return true;
+        if (item.itemId === 'palm') return true;
+        if (item.itemId === 'kenaf') return true;
+        if (item.itemId === 'bamboo_shack') return true;
+      } else if (townSection === 'quarry') {
+        if (item.category === 'mining') return true;
+      } else if (townSection === 'lumberyard') {
+        if (item.category === 'woodcutting') return true;
+      } else if (townSection === 'armory') {
+        if (item.category === 'combat') return true;
+      } else if (townSection === 'library') {
+        if (item.isCraftingScroll && item.teaches) return true;
+        if (item.category === 'tome') return true;
+        if (item.category === 'pigment') return true;
+        if (item.category === 'paper') return true; // includes both crafted paper and books
+        if (item.category === 'magic_book') return true;
+      } else if (townSection === 'observatory') {
+        if (item.category === 'astronomy') return true;
+      }
+    } catch (err) {
+      //console.log("Exception thrown (and ignored) while filtering:");
+      //console.log(err);
+      //console.log("Referenced item:");
+      //console.log(item);
+    }
+    return false;
+  });
+  
+  if (filteredItems) {
+    filteredItems = _.sortBy(filteredItems, ['name']);
+    filteredItems = _.sortBy(filteredItems, ['reverseKarmaValue']);        
+    
+    if ((!filteredItems) || (filteredItems.length === 0)) {
+      console.log("Can't donate any items: filtered/sorted item list returned no items:");
+      console.log("Location:", townSection);
+      console.log("Filtered list:");
+      console.log(filteredItems);
+      return false;
+    }
+    return filteredItems;
+  }
+
+  console.log("Can't donate any items: filtered item list returned no items:");
+  console.log("Location:", townSection);
+  console.log("Filtered list:");
+  console.log(filteredItems);
+  return false;  
+};
+
 Template.townPage.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
   
@@ -60,6 +177,22 @@ Template.townPage.events({
     Session.set('multiDonateItems', {});
   },
 
+  'click .multiDonateSelectAll'(event, instance) {
+    let currentItems = {};
+    
+    getDonatableItems(instance).forEach((thisItem) => {
+      if (!thisItem.locked) {
+        currentItems[thisItem._id] = {
+          id: thisItem._id,
+          itemId: thisItem.itemId,
+          amount: thisItem.amount
+        };
+      }
+    });
+    
+    Session.set('multiDonateItems', currentItems);
+  },
+  
   'click .multiDonateConfirm'(event, instance) {
     instance.$('.confirmDonateModal').modal('show');
   },
@@ -80,8 +213,13 @@ Template.townPage.events({
       itemsToDonate = itemsToDonate.concat({_id: items[item].id, itemId: items[item].itemId, amount: items[item].amount});
     });
     
-    Meteor.call('town.donateItems', itemsToDonate, Template.instance().state.get('townSection'));
-    
+    Meteor.call('town.donateItems', itemsToDonate, Template.instance().state.get('townSection'), (err, res) => {
+      if (err)
+        toastr.warning(err.reason);
+      else
+        Meteor.call('town.updatePersonalKarma');
+    });
+  
     Session.set('multiDonateItems', {});
   },
   
@@ -242,120 +380,7 @@ Template.townPage.helpers({
   },
   
   items() {
-    const instance = Template.instance();
-    const townSection = instance.state.get('townSection');
-    
-    if (!townSection) {
-      console.log("Can't donate any items: no town location selected.");
-      return false;
-    }
-      
-    const baseItemList = Items.find({});
-    if ((!baseItemList) || (baseItemList.count() === 0)) {
-      console.log("Can't donate any items: base item list returned no items:");
-      console.log(baseItemList.fetch());
-      return false;
-    }
-      
-    let filteredItems = baseItemList.map((item) => {
-      const itemConstants = ITEMS[item.itemId];
-      if (itemConstants) {
-        let baseDescription = '';
-        if (itemConstants.description) {
-          if (_.isFunction(itemConstants.description)) {
-            baseDescription = itemConstants.description();
-          } else {
-            baseDescription = itemConstants.description;
-          }
-        }
-        
-        const newItem = Object.assign({}, itemConstants, item);
-        
-        newItem.description = baseDescription; // fix description
-        newItem.donateMode = true;
-        newItem.donateSection = townSection;
-        newItem.karmaValue = CInt(autoPrecisionValue(calculateItemKarma(newItem)));
-        newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue;
-        const karmaValueFormatted = Numeral(newItem.karmaValue).format('0,0');
-        if (CInt(newItem.amount) > 1) {
-          newItem.customDescription = `Donating these will add <b>${karmaValueFormatted}</b> karma each.<hr />${baseDescription}`;
-        } else {
-          newItem.customDescription = `Donating this will add <b>${karmaValueFormatted}</b> karma.<hr />${baseDescription}`;
-        }
-        
-        return newItem;
-      }
-    });
-    
-    if ((!filteredItems) || (filteredItems.length === 0)) {
-      console.log("Can't donate any items: mapped item list returned no items:");
-      console.log(filteredItems);
-      return false;
-    }
-    
-    filteredItems = filteredItems.filter((item) => {
-      try {
-        // filter out all equipped items
-        if (item.equipped) return false;
-        
-        // filter out all hidden items
-        //if (item.hidden) return false;
-        
-        if (townSection === 'dwellings') {
-          if (item.category === 'food') return true;
-          //if (item.category === 'seed' && item.seedType === 'food') return true;
-          //if (item.category === 'seed' && item.seedType === 'xp') return true;
-          if (item.itemId === 'ore_coal') return true;
-          if (item.itemId === 'cactus') return true;
-          if (item.itemId === 'reed') return true;
-          if (item.itemId === 'papyrus') return true;
-          if (item.itemId === 'bamboo') return true;
-          if (item.itemId === 'palm') return true;
-          if (item.itemId === 'kenaf') return true;
-          if (item.itemId === 'bamboo_shack') return true;
-        } else if (townSection === 'quarry') {
-          if (item.category === 'mining') return true;
-        } else if (townSection === 'lumberyard') {
-          if (item.category === 'woodcutting') return true;
-        } else if (townSection === 'armory') {
-          if (item.category === 'combat') return true;
-        } else if (townSection === 'library') {
-          if (item.isCraftingScroll && item.teaches) return true;
-          if (item.category === 'tome') return true;
-          if (item.category === 'pigment') return true;
-          if (item.category === 'paper') return true; // includes both crafted paper and books
-          if (item.category === 'magic_book') return true;
-        } else if (townSection === 'observatory') {
-          if (item.category === 'astronomy') return true;
-        }
-      } catch (err) {
-        //console.log("Exception thrown (and ignored) while filtering:");
-        //console.log(err);
-        //console.log("Referenced item:");
-        //console.log(item);
-      }
-      return false;
-    });
-    
-    if (filteredItems) {
-      filteredItems = _.sortBy(filteredItems, ['name']);
-      filteredItems = _.sortBy(filteredItems, ['reverseKarmaValue']);        
-      
-      if ((!filteredItems) || (filteredItems.length === 0)) {
-        console.log("Can't donate any items: filtered/sorted item list returned no items:");
-        console.log("Location:", townSection);
-        console.log("Filtered list:");
-        console.log(filteredItems);
-        return false;
-      }
-      return filteredItems;
-    }
-
-    console.log("Can't donate any items: filtered item list returned no items:");
-    console.log("Location:", townSection);
-    console.log("Filtered list:");
-    console.log(filteredItems);
-    return false;    
+    return getDonatableItems(Template.instance());
   }
 
 });

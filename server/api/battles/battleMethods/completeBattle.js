@@ -819,7 +819,21 @@ export const completeBattle = function(actualBattle) {
               name: ITEMS[rewardGained.itemId].name,
               icon: ITEMS[rewardGained.itemId].icon,
               affectedGlobalBuff: rewardGained.affectedGlobalBuff,
-              owners: owners.map((owner) => { return {id: owner, ngChoice: 'greed'}}),
+              owners: owners.map((owner) => { 
+                const thisOwnerDoc = Users.findOne({_id: owner});
+                try {
+                  if (thisOwnerDoc) {
+                    const personalAutoNGChoice = CInt(thisOwnerDoc.uiState.ngAutoMode);
+                    
+                    if (personalAutoNGChoice === 1) {
+                      return {id: owner, ngChoice: 'pass'};
+                    }
+                  }
+                } catch (err) {
+                }
+              
+                return {id: owner, ngChoice: 'greed'};
+              }),
             });
           } else {
             const luckyOwner = _.sample(owners);

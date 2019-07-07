@@ -40,6 +40,11 @@ Template.nav.onCreated(function bodyOnCreated() {
       } else {
         Session.set('wantCondensedChat', true);
       }
+      if (myUser.uiState && myUser.uiState.ngAutoMode !== undefined) {
+        Session.set('ngAutoMode', myUser.uiState.ngAutoMode);
+      } else {
+        Session.set('ngAutoMode', 0);
+      }
     }
   });
 
@@ -119,6 +124,12 @@ Template.nav.events({
   'click .enable-number-shorthand'(event, instance) {
     Session.set('numberShorthandDisabled', false);
     Meteor.call('users.setUiState', 'showNumberShorthand', true);
+  },
+
+  'click .toggle-ngmode'(event, instance) {
+    const new_ngAutoMode = (Session.get('ngAutoMode') + 1) % 2;
+    Session.set('ngAutoMode', new_ngAutoMode);
+    Meteor.call('users.setUiState', 'ngAutoMode', new_ngAutoMode);
   },
 
   'click .guestSignOffConfirmModal #at-nav-button'(event, instance) {
@@ -277,6 +288,10 @@ Template.nav.helpers({
   },
 
   recipeTileConsumablesDisabled() {
-    return Session.get('recipeTileConsumablesDisabled')
+    return Session.get('recipeTileConsumablesDisabled');
   },  
+  
+  ngMode() {
+    return Session.get('ngAutoMode');
+  }
 });

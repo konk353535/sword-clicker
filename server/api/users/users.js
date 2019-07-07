@@ -437,7 +437,8 @@ Meteor.methods({
       'recipeTileConsumables',
       'craftingShowMore',
       'townSection',
-      'energyUse'
+      'energyUse',
+      'ngAutoMode'
     ];
 
     if (_.contains(validIds, id)) {
@@ -465,7 +466,13 @@ Meteor.methods({
 });
 
 const MINUTE = 60 * 1000;
-const clientAddress = function clientAddress(clientAddress) {
+const clientAddress = function clientAddress(in_clientAddress) {
+  try {
+    if (this && this.connection) {
+      return getIPFromConnection(this.connection);
+    }
+  } catch (err) {
+  }
   return true;
 };
 

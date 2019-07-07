@@ -177,6 +177,15 @@
                     Disable number shorthand
                   </a>
                 {{/if}}
+                {{#if $eq ngMode 0}}
+                  <a class="dropdown-item toggle-ngmode" style="cursor: pointer">
+                    Need/Greed: auto-greed
+                  </a>
+                {{else}}
+                  <a class="dropdown-item toggle-ngmode" style="cursor: pointer">
+                    Need/Greed: auto-pass
+                  </a>
+                {{/if}}
 
                 <a class="dropdown-item">
                   Server: {{ serverName }}

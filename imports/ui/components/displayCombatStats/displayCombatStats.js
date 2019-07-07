@@ -97,10 +97,17 @@ Template.displayCombatStats.helpers({
           val *= 100.0;
         }
         
-        statsArr.push({
-          label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
-          key
-        });
+        if (val >= 0) {
+          statsArr.push({
+            label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
+            key
+          });
+        } else {
+          statsArr.push({
+            label: `${autoPrecisionValue(val)}% ${descriptors(key)}`,
+            key
+          });
+        }
         return;
       }
       
@@ -160,10 +167,18 @@ Template.displayCombatStats.helpers({
           val *= 100.0;
         }
              
-        statsArr.push({
-          label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
-          key
-        });
+        if (val >= 0)
+        {
+          statsArr.push({
+            label: `+${autoPrecisionValue(val)}% ${descriptors(key)}`,
+            key
+          });
+        } else {
+          statsArr.push({
+            label: `${autoPrecisionValue(val)}% ${descriptors(key)}`,
+            key
+          });
+        }
         return;
       }
 

@@ -35,7 +35,7 @@ function descriptors(str) {
   };
   if (terms.hasOwnProperty(str)) {
     return terms[str];
-  } else return '';
+  } else return `unknown '${str}'`;
 }
 
 Template.displayCombatStats.helpers({
@@ -83,6 +83,10 @@ Template.displayCombatStats.helpers({
     }
     
     Object.keys(statsMap).forEach((key) => {
+      if (key === 'level') {
+        return;
+      }
+      
       if (key === 'attack' || key === 'attackMax') {
         return;
       }
@@ -146,7 +150,7 @@ Template.displayCombatStats.helpers({
     }
 
     Object.keys(statsMap).forEach((key) => {
-      if (key === 'attack' || key === 'attackMax' || key === 'gold') {
+      if (key === 'attack' || key === 'attackMax' || key === 'gold' || key === 'level') {
         return;
       }
       

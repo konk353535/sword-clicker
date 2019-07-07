@@ -4,6 +4,8 @@ import _ from 'underscore';
 import moment from 'moment';
 import { Random } from 'meteor/random';
 
+import { CInt } from '/imports/utils.js';
+
 import { Floors } from '/imports/api/floors/floors';
 import { Events } from '/imports/api/events/events';
 import { FloorWaveScores } from '/imports/api/floors/floorWaveScores';
@@ -29,11 +31,14 @@ const setBattleAgain = function(floor, room) {
 const MAX_FLOOR_FAILSAFE = 27;
 
 const serverMaxFloor = function serverMaxFloor() {
-  if (Meteor && Meteor.settings && Meteor.settings.shared && Meteor.settings.shared.maxFloor) {
-    const maxFloorRead = CInt(Meteor.settings.shared.maxFloor);
-    if (maxFloorRead === 0) {
-      return MAX_FLOOR_FAILSAFE;
+  try {
+    if (Meteor && Meteor.settings && Meteor.settings.shared && Meteor.settings.shared.maxFloor) {
+      const maxFloorRead = CInt(Meteor.settings.shared.maxFloor);
+      if (maxFloorRead === 0) {
+        return MAX_FLOOR_FAILSAFE;
+      }
     }
+  } catch (err) {
   }
   return MAX_FLOOR_FAILSAFE;
 };

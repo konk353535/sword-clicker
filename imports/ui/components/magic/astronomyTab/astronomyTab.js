@@ -11,6 +11,7 @@ import { Items } from '/imports/api/items/items.js';
 
 import { ITEMS } from '/imports/constants/items/index.js';
 
+import { CInt } from '/imports/utils.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
 import './astronomyTab.html';
@@ -123,6 +124,7 @@ Template.astronomyTab.helpers({
             // Open modal
             instance.$('.depositMageModal').modal('show');
             // Update current mage
+            mage.gold = CInt(Math.floor(mage.gold));
             instance.state.set('selectedMage', mage);
           }
         }
@@ -137,7 +139,7 @@ Template.astronomyTab.helpers({
         mage.stats.attackSpeed *= 1 + ((townBuffObservatoryLevel + 1) * 0.03); // 6% - 18%
       }
       
-      console.log(mage);
+      //console.log(mage);
     });
 
     return astronomy;

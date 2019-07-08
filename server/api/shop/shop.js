@@ -241,7 +241,8 @@ Meteor.methods({
 
     let validItems;
   
-    if (Servers.findOne({_id: Meteor.user().server}).name === 'Classic') {
+    //if (Servers.findOne({_id: Meteor.user().server}).name === 'Classic') {
+    if (true) {
       validItems = [{
         id: 'lemonade',
         cost: 10

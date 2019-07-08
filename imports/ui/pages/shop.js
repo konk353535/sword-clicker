@@ -365,8 +365,9 @@ Template.shopPage.helpers({
     return serverDoc.name;
   },
 
-  playingOnClassic() {
-    return Servers.findOne({_id: Meteor.user().server}).name === 'Classic';
+  eventBoxesAllowed() {
+    //return Servers.findOne({_id: Meteor.user().server}).name === 'Classic';
+    return true;
   },
 
   freeGems() {

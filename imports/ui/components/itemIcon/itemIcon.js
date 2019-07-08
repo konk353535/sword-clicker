@@ -41,14 +41,17 @@ Template.itemIcon.helpers({
 
   icon() {
     const instance = Template.instance();
-    const constants = ITEMS[instance.data.item.itemId];
+    const item = instance.data.item;
 
-    if (instance.data.item.icon) {
-      return instance.data.item.icon;
+    if (item.icon) {
+      return item.icon;
     }
 
-    if (constants && constants.icon)
+    const constants = ITEMS[item.itemId];
+
+    if (constants && constants.icon) {
         return constants.icon;
+    }
         
     return false;
   },
@@ -147,7 +150,7 @@ Template.itemIcon.helpers({
       
       return `${item.amount}`; */
       
-      return FriendlyNumber(item.amount);
+      return FriendlyNumber(CInt(item.amount));
     }
     
     return "0";

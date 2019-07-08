@@ -132,7 +132,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Current Coffers: {{selectedMage.gold}}
+          Current Coffers: {{> formatNumber number=selectedMage.gold decimal=0}}
           <form class="form-inline withdraw-form" data-mage="{{selectedMage.index}}">
             <input class="form-control withdraw-amount-input" value={{selectedMage.gold}}><br />
             <button class="btn btn-primary ml-2">Withdraw</button>

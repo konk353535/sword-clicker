@@ -1,11 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+
 import lodash from 'lodash';
+import _ from 'underscore';
 
 import { Astronomy } from '/imports/api/astronomy/astronomy.js';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+
+import { ITEMS } from '/imports/constants/items/index.js';
 
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 
@@ -205,6 +209,15 @@ Template.astronomyTab.helpers({
   },
 
   items() {
-    return Items.find({ category: 'astronomy' });
+    return itemList = Items.find({ category: 'astronomy' }).map((item) => { return item; }).sort((item1, item2) => {
+      const itemConsts1 = ITEMS[item1.itemId];
+      const itemConsts2 = ITEMS[item2.itemId];
+      
+      if (itemConsts1.sellPrice != itemConsts2.sellPrice) {
+        return (itemConsts1.sellPrice > itemConsts2.sellPrice) ? -1 : 1;
+      }
+      
+      return (itemConsts1.name < itemConsts2.name) ? -1 : 1;
+    });
   }
 });

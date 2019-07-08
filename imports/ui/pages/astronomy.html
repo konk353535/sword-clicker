@@ -1,11 +1,20 @@
 <template name="astronomyPage">
 
-  {{#if astronomySkill}}
+  <!--  NOTE:  THIS PAGE IS NOT USED FOR ANYTHING  -->
+
+  {{#unless meteorUser}}
+    
+    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 200px; margin-top: 100px;">
+      <div class="mb-3">Game is loading, please wait . . .</div>
+    </div>
+    
+  {{else if astronomySkill}}
+
     {{> skillHeader skill=astronomySkill}}
 
     <h2>Astronomy Items</h2>
     <div class="d-flex flex-wrap">
-      {{#each items}}
+      {{#each astronomyItems}}
         {{> itemIcon item=this classes="small"}}
       {{else}}
         You have no astronomy items!
@@ -35,7 +44,9 @@
         Buy
       </div>
     </div>
+    
   {{else}}
+  
     <div 
       class="d-flex justify-content-center align-items-center flex-column"
       style="height: 200px; margin-top: 100px;">
@@ -49,7 +60,8 @@
         <button class="btn btn-primary learn-now" disabled>Learn Now</button>
       {{/if}}        
     </div>
-  {{/if}}
+    
+  {{/unless}}
 
   <!-- Upgrade Mage Modal -->
   <div class="modal mageUpgradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

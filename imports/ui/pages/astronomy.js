@@ -1,10 +1,17 @@
+// <!--  NOTE:  THIS SOURCE IS NOT USED FOR ANYTHING  -->
+
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import _ from 'underscore';
+
 import { Astronomy } from '/imports/api/astronomy/astronomy.js';
+import { Users } from '/imports/api/users/users';
 import { Skills } from '/imports/api/skills/skills.js';
 import { Items } from '/imports/api/items/items.js';
+
+import { ITEMS } from '/imports/constants/items/index.js';
 
 import './astronomy.html';
 
@@ -189,6 +196,19 @@ Template.astronomyPage.helpers({
     return astronomy.mages[0];
   },
 
+  meteorUser() {
+    if (!Meteor.user()) {
+      return false;
+    }
+    
+    const userDoc = Users.findOne({ _id: Meteor.userId() });
+    if (!userDoc || !userDoc.server) {
+      return false;
+    }
+    
+    return true;
+  },
+  
   astronomySkill() {
     return Skills.findOne({ type: 'astronomy' });
   },
@@ -208,7 +228,12 @@ Template.astronomyPage.helpers({
     }
   },
 
-  items() {
-    return Items.find({ category: 'astronomy' });
+  astronomyItems() {
+    let itemList = Items.find({ category: 'astronomy' }).map((item) => { const itemConsts = ITEMS[item.itemId]; return { ...itemConsts, ...item }; });
+    
+    itemList = _.sortBy(itemList, ['name']);
+    itemList = _.sortBy(itemList, ['sellPrice']);
+    
+    return [];
   }
 });

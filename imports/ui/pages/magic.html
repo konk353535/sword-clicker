@@ -1,5 +1,13 @@
 <template name="magicPage">
-  {{#if astronomySkill}}
+
+  {{#unless meteorUser}}
+    
+    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 200px; margin-top: 100px;">
+      <div class="mb-3">Game is loading, please wait . . .</div>
+    </div>
+    
+  {{else if astronomySkill}}
+
     <ul class="nav nav-tabs my-3">
       <li class="nav-item astronomyTabLink">
         <a class="nav-link {{#if showAstronomyTab}}active{{/if}}" href="#">Astronomy</a>
@@ -14,7 +22,9 @@
     {{else if showSpellBookTab}}
       {{> spellBookTab}}
     {{/if}}
+
   {{else}}
+  
     <div 
       class="d-flex justify-content-center align-items-center flex-column"
       style="height: 200px; margin-top: 100px;">
@@ -28,5 +38,6 @@
         <button class="btn btn-primary learn-now" disabled>Learn Now</button>
       {{/if}}        
     </div>
-  {{/if}}
+    
+  {{/unless}}
 </template>

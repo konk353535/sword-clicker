@@ -110,6 +110,19 @@ Template.magicPage.helpers({
     }
   },
 
+  meteorUser() {
+    if (!Meteor.user()) {
+      return false;
+    }
+    
+    const userDoc = Users.findOne({ _id: Meteor.userId() });
+    if (!userDoc || !userDoc.server) {
+      return false;
+    }
+    
+    return true;
+  },
+  
   astronomySkill() {
     return Skills.findOne({ type: 'astronomy' });
   },

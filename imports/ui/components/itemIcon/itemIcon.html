@@ -1,17 +1,17 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative; border: {{borderStyle}};" data-id="{{item._id}}">
     {{#if item.locked}}
       <i class="material-icons item-locked">lock</i>
     {{/if}}
     
-    {{#if multiSelling}}  <i class="material-icons icon-success item-multisell">check_circle</i>    {{/if}}
-    {{#if multiDonating}} <i class="material-icons icon-success item-multidonate">check_circle</i>  {{/if}}
-    {{#if multiShowing}}  <i class="material-icons icon-success item-multishow">check_circle</i>    {{/if}}
-    {{#if multiHiding}}   <i class="material-icons icon-success item-multihide">check_circle</i>    {{/if}}
-    {{#if multiLocking}}  <i class="material-icons icon-success item-multilock">check_circle</i>    {{/if}}
+    {{#if multiSelling}}  <i class="material-icons icon-success item-multisell">     check_circle</i>    {{/if}}
+    {{#if multiDonating}} <i class="material-icons icon-success item-multidonate">   check_circle</i>    {{/if}}
+    {{#if multiShowing}}  <i class="material-icons icon-success item-multishow">     check_circle</i>    {{/if}}
+    {{#if multiHiding}}   <i class="material-icons icon-success item-multihide">     check_circle</i>    {{/if}}
+    {{#if multiLocking}}  <i class="material-icons icon-success item-multilock">     check_circle</i>    {{/if}}
 
     {{#if item.quality}}
-      <div class="item-quality">{{item.quality}}%</div>    
+      <div class="item-quality-bubble item-quality" style="color: black; background-color: {{bubbleColor}};">{{item.quality}}%</div>    
     {{/if}}
     
     {{#if $or (item.isPacifist) (abilityRequiresOrForbids)}}
@@ -44,11 +44,11 @@
       </div>
     {{/if}}
 
-    <img src="/icons/{{icon}}" class="item-icon">
+    <img src="/icons/{{icon}}" class="item-icon" style="height: 48px; width: 48px; margin: 0px; margin-top: -8px;">
 
     {{#unless item.hideCount}}
       {{#if $gt item.amount 1}}
-        <div class="item-amount">{{> formatNumber number=item.amount decimal=0}}</div>
+        <div class="item-amount-bubble item-amount" style="color: black; background-color: {{bubbleColor}};">{{{itemAmount}}}</div>
       {{/if}}
     {{/unless}}
   </div>
@@ -77,19 +77,18 @@
             {{{item.customDescription}}}<br />
           {{else if itemDescription}}
             {{{itemDescription}}}<br />
-          {{else if description}}
-            {{{description}}}<br />
           {{else if item.description}}
             {{{item.description}}}<br />
           {{/if}}
 
           <!-- farming description() -->
-          {{#if itemDescription}}
+          <!-- {{#if itemDescription}}
             {{#if $and (item.plantingDetails) (description)}}
               {{{description}}}<br />
             {{/if}}
           {{/if}}
-
+          -->
+          
           {{#if scaledCooldownVal}}
             Cooldown <b>{{scaledCooldownVal}}s</b><br />
           {{else if item.cooldown}}

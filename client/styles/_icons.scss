@@ -321,6 +321,27 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     right: 3px;
   }
 
+  .item-amount-bubble {
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    padding: -2px;
+    max-height: 12px;
+    height: 11px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid black;
+    position: absolute;
+    line-height: 9px;
+    top: -5px !important;
+    left: 4px;
+    font-size: 10px;
+    width: 30px;
+    text-overflow: wrap;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
   .item-quality {
     position: absolute;
     top: -1px;
@@ -328,6 +349,27 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     color: $blue;
   }
   
+  .item-quality-bubble {
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    padding: -2px;
+    max-height: 12px;
+    height: 11px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid black;
+    position: absolute;
+    line-height: 9px;
+    top: -5px !important;
+    left: 4px;
+    font-size: 10px;
+    width: 30px;
+    text-overflow: wrap;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
   .item-locked {
     position: absolute;
     bottom: 0px;

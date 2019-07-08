@@ -2,7 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
+
 import _ from 'underscore';
+//import Numeral from 'numeral';
+
 import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
@@ -12,6 +15,20 @@ import { applyRarities, getStatsMap } from '/imports/api/items/items.js';
 import './itemIcon.html';
 
 let tooltip;
+
+const FriendlyNumber = function(num) {
+  if (num < 1000) return num.toString();
+  if (num < 10000) return ((Math.floor(num / 100) / 10.0).toString() + "k");
+  if (num < 100000) return ((Math.floor(num / 1000)).toString() + "k");
+  if (num < 1000000) return ((Math.floor(num / 1000)).toString() + "k");
+  if (num < 10000000) return ((Math.floor(num / 100000) / 10.0).toString() + "m");
+  if (num < 100000000) return ((Math.floor(num / 1000000)).toString() + "m");
+  if (num < 1000000000) return ((Math.floor(num / 10000000)).toString() + "m");    
+  if (num < 10000000000) return ((Math.floor(num / 100000000) / 10.0).toString() + "b");
+  if (num < 100000000000) return ((Math.floor(num / 1000000000)).toString() + "b");
+  if (num < 1000000000000) return ((Math.floor(num / 10000000000)).toString() + "b");    
+  return num.toString();
+}
 
 Template.itemIcon.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -38,32 +55,17 @@ Template.itemIcon.helpers({
 
   description() {
     const instance = Template.instance();
-    
-    if (instance.data.item.description !== undefined)
-        return instance.data.item.description;
-    
     const constants = ITEMS[instance.data.item.itemId];
     
-    if (constants) {
+    if (constants && constants.description) {
       if (_.isFunction(constants.description)) {
         return constants.description();
       }
+      return constants.description;
     }
-    return false;
-  },
-  
-  itemDescription() {
-    const instance = Template.instance();
-    const constants = ITEMS[instance.data.item.itemId];
     
-    if (constants) {
-      if (constants.description && !_.isFunction(constants.description)) {
-        return constants.description;
-      }
-    }
     return false;
   },
-
   
   abilityRequiresOrForbids() {
     const instance = Template.instance();
@@ -123,6 +125,87 @@ Template.itemIcon.helpers({
     }
     
     return "";
+  },
+  
+  itemAmount() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (item.amount && item.amount > 1) {
+      /*if (item.amount >= 1000) {
+        return Numeral(item.amount).format('0a');
+      }
+      
+      return `${item.amount}`; */
+      
+      return FriendlyNumber(item.amount);
+    }
+    
+    return "0";
+  },
+  
+  bubbleColor() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    if (item.quality && item.quality > 0) {
+      if (item.quality >= 85) {
+        return "#c9f";
+      } else if (item.quality >= 65) {
+        return "#afa";
+      } else if (item.quality >= 40) {
+        return "#ffa";
+      } else {
+        return "#faa";
+      }
+    }
+    
+    return "#e7e7e7";
+  },
+  
+  borderStyle() {
+    const instance = Template.instance();
+    const item = instance.data.item;
+    
+    let borderStyle = '';
+                        
+    if (item.rarityId) {
+      if (item.rarityId === 'crude') {
+        borderStyle = "3px dotted #555555";
+      } else if (item.rarityId === 'rough') {
+        borderStyle = "3px dotted #666644";
+      } else if (item.rarityId === 'improved') {
+        borderStyle = "3px dashed #998800";
+      } else if (item.rarityId === 'mastercrafted') {
+        borderStyle = "3px dashed #cc7700";
+      } else if (item.rarityId === 'masterforged') {
+        borderStyle = "3px double #ee6622";
+      } else if (item.rarityId === 'ascended') {
+        borderStyle = "3px double #ff2266";
+      } else if (item.rarityId === 'ethereal') {
+        borderStyle = "3px double #FF5599";
+      } else if (item.rarityId === 'fine') {
+        borderStyle = "3px dashed #66aaaa";
+      } else if (item.rarityId === 'rare') {
+        borderStyle = "3px dashed #3388aa";
+      } else if (item.rarityId === 'extraordinary') {
+        borderStyle = "3px double #3366aa";
+      } else if (item.rarityId === 'phenomenal') {
+        borderStyle = "3px double #0055cc";
+      } else if (item.rarityId === 'epic') {
+        borderStyle = "3px double #0022ee";
+      } else if (item.rarityId === 'divine') {
+        borderStyle = "3px double #4444ff";
+      } else if (item.rarityId === 'prized') {
+        borderStyle = "3px double #883388";
+      } else if (item.rarityId === 'legendary') {
+        borderStyle = "3px double #cc44cc";
+      } else if (item.rarityId === 'artifact') {
+        borderStyle = "3px double #44cc44";
+      }
+    }
+    
+    return borderStyle;
   },
   
   rarity() {

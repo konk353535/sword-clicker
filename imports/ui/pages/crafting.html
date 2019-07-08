@@ -1,6 +1,13 @@
 <template name="craftingPage">
 
-  {{#if craftingSkill}}
+  {{#unless meteorUser}}
+    
+    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 200px; margin-top: 100px;">
+      <div class="mb-3">Game is loading, please wait . . .</div>
+    </div>
+    
+  {{else if craftingSkill}}
+  
     {{> skillHeader skill=craftingSkill}}
 
     <div class="my-3 {{#unless inCurrentBattle}}{{#unless summaryListDisabled}}hidden-xl-up{{/unless}}{{/unless}}">
@@ -77,11 +84,13 @@
     {{> craftingList recipes=recipes recipeFilter=recipeFilter}}
 
   {{else}}
+  
     <div 
       class="d-flex justify-content-center align-items-center flex-column"
       style="height: 200px; margin-top: 100px;">
       <div class="mb-3">You haven't learned the crafting skill yet</div>
       <button class="btn btn-primary learn-now">Learn Now</button>
     </div>
-  {{/if}}
+    
+  {{/unless}}
 </template>

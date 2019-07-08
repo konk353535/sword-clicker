@@ -53,9 +53,18 @@ Template.itemIcon.helpers({
     return false;
   },
 
-  description() {
+  itemDescription() {
     const instance = Template.instance();
-    const constants = ITEMS[instance.data.item.itemId];
+    const item = instance.data.item;
+    
+    if (item.description) {
+      if (_.isFunction(item.description)) {
+        return item.description();
+      }
+      return item.description;
+    }
+    
+    const constants = ITEMS[item.itemId];
     
     if (constants && constants.description) {
       if (_.isFunction(constants.description)) {

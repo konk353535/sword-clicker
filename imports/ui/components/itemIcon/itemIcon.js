@@ -10,6 +10,7 @@ import { ITEMS, ITEM_RARITIES } from '/imports/constants/items/index.js';
 import { WOODCUTTING } from '/imports/constants/woodcutting/index.js';
 import { BUFFS } from '/imports/constants/buffs/index.js';
 
+import { CInt } from '/imports/utils.js';
 import { applyRarities, getStatsMap } from '/imports/api/items/items.js';
 
 import './itemIcon.html';

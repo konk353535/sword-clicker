@@ -176,4 +176,10 @@ Meteor.startup(() => {
   }  
   // Note: disabled, I suspect because we don't have a user here, this causes all kinds of weird issues with duplicating buffs
   */
+  
+  if (Meteor.isServer) {
+    // On server startup, remove all old transactions to prune the size of the transactions collection.
+    // Paired with a daily restart script, this should occur daily at a specific time.
+    tx.Transactions.remove({});
+  }
 });

@@ -282,7 +282,18 @@ Template.townPage.helpers({
       skillLevel = CInt(skillDoc.level);
     }
     
-    return (skillLevel > 0 ? autoPrecisionValue(playerKarma / (Math.pow(1.045, (CDbl(skillLevel) / 2.5)) * 75)) : 0);
+    if (skillLevel <= 0) {
+      return 0;
+    }
+    
+    let personalKarmaBonus = autoPrecisionValue(playerKarma / (Math.pow(1.045, (CDbl(skillLevel) / 2.5)) * 75));
+    
+    // cap personal karma bonus at 200%
+    if (personalKarmaBonus > 200.00) {
+      personalKarmaBonus = 200.0;
+    }
+    
+    return personalKarmaBonus;
   },
 
   totalKarma() {

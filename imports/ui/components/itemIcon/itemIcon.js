@@ -197,6 +197,8 @@ Template.itemIcon.helpers({
         borderStyle = "3px double #ff2266";
       } else if (item.rarityId === 'ethereal') {
         borderStyle = "3px double #FF5599";
+      } else if (item.rarityId === 'perfect') {
+        borderStyle = "3px double #FF71aa";
       } else if (item.rarityId === 'fine') {
         borderStyle = "3px dashed #66aaaa";
       } else if (item.rarityId === 'rare') {
@@ -209,6 +211,10 @@ Template.itemIcon.helpers({
         borderStyle = "3px double #0022ee";
       } else if (item.rarityId === 'divine') {
         borderStyle = "3px double #4444ff";
+      } else if (item.rarityId === 'incredible') {
+        borderStyle = "3px double #6141ff";
+      } else if (item.rarityId === 'unparalleled') {
+        borderStyle = "3px double #9151ff";
       } else if (item.rarityId === 'prized') {
         borderStyle = "3px double #883388";
       } else if (item.rarityId === 'legendary') {

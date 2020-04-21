@@ -64,7 +64,7 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Crafting T2 (last + 20)
+  // Crafting T2 (33.333% of the last + 20/[tier-1]%)
   improved: {
     rarityId: 'improved',
     label: 'Improved',
@@ -79,12 +79,12 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Crafting T3 (last + 30)
+  // Crafting T3 (33.333% of the last + 20/[tier-1]%)
   mastercrafted: {
     rarityId: 'mastercrafted',
     label: 'Mastercrafted',
     color: 'cc7700',
-    statBonuses: 50.0,
+    statBonuses: 36.7,
     nextRarity: {
       rarityId: 'masterforged',
       successChance: 15.0, // 15% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -94,12 +94,12 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Crafting T4 (last + 50)
+  // Crafting T4 (33.333% of the last + 20/[tier-1]%)
   masterforged: {
     rarityId: 'masterforged',
     label: 'Masterforged',
     color: 'ee6622',
-    statBonuses: 100.0,
+    statBonuses: 55.6,
     nextRarity: {
       rarityId: 'ascended',
       successChance: 5.0, // 5% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -109,12 +109,12 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Crafting T5 (last + 70)
+  // Crafting T5 (33.333% of the last + 20/[tier-1]%)
   ascended: {
     rarityId: 'ascended',
     label: 'Ascended',
     color: 'ff2266',
-    statBonuses: 170.0,
+    statBonuses: 79.1,
     nextRarity: {
       rarityId: 'ethereal',
       successChance: -5.0, // -5% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -124,14 +124,29 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Crafting T6 (last + 90)
+  // Crafting T6 (33.333% of the last + 20/[tier-1]%)
   ethereal: {
     rarityId: 'ethereal',
     label: 'Ethereal',
     color: 'FF5599',
-    statBonuses: 260.0,
+    statBonuses: 109.4,
+    nextRarity: {
+      rarityId: 'perfect',
+      successChance: -5.0, // -5% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
     prevRarity: {
       rarityId: 'ascended'
+    },
+  },
+  
+  // Crafting T7 (33.333% of the last + 20/[tier-1]%)
+  perfect: {
+    rarityId: 'perfect',
+    label: 'Perfect',
+    color: 'FF71aa',
+    statBonuses: 149.2,
+    prevRarity: {
+      rarityId: 'ethereal'
     },
   },
   
@@ -150,12 +165,12 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Looted T2 (last + 18.75)
+  // Looted T2 (25% of the last + 25/[tier/2]%)
   fine: {
     rarityId: 'fine',
     label: 'Fine',
     color: '66aaaa',
-    statBonuses: 18.75,
+    statBonuses: 25.0,
     nextRarity: {
       rarityId: 'rare',
       successChance: 30.0, // 30% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -165,12 +180,12 @@ export const ITEM_RARITIES = {
     },
   },
  
-  // Looted T3 (last + 18.75)
+  // Looted T3 (25% of the last + 25/[tier/2]%)
   rare: {
     rarityId: 'rare',
     label: 'Rare',
     color: '3388aa',
-    statBonuses: 37.5,
+    statBonuses: 47.9,
     nextRarity: {
       rarityId: 'extraordinary',
       successChance: 15.0, // 1% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -180,12 +195,12 @@ export const ITEM_RARITIES = {
     },
   },
  
-  // Looted T4 (last + 37.5)
+  // Looted T4 (25% of the last + 25/[tier/2]%)
   extraordinary: {
     rarityId: 'extraordinary',
     label: 'Extraordinary',
     color: '3366aa',
-    statBonuses: 75.0,
+    statBonuses: 72.4,
     nextRarity: {
       rarityId: 'phenomenal',
       successChance: 5.0, // 5% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -195,12 +210,12 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Looted T5 (last + 75)
+  // Looted T5 (25% of the last + 25/[tier/2]%)
   phenomenal: {
     rarityId: 'phenomenal',
     label: 'Phenomenal',
     color: '0055cc',
-    statBonuses: 150.0,
+    statBonuses: 100.5,
     nextRarity: {
       rarityId: 'epic',
       successChance: -5.0, // -5% chance (plus 1% chance per crafting skill level above recipe to craft this)
@@ -210,29 +225,59 @@ export const ITEM_RARITIES = {
     },
   },
   
-  // Looted T6 (last + 150)
+  // Looted T6 (25% of the last + 25/[tier/2]%)
   epic: {
     rarityId: 'epic',
     label: 'Epic',
     color: '0022ee',
-    statBonuses: 300.0,
+    statBonuses: 134.0,
     nextRarity: {
       rarityId: 'divine',
-      successChance: -15.0, // -15% chance (plus 1% chance per crafting skill level above recipe to craft this)
+      successChance: -10.0, // -10% chance (plus 1% chance per crafting skill level above recipe to craft this)
     },
     prevRarity: {
       rarityId: 'phenomenal'
     },
   },
   
-  // Looted T7 (last + 200)
+  // Looted T7 (25% of the last + 25/[tier/2]%)
   divine: {
     rarityId: 'divine',
     label: 'Divine',
     color: '4444ff',
-    statBonuses: 500.0,
+    statBonuses: 174.6,
+    nextRarity: {
+      rarityId: 'incredible',
+      successChance: -15.0, // -15% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
     prevRarity: {
       rarityId: 'epic'
+    },
+  },
+  
+  // Looted T8 (25% of the last + 25/[tier/2]%)
+  incredible: {
+    rarityId: 'incredible',
+    label: 'Incredible',
+    color: '6141ff',
+    statBonuses: 224.5,
+    nextRarity: {
+      rarityId: 'unparalleled',
+      successChance: -15.0, // -15% chance (plus 1% chance per crafting skill level above recipe to craft this)
+    },
+    prevRarity: {
+      rarityId: 'divine'
+    },
+  },
+  
+  // Looted T9 (25% of the last + 25/[tier/2]%)
+  unparalleled: {
+    rarityId: 'unparalleled',
+    label: 'Unparalleled',
+    color: '9151ff',
+    statBonuses: 286.2,
+    prevRarity: {
+      rarityId: 'incredible'
     },
   },
   

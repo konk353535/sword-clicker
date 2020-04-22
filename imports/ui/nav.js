@@ -193,7 +193,7 @@ Template.nav.helpers({
     });
 
     if (myServer && myServer.name === CLASSIC_SERVER) {
-      return moment().isBefore(moment('2019-03-15'));
+      return moment().isBefore(moment('2020-04-22'));
     }
 
     return false;

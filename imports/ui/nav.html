@@ -1,9 +1,12 @@
 <template name="nav">
   <nav class="navbar navbar-toggleable-md bg-primary navbar-inverse {{#unless $eq currentRoute 'home'}}sticky-top{{/unless}}">
     <div class="navbar-inner-container d-flex" style="width: 100%">
+      
+      <!-- mobile dropdown button -->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       {{#if currentUser}}
         <a class="navbar-brand" href="/overview">
           <img src="/icons/whiteTower.svg" class="extra-small-icon">
@@ -40,17 +43,17 @@
                 </a>
               </li>
             {{/if}}
-            {{#if canSeeInscription}}
-              <li class="nav-item">
-                <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
-                  Inscribe
-                </a>
-              </li>
-            {{/if}}
             {{#if canSeeFarming}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
                   Farm
+                </a>
+              </li>
+            {{/if}}
+            {{#if canSeeInscription}}
+              <li class="nav-item">
+                <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
+                  Inscribe
                 </a>
               </li>
             {{/if}}

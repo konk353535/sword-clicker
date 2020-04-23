@@ -141,9 +141,70 @@ Template.astronomyTab.helpers({
       
       //console.log(mage);
     });
-
+    
     return astronomy;
   },
+
+  hasAstroUpgrade() {
+    const astronomy = lodash.cloneDeep(Astronomy.findOne());
+    let hasPhantomMageUpgrade = false;
+
+    if (!astronomy) {
+      return false;
+    }
+    
+    astronomy.mages.forEach((mage, mageIndex) => {
+      if (mage.id === 'donatorMage') {
+        hasPhantomMageUpgrade = true;
+      }
+    });
+    
+    return hasPhantomMageUpgrade;
+  },
+  
+  astroUpgradePreview() {
+    const astronomy = lodash.cloneDeep(Astronomy.findOne());
+    const instance = Template.instance();
+
+    if (!astronomy) {
+      return;
+    }
+
+    let mainMage = undefined;
+    let hasPhantomMageUpgrade = false;
+    astronomy.mages.forEach((mage, mageIndex) => {
+      if (mageIndex === 0) {
+        mainMage = mage;
+      } else if (mage.id === 'donatorMage') {
+        hasPhantomMageUpgrade = true;
+      }
+    });
+    
+    if (!hasPhantomMageUpgrade && mainMage !== undefined) {
+      return {
+        id: 'donatorMageInactive',
+        icon: "phantomMage.svg",
+        amount: undefined,
+        index: -1,
+        name: "Phantom Mage (Locked)",
+        primaryAction: {
+        description: 'Purchase',
+          method() {
+            Router.go('/shop');
+          }
+        },
+        stats: { 
+          attackSpeed: Math.round(mainMage.stats.attackSpeed / 2),
+          criticalChance: mainMage.stats.criticalChance,
+          completeShard: mainMage.stats.completeShard,
+          ancientShard: mainMage.stats.ancientShard
+        }
+      };
+    }
+
+    return;
+  },
+
 
   selectedMage() {
     return Template.instance().state.get('selectedMage');

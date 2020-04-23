@@ -79,7 +79,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'mining' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -92,7 +92,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'crafting' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -131,7 +131,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'combat' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -144,7 +144,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'woodcutting' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -157,7 +157,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'farming' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -170,7 +170,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'inscription' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });
@@ -198,7 +198,7 @@ Template.shopPage.events({
 
     Meteor.call('shop.buySingle', { days: 30, type: 'astronomy' }, (err, res) => {
       if (err) {
-        return toastr.error('An unexpected error occurred when buying membership.');
+        return toastr.error('An unexpected error occurred when purchasing this unlock.');
       }
       toastr.success('Successfully purchased.')
     });

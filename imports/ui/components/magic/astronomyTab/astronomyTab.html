@@ -21,6 +21,12 @@
   <p>Mages collect magical fragments and shards over time.</p>
 
   <div class="d-flex flex-wrap align-items-start">
+    {{#unless hasAstroUpgrade}}
+      <div class="d-flex flex-column justify-content-center align-items-center inactive">
+        {{> itemIcon item=astroUpgradePreview classes="cursor-pointer"}}
+      </div>
+    {{/unless}}
+  
     <!-- List of my mages here -->
     {{#each astronomy.mages}}
       <div class="d-flex flex-column justify-content-center align-items-center">

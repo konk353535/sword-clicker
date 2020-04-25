@@ -167,7 +167,7 @@ export const ATTACK_ABILITIES = {
       type: 'weaponType',
       weaponTypes: ['bow']
     }],
-    cooldown: 10,
+    cooldown: 5,
     slot: 'any',
     target: 'currentEnemy',
     isHidden: false,
@@ -304,7 +304,7 @@ export const ATTACK_ABILITIES = {
     isHidden: false,
     requires: [{
       type: 'weaponType',
-      weaponTypes: ['battleAxe']
+      weaponTypes: ['battleAxe','longSword']
     }],
     target: 'currentEnemy', // The current enemy who we are auto attacking
     description(level) {

@@ -183,8 +183,10 @@ export const DEFENSE_BUFFS = {
       const durationPerLevel = buff.constants.durationPerLevel;
       const durationTotal = buff.constants.durationBase + (durationPerLevel * localLevel);
 
-      return `${chance}% chance to freeze your attacker.<br />
-        Lowers enemy attack speed by ${attackSpeedDecrease}% for ${durationTotal}s. (+${durationPerLevel}s per lvl).`;
+      return `
+        Passive ability<br />
+        <b>${chance}%</b> chance to freeze your attacker.  Frozen attackers have <b>${attackSpeedDecrease}%</b> lowered attack speed for <b>${durationTotal}s</b>. (+${durationPerLevel}s per lvl).<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       frostChance: 0.2,
@@ -245,11 +247,12 @@ export const DEFENSE_BUFFS = {
       const healthIncrease = healthBase + healthPerLevel;
 
       return `
-        Increase health by ${Math.round(healthIncrease * 100)}%. <br />
-        (+${(Math.round(buff.constants.healthPerLevel * 1000)/10)}% per lvl)`;
+        Passive ability<br />
+        <b>+${Math.round(healthIncrease * 100)}%</b> maximum health. (+${(Math.round(buff.constants.healthPerLevel * 1000)/10)}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
-      healthBase: 0.05,
+      healthBase: 0.10,
       healthPerLevel: 0.025
     },
     data: {
@@ -297,9 +300,12 @@ export const DEFENSE_BUFFS = {
     icon: 'sixthSense.svg',
     name: 'watchful aura',
     description({ buff, level }) {
-      return `Dodge rate from defense skill won't fall below 35%. <br />
-        Whenever you dodge, you are healed for 1% of your original maximum health. <br />
-        This heal can occur only every 5 seconds.`;
+      return `
+        Passive ability<br />
+        Dodge rate from defense skill won't fall below 35%. <br />
+        Whenever you dodge, you are healed for 2% of your original maximum health. <br />
+        This heal can occur only every 5 seconds.<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
     },
@@ -334,7 +340,7 @@ export const DEFENSE_BUFFS = {
           if (defender.stats.healthMaxOrig) {
             hpMaxHealth = defender.stats.healthMaxOrig;
           }
-          let hpHealAmount = hpMaxHealth / 100;
+          let hpHealAmount = (hpMaxHealth * 2) / 100;
           if (hpHealAmount + defender.stats.health > defender.stats.healthMax) {
             hpHealAmount = defender.stats.healthMax - defender.stats.health;
           }
@@ -367,12 +373,13 @@ export const DEFENSE_BUFFS = {
       const defenseIncrease = defenseBase + defensePerLevel;
 
       return `
-        Increase defense by ${defenseIncrease}. <br />
-        (+${buff.constants.defensePerLevel} defense per lvl)`;
+        Passive ability<br />
+        <b>+${defenseIncrease}</b> defense. (+${buff.constants.defensePerLevel} per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
-      defenseBase: 5,
-      defensePerLevel: 10
+      defenseBase: 7.5,
+      defensePerLevel: 12.5
     },
     data: {
       duration: Infinity,
@@ -416,8 +423,9 @@ export const DEFENSE_BUFFS = {
       const damageReflection = damageReflectionBase + damageReflectionPerLevel;
 
       return `
-        Reflect (${Math.round(damageReflection * 100)}% of attack damage taken) + 10 as magic damage. <br />
-        (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)`;
+        Passive ability<br />
+        Reflect (<b>${Math.round(damageReflection * 100)}% of attack damage taken) + 10</b> as magic damage. (+${Math.round(damageReflectionPerLevel * 100)}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       damageReflectionBase: 0.30,
@@ -831,8 +839,11 @@ export const DEFENSE_BUFFS = {
     description({ buff, level }) {
       const armorPerLevel = buff.constants.armorPerLevel;
       const totalArmor = buff.constants.baseArmor + (armorPerLevel * level);
-      return `Increase armor by ${totalArmor} for ${buff.data.totalDuration}s.
-       (+${armorPerLevel} per lvl)`;
+      const duration = buff.data.totalDuration;
+
+      return `
+        <b>+${totalArmor}</b> physical and magical armor. (+${armorPerLevel} per lvl)<br />
+        Duration <b>${duration}s</b>`;
     },
     constants: {
       baseArmor: 100,
@@ -851,6 +862,7 @@ export const DEFENSE_BUFFS = {
 
         buff.data.totalArmor = totalArmor;
         target.stats.armor += totalArmor;
+        target.stats.magicArmor += totalArmor;
       },
 
       onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -871,6 +883,7 @@ export const DEFENSE_BUFFS = {
 
       onRemove({ buff, target, caster }) {
         target.stats.armor -= buff.data.totalArmor;
+        target.stats.magicArmor -= buff.data.totalArmor;
       }
     }
   },
@@ -884,8 +897,9 @@ export const DEFENSE_BUFFS = {
       const armorPerLevel = buff.constants.armorPerLevel * level;
       const armorIncrease = armorBase + armorPerLevel;
       return `
-        Increases physical armor by ${armorIncrease}. <br />
-        (+${buff.constants.armorPerLevel} armor per lvl)`;
+        Passive ability<br />
+        +<b>${armorIncrease}</b> physical armor. (+${buff.constants.armorPerLevel} per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       armorBase: 20,
@@ -927,8 +941,9 @@ export const DEFENSE_BUFFS = {
       const armorPerLevel = buff.constants.armorPerLevel * level;
       const armorIncrease = armorBase + armorPerLevel;
       return `
-        Increases magic armor by ${armorIncrease}. <br />
-        (+${buff.constants.armorPerLevel} armor per lvl)`;
+        Passive ability<br />
+        <b>+${armorIncrease}</b> magic armor. (+${buff.constants.armorPerLevel} per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       armorBase: 10,

@@ -115,8 +115,9 @@ export const ATTACK_BUFFS = {
       const attackIncrease = attackBase + attackPerLevel;
 
       return `
-        Increases attack by ${Math.round(attackIncrease * 100)}%. <br />
-        (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)`;
+        Passive ability<br />
+        <b>+${Math.round(attackIncrease * 100)}%</b> attack damage. (+${Math.round(buff.constants.attackPerLevel * 100)}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       attackBase: 0.05,
@@ -166,12 +167,13 @@ export const ATTACK_BUFFS = {
       const accuracyIncrease = accuracyBase + accuracyPerLevel;
 
       return `
-        Increases accuracy by ${accuracyIncrease}. <br />
-        (+${buff.constants.accuracyPerLevel} accuracy per lvl)`;
+        Passive ability<br />
+        <b>+${accuracyIncrease}</b> accuracy. (+${buff.constants.accuracyPerLevel} per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
-      accuracyBase: 4,
-      accuracyPerLevel: 8
+      accuracyBase: 10,
+      accuracyPerLevel: 15
     },
     data: {
       duration: Infinity,
@@ -214,8 +216,9 @@ export const ATTACK_BUFFS = {
       const criticalPerLevel = buff.constants.criticalPerLevel * level;
       const criticalIncrease = criticalBase + criticalPerLevel;
       return `
-        Increases critical chance by ${criticalIncrease}%. <br />
-        (+${buff.constants.criticalPerLevel}% critical chance per lvl)`;
+        Passive ability<br />
+        <b>+${criticalIncrease}%</b> critical chance. (+${buff.constants.criticalPerLevel}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       criticalBase: 4,
@@ -264,12 +267,13 @@ export const ATTACK_BUFFS = {
       const attackSpeedPerLevel = buff.constants.attackSpeedPerLevel * level;
       const attackSpeedIncrease = attackSpeedBase + attackSpeedPerLevel;
       return `
-        Increases attack speed by ${attackSpeedIncrease}%. <br />
-        (+${buff.constants.attackSpeedPerLevel}% attack speed per lvl)`;
+        Passive ability<br />
+        <b>+${attackSpeedIncrease}%</b> attack speed. (+${buff.constants.attackSpeedPerLevel}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       attackSpeedBase: 5,
-      attackSpeedPerLevel: 5
+      attackSpeedPerLevel: 3
     },
     data: {
       duration: Infinity,
@@ -378,9 +382,10 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.poisonDamagePerLevel * 100;
       const damage = (buff.constants.poisonDamageBase + buff.constants.poisonDamagePerLevel * localLevel) * 100;
 
-      return `${chance.toFixed(0)}% chance to poison the enemy.<br />
-        Deals ${damage.toFixed(0)}% physical damage every 5 seconds. (+${damagePerLevel}% per lvl).<br />
-        Lasts 5 minutes.`;
+      return `
+        Passive ability<br />
+        <b>${chance.toFixed(0)}%</b> chance on auto-attack hit to poison the enemy.  Poison will cause <b>${damage.toFixed(0)}%</b> physical damage every <b>5</b> seconds for <b>5 minutes</b>. (+${damagePerLevel}% damage per lvl).<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       poisonChance: 0.07,
@@ -450,8 +455,11 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
-      return `${chance}% chance to attack twice.<br />
-        Extra attack deals ${damage.toFixed(0)}% damage (+${damagePerLevel}% per lvl) `;
+      return `
+        Passive ability<br />
+        Auto-attacks have a <b>${chance}%</b> chance to repeat.<br />
+        Repeat attacks cause <b>+${damage.toFixed(0)}%</b> extra damage. (+${damagePerLevel}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       extraAttackChance: 0.2,
@@ -526,7 +534,10 @@ export const ATTACK_BUFFS = {
       const damagePerLevel = buff.constants.extraAttackDamagePerLevel * 100;
       const damage = (buff.constants.extraAttackDamageBase + buff.constants.extraAttackDamagePerLevel * localLevel) * 100;
 
-      return `Auto attacks hit enemies adjacent to your target (applies on-hit effects). Consumes one stack when triggered. Stacks generate every 3 seconds, maximum of 20. `;
+      return `
+        Passive ability<br />
+        Auto-attacks hit enemies adjacent to your target (applies on-hit effects). Consumes one stack when triggered. Stacks generate every 3 seconds, maximum of 20.<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
     },
@@ -604,9 +615,12 @@ export const ATTACK_BUFFS = {
       const damage = (buff.constants.damageDecimal + (buff.constants.extraAttackDamagePerLevel * localLevel)) * 100;
       const healing = buff.constants.healingDecimal * 100;
 
-      return `When the target is bleeding<br />
-        Deal ${damage.toFixed(0)}% extra damage (+${damagePerLevel}% per lvl).<br />
-        While below 60% hp, heal for ${healing.toFixed(0)}% of damage dealt.`;
+      return `
+        Passive ability<br />
+        <i>When your target is bleeding</i><br />
+        <b>+${damage.toFixed(0)}%</b> damage to bleeding targets (+${damagePerLevel}% per lvl).<br />
+        While below <b>60%</b> health, heal for <b>${healing.toFixed(0)}%</b> of damage dealt.<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       damageDecimal: 0.15,
@@ -731,21 +745,21 @@ export const ATTACK_BUFFS = {
       return `
         <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
         <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
-        You lose <b>${healthLostPerSecond.toFixed(1)}hp</b> per second. (+${healthLostPerLevel} per lvl)<br />
-        You can\'t change your active target while berserking<br />
+        You lose <b>${healthLostPerSecond.toFixed(0)} health</b> per second. (+${healthLostPerLevel} per lvl)<br />
+        You can\'t change your active target while berserking.<br />
         Duration <b>${duration}s</b>`;
     },
     constants: {
-      damagePercentageIncreaseBase: 45,
+      damagePercentageIncreaseBase: 35,
       damagePercentageIncreasePerLevel: 5,
-      damageTakenPercentageIncreaseBase: 20,
+      damageTakenPercentageIncreaseBase: 17,
       damageTakenPercentageIncreasePerLevel: 3,
-      healthLostPerSecondBase: 0.9,
-      healthLostPerSecondPerLevel: 0.1
+      healthLostPerSecondBase: -1,
+      healthLostPerSecondPerLevel: 3
     },
     data: {
-      duration: 10,
-      totalDuration: 10,
+      duration: 15,
+      totalDuration: 15,
     },
     events: { // This can be rebuilt from the buff id
       onApply({ buff, target, caster, actualBattle }) {
@@ -861,10 +875,12 @@ export const ATTACK_BUFFS = {
     name: 'execute',
     description({ buff, level }) {
       const damagePerLevel = buff.constants.damagePerLevel;
-      const damageIncreasePerPercentage = buff.constants.damageBase + (damagePerLevel * level);
+      const damageIncreasePerPercentageMin = (buff.constants.damageBase + (damagePerLevel * level)) * 0.6499;
+      const damageIncreasePerPercentageMax = (buff.constants.damageBase + (damagePerLevel * level)) * 0.9999;
       return `
-        Execute enemies below 30% hp for up to <b>${damageIncreasePerPercentage * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
-        Based on your targets missing health.`;
+        <i>When your target is under 35% health</i><br />
+        Execute enemies below 35% health for <b>${Math.round(damageIncreasePerPercentageMin) * 100}%</b> to <b>${Math.round(damageIncreasePerPercentageMax) * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Based on your target's missing health.  Causes no damage to targets above 35% health.`;
     },
     constants: {
       damageBase: 2, // % Increase of damage for each % of health enemy is missing
@@ -879,7 +895,7 @@ export const ATTACK_BUFFS = {
 
         // Target HP
         const targetHp = (target.stats.health / target.stats.healthMax) * 100;
-        if (targetHp > 30) {
+        if (targetHp > 35) {
           return;
         }
 
@@ -915,8 +931,7 @@ export const ATTACK_BUFFS = {
       const damageBase = buff.constants.damageBase;
       const damageTotal = Math.round((damageBase + (damagePerLevel * level)) * 100);
       return `
-        Slash for ${damageTotal}% damage. <br />
-        (+${damagePerLevel * 100}% damage per lvl)`;
+        Slash for <b>${damageTotal}%</b> damage. (+${damagePerLevel * 100}% per lvl)`;
     },
     constants: {
       damageBase: 0.8,
@@ -1112,8 +1127,8 @@ export const ATTACK_BUFFS = {
       const attackSpeedPerLevel = buff.constants.attackSpeedPerLevel;
       const attackSpeedGain = buff.constants.attackSpeedBase + (attackSpeedPerLevel * level);
       return `
-        Increases attack speed by ${attackSpeedGain}% for ${buff.data.totalDuration}s.
-         (+${attackSpeedPerLevel}% per lvl)`;
+        <b>+${attackSpeedGain}%</b> attack speed. (+${attackSpeedPerLevel}% per lvl)<br />
+        Duration <b>${duration}s</b>`;
     },
     constants: {
       attackSpeedBase: 75,

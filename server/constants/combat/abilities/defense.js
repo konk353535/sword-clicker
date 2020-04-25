@@ -259,7 +259,7 @@ export const DEFENSE_ABILITIES = {
     name: 'Bolster',
     id: 'armor_up',
     buffs: ['armor_up'],
-    cooldown: 180,
+    cooldown: 90,
     slot: 'any',
     isHidden: false,
     target: 'self', // The current enemy who we are auto attacking

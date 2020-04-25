@@ -2441,12 +2441,13 @@ export const MAGIC_BUFFS = {
       const powerPerLevel = buff.constants.powerPerLevel * level;
       const powerIncrease = powerBase + powerPerLevel;
       return `
-        Increases magic power by ${powerIncrease}. <br />
-        (+${buff.constants.powerPerLevel} magic power per lvl)`;
+        Passive ability<br />
+        <b>+${powerIncrease}</b> magic power. (+${buff.constants.powerPerLevel} per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
-      powerBase: 8,
-      powerPerLevel: 6
+      powerBase: 6,
+      powerPerLevel: 8
     },
     data: {
       duration: Infinity,
@@ -2491,8 +2492,9 @@ export const MAGIC_BUFFS = {
       const powerPerLevel = buff.constants.powerPerLevel * level;
       const powerIncrease = powerBase + powerPerLevel;
       return `
-        Increases healing power by ${powerIncrease}%. <br />
-        (+${buff.constants.powerPerLevel}% healing power per lvl)`;
+        Passive ability<br />
+        <b>+${powerIncrease}%</b> healing power. (+${buff.constants.powerPerLevel}% per lvl)<br />
+        While equipped this is <b>always active</b>.`;
     },
     constants: {
       powerBase: 5,

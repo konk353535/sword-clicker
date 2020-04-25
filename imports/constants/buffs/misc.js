@@ -48,7 +48,9 @@ export const MISC_BUFFS = {
     name: 'Lion Dance',
     description({ buff, level }) {
       return `
-      You are dancing and celebrating for luck, raising your chance to find valuables in each battle.  When combat ends, each member of your party using Lion Dance will increase the chances of finding loot by <b>5%</b>.  Stacks with global combat buffs and exploration bonuses.`;
+        Passive ability<br />
+        You are dancing and celebrating for luck, raising your chance to find valuables in each battle.  When combat ends, each member of your party using Lion Dance will increase the chances of finding loot by <b>5%</b>.  Stacks with global combat buffs and exploration bonuses.<br />
+        While equipped this is <b>always active</b>.`;
     },
     data: {
       duration: Infinity,

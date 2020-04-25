@@ -425,11 +425,19 @@ Meteor.methods({
       shopItem.name = ITEMS[shopItem.itemId].name;
       shopItem.seedType = ITEMS[shopItem.itemId].seedType;
 
+      /*
       if (_.isFunction(producesConstants.description)) {
         shopItem.description = producesConstants.description();
       } else {
         shopItem.description = ITEMS[shopItem.itemId].description;
       }
+      */
+
+      if (_.isFunction(itemConstants.description)) {
+        shopItem.description = itemConstants.description();
+      } else {
+        shopItem.description = ITEMS[shopItem.itemId].description;
+      }      
       return shopItem;
     });
 

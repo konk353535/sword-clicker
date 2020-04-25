@@ -154,6 +154,7 @@ export const PLANTS = {
     }]
   },
 
+  /*
   sun_rose: {
     produces: 'sun_rose',
     name: 'sun rose',
@@ -178,7 +179,8 @@ export const PLANTS = {
       level: 59
     }]
   },
-
+  */
+  
   sunburst_hydrangea: {
     produces: 'sunburst_hydrangea',
     name: 'sunburst hydrangea',
@@ -229,7 +231,7 @@ export const PLANTS = {
     }]
   },
 
-  
+  /*
   crimson_rose: {
     produces: 'crimson_rose',
     name: 'crimson rose',
@@ -254,7 +256,8 @@ export const PLANTS = {
       level: 69
     }]
   },
-
+  */
+  
   // 4 hours, 800g/hr
   poppy: {
     produces: 'poppy',
@@ -308,6 +311,7 @@ export const PLANTS = {
   },
 
   // 0.16 hr, 3450/hr
+  /*
   tulip: {
     produces: 'tulip',
     name: 'tulip',
@@ -332,7 +336,8 @@ export const PLANTS = {
       level: 69
     }]
   },
-
+  */
+  
   // 8 hours, 500g/hr
   chrysanthemum: {
     produces: 'chrysanthemum',

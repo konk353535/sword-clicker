@@ -19,10 +19,18 @@ Template.guestSettingsPage.events({
       return;
     }
 
-    const username = instance.$('#at-field-username').val();
-    const email = instance.$('#at-field-email').val();
-    const password = instance.$('#at-field-password').val();
-    const confirmPassword = instance.$('#at-field-confirm-password').val();
+    const username = instance.$('#at-field-username').val().trim();
+    const email = instance.$('#at-field-email').val().trim();
+    const password = instance.$('#at-field-password').val().trim();
+    const confirmPassword = instance.$('#at-field-confirm-password').val().trim();
+  
+    if (!username || username.length < 3) {
+      return instance.state.set('error', 'username must be at least 3 characters');
+    } else if (username.length > 20) {
+      return instance.state.set('error', 'username must be at most 20 characters');
+    } else if (/[^a-zA-Z\d\s:_-]/.test(username)) {
+      return instance.state.set('error', 'username can only contain alphanumeric characters');
+    }
   
     // Make sure password and confirmPassword match
     if (password !== confirmPassword) {

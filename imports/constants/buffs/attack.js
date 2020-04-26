@@ -879,7 +879,7 @@ export const ATTACK_BUFFS = {
       const damageIncreasePerPercentageMax = (buff.constants.damageBase + (damagePerLevel * level)) * 0.9999;
       return `
         <i>When your target is under 35% health</i><br />
-        Execute enemies below 35% health for <b>${Math.round(damageIncreasePerPercentageMin) * 100}%</b> to <b>${Math.round(damageIncreasePerPercentageMax) * 100}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
+        Execute enemies below 35% health for <b>${Math.round(damageIncreasePerPercentageMin * 100)}%</b> to <b>${Math.round(damageIncreasePerPercentageMax * 100)}%</b> damage. (+${damagePerLevel * 100}% per lvl)<br />
         Based on your target's missing health.  Causes no damage to targets above 35% health.`;
     },
     constants: {

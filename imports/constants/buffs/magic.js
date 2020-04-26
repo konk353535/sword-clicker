@@ -1131,7 +1131,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'poison.svg',
           });
         }
       }
@@ -1189,7 +1190,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'affliction.svg',
           });
         } else {
           buff.data.totalMagicArmorReduction = 0;
@@ -1328,7 +1330,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'lightningDart.svg',
           });
 
           buff.data.totalArmorReduction = totalArmorReduction;
@@ -1401,7 +1404,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'lightningStorm.svg',
           });
 
           buff.data.totalArmorReduction = totalArmorReduction;
@@ -1533,7 +1537,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'blizzard.svg',
           });
   
           const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
@@ -1614,7 +1619,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'iceDart.svg',
           });
   
           const attackSpeedDecrease = constants.attackSpeedDecrease * 100;
@@ -1694,7 +1700,8 @@ export const MAGIC_BUFFS = {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'earthDart.svg',
           });
         }
       },
@@ -1746,7 +1753,8 @@ export const MAGIC_BUFFS = {
             attacker: caster,
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'earthBall.svg',
           });
         }
       },
@@ -1800,7 +1808,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'earthenFist.svg',
           });
 
           buff.data.attackSpeedDecrease = 99;
@@ -2014,7 +2023,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'ignite.svg',
           });
           buff.data.timeTillDamage = 1;
         }
@@ -2133,7 +2143,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'ignite.svg',
           });
           buff.data.timeTillDamage = 1;
         }
@@ -2190,7 +2201,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'inferno.svg',
           });
           buff.data.timeTillDamage = 0.5;
         }
@@ -2206,7 +2218,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'inferno.svg',
           });
           buff.data.timeTillDamage = 0.5;
         }
@@ -2260,7 +2273,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'fireWave.svg',
           });
         }
       },
@@ -2313,7 +2327,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'fireDart.svg',
           });
         }
       },
@@ -2366,7 +2381,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'fireBall.svg',
           });
         }
       },
@@ -2419,7 +2435,8 @@ export const MAGIC_BUFFS = {
             defender: target,
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'meteorStrike.svg',
           });
         }
       },

@@ -72,7 +72,8 @@ export const DEFENSE_BUFFS = {
             attacker: target,
             defender: enemy,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'volcanicShield.svg',
           });
         });
       }
@@ -458,7 +459,8 @@ export const DEFENSE_BUFFS = {
           defender: attacker,
           isMagic: true,
           tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
+          historyStats: actualBattle.historyStats,
+          customIcon: 'spikedArmor.svg',
         });
       },
 
@@ -499,7 +501,8 @@ export const DEFENSE_BUFFS = {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'intimidate.svg',
           });
         }
       },
@@ -518,7 +521,8 @@ export const DEFENSE_BUFFS = {
           attacker: target,
           isMagic: true,
           tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
+          historyStats: actualBattle.historyStats,
+          customIcon: 'eelTaunt.svg',
         });
       }
     }
@@ -549,7 +553,8 @@ export const DEFENSE_BUFFS = {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'intimidate.svg',
           });
         }
       },
@@ -567,7 +572,8 @@ export const DEFENSE_BUFFS = {
           defender: target,
           attacker: target,
           tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
+          historyStats: actualBattle.historyStats,
+          customIcon: 'lionTaunt.svg',
         });
       }
     }
@@ -578,7 +584,7 @@ export const DEFENSE_BUFFS = {
     icon: 'bearTaunt.svg',
     name: 'bear taunt',
     description({ buff, level }) {
-      return 'Taunts the target, and reduces it\'s attack by 10% for 5 seconds';
+      return 'Taunts the target, and reduces its attack by 10% for 5 seconds';
     },
     constants: {
     },
@@ -600,7 +606,8 @@ export const DEFENSE_BUFFS = {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'intimidate.svg',
           });
         }
       },
@@ -665,7 +672,8 @@ export const DEFENSE_BUFFS = {
               defender: caster,
               attacker: target,
               tickEvents: actualBattle.tickEvents,
-              historyStats: actualBattle.historyStats
+              historyStats: actualBattle.historyStats,
+              customIcon: 'intimidate.svg',
             });
           }
         }
@@ -708,7 +716,8 @@ export const DEFENSE_BUFFS = {
             defender: caster,
             attacker: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: 'intimidate.svg',
           });
         }
       },

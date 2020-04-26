@@ -2549,6 +2549,7 @@ export const MONSTER_BUFFS = {
               defender: attacker,
               tickEvents: actualBattle.tickEvents,
               historyStats: actualBattle.historyStats,
+              customIcon: buff.data.icon,
             });
           }
         } catch (err) {
@@ -2569,6 +2570,7 @@ export const MONSTER_BUFFS = {
             defender: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
+            customIcon: buff.data.icon,
           });
         }
       },

@@ -120,6 +120,7 @@ export const ENCHANTMENT_BUFFS = {
             isMagic: true,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
+            customIcon: buff.data.icon,
           });
         }
 
@@ -306,6 +307,7 @@ export const ENCHANTMENT_BUFFS = {
                 isTrueDamage: true,
                 tickEvents: actualBattle.tickEvents,
                 historyStats: actualBattle.historyStats,
+                customIcon: buff.data.icon,
               });
             }
           });
@@ -746,7 +748,8 @@ export const ENCHANTMENT_BUFFS = {
             attacker,
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: buff.data.icon,
           });
         }
       },
@@ -795,7 +798,8 @@ export const ENCHANTMENT_BUFFS = {
             attacker,
             defender: target,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats
+            historyStats: actualBattle.historyStats,
+            customIcon: buff.data.icon,
           });
         }
       },
@@ -837,7 +841,8 @@ export const ENCHANTMENT_BUFFS = {
           defender,
           isMagic: true,
           tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
+          historyStats: actualBattle.historyStats,
+          customIcon: buff.data.icon,
         });
       },
 
@@ -1426,7 +1431,8 @@ export const ENCHANTMENT_BUFFS = {
               attacker: target,
               defender: friendly_unit,
               tickEvents: actualBattle.tickEvents,
-              historyStats: actualBattle.historyStats
+              historyStats: actualBattle.historyStats,
+              customIcon: buff.data.icon,
             });
             damageDealt += localDamageDealt;
             if (friendly_unit.buffs) {
@@ -1675,7 +1681,8 @@ export const ENCHANTMENT_BUFFS = {
             actualBattle.dealDamage(redirectDamage, {
               attacker: defender,
               defender: sourceAlly,
-              tickEvents: actualBattle.tickEvents
+              tickEvents: actualBattle.tickEvents,
+              customIcon: buff.data.icon,
             });
           }
         }
@@ -2293,6 +2300,7 @@ export const ENCHANTMENT_BUFFS = {
             isMagic: false,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
+            customIcon: buff.data.icon,
           });
         }
       },
@@ -2538,7 +2546,8 @@ export const ENCHANTMENT_BUFFS = {
           isMagic: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          source: 'damage_reflect'
+          source: 'damage_reflect',
+          customIcon: buff.data.icon,
         });
       },
 
@@ -2589,7 +2598,8 @@ export const ENCHANTMENT_BUFFS = {
           isMagic: true,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          source: 'prismatic_plate_legs'
+          source: 'prismatic_plate_legs',
+          customIcon: buff.data.icon,
         });
       },
 

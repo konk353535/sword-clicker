@@ -50,7 +50,8 @@ export const BOSS_BUFFS = {
           attacker,
           defender,
           tickEvents: actualBattle.tickEvents,
-          historyStats: actualBattle.historyStats
+          historyStats: actualBattle.historyStats,
+          customIcon: buff.data.icon,
         });
       },
 
@@ -1480,7 +1481,8 @@ export const BOSS_BUFFS = {
             defender: unitToAttack,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
-            isMagic: buff.data.magic
+            isMagic: buff.data.magic,
+            customIcon: buff.data.icon,
           });
 
           buff.data.timeTillCharge = 100;

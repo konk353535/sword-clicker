@@ -656,7 +656,8 @@ export const ATTACK_BUFFS = {
               target: attacker,
               tickEvents: actualBattle.tickEvents,
               historyStats: actualBattle.historyStats,
-              healSource: buff
+              healSource: buff,
+              customIcon: 'thirstyFangs.svg',
             }); 
           }
 
@@ -664,7 +665,8 @@ export const ATTACK_BUFFS = {
             attacker,
             defender,
             tickEvents: actualBattle.tickEvents,
-            historyStats: actualBattle.historyStats,
+            historyStats: actualBattle.historyStats, 
+            customIcon: 'thirstyFangs.svg',
           });
         }
       },
@@ -797,7 +799,8 @@ export const ATTACK_BUFFS = {
           defender: caster,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          isTrueDamage: true
+          isTrueDamage: true,
+          customIcon: 'berserk.svg',
         });
 
         if (buff.duration !== Infinity) {
@@ -852,6 +855,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          customIcon: 'doubleEdgedSword.svg',
         });
 
         actualBattle.dealDamage(totalDamage / 10, {
@@ -859,7 +863,8 @@ export const ATTACK_BUFFS = {
           defender: caster,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          isTrueDamage: true
+          isTrueDamage: true,
+          customIcon: 'doubleEdgedSword.svg',
         });
       },
 
@@ -913,6 +918,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          customIcon: 'execute.svg',
         });
       },
 
@@ -957,6 +963,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          customIcon: 'slash.svg',
         });
       },
 
@@ -1005,6 +1012,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          customIcon: 'penetratingSlash.svg',
         });
         target.stats.armor /= (1 - constants.armorPenetration);
       },
@@ -1047,7 +1055,8 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          actualBattle
+          actualBattle,
+          customIcon: 'shieldBash.svg',
         });
       },
 
@@ -1104,7 +1113,8 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
-          isMagic: buff.data.hasOwnProperty('isMagic') ? buff.data.isMagic : false
+          isMagic: buff.data.hasOwnProperty('isMagic') ? buff.data.isMagic : false,
+          customIcon: 'bladeSpin.svg',
         });
       },
 
@@ -1293,6 +1303,7 @@ export const ATTACK_BUFFS = {
             defender: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
+            customIcon: 'bleeding.svg',
           });
         }
 
@@ -1387,6 +1398,7 @@ export const ATTACK_BUFFS = {
           defender: target,
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
+          customIcon: 'powerShot.svg',
         });
         
         // Restore target armor

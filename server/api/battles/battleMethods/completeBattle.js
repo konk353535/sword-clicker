@@ -877,7 +877,7 @@ export const completeBattle = function(actualBattle) {
             luckyOwnerCombat.bonusIcons = [];
           }
 
-          if (!_.contains(luckyOwnerCombat.bonusIcons, rewardGained.iconId)) {
+          if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
             finalTickEvents.push({
               type: 'icon',
               iconId: rewardGained.iconId,
@@ -888,7 +888,7 @@ export const completeBattle = function(actualBattle) {
               owner: luckyOwner
             }, {
               $set: {
-                bonusIcons: luckyOwnerCombat.bonusIcons.concat([rewardGained.iconId])
+                boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
               }
             });
           }

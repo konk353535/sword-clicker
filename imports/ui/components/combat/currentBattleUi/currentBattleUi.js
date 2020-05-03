@@ -35,7 +35,6 @@ const startBattle = (currentBattle, self) => {
     enemy.myTarget = !!(myUnit && myUnit.target === enemy.id);
   });
 
-
   self.state.set('currentBattle', currentBattle);
 
   if (currentBattle) {
@@ -45,7 +44,6 @@ const startBattle = (currentBattle, self) => {
         return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
       });
     }
-
 
     if (!Session.get('floatingTextDisabled')) {
       currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
@@ -70,13 +68,29 @@ const startBattle = (currentBattle, self) => {
           if (tickEventIndex % 6 >= 3) {
             offset.top += 40;
           }
+          
+          // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
+          let customIcon = tickEvent.customIcon;
+          if (customIcon) {
+            try {
+              if (customIcon.indexOf(('.svg'), customIcon.length - ('.svg').length) !== -1) {
+                customIcon = customIcon.substring(0, customIcon.length - 4);
+              } else if (customIcon.indexOf(('.png'), customIcon.length - ('.png').length) !== -1) {
+                customIcon = 'attack'; // we don't support .png in glyphs-based fonts
+              }
+            } catch (err) {
+              customIcon = 'attack';
+            }
+          } else {
+            customIcon = 'attack';
+          }
 
-          let element = $(`
+          const element = $(`
             <p
               class='floating-text'
               data-count=1
               style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-              <i class="lilIcon-${tickEvent.customIcon ? tickEvent.customIcon : 'attack'}"></i>
+              <i class="lilIcon-${customIcon}"></i>
               ${tickEvent.label}
             </p>
           `);

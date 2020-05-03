@@ -799,7 +799,7 @@ export const ENCHANTMENT_BUFFS = {
             defender: target,
             tickEvents: actualBattle.tickEvents,
             historyStats: actualBattle.historyStats,
-            customIcon: buff.data.icon,
+            customIcon: 'battleAxe.svg',
           });
         }
       },
@@ -2599,7 +2599,7 @@ export const ENCHANTMENT_BUFFS = {
           tickEvents: actualBattle.tickEvents,
           historyStats: actualBattle.historyStats,
           source: 'prismatic_plate_legs',
-          customIcon: buff.data.icon,
+          customIcon: 'obsidianPlateLegs.svg',
         });
       },
 

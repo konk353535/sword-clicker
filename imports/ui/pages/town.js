@@ -289,7 +289,7 @@ Template.townPage.helpers({
     let personalKarmaBonus = autoPrecisionValue(playerKarma / (Math.pow(1.045, (CDbl(skillLevel) / 2.5)) * 75));
     
     // cap personal karma bonus at 200%
-    if (personalKarmaBonus > 200.00) {
+    if (personalKarmaBonus > 200.0) {
       personalKarmaBonus = 200.0;
     }
     

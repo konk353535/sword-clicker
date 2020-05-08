@@ -103,8 +103,8 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff=false) 
       //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
       
       // cap personal karma bonus at 200%
-      if (personalKarmaBonus > 200.0) {
-        personalKarmaBonus = 200.0;
+      if (personalKarmaBonus > 2.0) {
+        personalKarmaBonus = 2.0;
       }
       
       bonusXpPercent += personalKarmaBonus;

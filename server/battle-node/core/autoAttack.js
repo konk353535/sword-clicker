@@ -62,7 +62,7 @@ export default function({ attacker, defender, originalAutoAttack = true, damageM
       }
       if (localCritMultiplier > 0) {
         rawDamage *= attacker.stats.criticalDamage * localCritMultiplier;
-        customIcon = 'criticalStrike';
+        customIcon = 'basicDamageCrit';
       }
     }
 

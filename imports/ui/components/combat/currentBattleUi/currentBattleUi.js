@@ -49,25 +49,32 @@ const startBattle = (currentBattle, self) => {
       currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
         const offset = $(`#${tickEvent.to}`).offset();
         if (offset) {
-          let color;
-          let fontSize = 'asdf';
+          let color = 'red';
+          let fontSize = 'inherit';
 
-          if (tickEvent.label === 0) {
+          if (tickEvent.label === 0) { // what is this supposed to handle??
             color = 'blue';
             fontSize = '10px';
           } else if (tickEvent.customColor) {
             color = tickEvent.customColor;
-          } else {
-            color = 'red';
           }
 
           // Determine left based on tick # + tickEventIndex
-          offset.left += -20 + ((tickEventIndex % 3) * 45); // -10 to 50
+          offset.left += -25 + ((tickEventIndex % 3) * 55); // -25 to 85
 
-          // Attempt to push floating text down when more then 3
-          if (tickEventIndex % 6 >= 3) {
+          // Attempt to push floating text down when more than 1 row
+          if (tickEventIndex % 2 >= 1) {
             offset.top += 40;
           }
+          
+          var validIcons = [
+            'basicDamage', 'basicDamageMagic', 'basicDamageCrit',
+          
+            'attack', 'criticalChance', 'criticalDamage', 'damage', 'health', 'magic', 'criticalStrike', 'accuracy', 'dodge', 'bleed', 'bleeding', 'poison', 'thirstyFangs', 'phantomStrikes', 'confused', 
+          
+            'armorReduction', 'babyFireFox', 'bisonAxe', 'boneKingsAxe', 'battleAxe', 'magicBlade', 'demonsHeartDamage', 'demonsHeart', 'eventVDcupidbow', 'redirectDamage', 'obsidianPlateLegs', 'troglodyte', 'affliction', 'lightningDart', 'lightningStorm', 'blizzard', 'iceDart', 'earthDart', 'earthBall', 'earthenFist', 'ignite', 'inferno', 'fireWave', 'fireDart', 'fireBall', 'meteorStrike', 'spikedArmor', 'intimidate', 'eelTaunt', 'lionTaunt', 'bearTaunt', 'volcanicShield', 'deepWounds', 'bisonBlue', 'bisonRed', 'counterAttack', 'thirstyFangs1', 'berserk', 'doubleEdgedSword', 'execute', 'slash', 'penetratingSlash', 'shieldBash', 'bladeSpin', 'powerShot'
+          ];
+          
           
           // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
           let customIcon = tickEvent.customIcon;
@@ -76,13 +83,18 @@ const startBattle = (currentBattle, self) => {
               if (customIcon.indexOf(('.svg'), customIcon.length - ('.svg').length) !== -1) {
                 customIcon = customIcon.substring(0, customIcon.length - 4);
               } else if (customIcon.indexOf(('.png'), customIcon.length - ('.png').length) !== -1) {
-                customIcon = 'attack'; // we don't support .png in glyphs-based fonts
+                customIcon = 'basicDamage'; // we don't support .png in glyphs-based fonts
               }
             } catch (err) {
-              customIcon = 'attack';
+              customIcon = 'basicDamage';
             }
           } else {
-            customIcon = 'attack';
+            customIcon = 'basicDamage';
+          }
+          
+          if (!validIcons.includes(customIcon)) {
+            console.log("INVALID CUSTOM ICON: " + customIcon);
+            //customIcon = 'basicDamage';
           }
 
           const element = $(`
@@ -90,7 +102,7 @@ const startBattle = (currentBattle, self) => {
               class='floating-text'
               data-count=1
               style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-              <i class="lilIcon-${customIcon}"></i>
+              <i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>
               ${tickEvent.label}
             </p>
           `);

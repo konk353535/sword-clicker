@@ -1,5 +1,7 @@
 import { BATTLES } from '../../constants/battles/index.js'; // List of available combat stats
 import { BUFFS } from '../../../imports/constants/buffs/index.js';
+import { autoPrecisionValueTight } from '../../../imports/utils.js';
+
 
 if (!String.prototype.endsWith) {
   String.prototype.endsWith = function(suffix) {
@@ -25,6 +27,8 @@ export default function(rawDamage, {
   if (attacker.isPacifist) {
     return 0;
   }
+  
+  const isMagicOrig = isMagic;
   
   // if the attacker wants to flip phys to magic or magic to phys
   if (attacker.effectFlipDamageTypeAttack) {
@@ -114,14 +118,22 @@ export default function(rawDamage, {
     }
   }
   
-  if(tickEvents) {
+  let damageValue = autoPrecisionValueTight(damage).toString();
+  if (damageValue === '0') {
+    damageValue = '';
+    if (customIcon === 'dodge') {
+      damageValue = 'Dodged';
+    }
+  }
+  
+  if (tickEvents) {
     tickEvents.push({
       from: attacker ? attacker.id : '',
       to: defender ? defender.id : '',
       eventType: 'damage',
-      label: damage.toFixed(1),
-      customColor: isMagic ? 'blue' : customColor,
-      customIcon: isMagic ? 'magic' : customIcon
+      label: damageValue,
+      customColor: (customColor) ? customColor : (isMagicOrig ? 'blue' : 'red'),
+      customIcon: (customIcon) ? customIcon : (isMagicOrig ? 'basicDamageMagic' : 'basicDamage')
     });
   }
 

@@ -73,11 +73,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?92if3x');
-  src:  url('fonts/icomoon.eot?92if3x#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?92if3x') format('truetype'),
-    url('fonts/icomoon.woff?92if3x') format('woff'),
-    url('fonts/icomoon.svg?92if3x#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?hocgeo');
+  src:  url('fonts/icomoon.eot?hocgeo#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?hocgeo') format('truetype'),
+    url('fonts/icomoon.woff?hocgeo') format('woff'),
+    url('fonts/icomoon.svg?hocgeo#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -98,6 +98,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.lilIcon-basicDamage:before {
+  content: "\e902";
+}
+.lilIcon-basicDamageMagic:before {
+  content: "\e999";
+}
+.lilIcon-basicDamageCrit:before {
+  content: "\e928";
+}
 .lilIcon-gold:before {
   content: "\e909";
   color: #dcbd23;
@@ -107,7 +116,7 @@
   color: #b36ae2;
 }
 .lilIcon-attack:before {
-  content: "\e902";
+  content: "\e99a";
   color: #492;
 }
 .lilIcon-attackSpeed:before {
@@ -255,6 +264,10 @@
 }
 .lilIcon-bleed:before {
   content: "\e90f";
+  color: #861001;
+}
+.lilIcon-bleeding:before {
+  content: "\e91c";
   color: #861001;
 }
 .lilIcon-poison:before {
@@ -701,9 +714,6 @@
 }
 .lilIcon-counterAttack:before {
   content: "\e92c";
-}
-.lilIcon-thirstyFangs1:before {
-  content: "\e928";
 }
 .lilIcon-berserk:before {
   content: "\e927";

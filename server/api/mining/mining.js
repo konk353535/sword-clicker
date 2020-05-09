@@ -17,7 +17,7 @@ import { MiningSpace } from '/imports/api/mining/mining';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem, addFakeGems } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
-import { CDbl } from '/imports/utils.js';
+import { CInt, CDbl } from '/imports/utils.js';
 import { updateUserActivity } from '/imports/api/users/users.js';
 import { getBuffLevel, getActiveGlobalBuff } from '/imports/api/globalbuffs/globalbuffs.js';
 
@@ -386,7 +386,7 @@ Meteor.methods({
         }
         if (rollDice <= targetOre.chance * extraChance) {
           if (targetOre.id === 'gem') {
-            if (userDoc.fakeGemsToday >= 15 || userDoc.fakeGemsToday == null || existingFakeGems > 3) {
+            if ((CInt(userDoc.fakeGemsToday) >= 20) || (existingFakeGems > 3)) {
               continue;
             }
 

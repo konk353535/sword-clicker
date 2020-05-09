@@ -1213,7 +1213,7 @@ export const MINING = {
       icon: 'gem.png',
       name: 'gem',
       itemId: 'gem',
-      chance: 0.002
+      chance: 0.008
     },
 
     stone: {

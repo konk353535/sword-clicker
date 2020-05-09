@@ -81,7 +81,7 @@ Template.farmingPage.events({
   },
 
   'click .destroy-plants-confirm'(event, instance) {
-    for (let idx = 0; idx < 6; idx++) {
+    for (let idx = 0; idx < 8; idx++) {
       Meteor.call('farming.killPlant', idx);
     }
     $(event.target).addClass('destroy-plants btn-danger');

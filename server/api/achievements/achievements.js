@@ -54,6 +54,12 @@ Meteor.methods({
             gold: reward.amount
           }
         });
+      } else if (reward.type === 'gems') {
+        Users.update(userDoc._id, {
+          $inc: {
+            fakeGems: reward.amount
+          }
+        });
       } else if (reward.type === 'xp') {
         addXp(reward.skill, reward.amount, userDoc._id, true);
       }
@@ -110,6 +116,11 @@ Meteor.methods({
           if (reward.type === 'item') {
             return Object.assign({}, reward, {
               icon: ITEMS[reward.itemId].icon
+            });
+          }
+          if (reward.type === 'gems') {
+            return Object.assign({}, reward, {
+              icon: 'gemFree.svg'
             });
           }
           return reward;

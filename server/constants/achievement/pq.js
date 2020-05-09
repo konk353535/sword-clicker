@@ -1,5 +1,33 @@
 console.log('exporting achievement/pq.js PQ_ACHIEVEMENTS');
 export const PQ_ACHIEVEMENTS = {
+  'pq_3': {
+    kind: 'pq',
+    name: 'PQ 3',
+    hidden: false,
+    description: 'Reach level 3 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 3;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 20
+    }]
+  },
+
+  'pq_7': {
+    kind: 'pq',
+    name: 'PQ 7',
+    hidden: false,
+    description: 'Reach level 7 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 7;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 35
+    }]
+  },
+
   'pq_10': {
     kind: 'pq',
     name: 'PQ 10',
@@ -11,6 +39,20 @@ export const PQ_ACHIEVEMENTS = {
     rewards: [{
       type: 'gold',
       amount: 5000
+    }]
+  },
+
+  'pq_15': {
+    kind: 'pq',
+    name: 'PQ 15',
+    hidden: false,
+    description: 'Reach level 15 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 15;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 50
     }]
   },
 
@@ -34,6 +76,20 @@ export const PQ_ACHIEVEMENTS = {
       type: 'xp',
       skill: 'magic',
       amount: 2000
+    }]
+  },
+
+  'pq_25': {
+    kind: 'pq',
+    name: 'PQ 25',
+    hidden: false,
+    description: 'Reach level 25 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 25;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 70
     }]
   },
 
@@ -91,6 +147,20 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
+  'pq_45': {
+    kind: 'pq',
+    name: 'PQ 45',
+    hidden: false,
+    description: 'Reach level 45 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 45;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 100
+    }]
+  },
+
   'pq_50': {
     kind: 'pq',
     name: 'PQ 50',
@@ -107,6 +177,20 @@ export const PQ_ACHIEVEMENTS = {
       type: 'xp',
       skill: 'crafting',
       amount: 50000
+    }]
+  },
+
+  'pq_55': {
+    kind: 'pq',
+    name: 'PQ 55',
+    hidden: false,
+    description: 'Reach level 55 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 55;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 100
     }]
   },
 
@@ -158,6 +242,20 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
+  'pq_75': {
+    kind: 'pq',
+    name: 'PQ 75',
+    hidden: false,
+    description: 'Reach level 75 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 75;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 100
+    }]
+  },
+
   'pq_80_new': {
     kind: 'pq',
     name: 'PQ 80',
@@ -186,6 +284,20 @@ export const PQ_ACHIEVEMENTS = {
       type: 'xp',
       skill: 'health',
       amount: 25000
+    }]
+  },
+
+  'pq_85': {
+    kind: 'pq',
+    name: 'PQ 85',
+    hidden: false,
+    description: 'Reach level 85 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 85;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 100
     }]
   },
 
@@ -269,6 +381,20 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
+  'pq_125_2': {
+    kind: 'pq',
+    name: 'PQ 125',
+    hidden: false,
+    description: 'Reach level 125 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 125;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 175
+    }]
+  },
+
   'pq_125': {
     kind: 'pq',
     name: 'PQ 130',
@@ -313,6 +439,20 @@ export const PQ_ACHIEVEMENTS = {
     }]
   },
 
+  'pq_175': {
+    kind: 'pq',
+    name: 'PQ 175',
+    hidden: false,
+    description: 'Reach level 175 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 175;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 225
+    }]
+  },
+
   'pq_185': {
     kind: 'pq',
     name: 'PQ 185',
@@ -341,5 +481,89 @@ export const PQ_ACHIEVEMENTS = {
       itemId: 'fireopal',
       amount: 1
     }]
-  }
+  },
+
+  'pq_225': {
+    kind: 'pq',
+    name: 'PQ 225',
+    hidden: false,
+    description: 'Reach level 225 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 225;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 275
+    }]
+  },
+
+  'pq_250': {
+    kind: 'pq',
+    name: 'PQ 250',
+    hidden: false,
+    description: 'Reach level 250 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 250;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 300
+    }]
+  },
+
+  'pq_275': {
+    kind: 'pq',
+    name: 'PQ 275',
+    hidden: false,
+    description: 'Reach level 275 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 275;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 325
+    }]
+  },
+
+  'pq_300': {
+    kind: 'pq',
+    name: 'PQ 300',
+    hidden: false,
+    description: 'Reach level 300 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 300;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 350
+    }]
+  },
+
+  'pq_325': {
+    kind: 'pq',
+    name: 'PQ 325',
+    hidden: false,
+    description: 'Reach level 325 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 325;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 375
+    }]
+  },
+
+  'pq_350': {
+    kind: 'pq',
+    name: 'PQ 350',
+    hidden: false,
+    description: 'Reach level 350 in personal quest',
+    condition({ user }) {
+      return user.personalQuest.level >= 350;
+    },
+    rewards: [{
+      type: 'gems',
+      amount: 400
+    }]
+  },
 };

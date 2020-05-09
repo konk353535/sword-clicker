@@ -411,7 +411,7 @@ Meteor.methods({
     if (getUserVersion() === 1) {
       const userDoc = Meteor.user();
       
-      const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+      const hasFarmingUpgrade = (userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo)) ? true : false;
     
       // Unlock existing farming spaces
       FarmingSpace.update({

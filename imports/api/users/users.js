@@ -70,6 +70,35 @@ export const updateUserActivity = function updateUserActivity({userId}) {
   });  
 }
 
+export const getUserVersion = function getUserVersion(userId__in = false) {
+  try {
+    if (userId__in) {
+      const userDoc = Users.findOne({ _id: userId__in });
+      if (userDoc && userDoc.server) {
+        return userDoc.version;
+      }
+    } else {
+      const user = Meteor.user();
+      if (user && user.version) {
+        return user.version;
+      }
+    }
+  } catch (err) {
+  }
+  return 1;
+}
+
+export const updateUserVersion = function updateUserVersion({userId, newVersion}) {
+  // Update user version
+  Users.update({
+    _id: Meteor.userId()
+  }, {
+    $set: {
+      version: newVersion
+    }
+  });  
+}
+
 export const serverFromUser = function serverFromUser(userId__in = false) {
   try {
     if (userId__in) {
@@ -202,6 +231,8 @@ UserSchema = new SimpleSchema({
   'stats.combatMostDamageTaken': { type: Number, defaultValue: 0 },
   
   townKarma: { type: Number, optional: true, defaultValue: 0 },
+  
+  version: { type: Number, optional: true, defaultValue: 1},
 });
 
 Meteor.users.attachSchema(UserSchema);

@@ -445,7 +445,7 @@ Template.overviewPage.helpers({
     const hasFarmingUpgrade = userDoc && userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
     
     return FarmingSpace.find().map((farmingSpace) => {
-      if (farmingSpace.index === 4 || farmingSpace.index === 5) {
+      if (farmingSpace.index === 6 || farmingSpace.index === 7) {
         farmingSpace.active = !!hasFarmingUpgrade;
       }
       return farmingSpace;

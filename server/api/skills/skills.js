@@ -23,7 +23,7 @@ import moment from "moment/moment";
 import _ from 'underscore';
 import lodash from 'lodash';
 
-import { updateUserActivity } from '/imports/api/users/users.js';
+import { updateUserActivity, updateUserVersion, getUserVersion } from '/imports/api/users/users.js';
 import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
 import { CInt, CDbl, autoPrecisionValue } from '/imports/utils.js';
 
@@ -283,14 +283,17 @@ Meteor.methods({
         Farming.insert({
           owner: Meteor.userId()
         });
-        // Inject farming spaces (4 active, 2 inactive)
-        for (let i = 0; i < 6; i++) {
-          const isActive = i < 4;
+        // Inject farming spaces (6 active, 2 inactive)
+        for (let i = 0; i < 8; i++) {
+          const isActive = i < 6;
           FarmingSpace.insert({
             owner: Meteor.userId(),
             active: isActive,
             index: i
           });
+        }
+        if (getUserVersion() === 1) {
+          updateUserVersion({userId: Meteor.userId(), newVersion: 2});
         }
       } else if (skillName === 'astronomy') {
         Astronomy.insert({

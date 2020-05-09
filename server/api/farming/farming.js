@@ -9,7 +9,7 @@ import { Events } from '/imports/api/events/events';
 import { requirementsUtility } from '/server/api/crafting/crafting';
 import { addItem } from '/server/api/items/items';
 import { addXp } from '/server/api/skills/skills';
-import { updateUserActivity } from '/imports/api/users/users.js';
+import { updateUserActivity, updateUserVersion, getUserVersion } from '/imports/api/users/users.js';
 
 import { FARMING } from '/imports/constants/farming';
 import { ITEMS } from '/imports/constants/items';
@@ -250,7 +250,7 @@ Meteor.methods({
       searchQuery = {
         owner: Meteor.userId(),
         index: {
-          $in: [0, 1, 2, 3]
+          $in: [0, 1, 2, 3, 4, 5]
         },
         $or: [{
           plantId: {
@@ -293,8 +293,8 @@ Meteor.methods({
 
     if (specifiedAmount < 0) {
       return;
-    } else if (specifiedAmount > 6) {
-      specifiedAmount = 6;
+    } else if (specifiedAmount > 8) {
+      specifiedAmount = 8;
     }
 
     const userDoc = Meteor.user();
@@ -327,7 +327,7 @@ Meteor.methods({
       searchQuery = {
         owner: Meteor.userId(),
         index: {
-          $in: [0, 1, 2, 3]
+          $in: [0, 1, 2, 3, 4, 5]
         },
         $or: [{
           plantId: {
@@ -408,6 +408,39 @@ Meteor.methods({
   },
 
   'farming.fetchSeedShopSells'() {
+    if (getUserVersion() === 1) {
+      const userDoc = Meteor.user();
+      
+      const hasFarmingUpgrade = userDoc.farmingUpgradeTo && moment().isBefore(userDoc.farmingUpgradeTo);
+    
+      // Unlock existing farming spaces
+      FarmingSpace.update({
+        owner: Meteor.userId(),
+        index: {
+          $in: [0, 1, 2, 3, 4, 5]
+        }
+      }, {
+        $set: {
+          active: true
+        }
+      }, { multi: true });
+    
+      // Inject missing farming spaces
+      FarmingSpace.insert({
+        owner: Meteor.userId(),
+        active: hasFarmingUpgrade,
+        index: 6
+      });
+      
+      FarmingSpace.insert({
+        owner: Meteor.userId(),
+        active: hasFarmingUpgrade,
+        index: 7
+      });
+
+      updateUserVersion({userId: Meteor.userId(), newVersion: 2});
+    }
+    
     const farmingSkill = Skills.findOne({
       owner: Meteor.userId(),
       type: 'farming'

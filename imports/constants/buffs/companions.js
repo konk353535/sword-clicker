@@ -376,8 +376,8 @@ export const COMPANION_BUFFS = {
     }
   },
   
-  // Level 1: can auto-attack (speed 0.8) and can use Slash (with 10s CD) at level 1
-  // Level 2: can Penetrating Slash at level 1 (with 10s CD) and upgrades Slash to level 2
+  // Level 1: can auto-attack (speed 0.8) and can use Slash (with 5s CD) at level 1
+  // Level 2: can Penetrating Slash at level 1 (with 5s CD) and upgrades Slash to level 2
   // Level 3: can use Bleed at level 1 (with 30s CD) and upgrades Penetrating Slash to level 2
   // Level 4: has Phantom Strikes 1 passive and upgrades Bleed to level 2 and Slash to level 3
   // Level 5: has Thirsty Fangs 1 passive and upgrades Phantom Strikes to level 2 and Penetrating slash to level 3
@@ -589,8 +589,8 @@ export const COMPANION_BUFFS = {
   },
   
   
-  // Level 1: can auto-attack (speed 1.0) and can use Slash (with 10s CD) at level 2
-  // Level 2: can Penetrating Slash at level 2 (with 10s CD) and upgrades Slash to level 4
+  // Level 1: can auto-attack (speed 1.0) and can use Slash (with 5s CD) at level 2
+  // Level 2: can Penetrating Slash at level 2 (with 5s CD) and upgrades Slash to level 4
   // Level 3: can use Bleed at level 3 (with 30s CD) and upgrades Penetrating Slash to level 4
   // Level 4: has Phantom Strikes 2 passive and upgrades Bleed to level 5 and Slash to level 5
   // Level 5: has Heist trait
@@ -1774,7 +1774,7 @@ export const COMPANION_BUFFS = {
                   }),
                   target: ourTargetUnit,
                 });
-                buff.data.CDSlash = 10.0;
+                buff.data.CDSlash = 5.0;
                 // END: use Slash
               }
 
@@ -1887,7 +1887,7 @@ export const COMPANION_BUFFS = {
                   }),
                   target: ourTargetUnit,
                 });
-                buff.data.CDSlash = 10.0;
+                buff.data.CDSlash = 5.0;
                 // END: use Slash
               }
 

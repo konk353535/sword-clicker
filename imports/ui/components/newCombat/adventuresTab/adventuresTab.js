@@ -14,6 +14,9 @@ Template.adventuresTab.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
 
   const updateAdventures = function (self) {
+    if (!self.state.get('rawAdventures')) {
+      return;
+    }
     self.state.set('adventures', self.state.get('rawAdventures').map((adventure) => {
       if (adventure.duration) {
         adventure.durationTotalDisplay = moment("2015-01-01").startOf('day').seconds(adventure.duration).format('H:mm:ss');

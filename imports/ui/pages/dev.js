@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
+import { Users } from '/imports/api/users/users.js';
+
 import './dev.html';
 
 const prepText = function prepText(text__in) {
@@ -55,12 +57,14 @@ Template.devPage.onCreated(function bodyOnCreated() {
   
   Tracker.autorun(() => {
     let isAdmin = false;    
-    if (Meteor.user()) {
-      const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });    
-      if (myUser) {
-        isAdmin = myUser.isSuperMod;
+    if (Meteor && Users) {
+      if (Meteor.user()) {
+        const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });    
+        if (myUser) {
+          isAdmin = myUser.isSuperMod;
+        }
       }
-    }
+      }
     if (!isAdmin) {
       Router.go('/overview');
     }
@@ -69,8 +73,11 @@ Template.devPage.onCreated(function bodyOnCreated() {
 
 Template.devPage.helpers({
   isAdmin() {
-    const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });
-    return myUser && myUser.isSuperMod;
+    if (Meteor && Users) {
+      const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });
+      return myUser && myUser.isSuperMod;
+    }
+    return false;
   },
   
   meteorResult() {

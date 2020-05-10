@@ -371,7 +371,7 @@ Template.miningPage.helpers({
 
     const miningSkill = Skills.findOne({ type: 'mining' });
 
-    if (!miningSkill) return;
+    if (!userDoc || !miningSkill) return;
 
     const rawBuyableMiners = Object.keys(MINING.miners).map((key) => {
       return MINING.miners[key];

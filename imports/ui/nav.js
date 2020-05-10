@@ -182,7 +182,7 @@ Template.nav.helpers({
   },
 
   isAdmin() {
-    const myUser = Users.findOne({ _id: Meteor.userId() });
+    const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });
     return myUser && myUser.isSuperMod;
   },
 

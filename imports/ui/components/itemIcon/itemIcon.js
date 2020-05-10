@@ -44,14 +44,16 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
 
-    if (item.icon) {
-      return item.icon;
-    }
+    if (item) {
+      if (item.icon) {
+        return item.icon;
+      }
+      
+      const constants = ITEMS[item.itemId];
 
-    const constants = ITEMS[item.itemId];
-
-    if (constants && constants.icon) {
-        return constants.icon;
+      if (constants && constants.icon) {
+          return constants.icon;
+      }
     }
         
     return false;
@@ -61,20 +63,22 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.description) {
-      if (_.isFunction(item.description)) {
-        return item.description();
+    if (item) {
+      if (item.description) {
+        if (_.isFunction(item.description)) {
+          return item.description();
+        }
+        return item.description;
       }
-      return item.description;
-    }
-    
-    const constants = ITEMS[item.itemId];
-    
-    if (constants && constants.description) {
-      if (_.isFunction(constants.description)) {
-        return constants.description();
+      
+      const constants = ITEMS[item.itemId];
+      
+      if (constants && constants.description) {
+        if (_.isFunction(constants.description)) {
+          return constants.description();
+        }
+        return constants.description;
       }
-      return constants.description;
     }
     
     return false;
@@ -83,9 +87,12 @@ Template.itemIcon.helpers({
   abilityRequiresOrForbids() {
     const instance = Template.instance();
     
-    if (instance.data.item.abilityId) {
-      return (instance.data.item.requires || instance.data.item.cantUseWith);
+    if (instance.data.item) {
+      if (instance.data.item.abilityId) {
+        return (instance.data.item.requires || instance.data.item.cantUseWith);
+      }
     }
+    
     return false;
   },
 
@@ -93,65 +100,80 @@ Template.itemIcon.helpers({
   abilityRequires() {
     const instance = Template.instance();
     
-    if (instance.data.item.abilityId) {
-      if (instance.data.item.requires) {
-        return instance.data.item.requires;
+    if (instance.data.item) {
+      if (instance.data.item.abilityId) {
+        if (instance.data.item.requires) {
+          return instance.data.item.requires;
+        }
       }
     }
+    
     return false;
   },
 
   abilityForbids() {
     const instance = Template.instance();
     
-    if (instance.data.item.abilityId) {
-      if (instance.data.item.cantUseWith) {
-        return instance.data.item.cantUseWith;
+    if (instance.data.item) {
+      if (instance.data.item.abilityId) {
+        if (instance.data.item.cantUseWith) {
+          return instance.data.item.cantUseWith;
+        }
       }
     }
+    
     return false;
   },
 
   enchantments() {
     const instance = Template.instance();
     const item = instance.data.item;
-    const constants = ITEMS[instance.data.item.itemId];
+    
+    if (item) {
+      const constants = ITEMS[instance.data.item.itemId];
 
-    if (!constants || !constants.enchantments) {
-      return false;
+      if (!constants || !constants.enchantments) {
+        return false;
+      }
+
+      return constants.enchantments.map((buffId) => {
+        return BUFFS[buffId].description();
+      });
     }
-
-    return constants.enchantments.map((buffId) => {
-      return BUFFS[buffId].description();
-    });
+    
+    return false;
   },
 
   amuletLevel() {
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet','fireopal_amulet'], item.itemId)) {
-      if (item.extraStats && item.extraStats.level) {
-        return ` (Lv.${item.extraStats.level+1})`;
+    if (item) {
+      if (_.contains(['jade_amulet','lapislazuli_amulet','sapphire_amulet','emerald_amulet','ruby_amulet','tanzanite_amulet','fireopal_amulet'], item.itemId)) {
+        if (item.extraStats && item.extraStats.level) {
+          return ` (Lv.${item.extraStats.level+1})`;
+        }
+        return ' (Lv.1)';
       }
-      return " (Lv.1)";
     }
     
-    return "";
+    return '';
   },
   
   itemAmount() {
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.amount && item.amount > 1) {
-      /*if (item.amount >= 1000) {
-        return Numeral(item.amount).format('0a');
+    if (item) {
+      if (item.amount && item.amount > 1) {
+        /*if (item.amount >= 1000) {
+          return Numeral(item.amount).format('0a');
+        }
+        
+        return `${item.amount}`; */
+        
+        return FriendlyNumber(CInt(item.amount));
       }
-      
-      return `${item.amount}`; */
-      
-      return FriendlyNumber(CInt(item.amount));
     }
     
     return "0";
@@ -161,15 +183,17 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.quality && item.quality > 0) {
-      if (item.quality >= 85) {
-        return "#c9f";
-      } else if (item.quality >= 65) {
-        return "#afa";
-      } else if (item.quality >= 40) {
-        return "#ffa";
-      } else {
-        return "#faa";
+    if (item) {
+      if (item.quality && item.quality > 0) {
+        if (item.quality >= 85) {
+          return "#c9f";
+        } else if (item.quality >= 65) {
+          return "#afa";
+        } else if (item.quality >= 40) {
+          return "#ffa";
+        } else {
+          return "#faa";
+        }
       }
     }
     
@@ -182,45 +206,47 @@ Template.itemIcon.helpers({
     
     let borderStyle = '';
                         
-    if (item.rarityId) {
-      if (item.rarityId === 'crude') {
-        borderStyle = "3px dotted #555555";
-      } else if (item.rarityId === 'rough') {
-        borderStyle = "3px dotted #666644";
-      } else if (item.rarityId === 'improved') {
-        borderStyle = "3px dashed #998800";
-      } else if (item.rarityId === 'mastercrafted') {
-        borderStyle = "3px dashed #cc7700";
-      } else if (item.rarityId === 'masterforged') {
-        borderStyle = "3px double #ee6622";
-      } else if (item.rarityId === 'ascended') {
-        borderStyle = "3px double #ff2266";
-      } else if (item.rarityId === 'ethereal') {
-        borderStyle = "3px double #FF5599";
-      } else if (item.rarityId === 'perfect') {
-        borderStyle = "3px double #FF71aa";
-      } else if (item.rarityId === 'fine') {
-        borderStyle = "3px dashed #66aaaa";
-      } else if (item.rarityId === 'rare') {
-        borderStyle = "3px dashed #3388aa";
-      } else if (item.rarityId === 'extraordinary') {
-        borderStyle = "3px double #3366aa";
-      } else if (item.rarityId === 'phenomenal') {
-        borderStyle = "3px double #0055cc";
-      } else if (item.rarityId === 'epic') {
-        borderStyle = "3px double #0022ee";
-      } else if (item.rarityId === 'divine') {
-        borderStyle = "3px double #4444ff";
-      } else if (item.rarityId === 'incredible') {
-        borderStyle = "3px double #6141ff";
-      } else if (item.rarityId === 'unparalleled') {
-        borderStyle = "3px double #9151ff";
-      } else if (item.rarityId === 'prized') {
-        borderStyle = "3px double #883388";
-      } else if (item.rarityId === 'legendary') {
-        borderStyle = "3px double #cc44cc";
-      } else if (item.rarityId === 'artifact') {
-        borderStyle = "3px double #44cc44";
+    if (item) {
+      if (item.rarityId) {
+        if (item.rarityId === 'crude') {
+          borderStyle = "3px dotted #555555";
+        } else if (item.rarityId === 'rough') {
+          borderStyle = "3px dotted #666644";
+        } else if (item.rarityId === 'improved') {
+          borderStyle = "3px dashed #998800";
+        } else if (item.rarityId === 'mastercrafted') {
+          borderStyle = "3px dashed #cc7700";
+        } else if (item.rarityId === 'masterforged') {
+          borderStyle = "3px double #ee6622";
+        } else if (item.rarityId === 'ascended') {
+          borderStyle = "3px double #ff2266";
+        } else if (item.rarityId === 'ethereal') {
+          borderStyle = "3px double #FF5599";
+        } else if (item.rarityId === 'perfect') {
+          borderStyle = "3px double #FF71aa";
+        } else if (item.rarityId === 'fine') {
+          borderStyle = "3px dashed #66aaaa";
+        } else if (item.rarityId === 'rare') {
+          borderStyle = "3px dashed #3388aa";
+        } else if (item.rarityId === 'extraordinary') {
+          borderStyle = "3px double #3366aa";
+        } else if (item.rarityId === 'phenomenal') {
+          borderStyle = "3px double #0055cc";
+        } else if (item.rarityId === 'epic') {
+          borderStyle = "3px double #0022ee";
+        } else if (item.rarityId === 'divine') {
+          borderStyle = "3px double #4444ff";
+        } else if (item.rarityId === 'incredible') {
+          borderStyle = "3px double #6141ff";
+        } else if (item.rarityId === 'unparalleled') {
+          borderStyle = "3px double #9151ff";
+        } else if (item.rarityId === 'prized') {
+          borderStyle = "3px double #883388";
+        } else if (item.rarityId === 'legendary') {
+          borderStyle = "3px double #cc44cc";
+        } else if (item.rarityId === 'artifact') {
+          borderStyle = "3px double #44cc44";
+        }
       }
     }
     
@@ -231,10 +257,12 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.rarityId) {
-      if (ITEM_RARITIES[item.rarityId]) {
-        if (ITEM_RARITIES[item.rarityId].label.length > 0) {
-          return { rare: true, label: ITEM_RARITIES[item.rarityId].label, color: ITEM_RARITIES[item.rarityId].color };
+    if (item) {
+      if (item.rarityId) {
+        if (ITEM_RARITIES[item.rarityId]) {
+          if (ITEM_RARITIES[item.rarityId].label.length > 0) {
+            return { rare: true, label: ITEM_RARITIES[item.rarityId].label, color: ITEM_RARITIES[item.rarityId].color };
+          }
         }
       }
     }
@@ -246,8 +274,10 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.reforgeChance && item.unadjustedReforgeChance && item.reforgeChance !== '0%' && item.unadjustedReforgeChance >= 1) {
-      return item.reforgeChance;
+    if (item) {
+      if (item.reforgeChance && item.unadjustedReforgeChance && item.reforgeChance !== '0%' && item.unadjustedReforgeChance >= 1) {
+        return item.reforgeChance;
+      }
     }
     
     return false;
@@ -257,8 +287,10 @@ Template.itemIcon.helpers({
     const instance = Template.instance();
     const item = instance.data.item;
     
-    if (item.unadjustedReforgeChance) {
-      return item.unadjustedReforgeChance;
+    if (item) {
+      if (item.unadjustedReforgeChance) {
+        return item.unadjustedReforgeChance;
+      }
     }
     
     return false;
@@ -267,6 +299,7 @@ Template.itemIcon.helpers({
   stats() {
     const instance = Template.instance();
     const item = instance.data.item;
+    
     if (!item) {
       return false;
     }
@@ -290,6 +323,10 @@ Template.itemIcon.helpers({
   constants() {
     const instance = Template.instance();
     let consts;
+    
+    if (!instance.data.item) {
+      return false;
+    }
     
     if (instance.data.item.woodcutterId !== undefined)
         if (WOODCUTTING.woodcutters[instance.data.item.woodcutterId] !== undefined)
@@ -391,10 +428,12 @@ Template.itemIcon.helpers({
   scaledCooldownVal() {
     const instance = Template.instance();
     
-    if (BUFFS && BUFFS[instance.data.item.abilityId] && BUFFS[instance.data.item.abilityId].scaledCooldown) {
-      return BUFFS[instance.data.item.abilityId].scaledCooldown(instance.data.item);
-    } else if (instance.data.item && instance.data.item.scaledCooldown) {
-      return instance.data.item.scaledCooldown(instance.data.item);
+    if (instance.data.item) {
+      if (BUFFS && BUFFS[instance.data.item.abilityId] && BUFFS[instance.data.item.abilityId].scaledCooldown) {
+        return BUFFS[instance.data.item.abilityId].scaledCooldown(instance.data.item);
+      } else if (instance.data.item && instance.data.item.scaledCooldown) {
+        return instance.data.item.scaledCooldown(instance.data.item);
+      }
     }
     
     return false;

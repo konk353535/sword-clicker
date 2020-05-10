@@ -138,6 +138,11 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
   });
 
   const userDoc = Meteor.user();
+  
+  if (!userDoc) {
+    return;
+  }
+  
   if (userDoc.miningUpgradeTo && moment().isBefore(userDoc.miningUpgradeTo)) {
     damage *= (1 + (DONATORS_BENEFITS.miningBonus / 100));
   }  

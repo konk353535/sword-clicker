@@ -22,14 +22,11 @@ const getDonatableItems = function getDonatableItems(instance) {
   const townSection = instance.state.get('townSection');
   
   if (!townSection) {
-    console.log("Can't donate any items: no town location selected.");
     return false;
   }
     
   const baseItemList = Items.find({});
   if ((!baseItemList) || (baseItemList.count() === 0)) {
-    console.log("Can't donate any items: base item list returned no items:");
-    console.log(baseItemList.fetch());
     return false;
   }
     
@@ -261,9 +258,6 @@ Template.townPage.helpers({
             </i>
           </span>`;
       }
-    } else {
-      console.log("Exception looking up karma data:");
-      console.log(karmaData.exceptionDetails);
     }
     
     return '';

@@ -5,6 +5,8 @@ import { STATE_BUFFS } from '/imports/constants/state';
 import { State } from '/imports/api/state/state';
 import { Servers, DEFAULT_SERVER } from '/imports/api/servers/servers';
 
+import { CInt } from '/imports/utils';
+
 import lodash from 'lodash';
 
 import './shop.html';
@@ -371,15 +373,27 @@ Template.shopPage.helpers({
   },
 
   freeGems() {
-    return Meteor.user().fakeGems;
+    try {
+      return CInt(Meteor.user().fakeGems);
+    } catch (err) {
+    }
+    return 0;
   },
 
   paidGems() {
-    return Meteor.user().gems;
+    try {
+      return CInt(Meteor.user().gems);
+    } catch (err) {
+    }
+    return 0;
   },
 
   totalGems() {
-    return Meteor.user().gems + Meteor.user().fakeGems;
+    try {
+      return CInt(Meteor.user().gems) + CInt(Meteor.user().fakeGems);
+    } catch (err) {
+    }
+    return 0;
   },
 
   globalBuffs() {
@@ -433,6 +447,10 @@ Template.shopPage.helpers({
 
     // Bind users upgradeto to each part in the map
     const userDoc = Meteor.user();
+    
+    if (!userDoc) {
+      return false;
+    }
 
     return upgrades.map((upgrade) => {
       const upgradeStatus = userDoc[`${upgrade.name}UpgradeTo`];

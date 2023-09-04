@@ -4,6 +4,7 @@ import uuid from 'node-uuid';
 import faker from 'faker';
 import _ from 'underscore';
 import lodash from 'lodash';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { Floors } from '/imports/api/floors/floors';
 import { Combat } from '/imports/api/combat/combat';
@@ -600,4 +601,21 @@ SyncedCron.config({
 
 Meteor.setTimeout(() => {
   SyncedCron.start();
+
+  export const SC = Mongo.Collection.get('cronHistory');
+
+  SynchedCronSchema = new SimpleSchema({
+    intendedAt: { type: Date, optional: true },
+    startedAt: { type: Date, optional: true },
+    finishedAt: { type: Date, optional: true },
+    name: { type: String, optional: true },
+    result: {type: Boolean, optional: true}
+  },
+  {
+    clean: {
+      filter: false,
+    }
+  });
+
+  SC.attachSchema(SynchedCronSchema);
 }, Meteor.settings.is_dev ? 0 : 60000);

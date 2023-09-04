@@ -143,6 +143,7 @@ Template.recipeIcon.events({
       // Open the new modal!
       instance.state.set('showModal', true);
       setTimeout(() => {
+        console.log("instance", instance.$('.recipeModal'))
         instance.$('.recipeModal').modal('show');
         instance.$('.craft-amount-input').focus();
       });

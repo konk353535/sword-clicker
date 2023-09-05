@@ -1,5 +1,5 @@
 {
-  "name": "sc2",
+  "name": "sword-clicker",
   "private": true,
   "scripts": {
     "start": "meteor run",

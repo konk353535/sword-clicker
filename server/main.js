@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Migrations } from 'meteor/percolate:migrations';
+// import { Migrations } from 'meteor/percolate:migrations';
 import '/imports/startup/both';
 import '/imports/startup/server';
 
@@ -61,7 +61,7 @@ Meteor.startup(() => {
 
   tx.logging = false; // Disable transaction logging to console (very spammy): https://github.com/JackAdams/meteor-transactions
 
-  Migrations.migrateTo('latest');
+//   Migrations.migrateTo('latest');
 
   const classicServer = Servers.findOne({
     name: CLASSIC_SERVER

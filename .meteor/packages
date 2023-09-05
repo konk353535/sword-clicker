@@ -55,6 +55,6 @@ http
 simple:json-routes
 service-configuration
 sergeyt:typeahead
-percolate:migrations
+# percolate:migrations
 babrahams:transactions
 littledata:synced-cron

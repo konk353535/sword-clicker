@@ -149,8 +149,11 @@
                 </div>
               </div>
             {{/if}}
-            
-            <h6 class="mt-3"><a href="/mining">Mining</a></h6>
+
+            <h6 class="mt-3">
+                <a href="/mining">Mining</a>
+                <p>Energy: {{> formatNumber number=mining.stats.energy noDecimal=true}} / {{> formatNumber number=mining.stats.energyStorage noDecimal=true}}</p>
+            </h6>
             <div class="d-flex align-items-center summary-mining">
               <div class="d-flex flex-row flex-wrap mine-pit-container" style="max-width: 160px;">
                 {{#each miningSpaces}}

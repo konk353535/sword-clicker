@@ -26,6 +26,8 @@ let hasInitGameUpdate = false;
 Template.summaryList.onCreated(function bodyOnCreated() {
   // Show mining spaces
   Meteor.subscribe('miningSpace');
+  // Mining data
+  Meteor.subscribe('mining');
 
   // Listen to group changes
   Meteor.subscribe('groups');
@@ -77,6 +79,11 @@ Template.summaryList.events({
 });
 
 Template.summaryList.helpers({
+
+  mining() {
+    const mining = Mining.findOne();
+    return mining;
+  },
 
   summaryListDisabled() {
     return Session.get('summaryListDisabled');

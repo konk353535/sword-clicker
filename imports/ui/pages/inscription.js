@@ -225,7 +225,7 @@ Template.inscriptionPage.helpers({
       const abilityRecipes = instance.state.get('recipes').filter((item) => {
         return item.category === 'tome' && item.teaches.level === parseInt(levelFilter);
       }).map((recipe) => {
-        recipe._id = Meteor.uuid();    // don't do this at home. Or do, since it fixes the levelFilter rendering on abilities
+        recipe._id = Random.id();    // don't do this at home. Or do, since it fixes the levelFilter rendering on abilities
         if (recipe.teaches) {
           const recipeTeaches = recipe.teaches.abilityId;
           if (abilityMap[recipeTeaches]) {

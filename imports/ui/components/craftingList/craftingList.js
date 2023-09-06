@@ -17,7 +17,7 @@ Template.craftingList.helpers({
   miscRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       if (recipe.category === 'crafting') {
         if (/bar/.test(recipe.name)) {
           return false;
@@ -45,7 +45,7 @@ Template.craftingList.helpers({
   paperRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'paper';
     });
   },
@@ -53,7 +53,7 @@ Template.craftingList.helpers({
   bookRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'book';
     });
   },
@@ -61,7 +61,7 @@ Template.craftingList.helpers({
   magicBookRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'magic_book';
     });
   },
@@ -69,7 +69,7 @@ Template.craftingList.helpers({
   pigmentRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'pigment';
     });
   },
@@ -77,7 +77,7 @@ Template.craftingList.helpers({
   pigmentRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'pigment';
     });
   },
@@ -85,7 +85,7 @@ Template.craftingList.helpers({
   enchantmentRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'enchantment';
     });
   },
@@ -93,7 +93,7 @@ Template.craftingList.helpers({
   enchantmentArmorRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return _.contains(recipe.tags, 'enchant_armor');
     });
   },
@@ -101,7 +101,7 @@ Template.craftingList.helpers({
   abilityRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'tome';
     });
   },
@@ -109,7 +109,7 @@ Template.craftingList.helpers({
   barRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'crafting' && /bar/.test(recipe.name);
     });
   },
@@ -117,7 +117,7 @@ Template.craftingList.helpers({
   goldRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'crafting' && (/polished/.test(recipe.name) || /sculpture/.test(recipe.name));
     });
   },
@@ -125,7 +125,7 @@ Template.craftingList.helpers({
   xpRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'crafting' && (/wall/.test(recipe.name) || /pylon/.test(recipe.name));
     });
   },
@@ -133,7 +133,7 @@ Template.craftingList.helpers({
   furnaceRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'crafting' && /furnace/.test(recipe.name);
     });
   },
@@ -141,7 +141,7 @@ Template.craftingList.helpers({
   miningRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'mining';
     });
   },
@@ -149,7 +149,7 @@ Template.craftingList.helpers({
   woodcuttingRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return recipe.category === 'woodcutting';
     });
   },
@@ -157,7 +157,7 @@ Template.craftingList.helpers({
   armorRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return _.contains(recipe.tags, 'armor');
     });
   },
@@ -165,7 +165,7 @@ Template.craftingList.helpers({
   weaponRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return _.contains(recipe.tags, 'weapon');
     });
   },
@@ -177,7 +177,7 @@ Template.craftingList.helpers({
   staffRecipes() {
     const instance = Template.instance();
 
-    return instance.data.recipes.filter((recipe) => {
+    return (instance.data.recipes ?? []).filter((recipe) => {
       return _.contains(recipe.tags, 'staff');
     });
   },
@@ -185,7 +185,7 @@ Template.craftingList.helpers({
   amuletRecipes() {
     const instance = Template.instance();
 
-    return _.sortBy(instance.data.recipes.filter((recipe) => {
+    return _.sortBy((instance.data.recipes ?? []).filter((recipe) => {
       return _.contains(recipe.tags, 'amulet');
     }), 'xp');
   }

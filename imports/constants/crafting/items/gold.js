@@ -5,7 +5,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedStone.svg',
     category: 'crafting',
     name: 'polished stone',
-    sellPrice: 100,
+    sellPrice: 20,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -14,7 +14,7 @@ export const GOLD_ITEMS = {
     icon: 'copperSculpture.svg',
     category: 'crafting',
     name: 'copper sculpture',
-    sellPrice: 75,
+    sellPrice: 30,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -23,7 +23,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedTin.svg',
     category: 'crafting',
     name: 'polished tin',
-    sellPrice: 200,
+    sellPrice: 40,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -32,7 +32,7 @@ export const GOLD_ITEMS = {
     icon: 'bronzeSculpture.svg',
     category: 'crafting',
     name: 'bronze sculpture',
-    sellPrice: 175,
+    sellPrice: 75,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -41,7 +41,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedIron.svg',
     category: 'crafting',
     name: 'polished iron',
-    sellPrice: 375,
+    sellPrice: 175,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -50,7 +50,7 @@ export const GOLD_ITEMS = {
     icon: 'silverSculpture.svg',
     category: 'crafting',
     name: 'silver sculpture',
-    sellPrice: 350,
+    sellPrice: 250,
     description: 'Can be sold for a tidy sum'
   },
 
@@ -59,7 +59,7 @@ export const GOLD_ITEMS = {
     icon: 'polishedGold.svg',
     category: 'crafting',
     name: 'polished gold',
-    sellPrice: 700,
+    sellPrice: 350,
     description: 'Can be sold for a tidy sum'
   },
 

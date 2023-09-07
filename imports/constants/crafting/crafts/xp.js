@@ -21,7 +21,7 @@ export const XP_CRAFTS = {
       level: 2
     }],
     timeToCraft: 120,
-    xp: 100,
+    xp: 10,
     maxToCraft: 5
   },
 
@@ -45,7 +45,7 @@ export const XP_CRAFTS = {
       level: 5
     }],
     timeToCraft: 60,
-    xp: 25,
+    xp: 3,
     maxToCraft: 100
   },
 
@@ -69,7 +69,7 @@ export const XP_CRAFTS = {
       level: 7
     }],
     timeToCraft: 60,
-    xp: 30,
+    xp: 10,
     maxToCraft: 100
   },
 
@@ -93,7 +93,7 @@ export const XP_CRAFTS = {
       level: 12
     }],
     timeToCraft: 120,
-    xp: 150,
+    xp: 30,
     maxToCraft: 5
   },
 
@@ -117,7 +117,7 @@ export const XP_CRAFTS = {
       level: 17
     }],
     timeToCraft: 60,
-    xp: 60,
+    xp: 50,
     maxToCraft: 100
   },
 
@@ -141,7 +141,7 @@ export const XP_CRAFTS = {
       level: 22
     }],
     timeToCraft: 120,
-    xp: 250,
+    xp: 200,
     maxToCraft: 5
   },
 

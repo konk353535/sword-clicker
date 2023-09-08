@@ -31,11 +31,12 @@ import { createNewFloor } from '/imports/api/floors/floors';
 
 import '/imports/api/users/users.js';
 import '/server/api/users/users.js';
-import '/server/api/battles/battles.js';
+
 import '/server/api/abilities/abilities.js';
 import '/server/api/achievements/achievements.js';
 import '/server/api/adventures/adventures.js';
 import '/server/api/astronomy/astronomy.js';
+import '/server/api/battles/battles.js';
 import '/server/api/combat/combat.js';
 import '/server/api/crafting/crafting.js';
 import '/server/api/farming/farming.js';
@@ -44,10 +45,13 @@ import '/server/api/groups/groups.js';
 import '/server/api/inscription/inscription.js';
 import '/server/api/items/items.js';
 import '/server/api/mining/mining.js';
+import '/server/api/server/server.js';
+import '/server/api/shop/shop.js';
 import '/server/api/skills/skills.js';
 import '/server/api/state/state.js';
 import '/server/api/town/town.js';
 import '/server/api/woodcutting/woodcutting.js';
+
 import './crons.js';
 import './chatConfig.js';
 

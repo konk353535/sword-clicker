@@ -113,19 +113,6 @@ Template.shopPage.events({
     });
   },  
 
-  'click .buy-phasing-key'() {
-    if (Meteor.user().gems + Meteor.user().fakeGems < 25) {
-      return;
-    }
-
-    Meteor.call('shop.buyItem', { itemId: 'phasing_key' }, (err, res) => {
-      if (err) {
-        return toastr.error('An unexpected error occurred when buying item.');
-      }
-      toastr.success('Successfully purchased.')
-    });
-  },
-
   'click .buy-combat-30'() {
     if (Meteor.user().gems + Meteor.user().fakeGems < 200) {
       return;
@@ -295,6 +282,7 @@ Template.shopPage.rendered = function () {
       const currentPack = instance.state.get('currentPack');
       Meteor.call('shop.purchase', {token: token.id, currentPack}, (err, res) => {
         if (err) {
+            console.log("err", err)
           toastr.error('An error occurred while purchasing gems.');
         } else {
           toastr.success('Successfully purchased');
@@ -365,11 +353,6 @@ Template.shopPage.helpers({
   serverName() {
     const serverDoc = Servers.findOne({_id: Meteor.user().server});    
     return serverDoc.name;
-  },
-
-  eventBoxesAllowed() {
-    //return Servers.findOne({_id: Meteor.user().server}).name === 'Classic';
-    return true;
   },
 
   freeGems() {

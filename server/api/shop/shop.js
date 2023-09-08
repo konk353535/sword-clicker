@@ -238,42 +238,10 @@ Meteor.methods({
   },
 
   'shop.buyItem'({ itemId }) {
-
-    let validItems;
-  
-    //if (Servers.findOne({_id: Meteor.user().server}).name === 'Classic') {
-    if (true) {
-      validItems = [{
+    let validItems = [{
         id: 'lemonade',
         cost: 10
-      }, {
-        id: 'phasing_key',
-        cost: 25
-      } , {
-        id: 'gift_box_holiday',
-        cost: 10
-      }, {
-        id: 'gift_box_fireworks',
-        cost: 10
-      }, {
-        id: 'gift_box_red_envelope',
-        cost: 10
-      }, {
-        id: 'gift_box_valentines',
-        cost: 10
-      }, {
-        id: 'gift_box_stpatricks',
-        cost: 10
-      }];
-    } else {
-      validItems = [{
-        id: 'lemonade',
-        cost: 10
-      }, {
-        id: 'phasing_key',
-        cost: 25
-      }];
-    }
+    }]
 
     const itemToBuy = _.findWhere(validItems, { id: itemId });
     if (!itemToBuy) {

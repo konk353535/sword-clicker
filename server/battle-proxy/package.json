@@ -1,19 +1,39 @@
 {
-  "name": "battle-proxy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/babel-cli/bin/babel-node.js --presets node6 ./index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-node6": "^11.0.0",
-    "consistent-hashing": "^0.3.0",
-    "http-proxy": "^1.16.2",
-    "query-string": "^6.0.0"
-  }
+    "name": "battle-proxy",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
+        "dev": "cross-env NODE_ENV=development npx nodemon src/index.ts",
+        "build": "tsc --build"
+    },
+    "nodemonConfig": {
+        "execMap": {
+            "ts": "ts-node-esm --experimental-specifier-resolution=node"
+        },
+        "ext": "ts,js,json",
+        "ignore": [
+            "node_modules/**/node_modules"
+        ],
+        "restartable": "rs"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "consistent-hashing": "^0.3.0",
+        "cross-env": "^7.0.3",
+        "http-proxy": "^1.16.2",
+        "query-string": "^8.1.0",
+        "zod": "^3.22.2"
+    },
+    "devDependencies": {
+        "@types/http-proxy": "^1.16.2",
+        "@types/query-string": "^6.3.0",
+        "@types/node": "^18.0.0",
+        "nodemon": "^3.0.1",
+        "ts-loader": "^9.4.4",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.2.2"
+    }
 }

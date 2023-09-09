@@ -1354,10 +1354,24 @@ export const completeBattle = function(actualBattle) {
 };
 
 JsonRoutes.add("post", "/methods/completeBattle", function (req, res, next) {
-  const [battle, passphrase] = req.body;
-  if (passphrase !== 'dqv$dYT65YrU%s') {
-    return;
-  }
+  try {
+    const [battle, passphrase] = req.body;
+    if (passphrase !== 'dqv$dYT65YrU%s') {
+      JsonRoutes.sendResult(res, {
+        code: 401
+      });
+      return;
+    }
 
-  completeBattle(battle);
+    completeBattle(battle);
+
+    JsonRoutes.sendResult(res, {
+      code: 200
+    });
+  } catch (err) {
+    console.log("Error completing battle", err)
+    JsonRoutes.sendResult(res, {
+        code: 500
+    });
+  }
 });

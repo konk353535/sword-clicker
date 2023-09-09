@@ -26,6 +26,7 @@ BattlesSchema = new SimpleSchema({
   owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
   createdAt: { type: Date },
   updatedAt: { type: Date },
+  server: { type: String },
 
   floor: { type: Number, optional: true },
   room: { type: String, optional: true },

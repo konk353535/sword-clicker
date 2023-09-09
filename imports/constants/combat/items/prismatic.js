@@ -377,9 +377,7 @@ export const PRISMATIC_ITEMS = {
       "healthMax": 17.4 * PRISMATIC_MULTIPLIER,
       "defense": 17.4 * PRISMATIC_MULTIPLIER * PRISMATIC_DEFENSE_MULTIPLIER,
       "armor": 83.5 * PRISMATIC_MULTIPLIER,
-      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER,
-      "healthMax": 17.5 * PRISMATIC_MULTIPLIER,
-      "magicArmor": 4.5 * PRISMATIC_MULTIPLIER
+      "magicArmor": 13.2 * PRISMATIC_MULTIPLIER
     },
     "extraStats": {
       "healthMax": 5.2 * PRISMATIC_MULTIPLIER,

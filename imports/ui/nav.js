@@ -45,6 +45,21 @@ Template.nav.onCreated(function bodyOnCreated() {
             } else {
                 Session.set("ngAutoMode", 0)
             }
+            console.log("uiState", myUser.uiState)
+            if (myUser.uiState && myUser.uiState.darkMode !== undefined) {
+                console.log("have state, setting")
+                Session.set("darkModeEnabled", myUser.uiState.darkMode)
+                if (myUser.uiState.darkMode) {
+                    // add class to html
+                    $("html").addClass("dark")
+                } else {
+                    $("html").removeClass("dark")
+                }
+            } else {
+                console.log("no state, using default")
+                Session.set("darkModeEnabled", true)
+                $("html").addClass("dark")
+            }
         }
     })
 
@@ -134,6 +149,18 @@ Template.nav.events({
 
     "click .guestSignOffConfirmModal #at-nav-button"(event, instance) {
         instance.$(".guestSignOffConfirmModal").modal("hide")
+    },
+
+    "click .disable-dark-mode"(event, instance) {
+        Session.set("darkModeEnabled", false)
+        Meteor.call("users.setUiState", "darkMode", false)
+        $("html").removeClass("dark")
+    },
+
+    "click .enable-dark-mode"(event, instance) {
+        Session.set("darkModeEnabled", true)
+        Meteor.call("users.setUiState", "darkMode", true)
+        $("html").addClass("dark")
     },
 
     "click .battle-nav-link"(event, instance) {
@@ -289,6 +316,10 @@ Template.nav.helpers({
 
     recipeTileConsumablesDisabled() {
         return Session.get("recipeTileConsumablesDisabled")
+    },
+
+    darkModeEnabled() {
+        return Session.get("darkModeEnabled")
     },
 
     ngMode() {

@@ -189,6 +189,15 @@
                     Need/Greed: auto-pass
                   </a>
                 {{/if}}
+                {{#if $eq darkModeEnabled true}}
+                  <a class="dropdown-item disable-dark-mode" style="cursor: pointer">
+                    Disable dark mode
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-dark-mode" style="cursor: pointer">
+                    Enable dark mode
+                  </a>
+                {{/if}}
 
                 <a class="dropdown-item">
                   Server: {{ serverName }}

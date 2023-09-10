@@ -549,7 +549,8 @@ Accounts.onCreateUser((options, user) => {
     user.uiState = {
         showChat: false,
         showSummaryList: false,
-        craftingFilter: "mining"
+        craftingFilter: "mining",
+        darkMode: true
     }
 
     let targetServer

@@ -471,7 +471,8 @@ Meteor.methods({
             "craftingShowMore",
             "townSection",
             "energyUse",
-            "ngAutoMode"
+            "ngAutoMode",
+            "darkMode"
         ]
 
         if (_.contains(validIds, id)) {

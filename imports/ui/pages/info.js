@@ -1,8 +1,8 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Template } from "meteor/templating"
 
-import './info.html';
+import "./info.html"
 
 Template.infoPage.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
-});
+    this.state = new ReactiveDict()
+})

@@ -1,21 +1,24 @@
-import { Template } from 'meteor/templating';
+import { Template } from "meteor/templating"
 
-import { Battles } from '/imports/api/battles/battles.js';
-import { ReactiveDict } from 'meteor/reactive-dict';
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Battles } from "/imports/api/battles/battles.js"
 
-import './battleLogTab.html';
+import "./battleLogTab.html"
 
 Template.battleLogTab.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
-});
+    this.state = new ReactiveDict()
+})
 
 Template.battleLogTab.helpers({
-  battles() {
-    return Battles.find({}, {
-      limit: 25,
-      sort: {
-        updatedAt: -1
-      }
-    });
-  }
-});
+    battles() {
+        return Battles.find(
+            {},
+            {
+                limit: 25,
+                sort: {
+                    updatedAt: -1
+                }
+            }
+        )
+    }
+})

@@ -1,11 +1,11 @@
-import { Meteor } from 'meteor/meteor';
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
+import { Meteor } from "meteor/meteor"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Template } from "meteor/templating"
 
-import './updates.html';
+import "./updates.html"
 
 Template.updatesPage.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
+    this.state = new ReactiveDict()
 
-  Meteor.call('users.readNewUpdates');
-});
+    Meteor.call("users.readNewUpdates")
+})

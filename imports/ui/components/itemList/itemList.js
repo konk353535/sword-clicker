@@ -1,213 +1,211 @@
-import { Meteor } from 'meteor/meteor';
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
-import { Session } from 'meteor/session';
+import { Meteor } from "meteor/meteor"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Session } from "meteor/session"
+import { Template } from "meteor/templating"
 
-import './itemList.html';
+import "./itemList.html"
 
 Template.itemList.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
-});
+    this.state = new ReactiveDict()
+})
 
 Template.itemList.events({
-  'click .multiSellStart'(event, instance) {
-    Session.set('multiSell', true);
-    Session.set('multiSellItems', {});
-  },
+    "click .multiSellStart"(event, instance) {
+        Session.set("multiSell", true)
+        Session.set("multiSellItems", {})
+    },
 
-  'click .multiSellSelectAll'(event, instance) {
-    let currentItems = {};
-    
-    instance.data.items.forEach((thisItem) => {
-      if (!thisItem.locked) {
-        currentItems[thisItem._id] = {
-          id: thisItem._id,
-          itemId: thisItem.itemId,
-          amount: thisItem.amount
-        };
-      }
-    });
-    
-    Session.set('multiSellItems', currentItems);
-  },
-  
-  'click .multiSellConfirm'(event, instance) {
-    instance.$('.confirmSellModal').modal('show');
-  },
+    "click .multiSellSelectAll"(event, instance) {
+        let currentItems = {}
 
-  'click .multiSellCancel'(event, instance) {
-    Session.set('multiSell', false);
-    Session.set('multiSellItems', {});
-  },
+        instance.data.items.forEach((thisItem) => {
+            if (!thisItem.locked) {
+                currentItems[thisItem._id] = {
+                    id: thisItem._id,
+                    itemId: thisItem.itemId,
+                    amount: thisItem.amount
+                }
+            }
+        })
 
-  'click .modalButtonConfirm'(event, instance) {
-    instance.$('.confirmSellModal').modal('hide');
-    Session.set('multiSell', false);
-    const items = Session.get('multiSellItems');
-    Object.keys(items).forEach((item) => {
-      Meteor.call('items.sellItem', items[item].id, items[item].itemId, items[item].amount, (err, res) => {
-        if (err)
-          toastr.warning(err.reason);
-      });
-    });
-    Session.set('multiSellItems', {});
-  },
+        Session.set("multiSellItems", currentItems)
+    },
 
-  'click .modalButtonCancel'(event, instance) {
-    instance.$('.confirmSellModal').modal('hide');
-  },
-  
-  'click .multiHideStart'(event, instance) {
-    Session.set('multiHide', true);
-    Session.set('multiHideItems', {});
-  },
+    "click .multiSellConfirm"(event, instance) {
+        instance.$(".confirmSellModal").modal("show")
+    },
 
-  'click .multiHideCancel'(event, instance) {
-    Session.set('multiHide', false);
-    Session.set('multiHideItems', {});
-  },
+    "click .multiSellCancel"(event, instance) {
+        Session.set("multiSell", false)
+        Session.set("multiSellItems", {})
+    },
 
-  'click .multiHideSelectAll'(event, instance) {
-    let currentItems = {};
-    
-    instance.data.items.forEach((thisItem) => {
-      if (!thisItem.hidden) {
-        currentItems[thisItem._id] = {
-          id: thisItem._id,
-          itemId: thisItem.itemId,
-          amount: thisItem.amount
-        };
-      }
-    });
-    
-    Session.set('multiHideItems', currentItems);
-  },
-  
-  'click .multiHideConfirm'(event, instance) {
-    Session.set('multiHide', false);
-    const items = Session.get('multiHideItems');
-    Object.keys(items).forEach((item) => {
-      Meteor.call('items.hide', items[item].id, items[item].itemId, items[item].amount);
-    });
-    Session.set('multiHideItems', {});
-  },
-  
-  'click .multiShowStart'(event, instance) {
-    Session.set('multiShow', true);
-    Session.set('multiShowItems', {});
-  },
+    "click .modalButtonConfirm"(event, instance) {
+        instance.$(".confirmSellModal").modal("hide")
+        Session.set("multiSell", false)
+        const items = Session.get("multiSellItems")
+        Object.keys(items).forEach((item) => {
+            Meteor.call("items.sellItem", items[item].id, items[item].itemId, items[item].amount, (err, res) => {
+                if (err) toastr.warning(err.reason)
+            })
+        })
+        Session.set("multiSellItems", {})
+    },
 
-  'click .multiShowCancel'(event, instance) {
-    Session.set('multiShow', false);
-    Session.set('multiShowItems', {});
-  },
-  
-  'click .multiShowSelectAll'(event, instance) {
-    let currentItems = {};
-    
-    instance.data.items.forEach((thisItem) => {
-      if (thisItem.hidden) {
-        currentItems[thisItem._id] = {
-          id: thisItem._id,
-          itemId: thisItem.itemId,
-          amount: thisItem.amount
-        };
-      }
-    });
-    
-    Session.set('multiShowItems', currentItems);
-  },
-  
-  'click .multiShowConfirm'(event, instance) {
-    Session.set('multiShow', false);
-    const items = Session.get('multiShowItems');
-    Object.keys(items).forEach((item) => {
-      Meteor.call('items.hide', items[item].id, items[item].itemId, items[item].amount);
-    });
-    Session.set('multiShowItems', {});
-  },
-  
-  'click .multiLockStart'(event, instance) {
-    Session.set('multiLock', true);
-    Session.set('multiLockItems', {});
-  },
+    "click .modalButtonCancel"(event, instance) {
+        instance.$(".confirmSellModal").modal("hide")
+    },
 
-  'click .multiLockCancel'(event, instance) {
-    Session.set('multiLock', false);
-    Session.set('multiLockItems', {});
-  },
+    "click .multiHideStart"(event, instance) {
+        Session.set("multiHide", true)
+        Session.set("multiHideItems", {})
+    },
 
-  'click .multiLockSelectAll'(event, instance) {
-    let currentItems = {};
-    
-    instance.data.items.forEach((thisItem) => {
-      currentItems[thisItem._id] = {
-        id: thisItem._id,
-        itemId: thisItem.itemId,
-        amount: thisItem.amount
-      };
-    });
-    
-    Session.set('multiLockItems', currentItems);
-  },
-  
-  'click .multiLockConfirm'(event, instance) {
-    Session.set('multiLock', false);
-    const items = Session.get('multiLockItems');
-    Object.keys(items).forEach((item) => {
-      Meteor.call('items.lock', items[item].id);
-    });
-    Session.set('multiLockItems', {});
-  },
-});
+    "click .multiHideCancel"(event, instance) {
+        Session.set("multiHide", false)
+        Session.set("multiHideItems", {})
+    },
+
+    "click .multiHideSelectAll"(event, instance) {
+        let currentItems = {}
+
+        instance.data.items.forEach((thisItem) => {
+            if (!thisItem.hidden) {
+                currentItems[thisItem._id] = {
+                    id: thisItem._id,
+                    itemId: thisItem.itemId,
+                    amount: thisItem.amount
+                }
+            }
+        })
+
+        Session.set("multiHideItems", currentItems)
+    },
+
+    "click .multiHideConfirm"(event, instance) {
+        Session.set("multiHide", false)
+        const items = Session.get("multiHideItems")
+        Object.keys(items).forEach((item) => {
+            Meteor.call("items.hide", items[item].id, items[item].itemId, items[item].amount)
+        })
+        Session.set("multiHideItems", {})
+    },
+
+    "click .multiShowStart"(event, instance) {
+        Session.set("multiShow", true)
+        Session.set("multiShowItems", {})
+    },
+
+    "click .multiShowCancel"(event, instance) {
+        Session.set("multiShow", false)
+        Session.set("multiShowItems", {})
+    },
+
+    "click .multiShowSelectAll"(event, instance) {
+        let currentItems = {}
+
+        instance.data.items.forEach((thisItem) => {
+            if (thisItem.hidden) {
+                currentItems[thisItem._id] = {
+                    id: thisItem._id,
+                    itemId: thisItem.itemId,
+                    amount: thisItem.amount
+                }
+            }
+        })
+
+        Session.set("multiShowItems", currentItems)
+    },
+
+    "click .multiShowConfirm"(event, instance) {
+        Session.set("multiShow", false)
+        const items = Session.get("multiShowItems")
+        Object.keys(items).forEach((item) => {
+            Meteor.call("items.hide", items[item].id, items[item].itemId, items[item].amount)
+        })
+        Session.set("multiShowItems", {})
+    },
+
+    "click .multiLockStart"(event, instance) {
+        Session.set("multiLock", true)
+        Session.set("multiLockItems", {})
+    },
+
+    "click .multiLockCancel"(event, instance) {
+        Session.set("multiLock", false)
+        Session.set("multiLockItems", {})
+    },
+
+    "click .multiLockSelectAll"(event, instance) {
+        let currentItems = {}
+
+        instance.data.items.forEach((thisItem) => {
+            currentItems[thisItem._id] = {
+                id: thisItem._id,
+                itemId: thisItem.itemId,
+                amount: thisItem.amount
+            }
+        })
+
+        Session.set("multiLockItems", currentItems)
+    },
+
+    "click .multiLockConfirm"(event, instance) {
+        Session.set("multiLock", false)
+        const items = Session.get("multiLockItems")
+        Object.keys(items).forEach((item) => {
+            Meteor.call("items.lock", items[item].id)
+        })
+        Session.set("multiLockItems", {})
+    }
+})
 
 Template.itemList.helpers({
+    sellItems() {
+        return Session.get("multiSell")
+    },
 
-  sellItems() {
-    return Session.get('multiSell');
-  },
-  
-  showItems() {
-    return Session.get('multiShow');
-  },
+    showItems() {
+        return Session.get("multiShow")
+    },
 
-  hideItems() {
-    return Session.get('multiHide');
-  },
+    hideItems() {
+        return Session.get("multiHide")
+    },
 
-  lockItems() {
-    return Session.get('multiLock');
-  },
-  
-  allItems() {
-    const instance = Template.instance();
+    lockItems() {
+        return Session.get("multiLock")
+    },
 
-    return instance.data.items;
-  },
+    allItems() {
+        const instance = Template.instance()
 
-  visibleItems() {
-    const instance = Template.instance();
+        return instance.data.items
+    },
 
-    const items = instance.data.items.filter((item) => {
-      return !item.hidden;
-    });
-    
-    if (items && items.length > 0) {
-      return items;
+    visibleItems() {
+        const instance = Template.instance()
+
+        const items = instance.data.items.filter((item) => {
+            return !item.hidden
+        })
+
+        if (items && items.length > 0) {
+            return items
+        }
+        return false
+    },
+
+    hiddenItems() {
+        const instance = Template.instance()
+
+        const items = instance.data.items.filter((item) => {
+            return item.hidden
+        })
+
+        if (items && items.length > 0) {
+            return items
+        }
+        return false
     }
-    return false;
-  },
-
-  hiddenItems() {
-    const instance = Template.instance();
-
-    const items = instance.data.items.filter((item) => {
-      return item.hidden;
-    });
-    
-    if (items && items.length > 0) {
-      return items;
-    }
-    return false;
-  },
-});
+})

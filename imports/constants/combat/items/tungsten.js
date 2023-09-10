@@ -1,409 +1,433 @@
 export const TUNGSTEN_ITEMS = {
-  "tungsten_dagger": {
-    "id": "tungsten_dagger",
-    "icon": "tungstenDagger.png",
-    "category": "combat",
-    "weaponType": "dagger",
-    "slot": "mainHand",
-    "name": "tungsten dagger",
-    "sellPrice": 850,
-    "description": "A poorly made dagger.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 7,
-      "attackMax": 13.2,
-      "attackSpeed": 1,
-      "accuracy": 30.4
+    tungsten_dagger: {
+        id: "tungsten_dagger",
+        icon: "tungstenDagger.png",
+        category: "combat",
+        weaponType: "dagger",
+        slot: "mainHand",
+        name: "tungsten dagger",
+        sellPrice: 850,
+        description: "A poorly made dagger.",
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 7,
+            attackMax: 13.2,
+            attackSpeed: 1,
+            accuracy: 30.4
+        },
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 50
+            }
+        ]
     },
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 50
-    }]
-  },
-  "tungsten_spear": {
-    "id": "tungsten_spear",
-    "icon": "tungstenSpear.png",
-    "category": "combat",
-    "weaponType": "spear",
-    "slot": "mainHand",
-    "name": "tungsten spear",
-    "sellPrice": 1200,
-    "description": "Used to train defense.",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 26.8,
-      "attackMax": 33.6,
-      "attackSpeed": 0.5,
-      "accuracy": 33.6,
-      "defense": 13.2
+    tungsten_spear: {
+        id: "tungsten_spear",
+        icon: "tungstenSpear.png",
+        category: "combat",
+        weaponType: "spear",
+        slot: "mainHand",
+        name: "tungsten spear",
+        sellPrice: 1200,
+        description: "Used to train defense.",
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 26.8,
+            attackMax: 33.6,
+            attackSpeed: 0.5,
+            accuracy: 33.6,
+            defense: 13.2
+        },
+        extraStats: {
+            attack: 8,
+            attackMax: 10.1,
+            accuracy: 10.1,
+            defense: 4
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "defense",
+                level: 50
+            }
+        ]
     },
-    "extraStats": {
-      "attack": 8,
-      "attackMax": 10.1,
-      "accuracy": 10.1,
-      "defense": 4
+    tungsten_short_sword: {
+        id: "tungsten_short_sword",
+        icon: "tungstenShortsword.png",
+        category: "combat",
+        weaponType: "shortSword",
+        slot: "mainHand",
+        name: "tungsten short sword",
+        sellPrice: 1200,
+        description: "A good balance between offense and defense",
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 26.8,
+            attackMax: 40,
+            attackSpeed: 0.7,
+            accuracy: 40
+        },
+        extraStats: {
+            attack: 8,
+            attackMax: 12,
+            accuracy: 12
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 50
+            }
+        ]
     },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 50
-    }]
-  },
-  "tungsten_short_sword": {
-    "id": "tungsten_short_sword",
-    "icon": "tungstenShortsword.png",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "tungsten short sword",
-    "sellPrice": 1200,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 26.8,
-      "attackMax": 40,
-      "attackSpeed": 0.7,
-      "accuracy": 40
+    tungsten_scimitar: {
+        id: "tungsten_scimitar",
+        icon: "tungstenScimitar.png",
+        category: "combat",
+        weaponType: "shortSword",
+        slot: "mainHand",
+        name: "tungsten scimitar",
+        sellPrice: 1200,
+        description: "A good balance between offense and defense",
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 29.6,
+            attackMax: 46.9,
+            attackSpeed: 0.7,
+            accuracy: 40
+        },
+        extraStats: {
+            attack: 8.9,
+            attackMax: 14.1,
+            accuracy: 12
+        },
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 55
+            }
+        ],
+        reforgeRecipe: {
+            requiresCrafting: 55
+        }
     },
-    "extraStats": {
-      "attack": 8,
-      "attackMax": 12,
-      "accuracy": 12
+    tungsten_long_sword: {
+        id: "tungsten_long_sword",
+        icon: "tungstenLongsword.png",
+        category: "combat",
+        weaponType: "longSword",
+        slot: "mainHand",
+        name: "tungsten long sword",
+        sellPrice: 1200,
+        description: "A pure offensive weapon",
+        isTwoHanded: true,
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 46.9,
+            attackMax: 80.6,
+            attackSpeed: 0.5,
+            accuracy: 53.9
+        },
+        extraStats: {
+            attack: 14.1,
+            attackMax: 24.2,
+            accuracy: 16.2
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 50
+            }
+        ]
     },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 50
-    }]
-  },
-  "tungsten_scimitar": {
-    "id": "tungsten_scimitar",
-    "icon": "tungstenScimitar.png",
-    "category": "combat",
-    "weaponType": "shortSword",
-    "slot": "mainHand",
-    "name": "tungsten scimitar",
-    "sellPrice": 1200,
-    "description": "A good balance between offense and defense",
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 29.6,
-      "attackMax": 46.9,
-      "attackSpeed": 0.7,
-      "accuracy": 40
+    tungsten_broad_sword: {
+        id: "tungsten_broad_sword",
+        icon: "tungstenBroadsword.png",
+        category: "combat",
+        weaponType: "longSword",
+        slot: "mainHand",
+        name: "tungsten broad sword",
+        sellPrice: 1200,
+        description: "A pure offensive weapon",
+        isTwoHanded: true,
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 67.3,
+            attackMax: 94.1,
+            attackSpeed: 0.5,
+            accuracy: 53.9,
+            criticalChance: 10
+        },
+        extraStats: {
+            attack: 20.2,
+            attackMax: 28.2,
+            accuracy: 16.2
+        },
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 55
+            }
+        ],
+        reforgeRecipe: {
+            requiresCrafting: 55
+        }
     },
-    "extraStats": {
-      "attack": 8.9,
-      "attackMax": 14.1,
-      "accuracy": 12
+    tungsten_battle_axe: {
+        id: "tungsten_battle_axe",
+        icon: "tungstenBattleAxe.png",
+        category: "combat",
+        weaponType: "battleAxe",
+        slot: "mainHand",
+        name: "tungsten battle axe",
+        sellPrice: 1200,
+        description: "A slow pure offensive weapon.",
+        isTwoHanded: true,
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 33.6,
+            attackMax: 120.6,
+            attackSpeed: 0.3,
+            accuracy: 53.9,
+            criticalChance: 35
+        },
+        extraStats: {
+            attack: 10.1,
+            attackMax: 36.2
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 50
+            }
+        ]
     },
-    upgradeRarity: [
-      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
-      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
-      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
-      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
-      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
-      { chance: 30,      rarityId: 'fine', },          // 18%      chance
-                                                       // 70%      chance (for uncommon)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 55
-    }],
-    reforgeRecipe: {
-      requiresCrafting: 55
+    tungsten_horned_helmet: {
+        id: "tungsten_horned_helmet",
+        icon: "horned_helmet_t11.png",
+        category: "combat",
+        slot: "head",
+        name: "tungsten horned helmet",
+        sellPrice: 1200,
+        description: "Now that's using your head!",
+        isEquippable: true,
+        stats: {
+            attack: 7,
+            attackMax: 7,
+            accuracy: 7
+        },
+        extraStats: {
+            attack: 2.1,
+            attackMax: 2.1,
+            accuracy: 2.1
+        },
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 50
+            }
+        ],
+        reforgeRecipe: {
+            requiresCrafting: 55
+        }
     },
-  },
-  "tungsten_long_sword": {
-    "id": "tungsten_long_sword",
-    "icon": "tungstenLongsword.png",
-    "category": "combat",
-    "weaponType": "longSword",
-    "slot": "mainHand",
-    "name": "tungsten long sword",
-    "sellPrice": 1200,
-    "description": "A pure offensive weapon",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 46.9,
-      "attackMax": 80.6,
-      "attackSpeed": 0.5,
-      "accuracy": 53.9
+    tungsten_helmet: {
+        id: "tungsten_helmet",
+        icon: "tungstenHelmet.png",
+        category: "combat",
+        slot: "head",
+        name: "tungsten helmet",
+        sellPrice: 1200,
+        description: "Protect your head",
+        isEquippable: true,
+        stats: {
+            healthMax: 7,
+            defense: 7,
+            armor: 33.6
+        },
+        extraStats: {
+            healthMax: 2.1,
+            defense: 2.1,
+            armor: 10.1
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "defense",
+                level: 50
+            }
+        ]
     },
-    "extraStats": {
-      "attack": 14.1,
-      "attackMax": 24.2,
-      "accuracy": 16.2
+    tungsten_chest_plate: {
+        id: "tungsten_chest_plate",
+        icon: "tungstenChestplate.png",
+        category: "combat",
+        slot: "chest",
+        name: "tungsten chestplate",
+        sellPrice: 1200,
+        description: "Protect your heart",
+        isEquippable: true,
+        stats: {
+            healthMax: 7,
+            defense: 7,
+            armor: 33.6
+        },
+        extraStats: {
+            healthMax: 2.1,
+            defense: 2.1,
+            armor: 10.1
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "defense",
+                level: 50
+            }
+        ]
     },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 50
-    }]
-  },
-  "tungsten_broad_sword": {
-    "id": "tungsten_broad_sword",
-    "icon": "tungstenBroadsword.png",
-    "category": "combat",
-    "weaponType": "longSword",
-    "slot": "mainHand",
-    "name": "tungsten broad sword",
-    "sellPrice": 1200,
-    "description": "A pure offensive weapon",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 67.3,
-      "attackMax": 94.1,
-      "attackSpeed": 0.5,
-      "accuracy": 53.9,
-      "criticalChance": 10
+    tungsten_plate_legs: {
+        id: "tungsten_plate_legs",
+        icon: "tungstenPlatelegs.png",
+        category: "combat",
+        slot: "legs",
+        name: "tungsten platelegs",
+        sellPrice: 1200,
+        description: "Protect your legs",
+        isEquippable: true,
+        stats: {
+            healthMax: 7,
+            defense: 7,
+            armor: 33.6
+        },
+        extraStats: {
+            healthMax: 2.1,
+            defense: 2.1,
+            armor: 10.1
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "defense",
+                level: 50
+            }
+        ]
     },
-    "extraStats": {
-      "attack": 20.2,
-      "attackMax": 28.2,
-      "accuracy": 16.2
-    },
-    upgradeRarity: [
-      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
-      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
-      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
-      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
-      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
-      { chance: 30,      rarityId: 'fine', },          // 18%      chance
-                                                       // 70%      chance (for uncommon)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 55
-    }],
-    reforgeRecipe: {
-      requiresCrafting: 55
-    },
-  },
-  "tungsten_battle_axe": {
-    "id": "tungsten_battle_axe",
-    "icon": "tungstenBattleAxe.png",
-    "category": "combat",
-    "weaponType": "battleAxe",
-    "slot": "mainHand",
-    "name": "tungsten battle axe",
-    "sellPrice": 1200,
-    "description": "A slow pure offensive weapon.",
-    "isTwoHanded": true,
-    "isWeapon": true,
-    "isEquippable": true,
-    "stats": {
-      "attack": 33.6,
-      "attackMax": 120.6,
-      "attackSpeed": 0.3,
-      "accuracy": 53.9,
-      "criticalChance": 35
-    },
-    "extraStats": {
-      "attack": 10.1,
-      "attackMax": 36.2
-    },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 50
-    }]
-  },
-  "tungsten_horned_helmet": {
-    "id": "tungsten_horned_helmet",
-    "icon": "horned_helmet_t11.png",
-    "category": "combat",
-    "slot": "head",
-    "name": "tungsten horned helmet",
-    "sellPrice": 1200,
-    "description": "Now that's using your head!",
-    "isEquippable": true,
-    "stats": {
-      "attack": 7,
-      "attackMax": 7,
-      "accuracy": 7
-    },
-    "extraStats": {
-      "attack": 2.1,
-      "attackMax": 2.1,
-      "accuracy": 2.1
-    },
-    upgradeRarity: [
-      { chance:  0.2072, rarityId: 'divine', },        //  0.2072% chance
-      { chance:  0.768,  rarityId: 'epic', },          //  0.5608% chance
-      { chance:  1.92,   rarityId: 'phenomenal', },    //  1.152%  chance
-      { chance:  4.8,    rarityId: 'extraordinary', }, //  2.88%   chance
-      { chance: 12,      rarityId: 'rare', },          //  7.2%    chance
-      { chance: 30,      rarityId: 'fine', },          // 18%      chance
-                                                       // 70%      chance (for uncommon)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'attack',
-      level: 50
-    }],
-    reforgeRecipe: {
-      requiresCrafting: 55
-    },
-  },
-  "tungsten_helmet": {
-    "id": "tungsten_helmet",
-    "icon": "tungstenHelmet.png",
-    "category": "combat",
-    "slot": "head",
-    "name": "tungsten helmet",
-    "sellPrice": 1200,
-    "description": "Protect your head",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.6
-    },
-    "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.1
-    },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 50
-    }]
-  },
-  "tungsten_chest_plate": {
-    "id": "tungsten_chest_plate",
-    "icon": "tungstenChestplate.png",
-    "category": "combat",
-    "slot": "chest",
-    "name": "tungsten chestplate",
-    "sellPrice": 1200,
-    "description": "Protect your heart",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.6
-    },
-    "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.1
-    },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 50
-    }]
-  },
-  "tungsten_plate_legs": {
-    "id": "tungsten_plate_legs",
-    "icon": "tungstenPlatelegs.png",
-    "category": "combat",
-    "slot": "legs",
-    "name": "tungsten platelegs",
-    "sellPrice": 1200,
-    "description": "Protect your legs",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 7,
-      "defense": 7,
-      "armor": 33.6
-    },
-    "extraStats": {
-      "healthMax": 2.1,
-      "defense": 2.1,
-      "armor": 10.1
-    },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 50
-    }]
-  },
-  "tungsten_shield": {
-    "id": "tungsten_shield",
-    "icon": "tungstenShield.png",
-    "category": "combat",
-    "weaponType": "shield",
-    "slot": "offHand",
-    "name": "tungsten shield",
-    "sellPrice": 1200,
-    "description": "Provides large defense bonuses",
-    "isEquippable": true,
-    "stats": {
-      "healthMax": 13.2,
-      "defense": 20.5,
-      "armor": 67.3
-    },
-    "extraStats": {
-      "healthMax": 4,
-      "defense": 6.1,
-      "armor": 20.2
-    },
-    upgradeRarity: [
-      { chance: 10,  rarityId: 'crude', },    // 10% chance
-      { chance: 30,  rarityId: 'rough', },    // 20% chance
-      { chance: 40,  rarityId: 'improved', }, // 10% chance
-                                              // 60% chance (for standard)
-    ],
-    requiredEquip: [{
-      type: 'skill',
-      name: 'defense',
-      level: 50
-    }]
-  }
-};
+    tungsten_shield: {
+        id: "tungsten_shield",
+        icon: "tungstenShield.png",
+        category: "combat",
+        weaponType: "shield",
+        slot: "offHand",
+        name: "tungsten shield",
+        sellPrice: 1200,
+        description: "Provides large defense bonuses",
+        isEquippable: true,
+        stats: {
+            healthMax: 13.2,
+            defense: 20.5,
+            armor: 67.3
+        },
+        extraStats: {
+            healthMax: 4,
+            defense: 6.1,
+            armor: 20.2
+        },
+        upgradeRarity: [
+            { chance: 10, rarityId: "crude" }, // 10% chance
+            { chance: 30, rarityId: "rough" }, // 20% chance
+            { chance: 40, rarityId: "improved" } // 10% chance
+            // 60% chance (for standard)
+        ],
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "defense",
+                level: 50
+            }
+        ]
+    }
+}

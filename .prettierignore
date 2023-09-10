@@ -1,0 +1,7 @@
+.deploy
+.meteor
+**/node_modules
+public
+
+// for some reason the client breaks when client/main.js is auto-formatted
+client/main.js

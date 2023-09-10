@@ -1,77 +1,77 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
-import { determineRequiredItems } from '/imports/ui/utils.js';
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Template } from "meteor/templating"
+import { determineRequiredItems } from "/imports/ui/utils.js"
 
-import './requiredItems.html';
+import "./requiredItems.html"
 
-let tooltip;
+let tooltip
 const fetchRequiredItems = function (instance) {
-  let recipeName = instance.data.recipeName;
-  const requiredItems = instance.data.requiredItems;
+    let recipeName = instance.data.recipeName
+    const requiredItems = instance.data.requiredItems
 
-  if (!requiredItems && !recipeName) {
-    return;
-  }
+    if (!requiredItems && !recipeName) {
+        return
+    }
 
-  const result = determineRequiredItems({
-    required: requiredItems
-  });
+    const result = determineRequiredItems({
+        required: requiredItems
+    })
 
-  instance.state.set('hasSkillRequirements', result.hasSkillRequirements);
-  instance.state.set('hasItemRequirements', result.hasItemRequirements);
-  instance.state.set('hasConsumeItemRequirements', result.hasConsumeItemRequirements);
-  instance.state.set('computedRequiredItems', result.recipeItems);
+    instance.state.set("hasSkillRequirements", result.hasSkillRequirements)
+    instance.state.set("hasItemRequirements", result.hasItemRequirements)
+    instance.state.set("hasConsumeItemRequirements", result.hasConsumeItemRequirements)
+    instance.state.set("computedRequiredItems", result.recipeItems)
 
-  if (instance.data.requirementsMet) {
-    instance.data.requirementsMet(!result.notMet);
-  }
-};
+    if (instance.data.requirementsMet) {
+        instance.data.requirementsMet(!result.notMet)
+    }
+}
 
 Template.requiredItems.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
+    this.state = new ReactiveDict()
 
-  this.autorun(() => {
-    fetchRequiredItems(this);
-  });
-});
+    this.autorun(() => {
+        fetchRequiredItems(this)
+    })
+})
 
 Template.requiredItems.rendered = function () {
-  if (!Template.instance().data.hideTooltip) {
-    tooltip = new Drop({
-      target: Template.instance().$('.required-items-container')[0],
-      content: Template.instance().$('.required-items-tooltip')[0],
-      openOn: 'hover',
-      position: 'top left',
-      remove: true
-    });
-  }
-};
+    if (!Template.instance().data.hideTooltip) {
+        tooltip = new Drop({
+            target: Template.instance().$(".required-items-container")[0],
+            content: Template.instance().$(".required-items-tooltip")[0],
+            openOn: "hover",
+            position: "top left",
+            remove: true
+        })
+    }
+}
 
 Template.requiredItems.onDestroyed(function () {
-  if (tooltip && tooltip.target) {
-    tooltip.destroy();
-  }
-});
+    if (tooltip && tooltip.target) {
+        tooltip.destroy()
+    }
+})
 
 Template.requiredItems.helpers({
-  computedRequiredItems() {
-    fetchRequiredItems(Template.instance());
-    return Template.instance().state.get('computedRequiredItems');
-  },
+    computedRequiredItems() {
+        fetchRequiredItems(Template.instance())
+        return Template.instance().state.get("computedRequiredItems")
+    },
 
-  hasConsumeItemRequirements() {
-    return Template.instance().state.get('hasConsumeItemRequirements');
-  },
+    hasConsumeItemRequirements() {
+        return Template.instance().state.get("hasConsumeItemRequirements")
+    },
 
-  hasItemRequirements() {
-    return Template.instance().state.get('hasItemRequirements');
-  },
+    hasItemRequirements() {
+        return Template.instance().state.get("hasItemRequirements")
+    },
 
-  hasSkillRequirements() {
-    return Template.instance().state.get('hasSkillRequirements');
-  },
+    hasSkillRequirements() {
+        return Template.instance().state.get("hasSkillRequirements")
+    },
 
-  hideCurrent() {
-    return Template.instance().data.hideCurrent;
-  }
-});
+    hideCurrent() {
+        return Template.instance().data.hideCurrent
+    }
+})

@@ -1,12 +1,7 @@
-
-
-
 == Install
 
 https://www.meteor.com/
 https://www.meteor.com/install
-
-
 
 == Run Locally
 
@@ -17,12 +12,11 @@ meteor --settings settings-development.json
 http://meteor-up.com/
 https://github.com/zodern/meteor-up
 
-
 == Gotchas
 
 None known
 
-== Growth 
+== Growth
 
 /r/PBBG
 /r/incremental_games/

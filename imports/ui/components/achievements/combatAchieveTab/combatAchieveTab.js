@@ -1,14 +1,12 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Template } from "meteor/templating"
 
-import './combatAchieveTab.html';
+import "./combatAchieveTab.html"
 
 Template.combatAchieveTab.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
-});
+    this.state = new ReactiveDict()
+})
 
-Template.combatAchieveTab.events({
-});
+Template.combatAchieveTab.events({})
 
-Template.combatAchieveTab.helpers({
-});
+Template.combatAchieveTab.helpers({})

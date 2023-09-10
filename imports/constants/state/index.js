@@ -1,5 +1,5 @@
 export const STATE_BUFFS = {
-  combat: 'buffCombat',
-  crafting: 'buffCrafting',
-  gathering: 'buffGathering'
-};
+    combat: "buffCombat",
+    crafting: "buffCrafting",
+    gathering: "buffGathering"
+}

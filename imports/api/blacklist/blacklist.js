@@ -1,10 +1,10 @@
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { Mongo } from "meteor/mongo"
 
-export const BlackList = new Mongo.Collection('blackList');
+export const BlackList = new Mongo.Collection("blackList")
 
 BlackListSchema = new SimpleSchema({
-  clientIp: { type: String }
-});
+    clientIp: { type: String }
+})
 
-BlackList.attachSchema(BlackListSchema);
+BlackList.attachSchema(BlackListSchema)

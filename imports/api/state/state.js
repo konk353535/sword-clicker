@@ -1,13 +1,12 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { Mongo } from "meteor/mongo"
 
-export const State = new Mongo.Collection('state');
+export const State = new Mongo.Collection("state")
 
 StateSchema = new SimpleSchema({
-  name: { type: String },
-  server: { type: String, optional: true },
-  value: { type: Object, blackbox: true, optional: true },
-});
+    name: { type: String },
+    server: { type: String, optional: true },
+    value: { type: Object, blackbox: true, optional: true }
+})
 
-State.attachSchema(StateSchema);
+State.attachSchema(StateSchema)

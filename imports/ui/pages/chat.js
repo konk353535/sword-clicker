@@ -1,13 +1,10 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Template } from "meteor/templating"
 
-import './chat.html';
+import "./chat.html"
 
 Template.chatPage.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
+    this.state = new ReactiveDict()
+})
 
-});
-
-Template.chatPage.helpers({
-
-});
+Template.chatPage.helpers({})

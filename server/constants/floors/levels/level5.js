@@ -1,74 +1,82 @@
-import { orderLootTable } from '../../enemies/lootTables/index.js';
+import { orderLootTable } from "../../enemies/lootTables/index.js"
 
-export const LEVEL_FIVE_MONSTERS = [{
-  id: 'wolf',
-  icon: 'wolf.svg',
-  name: 'wolf'
-}, {
-  id: 'beaver',
-  icon: 'beaver.svg',
-  name: 'beaver'
-}, {
-  id: 'eagle',
-  icon: 'eagle.svg',
-  name: 'eagle'
-}, {
-  id: 'kangaroo',
-  icon: 'kangaroo.svg',
-  name: 'kangaroo'
-}, {
-  id: 'jellyFish',
-  icon: 'jellyFish.svg',
-  name: 'jellyfish',
-  magicArmored: true,
-  buffs: [{
-    id: 'poisoned_blade',
-    data: {
-      level: 1,
-      icon: 'poisonedBlade.svg',
-      name: 'poisoned blade'
+export const LEVEL_FIVE_MONSTERS = [
+    {
+        id: "wolf",
+        icon: "wolf.svg",
+        name: "wolf"
+    },
+    {
+        id: "beaver",
+        icon: "beaver.svg",
+        name: "beaver"
+    },
+    {
+        id: "eagle",
+        icon: "eagle.svg",
+        name: "eagle"
+    },
+    {
+        id: "kangaroo",
+        icon: "kangaroo.svg",
+        name: "kangaroo"
+    },
+    {
+        id: "jellyFish",
+        icon: "jellyFish.svg",
+        name: "jellyfish",
+        magicArmored: true,
+        buffs: [
+            {
+                id: "poisoned_blade",
+                data: {
+                    level: 1,
+                    icon: "poisonedBlade.svg",
+                    name: "poisoned blade"
+                }
+            }
+        ]
     }
-  }]
-}];
+]
 
-export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([{
-  chance: 1 / 48,
-  rewards: [
-    { type: 'item', itemId: 'iron_pickaxe', amount: 1 },
-    { type: 'item', itemId: 'iron_axe', amount: 1 },
-    { type: 'item', itemId: 'iron_dagger', amount: 1 }
-  ]
-}, {
-  chance: 1 / 64,
-  rewards: [
-    { type: 'item', itemId: 'attack_up_1_tome', amount: 1 }
-  ]
-}, {
-  chance: 1 / 64,
-  rewards: [
-    { type: 'item', itemId: 'critical_up_level_1_tome', amount: 1 }
-  ]
-}, {
-  chance: 1 / 96,
-  rewards: [
-    { type: 'item', itemId: 'sixth_sense_tome', amount: 1 }
-  ]
-}, {
-  chance: 1 / 4,
-  rewards: [
-    { type: 'item', itemId: 'ore_iron', amount: 1 },
-    { type: 'item', itemId: 'iron_bar', amount: 1 },
-    { type: 'item', itemId: 'oak_log', amount: 1 },
-    { type: 'item', itemId: 'oak_log', amount: 2 }
-  ]
-}, {
-  chance: 1 / 6,
-  rewards: [
-    { type: 'gold', amount: 47 },
-    { type: 'gold', amount: 94 },
-    { type: 'gold', amount: 188 },
-    { type: 'item', itemId: 'polished_iron', amount: 1 },
-    { type: 'item', itemId: 'polished_iron', amount: 2 }
-  ]
-}]);
-
+export const LEVEL_FIVE_LOOT_TABLE = orderLootTable([
+    {
+        chance: 1 / 48,
+        rewards: [
+            { type: "item", itemId: "iron_pickaxe", amount: 1 },
+            { type: "item", itemId: "iron_axe", amount: 1 },
+            { type: "item", itemId: "iron_dagger", amount: 1 }
+        ]
+    },
+    {
+        chance: 1 / 64,
+        rewards: [{ type: "item", itemId: "attack_up_1_tome", amount: 1 }]
+    },
+    {
+        chance: 1 / 64,
+        rewards: [{ type: "item", itemId: "critical_up_level_1_tome", amount: 1 }]
+    },
+    {
+        chance: 1 / 96,
+        rewards: [{ type: "item", itemId: "sixth_sense_tome", amount: 1 }]
+    },
+    {
+        chance: 1 / 4,
+        rewards: [
+            { type: "item", itemId: "ore_iron", amount: 1 },
+            { type: "item", itemId: "iron_bar", amount: 1 },
+            { type: "item", itemId: "oak_log", amount: 1 },
+            { type: "item", itemId: "oak_log", amount: 2 }
+        ]
+    },
+    {
+        chance: 1 / 6,
+        rewards: [
+            { type: "gold", amount: 47 },
+            { type: "gold", amount: 94 },
+            { type: "gold", amount: 188 },
+            { type: "item", itemId: "polished_iron", amount: 1 },
+            { type: "item", itemId: "polished_iron", amount: 2 }
+        ]
+    }
+])

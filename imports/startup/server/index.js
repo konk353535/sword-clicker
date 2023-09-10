@@ -1,77 +1,75 @@
-import { AccountsTemplates } from 'meteor/useraccounts:core';
-import { Random } from 'meteor/random';
-import moment from 'moment';
+import { Random } from "meteor/random"
+import moment from "moment"
 
-import { Servers, DEFAULT_SERVER, CLASSIC_SERVER } from '/imports/api/servers/servers';
+import { CLASSIC_SERVER, DEFAULT_SERVER, Servers } from "/imports/api/servers/servers"
 
-import { Skills } from '../../api/skills/skills.js';
-import { State } from '/imports/api/state/state.js';
-import { BlackList } from '../../api/blacklist/blacklist.js';
-import { Floors } from '../../api/floors/floors.js';
-import { Mining, MiningSpace } from '../../api/mining/mining.js';
-import { Crafting } from '../../api/crafting/crafting.js';
-import { Combat } from '../../api/combat/combat.js';
-import { Adventures } from '../../api/adventures/adventures.js';
-import { Abilities } from '../../api/abilities/abilities.js';
-import { addItem } from '/server/api/items/items.js';
-import { Items } from '/imports/api/items/items.js';
-import { updateMiningStats } from '/server/api/mining/mining.js';
-import { updateCombatStats } from '/server/api/combat/combat.js';
-import uuid from 'node-uuid';
+import uuid from "node-uuid"
+import { Abilities } from "../../api/abilities/abilities.js"
+import { Adventures } from "../../api/adventures/adventures.js"
+import { BlackList } from "../../api/blacklist/blacklist.js"
+import { Combat } from "../../api/combat/combat.js"
+import { Crafting } from "../../api/crafting/crafting.js"
+import { Floors } from "../../api/floors/floors.js"
+import { Mining, MiningSpace } from "../../api/mining/mining.js"
+import { Skills } from "../../api/skills/skills.js"
+import { Items } from "/imports/api/items/items.js"
+import { State } from "/imports/api/state/state.js"
+import { updateCombatStats } from "/server/api/combat/combat.js"
+import { addItem } from "/server/api/items/items.js"
+import { updateMiningStats } from "/server/api/mining/mining.js"
 
-import { MINING } from '/imports/constants/mining/index.js';
-import { ITEMS } from '/imports/constants/items/index.js';
-import { SKILLS } from '/server/constants/skills/index.js';
-import { FLOORS } from '/server/constants/floors/index.js';
-import { STATE_BUFFS } from '/imports/constants/state';
+import { ITEMS } from "/imports/constants/items/index.js"
+import { MINING } from "/imports/constants/mining/index.js"
+import { STATE_BUFFS } from "/imports/constants/state"
+import { SKILLS } from "/server/constants/skills/index.js"
 
-import { getIPFromConnection } from '/imports/api/users/users.js';
-import { createNewServer } from '/imports/api/servers/servers';
-import { createNewFloor } from '/imports/api/floors/floors';
+import { createNewFloor } from "/imports/api/floors/floors"
+import { createNewServer } from "/imports/api/servers/servers"
+import { getIPFromConnection } from "/imports/api/users/users.js"
 
-import '/imports/api/users/users.js';
-import '/server/api/users/users.js';
+import "/imports/api/users/users.js"
+import "/server/api/users/users.js"
 
-import '/server/api/abilities/abilities.js';
-import '/server/api/achievements/achievements.js';
-import '/server/api/adventures/adventures.js';
-import '/server/api/astronomy/astronomy.js';
-import '/server/api/battles/battles.js';
-import '/server/api/combat/combat.js';
-import '/server/api/crafting/crafting.js';
-import '/server/api/farming/farming.js';
-import '/server/api/friends/friends.js';
-import '/server/api/groups/groups.js';
-import '/server/api/inscription/inscription.js';
-import '/server/api/items/items.js';
-import '/server/api/mining/mining.js';
-import '/server/api/server/server.js';
-import '/server/api/shop/shop.js';
-import '/server/api/skills/skills.js';
-import '/server/api/state/state.js';
-import '/server/api/town/town.js';
-import '/server/api/woodcutting/woodcutting.js';
+import "/server/api/abilities/abilities.js"
+import "/server/api/achievements/achievements.js"
+import "/server/api/adventures/adventures.js"
+import "/server/api/astronomy/astronomy.js"
+import "/server/api/battles/battles.js"
+import "/server/api/combat/combat.js"
+import "/server/api/crafting/crafting.js"
+import "/server/api/farming/farming.js"
+import "/server/api/friends/friends.js"
+import "/server/api/groups/groups.js"
+import "/server/api/inscription/inscription.js"
+import "/server/api/items/items.js"
+import "/server/api/mining/mining.js"
+import "/server/api/server/server.js"
+import "/server/api/shop/shop.js"
+import "/server/api/skills/skills.js"
+import "/server/api/state/state.js"
+import "/server/api/town/town.js"
+import "/server/api/woodcutting/woodcutting.js"
 
-import './crons.js';
-import './chatConfig.js';
+import "./chatConfig.js"
+import "./crons.js"
 
-Accounts.emailTemplates.siteName = "Eternity Tower";
-Accounts.emailTemplates.from = "Admin Eternity Tower <admin@eternitytower.net>";
+Accounts.emailTemplates.siteName = "Eternity Tower"
+Accounts.emailTemplates.from = "Admin Eternity Tower <admin@eternitytower.net>"
 Accounts.emailTemplates.resetPassword = {
-  subject(user) {
-    return "Reset your password on Eternity Tower";
-  },
-  text(user, url) {
-    return `Hello!
+    subject(user) {
+        return "Reset your password on Eternity Tower"
+    },
+    text(user, url) {
+        return `Hello!
         Click the link below to reset your password on Eternity Tower.
         ${url}
         If you didn't request this email, please ignore it.
         Thanks,
         The Eternity Tower Team
     `
-  },
-  html(user, url) {
-    return `
+    },
+    html(user, url) {
+        return `
       <!DOCTYPE html>
       <html>
         <head>
@@ -210,23 +208,23 @@ Accounts.emailTemplates.resetPassword = {
         </body>
       </html>
     `
-  }
-};
+    }
+}
 Accounts.emailTemplates.verifyEmail = {
-  subject(user) {
-    return "Confirm your Eternity Tower account";
-  },
-  text(user, url) {
-    return `Hello!
+    subject(user) {
+        return "Confirm your Eternity Tower account"
+    },
+    text(user, url) {
+        return `Hello!
         Click the link below to confirm your account on Eternity Tower.
         ${url}
         If you didn't request this email, please ignore it.
         Thanks,
         The Eternity Tower Team
     `
-  },
-  html(user, url) {
-    return `
+    },
+    html(user, url) {
+        return `
 
       <!DOCTYPE html>
       <html>
@@ -367,361 +365,445 @@ Accounts.emailTemplates.verifyEmail = {
       </html>
     
     `
-  }
-};
+    }
+}
 
 Accounts.validateLoginAttempt((attempt) => {
-  // If there's no actual user associated with this login attempt, there's an internal error.
-  if (!attempt.user) {
-    throw new Meteor.Error('something-is-wrong', 'Something went wrong, sorry :|');    
-  }
-  
-  // Is user banned?
-  if (attempt.user.banned) {
-    throw new Meteor.Error('something-is-wrong', 'Your user account is banned.');    
-  }
+    // If there's no actual user associated with this login attempt, there's an internal error.
+    if (!attempt.user) {
+        throw new Meteor.Error("something-is-wrong", "Something went wrong, sorry :|")
+    }
 
-  // Is IP address banned?
-  const clientIp = getIPFromConnection(attempt.connection);
-  if (BlackList.findOne({ clientIp })) {
-    throw new Meteor.Error('something-is-wrong', 'Your I.P. address is banned.');
-  }
+    // Is user banned?
+    if (attempt.user.banned) {
+        throw new Meteor.Error("something-is-wrong", "Your user account is banned.")
+    }
 
-  return true;
-});
+    // Is IP address banned?
+    const clientIp = getIPFromConnection(attempt.connection)
+    if (BlackList.findOne({ clientIp })) {
+        throw new Meteor.Error("something-is-wrong", "Your I.P. address is banned.")
+    }
+
+    return true
+})
 
 Accounts.validateNewUser((user) => {
-  let targetServer;
-  if (user.server) {
-    targetServer = Servers.findOne({
-      _id: user.server
-    });
-  } else {
-    targetServer = Servers.findOne({
-      name: DEFAULT_SERVER
-    });    
-  }
-  if (!targetServer) {
-    targetServer = Servers.findOne({
-      name: CLASSIC_SERVER
-    });
-  }
-  
-  if (!targetServer) {
-    throw new Meteor.Error(403, 'Something went wrong, sorry :|');
-  }
+    let targetServer
+    if (user.server) {
+        targetServer = Servers.findOne({
+            _id: user.server
+        })
+    } else {
+        targetServer = Servers.findOne({
+            name: DEFAULT_SERVER
+        })
+    }
+    if (!targetServer) {
+        targetServer = Servers.findOne({
+            name: CLASSIC_SERVER
+        })
+    }
 
-  if (!user.isPreFabbedGuest) {
-    if (targetServer.noNewAccounts) {
-      throw new Meteor.Error(403, 'Account creation is temporarily disabled at this time.');
+    if (!targetServer) {
+        throw new Meteor.Error(403, "Something went wrong, sorry :|")
     }
-    
-    if ((!user.username) || (typeof user.username !== 'string')) {
-      throw new Meteor.Error(403, 'Username must be valid.');
-    }
-    
-    if (user.username.length < 3) {
-      throw new Meteor.Error(403, 'Username must have at least 3 characters.');
-    }
-    
-    if (user.username.length > 15) {
-      throw new Meteor.Error(403, 'Username must have fewer than 15 characters.');
-    }
-   
-    let isInvalidName = false;
-    ([' ', '.', '_', '-', ',', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '=', '=', '[', ']', '{', '}', '\\', '|', ';', ':', '\'', '"', '<', '>', '/', '?', '`', '~']).forEach((thisChar) => {
-      isInvalidName = isInvalidName || (user.username.indexOf(thisChar) !== -1);
-    });
-    if (isInvalidName) {
-      throw new Meteor.Error(403, 'Username must not use spaces, punctuation marks, or special symbols.');
-    }
-      
-    let nameScreener1 = user.username.toLowerCase();
-    nameScreener1 = nameScreener1.replace(/0/g, 'o');
-    nameScreener1 = nameScreener1.replace(/2/g, 'z');
-    nameScreener1 = nameScreener1.replace(/3/g, 'e');
-    nameScreener1 = nameScreener1.replace(/4/g, 'a');
-    nameScreener1 = nameScreener1.replace(/5/g, 's');
-    nameScreener1 = nameScreener1.replace(/6/g, 'b');
-    nameScreener1 = nameScreener1.replace(/7/g, 't');
-    nameScreener1 = nameScreener1.replace(/8/g, 'b');
-    nameScreener1 = nameScreener1.replace(/9/g, 'g');
 
-    let nameScreener2 = nameScreener1;
-    nameScreener1 = nameScreener1.replace(/1/g, 'i');
-    nameScreener2 = nameScreener2.replace(/1/g, 'l');
-    
-    (['jesus', 'allah', 'jew', 'muslim', 'nigg', 'stupid', 'lame', 'boring', 'pussy', 'dick', 'fuck', 'assh', 'bitch', 'cunt', 'fag', 'shit', 'boner', 'cock', 'vag', 'jizz', 'poop', 'sex', 'xxx', 'twat', 'dyke', 'lesb', 'penis', 'muff', 'gay', 'queer', 'turd', 'whore', 'screw', 'balls', 'dildo']).forEach((thisWord) => {
-      isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
-      isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
-    });
-    if (isInvalidName) {
-      throw new Meteor.Error(403, 'The username you entered is likely offensive to other people and in violation of our rules.');
+    if (!user.isPreFabbedGuest) {
+        if (targetServer.noNewAccounts) {
+            throw new Meteor.Error(403, "Account creation is temporarily disabled at this time.")
+        }
+
+        if (!user.username || typeof user.username !== "string") {
+            throw new Meteor.Error(403, "Username must be valid.")
+        }
+
+        if (user.username.length < 3) {
+            throw new Meteor.Error(403, "Username must have at least 3 characters.")
+        }
+
+        if (user.username.length > 15) {
+            throw new Meteor.Error(403, "Username must have fewer than 15 characters.")
+        }
+
+        let isInvalidName = false
+        ;[
+            " ",
+            ".",
+            "_",
+            "-",
+            ",",
+            "!",
+            "@",
+            "#",
+            "$",
+            "%",
+            "^",
+            "&",
+            "*",
+            "(",
+            ")",
+            "=",
+            "=",
+            "[",
+            "]",
+            "{",
+            "}",
+            "\\",
+            "|",
+            ";",
+            ":",
+            "'",
+            '"',
+            "<",
+            ">",
+            "/",
+            "?",
+            "`",
+            "~"
+        ].forEach((thisChar) => {
+            isInvalidName = isInvalidName || user.username.indexOf(thisChar) !== -1
+        })
+        if (isInvalidName) {
+            throw new Meteor.Error(403, "Username must not use spaces, punctuation marks, or special symbols.")
+        }
+
+        let nameScreener1 = user.username.toLowerCase()
+        nameScreener1 = nameScreener1.replace(/0/g, "o")
+        nameScreener1 = nameScreener1.replace(/2/g, "z")
+        nameScreener1 = nameScreener1.replace(/3/g, "e")
+        nameScreener1 = nameScreener1.replace(/4/g, "a")
+        nameScreener1 = nameScreener1.replace(/5/g, "s")
+        nameScreener1 = nameScreener1.replace(/6/g, "b")
+        nameScreener1 = nameScreener1.replace(/7/g, "t")
+        nameScreener1 = nameScreener1.replace(/8/g, "b")
+        nameScreener1 = nameScreener1.replace(/9/g, "g")
+
+        let nameScreener2 = nameScreener1
+        nameScreener1 = nameScreener1.replace(/1/g, "i")
+        nameScreener2 = nameScreener2.replace(/1/g, "l")
+
+        ;[
+            "jesus",
+            "allah",
+            "jew",
+            "muslim",
+            "nigg",
+            "stupid",
+            "lame",
+            "boring",
+            "pussy",
+            "dick",
+            "fuck",
+            "assh",
+            "bitch",
+            "cunt",
+            "fag",
+            "shit",
+            "boner",
+            "cock",
+            "vag",
+            "jizz",
+            "poop",
+            "sex",
+            "xxx",
+            "twat",
+            "dyke",
+            "lesb",
+            "penis",
+            "muff",
+            "gay",
+            "queer",
+            "turd",
+            "whore",
+            "screw",
+            "balls",
+            "dildo"
+        ].forEach((thisWord) => {
+            isInvalidName = isInvalidName || nameScreener1.indexOf(thisWord) !== -1
+            isInvalidName = isInvalidName || nameScreener2.indexOf(thisWord) !== -1
+        })
+        if (isInvalidName) {
+            throw new Meteor.Error(
+                403,
+                "The username you entered is likely offensive to other people and in violation of our rules."
+            )
+        }
+
+        ;["konk", "aess", "sedai", "wraith", "game", "server", "root", "admin"].forEach((thisWord) => {
+            isInvalidName = isInvalidName || nameScreener1.indexOf(thisWord) !== -1
+            isInvalidName = isInvalidName || nameScreener2.indexOf(thisWord) !== -1
+        })
+        if (isInvalidName) {
+            throw new Meteor.Error(403, "Username must not contain special, reserved words.")
+        }
     }
-    
-    (['konk', 'aess', 'sedai', 'wraith', 'game', 'server', 'root', 'admin']).forEach((thisWord) => {
-      isInvalidName = isInvalidName || (nameScreener1.indexOf(thisWord) !== -1);
-      isInvalidName = isInvalidName || (nameScreener2.indexOf(thisWord) !== -1);
-    });
-    if (isInvalidName) {
-      throw new Meteor.Error(403, 'Username must not contain special, reserved words.');
-    }
-  }
-  
-  return true; // allow the account (which is still subjected to mongo's regex filter for the username field)
-});
+
+    return true // allow the account (which is still subjected to mongo's regex filter for the username field)
+})
 
 Accounts.onCreateUser((options, user) => {
-
-  user._id = Random.id();
-  const userId = user._id;
-  user.battleSecret = uuid.v4();
-  user.uiState = {
-    showChat: false,
-    showSummaryList: false,
-    craftingFilter: 'mining'
-  };
-
-  let targetServer;
-  if (options.server) {
-    targetServer = Servers.findOne({
-      _id: options.server
-    });
-  } else {
-    targetServer = Servers.findOne({
-      name: DEFAULT_SERVER
-    });    
-  }
-
-  if (!targetServer) {
-    targetServer = Servers.findOne({
-      name: CLASSIC_SERVER
-    });
-  }
-
-  user.server = targetServer._id;
-
-  user.tutorial = {
-    hideCombat: true,
-  
-    highlightCombat: false,
-    highlightCombatPersonalQuest: false,
-    highlightCombatTower: false,
-    highlightCombatAdventures: false,
-    highlightCombatAbilities: false,
-    highlightCombatEquipment: false,
-    hideCombatEquipment: true,
-    hideCombatAbilities: true,
-    hideCombatGroup: true,
-    hideCombatBattleLog: true,
-    hideCombatTower: true,
-    hideCombatPersonalQuest: true,
-    hideCombatAdventures: true,
-
-    hideInscription: true,
-    highlightInscription: false,
-    hideInscriptionAbilities: true,
-    highlightInscriptionAbilities: false,
-    hideInscriptionPigments: true,
-    highlightInscriptionPigments: false,
-    hideInscriptionPaper: true,
-    highlightInscriptionPaper: false,
-
-    hideFarming: true,
-    highlightFarming: false,
-    hideFarmingPlots: true,
-    highlightFarmingPlots: false,
-
-    hideCrafting: true,
-    highlightCrafting: false,
-
-    hideWoodcutting: true,
-    highlightWoodcutting: false,
-
-    hideMiningEquipment: true,
-    highlightMiningEquipment: false,
-    hideMiningMiners: true,
-    highlightMiningMiners: false,
-    hideMiningProspectors: true,
-    highlightMiningProspectors: false,
-    currentStep: 1
-  };
-
-  if (options.isGuest) {
-    user.isGuest = options.isGuest;
-  }
-  if (options.isPreFabbedGuest) {
-    user.isPreFabbedGuest = options.isPreFabbedGuest;
-  }
-
-  // Mining stuff
-  Skills.insert({
-    type: 'mining',
-    server: targetServer._id,
-    createdAt: new Date(),
-    owner: userId,
-    xp: 0,
-    username: user.username
-  });
-
-  Mining.insert({
-    owner: userId,
-    lastGameUpdated: new Date(),
-    server: targetServer._id,
-    miners: [{
-      id: MINING.miners.primitive_miner.id,
-      amount: 1
-    }],
-    prospectors: [{
-      id: MINING.prospectors.stone.id,
-      amount: 1
-    }]
-  });
-
-  MiningSpace.insert({
-    owner: userId,
-    oreId: MINING.ores.stone.id,
-    health: MINING.ores.stone.healthMax,
-    index: 0
-  });
-
-  for (let i = 1; i < 16; i++) {
-    MiningSpace.insert({
-      owner: userId,
-      oreId: MINING.ores.stone.id,
-      health: MINING.ores.stone.healthMax,
-      index: i
-    }, (err, res) => {
-      
-    });
-  }
-
-  addItem(ITEMS['sharp_rock_pickaxe'].id, 1, userId);
-
-  Items.update({
-    owner: userId,
-    itemId: ITEMS['sharp_rock_pickaxe'].id
-  }, {
-    $set: {
-      equipped: true,
-      slot: ITEMS['sharp_rock_pickaxe'].slot
+    user._id = Random.id()
+    const userId = user._id
+    user.battleSecret = uuid.v4()
+    user.uiState = {
+        showChat: false,
+        showSummaryList: false,
+        craftingFilter: "mining"
     }
-  });
 
-  // Update mining stats
-  updateMiningStats(userId, '', true);
+    let targetServer
+    if (options.server) {
+        targetServer = Servers.findOne({
+            _id: options.server
+        })
+    } else {
+        targetServer = Servers.findOne({
+            name: DEFAULT_SERVER
+        })
+    }
 
-  // Non mining stuff
-  Skills.insert({
-    type: 'defense',
-    createdAt: new Date(),
-    owner: userId,
-    server: targetServer._id,
-    username: user.username
-  }, (err, res) => {
+    if (!targetServer) {
+        targetServer = Servers.findOne({
+            name: CLASSIC_SERVER
+        })
+    }
+
+    user.server = targetServer._id
+
+    user.tutorial = {
+        hideCombat: true,
+
+        highlightCombat: false,
+        highlightCombatPersonalQuest: false,
+        highlightCombatTower: false,
+        highlightCombatAdventures: false,
+        highlightCombatAbilities: false,
+        highlightCombatEquipment: false,
+        hideCombatEquipment: true,
+        hideCombatAbilities: true,
+        hideCombatGroup: true,
+        hideCombatBattleLog: true,
+        hideCombatTower: true,
+        hideCombatPersonalQuest: true,
+        hideCombatAdventures: true,
+
+        hideInscription: true,
+        highlightInscription: false,
+        hideInscriptionAbilities: true,
+        highlightInscriptionAbilities: false,
+        hideInscriptionPigments: true,
+        highlightInscriptionPigments: false,
+        hideInscriptionPaper: true,
+        highlightInscriptionPaper: false,
+
+        hideFarming: true,
+        highlightFarming: false,
+        hideFarmingPlots: true,
+        highlightFarmingPlots: false,
+
+        hideCrafting: true,
+        highlightCrafting: false,
+
+        hideWoodcutting: true,
+        highlightWoodcutting: false,
+
+        hideMiningEquipment: true,
+        highlightMiningEquipment: false,
+        hideMiningMiners: true,
+        highlightMiningMiners: false,
+        hideMiningProspectors: true,
+        highlightMiningProspectors: false,
+        currentStep: 1
+    }
+
+    if (options.isGuest) {
+        user.isGuest = options.isGuest
+    }
+    if (options.isPreFabbedGuest) {
+        user.isPreFabbedGuest = options.isPreFabbedGuest
+    }
+
+    // Mining stuff
     Skills.insert({
-      type: 'attack',
-      createdAt: new Date(),
-      owner: userId,
-      server: targetServer._id,
-      username: user.username
-    });
+        type: "mining",
+        server: targetServer._id,
+        createdAt: new Date(),
+        owner: userId,
+        xp: 0,
+        username: user.username
+    })
 
-    Skills.insert({
-      type: 'health',
-      createdAt: new Date(),
-      owner: userId,
-      level: SKILLS.health.baseLevel,
-      server: targetServer._id,
-      username: user.username
-    });
+    Mining.insert({
+        owner: userId,
+        lastGameUpdated: new Date(),
+        server: targetServer._id,
+        miners: [
+            {
+                id: MINING.miners.primitive_miner.id,
+                amount: 1
+            }
+        ],
+        prospectors: [
+            {
+                id: MINING.prospectors.stone.id,
+                amount: 1
+            }
+        ]
+    })
 
-    Skills.insert({
-      type: 'crafting',
-      createdAt: new Date(),
-      owner: userId,
-      server: targetServer._id,
-      username: user.username
-    });
+    MiningSpace.insert({
+        owner: userId,
+        oreId: MINING.ores.stone.id,
+        health: MINING.ores.stone.healthMax,
+        index: 0
+    })
 
-    Skills.insert({
-      type: 'total',
-      server: targetServer._id,
-      createdAt: new Date(),
-      owner: userId,
-      username: user.username
-    });
+    for (let i = 1; i < 16; i++) {
+        MiningSpace.insert(
+            {
+                owner: userId,
+                oreId: MINING.ores.stone.id,
+                health: MINING.ores.stone.healthMax,
+                index: i
+            },
+            (err, res) => {}
+        )
+    }
 
-    Crafting.insert({
-      owner: userId,
-      currentlyCrafting: [],
-      currentlyReforging: []
-    });
+    addItem(ITEMS["sharp_rock_pickaxe"].id, 1, userId)
 
-    Combat.insert({
-      towerContributions: [],
-      server: targetServer._id,
-      owner: userId,
-      stats: {
-        health: 50,
-        healthMax: 50,
-        energy: 40
-      }
-    });
+    Items.update(
+        {
+            owner: userId,
+            itemId: ITEMS["sharp_rock_pickaxe"].id
+        },
+        {
+            $set: {
+                equipped: true,
+                slot: ITEMS["sharp_rock_pickaxe"].slot
+            }
+        }
+    )
 
-    Adventures.insert({
-      owner: userId,
-      adventures: [],
-      lastGameUpdated: moment().subtract(2000, 'seconds').toDate(),
-      timeTillUpdate: 60 * 3
-    });
+    // Update mining stats
+    updateMiningStats(userId, "", true)
 
-    Abilities.insert({
-      owner: userId,
-      learntAbilities: [{
-        "abilityId": "slash",
-        "level": 1,
-        "equipped": false,
-        "slot": "mainHand",
-        "currentCooldown": 0
-      }]
-    });
+    // Non mining stuff
+    Skills.insert(
+        {
+            type: "defense",
+            createdAt: new Date(),
+            owner: userId,
+            server: targetServer._id,
+            username: user.username
+        },
+        (err, res) => {
+            Skills.insert({
+                type: "attack",
+                createdAt: new Date(),
+                owner: userId,
+                server: targetServer._id,
+                username: user.username
+            })
 
-    // Update combat stats
-    updateCombatStats(userId, user.username);
-  });
+            Skills.insert({
+                type: "health",
+                createdAt: new Date(),
+                owner: userId,
+                level: SKILLS.health.baseLevel,
+                server: targetServer._id,
+                username: user.username
+            })
 
+            Skills.insert({
+                type: "crafting",
+                createdAt: new Date(),
+                owner: userId,
+                server: targetServer._id,
+                username: user.username
+            })
 
-  return user;
-});
+            Skills.insert({
+                type: "total",
+                server: targetServer._id,
+                createdAt: new Date(),
+                owner: userId,
+                username: user.username
+            })
+
+            Crafting.insert({
+                owner: userId,
+                currentlyCrafting: [],
+                currentlyReforging: []
+            })
+
+            Combat.insert({
+                towerContributions: [],
+                server: targetServer._id,
+                owner: userId,
+                stats: {
+                    health: 50,
+                    healthMax: 50,
+                    energy: 40
+                }
+            })
+
+            Adventures.insert({
+                owner: userId,
+                adventures: [],
+                lastGameUpdated: moment().subtract(2000, "seconds").toDate(),
+                timeTillUpdate: 60 * 3
+            })
+
+            Abilities.insert({
+                owner: userId,
+                learntAbilities: [
+                    {
+                        abilityId: "slash",
+                        level: 1,
+                        equipped: false,
+                        slot: "mainHand",
+                        currentCooldown: 0
+                    }
+                ]
+            })
+
+            // Update combat stats
+            updateCombatStats(userId, user.username)
+        }
+    )
+
+    return user
+})
 
 if (!Servers.findOne()) {
-  createNewServer(CLASSIC_SERVER, 0);
+    createNewServer(CLASSIC_SERVER, 0)
 }
 
 if (!Floors.findOne()) {
-  const targetServer = Servers.findOne({
-    name: CLASSIC_SERVER
-  });
+    const targetServer = Servers.findOne({
+        name: CLASSIC_SERVER
+    })
 
-  if (targetServer) {
-    createNewFloor(targetServer._id, 1);
-  }
+    if (targetServer) {
+        createNewFloor(targetServer._id, 1)
+    }
 }
 
 // Guarantee buffs exist
 Object.values(STATE_BUFFS).forEach((name) => {
-  const buff = State.findOne({name: name});
+    const buff = State.findOne({ name: name })
 
-  if (!buff) {
-    State.insert({
-      name: name,
-      value: {
-        activeTo: moment().subtract(1, 'hour').toDate()
-      }
-    })
-  }
-});
+    if (!buff) {
+        State.insert({
+            name: name,
+            value: {
+                activeTo: moment().subtract(1, "hour").toDate()
+            }
+        })
+    }
+})
 
-const MINUTE = 60 * 1000;
-DDPRateLimiter.addRule({ type: 'method', name: 'SimpleChat.newMessage' }, 15, 1 * MINUTE);
+const MINUTE = 60 * 1000
+DDPRateLimiter.addRule({ type: "method", name: "SimpleChat.newMessage" }, 15, 1 * MINUTE)

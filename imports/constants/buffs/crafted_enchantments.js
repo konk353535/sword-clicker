@@ -1,11 +1,5 @@
-import moment from 'moment';
-import uuid from 'node-uuid';
-
-import { addBuff, removeBuff, lookupBuff } from '../../battleUtils';
-
 export const CRAFTED_ENCHANTMENT_BUFFS = {
-
-/*
+    /*
 
 WEAPON
  - Flaming Blade
@@ -33,8 +27,8 @@ LEG
 
 
 */
-	/* Degrading armor */
-  /*
+    /* Degrading armor */
+    /*
 	enchantment_barkskin: {
     duplicateTag: 'enchantment_barkskin', // Used to stop duplicate buffs
     icon: 'barkskin.svg',
@@ -156,7 +150,7 @@ LEG
   },
 
   /* Degrading armor */
-  /*
+    /*
   enchantment_intimidate: {
     duplicateTag: 'enchantment_intimidate', // Used to stop duplicate buffs
     icon: 'intimidate.svg',
@@ -283,4 +277,4 @@ LEG
       }
     }
   }*/
-};
+}

@@ -1,11 +1,11 @@
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { Mongo } from "meteor/mongo"
 
-export const Friends = new Mongo.Collection('friend');
+export const Friends = new Mongo.Collection("friend")
 
 FriendsSchema = new SimpleSchema({
-  friends: { type: [String] },
-  owner: { type: String, regEx: SimpleSchema.RegEx.Id },
-});
+    friends: { type: [String] },
+    owner: { type: String, regEx: SimpleSchema.RegEx.Id }
+})
 
-Friends.attachSchema(FriendsSchema);
+Friends.attachSchema(FriendsSchema)

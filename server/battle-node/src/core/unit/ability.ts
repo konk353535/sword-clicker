@@ -2,7 +2,7 @@ import { ABILITIES } from "../../../../constants/combat/index.js"
 import { ability } from "../../types/ability"
 import Battle from "../index.js"
 import Unit from "./index.js"
- 
+
 export default class Ability {
     constants: any
     scaledCooldown: any

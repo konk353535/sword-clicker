@@ -1,258 +1,285 @@
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from "meteor/meteor"
 
-import _ from 'underscore';
-import lodash from 'lodash';
-import moment from 'moment';
+import lodash from "lodash"
+import moment from "moment"
+import _ from "underscore"
 
-import { Abilities } from '/imports/api/abilities/abilities';
-import { Skills } from '/imports/api/skills/skills';
-import { Items } from '/imports/api/items/items';
-import { requirementsUtility } from '/server/api/crafting/crafting';
-import { BattlesList } from '/imports/api/battles/battles';
+import { Abilities } from "/imports/api/abilities/abilities"
+import { BattlesList } from "/imports/api/battles/battles"
+import { Items } from "/imports/api/items/items"
+import { Skills } from "/imports/api/skills/skills"
+import { requirementsUtility } from "/server/api/crafting/crafting"
 
-import { ABILITIES, ABILITY } from '/server/constants/combat/index';
-import { ITEMS } from '/imports/constants/items/index';
-import { MAGIC } from '/server/constants/magic/index';
+import { ITEMS } from "/imports/constants/items/index"
+import { ABILITIES, ABILITY } from "/server/constants/combat/index"
+import { MAGIC } from "/server/constants/magic/index"
 
-import { consumeItem } from '/server/api/items/items';
-import { getBuffLevel } from '/imports/api/globalbuffs/globalbuffs.js';
+import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
+import { consumeItem } from "/server/api/items/items"
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
-  let owner = userId;
-  if (!owner) {
-    owner = this.userId;
-  }
+    let owner = userId
+    if (!owner) {
+        owner = this.userId
+    }
 
-  const myAbilities = Abilities.findOne({ owner });
-  if (!myAbilities) {
-    return;
-  }
+    const myAbilities = Abilities.findOne({ owner })
+    if (!myAbilities) {
+        return
+    }
 
-  const now = moment();
-  const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds();
+    const now = moment()
+    const secondsElapsed = moment.duration(now.diff(myAbilities.lastGameUpdated)).asSeconds()
 
-  myAbilities.learntAbilities.forEach((ability) => {
-    /* if (ability.currentCooldown > 0) {
+    myAbilities.learntAbilities.forEach((ability) => {
+        /* if (ability.currentCooldown > 0) {
       ability.currentCooldown -= secondsElapsed * 2;
     } else if (ability.cooldown < 0) {
       ability.currentCooldown = 0;
     } */
-    
-    ability.currentCooldown = 0; // 2018-11-10 psouza4: ability cooldowns reset after combat now, why make people wait when there's an energy limit anyway?
-                                 //                     players are simply chosing abilities with very short CD's and not using more interesting abilities as a result
-  });
 
-  Abilities.update(myAbilities._id, {
-    $set: {
-      learntAbilities: myAbilities.learntAbilities,
-      lastGameUpdated: new Date()
+        ability.currentCooldown = 0 // 2018-11-10 psouza4: ability cooldowns reset after combat now, why make people wait when there's an energy limit anyway?
+        //                     players are simply chosing abilities with very short CD's and not using more interesting abilities as a result
+    })
+
+    Abilities.update(
+        myAbilities._id,
+        {
+            $set: {
+                learntAbilities: myAbilities.learntAbilities,
+                lastGameUpdated: new Date()
+            }
+        },
+        callback
+    )
+}
+
+const allAbilitiesCooledDown = function (userId) {
+    let owner = userId
+    if (!owner) {
+        owner = this.userId
     }
-  }, callback);
-};
-
-const allAbilitiesCooledDown = function(userId) {
-  let owner = userId;
-  if (!owner) {
-    owner = this.userId;
-  }
-  const myAbilities = Abilities.findOne({ owner });
-  return _.isUndefined(_.find(myAbilities.learntAbilities, (ability) => { return ability.currentCooldown > 0}))
-};
+    const myAbilities = Abilities.findOne({ owner })
+    return _.isUndefined(
+        _.find(myAbilities.learntAbilities, (ability) => {
+            return ability.currentCooldown > 0
+        })
+    )
+}
 
 Meteor.methods({
-
-  'abilities.unequip'(slot) {
-    // Make sure this is a valid slot
-    if (_.contains(ABILITY.slots, slot)) {
-      // Unequip specified slot
-      Abilities.update({
-        owner: Meteor.userId(),
-        learntAbilities: {
-          $elemMatch: {
-            slot,
-            equipped: true
-          }
+    "abilities.unequip"(slot) {
+        // Make sure this is a valid slot
+        if (_.contains(ABILITY.slots, slot)) {
+            // Unequip specified slot
+            Abilities.update(
+                {
+                    owner: Meteor.userId(),
+                    learntAbilities: {
+                        $elemMatch: {
+                            slot,
+                            equipped: true
+                        }
+                    }
+                },
+                {
+                    $set: {
+                        "learntAbilities.$.equipped": false
+                    }
+                }
+            )
         }
-      }, {
-        $set: {
-          'learntAbilities.$.equipped': false
+    },
+
+    "abilities.craftSpell"(abilityId, amount) {
+        const currentBattle = BattlesList.findOne({ owners: Meteor.userId() })
+        if (currentBattle) {
+            throw new Meteor.Error("in-battle", "You cannot craft spells while in a battle")
         }
-      });
-    }
-  },
 
-  'abilities.craftSpell'(abilityId, amount) {
+        // Do we have resources to craft this spell?
+        const spellConstants = MAGIC.spells[abilityId]
 
-    const currentBattle = BattlesList.findOne({ owners: Meteor.userId() });
-    if (currentBattle) {
-      throw new Meteor.Error('in-battle', 'You cannot craft spells while in a battle');
-    }
-
-    // Do we have resources to craft this spell?
-    const spellConstants = MAGIC.spells[abilityId];
-
-    if (!spellConstants) {
-      throw new Meteor.Error("invalid-spell", "invalid spell");
-    }
-
-    if (!requirementsUtility(spellConstants.required, amount)) {
-      throw new Meteor.Error("missed-requirements", "don't meet requirements");
-    }
-
-    // Update existing level
-    Abilities.update({
-      owner: Meteor.userId(),
-      "learntAbilities.abilityId": abilityId
-    }, {
-      $inc: {
-        "learntAbilities.$.casts": amount
-      }
-    });    
-  },
-
-  'abilities.fetchSpellCrafting'() {
-    // Get my abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
-    const mySpellAbilities = myAbilities.learntAbilities.filter((ability) => {
-      return ability.isSpell;
-    }).map((ability) => {
-      ability.icon = ABILITIES[ability.abilityId].icon;
-      ability.name = ABILITIES[ability.abilityId].name;
-      ability.required = MAGIC.spells[ability.abilityId].required;
-      ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft;
-      return ability;
-    });
-
-    // Merge with required items to craft said abilities
-    return mySpellAbilities;
-  },
-
-  'abilities.equip'(abilityId) {
-    tx.start("Equip ability");
-
-    // Make sure the user actually has the specified ability
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, {tx: true});
-    const targetEquip = _.findWhere(myAbilities.learntAbilities, { abilityId });
-
-    if (!targetEquip) {
-      tx.cancel();
-      throw new Meteor.Error("not-learnt", "You haven't learned this ability.");
-    }
-    
-    const targetEquipConstants = ABILITIES[targetEquip.abilityId];
-
-    if (targetEquipConstants.slot === 'any') {
-      // Look for first empty slot
-      let availableSlots = lodash.cloneDeep(ABILITY.slots);
-
-      // Remove from available slots any equipped abilities
-      myAbilities.learntAbilities.forEach((ability) => {
-        if (ability.equipped) {
-          availableSlots = availableSlots.filter((slot) => {
-            return slot !== ability.slot && slot !== 'companion'; // 'any' equipped abilities can't fit into companion slots
-          });
+        if (!spellConstants) {
+            throw new Meteor.Error("invalid-spell", "invalid spell")
         }
-      });
 
-      if (availableSlots.length > 0) {
-        const slotToUse = availableSlots[0];
-        targetEquip.equipped = true;
-        targetEquip.slot = slotToUse;
-      }
-    } else {
-      // Unequip abilities on the same slot
-      myAbilities.learntAbilities.forEach((ability) => {
-        if (ability.equipped) {
-          if (ability.slot === targetEquipConstants.slot) {
-            ability.equipped = false;
-          }
+        if (!requirementsUtility(spellConstants.required, amount)) {
+            throw new Meteor.Error("missed-requirements", "don't meet requirements")
         }
-      });
 
-      // Equip specified ability
-      targetEquip.equipped = true;
-      targetEquip.slot = targetEquipConstants.slot;
-    }
+        // Update existing level
+        Abilities.update(
+            {
+                owner: Meteor.userId(),
+                "learntAbilities.abilityId": abilityId
+            },
+            {
+                $inc: {
+                    "learntAbilities.$.casts": amount
+                }
+            }
+        )
+    },
 
-    Abilities.update(myAbilities._id, {
-      $set: {
-        learntAbilities: myAbilities.learntAbilities
-      }
-    }, {tx: true});
-    
-    tx.commit(); // commit transaction: "Equip ability"
-  },
+    "abilities.fetchSpellCrafting"() {
+        // Get my abilities
+        const myAbilities = Abilities.findOne({ owner: Meteor.userId() })
+        const mySpellAbilities = myAbilities.learntAbilities
+            .filter((ability) => {
+                return ability.isSpell
+            })
+            .map((ability) => {
+                ability.icon = ABILITIES[ability.abilityId].icon
+                ability.name = ABILITIES[ability.abilityId].name
+                ability.required = MAGIC.spells[ability.abilityId].required
+                ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft
+                return ability
+            })
 
-  'abilities.learn'(_id, itemId) {
-    //tx.start("Learn ability" /*, {rethrowCommitError: true} */);
+        // Merge with required items to craft said abilities
+        return mySpellAbilities
+    },
 
-    // Make sure we have this item
-    const tome = Items.findOne({ owner: Meteor.userId(), itemId }, {tx: true});
+    "abilities.equip"(abilityId) {
+        tx.start("Equip ability")
 
-    if (!tome) {
-      //tx.cancel();
-      return;
-    }
+        // Make sure the user actually has the specified ability
+        const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, { tx: true })
+        const targetEquip = _.findWhere(myAbilities.learntAbilities, { abilityId })
 
-    // Check what this teaches
-    const tomeConstants = ITEMS[itemId];
-
-    // Fetch existing abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, {tx: true});
-
-    // Filter down to existing ability
-    const hasTargetAbility = _.findWhere(myAbilities.learntAbilities, {
-      abilityId: tomeConstants.teaches.abilityId
-    });
-
-    // Is existing ability equal or above level off target tomb?
-    if (hasTargetAbility && hasTargetAbility.level >= tomeConstants.teaches.level) {
-      //tx.cancel();
-      throw new Meteor.Error("already-learnt", "You've already learned this ability.");
-    }
-
-    // Make sure if this is above level 1, we already have the previous level
-    if (tomeConstants.teaches.level > 1 && (!hasTargetAbility || (hasTargetAbility.level + 1) !== tomeConstants.teaches.level)) {
-      //tx.cancel();
-      throw new Meteor.Error("not-learnt-previous", "You must learn the earlier levels of this ability first.");
-    }
-
-    // Okay all is good, remove the tome
-    consumeItem(tome, 1);
-
-    // Get ability constants
-    const abilityConstants = ABILITIES[tomeConstants.teaches.abilityId];
-
-    // Add to learnt abilities
-    if (hasTargetAbility) {
-      // Update existing level
-      Abilities.update({
-        _id: myAbilities._id,
-        "learntAbilities.abilityId": hasTargetAbility.abilityId
-      }, {
-        $set: {
-          "learntAbilities.$.level": tomeConstants.teaches.level
-          // because of positional $ operator, this can't be used with the transaction module
-          // see: https://docs.mongodb.com/manual/reference/operator/update/positional/#up._S_
-          // see: https://github.com/JackAdams/meteor-transactions ("Thing's it's helpful to know")
+        if (!targetEquip) {
+            tx.cancel()
+            throw new Meteor.Error("not-learnt", "You haven't learned this ability.")
         }
-      } /*, {tx: true} */);
-    } else {
-      Abilities.update(myAbilities._id, {
-        $push: {
-          learntAbilities: {
-            abilityId: tomeConstants.teaches.abilityId,
-            level: 1,
-            equipped: false,
-            isSpell: abilityConstants.isMagic,
-            casts: abilityConstants.isMagic ? 1 : undefined,
-            currentCooldown: 0
-          }
+
+        const targetEquipConstants = ABILITIES[targetEquip.abilityId]
+
+        if (targetEquipConstants.slot === "any") {
+            // Look for first empty slot
+            let availableSlots = lodash.cloneDeep(ABILITY.slots)
+
+            // Remove from available slots any equipped abilities
+            myAbilities.learntAbilities.forEach((ability) => {
+                if (ability.equipped) {
+                    availableSlots = availableSlots.filter((slot) => {
+                        return slot !== ability.slot && slot !== "companion" // 'any' equipped abilities can't fit into companion slots
+                    })
+                }
+            })
+
+            if (availableSlots.length > 0) {
+                const slotToUse = availableSlots[0]
+                targetEquip.equipped = true
+                targetEquip.slot = slotToUse
+            }
+        } else {
+            // Unequip abilities on the same slot
+            myAbilities.learntAbilities.forEach((ability) => {
+                if (ability.equipped) {
+                    if (ability.slot === targetEquipConstants.slot) {
+                        ability.equipped = false
+                    }
+                }
+            })
+
+            // Equip specified ability
+            targetEquip.equipped = true
+            targetEquip.slot = targetEquipConstants.slot
         }
-      } /*, {tx: true} */);
-    }
-    
-    /*
+
+        Abilities.update(
+            myAbilities._id,
+            {
+                $set: {
+                    learntAbilities: myAbilities.learntAbilities
+                }
+            },
+            { tx: true }
+        )
+
+        tx.commit() // commit transaction: "Equip ability"
+    },
+
+    "abilities.learn"(_id, itemId) {
+        //tx.start("Learn ability" /*, {rethrowCommitError: true} */);
+
+        // Make sure we have this item
+        const tome = Items.findOne({ owner: Meteor.userId(), itemId }, { tx: true })
+
+        if (!tome) {
+            //tx.cancel();
+            return
+        }
+
+        // Check what this teaches
+        const tomeConstants = ITEMS[itemId]
+
+        // Fetch existing abilities
+        const myAbilities = Abilities.findOne({ owner: Meteor.userId() }, { tx: true })
+
+        // Filter down to existing ability
+        const hasTargetAbility = _.findWhere(myAbilities.learntAbilities, {
+            abilityId: tomeConstants.teaches.abilityId
+        })
+
+        // Is existing ability equal or above level off target tomb?
+        if (hasTargetAbility && hasTargetAbility.level >= tomeConstants.teaches.level) {
+            //tx.cancel();
+            throw new Meteor.Error("already-learnt", "You've already learned this ability.")
+        }
+
+        // Make sure if this is above level 1, we already have the previous level
+        if (
+            tomeConstants.teaches.level > 1 &&
+            (!hasTargetAbility || hasTargetAbility.level + 1 !== tomeConstants.teaches.level)
+        ) {
+            //tx.cancel();
+            throw new Meteor.Error("not-learnt-previous", "You must learn the earlier levels of this ability first.")
+        }
+
+        // Okay all is good, remove the tome
+        consumeItem(tome, 1)
+
+        // Get ability constants
+        const abilityConstants = ABILITIES[tomeConstants.teaches.abilityId]
+
+        // Add to learnt abilities
+        if (hasTargetAbility) {
+            // Update existing level
+            Abilities.update(
+                {
+                    _id: myAbilities._id,
+                    "learntAbilities.abilityId": hasTargetAbility.abilityId
+                },
+                {
+                    $set: {
+                        "learntAbilities.$.level": tomeConstants.teaches.level
+                        // because of positional $ operator, this can't be used with the transaction module
+                        // see: https://docs.mongodb.com/manual/reference/operator/update/positional/#up._S_
+                        // see: https://github.com/JackAdams/meteor-transactions ("Thing's it's helpful to know")
+                    }
+                } /*, {tx: true} */
+            )
+        } else {
+            Abilities.update(
+                myAbilities._id,
+                {
+                    $push: {
+                        learntAbilities: {
+                            abilityId: tomeConstants.teaches.abilityId,
+                            level: 1,
+                            equipped: false,
+                            isSpell: abilityConstants.isMagic,
+                            casts: abilityConstants.isMagic ? 1 : undefined,
+                            currentCooldown: 0
+                        }
+                    }
+                } /*, {tx: true} */
+            )
+        }
+
+        /*
     tx.commit((err,res) => { // Commit transaction: "Learn ability"
       if (err) {
         console.log(this, err, res);
@@ -260,133 +287,143 @@ Meteor.methods({
       }
     });
     */
-  },
+    },
 
-  'abilities.unlearn'(_id) {  
-    // Fetch existing abilities
-    const myAbilities = Abilities.findOne({ owner: Meteor.userId() });
+    "abilities.unlearn"(_id) {
+        // Fetch existing abilities
+        const myAbilities = Abilities.findOne({ owner: Meteor.userId() })
 
-    Abilities.update(myAbilities._id, {
-      $pull: {
-        learntAbilities: {
-          abilityId: _id,
-        }
-      }
-    });  
-  },
-  
-  'abilities.fetchLibrary'() {
-    const userAbilities = Abilities.findOne({
-      owner: Meteor.userId()
-    });
+        Abilities.update(myAbilities._id, {
+            $pull: {
+                learntAbilities: {
+                    abilityId: _id
+                }
+            }
+        })
+    },
 
-    // Build up abilities id to level map
-    const abilitiesMap = {};
-    userAbilities.learntAbilities.forEach((ability) => {
-      abilitiesMap[ability.abilityId] = ability.level;
-    });
-    
-    const townArmoryBuffLevel = getBuffLevel('town_armory');
+    "abilities.fetchLibrary"() {
+        const userAbilities = Abilities.findOne({
+            owner: Meteor.userId()
+        })
 
-    const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
-      const abilityConstant = ABILITIES[abilityKey]; // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
-      let abilityLevel = 1;
-      let learntLevel = 0;
-      if (abilitiesMap[abilityKey]) {
-        abilityLevel = abilitiesMap[abilityKey];
-        learntLevel = abilitiesMap[abilityKey];
-      }
-      const abilityData = {
-        description: abilityConstant.description(abilityLevel, townArmoryBuffLevel),
-        name: `${abilityConstant.name} (${abilityLevel})`,
-        icon: abilityConstant.icon,
-        isHidden: abilityConstant.isHidden,
-        cooldown: abilityConstant.cooldown,
-        isPassive: (abilityConstant.isPassive || false),
-        isPacifist: (abilityConstant.isPacifist || false),
-        requires: abilityConstant.requires,
-        cantUseWith: abilityConstant.cantUseWith,        
-        learntLevel,
-        level: abilityLevel,
-        id: abilityConstant.id,
-      };
+        // Build up abilities id to level map
+        const abilitiesMap = {}
+        userAbilities.learntAbilities.forEach((ability) => {
+            abilitiesMap[ability.abilityId] = ability.level
+        })
 
-      return abilityData;
-    }).filter((ability) => {
-      return !(ability.isHidden && !abilitiesMap[ability.id]);
-    });
+        const townArmoryBuffLevel = getBuffLevel("town_armory")
 
-    return abilitiesArray;
-  },
-  
-  'abilities.getAbilityInfo'(abilityId, level) {
-    level = level || 1;
-    return { ability: ABILITIES[abilityId], description: ABILITIES[abilityId].description(level) };
-  },
+        const abilitiesArray = Object.keys(ABILITIES)
+            .map((abilityKey) => {
+                const abilityConstant = ABILITIES[abilityKey] // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
+                let abilityLevel = 1
+                let learntLevel = 0
+                if (abilitiesMap[abilityKey]) {
+                    abilityLevel = abilitiesMap[abilityKey]
+                    learntLevel = abilitiesMap[abilityKey]
+                }
+                const abilityData = {
+                    description: abilityConstant.description(abilityLevel, townArmoryBuffLevel),
+                    name: `${abilityConstant.name} (${abilityLevel})`,
+                    icon: abilityConstant.icon,
+                    isHidden: abilityConstant.isHidden,
+                    cooldown: abilityConstant.cooldown,
+                    isPassive: abilityConstant.isPassive || false,
+                    isPacifist: abilityConstant.isPacifist || false,
+                    requires: abilityConstant.requires,
+                    cantUseWith: abilityConstant.cantUseWith,
+                    learntLevel,
+                    level: abilityLevel,
+                    id: abilityConstant.id
+                }
 
-  'abilities.fetchLibraryExtra'() {
-    const userAbilities = Abilities.findOne({
-      owner: Meteor.userId()
-    });
+                return abilityData
+            })
+            .filter((ability) => {
+                return !(ability.isHidden && !abilitiesMap[ability.id])
+            })
 
-    const usersSkills = Skills.find({
-      owner: Meteor.userId()
-    }).fetch();
+        return abilitiesArray
+    },
 
-    const usersSkillsArray = usersSkills.map((skill) => {
-      return {
-        id: skill._id,
-        type: skill.type,
-        xp: skill.xp,
-        totalXp: skill.totalXp,
-        level: skill.level,
-      }
-    });
-    
-    // Build up abilities id to level map
-    const abilitiesMap = {};
-    userAbilities.learntAbilities.forEach((ability) => {
-      abilitiesMap[ability.abilityId] = ability.level;
-    });
-    
-    const townArmoryBuffLevel = getBuffLevel('town_armory');
+    "abilities.getAbilityInfo"(abilityId, level) {
+        level = level || 1
+        return { ability: ABILITIES[abilityId], description: ABILITIES[abilityId].description(level) }
+    },
 
-    const abilitiesArray = Object.keys(ABILITIES).map((abilityKey) => {
-      const abilityConstant = ABILITIES[abilityKey]; // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
-      let abilityLevel = 1;
-      let learntLevel = 0;
-      if (abilitiesMap[abilityKey]) {
-        abilityLevel = abilitiesMap[abilityKey];
-        learntLevel = abilitiesMap[abilityKey];
-      }
-      const descToUse = (_.isFunction(abilityConstant.betterDescription)) ? abilityConstant.betterDescription({level: abilityLevel, playerSkills: usersSkillsArray, armoryLevel: townArmoryBuffLevel}) : abilityConstant.description(abilityLevel, townArmoryBuffLevel);
-      const abilityData = {
-        description: descToUse,
-        name: `${abilityConstant.name} (${abilityLevel})`,
-        icon: abilityConstant.icon,
-        isHidden: abilityConstant.isHidden,
-        cooldown: abilityConstant.cooldown,
-        requires: abilityConstant.requires,
-        learntLevel,
-        level: abilityLevel,
-        id: abilityConstant.id,
-        slot: (abilityConstant.slot || 'any'),
-        buff: ((abilityConstant.buffs && abilityConstant.buffs.length > 0) ? abilityConstant.buffs[0] : ''),
-        isPassive: (abilityConstant.isPassive || false),
-        isPacifist: (abilityConstant.isPacifist || false),
-        requires: abilityConstant.requires,
-        cantUseWith: abilityConstant.cantUseWith,
-      };
+    "abilities.fetchLibraryExtra"() {
+        const userAbilities = Abilities.findOne({
+            owner: Meteor.userId()
+        })
 
-      return abilityData;
-    }).filter((ability) => {
-      return !(ability.isHidden && !abilitiesMap[ability.id]);
-    });
+        const usersSkills = Skills.find({
+            owner: Meteor.userId()
+        }).fetch()
 
-    return abilitiesArray;
-  },
+        const usersSkillsArray = usersSkills.map((skill) => {
+            return {
+                id: skill._id,
+                type: skill.type,
+                xp: skill.xp,
+                totalXp: skill.totalXp,
+                level: skill.level
+            }
+        })
 
-  /*
+        // Build up abilities id to level map
+        const abilitiesMap = {}
+        userAbilities.learntAbilities.forEach((ability) => {
+            abilitiesMap[ability.abilityId] = ability.level
+        })
+
+        const townArmoryBuffLevel = getBuffLevel("town_armory")
+
+        const abilitiesArray = Object.keys(ABILITIES)
+            .map((abilityKey) => {
+                const abilityConstant = ABILITIES[abilityKey] // removed lodash.cloneDeep() here, no chance to mutate this, so no need to clone
+                let abilityLevel = 1
+                let learntLevel = 0
+                if (abilitiesMap[abilityKey]) {
+                    abilityLevel = abilitiesMap[abilityKey]
+                    learntLevel = abilitiesMap[abilityKey]
+                }
+                const descToUse = _.isFunction(abilityConstant.betterDescription)
+                    ? abilityConstant.betterDescription({
+                          level: abilityLevel,
+                          playerSkills: usersSkillsArray,
+                          armoryLevel: townArmoryBuffLevel
+                      })
+                    : abilityConstant.description(abilityLevel, townArmoryBuffLevel)
+                const abilityData = {
+                    description: descToUse,
+                    name: `${abilityConstant.name} (${abilityLevel})`,
+                    icon: abilityConstant.icon,
+                    isHidden: abilityConstant.isHidden,
+                    cooldown: abilityConstant.cooldown,
+                    requires: abilityConstant.requires,
+                    learntLevel,
+                    level: abilityLevel,
+                    id: abilityConstant.id,
+                    slot: abilityConstant.slot || "any",
+                    buff: abilityConstant.buffs && abilityConstant.buffs.length > 0 ? abilityConstant.buffs[0] : "",
+                    isPassive: abilityConstant.isPassive || false,
+                    isPacifist: abilityConstant.isPacifist || false,
+                    requires: abilityConstant.requires,
+                    cantUseWith: abilityConstant.cantUseWith
+                }
+
+                return abilityData
+            })
+            .filter((ability) => {
+                return !(ability.isHidden && !abilitiesMap[ability.id])
+            })
+
+        return abilitiesArray
+    }
+
+    /*
   'abilities.gameUpdate'() {
     return new Promise(function(resolve, reject) {
       updateAbilityCooldowns(Meteor.userId(), (err, res) => {
@@ -399,9 +436,9 @@ Meteor.methods({
     })
   }
   */
-});
+})
 
-const MINUTE = 60 * 1000;
+const MINUTE = 60 * 1000
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'abilities.unequip' }, 20, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'abilities.equip' }, 20, 1 * MINUTE);
@@ -409,49 +446,47 @@ const MINUTE = 60 * 1000;
 // DDPRateLimiter.addRule({ type: 'method', name: 'abilities.fetchLibrary' }, 10, 1 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'abilities' }, 100, 5 * MINUTE);
 
-Meteor.publish('abilities', function() {
+Meteor.publish("abilities", function () {
+    //Transform function
+    const transform = function (doc) {
+        doc.learntAbilities.forEach((ability) => {
+            const abilityConstant = ABILITIES[ability.abilityId]
 
-  //Transform function
-  const transform = function (doc) {
-    doc.learntAbilities.forEach((ability) => {
-      const abilityConstant = ABILITIES[ability.abilityId];
+            ability.description = ABILITIES[ability.abilityId].description(ability.level, getBuffLevel("town_armory"))
+            ability.name = `${abilityConstant.name} (${ability.level})`
+            ability.icon = abilityConstant.icon
+            ability.cooldown = abilityConstant.cooldown
+            ability.level = ability.level
+            ability.id = abilityConstant.id
+            ability.targettable = abilityConstant.targettable
+            ability.target = abilityConstant.target
+            ability.requires = abilityConstant.requires
+            ability.cantUseWith = abilityConstant.cantUseWith
 
-      ability.description = ABILITIES[ability.abilityId].description(ability.level, getBuffLevel('town_armory'));
-      ability.name = `${abilityConstant.name} (${ability.level})`;
-      ability.icon = abilityConstant.icon;
-      ability.cooldown = abilityConstant.cooldown;
-      ability.level = ability.level;
-      ability.id = abilityConstant.id;
-      ability.targettable = abilityConstant.targettable;
-      ability.target = abilityConstant.target;
-      ability.requires = abilityConstant.requires;
-      ability.cantUseWith = abilityConstant.cantUseWith;
-
-      return ability;
-    });
-    return doc;
-  };
-
-  const self = this;
-
-  const observer = Abilities.find({
-    owner: this.userId
-  }).observe({
-    added: function (document) {
-      self.added('abilities', document._id, transform(document));
-    },
-    changed: function (newDocument, oldDocument) {
-      self.changed('abilities', oldDocument._id, transform(newDocument));
-    },
-    removed: function (oldDocument) {
-      self.removed('abilities', oldDocument._id);
+            return ability
+        })
+        return doc
     }
-  });
 
-  self.onStop(function () {
-    observer.stop();
-  });
+    const self = this
 
-  self.ready();
+    const observer = Abilities.find({
+        owner: this.userId
+    }).observe({
+        added: function (document) {
+            self.added("abilities", document._id, transform(document))
+        },
+        changed: function (newDocument, oldDocument) {
+            self.changed("abilities", oldDocument._id, transform(newDocument))
+        },
+        removed: function (oldDocument) {
+            self.removed("abilities", oldDocument._id)
+        }
+    })
 
-});
+    self.onStop(function () {
+        observer.stop()
+    })
+
+    self.ready()
+})

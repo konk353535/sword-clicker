@@ -1,997 +1,1056 @@
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { Mongo } from "meteor/mongo"
 
-import { Servers } from '/imports/api/servers/servers';
+import { Servers } from "/imports/api/servers/servers"
 
-import { VERY_FAST_SPEED, MEDIUM_SPEED, SLOW_SPEED } from '/imports/constants/combat/attackSpeeds.js';  
+import { MEDIUM_SPEED, SLOW_SPEED, VERY_FAST_SPEED } from "/imports/constants/combat/attackSpeeds.js"
 
-import { CInt } from '/imports/utils';
+import { CInt } from "/imports/utils"
 
-export const Floors = new Mongo.Collection('floors');
- 
-const localGetNewPointCount = function(floor, activeTowerUsers) {
-  const floorRooms = {
-    1: 1,
-    2: 1,
-    3: 1,
-    4: 2,
-    5: 2,
-    6: 3,
-    7: 4,
-    8: 5,
-    9: 6,
-    10: 7,
-    11: 7,
-    12: 7,
-    13: 7,
-    14: 7,
-    15: 7,
-    16: 7,
-    17: 7,
-    18: 7,
-    19: 7,
-    20: 7,
-    21: 8,
-    22: 8,
-    23: 9,
-    24: 9,
-    25: 10,
-    26: 10,
-    27: 11,
-    28: 11,
-  };
+export const Floors = new Mongo.Collection("floors")
 
-  let maxPoints = 0;
-  for (let i = 0; i <= 7; i++) {
-    maxPoints += Math.pow(1.7, i);
-  }
+const localGetNewPointCount = function (floor, activeTowerUsers) {
+    const floorRooms = {
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 2,
+        5: 2,
+        6: 3,
+        7: 4,
+        8: 5,
+        9: 6,
+        10: 7,
+        11: 7,
+        12: 7,
+        13: 7,
+        14: 7,
+        15: 7,
+        16: 7,
+        17: 7,
+        18: 7,
+        19: 7,
+        20: 7,
+        21: 8,
+        22: 8,
+        23: 9,
+        24: 9,
+        25: 10,
+        26: 10,
+        27: 11,
+        28: 11
+    }
 
-  return Math.round(activeTowerUsers * maxPoints * floorRooms[floor] * 1);
-};
+    let maxPoints = 0
+    for (let i = 0; i <= 7; i++) {
+        maxPoints += Math.pow(1.7, i)
+    }
+
+    return Math.round(activeTowerUsers * maxPoints * floorRooms[floor] * 1)
+}
 
 const local_FLOOR_BOSSES = Object.assign({
-  1: { boss: { enemy: { id: 'boss_cougar' } } },
-  2: { boss: { enemy: { id: 'boss_cobra' } } },
-  3: { boss: { enemy: { id: 'boss_bone_warrior' } } },
-  4: { boss: { enemy: { id: 'boss_mage' } } },
-  5: { boss: { enemy: { id: 'boss_spartan' } } },
-  6: { boss: { enemy: { id: 'boss_goblin' } } },
-  7: { boss: { enemy: { id: 'boss_phoenix' } } },
-  8: { boss: { enemy: { id: 'boss_ogre' } } },
-  9: { boss: { enemy: { id: 'boss_gorilla' } } },
-  10: { boss: { enemy: { id: 'boss_demon' } } },
-  11: { boss: { enemy: { id: 'boss_genie_lamp' } } },
-  12: { boss: { enemy: { id: 'boss_living_tree' } } },
-  13: { boss: { enemy: { id: 'boss_vampire' } } },
-  14: { boss: { enemy: { id: 'boss_frankenstein' } } },
-  15: { boss: { enemy: { id: 'boss_cassiopeia' } } },
-  16: { boss: { enemy: { id: 'boss_old_tortoise' } } },
-  17: { boss: { enemy: { id: 'boss_kraken' } } },
-  18: { boss: { enemy: { id: 'boss_bison' } } },
-  19: { boss: { enemy: { id: 'boss_wolf' } } },
-  20: { boss: { enemy: { id: 'boss_fox' } } },
-  21: { boss: { enemy: { id: 'boss_dragon' } } },
-  22: { boss: { enemy: { id: 'boss_high_angel' } } },
-  23: { boss: { enemy: { id: 'boss_hive' } } },
-  24: { boss: { enemy: { id: 'boss_ruiner' } } },
-  25: { boss: { enemy: { id: 'boss_witch' } } },
-  26: { boss: { enemy: { id: 'the_lich' } } },
-  27: { boss: { enemy: { id: 'the_lich' } } },
-  28: { boss: { enemy: { id: 'the_lich' } } },
-});
+    1: { boss: { enemy: { id: "boss_cougar" } } },
+    2: { boss: { enemy: { id: "boss_cobra" } } },
+    3: { boss: { enemy: { id: "boss_bone_warrior" } } },
+    4: { boss: { enemy: { id: "boss_mage" } } },
+    5: { boss: { enemy: { id: "boss_spartan" } } },
+    6: { boss: { enemy: { id: "boss_goblin" } } },
+    7: { boss: { enemy: { id: "boss_phoenix" } } },
+    8: { boss: { enemy: { id: "boss_ogre" } } },
+    9: { boss: { enemy: { id: "boss_gorilla" } } },
+    10: { boss: { enemy: { id: "boss_demon" } } },
+    11: { boss: { enemy: { id: "boss_genie_lamp" } } },
+    12: { boss: { enemy: { id: "boss_living_tree" } } },
+    13: { boss: { enemy: { id: "boss_vampire" } } },
+    14: { boss: { enemy: { id: "boss_frankenstein" } } },
+    15: { boss: { enemy: { id: "boss_cassiopeia" } } },
+    16: { boss: { enemy: { id: "boss_old_tortoise" } } },
+    17: { boss: { enemy: { id: "boss_kraken" } } },
+    18: { boss: { enemy: { id: "boss_bison" } } },
+    19: { boss: { enemy: { id: "boss_wolf" } } },
+    20: { boss: { enemy: { id: "boss_fox" } } },
+    21: { boss: { enemy: { id: "boss_dragon" } } },
+    22: { boss: { enemy: { id: "boss_high_angel" } } },
+    23: { boss: { enemy: { id: "boss_hive" } } },
+    24: { boss: { enemy: { id: "boss_ruiner" } } },
+    25: { boss: { enemy: { id: "boss_witch" } } },
+    26: { boss: { enemy: { id: "the_lich" } } },
+    27: { boss: { enemy: { id: "the_lich" } } },
+    28: { boss: { enemy: { id: "the_lich" } } }
+})
 
 const local_BOSS_ENEMIES = {
+    // High accuracy
+    // Each consecutive attack on the same target increases damage (forced taunt offs)
+    // This is shown with a number of stacks on the target
+    // Drops off pretty quick (5-10s)
 
-  // High accuracy
-  // Each consecutive attack on the same target increases damage (forced taunt offs)
-  // This is shown with a number of stacks on the target
-  // Drops off pretty quick (5-10s)
-
-  boss_cougar: {
-    id: 'boss_cougar',
-    icon: 'puma.svg',
-    name: 'Cougar',
-    isBoss: true,
-    stats: {
-      attack: 20,
-      attackMax: 40,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 60,
-      health: 105,
-      healthMax: 105,
-      defense: 30,
-      armor: 120,
-      magicArmor: 60,
-      damageTaken: 1
+    boss_cougar: {
+        id: "boss_cougar",
+        icon: "puma.svg",
+        name: "Cougar",
+        isBoss: true,
+        stats: {
+            attack: 20,
+            attackMax: 40,
+            attackSpeed: VERY_FAST_SPEED,
+            accuracy: 60,
+            health: 105,
+            healthMax: 105,
+            defense: 30,
+            armor: 120,
+            magicArmor: 60,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_cougar",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    hideBuff: true,
+                    name: "boss cougar"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_cougar',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        hideBuff: true,
-        name: 'boss cougar'
-      }
-    }],
-    rewards: []
-  },
 
-
-  // Every 60s the cobra will spawn 2 adds (separated by 5s)
-  // The adds are easy to kill, but can poison people so must be killed quickly
-  boss_cobra: {
-    id: 'boss_cobra',
-    icon: 'cobra.svg',
-    name: 'cobra',
-    isBoss: true,
-    stats: {
-      attack: 15,
-      attackMax: 30,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 75,
-      health: 190,
-      healthMax: 190,
-      defense: 75,
-      armor: 110,
-      magicArmor: 500,
-      damageTaken: 1
+    // Every 60s the cobra will spawn 2 adds (separated by 5s)
+    // The adds are easy to kill, but can poison people so must be killed quickly
+    boss_cobra: {
+        id: "boss_cobra",
+        icon: "cobra.svg",
+        name: "cobra",
+        isBoss: true,
+        stats: {
+            attack: 15,
+            attackMax: 30,
+            attackSpeed: VERY_FAST_SPEED,
+            accuracy: 75,
+            health: 190,
+            healthMax: 190,
+            defense: 75,
+            armor: 110,
+            magicArmor: 500,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_cobra",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "cobra.svg",
+                    name: "boss cobra",
+                    timeTillSpawn: 45,
+                    phase: 1
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_cobra',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'cobra.svg',        
-        name: 'boss cobra',
-        timeTillSpawn: 45,
-        phase: 1
-      }
-    }],
-    rewards: []
-  },
 
-  // Cleave
-  boss_bone_warrior: {
-    id: 'boss_bone_warrior',
-    icon: 'boneWarrior.svg',
-    name: 'Bone Warrior',
-    isBoss: true,
-    stats: {
-      attack: 30,
-      attackMax: 55,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 100,
-      health: 235,
-      healthMax: 235,
-      defense: 100,
-      armor: 260,
-      magicArmor: 110,
-      damageTaken: 1
+    // Cleave
+    boss_bone_warrior: {
+        id: "boss_bone_warrior",
+        icon: "boneWarrior.svg",
+        name: "Bone Warrior",
+        isBoss: true,
+        stats: {
+            attack: 30,
+            attackMax: 55,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 100,
+            health: 235,
+            healthMax: 235,
+            defense: 100,
+            armor: 260,
+            magicArmor: 110,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_bone_warrior",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "boneWarrior.svg",
+                    name: "bone warrior"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_bone_warrior',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'boneWarrior.svg',        
-        name: 'bone warrior'
-      }
-    }],
-    rewards: []
-  },
 
-  // phalanx
-  // Boss spawns with 3 additional spartans with lowish hp
-  // Each spartan gains 250 armor for each other spartan on the field
-  // Once the boss is alone, this buff is lost
-  boss_spartan: {
-    id: 'boss_spartan',
-    icon: 'spartan.svg',
-    name: 'Spartan',
-    isBoss: true,
-    stats: {
-      attack: 40,
-      attackMax: 80,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 110,
-      health: 300,
-      healthMax: 300,
-      defense: 110,
-      armor: 180,
-      magicArmor: 90,
-      damageTaken: 1
+    // phalanx
+    // Boss spawns with 3 additional spartans with lowish hp
+    // Each spartan gains 250 armor for each other spartan on the field
+    // Once the boss is alone, this buff is lost
+    boss_spartan: {
+        id: "boss_spartan",
+        icon: "spartan.svg",
+        name: "Spartan",
+        isBoss: true,
+        stats: {
+            attack: 40,
+            attackMax: 80,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 110,
+            health: 300,
+            healthMax: 300,
+            defense: 110,
+            armor: 180,
+            magicArmor: 90,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_spartan",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "bossSpartan.svg",
+                    name: "boss spartan",
+                    hideBuff: true
+                }
+            },
+            {
+                id: "phalanx",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "phalanx.svg",
+                    isEnemy: true,
+                    extraArmor: 0,
+                    name: "phalanx"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_spartan',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'bossSpartan.svg',        
-        name: 'boss spartan',
-        hideBuff: true
-      }
-    }, {
-      id: 'phalanx',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'phalanx.svg',  
-        isEnemy: true,
-        extraArmor: 0,
-        name: 'phalanx'
-      }
-    }],
-    rewards: []
-  },
 
-  // Summons enemies to fight for him (little worms)
-  // Casts fire ball at current enemy, 20% chance on attack
-  // Casts aoe ignite on all enemies, every 60 seconds.
-  boss_mage: {
-    id: 'boss_mage',
-    icon: 'bossMage.svg',
-    name: 'mage',
-    isBoss: true,
-    stats: {
-      attack: 60,
-      attackMax: 120,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 120,
-      health: 360,
-      healthMax: 360,
-      defense: 120,
-      armor: 180,
-      magicArmor: 1000,
-      damageTaken: 1
+    // Summons enemies to fight for him (little worms)
+    // Casts fire ball at current enemy, 20% chance on attack
+    // Casts aoe ignite on all enemies, every 60 seconds.
+    boss_mage: {
+        id: "boss_mage",
+        icon: "bossMage.svg",
+        name: "mage",
+        isBoss: true,
+        stats: {
+            attack: 60,
+            attackMax: 120,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 120,
+            health: 360,
+            healthMax: 360,
+            defense: 120,
+            armor: 180,
+            magicArmor: 1000,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_mage",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "bossMage.svg",
+                    name: "boss mage",
+                    timeTillSpawn: 10
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_mage',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'bossMage.svg',        
-        name: 'boss mage',
-        timeTillSpawn: 10
-      }
-    }],
-    rewards: []
-  },
 
-  // Summons goblins incrementally which steal yo stats (low hp, spawn quickly)
-  boss_goblin: {
-    id: 'boss_goblin',
-    icon: 'goblin.svg',
-    name: 'goblin',
-    isBoss: true,
-    stats: {
-      attack: 80,
-      attackMax: 200,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 130,
-      health: 420,
-      healthMax: 420,
-      defense: 130,
-      armor: 180,
-      magicArmor: 180,
-      damageTaken: 1
+    // Summons goblins incrementally which steal yo stats (low hp, spawn quickly)
+    boss_goblin: {
+        id: "boss_goblin",
+        icon: "goblin.svg",
+        name: "goblin",
+        isBoss: true,
+        stats: {
+            attack: 80,
+            attackMax: 200,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 130,
+            health: 420,
+            healthMax: 420,
+            defense: 130,
+            armor: 180,
+            magicArmor: 180,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_goblin",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "goblin.svg",
+                    name: "boss goblin",
+                    timeTillSpawn: 10
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_goblin',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'goblin.svg',        
-        name: 'boss goblin',
-        timeTillSpawn: 10
-      }
-    }],
-    rewards: []
-  },
 
-  // Changes target every attack
-  boss_ogre: {
-    id: 'boss_ogre',
-    icon: 'iceGiant.svg',
-    name: 'ogre',
-    isBoss: true,
-    stats: {
-      attack: 120,
-      attackMax: 200,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 145,
-      health: 650,
-      healthMax: 650,
-      defense: 145,
-      armor: 250,
-      magicArmor: 250,
-      damageTaken: 1
+    // Changes target every attack
+    boss_ogre: {
+        id: "boss_ogre",
+        icon: "iceGiant.svg",
+        name: "ogre",
+        isBoss: true,
+        stats: {
+            attack: 120,
+            attackMax: 200,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 145,
+            health: 650,
+            healthMax: 650,
+            defense: 145,
+            armor: 250,
+            magicArmor: 250,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_ogre",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "ogre.svg",
+                    name: "boss ogre",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_ogre',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'ogre.svg',        
-        name: 'boss ogre',
-        hideBuff: true
-      }
-    }],
-    rewards: []
-  },
 
-  // Spawns with two eggs. Eggs have decent hp.
-  // Choose between killing eggs then fighting boss. Or ignoring eggs
-  // Once eggs timer hits 0, two phoenixes spawn
-  // Killing the eggs spawns the phoenixes at 10% hp
-  // Killing these little phoenixes spawns eggs with a longer cooldown then initially
-  boss_phoenix: {
-    id: 'boss_phoenix',
-    icon: 'phoenix.svg',
-    name: 'phoenix',
-    isBoss: true,
-    stats: {
-      attack: 140,
-      attackMax: 260,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 155,
-      health: 800,
-      healthMax: 800,
-      defense: 155,
-      armor: 300,
-      magicArmor: 400,
-      damageTaken: 1
+    // Spawns with two eggs. Eggs have decent hp.
+    // Choose between killing eggs then fighting boss. Or ignoring eggs
+    // Once eggs timer hits 0, two phoenixes spawn
+    // Killing the eggs spawns the phoenixes at 10% hp
+    // Killing these little phoenixes spawns eggs with a longer cooldown then initially
+    boss_phoenix: {
+        id: "boss_phoenix",
+        icon: "phoenix.svg",
+        name: "phoenix",
+        isBoss: true,
+        stats: {
+            attack: 140,
+            attackMax: 260,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 155,
+            health: 800,
+            healthMax: 800,
+            defense: 155,
+            armor: 300,
+            magicArmor: 400,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_phoenix",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "phoenix.svg",
+                    name: "boss phoenix",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_phoenix',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'phoenix.svg',
-        name: 'boss phoenix',
-        hideBuff: true
-      }
-    }],
-    rewards: []
-  },
 
-  // Intelligence, analyzes enemies weaknesses and gains stats the longer the fight goes
-  // Stat gain is based on who they are fighting
-  boss_gorilla: {
-    id: 'boss_gorilla',
-    icon: 'gorilla.svg',
-    name: 'gorilla',
-    isBoss: true,
-    stats: {
-      attack: 180,
-      attackMax: 300,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 165,
-      health: 950,
-      healthMax: 950,
-      defense: 165,
-      armor: 200,
-      magicArmor: 200,
-      damageTaken: 1
+    // Intelligence, analyzes enemies weaknesses and gains stats the longer the fight goes
+    // Stat gain is based on who they are fighting
+    boss_gorilla: {
+        id: "boss_gorilla",
+        icon: "gorilla.svg",
+        name: "gorilla",
+        isBoss: true,
+        stats: {
+            attack: 180,
+            attackMax: 300,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 165,
+            health: 950,
+            healthMax: 950,
+            defense: 165,
+            armor: 200,
+            magicArmor: 200,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_gorilla",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "gorilla.svg",
+                    name: "boss gorilla",
+                    timeTillLearn: 15
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_gorilla',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'gorilla.svg',        
-        name: 'boss gorilla',
-        timeTillLearn: 15
-      }
-    }],
-    rewards: []
-  },
 
-  // Demon
-  boss_demon: {
-    id: 'boss_demon',
-    icon: 'bossDemon.svg',
-    name: 'demon',
-    isBoss: true,
-    stats: {
-      attack: 200,
-      attackMax: 250,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 180,
-      health: 1100,
-      healthMax: 1100,
-      defense: 180,
-      armor: 250,
-      magicArmor: 150,
-      damageTaken: 1
+    // Demon
+    boss_demon: {
+        id: "boss_demon",
+        icon: "bossDemon.svg",
+        name: "demon",
+        isBoss: true,
+        stats: {
+            attack: 200,
+            attackMax: 250,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 180,
+            health: 1100,
+            healthMax: 1100,
+            defense: 180,
+            armor: 250,
+            magicArmor: 150,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "demon_monster",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "demon.svg",
+                    name: "demon",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'demon_monster',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'demon.svg',        
-        name: 'demon',
-        hideBuff: true
-      }
-    }],
-    rewards: []
-  },
 
-  boss_genie_lamp: {
-    id: 'boss_genie_lamp',
-    icon: 'bossGenieLamp.svg',
-    name: 'Genies Lamp',
-    isBoss: true,
-    stats: {
-      attack: 250,
-      attackMax: 350,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 190,
-      health: 1250,
-      healthMax: 1250,
-      defense: 190,
-      armor: 250,
-      magicArmor: 150,
-      damageTaken: 1
+    boss_genie_lamp: {
+        id: "boss_genie_lamp",
+        icon: "bossGenieLamp.svg",
+        name: "Genies Lamp",
+        isBoss: true,
+        stats: {
+            attack: 250,
+            attackMax: 350,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 190,
+            health: 1250,
+            healthMax: 1250,
+            defense: 190,
+            armor: 250,
+            magicArmor: 150,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_genie_lamp",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "bossGenieLamp.svg",
+                    name: "genies lamp",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_genie_lamp',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'bossGenieLamp.svg',        
-        name: 'genies lamp',
-        hideBuff: true
-      }
-    }],
-    rewards: []
-  },
 
-  boss_living_tree: {
-    id: 'boss_living_tree',
-    icon: 'livingTree.svg',
-    name: 'Living Tree',
-    isBoss: true,
-    stats: {
-      attack: 1,
-      attackMax: 1,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 205,
-      health: 1400,
-      healthMax: 1400,
-      defense: 205,
-      armor: 250,
-      magicArmor: 250,
-      damageTaken: 1
+    boss_living_tree: {
+        id: "boss_living_tree",
+        icon: "livingTree.svg",
+        name: "Living Tree",
+        isBoss: true,
+        stats: {
+            attack: 1,
+            attackMax: 1,
+            attackSpeed: SLOW_SPEED,
+            accuracy: 205,
+            health: 1400,
+            healthMax: 1400,
+            defense: 205,
+            armor: 250,
+            magicArmor: 250,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_living_tree",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "livingTree.svg",
+                    damageTillSpawn: 100,
+                    name: "genies lamp"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_living_tree',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'livingTree.svg',
-        damageTillSpawn: 100,
-        name: 'genies lamp'
-      }
-    }],
-    rewards: []
-  },
 
-  boss_vampire: {
-    id: 'boss_vampire',
-    icon: 'vampire.svg',
-    name: 'vampire',
-    isBoss: true,
-    stats: {
-      attack: 275,
-      attackMax: 350,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 220,
-      health: 1450,
-      healthMax: 1450,
-      defense: 220,
-      armor: 250,
-      magicArmor: 150,
-      damageTaken: 1
+    boss_vampire: {
+        id: "boss_vampire",
+        icon: "vampire.svg",
+        name: "vampire",
+        isBoss: true,
+        stats: {
+            attack: 275,
+            attackMax: 350,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 220,
+            health: 1450,
+            healthMax: 1450,
+            defense: 220,
+            armor: 250,
+            magicArmor: 150,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_vampire",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "vampire.svg",
+                    name: "vampire",
+                    timeTillBlood: 15
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_vampire',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'vampire.svg',        
-        name: 'vampire',
-        timeTillBlood: 15
-      }
-    }],
-    rewards: []
-  },
 
-  boss_frankenstein: {
-    id: 'boss_frankenstein',
-    icon: 'frankenstein.svg',
-    name: 'frankenstein',
-    isBoss: true,
-    stats: {
-      attack: 275,
-      attackMax: 350,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 230,
-      health: 1550,
-      healthMax: 1550,
-      defense: 230,
-      armor: 300,
-      magicArmor: 100,
-      damageTaken: 1
+    boss_frankenstein: {
+        id: "boss_frankenstein",
+        icon: "frankenstein.svg",
+        name: "frankenstein",
+        isBoss: true,
+        stats: {
+            attack: 275,
+            attackMax: 350,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 230,
+            health: 1550,
+            healthMax: 1550,
+            defense: 230,
+            armor: 300,
+            magicArmor: 100,
+            damageTaken: 1
+        },
+        rewards: []
     },
-    rewards: []
-  },
 
-  boss_cassiopeia: {
-    id: 'boss_cassiopeia',
-    icon: 'cassiopeia.svg',
-    name: 'cassiopeia',
-    isBoss: true,
-    stats: {
-      attack: 150,
-      attackMax: 200,
-      attackSpeed: VERY_FAST_SPEED,
-      accuracy: 240,
-      health: 1650,
-      healthMax: 1650,
-      defense: 240,
-      armor: 300,
-      magicArmor: 100,
-      damageTaken: 1
+    boss_cassiopeia: {
+        id: "boss_cassiopeia",
+        icon: "cassiopeia.svg",
+        name: "cassiopeia",
+        isBoss: true,
+        stats: {
+            attack: 150,
+            attackMax: 200,
+            attackSpeed: VERY_FAST_SPEED,
+            accuracy: 240,
+            health: 1650,
+            healthMax: 1650,
+            defense: 240,
+            armor: 300,
+            magicArmor: 100,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_ogre",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "ogre.svg",
+                    name: "boss ogre",
+                    hideBuff: true
+                }
+            },
+            {
+                id: "poisoned_blade",
+                data: {
+                    duration: 10000,
+                    totalDuration: 10000,
+                    icon: "poisonedBlade.svg",
+                    name: "poisoned blade",
+                    level: 1
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_ogre',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'ogre.svg',        
-        name: 'boss ogre',
-        hideBuff: true
-      }
-    }, {
-      id: 'poisoned_blade',
-      data: {
-        duration: 10000,
-        totalDuration: 10000,
-        icon: 'poisonedBlade.svg',
-        name: 'poisoned blade',
-        level: 1
-      }
-    }],
-    rewards: []
-  },
 
-  boss_old_tortoise: {
-    id: 'boss_old_tortoise',
-    icon: 'oldTortoise.svg',
-    name: 'old tortoise',
-    isBoss: true,
-    stats: {
-      attack: 250,
-      attackMax: 300,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 250,
-      health: 1750,
-      healthMax: 1750,
-      defense: 250,
-      armor: 330,
-      magicArmor: 100,
-      damageTaken: 1
+    boss_old_tortoise: {
+        id: "boss_old_tortoise",
+        icon: "oldTortoise.svg",
+        name: "old tortoise",
+        isBoss: true,
+        stats: {
+            attack: 250,
+            attackMax: 300,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 250,
+            health: 1750,
+            healthMax: 1750,
+            defense: 250,
+            armor: 330,
+            magicArmor: 100,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_old_tortoise",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "oldTortoise.svg",
+                    name: "boss old tortoise"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_old_tortoise',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'oldTortoise.svg',        
-        name: 'boss old tortoise'
-      }
-    }],
-    rewards: []
-  },
 
-  boss_kraken: {
-    id: 'boss_kraken',
-    icon: 'kraken.svg',
-    name: 'kraken',
-    isBoss: true,
-    stats: {
-      attack: 300,
-      attackMax: 350,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 275,
-      health: 2500,
-      healthMax: 2500,
-      defense: 255,
-      armor: 370,
-      magicArmor: 100,
-      damageTaken: 1
+    boss_kraken: {
+        id: "boss_kraken",
+        icon: "kraken.svg",
+        name: "kraken",
+        isBoss: true,
+        stats: {
+            attack: 300,
+            attackMax: 350,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 275,
+            health: 2500,
+            healthMax: 2500,
+            defense: 255,
+            armor: 370,
+            magicArmor: 100,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_kraken",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "kraken.svg",
+                    name: "boss kraken",
+                    timeTillSpawn: 15
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_kraken',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'kraken.svg',        
-        name: 'boss kraken',
-        timeTillSpawn: 15
-      }
-    }],
-    rewards: []
-  },
 
-  boss_bison: {
-    id: 'boss_bison',
-    icon: 'bison.svg',
-    name: 'bison',
-    isBoss: true,
-    stats: {
-      attack: 325,
-      attackMax: 400,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 360,
-      health: 3000,
-      healthMax: 3000,
-      defense: 360,
-      armor: 600,
-      magicArmor: 225,
-      damageTaken: 1
+    boss_bison: {
+        id: "boss_bison",
+        icon: "bison.svg",
+        name: "bison",
+        isBoss: true,
+        stats: {
+            attack: 325,
+            attackMax: 400,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 360,
+            health: 3000,
+            healthMax: 3000,
+            defense: 360,
+            armor: 600,
+            magicArmor: 225,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_bison",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "bisonRed.svg",
+                    name: "boss bison",
+                    timeTillCharge: 20
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_bison',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'bisonRed.svg',        
-        name: 'boss bison',
-        timeTillCharge: 20
-      }
-    }],
-    rewards: []
-  },
 
-  boss_wolf: {
-    id: 'boss_wolf',
-    icon: 'bossWolf.svg',
-    name: 'wolf',
-    isBoss: true,
-    stats: {
-      attack: 375,
-      attackMax: 425,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 380,
-      health: 3500,
-      healthMax: 3500,
-      defense: 380,
-      armor: 1000,
-      magicArmor: 400,
-      damageTaken: 1
+    boss_wolf: {
+        id: "boss_wolf",
+        icon: "bossWolf.svg",
+        name: "wolf",
+        isBoss: true,
+        stats: {
+            attack: 375,
+            attackMax: 425,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 380,
+            health: 3500,
+            healthMax: 3500,
+            defense: 380,
+            armor: 1000,
+            magicArmor: 400,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_wolf",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "bossPoodle.svg",
+                    name: "poodle defense",
+                    timeTillDefensive: 5
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_wolf',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'bossPoodle.svg',
-        name: 'poodle defense',
-        timeTillDefensive: 5
-      }
-    }],
-    rewards: []
-  },
 
-  boss_fox: {
-    id: 'boss_fox',
-    icon: 'fireFox.svg',
-    name: 'fox',
-    isBoss: true,
-    stats: {
-      attack: 350,
-      attackMax: 425,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 400,
-      health: 4000,
-      healthMax: 4000,
-      defense: 400,
-      armor: 1250,
-      magicArmor: 450,
-      damageTaken: 1
+    boss_fox: {
+        id: "boss_fox",
+        icon: "fireFox.svg",
+        name: "fox",
+        isBoss: true,
+        stats: {
+            attack: 350,
+            attackMax: 425,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 400,
+            health: 4000,
+            healthMax: 4000,
+            defense: 400,
+            armor: 1250,
+            magicArmor: 450,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_fox",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    icon: "fireFox.svg",
+                    name: "fire",
+                    phase: 2 // starts on air phase
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_fox',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        icon: 'fireFox.svg',
-        name: 'fire',
-        phase: 2 // starts on air phase
-      }
-    }],
-    rewards: []
-  },
 
-  boss_dragon: {
-    id: 'boss_dragon',
-    icon: 'dragon.svg',
-    name: 'Dragon',
-    isBoss: true,
-    stats: {
-      attack: 250,
-      attackMax: 300,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 400,
-      health: 4500,
-      healthMax: 4500,
-      defense: 450,
-      armor: 1650,
-      magicArmor: 500,
-      damageTaken: 1
+    boss_dragon: {
+        id: "boss_dragon",
+        icon: "dragon.svg",
+        name: "Dragon",
+        isBoss: true,
+        stats: {
+            attack: 250,
+            attackMax: 300,
+            attackSpeed: SLOW_SPEED,
+            accuracy: 400,
+            health: 4500,
+            healthMax: 4500,
+            defense: 450,
+            armor: 1650,
+            magicArmor: 500,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_dragon",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "boss dragon",
+                    icon: "dragon.svg",
+                    stackTimer: 0,
+                    stacks: 0,
+                    lastAttack: 0,
+                    attackChance: 1 / 50
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_dragon',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'boss dragon',
-        icon: 'dragon.svg',
-        stackTimer: 0,
-        stacks: 0,
-        lastAttack: 0,
-        attackChance: 1 / 50
-      }
-    }],
-    rewards: []
-  },
 
-  boss_high_angel: {
-    id: 'boss_high_angel',
-    icon: 'high_angel.svg',
-    name: 'High Angel',
-    isBoss: true,
-    stats: {
-      attack: 150,
-      attackMax: 250,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 600,
-      health: 5500,
-      healthMax: 5500,
-      defense: 225,
-      armor: 650,
-      magicArmor: 150,
-      damageTaken: 1
+    boss_high_angel: {
+        id: "boss_high_angel",
+        icon: "high_angel.svg",
+        name: "High Angel",
+        isBoss: true,
+        stats: {
+            attack: 150,
+            attackMax: 250,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 600,
+            health: 5500,
+            healthMax: 5500,
+            defense: 225,
+            armor: 650,
+            magicArmor: 150,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_high_angel",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "boss high angel",
+                    icon: "resurrection.svg",
+                    stacks: 0,
+                    timeTillResurrection: 5
+                }
+            },
+            {
+                id: "angels_heart",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "angels heart",
+                    icon: "angels_heart.svg",
+                    level: 5,
+                    allies: "enemies"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_high_angel',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'boss high angel',
-        icon: 'resurrection.svg',
-        stacks: 0,
-        timeTillResurrection: 5,
-      }
-    }, {
-      id: 'angels_heart',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'angels heart',
-        icon: 'angels_heart.svg',
-        level: 5,
-        allies: 'enemies',
-      }
-    }],
-    rewards: []
-  },
 
-  boss_hive: {
-    id: 'boss_hive',
-    icon: 'hive.svg',
-    name: 'Hive',
-    isBoss: true,
-    stats: {
-      attack: 1,
-      attackMax: 1,
-      attackSpeed: SLOW_SPEED,
-      accuracy: 600,
-      health: 6000,
-      healthMax: 6000,
-      defense: 110,
-      armor: 850,
-      magicArmor: 150,
-      damageTaken: 1
+    boss_hive: {
+        id: "boss_hive",
+        icon: "hive.svg",
+        name: "Hive",
+        isBoss: true,
+        stats: {
+            attack: 1,
+            attackMax: 1,
+            attackSpeed: SLOW_SPEED,
+            accuracy: 600,
+            health: 6000,
+            healthMax: 6000,
+            defense: 110,
+            armor: 850,
+            magicArmor: 150,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_hive",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "boss hive",
+                    icon: "honeycomb.svg",
+                    stacks: 0,
+                    damageLimit: 5000
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_hive',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'boss hive',
-        icon: 'honeycomb.svg',
-        stacks: 0,
-        damageLimit: 5000
-      }
-    }],
-    rewards: []
-  },
 
-  boss_ruiner: {
-    id: 'boss_ruiner',
-    icon: 'boss24.svg',
-    name: 'The Ruiner',
-    isBoss: true,
-    stats: {
-      attack: 450,
-      attackMax: 650,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 450,
-      health: 6500,
-      healthMax: 6500,
-      defense: 750,
-      armor: 925,
-      magicArmor: 350,
-      damageTaken: 1
+    boss_ruiner: {
+        id: "boss_ruiner",
+        icon: "boss24.svg",
+        name: "The Ruiner",
+        isBoss: true,
+        stats: {
+            attack: 450,
+            attackMax: 650,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 450,
+            health: 6500,
+            healthMax: 6500,
+            defense: 750,
+            armor: 925,
+            magicArmor: 350,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_ruiner",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "the ruiner",
+                    icon: "boss24.svg",
+                    hideBuff: true
+                }
+            },
+            {
+                id: "boss_dragon",
+                duration: Infinity,
+                data: {
+                    totalDuration: Infinity,
+                    icon: "seethingHatred.svg",
+                    name: "Hatred Attacks",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_ruiner',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'the ruiner',
-        icon: 'boss24.svg',
-        hideBuff: true,
-      }
-    }, {
-      id: 'boss_dragon',
-      duration: Infinity,
-      data: {
-        totalDuration: Infinity,
-        icon: 'seethingHatred.svg',
-        name: 'Hatred Attacks',
-        hideBuff: true,
-      }
-    }],
-    rewards: []
-  },
 
-  boss_witch: {
-    id: 'boss_witch',
-    icon: 'witch.svg',
-    name: 'The Witch',
-    isBoss: true,
-    stats: {
-      attack: 250,
-      attackMax: 350,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 600,
-      health: 8000,
-      healthMax: 8000,
-      defense: 450,
-      armor: 750,
-      magicArmor: 450,
-      damageTaken: 1
+    boss_witch: {
+        id: "boss_witch",
+        icon: "witch.svg",
+        name: "The Witch",
+        isBoss: true,
+        stats: {
+            attack: 250,
+            attackMax: 350,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 600,
+            health: 8000,
+            healthMax: 8000,
+            defense: 450,
+            armor: 750,
+            magicArmor: 450,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_witch",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "The Witch",
+                    icon: "witch.svg",
+                    hideBuff: true
+                }
+            },
+            {
+                id: "boss_witch__deathhex",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "Death Hex",
+                    icon: "graves.svg"
+                }
+            }
+        ],
+        rewards: []
     },
-    buffs: [{
-      id: 'boss_witch',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'The Witch',
-        icon: 'witch.svg',
-        hideBuff: true,
-      },
-    }, {
-      id: 'boss_witch__deathhex',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'Death Hex',
-        icon: 'graves.svg',
-      },
-    }],
-    rewards: []
-  },
 
-  the_lich: {
-    id: 'the_lich',
-    icon: 'lich.svg',
-    name: 'The Lich',
-    isBoss: true,
-    stats: {
-      attack: 550,
-      attackMax: 750,
-      attackSpeed: MEDIUM_SPEED,
-      accuracy: 750,
-      health: 10000,
-      healthMax: 10000,
-      defense: 800,
-      armor: 10000,
-      magicArmor: 10000,
-      damageTaken: 1
-    },
-    buffs: [{
-      id: 'boss_lich',
-      data: {
-        duration: Infinity,
-        totalDuration: Infinity,
-        name: 'The Lich',
-        icon: 'lich.svg',
-        hideBuff: true,
-      },
-    }],
-    rewards: []
-  },
-};
- 
-export const createNewFloor = function createNewFloor(serverId, floorNum = 1, activeTowerUsers = 30, newPointMax = 0, bossHealth = 0) {
-  const serverDoc = Servers.findOne({_id: serverId});
-
-  if (serverDoc) {
-    // if the server exists...
-    
-    // default floor number
-    floorNum = CInt(floorNum);
-    if (floorNum <= 0) {
-      floorNum = 1; // assuming 1st floor if not specified
+    the_lich: {
+        id: "the_lich",
+        icon: "lich.svg",
+        name: "The Lich",
+        isBoss: true,
+        stats: {
+            attack: 550,
+            attackMax: 750,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 750,
+            health: 10000,
+            healthMax: 10000,
+            defense: 800,
+            armor: 10000,
+            magicArmor: 10000,
+            damageTaken: 1
+        },
+        buffs: [
+            {
+                id: "boss_lich",
+                data: {
+                    duration: Infinity,
+                    totalDuration: Infinity,
+                    name: "The Lich",
+                    icon: "lich.svg",
+                    hideBuff: true
+                }
+            }
+        ],
+        rewards: []
     }
-    
-    // default active tower users
-    activeTowerUsers = CInt(activeTowerUsers);
-    if (activeTowerUsers <= 0) {
-      activeTowerUsers = 30; // assuming 30 active players if not specified
-    }
-    
-    // default point max
-    newPointMax = CInt(newPointMax);
-    if (newPointMax <= 0) {
-      newPointMax = localGetNewPointCount(floorNum, activeTowerUsers);
-    }
-    
-    // default boss health
-    bossHealth = CInt(bossHealth);
-    if (bossHealth <= 0) {
-      const bossEnemyId = local_FLOOR_BOSSES[floorNum].boss.enemy.id;
-      const bossEnemyConstants = local_BOSS_ENEMIES[bossEnemyId];
+}
 
-      bossHealth = bossEnemyConstants.stats.healthMax * activeTowerUsers;
+export const createNewFloor = function createNewFloor(
+    serverId,
+    floorNum = 1,
+    activeTowerUsers = 30,
+    newPointMax = 0,
+    bossHealth = 0
+) {
+    const serverDoc = Servers.findOne({ _id: serverId })
+
+    if (serverDoc) {
+        // if the server exists...
+
+        // default floor number
+        floorNum = CInt(floorNum)
+        if (floorNum <= 0) {
+            floorNum = 1 // assuming 1st floor if not specified
+        }
+
+        // default active tower users
+        activeTowerUsers = CInt(activeTowerUsers)
+        if (activeTowerUsers <= 0) {
+            activeTowerUsers = 30 // assuming 30 active players if not specified
+        }
+
+        // default point max
+        newPointMax = CInt(newPointMax)
+        if (newPointMax <= 0) {
+            newPointMax = localGetNewPointCount(floorNum, activeTowerUsers)
+        }
+
+        // default boss health
+        bossHealth = CInt(bossHealth)
+        if (bossHealth <= 0) {
+            const bossEnemyId = local_FLOOR_BOSSES[floorNum].boss.enemy.id
+            const bossEnemyConstants = local_BOSS_ENEMIES[bossEnemyId]
+
+            bossHealth = bossEnemyConstants.stats.healthMax * activeTowerUsers
+        }
+
+        // create the new floor
+        const floorDocId = Floors.insert({
+            floor: floorNum,
+            server: serverId,
+            createdAt: new Date(),
+            points: 0,
+            pointsMax: newPointMax,
+            health: bossHealth,
+            healthMax: bossHealth,
+            floorComplete: false,
+            loot: []
+        })
+
+        return floorDocId
     }
 
-    // create the new floor
-    const floorDocId = Floors.insert({
-      floor: floorNum,
-      server: serverId,
-      createdAt: new Date(),
-      points: 0,
-      pointsMax: newPointMax,
-      health: bossHealth,
-      healthMax: bossHealth,
-      floorComplete: false,
-      loot: []
-    });
-    
-    return floorDocId;
-  }
-  
-  return false;
-};
+    return false
+}
 
 FloorsSchema = new SimpleSchema({
-  floor: { type: Number },
-  server: { type: String },
-  createdAt: { type: Date },
-  finishedAt: { type: Date, optional: true },
-  points: { type: Number, decimal: true, defaultValue: 0 },
-  pointsMax: { type: Number, defaultValue: 10000 },
-  health: { type: Number, decimal: true, defaultValue: 1000 },
-  healthMax: { type: Number, defaultValue: 1000 },  
-  floorComplete: { type: Boolean, defaultValue: false },
-  loot: { type: [Object], defaultValue: [], blackbox: true },
-  bossResetAt: { type: Date, optional: true }
-});
+    floor: { type: Number },
+    server: { type: String },
+    createdAt: { type: Date },
+    finishedAt: { type: Date, optional: true },
+    points: { type: Number, decimal: true, defaultValue: 0 },
+    pointsMax: { type: Number, defaultValue: 10000 },
+    health: { type: Number, decimal: true, defaultValue: 1000 },
+    healthMax: { type: Number, defaultValue: 1000 },
+    floorComplete: { type: Boolean, defaultValue: false },
+    loot: { type: [Object], defaultValue: [], blackbox: true },
+    bossResetAt: { type: Date, optional: true }
+})
 
-Floors.attachSchema(FloorsSchema);
+Floors.attachSchema(FloorsSchema)

@@ -1,14 +1,9 @@
-
-import { ATTACK_ABILITIES } from './abilities/attack';
-import { MAGIC_ABILITIES } from './abilities/magic';
-import { DEFENSE_ABILITIES } from './abilities/defense';
+import { ATTACK_ABILITIES } from "./abilities/attack"
+import { DEFENSE_ABILITIES } from "./abilities/defense"
+import { MAGIC_ABILITIES } from "./abilities/magic"
 
 export const ABILITY = {
-  slots: ['mainHand', 'offHand', 'head', 'chest', 'legs', 'companion']
-};
+    slots: ["mainHand", "offHand", "head", "chest", "legs", "companion"]
+}
 
-export const ABILITIES = Object.assign(
-  ATTACK_ABILITIES,
-  DEFENSE_ABILITIES,
-  MAGIC_ABILITIES
-);
+export const ABILITIES = Object.assign(ATTACK_ABILITIES, DEFENSE_ABILITIES, MAGIC_ABILITIES)

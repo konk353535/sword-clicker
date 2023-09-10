@@ -1,188 +1,208 @@
-import { orderLootTable } from '../../../enemies/lootTables/index.js';
-import { ITEMS } from '../../../../../imports/constants/items/index';
+import { ITEMS } from "../../../../../imports/constants/items/index"
+import { orderLootTable } from "../../../enemies/lootTables/index.js"
 
-import { LEVEL_TWENTY_TWO_LOOT_TABLE } from '../../levels/level22';
+import { LEVEL_TWENTY_TWO_LOOT_TABLE } from "../../levels/level22"
 
 export const TOWER_FLOOR_22 = {
-  1: {
-    name: 'Frozen Waste',
-    enemies: ['ice_giant'],
-    rewards: []
-  },
-  2: {
-    name: 'Dojo',
-    enemies: ['monk'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_dagger_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_furnace_scroll', amount: 1 }
-      ]
-    }]))
-  },
-  3: {
-    name: 'Sparta',
-    enemies: ['spartan', 'crab'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_shield_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_short_sword_scroll', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'radiant_knife', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'fiery_bow_scroll', amount: 1 },
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'radiant_quiver_scroll', amount: 1 },
-      ]
-    }]))
-  },
-  4: {
-    name: 'The Field',
-    enemies: ['farmer', 'snake'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'radiant_rapiers', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_helmet_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_chest_plate_scroll', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 64,
-      rewards: [
-        { type: 'item', itemId: 'radiant_wand', amount: 1 }
-      ]
-    }]))
-  },
-  5: {
-    name: 'Mage\'s Caravan',
-    enemies: ['warden', 'fire_mage'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'radiant_kite_shield', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'radiant_spirit_shield', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 128,
-      rewards: [
-        { type: 'item', itemId: 'radiant_buckler', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_axe_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_pickaxe_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_mining_anvil_scroll', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 48,
-      rewards: [
-        { type: 'item', itemId: 'serpent_wizard_hat', amount: 1 },
-        { type: 'item', itemId: 'serpent_wizard_shirt', amount: 1 },
-        { type: 'item', itemId: 'serpent_wizard_shorts', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 64,
-      rewards: [
-        { type: 'item', itemId: 'taunt_level_5_tome', amount: 1 }
-      ]
-    }]))
-  },
-  6: {
-    name: 'Abandoned Dojo',
-    enemies: ['young_ninja'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_spear_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_plate_legs_scroll', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'radiant_dwarven_idol', amount: 1 },
-        { type: 'item', itemId: 'radiant_mining_hammer', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 80,
-      rewards: [
-        { type: 'item', itemId: 'primal_orb', amount: 1 },
-        { type: 'item', itemId: 'charred_tome', amount: 1 }
-      ]
-    }]))
-  },
-  7: {
-    name: 'Blessed Mine',
-    enemies: ['dwarf'],
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 16,
-      rewards: [
-        { type: 'item', itemId: 'radiant_long_sword_scroll', amount: 1 },
-        { type: 'item', itemId: 'radiant_battle_axe_scroll', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 64,
-      rewards: [
-        { type: 'item', itemId: 'radiant_hammer', amount: 1 }
-      ]
-    }, {
-      chance: 1 / 32,
-      rewards: [
-        { type: 'item', itemId: 'radiant_scimitar', amount: 1 },
-        { type: 'item', itemId: 'radiant_broad_sword', amount: 1 },
-        { type: 'item', itemId: 'radiant_horned_helmet', amount: 1 }
-      ]
-    }]))
-  },
-
-  boss: {
-    enemy: { id: 'boss_high_angel', amount: 1 },
-    rewards: orderLootTable(LEVEL_TWENTY_TWO_LOOT_TABLE.concat([{
-      chance: 1 / 2,
-      rewards: [
-        { type: 'item', itemId: 'holy_plate', amount: 1 }
-      ]
-    }]))
-  },
-
-  floorRewards: [
-    {
-      type: 'item',
-      itemId: 'astral_dwarven_idol',
-      icon: ITEMS['astral_dwarven_idol'].icon,
-      name: ITEMS['astral_dwarven_idol'].name,
-      baseStats: ITEMS['astral_dwarven_idol'].stats,
-      extraStats: ITEMS['astral_dwarven_idol'].extraStats
+    1: {
+        name: "Frozen Waste",
+        enemies: ["ice_giant"],
+        rewards: []
     },
-    {
-      type: 'item',
-      itemId: 'enhancer_key',
-      icon: ITEMS['enhancer_key'].icon,
-      name: ITEMS['enhancer_key'].name,
-      baseStats: ITEMS['enhancer_key'].stats,
-      extraStats: ITEMS['enhancer_key'].extraStats
+    2: {
+        name: "Dojo",
+        enemies: ["monk"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_dagger_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_furnace_scroll", amount: 1 }
+                    ]
+                }
+            ])
+        )
     },
-    {
-      type: 'gold',
-      amount: 600000
-    }
-  ]
-};
+    3: {
+        name: "Sparta",
+        enemies: ["spartan", "crab"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_shield_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_short_sword_scroll", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "radiant_knife", amount: 1 }]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [{ type: "item", itemId: "fiery_bow_scroll", amount: 1 }]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [{ type: "item", itemId: "radiant_quiver_scroll", amount: 1 }]
+                }
+            ])
+        )
+    },
+    4: {
+        name: "The Field",
+        enemies: ["farmer", "snake"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "radiant_rapiers", amount: 1 }]
+                },
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_helmet_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_chest_plate_scroll", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 64,
+                    rewards: [{ type: "item", itemId: "radiant_wand", amount: 1 }]
+                }
+            ])
+        )
+    },
+    5: {
+        name: "Mage's Caravan",
+        enemies: ["warden", "fire_mage"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "radiant_kite_shield", amount: 1 }]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "radiant_spirit_shield", amount: 1 }]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "radiant_buckler", amount: 1 }]
+                },
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_axe_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_pickaxe_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_mining_anvil_scroll", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 48,
+                    rewards: [
+                        { type: "item", itemId: "serpent_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "serpent_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "serpent_wizard_shorts", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 64,
+                    rewards: [{ type: "item", itemId: "taunt_level_5_tome", amount: 1 }]
+                }
+            ])
+        )
+    },
+    6: {
+        name: "Abandoned Dojo",
+        enemies: ["young_ninja"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_spear_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_plate_legs_scroll", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "radiant_dwarven_idol", amount: 1 },
+                        { type: "item", itemId: "radiant_mining_hammer", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 80,
+                    rewards: [
+                        { type: "item", itemId: "primal_orb", amount: 1 },
+                        { type: "item", itemId: "charred_tome", amount: 1 }
+                    ]
+                }
+            ])
+        )
+    },
+    7: {
+        name: "Blessed Mine",
+        enemies: ["dwarf"],
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 16,
+                    rewards: [
+                        { type: "item", itemId: "radiant_long_sword_scroll", amount: 1 },
+                        { type: "item", itemId: "radiant_battle_axe_scroll", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 64,
+                    rewards: [{ type: "item", itemId: "radiant_hammer", amount: 1 }]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "radiant_scimitar", amount: 1 },
+                        { type: "item", itemId: "radiant_broad_sword", amount: 1 },
+                        { type: "item", itemId: "radiant_horned_helmet", amount: 1 }
+                    ]
+                }
+            ])
+        )
+    },
+
+    boss: {
+        enemy: { id: "boss_high_angel", amount: 1 },
+        rewards: orderLootTable(
+            LEVEL_TWENTY_TWO_LOOT_TABLE.concat([
+                {
+                    chance: 1 / 2,
+                    rewards: [{ type: "item", itemId: "holy_plate", amount: 1 }]
+                }
+            ])
+        )
+    },
+
+    floorRewards: [
+        {
+            type: "item",
+            itemId: "astral_dwarven_idol",
+            icon: ITEMS["astral_dwarven_idol"].icon,
+            name: ITEMS["astral_dwarven_idol"].name,
+            baseStats: ITEMS["astral_dwarven_idol"].stats,
+            extraStats: ITEMS["astral_dwarven_idol"].extraStats
+        },
+        {
+            type: "item",
+            itemId: "enhancer_key",
+            icon: ITEMS["enhancer_key"].icon,
+            name: ITEMS["enhancer_key"].name,
+            baseStats: ITEMS["enhancer_key"].stats,
+            extraStats: ITEMS["enhancer_key"].extraStats
+        },
+        {
+            type: "gold",
+            amount: 600000
+        }
+    ]
+}

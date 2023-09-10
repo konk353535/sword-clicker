@@ -1,1 +1,1 @@
-declare module 'consistent-hashing';
+declare module "consistent-hashing"

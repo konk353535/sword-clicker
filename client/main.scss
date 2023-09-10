@@ -16,6 +16,7 @@
 @import "styles/lobby.scss";
 @import "styles/loader.scss";
 @import "styles/battleLog.scss";
+@import "styles/dark.scss";
 
 html, body {
   font-family: 'Roboto', sans-serif;
@@ -415,5 +416,3 @@ body { padding-right: 0 !important }
 .whiteframe-4dp {
   box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)
 }
-
-@import "styles/dark.scss";

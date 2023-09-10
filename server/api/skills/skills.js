@@ -505,7 +505,7 @@ Meteor.methods({
       }
       
       if (userDoc) {
-        if (userDoc.excludeFromRankings || userDoc.banned) {
+        if (userDoc.excludeFromRankings || userDoc.banned || userDoc.isPrefabbedGuest) {
           return false;
         }
       }

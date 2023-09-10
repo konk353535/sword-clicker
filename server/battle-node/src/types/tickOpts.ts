@@ -1,0 +1,38 @@
+import Unit from "../core/unit"
+import Ability from "../core/unit/ability"
+
+export type autoAttackOpts = {
+    attacker: Unit
+    defender: Unit
+    originalAutoAttack?: boolean
+    damageModifier?: number
+    source?: string
+}
+
+export type castAbilityOpts = {
+    ability: Ability
+    caster: Unit
+    targets: Unit[]
+}
+
+export type dealDamageOpts = {
+    attacker: Unit
+    defender: Unit
+    tickEvents: any
+    historyStats: any
+    customColor?: string
+    customIcon?: string | undefined
+    isMagic?: boolean
+    isTrueDamage?: boolean
+    source?: string
+}
+
+export type healTargetOpts = {
+    target: Unit
+    caster: Unit
+    tickEvents: any
+    customColor?: string
+    customIcon?: string
+    historyStats: any
+    healSource: any
+}

@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
-        "dev": "cross-env NODE_ENV=development npx nodemon src/index.ts",
+        "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"
     },
     "nodemonConfig": {
@@ -29,11 +29,9 @@
     },
     "devDependencies": {
         "@types/http-proxy": "^1.16.2",
-        "@types/query-string": "^6.3.0",
         "@types/node": "^18.0.0",
-        "nodemon": "^3.0.1",
-        "ts-loader": "^9.4.4",
-        "ts-node": "^10.9.1",
+        "@types/query-string": "^6.3.0",
+        "tsx": "^3.12.8",
         "typescript": "^5.2.2"
     }
 }

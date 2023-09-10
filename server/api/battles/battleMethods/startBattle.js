@@ -520,15 +520,20 @@ export const startBattle = function ({
         newBattle.startingBossHp = health
     }
 
-    // Save battle
-    const actualBattleId = BattlesList.insert({
+    const battleListData = {
         owners: newBattle.owners,
-        group: currentGroup ? currentGroup._id : false,
         createdAt: new Date(),
         activated: false,
         isBigBoss: hasBoss && !newBattle.isOldBoss ? true : false,
         energyUse
-    })
+    }
+
+    if (currentGroup) {
+        battleListData.group = currentGroup._id
+    }
+
+    // Save battle
+    const actualBattleId = BattlesList.insert(battleListData)
 
     if (currentGroup) {
         Groups.update(

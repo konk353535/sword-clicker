@@ -856,6 +856,8 @@ Meteor.methods({
                 buff,
                 target: currentCombat
             })
+            // remove the constants key because we don't save it to mongo
+            delete buff.constants
         })
 
         // Save buff and stat changes

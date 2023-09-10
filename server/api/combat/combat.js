@@ -23,6 +23,12 @@ import { BATTLES } from "/server/constants/battles/index.js"
 import { COMBAT } from "/server/constants/combat/index.js"
 import { SKILLS } from "/server/constants/skills/index.js"
 
+// prevent amulet stats from polluting the base playerData.stats
+const amuletNoncomatStats = ["damage", "energyStorage", "energyRegen"]
+const isAmuletNoncombatStats = (slot, statKey) => {
+    return slot === "neck" && amuletNoncomatStats.includes(statKey)
+}
+
 export const updateCombatStats = function (userId, username, amuletChanged = false) {
     // Build up our object of skills
     const playerData = {
@@ -109,10 +115,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
                 })
             }
             Object.keys(itemStats).forEach((statKey) => {
-                if (playerData.stats[statKey] === undefined) {
-                    playerData.stats[statKey] = 0
+                if (!isAmuletNoncombatStats(combatItem.constants.slot, statKey)) {
+                    if (playerData.stats[statKey] === undefined) {
+                        playerData.stats[statKey] = 0
+                    }
+                    playerData.stats[statKey] += itemStats[statKey]
                 }
-                playerData.stats[statKey] += itemStats[statKey]
             })
 
             if (combatItem.constants.slot === "mainHand") {
@@ -420,6 +428,8 @@ Meteor.methods({
                     caster: buffCaster
                 })
             }
+            // remove the constants key because we don't save it to mongo
+            delete buff.constants
         })
 
         // To Do: Optimize this to only save changes (isDirty on buffs?)

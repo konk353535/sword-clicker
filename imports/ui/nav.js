@@ -45,9 +45,7 @@ Template.nav.onCreated(function bodyOnCreated() {
             } else {
                 Session.set("ngAutoMode", 0)
             }
-            console.log("uiState", myUser.uiState)
             if (myUser.uiState && myUser.uiState.darkMode !== undefined) {
-                console.log("have state, setting")
                 Session.set("darkModeEnabled", myUser.uiState.darkMode)
                 if (myUser.uiState.darkMode) {
                     // add class to html
@@ -56,7 +54,6 @@ Template.nav.onCreated(function bodyOnCreated() {
                     $("html").removeClass("dark")
                 }
             } else {
-                console.log("no state, using default")
                 Session.set("darkModeEnabled", true)
                 $("html").addClass("dark")
             }

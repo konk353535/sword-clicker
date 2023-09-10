@@ -15,4 +15,4 @@ mup.js
 
 build/
 server/battle-proxy/src/config.ts
-server/battle-node/serc/config.ts
+server/battle-node/src/config.ts

@@ -1,0 +1,26 @@
+services:
+  node:
+    build:
+      context: ./
+      dockerfile: battleNode.dockerfile
+    environment:
+        PORT: 3057
+    ports:
+        - 3057:3057
+    networks:
+        - app
+
+  proxy:
+    build:
+      context: ./
+      dockerfile: battleProxy.dockerfile
+    environment:
+        PORT: 3055
+    ports:
+        - 3055:3055
+    networks:
+        - app
+
+networks:
+  app:
+    driver: bridge

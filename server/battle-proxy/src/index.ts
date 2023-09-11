@@ -1,6 +1,8 @@
 import ConsistentHashing from "consistent-hashing"
 import http from "http"
 import httpProxy from "http-proxy"
+import https from "https"
+import fs from "node:fs"
 import type internal from "node:stream"
 import queryString from "query-string"
 import { z } from "zod"
@@ -186,7 +188,10 @@ function dropHttpConnection(
 // also you can use `proxy.ws()` to proxy a websockets request
 //
 
-const proxyServer = http.createServer(function (req, res) {
+const respFn = function (
+    req: http.IncomingMessage,
+    res: http.ServerResponse<http.IncomingMessage> & { req: http.IncomingMessage }
+) {
     try {
         const { queryData, targetServerId, targetServerUrl, denyConnection, connectionText, wantLog } =
             getConnectionValues(req)
@@ -211,7 +216,20 @@ const proxyServer = http.createServer(function (req, res) {
 
     dropHttpConnection(res)
     return false
-})
+}
+
+let proxyServer: ReturnType<typeof https.createServer> | ReturnType<typeof http.createServer>
+
+if (process.env.NODE_ENV === "production") {
+    const options = {
+        key: fs.readFileSync("/ssl/privkey.pem"),
+        cert: fs.readFileSync("/ssl/cert.pem")
+    }
+
+    proxyServer = https.createServer(options, respFn)
+} else {
+    proxyServer = http.createServer(respFn)
+}
 
 // Utility for disconnecting a Socket
 function dropWebsocketConnection(oSocket: internal.Duplex) {

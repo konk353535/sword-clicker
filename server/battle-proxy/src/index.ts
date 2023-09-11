@@ -222,8 +222,8 @@ let proxyServer: ReturnType<typeof https.createServer> | ReturnType<typeof http.
 
 if (process.env.NODE_ENV === "production") {
     const options = {
-        key: fs.readFileSync("/ssl/privkey.pem"),
-        cert: fs.readFileSync("/ssl/cert.pem")
+        key: fs.readFileSync("/ssl/privkey1.pem"),
+        cert: fs.readFileSync("/ssl/cert1.pem")
     }
 
     proxyServer = https.createServer(options, respFn)

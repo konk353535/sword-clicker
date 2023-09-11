@@ -1,6 +1,6 @@
 FROM node:18-bookworm-slim as base
 
-ARG PORT=3057
+ARG PORT=443
 EXPOSE ${PORT}
 
 WORKDIR /builder

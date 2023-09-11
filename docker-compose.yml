@@ -15,11 +15,11 @@ services:
       context: ./
       dockerfile: battleProxy.dockerfile
     environment:
-        PORT: 3057
+        PORT: 443
     volumes:
-      - /etc/letsencrypt/live/battle.eternitytower.net:/ssl
+      - /etc/letsencrypt/archive/battle.eternitytower.net:/ssl:ro
     ports:
-        - 3057:3057
+        - 443:443
     networks:
         - app
 

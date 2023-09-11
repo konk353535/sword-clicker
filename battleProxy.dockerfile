@@ -15,4 +15,4 @@ COPY --from=base ./builder/server/battle-proxy/build ./build
 COPY server/battle-proxy/package*.json ./
 RUN npm install --production
 
-CMD [ "node", "./build/server/battle-proxy/src/index.js" ]
+CMD [ "npm", "run", "prod" ]

@@ -50,6 +50,11 @@ Accounts.onLogin((accountConnection) => {
     }
 })
 
+if(process.env?.METEOR_STAGING == "true") {
+    var basicAuth = new HttpBasicAuth("admin", "wRa4Lu5GkRbPkaomaWE5");
+    basicAuth.protect();
+}
+
 Meteor.startup(() => {
     tx.logging = false // Disable transaction logging to console (very spammy): https://github.com/JackAdams/meteor-transactions
 

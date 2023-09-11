@@ -4,9 +4,9 @@ services:
       context: ./
       dockerfile: battleNode.dockerfile
     environment:
-        PORT: 3057
+        PORT: 3055
     ports:
-        - 3057:3057
+        - 3055:3055
     networks:
         - app
 
@@ -15,9 +15,9 @@ services:
       context: ./
       dockerfile: battleProxy.dockerfile
     environment:
-        PORT: 3055
+        PORT: 3057
     ports:
-        - 3055:3055
+        - 3057:3057
     networks:
         - app
 

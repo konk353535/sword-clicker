@@ -2,9 +2,9 @@
     "name": "battle-proxy",
     "version": "1.0.0",
     "description": "",
-    "type": "module",
     "scripts": {
-        "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
+        "start": "npm run build && cross-env NODE_ENV=production node --loader tsx build/index.js",
+        "prod": "cross-env NODE_ENV=production node --loader tsx build/index.js",
         "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"
     },
@@ -25,13 +25,13 @@
         "cross-env": "^7.0.3",
         "http-proxy": "^1.16.2",
         "query-string": "^8.1.0",
-        "zod": "^3.22.2"
+        "zod": "^3.22.2",
+        "tsx": "^3.12.8"
     },
     "devDependencies": {
         "@types/http-proxy": "^1.16.2",
         "@types/node": "^18.0.0",
         "@types/query-string": "^6.3.0",
-        "tsx": "^3.12.8",
         "typescript": "^5.2.2"
     }
 }

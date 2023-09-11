@@ -1,9 +1,8 @@
 {
   "name": "sword-clicker",
   "private": true,
-  "module": true,
   "scripts": {
-    "dev": "meteor run --settings settings-development.json",
+    "dev": "METEOR_STAGING=true meteor run --settings settings-development.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",

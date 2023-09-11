@@ -15,4 +15,4 @@ COPY --from=base ./builder/server/battle-node/build ./build
 COPY server/battle-node/package*.json ./
 RUN npm install --production
 
-CMD [ "node", "./build/server/battle-node/src/index.js" ]
+CMD [ "npm", "run", "prod" ]

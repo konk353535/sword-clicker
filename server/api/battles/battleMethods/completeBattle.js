@@ -568,6 +568,13 @@ export const completeBattle = function (actualBattle) {
   console.log(actualBattle);
   */
 
+    const allPlayerUnits = actualBattle.units.filter(
+        (unit) => !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
+    )
+    const aliveUnits = actualBattle.units.filter(
+        (unit) => unit.stats.health > 0 && !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
+    )
+
     let win = aliveUnits.length > 0
     let ngRewards = []
 
@@ -587,13 +594,6 @@ export const completeBattle = function (actualBattle) {
             chanceForTokens += (actualBattle.room / 3) * chanceForTokens // half the room x current chance, so F10R7 would be 29.167% vs only 4.167% for F10R1
         }
     }
-
-    const allPlayerUnits = actualBattle.units.filter(
-        (unit) => !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
-    )
-    const aliveUnits = actualBattle.units.filter(
-        (unit) => unit.stats.health > 0 && !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
-    )
 
     const hasCombatGlobalBuff = !_.isUndefined(
         State.findOne({ name: STATE_BUFFS.combat, "value.activeTo": { $gte: moment().toDate() } })

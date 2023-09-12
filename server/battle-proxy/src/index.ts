@@ -6,7 +6,7 @@ import fs from "node:fs"
 import type internal from "node:stream"
 import queryString from "query-string"
 import { z } from "zod"
-import { PORT, PROXY_HOST, SERVERS } from "./config"
+import { PORT, SERVERS } from "./config"
 
 const displayBlockedConnections = true
 const consistentHash = new ConsistentHashing(Object.keys(SERVERS))

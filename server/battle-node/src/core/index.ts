@@ -579,9 +579,38 @@ export default class Battle {
     }
 
     end() {
+        const auth: { username?: string; password?: string } = {}
+        if (process.env?.METEOR_STAGING == "true") {
+            const user = process.env?.BASIC_AUTH_USER
+            const pass = process.env?.BASIC_AUTH_PASS
+            if (user == null) {
+                // cleanup
+                const balancer = balancers[this.balancer]
+                if (balancer != null) {
+                    balancer.remove()
+                }
+                this.removeBattle(this.id, this.intervalId)
+                console.error("METEOR_STAGING is set as true, but no BASIC_AUTH_USER was provided")
+                return
+            } else if (pass == null) {
+                // cleanup
+                const balancer = balancers[this.balancer]
+                if (balancer != null) {
+                    balancer.remove()
+                }
+                this.removeBattle(this.id, this.intervalId)
+                console.error("METEOR_STAGING is set as true, but no BASIC_AUTH_PASS was provided")
+                return
+            }
+
+            auth.username = user
+            auth.password = pass
+        }
+
         request({
             method: "POST",
             uri: `${serverUrl}/methods/completeBattle`,
+            auth: auth,
             body: [
                 {
                     // only players!

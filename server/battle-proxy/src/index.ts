@@ -6,7 +6,7 @@ import fs from "node:fs"
 import type internal from "node:stream"
 import queryString from "query-string"
 import { z } from "zod"
-import { PORT, SERVERS } from "./config"
+import { PORT, PROXY_HOST, SERVERS } from "./config"
 
 const displayBlockedConnections = true
 const consistentHash = new ConsistentHashing(Object.keys(SERVERS))
@@ -227,6 +227,13 @@ if (process.env.NODE_ENV === "production") {
     }
 
     proxyServer = https.createServer(options, respFn)
+
+    // also set up a server to listen on port 80 and redirect to 443
+    http.createServer(function (req, res) {
+        res.setHeader("location", `https://${PROXY_HOST}`)
+        res.statusCode = 302
+        res.end()
+    }).listen(80)
 } else {
     proxyServer = http.createServer(respFn)
 }

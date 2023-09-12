@@ -3,10 +3,10 @@ services:
     build:
       context: ./
       dockerfile: battleNode.dockerfile
+      args:
+        PORT: 3055
     environment:
         PORT: 3055
-    ports:
-        - 3055:3055
     networks:
         - app
 
@@ -14,12 +14,15 @@ services:
     build:
       context: ./
       dockerfile: battleProxy.dockerfile
+      args:
+        PORT: 443
     environment:
         PORT: 443
     volumes:
       - /etc/letsencrypt/archive/battle.eternitytower.net:/ssl:ro
     ports:
         - 443:443
+        - 80:80
     networks:
         - app
 

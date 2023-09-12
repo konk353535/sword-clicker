@@ -3,3 +3,4 @@ export const SERVERS = {
     2: "http://localhost:3056"
 }
 export const PORT = 3057
+export const PROXY_HOST = "localhost"

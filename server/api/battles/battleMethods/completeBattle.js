@@ -568,6 +568,9 @@ export const completeBattle = function (actualBattle) {
   console.log(actualBattle);
   */
 
+    let win = aliveUnits.length > 0
+    let ngRewards = []
+
     // chance for companion tokens is 0%
     let chanceForTokens = 0
 
@@ -591,9 +594,6 @@ export const completeBattle = function (actualBattle) {
     const aliveUnits = actualBattle.units.filter(
         (unit) => unit.stats.health > 0 && !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
     )
-
-    let win = aliveUnits.length > 0
-    let ngRewards = []
 
     const hasCombatGlobalBuff = !_.isUndefined(
         State.findOne({ name: STATE_BUFFS.combat, "value.activeTo": { $gte: moment().toDate() } })

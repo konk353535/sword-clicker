@@ -230,7 +230,7 @@ if (process.env.NODE_ENV === "production") {
 
     // also set up a server to listen on port 80 and redirect to 443
     http.createServer(function (req, res) {
-        res.setHeader("location", `https://${PROXY_HOST}`)
+        res.setHeader("location", "https://battle.eternitytower.net")
         res.statusCode = 302
         res.end()
     }).listen(80)

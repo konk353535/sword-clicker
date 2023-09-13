@@ -76,6 +76,11 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     this.state.set("currentChat", "General")
     this.state.set("availableChats", AVAILABLE_CHATS)
 
+    // this.beep = this.data.beep != undefined ? this.data.beep : SimpleChat.options.beep
+    this.showViewed = true
+    this.showJoined = true
+    this.showReceived = true
+
     this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
 
     Tracker.autorun(() => {
@@ -165,6 +170,63 @@ Template.chatWindow.rendered = function () {
         // To do: add some kind of notification logic for Tab Heading?
     })
 }
+
+Template.chatWindow.onRendered(function () {
+    var self = this
+    self.endScroll = true
+    this.$(".direct-chat-messages").scroll(function (event) {
+        if (event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350) {
+            self.endScroll = true
+        } else {
+            self.endScroll = false
+        }
+    })
+    this.autorun(() => {
+        if (this.subscriptionsReady()) {
+            this.subscribing = false
+            /**
+             * the setTimeOut is to be sure that dom already update, and make the real calc of scroñ
+             */
+            this.$(".direct-chat-messages").scrollTop(this.$(".scroll-height")[0].scrollHeight - this.scroll)
+        } else {
+            this.subscribing = true
+            if (this.initializing)
+                Meteor.setTimeout(() => {
+                    this.initializing = false
+                    SimpleChat.scrollToEnd(this)
+                }, 50)
+        }
+    })
+    const username = Meteor.user().username
+    if (this.showViewed) {
+        const checkViewed = () => {
+            if (window.visivility == "visible") {
+                $(".notViewed")
+                    .filter(":onscreen")
+                    .each(function (i, o) {
+                        $(o).removeClass("notViewed")
+                        Meteor.call("SimpleChat.messageViewed", $(o).attr("id"), username, function (err) {
+                            if (err) $(o).addClass("notViewed")
+                        })
+                    })
+            }
+        }
+        $(window).on("resize scroll focus", checkViewed)
+        $(".direct-chat-messages").on("scroll", checkViewed)
+    }
+    $(window).on("SimpleChat.newMessage", (e, id, doc) => {
+        if (this.endScroll) {
+            SimpleChat.scrollToEnd(this)
+            if (this.beep && window.visivility == "hidden") {
+                new Audio("/packages/cesarve_simple-chat/assets/bell.mp3").play()
+            }
+        } else {
+            if (this.beep && username != doc.username) {
+                new Audio("/packages/cesarve_simple-chat/assets/bell.mp3").play()
+            }
+        }
+    })
+})
 
 Template.chatWindow.onDestroyed(function templateDestroyedFromDom() {
     // Have to stop this observer manually or we can leak memory!
@@ -410,6 +472,8 @@ Template.chatWindow.helpers({
     },
 
     hasMore: function () {
+        // note: this may need to be updated with the change to cursorLimitCount in
+        // https://guide.meteor.com/2.6-migration
         return (
             Chats.find(
                 {},

@@ -1,3 +1,6 @@
+import jquery from "jquery";
+export default (window.$ = window.jQuery = jquery);
+import "@fancyapps/fancybox"
 import "bootstrap"
 
 import "./main.html"

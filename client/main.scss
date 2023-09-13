@@ -1,6 +1,15 @@
+// these are fixes for fancybox, ref: https://www.denisbouquet.com/fancybox-sass-compile-error-max/
+@function max($numbers...) {
+    @return m#{a}x(#{$numbers})
+}
+    
+@function min($numbers...) {
+    @return m#{i}n(#{$numbers})
+}
 
 /* CSS declarations go here */
 @import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import "{}/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css";
 
 @import "iconFont.scss";
 @import "styles/colors.scss";

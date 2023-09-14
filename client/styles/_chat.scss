@@ -1,30 +1,34 @@
 // For Party, as it will be the parties id
-.direct-chat-text, .direct-chat-name, .chat-Party {
-  color: #0255cc !important;
+.direct-chat-text,
+.direct-chat-name,
+.chat-Party {
+    color: #0255cc !important;
 }
 
 .chat-General {
-  color: #000000 !important;
+    color: #000000 !important;
 }
 
 .chat-Server {
-  color: #449944 !important;
+    color: #449944 !important;
 }
 
 .chat-Help {
-  color: #EC7A50 !important;
+    color: #ec7a50 !important;
 }
 
 .chat-Game {
-  color: #D03020 !important;
+    color: #d03020 !important;
 }
 
 .chat-LFG {
-  color: #2FACC4 !important;
+    color: #2facc4 !important;
 }
 
-.chat-Offtopic, .chat-Dev, .chat-Announcements {
-  color: #8050C0 !important;
+.chat-Offtopic,
+.chat-Dev,
+.chat-Announcements {
+    color: #8050c0 !important;
 }
 
 body {
@@ -32,170 +36,164 @@ body {
         overflow: auto;
     }
 
-  .direct-chat-info {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    width: 100%;
-    white-space: nowrap;
-  }
-
-  .direct-chat-timestamp {
-    font-family: 'Courier';
-    font-size: 12px;
-    color: #999;
-    margin-left: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .direct-chat-msg {
-    margin-bottom: 0px;
-    display: block;
-
-    & > .direct-chat-text {
-      color: black;
+    .direct-chat-info {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        width: 100%;
+        white-space: nowrap;
     }
-  }
 
-  .direct-chat-messages {
-    display: flex;
-    flex: 1;
-    height: 290px;
-  }
-
-  .box-footer {
-    display: flex;
-    flex: 1;
-  }
-
-  .direct-chat-text {
-    margin: 0 !important;
-    border-radius: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    display: block;
-
-    &::after, &::before {
-      display: none;
+    .direct-chat-timestamp {
+        font-family: "Courier";
+        font-size: 12px;
+        color: #999;
+        margin-left: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
-  }
 
-  .direct-chat-text, .direct-chat-info {
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-  }
+    .direct-chat-msg {
+        margin-bottom: 0px;
+        display: block;
+
+        & > .direct-chat-text {
+            color: black;
+        }
+    }
+
+    .direct-chat-messages {
+        display: flex;
+        flex: 1;
+        height: 290px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-left: 6px;
+    }
+
+    .box-footer {
+        display: flex;
+        flex: 1;
+    }
+
+    .direct-chat-text {
+        margin: 0 !important;
+        border-radius: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        display: block;
+
+        &::after,
+        &::before {
+            display: none;
+        }
+    }
+
+    .direct-chat-text,
+    .direct-chat-info {
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+    }
 }
 
 .chat-container.minimized {
-  display: none;
-}
-
-.box-footer {
-  border-bottom: 1px solid #f4f4f4;
+    display: none;
 }
 
 .scroll-height {
-  width: 100%;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
-  .chat-container {
-    width: 550px;
-    // height: 370px;
-    position: fixed;
-    border: 1px solid $gray-lighter;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
-    background-color: white;
-    bottom: 0px;
-    right: 15px;
-    z-index: 15;
-  }
+    .chat-container {
+        width: 550px;
+        position: fixed;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+        background-color: white;
+        bottom: 0px;
+        right: 15px;
+        z-index: 15;
+    }
 
-  .btn-send {
-    margin-left: 10px;
-  }
+    .btn-send {
+        margin-left: 10px;
+    }
 
-  .chat-type-dropdown {
-    margin-right: 10px;
-  }
+    .chat-type-dropdown {
+        margin-right: 10px;
+    }
 }
 
 @media (max-width: 768px) {
-  .chat-container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    height: inherit;
-  }
+    .chat-container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        height: inherit;
+    }
 
-  .message-mobile-info {
-    padding: 0 10px 10px 10px;
-  }
+    .message-mobile-info {
+        padding: 0 10px 10px 10px;
+    }
 
-  body .box-footer {
-    flex-direction: column;
-    padding: 5px 0 0 0;
-  }
+    body .box-footer {
+        flex-direction: column;
+        padding: 5px 0 0 0;
+    }
 
-  #simple-chat-message {
-    border: 0;
-    display: flex;
-  }
+    #simple-chat-message {
+        border: 0;
+        display: flex;
+    }
 
-  body .box-body {
-    padding: 5px 10px 5px 10px;
-    overflow: hidden;
-    border-top: 1px solid #DFDFDF;
-  }
+    body .box-body {
+        padding: 5px 10px 5px 10px;
+        border-top: 1px solid #dfdfdf;
+    }
 }
 
 .chat-container.is-chat-page {
-  top: 80px;
-  left: 0;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  width: 100%;
-  height: calc(100% - 80px);
-  position: fixed;
-  border: 1px solid $gray-lighter;
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
-  background-color: white;
-  z-index: 15;
+    top: 80px;
+    left: 0;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 100%;
+    height: calc(100% - 80px);
+    position: fixed;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    z-index: 15;
 
-  & .direct-chat-messages {
-    height: calc(100vh - 160px)
-  }
+    & .direct-chat-messages {
+        height: calc(100vh - 120px);
+    }
 }
 
-
-
 body .maximize-icon {
-  cursor: pointer;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 1px solid $gray-lighter;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,0.15);
-  background-color: white;
-  pointer-events: all;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    background-color: white;
+    pointer-events: all;
 }
 
 body .minimize-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: white;
-  padding: 2px;
-  z-index: 50;
-  cursor: pointer;
-  pointer-events: all;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: white;
+    padding: 2px;
+    z-index: 50;
+    cursor: pointer;
+    pointer-events: all;
 }

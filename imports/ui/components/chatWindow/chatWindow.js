@@ -18,7 +18,7 @@ SimpleChat.scrollToEnd = function () {
     if ($(window).width() > 500) {
         Template.chatWindow.endScroll = true
         const messages = $(".direct-chat-messages")
-        messages.animate({ scrollTop: 100000 }, 300)
+        messages.animate({ scrollTop: 100000 }, { duration: 300, queue: false })
         messages.trigger("scroll")
     }
 }
@@ -76,12 +76,13 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
     this.state.set("currentChat", "General")
     this.state.set("availableChats", AVAILABLE_CHATS)
 
-    // this.beep = this.data.beep != undefined ? this.data.beep : SimpleChat.options.beep
-    this.showViewed = true
-    this.showJoined = true
-    this.showReceived = true
-
+    this.initializing = true
+    this.beep = SimpleChat.options?.beep ?? false
+    this.showViewed = SimpleChat.options?.showViewed ?? true
+    this.showJoined = SimpleChat.options?.showJoined ?? true
+    this.showReceived = SimpleChat.options?.showReceived ?? true
     this.limit = new ReactiveVar(this.limit || SimpleChat.options.limit)
+    this.increment = this.limit.get()
 
     Tracker.autorun(() => {
         let minimized = true
@@ -152,7 +153,8 @@ Template.chatWindow.rendered = function () {
     SimpleChat.scrollToEnd()
 
     this.$(".direct-chat-messages").scroll(function (event) {
-        Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350
+        Template.chatWindow.endScroll =
+            event.currentTarget.scrollHeight - event.currentTarget.scrollTop <= $(".scroll-height").height()
     })
 
     this.autorun(() => {
@@ -162,41 +164,6 @@ Template.chatWindow.rendered = function () {
         }
     })
 
-    $(window).on("SimpleChat.newMessage", (e, id, doc) => {
-        if (Template.chatWindow.endScroll) {
-            SimpleChat.scrollToEnd(this)
-        }
-
-        // To do: add some kind of notification logic for Tab Heading?
-    })
-}
-
-Template.chatWindow.onRendered(function () {
-    var self = this
-    self.endScroll = true
-    this.$(".direct-chat-messages").scroll(function (event) {
-        if (event.currentTarget.scrollHeight - event.currentTarget.scrollTop < 350) {
-            self.endScroll = true
-        } else {
-            self.endScroll = false
-        }
-    })
-    this.autorun(() => {
-        if (this.subscriptionsReady()) {
-            this.subscribing = false
-            /**
-             * the setTimeOut is to be sure that dom already update, and make the real calc of scroñ
-             */
-            this.$(".direct-chat-messages").scrollTop(this.$(".scroll-height")[0].scrollHeight - this.scroll)
-        } else {
-            this.subscribing = true
-            if (this.initializing)
-                Meteor.setTimeout(() => {
-                    this.initializing = false
-                    SimpleChat.scrollToEnd(this)
-                }, 50)
-        }
-    })
     const username = Meteor.user().username
     if (this.showViewed) {
         const checkViewed = () => {
@@ -214,19 +181,15 @@ Template.chatWindow.onRendered(function () {
         $(window).on("resize scroll focus", checkViewed)
         $(".direct-chat-messages").on("scroll", checkViewed)
     }
+
     $(window).on("SimpleChat.newMessage", (e, id, doc) => {
-        if (this.endScroll) {
+        if (Template.chatWindow.endScroll) {
             SimpleChat.scrollToEnd(this)
-            if (this.beep && window.visivility == "hidden") {
-                new Audio("/packages/cesarve_simple-chat/assets/bell.mp3").play()
-            }
-        } else {
-            if (this.beep && username != doc.username) {
-                new Audio("/packages/cesarve_simple-chat/assets/bell.mp3").play()
-            }
         }
+
+        // To do: add some kind of notification logic for Tab Heading?
     })
-})
+}
 
 Template.chatWindow.onDestroyed(function templateDestroyedFromDom() {
     // Have to stop this observer manually or we can leak memory!
@@ -483,5 +446,25 @@ Template.chatWindow.helpers({
                 }
             ).count() === Template.instance().limit.get()
         )
+    },
+
+    placeholder: function () {
+        return SimpleChat.options.texts.placeholder
+    },
+
+    button: function () {
+        return SimpleChat.options.texts.button
+    },
+
+    join: function () {
+        return SimpleChat.options.texts.join
+    },
+
+    left: function () {
+        return SimpleChat.options.texts.left
+    },
+
+    room: function () {
+        return SimpleChat.options.texts.room
     }
 })

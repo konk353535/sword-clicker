@@ -440,6 +440,10 @@ const battleHandler_DealBossDamage = function (actualBattle) {
         const bossId = FLOORS[actualBattle.floor].boss.enemy.id
         console.log("... bossId", bossId)
 
+        const allPlayerUnits = actualBattle.units.filter((unit) => {
+            return !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
+        })
+
         try {
             let liveBossStats = _.findWhere(allAliveEnemies, { monsterType: bossId })
             if (!liveBossStats || !liveBossStats.stats) {

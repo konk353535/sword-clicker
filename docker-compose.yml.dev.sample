@@ -7,8 +7,8 @@ services:
         HTTP_PORT: 3055
     environment:
         HTTP_PORT: 3055
-        METRIC_BASIC_AUTH_USER="abcd"
-        METRIC_BASIC_AUTH_PASS="efgh"
+        METRIC_BASIC_AUTH_USER: "abcd"
+        METRIC_BASIC_AUTH_PASS: "efgh"
     networks:
         - app
 
@@ -20,8 +20,8 @@ services:
         HTTP_PORT: 3057
     environment:
         HTTP_PORT: 3057
-        METRIC_BASIC_AUTH_USER="abcd"
-        METRIC_BASIC_AUTH_PASS="efgh"
+        METRIC_BASIC_AUTH_USER: "abcd"
+        METRIC_BASIC_AUTH_PASS: "efgh"
     ports:
         - 3057:3057
     networks:

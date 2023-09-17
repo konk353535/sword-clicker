@@ -1,0 +1,45 @@
+services:
+  node:
+    build:
+      context: ./
+      dockerfile: battleNode.dockerfile
+      args:
+        HTTP_PORT: 3055
+    environment:
+        NODE_ENV: "production"
+        HTTP_PORT: 3055
+        METEOR_STAGING=true
+        METEOR_BASIC_AUTH_USER="abcd"
+        METEOR_BASIC_AUTH_PASS="efgh"
+        METRIC_BASIC_AUTH_USER="abcd"
+        METRIC_BASIC_AUTH_PASS="efgh"
+    ports:
+        - 3055:3055
+    networks:
+        - app
+
+  proxy:
+    build:
+      context: ./
+      dockerfile: battleProxy.dockerfile
+      args:
+        HTTP_PORT: 80
+        HTTPS_PORT: 443
+    environment:
+        NODE_ENV: "production"
+        HTTP_PORT: 80
+        HTTPS_PORT: 443
+        SERVERS="http://node:3055"
+        METRIC_BASIC_AUTH_USER="abcd"
+        METRIC_BASIC_AUTH_PASS="efgh"
+    volumes:
+      - /etc/letsencrypt/archive/battle.eternitytower.net:/ssl:ro
+    ports:
+        - 443:443
+        - 80:80
+    networks:
+        - app
+
+networks:
+  app:
+    driver: bridge

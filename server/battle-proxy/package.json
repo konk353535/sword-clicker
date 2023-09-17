@@ -5,6 +5,7 @@
     "scripts": {
         "start": "npm run build && cross-env NODE_ENV=production node --loader tsx build/index.js",
         "prod": "cross-env NODE_ENV=production node --loader tsx build/index.js",
+        "devTracing": "cross-env tsx watch --clear-screen=false -r ./src/tracing.ts src/index.ts",
         "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"
     },
@@ -21,12 +22,32 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@opentelemetry/api": "^1.6.0",
+        "@opentelemetry/auto-instrumentations-node": "^0.39.2",
+        "@opentelemetry/context-zone": "^1.17.0",
+        "@opentelemetry/exporter-collector": "^0.25.0",
+        "@opentelemetry/exporter-metrics-otlp-proto": "^0.43.0",
+        "@opentelemetry/exporter-trace-otlp-http": "^0.43.0",
+        "@opentelemetry/exporter-trace-otlp-proto": "^0.43.0",
+        "@opentelemetry/instrumentation": "^0.43.0",
+        "@opentelemetry/instrumentation-fetch": "^0.43.0",
+        "@opentelemetry/resources": "^1.17.0",
+        "@opentelemetry/sdk-metrics": "^1.17.0",
+        "@opentelemetry/sdk-node": "^0.43.0",
+        "@opentelemetry/sdk-trace-base": "^1.17.0",
+        "@opentelemetry/sdk-trace-web": "^1.17.0",
         "consistent-hashing": "^0.3.0",
         "cross-env": "^7.0.3",
+        "dotenv": "^16.3.1",
+        "envalid": "^7.3.1",
+        "express": "^4.18.2",
+        "express-basic-auth": "^1.2.1",
         "http-proxy": "^1.16.2",
+        "http-proxy-middleware": "^2.0.6",
+        "prom-client": "^14.2.0",
         "query-string": "^8.1.0",
-        "zod": "^3.22.2",
-        "tsx": "^3.12.8"
+        "tsx": "^3.12.8",
+        "zod": "^3.22.2"
     },
     "devDependencies": {
         "@types/http-proxy": "^1.16.2",

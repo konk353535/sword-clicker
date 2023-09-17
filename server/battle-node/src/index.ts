@@ -1,11 +1,26 @@
 import bodyParser from "body-parser"
 import cors from "cors"
 import express from "express"
+import basicAuth from "express-basic-auth"
 import { Server as AppServer } from "http"
 import internal from "node:stream"
+import client from "prom-client"
 import { Server, Socket } from "socket.io"
-import { isDev, port, serverUrl } from "./config"
 import Battle, { Balancer, balancers } from "./core"
+import { env, validateEnv } from "./validateEnv"
+
+validateEnv()
+
+// Create a Registry which registers the metrics
+const register = new client.Registry()
+
+// Add a default label which is added to all metrics
+register.setDefaultLabels({
+    app: "battle-node"
+})
+
+// Enable the collection of default metrics
+client.collectDefaultMetrics({ register })
 
 const isSioSocket = (value: any): value is Socket => {
     return value != null && value.hasOwnProperty("client") && value.client != null
@@ -27,6 +42,21 @@ function dropWebsocketConnection(oSocket: internal.Duplex | Socket) {
 
 const app = express()
 
+const securedRoutes = express.Router()
+securedRoutes.use(
+    basicAuth({
+        users: { [env.METRIC_BASIC_AUTH_USER]: env.METRIC_BASIC_AUTH_PASS },
+        challenge: true
+    })
+)
+
+app.use("/metrics", securedRoutes)
+
+app.get("/metrics", async (req, res) => {
+    res.setHeader("Content-Type", register.contentType)
+    res.end(await register.metrics())
+})
+
 var server = new AppServer(app)
 var io = new Server(server, {
     serveClient: false // https://socket.io/docs/v4/server-options/#serveclient
@@ -34,13 +64,13 @@ var io = new Server(server, {
 
 const battles: { [k in string]: Battle } = {}
 let corsOptions = {
-    origin: serverUrl,
+    origin: env.SERVER_URL,
     credentials: true
 }
 
-if (isDev) {
+if (env.NODE_ENV === "development") {
     corsOptions = {
-        origin: serverUrl,
+        origin: env.SERVER_URL,
         credentials: true
     }
 }
@@ -242,4 +272,4 @@ server.on("clientError", function (err, socket) {
     dropWebsocketConnection(socket)
 })
 
-server.listen(port)
+server.listen(env.HTTP_PORT, "0.0.0.0")

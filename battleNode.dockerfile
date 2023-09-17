@@ -1,7 +1,7 @@
 FROM node:18-bookworm-slim as base
 
-ARG PORT=3055
-EXPOSE ${PORT}
+ARG HTTP_PORT=3055
+EXPOSE ${HTTP_PORT}
 
 WORKDIR /builder
 COPY . .

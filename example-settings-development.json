@@ -1,18 +1,20 @@
 {
-  "kadira": {
-    "KADIRA_PROFILE_LOCALLY": true
-  },
-  "redisConfigureKeyspaceNotifications": 1,
-  "public": {
-    "battleUrl": "http://localhost:3100",
-    "stripe": "-or-this"
-  },
-  "galaxy.meteor.com": {
-    "env": {
-      "MAIL_URL": "probs-dont-needthis-"
+    "redisConfigureKeyspaceNotifications": 1,
+    "public": {
+        "battleUrl": "http://localhost:3057",
+        "stripe": "-or-this"
+    },
+    "shared": {
+        "maxFloor": 25
+    },
+    "private": {
+        "stripe": "-or-this"
+    },
+    "packages": {
+        "email": {
+            "service": "-or-this",
+            "user": "-or-this",
+            "password": "-or-this"
+        }
     }
-  },
-  "private": {
-    "stripe": "-or-this"
-  }
 }

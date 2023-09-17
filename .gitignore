@@ -14,5 +14,4 @@ settings-old-2.json
 mup.js
 
 build/
-server/battle-proxy/src/config.ts
-server/battle-node/src/config.ts
+.env

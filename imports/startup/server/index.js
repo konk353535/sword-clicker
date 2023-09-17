@@ -42,6 +42,7 @@ import "/server/api/friends/friends.js"
 import "/server/api/groups/groups.js"
 import "/server/api/inscription/inscription.js"
 import "/server/api/items/items.js"
+import "/server/api/metrics/metrics.js"
 import "/server/api/mining/mining.js"
 import "/server/api/server/server.js"
 import "/server/api/shop/shop.js"
@@ -482,7 +483,6 @@ Accounts.validateNewUser((user) => {
         let nameScreener2 = nameScreener1
         nameScreener1 = nameScreener1.replace(/1/g, "i")
         nameScreener2 = nameScreener2.replace(/1/g, "l")
-
         ;[
             "jesus",
             "allah",

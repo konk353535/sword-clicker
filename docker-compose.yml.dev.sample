@@ -4,9 +4,11 @@ services:
       context: ./
       dockerfile: battleNode.dockerfile
       args:
-        PORT: 3055
+        HTTP_PORT: 3055
     environment:
-        PORT: 3055
+        HTTP_PORT: 3055
+        METRIC_BASIC_AUTH_USER="abcd"
+        METRIC_BASIC_AUTH_PASS="efgh"
     networks:
         - app
 
@@ -15,14 +17,13 @@ services:
       context: ./
       dockerfile: battleProxy.dockerfile
       args:
-        PORT: 443
+        HTTP_PORT: 3057
     environment:
-        PORT: 443
-    volumes:
-      - /etc/letsencrypt/archive/battle.eternitytower.net:/ssl:ro
+        HTTP_PORT: 3057
+        METRIC_BASIC_AUTH_USER="abcd"
+        METRIC_BASIC_AUTH_PASS="efgh"
     ports:
-        - 443:443
-        - 80:80
+        - 3057:3057
     networks:
         - app
 

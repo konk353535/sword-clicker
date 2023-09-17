@@ -5,13 +5,13 @@ import request from "request-promise"
 
 import { Server } from "socket.io"
 import { addBuff } from "../../../battleUtils.js"
-import { serverUrl } from "../config.js"
 import { battleAction } from "../types/battleAction.js"
 import { HistoryStats } from "../types/historyStats.js"
 import { unit } from "../types/unit.js"
 import { lookupMetalTier } from "../utils/lookupMetalTier.js"
 import { lookupOreTier } from "../utils/lookupOreTier.js"
 import { lookupWoodTier } from "../utils/lookupWoodTier.js"
+import { env } from "../validateEnv"
 import { TICK_DURATION, autoAttack } from "./autoAttack.js"
 import { castAbility } from "./castAbility.js"
 import { checkDeath } from "./checkDeath.js"
@@ -579,38 +579,9 @@ export default class Battle {
     }
 
     end() {
-        const auth: { username?: string; password?: string } = {}
-        if (process.env?.METEOR_STAGING == "true") {
-            const user = process.env?.BASIC_AUTH_USER
-            const pass = process.env?.BASIC_AUTH_PASS
-            if (user == null) {
-                // cleanup
-                const balancer = balancers[this.balancer]
-                if (balancer != null) {
-                    balancer.remove()
-                }
-                this.removeBattle(this.id, this.intervalId)
-                console.error("METEOR_STAGING is set as true, but no BASIC_AUTH_USER was provided")
-                return
-            } else if (pass == null) {
-                // cleanup
-                const balancer = balancers[this.balancer]
-                if (balancer != null) {
-                    balancer.remove()
-                }
-                this.removeBattle(this.id, this.intervalId)
-                console.error("METEOR_STAGING is set as true, but no BASIC_AUTH_PASS was provided")
-                return
-            }
-
-            auth.username = user
-            auth.password = pass
-        }
-
-        request({
+        const req: any = {
             method: "POST",
-            uri: `${serverUrl}/methods/completeBattle`,
-            auth: auth,
+            uri: `${env.SERVER_URL}/methods/completeBattle`,
             body: [
                 {
                     // only players!
@@ -640,7 +611,16 @@ export default class Battle {
                 "dqv$dYT65YrU%s"
             ],
             json: true
-        })
+        }
+
+        if (env.METEOR_STAGING == true) {
+            req.auth = {
+                username: env.METEOR_BASIC_AUTH_USER,
+                password: env.METEOR_BASIC_AUTH_PASS
+            }
+        }
+
+        request(req)
         const balancer = balancers[this.balancer]
         if (balancer != null) {
             balancer.remove()

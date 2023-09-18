@@ -8,7 +8,12 @@
         "maxFloor": 25
     },
     "private": {
-        "stripe": "-or-this"
+        "stripe": "-or-this",
+        "METEOR_STAGING": false,
+        "METEOR_BASIC_AUTH_USER": "abcd",
+        "METEOR_BASIC_AUTH_PASS": "efgh",
+        "METRIC_BASIC_AUTH_USER": "abcd",
+        "METRIC_BASIC_AUTH_PASS": "efgh"
     },
     "packages": {
         "email": {

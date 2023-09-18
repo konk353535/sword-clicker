@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor"
 import moment from "moment/moment"
 import uuid from "node-uuid"
 import _ from "underscore"
+import { env } from "/server/validateEnv"
 
 import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { Battles, BattlesList } from "/imports/api/battles/battles"
@@ -353,7 +354,7 @@ SyncedCron.add({
                             distributeRewards({ floor: currentFloor.floor, server: currentFloor.server })
 
                             // Notify general chat
-                            if (currentFloor.floor === Meteor.settings.shared.maxFloor) {
+                            if (currentFloor.floor === env.MAX_FLOOR) {
                                 Chats.insert({
                                     message: `The boss on floor ${currentFloor.floor} has been defeated!
                 THE TOWER HAS BEEN COMPLETED!`,

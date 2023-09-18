@@ -1,6 +1,8 @@
-// import "./tracing"
-
 import { Meteor } from "meteor/meteor"
+import { env, validateEnv } from "./validateEnv"
+
+validateEnv()
+
 // import { Migrations } from 'meteor/percolate:migrations';
 import "/imports/startup/both"
 import "/imports/startup/server"
@@ -52,14 +54,8 @@ Accounts.onLogin((accountConnection) => {
     }
 })
 
-if (process.env?.METEOR_STAGING == "true") {
-    if (process.env.BASIC_AUTH_USER == null) {
-        throw new Error("METEOR_STAGING is set as true, but no BASIC_AUTH_USER was provided")
-    } else if (process.env.BASIC_AUTH_PASS == null) {
-        throw new Error("METEOR_STAGING is set as true, but no BASIC_AUTH_PASS was provided")
-    }
-
-    var basicAuth = new HttpBasicAuth(process.env.BASIC_AUTH_USER, process.env.BASIC_AUTH_PASS)
+if (env.METEOR_STAGING === true) {
+    var basicAuth = new HttpBasicAuth(env.METEOR_BASIC_AUTH_USER, env.METEOR_BASIC_AUTH_PASS)
     basicAuth.protect()
 }
 

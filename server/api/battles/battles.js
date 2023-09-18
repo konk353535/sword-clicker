@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import moment from "moment"
 import _ from "underscore"
+import { env } from "/server/validateEnv"
 
 import { CInt } from "/imports/utils.js"
 
@@ -27,15 +28,16 @@ const setBattleAgain = function (floor, room) {
 const MAX_FLOOR_FAILSAFE = 27
 
 const serverMaxFloor = function serverMaxFloor() {
-    try {
-        if (Meteor && Meteor.settings && Meteor.settings.shared && Meteor.settings.shared.maxFloor) {
-            const maxFloorRead = CInt(Meteor.settings.shared.maxFloor)
-            if (maxFloorRead === 0) {
-                return MAX_FLOOR_FAILSAFE
-            }
-        }
-    } catch (err) {}
-    return MAX_FLOOR_FAILSAFE
+    // try {
+    //     if (Meteor && Meteor.settings && Meteor.settings.shared && Meteor.settings.shared.maxFloor) {
+    //         const maxFloorRead = CInt(Meteor.settings.shared.maxFloor)
+    //         if (maxFloorRead === 0) {
+    //             return MAX_FLOOR_FAILSAFE
+    //         }
+    //     }
+    // } catch (err) {}
+    // return MAX_FLOOR_FAILSAFE
+    return env.MAX_FLOOR
 }
 
 Meteor.methods({

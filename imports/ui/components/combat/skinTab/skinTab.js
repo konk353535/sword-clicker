@@ -63,7 +63,7 @@ Template.skinTab.helpers({
             owner: Meteor.userId()
         })
 
-        const availableIcons = ["default", "mage_t1", "tank_t1", "damage_t1"]
+        const availableIcons = ["default", "mage_t1", "tank_t1", "damage_t1", "archer_t1"]
             .concat(myCombat.boughtIcons)
             .concat(myCombat.bonusIcons)
 

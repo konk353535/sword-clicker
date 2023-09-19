@@ -5,21 +5,21 @@
       <div class="d-flex align-items-center mb-1">
         <h3 class="mb-0 mr-auto">All Items</h3>
         {{#if sellItems}}
-          <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
-          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
-          <i class="material-icons multiSellCancel">clear</i>
+          {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiSellConfirm" icon="shopping_cart" title="Multi-Sell Confirm" content=multiSellConfirmHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiSellSelectAll" icon="done_all" style="color: orange;" title="Multi-Sell Select All" content=multiSelectHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiSellCancel" icon="clear" title="Multi-Sell Cancel" content=multiCancelHelp }}
         {{else if showItems}}
-          <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
-          <i class="material-icons multiShowSelectAll" style="color: orange;">done_all</i>
-          <i class="material-icons multiShowCancel">clear</i>
+          {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiShowConfirm" icon="unarchive" title="Multi-Show Confirm" content=multiShowConfirmHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiShowSelectAll" icon="done_all" style="color: orange;" title="Multi-Show Select All" content=multiSelectHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiShowCancel" icon="clear" title="Multi-Show Cancel" content=multiCancelHelp }}
         {{else if hideItems}}
-          <i class="material-icons icon-danger multiHideConfirm">archive</i>
-          <i class="material-icons multiHideSelectAll" style="color: orange;">done_all</i>
-          <i class="material-icons multiHideCancel">clear</i>
+          {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiHideConfirm" icon="archive" title="Multi-Hide Confirm" content=multiHideConfirmHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiHideSelectAll" icon="done_all" style="color: orange;" title="Multi-Hide Select All" content=multiSelectHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiHideCancel" icon="clear" title="Multi-Hide Cancel" content=multiCancelHelp }}
         {{else if lockItems}}
-          <i class="material-icons icon-danger multiLockConfirm">lock</i>
-          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
-          <i class="material-icons multiLockCancel">clear</i>
+          {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiLockConfirm" icon="lock" title="Multi-Lock Confirm" content=multiLockConfirmHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiLockSelectAll" icon="done_all" style="color: orange;" title="Multi-Lock Select All" content=multiSelectHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiLockCancel" icon="clear" title="Multi-Lock Cancel" content=multiCancelHelp }}
         {{else}}
           {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
           {{> iconWithTooltip materialIcon=true classes="material-icons multiShowStart" icon="unarchive" title="Multi-Show" content=multiShowHelp }}
@@ -39,17 +39,17 @@
         <div class="d-flex align-items-center mb-1">
           <h3 class="mb-0 mr-auto">Visible Items</h3>
           {{#if sellItems}}
-            <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
-          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiSellCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiSellConfirm" icon="shopping_cart" title="Multi-Sell Confirm" content=multiSellConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellSelectAll" icon="done_all" style="color: orange;" title="Multi-Sell Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellCancel" icon="clear" title="Multi-Sell Cancel" content=multiCancelHelp }}
           {{else if hideItems}}
-            <i class="material-icons icon-danger multiHideConfirm">archive</i>
-          <i class="material-icons multiHideSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiHideCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiHideConfirm" icon="archive" title="Multi-Hide Confirm" content=multiHideConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiHideSelectAll" icon="done_all" style="color: orange;" title="Multi-Hide Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiHideCancel" icon="clear" title="Multi-Hide Cancel" content=multiCancelHelp }}
           {{else if lockItems}}
-            <i class="material-icons icon-danger multiLockConfirm">lock</i>
-          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiLockCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiLockConfirm" icon="lock" title="Multi-Lock Confirm" content=multiLockConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockSelectAll" icon="done_all" style="color: orange;" title="Multi-Lock Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockCancel" icon="clear" title="Multi-Lock Cancel" content=multiCancelHelp }}
           {{else}}
             {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
             {{> iconWithTooltip materialIcon=true classes="material-icons multiHideStart" icon="archive" title="Multi-Hide" content=multiHideHelp }}
@@ -69,17 +69,17 @@
         <div class="d-flex align-items-center mb-1">
           <h3 class="mb-0 mr-auto">Hidden Items</h3>
           {{#if sellItems}}
-            <i class="material-icons icon-danger multiSellConfirm">shopping_cart</i>
-          <i class="material-icons multiSellSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiSellCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiSellConfirm" icon="shopping_cart" title="Multi-Sell Confirm" content=multiSellConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellSelectAll" icon="done_all" style="color: orange;" title="Multi-Sell Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellCancel" icon="clear" title="Multi-Sell Cancel" content=multiCancelHelp }}
           {{else if showItems}}
-            <i class="material-icons icon-danger multiShowConfirm">unarchive</i>
-          <i class="material-icons multiShowSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiShowCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiShowConfirm" icon="unarchive" title="Multi-Show Confirm" content=multiShowConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiShowSelectAll" icon="done_all" style="color: orange;" title="Multi-Show Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiShowCancel" icon="clear" title="Multi-Show Cancel" content=multiCancelHelp }}
           {{else if lockItems}}
-            <i class="material-icons icon-danger multiLockConfirm">lock</i>
-          <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
-            <i class="material-icons multiLockCancel">clear</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons icon-danger multiLockConfirm" icon="lock" title="Multi-Lock Confirm" content=multiLockConfirmHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockSelectAll" icon="done_all" style="color: orange;" title="Multi-Lock Select All" content=multiSelectHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockCancel" icon="clear" title="Multi-Lock Cancel" content=multiCancelHelp }}
           {{else}}
             {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
             {{> iconWithTooltip materialIcon=true classes="material-icons multiShowStart" icon="unarchive" title="Multi-Show" content=multiShowHelp }}

@@ -21,7 +21,6 @@ module.exports = {
         },
 
         env: {
-            redisConfigureKeyspaceNotifications: 1,
             deployCheckWaitTime: 60,
             ROOT_URL: "https://eternitytower.net",
             MONGO_URL: "<mongo_connection_string>"

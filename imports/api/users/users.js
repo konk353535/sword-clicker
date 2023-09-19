@@ -141,7 +141,7 @@ UserSchema = new SimpleSchema({
     floor: { type: Number, defaultValue: 1 },
 
     gems: { type: Number, defaultValue: 0 },
-    fakeGems: { type: Number, defaultValue: 0 },
+    fakeGems: { type: Number, defaultValue: 200 },
     fakeGemsToday: { type: Number, defaultValue: 0 },
 
     battleSecret: { type: String },

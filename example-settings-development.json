@@ -1,5 +1,4 @@
 {
-    "redisConfigureKeyspaceNotifications": 1,
     "public": {
         "battleUrl": "http://localhost:3057",
         "stripe": "-or-this"

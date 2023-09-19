@@ -4,7 +4,7 @@ export const GOLD_ITEMS = {
         icon: "polishedStone.svg",
         category: "crafting",
         name: "polished stone",
-        sellPrice: 20,
+        sellPrice: 30,
         description: "Can be sold for a tidy sum"
     },
 
@@ -13,7 +13,7 @@ export const GOLD_ITEMS = {
         icon: "copperSculpture.svg",
         category: "crafting",
         name: "copper sculpture",
-        sellPrice: 30,
+        sellPrice: 45,
         description: "Can be sold for a tidy sum"
     },
 
@@ -22,7 +22,7 @@ export const GOLD_ITEMS = {
         icon: "polishedTin.svg",
         category: "crafting",
         name: "polished tin",
-        sellPrice: 40,
+        sellPrice: 100,
         description: "Can be sold for a tidy sum"
     },
 
@@ -31,7 +31,7 @@ export const GOLD_ITEMS = {
         icon: "bronzeSculpture.svg",
         category: "crafting",
         name: "bronze sculpture",
-        sellPrice: 75,
+        sellPrice: 125,
         description: "Can be sold for a tidy sum"
     },
 

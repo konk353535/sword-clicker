@@ -351,7 +351,7 @@ export const getAvailablePlayerIcons = function getAvailablePlayerIcons(combatDo
     }
 
     let local_PLAYER_ICONS = PLAYER_ICONS
-    let availableIcons = ["default", "mage_t1", "tank_t1", "damage_t1"]
+    let availableIcons = ["default", "mage_t1", "tank_t1", "damage_t1", "archer_t1"]
     let local_bonusIcons
 
     if (combatDoc.bonusIcons) {

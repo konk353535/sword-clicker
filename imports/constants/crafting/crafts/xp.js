@@ -24,7 +24,7 @@ export const XP_CRAFTS = {
             }
         ],
         timeToCraft: 120,
-        xp: 10,
+        xp: 30,
         maxToCraft: 5
     },
 
@@ -51,7 +51,7 @@ export const XP_CRAFTS = {
             }
         ],
         timeToCraft: 60,
-        xp: 3,
+        xp: 10,
         maxToCraft: 100
     },
 
@@ -78,7 +78,7 @@ export const XP_CRAFTS = {
             }
         ],
         timeToCraft: 60,
-        xp: 10,
+        xp: 15,
         maxToCraft: 100
     },
 
@@ -105,7 +105,7 @@ export const XP_CRAFTS = {
             }
         ],
         timeToCraft: 120,
-        xp: 30,
+        xp: 50,
         maxToCraft: 5
     },
 

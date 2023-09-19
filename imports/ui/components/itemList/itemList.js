@@ -223,5 +223,29 @@ Template.itemList.helpers({
 
     multiLockHelp() {
         return `<p>Select to enable multi-lock mode, where you can select multiple items to lock at once.</p>`
+    },
+
+    multiSelectHelp() {
+        return `<p>Click to auto-select all items.</p>`
+    },
+
+    multiCancelHelp() {
+        return `<p>Click to cancel this action.</p>`
+    },
+
+    multiSellConfirmHelp() {
+        return `<p>Click to sell the selected items.</p>`
+    },
+
+    multiShowConfirmHelp() {
+        return `<p>Click to show the selected items.</p>`
+    },
+
+    multiHideConfirmHelp() {
+        return `<p>Click to hide the selected items.</p>`
+    },
+
+    multiLockConfirmHelp() {
+        return `<p>Click to lock the selected items.</p>`
     }
 })

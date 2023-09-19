@@ -6,12 +6,14 @@ import { State } from "/imports/api/state/state"
 import { Users } from "/imports/api/users/users"
 
 import { STATE_BUFFS } from "/imports/constants/state"
+import { PLAYER_ICONS } from "/imports/constants/shop"
 
 import { activateGlobalBuff, getActiveGlobalBuff, getGlobalBuff } from "/imports/api/globalbuffs/globalbuffs"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { addItem, addRealGems, consumeGems, consumeOnlyRealGems, hasGems } from "/server/api/items/items.js"
 
 import _ from "underscore"
+import lodash from "lodash"
 
 const stripe = require("stripe")(Meteor.settings.private.stripe)
 
@@ -176,14 +178,12 @@ Meteor.methods({
 
     "shop.buyIcon"(iconId) {
         const validIcons = [
-            { id: "mage_t1", cost: 150 },
-            { id: "mage_t2", cost: 300 },
-            { id: "phoenix_t2", cost: 300 },
-            { id: "crow_t2", cost: 300 },
-            { id: "damage_t1", cost: 150 },
-            { id: "damage_t2", cost: 300 },
-            { id: "tank_t1", cost: 150 },
-            { id: "tank_t2", cost: 300 }
+            { id: "tank_pack", cost: 300 },
+            { id: "damage_pack", cost: 300 },
+            { id: "archer_pack", cost: 300 },
+            { id: "mage_pack", cost: 300 },
+            { id: "crow_pack", cost: 300 },
+            { id: "phoenix_pack", cost: 300 }
         ]
 
         const iconToBuy = _.findWhere(validIcons, { id: iconId })
@@ -200,35 +200,32 @@ Meteor.methods({
             owner: Meteor.userId()
         })
 
-        if (userCombat.boughtIcons && _.contains(userCombat.boughtIcons, iconToBuy.id)) {
-            throw new Meteor.Error("already-own", "Already own that icon")
-        }
+        // construct an object that contains the icons from the pack
+        const packIcons = lodash.pickBy(PLAYER_ICONS, (icon) => {
+            return icon.group === iconId
+        })
+        const ownedIcons = userCombat.boughtIcons ?? []
 
-        if (userCombat.bonusIcons && _.contains(userCombat.bonusIcons, iconToBuy.id)) {
-            throw new Meteor.Error("already-own", "Already own that icon")
+        // find the difference from the ones in the pack compared to the ones already owned
+        // and get the IDs of those new icons to award
+        const iconsToAdd = Object.keys(lodash.pickBy(packIcons, (icon, name) => !ownedIcons.includes(name)))
+
+        if (iconsToAdd.length === 0) {
+            // no new icons to add, abort
+            throw new Meteor.Error("already-own", "Already own those icons")
         }
 
         if (consumeGems(iconToBuy.cost, Meteor.user())) {
             // Add the icon
             if (!userCombat.boughtIcons) {
-                userCombat.boughtIcons = [iconToBuy.id]
+                userCombat.boughtIcons = iconsToAdd
             } else {
-                userCombat.boughtIcons.push(iconToBuy.id)
+                userCombat.boughtIcons.push(...iconsToAdd)
             }
         }
 
         if (!userCombat.bonusIcons) {
             userCombat.bonusIcons = []
-        }
-
-        if (iconToBuy.id === "crow_t2") {
-            if (!_.contains(userCombat.boughtIcons, "crow_t1") && !_.contains(userCombat.bonusIcons, "crow_t1")) {
-                userCombat.boughtIcons.push("crow_t1")
-            }
-        } else if (iconToBuy.id === "phoenix_t2") {
-            if (!_.contains(userCombat.boughtIcons, "phoenix_t1") && !_.contains(userCombat.bonusIcons, "phoenix_t1")) {
-                userCombat.boughtIcons.push("phoenix_t1")
-            }
         }
 
         // Update combat

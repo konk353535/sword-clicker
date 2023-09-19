@@ -118,6 +118,14 @@ export const TOWER_FLOOR_15 = {
                 {
                     chance: 1 / 64,
                     rewards: [{ type: "item", itemId: "accuracy_up_5_tome", amount: 1 }]
+                },
+                {
+                    chance: 1 / 24,
+                    rewards: [{ type: "icon", iconId: "damage_t2" }]
+                },
+                {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "damage_t2_color" }]
                 }
             ])
         )

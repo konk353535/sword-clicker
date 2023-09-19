@@ -58,5 +58,9 @@ export const LEVEL_ONE_LOOT_TABLE = orderLootTable([
             { type: "item", itemId: "polished_stone", amount: 1 },
             { type: "item", itemId: "polished_stone", amount: 2 }
         ]
+    },
+    {
+        chance: 1 / 36,
+        rewards: [{ type: "icon", iconId: "damage_t1_color" }]
     }
 ])

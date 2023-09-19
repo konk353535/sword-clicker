@@ -29,6 +29,14 @@ export const TOWER_FLOOR_10 = {
                 {
                     chance: 1 / 128,
                     rewards: [{ type: "item", itemId: "titanium_knife", amount: 1 }]
+                },
+                {
+                    chance: 1 / 24,
+                    rewards: [{ type: "icon", iconId: "hiti_t1" }]
+                },
+                {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "hiti_t1_color" }]
                 }
             ])
         )

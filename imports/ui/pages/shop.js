@@ -32,12 +32,12 @@ Template.shopPage.events({
         const iconId = instance.$(event.target).closest(".buy-icon").data("icon-id")
 
         const costs = {
-            mage_t1: 150,
-            mage_t2: 300,
-            damage_t1: 150,
-            damage_t2: 300,
-            tank_t1: 150,
-            tank_t2: 300
+            tank_pack: 300,
+            damage_pack: 300,
+            archer_pack: 300,
+            mage_pack: 300,
+            crow_pack: 300,
+            phoenix_pack: 300
         }
 
         if (Meteor.user().gems + Meteor.user().fakeGems < costs[iconId]) {

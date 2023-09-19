@@ -143,10 +143,6 @@ export const TOWER_FLOOR_8 = {
                 {
                     chance: 1 / 48,
                     rewards: [{ type: "item", itemId: "accuracy_up_4_tome", amount: 1 }]
-                },
-                {
-                    chance: 1 / 24,
-                    rewards: [{ type: "icon", iconId: "phoenix_t1" }]
                 }
             ])
         )
@@ -186,6 +182,10 @@ export const TOWER_FLOOR_8 = {
                 {
                     chance: 1 / 5,
                     rewards: [{ type: "icon", iconId: "valla_t1" }]
+                },
+                {
+                    chance: 1 / 25,
+                    rewards: [{ type: "icon", iconId: "valla_t1_color" }]
                 },
                 {
                     chance: 1 / 2,

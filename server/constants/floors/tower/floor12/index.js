@@ -151,6 +151,10 @@ export const TOWER_FLOOR_12 = {
                     rewards: [{ type: "icon", iconId: "adalgar_t1" }]
                 },
                 {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "adalgar_t1_color" }]
+                },
+                {
                     chance: 1 / 64,
                     rewards: [{ type: "item", itemId: "obsidian_hammer", amount: 1 }]
                 },

@@ -82,5 +82,9 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([
             { type: "item", itemId: "polished_tin", amount: 1 },
             { type: "item", itemId: "polished_tin", amount: 2 }
         ]
+    },
+    {
+        chance: 1 / 36,
+        rewards: [{ type: "icon", iconId: "archer_t1_color" }]
     }
 ])

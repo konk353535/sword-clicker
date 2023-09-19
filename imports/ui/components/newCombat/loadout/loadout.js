@@ -151,7 +151,11 @@ Template.skinLibraryIcon.helpers({
 
         const skin = Template.instance().data.skin
         if (skin.requiredEquip) {
-            description = `Requires level ${skin.requiredEquip[0].level} ${skin.requiredEquip[0].name}`
+            description = skin.requiredEquip
+                .map((equip) => {
+                    return `Requires level ${equip.level} ${equip.name}`
+                })
+                .join("<br/>")
         }
 
         return description

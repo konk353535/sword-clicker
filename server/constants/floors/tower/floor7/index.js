@@ -138,6 +138,14 @@ export const TOWER_FLOOR_7 = {
                         { type: "item", itemId: "carbon_broad_sword", amount: 1 },
                         { type: "item", itemId: "carbon_horned_helmet", amount: 1 }
                     ]
+                },
+                {
+                    chance: 1 / 24,
+                    rewards: [{ type: "icon", iconId: "sandstorm_t1" }]
+                },
+                {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "sandstorm_t1_color" }]
                 }
             ])
         )

@@ -169,6 +169,14 @@ export const TOWER_FLOOR_18 = {
                         { type: "item", itemId: "fairy_steel_broad_sword", amount: 1 },
                         { type: "item", itemId: "fairy_steel_horned_helmet", amount: 1 }
                     ]
+                },
+                {
+                    chance: 1 / 24,
+                    rewards: [{ type: "icon", iconId: "alda_t2" }]
+                },
+                {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "alda_t2_color" }]
                 }
             ])
         )

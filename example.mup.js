@@ -1,50 +1,60 @@
 module.exports = {
     servers: {
         one: {
-            host: "",
-            username: "",
-            pem: ""
-        },
-        two: {
-            host: "",
-            username: "",
-            pem: ""
-        },
-        three: {
-            host: "",
-            username: "",
-            pem: ""
-        },
-        four: {
-            host: "",
-            username: "",
-            pem: ""
+            host: "<host-ip-address>",
+            username: "<host-username>",
+            password: "<host-password>",
+            privateIp: "<optional-private-host-ip-address>"
         }
     },
-    meteor: {
-        name: "EternityTower",
-        path: "~/path-to-project",
+
+    app: {
+        name: "sword-clicker",
+        path: "../",
+
         servers: {
-            one: {},
-            two: {},
-            three: {},
-            four: {}
+            one: {}
         },
-        docker: {
-            image: "abernix/meteord:base"
-        },
+
         buildOptions: {
             serverOnly: true
         },
+
         env: {
-            ROOT_URL: "",
-            CLUSTER_WORKERS_COUNT: 1,
-            MAIL_URL: "",
-            MONGO_URL: "",
-            MONGO_OPLOG_URL: "",
             redisConfigureKeyspaceNotifications: 1,
-            redisUrl: ""
+            deployCheckWaitTime: 60,
+            ROOT_URL: "https://eternitytower.net",
+            MONGO_URL: "<mongo_connection_string>"
         },
-        deployCheckWaitTime: 60
+        deployCheckWaitTime: 60,
+
+        docker: {
+            image: "guillim/meteord:node14.18.2",
+            prepareBundle: true,
+            useBuildKit: true
+        },
+
+        // Show progress bar while uploading bundle to server
+        // You might need to disable it on CI servers
+        enableUploadProgressBar: true
+    },
+
+    proxy: {
+        // (Required when using swarm) Servers to run the reverse proxy on.
+        // When using Let's Encrypt, DNS needs to be setup for these servers.
+        servers: {
+            one: {}
+        },
+        // comma-separated list of domains your website
+        // will be accessed at.
+        // You will need to configure your DNS for each one.
+        domains: "eternitytower.net",
+        ssl: {
+            // Enable let's encrypt to create free certificates.
+            // The email is used by Let's Encrypt to notify you when the
+            // certificates are close to expiring.
+            letsEncryptEmail: "<email>",
+            forceSSL: true
+        }
     }
 }

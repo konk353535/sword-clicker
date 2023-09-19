@@ -73,6 +73,14 @@ export const TOWER_FLOOR_17 = {
                 {
                     chance: 1 / 128,
                     rewards: [{ type: "item", itemId: "azure_trident", amount: 1 }]
+                },
+                {
+                    chance: 1 / 24,
+                    rewards: [{ type: "icon", iconId: "tank_t2" }]
+                },
+                {
+                    chance: 1 / 144,
+                    rewards: [{ type: "icon", iconId: "tank_t2_color" }]
                 }
             ])
         )

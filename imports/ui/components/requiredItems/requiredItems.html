@@ -5,7 +5,7 @@
         <img src="/icons/goldCoin.svg" class="extra-small-icon">
         <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{> formatNumber number=this.amount}}</span>
       {{else if $eq this.type 'skill'}}
-        <img src="/icons/{{this.name}}.svg" class="extra-small-icon">      
+        <img src="/icons/{{this.name}}.svg" class="extra-small-icon skill">      
         <span class="mr-3 ml-1 {{#if this.notMet}}text-danger{{/if}}">{{this.level}}</span>
       {{else if $eq this.type 'xp'}}
         <img src="/icons/{{this.skill}}.svg" class="extra-small-icon">      
@@ -65,7 +65,7 @@
           {{#if $eq this.type 'skill'}}
             <div class="d-flex align-items-center">
               <span class="mr-1 {{#if this.notMet}}text-danger{{/if}}">Level {{this.level}}</span>
-              <img src="/icons/{{this.name}}.svg" class="extra-small-icon">
+              <img src="/icons/{{this.name}}.svg" class="extra-small-icon skill">
               <span class="ml-1 text-capitalize">{{this.name}}</span><br />
             </div>
           {{/if}}

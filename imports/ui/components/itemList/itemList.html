@@ -21,10 +21,10 @@
           <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
           <i class="material-icons multiLockCancel">clear</i>
         {{else}}
-          <i class="material-icons multiLockStart">lock</i>
-          <i class="material-icons multiShowStart">unarchive</i>
-          <i class="material-icons multiHideStart">archive</i>
-          <i class="material-icons multiSellStart">shopping_cart</i>
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiShowStart" icon="unarchive" title="Multi-Show" content=multiShowHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiHideStart" icon="archive" title="Multi-Hide" content=multiHideHelp }}
+          {{> iconWithTooltip materialIcon=true classes="material-icons multiSellStart" icon="shopping_cart" title="Multi-Sell" content=multiSellHelp }}
         {{/if}}
       </div>
       <div class="d-flex flex-wrap">
@@ -51,9 +51,9 @@
           <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiLockCancel">clear</i>
           {{else}}
-            <i class="material-icons multiLockStart">lock</i>
-            <i class="material-icons multiHideStart">archive</i>
-            <i class="material-icons multiSellStart">shopping_cart</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiHideStart" icon="archive" title="Multi-Hide" content=multiHideHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellStart" icon="shopping_cart" title="Multi-Sell" content=multiSellHelp }}
           {{/if}}
         </div>
         <div class="d-flex flex-wrap">
@@ -81,9 +81,9 @@
           <i class="material-icons multiLockSelectAll" style="color: orange;">done_all</i>
             <i class="material-icons multiLockCancel">clear</i>
           {{else}}
-            <i class="material-icons multiLockStart">lock</i>
-            <i class="material-icons multiShowStart">unarchive</i>
-            <i class="material-icons multiSellStart">shopping_cart</i>
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiLockStart" icon="lock" title="Multi-Lock" content=multiLockHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiShowStart" icon="unarchive" title="Multi-Show" content=multiShowHelp }}
+            {{> iconWithTooltip materialIcon=true classes="material-icons multiSellStart" icon="shopping_cart" title="Multi-Sell" content=multiSellHelp }}
           {{/if}}
         </div>
         <div class="d-flex flex-wrap">

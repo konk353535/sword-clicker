@@ -207,5 +207,21 @@ Template.itemList.helpers({
             return items
         }
         return false
+    },
+
+    multiSellHelp() {
+        return `<p>Select to enable multi-sell mode, where you can select multiple items to sell at once.</p>`
+    },
+
+    multiHideHelp() {
+        return `<p>Select to enable multi-hide mode, where you can select multiple items to hide at once.</p>`
+    },
+
+    multiShowHelp() {
+        return `<p>Select to enable multi-show mode, where you can select multiple items to show at once.</p>`
+    },
+
+    multiLockHelp() {
+        return `<p>Select to enable multi-lock mode, where you can select multiple items to lock at once.</p>`
     }
 })

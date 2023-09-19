@@ -21,6 +21,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {{#if currentUser}}
+            <li class="nav-item">
+              <a class="nav-link {{#if $eq currentRoute 'overview'}}active{{/if}}" href="/overview">
+                Overview
+              </a>
+            </li>
             {{#if canSeeCombat}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}} battle-nav-link" href="/battle">

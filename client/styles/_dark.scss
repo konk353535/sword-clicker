@@ -1,12 +1,20 @@
+$dark-bg-color: #202020;
+$dark-fg-color: #2a2a2a;
+$dark-uncraftable-color: #313131;
+$dark-text-muted: #808385;
+
 html.dark {
-    background-color: #303030;
+    background-color: $dark-bg-color;
     color: #fff;
 
     body,
     .home-page-content > div,
     .live-feed-content > div {
-        background-color: #303030;
+        background-color: $dark-bg-color;
         color: #fff;
+    }
+    img.skill {
+        filter: invert(1)
     }
     .body-content {
         margin-bottom: 0;
@@ -21,11 +29,11 @@ html.dark {
     .side-link-item:hover {
         background-color: #212121 !important;
     }
-    .nav-link.active {
-        background-color: #303030 !important;
+    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+        background-color: #0275d8;
     }
     .text-muted {
-        color: #636c72 !important;
+        color: $dark-text-muted !important;
     }
     .home-page-content > div,
     .live-feed-content > div,
@@ -41,19 +49,19 @@ html.dark {
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
     .popover-title {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
         color: #fff !important;
     }
     .my-tooltip-inner {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         color: #fff !important;
     }
     table {
-        border-color: #424242 !important;
+        border-color: $dark-fg-color !important;
     }
     .icon-box {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         border-color: #212121 !important;
     }
     .icon-box.inactive {
@@ -91,7 +99,7 @@ html.dark {
         color: #000 !important;
     }
     .box-body {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-LFG,
     .chat-LFG {
@@ -128,14 +136,14 @@ html.dark {
         border-color: #000 !important;
     }
     .chat-container .box-footer input {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
         color: #fff !important;
     }
     .chat-container .box-footer input::-webkit-input-placeholder {
         color: #fff !important;
     }
     .dropdown-menu {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         color: #fff !important;
     }
     .dropdown-item:hover {
@@ -160,16 +168,16 @@ html.dark {
         color: #fff !important;
     }
     .chat-container .box-footer .input-group .input-group-btn button {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
     }
     .chat-container .box-footer .input-group .input-group-btn .dropdown-menu {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
     }
     img {
         fill: #fff !important;
     }
     .modal-content {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
     }
 
     .attackSkill-tooltip-container .progress .progress-bar {
@@ -188,28 +196,28 @@ html.dark {
     /* Make the "Loadout" bar same as background */
     .select-battle-container {
         border-top: none;
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
     }
     .recipe-tooltip {
-        color: #636c72;
+        color: $dark-text-muted;
     }
     .uncraftable {
-        background-color: #424242 !important;
+        background-color: $dark-uncraftable-color !important;
         color: #fff !important;
         border: 1px solid #000 !important;
     }
     .single-craft {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
         color: #fff !important;
     }
     .quick-craft {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
         color: #fff !important;
     }
 
     /* Shop cards */
     .card {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
         border: 1px solid #000 !important;
     }
 
@@ -283,17 +291,17 @@ html.dark {
     }
 
     .lobby-container .health-bar {
-        color: #303030;
+        color: $dark-bg-color;
     }
 
     /* battle abilities in combat */
     #content > div.d-sm-flex.flex-grow > div > div:nth-child(1) > div:nth-child(3) {
-        background-color: #303030 !important;
+        background-color: $dark-bg-color !important;
     }
 
     /* Battle + xp text */
     .floating-text {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
     }
     .floating-text.animated.fadeOutUp {
         border-color: #000 !important;
@@ -302,13 +310,13 @@ html.dark {
     /* Current user */
     button.btn.btn-secondary.dropdown-toggle {
         color: #fff;
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         border-color: #000 !important;
     }
 
     /* Current user dropdown */
     .dropdown-menu.dropdown-menu-right {
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         border-color: #000 !important;
     }
     .dropdown-menu.dropdown-menu-right .dropdown-item {
@@ -316,7 +324,7 @@ html.dark {
     }
     .btn-close-finishedBattle {
         color: #fff;
-        background-color: #424242 !important;
+        background-color: $dark-fg-color !important;
         border-color: #000 !important;
     }
 }

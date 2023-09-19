@@ -440,6 +440,12 @@ SimpleChat.configure({
                     message: `Gave ${targetUser.username} ${targetAmount} x ${targetItem}`
                 })
                 return
+            } else if (/\/debugAllItems/.test(message) && userDoc.isSuperMod) {
+                // give the caller one of every item
+                Object.keys(ITEMS).forEach((itemId) => {
+                    addItem(itemId, 1, userDoc._id)
+                })
+                return
             }
         }
 

@@ -1,0 +1,22 @@
+<template name="iconWithTooltip">
+  <div class="help-icon-container">
+    {{#if materialIcon}}
+    <!-- material-icons multiSellStart -->
+    <!-- shopping_cart -->
+    <i class="{{classes}}">{{icon}}</i>
+    {{else}}
+    <img src="{{icon}}" class="extra-small-icon {{classes}}">
+    {{/if}}
+  </div>
+
+  <div class="help-tooltip-content my-tooltip-inner">
+    <h3 class='popover-title text-capitalize'>
+    {{title}}
+    </h3>
+    <div class='popover-content'>
+    <div style='max-width: 350px; text-align: left;'>
+        {{{content}}}
+    </div>
+    </div>
+  </div>
+</template>

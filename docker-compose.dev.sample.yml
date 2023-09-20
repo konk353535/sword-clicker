@@ -1,4 +1,52 @@
 services:
+  mongo:
+    image: mongo:6.0.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes: 
+      - ./dev/mongo:/etc/pki
+    command: ["--replSet", "dbrs", "--bind_ip_all", "--keyFile", "/etc/pki/mongo.key"]
+    networks:
+      - app
+
+  mongo-setup:
+    image: mongo:6.0.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_OPLOG_USERNAME: oplogger
+      MONGO_OPLOG_PASSWORD: oplogger
+    depends_on:
+      - mongo
+    volumes:
+      - ./dev/mongo:/scripts
+    restart: on-failure
+    entrypoint: ["/bin/bash", "/scripts/mongo_rs_init.sh"]
+    networks:
+      - app
+
+  redis: 
+    image: redis:6.2-alpine
+    command: redis-server --save 20 1 --loglevel warning --requirepass somepassgoeshere
+    ports:
+      - 6379:6379
+    networks:
+      - app
+
+  oplogToRedis:
+    image: tulip/oplogtoredis:v3.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      OTR_MONGO_URL: "mongodb://oplogger:oplogger@mongo:27017/local?replicaSet=dbrs&authSource=admin"
+      OTR_REDIS_URL: "redis://:somepassgoeshere@redis:6379"
+      OTR_LOG_DEBUG: true
+    networks:
+      - app
+
   node:
     build:
       context: ./

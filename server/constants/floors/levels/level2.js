@@ -66,7 +66,7 @@ export const LEVEL_TWO_LOOT_TABLE = orderLootTable([
         ]
     },
     {
-        chance: 1 / 36,
+        chance: 1 / 96,
         rewards: [{ type: "icon", iconId: "mage_t1_color" }]
     }
 ])

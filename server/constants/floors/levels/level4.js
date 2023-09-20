@@ -67,7 +67,7 @@ export const LEVEL_FOUR_LOOT_TABLE = orderLootTable([
         ]
     },
     {
-        chance: 1 / 36,
+        chance: 1 / 96,
         rewards: [{ type: "icon", iconId: "tank_t1_color" }]
     }
 ])

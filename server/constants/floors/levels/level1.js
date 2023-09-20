@@ -60,7 +60,7 @@ export const LEVEL_ONE_LOOT_TABLE = orderLootTable([
         ]
     },
     {
-        chance: 1 / 36,
+        chance: 1 / 96,
         rewards: [{ type: "icon", iconId: "damage_t1_color" }]
     }
 ])

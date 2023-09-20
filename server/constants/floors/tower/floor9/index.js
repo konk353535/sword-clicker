@@ -32,11 +32,11 @@ export const TOWER_FLOOR_9 = {
                     rewards: [{ type: "item", itemId: "platinum_knife", amount: 1 }]
                 },
                 {
-                    chance: 1 / 24,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "alda_t1" }]
                 },
                 {
-                    chance: 1 / 144,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "alda_t1_color" }]
                 }
             ])

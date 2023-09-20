@@ -152,11 +152,11 @@ export const TOWER_FLOOR_14 = {
                     rewards: [{ type: "item", itemId: "phantom_strikes_level_4_tome", amount: 1 }]
                 },
                 {
-                    chance: 1 / 24,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "crow_t2" }]
                 },
                 {
-                    chance: 1 / 144,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "crow_t2_color" }]
                 }
             ])

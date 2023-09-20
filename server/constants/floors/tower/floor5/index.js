@@ -32,11 +32,11 @@ export const TOWER_FLOOR_5 = {
         rewards: orderLootTable(
             LEVEL_FIVE_LOOT_TABLE.concat([
                 {
-                    chance: 1 / 16,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "crow_t1" }]
                 },
                 {
-                    chance: 1 / 96,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "crow_t1_color" }]
                 },
                 {

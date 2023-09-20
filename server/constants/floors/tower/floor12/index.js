@@ -147,11 +147,11 @@ export const TOWER_FLOOR_12 = {
                     rewards: [{ type: "item", itemId: "double_edged_sword_5_tome", amount: 1 }]
                 },
                 {
-                    chance: 1 / 36,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "adalgar_t1" }]
                 },
                 {
-                    chance: 1 / 144,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "adalgar_t1_color" }]
                 },
                 {

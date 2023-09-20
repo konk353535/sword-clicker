@@ -31,11 +31,11 @@ export const TOWER_FLOOR_19 = {
                     rewards: [{ type: "item", itemId: "elven_steel_knife", amount: 1 }]
                 },
                 {
-                    chance: 1 / 24,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "falcon_t2" }]
                 },
                 {
-                    chance: 1 / 144,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "falcon_t2_color" }]
                 }
             ])

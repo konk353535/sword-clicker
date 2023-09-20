@@ -171,11 +171,11 @@ export const TOWER_FLOOR_18 = {
                     ]
                 },
                 {
-                    chance: 1 / 24,
+                    chance: 1 / 96,
                     rewards: [{ type: "icon", iconId: "alda_t2" }]
                 },
                 {
-                    chance: 1 / 144,
+                    chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "alda_t2_color" }]
                 }
             ])

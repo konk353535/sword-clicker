@@ -84,7 +84,7 @@ export const LEVEL_THREE_LOOT_TABLE = orderLootTable([
         ]
     },
     {
-        chance: 1 / 36,
+        chance: 1 / 96,
         rewards: [{ type: "icon", iconId: "archer_t1_color" }]
     }
 ])

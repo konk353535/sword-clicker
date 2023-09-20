@@ -646,5 +646,5 @@ Meteor.setTimeout(
 
         SC.attachSchema(SynchedCronSchema)
     },
-    Meteor.settings.is_dev ? 0 : 60000
+    Meteor.settings.is_dev ? 5000 : 60000
 )

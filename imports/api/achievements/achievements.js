@@ -8,3 +8,5 @@ AchievementsSchema = new SimpleSchema({
     lastGameUpdated: { type: Date, defaultValue: new Date() },
     collected: { type: Object, blackbox: true }
 })
+
+Achievements.attachSchema(AchievementsSchema)

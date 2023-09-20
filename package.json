@@ -2,7 +2,7 @@
   "name": "sword-clicker",
   "private": true,
   "scripts": {
-    "dev": "meteor run --settings settings-development.json",
+    "dev": "MONGO_URL=mongodb://admin:admin@127.0.0.1:27017/?replicaSet=dbrs MONGO_OPLOG_URL=mongodb://oplogger:oplogger@127.0.0.1:27017/local?replicaSet=dbrs&authSource=admin meteor run --settings settings-development.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",

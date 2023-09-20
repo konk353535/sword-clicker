@@ -4,6 +4,7 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+cultofcoders:redis-oplog
 meteor-base@1.5.1             # Packages every Meteor app needs to have
 mobile-experience@1.1.0       # Packages for a great mobile UX
 mongo@1.16.7                  # The database Meteor supports right now
@@ -59,3 +60,4 @@ babrahams:transactions
 littledata:synced-cron
 random@1.2.1
 jabbslad:basic-auth
+disable-oplog

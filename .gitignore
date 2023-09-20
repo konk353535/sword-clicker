@@ -15,3 +15,8 @@ mup.js
 
 build/
 .env
+
+docker-compose.yml
+
+# need to generate this and set permissions correctly
+dev/mongo/mongo.key

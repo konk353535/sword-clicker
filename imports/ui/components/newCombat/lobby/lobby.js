@@ -536,6 +536,34 @@ Template.lobbyPage.helpers({
       </p>`
     },
 
+    lobbyLockHelp() {
+        return "Locks or unlocks the lobby for other players to join"
+    },
+
+    lobbyHideHelp() {
+        return "Hides or unhides the lobby"
+    },
+
+    lobbyStartHelp() {
+        return "Allows any player in the lobby to start combat"
+    },
+
+    lobbyLeaveHelp() {
+        return "Leave the current lobby"
+    },
+
+    lobbyKickHelp() {
+        return "Kick the player from the lobby"
+    },
+
+    lobbyInviteHelp() {
+        return "Revoke the invite for this player"
+    },
+
+    lobbyLeaderHelp() {
+        return "Promote this player to party leader"
+    },
+
     floorsList() {
         let floorsList = []
         let maxFloor = Template.instance().state.get("maxFloor")

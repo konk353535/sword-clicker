@@ -240,57 +240,57 @@
                                     {{#if $eq this.owner currentUser._id}}
                                         {{#if currentGroup.locked}}
                                             <button class="btn btn-secondary btn-lock-open btn-sm mr-1">
-                                                <img src="/icons/closedLock.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/closedLock.svg" title="Unlock Lobby" content=lobbyLockHelp }}
                                             </button>
                                         {{else}}
                                             <button class="btn btn-secondary btn-lock-close btn-sm mr-1">
-                                                <img src="/icons/openLock.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/openLock.svg" title="Lock Lobby" content=lobbyLockHelp }}
                                             </button>
                                         {{/if}}
                                         {{#if currentGroup.isHidden}}
                                             <button class="btn btn-secondary btn-unhide-group btn-sm mr-1">
-                                                <img src="/icons/hidden.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/hidden.svg" title="Unhide Lobby" content=lobbyHideHelp }}
                                             </button>
                                         {{else}}
                                             <button class="btn btn-secondary btn-hide-group btn-sm mr-1">
-                                                <img src="/icons/hiddenInactive.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/hiddenInactive.svg" title="Hide Lobby" content=lobbyHideHelp }}
                                             </button>
                                         {{/if}}
                                         {{#if currentGroup.allowAnyStartCombat}}
                                             <button class="btn btn-secondary btn-deny-any-start btn-sm mr-1">
-                                                <img src="/icons/cursedLongSword.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/cursedLongSword.svg" title="Disallow anyone to start" content=lobbyStartHelp }}
                                             </button>
                                         {{else}}
                                             <button class="btn btn-secondary btn-allow-any-start btn-sm mr-1">
-                                                <img src="/icons/steelLongSword.svg" width="16" height="16" />
+                                                {{> iconWithTooltip icon="/icons/steelLongSword.svg" title="Allow anyone to start" content=lobbyStartHelp }}
                                             </button>
                                         {{/if}}
                                     {{else}}
                                         {{#if currentGroup.locked}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/closedLock.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/closedLock.svg" title="Unlock Lobby" content=lobbyLockHelp }}
                                             </button>
                                         {{else}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/openLock.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/openLock.svg" title="Lock Lobby" content=lobbyLockHelp }}
                                             </button>
                                         {{/if}}
                                         {{#if currentGroup.isHidden}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/hidden.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/hidden.svg" title="Unhide Lobby" content=lobbyHideHelp }}
                                             </button>
                                         {{else}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/hiddenInactive.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/hidden.svg" title="Unhide Lobby" content=lobbyHideHelp }}
                                             </button>
                                         {{/if}}
                                         {{#if currentGroup.allowAnyStartCombat}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/cursedLongSword.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/cursedLongSword.svg" title="Disallow anyone to start" content=lobbyStartHelp }}
                                             </button>
                                         {{else}}
-                                            <button class="btn btn-secondary btn-sm mr-1">
-                                                <img src="/icons/steelLongSword.svg" width="16" height="16" />
+                                            <button class="btn btn-secondary btn-sm mr-1" disabled="true">
+                                                {{> iconWithTooltip icon="/icons/steelLongSword.svg" title="Allow anyone to start" content=lobbyStartHelp }}
                                             </button>
                                         {{/if}}
                                     {{/if}}
@@ -298,19 +298,19 @@
 
                                 {{#if $eq currentUser._id this.owner}}
                                     <button class="btn btn-secondary btn-leave btn-sm mr-1">
-                                        <img src="/icons/leave.svg" width="16" height="16" />
+                                        {{> iconWithTooltip icon="/icons/leave.svg" title="Leave Lobby" content=lobbyLeaveHelp }}
                                     </button>
                                 {{else if isLeader}}
                                     <button class="btn btn-danger btn-kick btn-sm mr-1" data-owner="{{this.owner}}">
-                                        <img src="/icons/boot.svg" width="16" height="16" />
+                                        {{> iconWithTooltip icon="/icons/boot.svg" title="Kick Player" content=lobbyKickHelp }}
                                     </button>
                                     {{#unless this.isInvitee}}
                                         <button class="btn btn-danger btn-kick-invite btn-sm mr-1"
                                             data-owner="{{this.owner}}">
-                                            <img src="/icons/kickInvite.svg" width="16" height="16" />
+                                            {{> iconWithTooltip icon="/icons/kickInvite.svg" title="Revoke Invite" content=lobbyInviteHelp }}
                                         </button>
                                         <button class="btn btn-warning btn-promote btn-sm" data-owner="{{this.owner}}">
-                                            <img src="/icons/leaderCrown.svg" width="16" height="16" />
+                                            {{> iconWithTooltip icon="/icons/leaderCrown.svg" title="Change Party Leader" content=lobbyLeaderHelp }}
                                         </button>
                                     {{/unless}}
                                 {{/if}}

@@ -60,14 +60,13 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
                         ) {
                             // Delete any existing buff
                             const curBuffCursor = State.find(
-                                { name: karmaData[karmaDataPoint].buffName, server: thisServer._id },
-                                { tx: true }
+                                { name: karmaData[karmaDataPoint].buffName, server: thisServer._id }
                             )
 
                             if (curBuffCursor.count() > 0) {
                                 const curBuffRemoveId = curBuffCursor.fetch()[0]._id
 
-                                State.remove({ _id: curBuffRemoveId }, { tx: true })
+                                State.remove({ _id: curBuffRemoveId })
                             }
 
                             // And create a new buff with the right level (or no buff at target level 0)
@@ -80,8 +79,7 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
                                             activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(),
                                             level: karmaData[karmaDataPoint].currentLevel
                                         }
-                                    },
-                                    { tx: true }
+                                    }
                                 )
                             }
                         }

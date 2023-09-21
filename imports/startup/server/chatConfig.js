@@ -1,7 +1,9 @@
 import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { SimpleChat } from "meteor/cesarve:simple-chat/config"
 import { BlackList } from "/imports/api/blacklist/blacklist"
+import { Combat } from "/imports/api/combat/combat"
 import { Events } from "/imports/api/events/events"
+import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 import { addItem } from "/server/api/items/items.js"
@@ -464,6 +466,105 @@ SimpleChat.configure({
                 Object.keys(ITEMS).forEach((itemId) => {
                     addItem(itemId, 1, userDoc._id)
                 })
+                return
+            } else if (/\/changeName/i.test(message) && userDoc.isSuperMod) {
+                const userPortion = message.split("/changeName")[1]?.trim()?.split(" ")
+                const existingUsername = userPortion[0]?.toLowerCase()?.trim()
+                const newUsername = userPortion[1]?.toLowerCase()?.trim()
+
+                if (existingUsername == null || newUsername == null) {
+                    return
+                }
+
+                const targetUser = Users.findOne({
+                    username: existingUsername
+                })
+
+                const existingUser = Users.findOne({
+                    username: newUsername
+                })
+
+                if (existingUser != null) {
+                    // user exists, can't take their name
+                    sendUserChatMessage({ userId: userDoc._id, message: "That username is already taken." })
+                    return
+                }
+
+                Events.insert(
+                    {
+                        owner: targetUser._id,
+                        event: "changeName",
+                        date: new Date(),
+                        data: {
+                            initiator: userDoc._id,
+                            oldName: existingUsername,
+                            newName: newUsername
+                        }
+                    },
+                    () => {}
+                )
+
+                Users.update(targetUser._id, {
+                    $set: {
+                        username: newUsername
+                    }
+                })
+
+                const existingCombat = Combat.findOne({
+                    owner: targetUser._id
+                })
+
+                // update their combat name
+                if (existingCombat != null) {
+                    Combat.update(existingCombat._id, {
+                        $set: {
+                            username: newUsername
+                        }
+                    })
+                }
+
+                // update their chats
+                Chats.update(
+                    {
+                        userId: targetUser._id
+                    },
+                    {
+                        $set: {
+                            username: newUsername,
+                            name: newUsername
+                        }
+                    },
+                    { multi: true }
+                )
+
+                // update their stats
+                Skills.update(
+                    {
+                        owner: targetUser._id
+                    },
+                    {
+                        $set: {
+                            username: newUsername
+                        }
+                    },
+                    { multi: true }
+                )
+
+                // update their stats
+                FloorWaveScores.update(
+                    {
+                        owner: targetUser._id
+                    },
+                    {
+                        $set: {
+                            username: newUsername
+                        }
+                    },
+                    { multi: true }
+                )
+
+                sendUserChatMessage({ userId: userDoc._id, message: "Successfully updated username." })
+
                 return
             }
         }

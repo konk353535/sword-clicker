@@ -363,7 +363,7 @@ Template.overviewPage.helpers({
     firstCrafting() {
         const crafting = Crafting.findOne({})
 
-        if (!crafting || crafting.currentlyCrafting.length === 0) {
+        if (!crafting || !crafting.currentlyCrafting || crafting.currentlyCrafting.length === 0) {
             return false
         }
 
@@ -372,7 +372,7 @@ Template.overviewPage.helpers({
 
     lastCrafting() {
         const crafting = Crafting.findOne({})
-        if (!crafting || crafting.currentlyCrafting.length === 0) {
+        if (!crafting || !crafting.currentlyCrafting || crafting.currentlyCrafting.length === 0) {
             return
         }
 
@@ -382,7 +382,7 @@ Template.overviewPage.helpers({
     otherCrafting() {
         const crafting = Crafting.findOne({})
 
-        if (!crafting || crafting.currentlyCrafting.length <= 1) {
+        if (!crafting || !crafting.currentlyCrafting || crafting.currentlyCrafting.length <= 1) {
             return false
         }
 
@@ -392,7 +392,7 @@ Template.overviewPage.helpers({
     firstReforging() {
         const crafting = Crafting.findOne({})
 
-        if (!crafting || crafting.currentlyReforging.length === 0) {
+        if (!crafting || !crafting.currentlyReforging || crafting.currentlyReforging.length === 0) {
             return false
         }
 
@@ -402,7 +402,7 @@ Template.overviewPage.helpers({
     lastReforging() {
         const crafting = Crafting.findOne({})
 
-        if (!crafting || crafting.currentlyReforging.length === 0) {
+        if (!crafting || !crafting.currentlyReforging || crafting.currentlyReforging.length === 0) {
             return
         }
 
@@ -413,7 +413,7 @@ Template.overviewPage.helpers({
         // work around a stupid bug where $unset on an object doesn't cause variables to react
         const crafting = Crafting.findOne({})
 
-        if (!crafting || crafting.currentlyReforging.length <= 1) {
+        if (!crafting || !crafting.currentlyReforging || crafting.currentlyReforging.length <= 1) {
             return false
         }
 
@@ -423,7 +423,7 @@ Template.overviewPage.helpers({
     firstInscription() {
         const inscription = Inscription.findOne({})
 
-        if (!inscription || inscription.currentlyCrafting.length === 0) {
+        if (!inscription || !inscription.currentlyCrafting || inscription.currentlyCrafting.length === 0) {
             return false
         }
 
@@ -432,7 +432,7 @@ Template.overviewPage.helpers({
 
     lastInscription() {
         const inscription = Inscription.findOne({})
-        if (!inscription || inscription.currentlyCrafting.length === 0) {
+        if (!inscription || !inscription.currentlyCrafting || inscription.currentlyCrafting.length === 0) {
             return
         }
 
@@ -442,7 +442,7 @@ Template.overviewPage.helpers({
     otherInscription() {
         const inscription = Inscription.findOne({})
 
-        if (!inscription || inscription.currentlyCrafting.length <= 1) {
+        if (!inscription || !inscription.currentlyCrafting || inscription.currentlyCrafting.length <= 1) {
             return false
         }
 

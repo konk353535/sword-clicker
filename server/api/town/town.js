@@ -25,9 +25,7 @@ export const deleteKarmaBuffs = function deleteKarmaBuffs() {
 }
 
 export const syncKarmaBuffs = function syncKarmaBuffs() {
-    tx.start("Sync town karma buffs")
-
-    Servers.find({}, { tx: true })
+    Servers.find({})
         .fetch()
         .forEach((thisServer) => {
             try {
@@ -45,8 +43,8 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
                     observatory: karmaLevelValues("observatory", townData)
                 }
 
-                //console.log("Karma data:");
-                //console.log(karmaData);
+                // console.log("Karma data:");
+                // console.log(karmaData);
 
                 // Iterate through each town section
                 Object.keys(karmaData).forEach((karmaDataPoint) => {
@@ -94,8 +92,6 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
                 console.log(err)
             }
         })
-
-    tx.commit() // Commit transaction: "Sync town karma buffs"
 }
 
 export const newTownDay = function newTownDay() {

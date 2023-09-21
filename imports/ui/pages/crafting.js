@@ -398,7 +398,6 @@ Template.craftingPage.helpers({
                 }
             }
         })
-        //console.log(highestFurnaceTier); // konk left this debug in, disabling it for now (psouza4: 2018-10-27)
 
         let filterName = Template.instance().state.get("itemFilter")
         let bShowHidden = filterName === "hidden-items" || filterName === "all-items"
@@ -407,15 +406,15 @@ Template.craftingPage.helpers({
         if (itemViewLimit !== 0) {
             if (bShowHidden && bShowUnhidden) {
                 return ItemSorter(
-                    FetchSomeVisibleItems(highestFurnaceTier, itemViewLimit).concat(
-                        FetchSomeHiddenItems(highestFurnaceTier, itemViewLimit)
+                    FetchSomeVisibleItems(highestFurnaceTier).concat(
+                        FetchSomeHiddenItems(highestFurnaceTier)
                     )
-                )
+                ).slice(0, itemViewLimit)
             } else if (bShowHidden) {
-                return ItemSorter(FetchSomeHiddenItems(highestFurnaceTier, itemViewLimit))
+                return ItemSorter(FetchSomeHiddenItems(highestFurnaceTier)).slice(0, itemViewLimit)
             }
 
-            return ItemSorter(FetchSomeVisibleItems(highestFurnaceTier, itemViewLimit))
+            return ItemSorter(FetchSomeVisibleItems(highestFurnaceTier)).slice(0, itemViewLimit)
         }
 
         if (bShowHidden && bShowUnhidden) {
@@ -906,7 +905,7 @@ const ItemSorter = function (itemList_in) {
     return itemList
 }
 
-const FetchSomeHiddenItems = function (highestFurnaceTier, itemViewLimit) {
+const FetchSomeHiddenItems = function (highestFurnaceTier) {
     const recipes = Session.get("recipeCache")
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
@@ -917,7 +916,7 @@ const FetchSomeHiddenItems = function (highestFurnaceTier, itemViewLimit) {
             hidden: true
         },
         {
-            limit: itemViewLimit /*
+            limit: 50 /*
     sort: {
       category: 1,
       name: 1,
@@ -1043,7 +1042,7 @@ const FetchSomeHiddenItems = function (highestFurnaceTier, itemViewLimit) {
         })
 }
 
-const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
+const FetchSomeVisibleItems = function (highestFurnaceTier) {
     const recipes = Session.get("recipeCache")
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
@@ -1054,7 +1053,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier, itemViewLimit) {
             $or: [{ hidden: false }, { hidden: { $exists: false } }]
         },
         {
-            limit: itemViewLimit /* ,
+            limit: 50 /* ,
       sort: {
         category: 1,
         name: 1,

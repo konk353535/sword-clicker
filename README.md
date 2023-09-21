@@ -55,7 +55,7 @@ Mongo server needs to be running mongo accessible by Meteor server with single-n
 
 == Gotchas
 
-- If you give yourself all items with /debugAllItems the "more" / "less" won't show up and you will only see a few items. This is somehow related to the `itemViewLimit` and how it applies filtering for something like the furnaces, where they "stack" invisibly and you only see the newest furnace. This means it will look like your regular crafting inventory is empty when it is not.
+- Using redis-oplog for local dev seems to cause consistency issues because I think `meteor run` still uses a mongo on port 3001
 
 == Growth
 

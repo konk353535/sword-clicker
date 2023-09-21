@@ -120,6 +120,10 @@ Meteor.methods({
         console.log("battles.findTowerBattle", moment().format("LLL hh:mm:ss SSS"))
         const userDoc = Meteor.user()
 
+        if (energyUse == null) {
+            energyUse = 1
+        }
+
         if (energyUse > getMaxEnergyUse()) {
             energyUse = getMaxEnergyUse()
         }
@@ -172,6 +176,9 @@ Meteor.methods({
             if (currentCommunityFloor.points >= currentCommunityFloor.pointsMax) {
                 canBossBattle = true
             }
+
+            // can only use 1 energy on exploration runs
+            energyUse = 1
         }
 
         const server = userDoc.server

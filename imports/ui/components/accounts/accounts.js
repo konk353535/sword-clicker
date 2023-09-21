@@ -66,15 +66,14 @@ Template.playAsGuestBtn.events({
 
         // Find server doc for selected server
         const serverDoc = Servers.findOne({
-            name: Template.instance().state.get("selectedServer")
+            name: DEFAULT_SERVER
         })
 
         if (!serverDoc) {
-            // todo: display error about invalid selected server
+            // todo: display error about no servers
             return
         }
 
-        // This will instead return a username and password
         Meteor.call("users.createGuest", serverDoc._id, (err, res) => {
             if (err) {
                 return instance.state.get("creatingGuest", false)

@@ -162,9 +162,24 @@ SimpleChat.configure({
                 Users.update(targetUser._id, {
                     $set: {
                         isMutedExpiry: moment().add(10, "years").toDate(),
-                        "services.resume.loginTokens" : []
+                        "services.resume.loginTokens": [],
+                        banned: true
                     }
                 })
+
+                Skills.update(
+                    {
+                        owner: targetUser._id
+                    },
+                    {
+                        $set: {
+                            banned: true
+                        }
+                    },
+                    {
+                        multi: true
+                    }
+                )
 
                 // Set all users with this ip
                 try {
@@ -176,7 +191,8 @@ SimpleChat.configure({
                             {
                                 $set: {
                                     isMutedExpiry: moment().add(10, "years").toDate(),
-                                    "services.resume.loginTokens" : []
+                                    "services.resume.loginTokens": [],
+                                    banned: true
                                 }
                             },
                             { multi: true }
@@ -355,7 +371,7 @@ SimpleChat.configure({
                     {
                         $set: {
                             banned: true,
-                            "services.resume.loginTokens" : []
+                            "services.resume.loginTokens": []
                         }
                     }
                 )

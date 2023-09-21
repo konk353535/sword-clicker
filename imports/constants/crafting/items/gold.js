@@ -1,7 +1,7 @@
 export const GOLD_ITEMS = {
     polished_stone: {
         id: "polished_stone",
-        icon: "polishedStone.svg",
+        icon: "polishedStone.png",
         category: "crafting",
         name: "polished stone",
         sellPrice: 30,
@@ -19,7 +19,7 @@ export const GOLD_ITEMS = {
 
     polished_tin: {
         id: "polished_tin",
-        icon: "polishedTin.svg",
+        icon: "polishedTin.png",
         category: "crafting",
         name: "polished tin",
         sellPrice: 100,
@@ -37,7 +37,7 @@ export const GOLD_ITEMS = {
 
     polished_iron: {
         id: "polished_iron",
-        icon: "polishedIron.svg",
+        icon: "polishedIron.png",
         category: "crafting",
         name: "polished iron",
         sellPrice: 175,
@@ -55,7 +55,7 @@ export const GOLD_ITEMS = {
 
     polished_gold: {
         id: "polished_gold",
-        icon: "polishedGold.svg",
+        icon: "polishedGold.png",
         category: "crafting",
         name: "polished gold",
         sellPrice: 350,
@@ -82,7 +82,7 @@ export const GOLD_ITEMS = {
 
     polished_steel: {
         id: "polished_steel",
-        icon: "polishedSteel.svg",
+        icon: "polishedSteel.png",
         category: "crafting",
         name: "polished steel",
         sellPrice: 1100,
@@ -100,7 +100,7 @@ export const GOLD_ITEMS = {
 
     polished_titanium: {
         id: "polished_titanium",
-        icon: "polishedTitanium.svg",
+        icon: "polishedTitanium.png",
         category: "crafting",
         name: "polished titanium",
         sellPrice: 1500,
@@ -118,7 +118,7 @@ export const GOLD_ITEMS = {
 
     polished_obsidian: {
         id: "polished_obsidian",
-        icon: "polishedObsidian.svg",
+        icon: "polishedObsidian.png",
         category: "crafting",
         name: "polished obsidian",
         sellPrice: 1800,
@@ -136,7 +136,7 @@ export const GOLD_ITEMS = {
 
     polished_mithril: {
         id: "polished_mithril",
-        icon: "polishedMithril.svg",
+        icon: "polishedMithril.png",
         category: "crafting",
         name: "polished mithril",
         sellPrice: 2200,
@@ -154,7 +154,7 @@ export const GOLD_ITEMS = {
 
     polished_orichalcum: {
         id: "polished_orichalcum",
-        icon: "polishedOrichalcum.svg",
+        icon: "polishedOrichalcum.png",
         category: "crafting",
         name: "polished orichalcum",
         sellPrice: 2600,
@@ -172,7 +172,7 @@ export const GOLD_ITEMS = {
 
     polished_fairy_steel: {
         id: "polished_fairy_steel",
-        icon: "polishedFairySteel.svg",
+        icon: "polishedFairySteel.png",
         category: "crafting",
         name: "polished fairy steel",
         sellPrice: 3000,
@@ -190,7 +190,7 @@ export const GOLD_ITEMS = {
 
     polished_cursed: {
         id: "polished_cursed",
-        icon: "polishedCursed.svg",
+        icon: "polishedCursed.png",
         category: "crafting",
         name: "polished cursed",
         sellPrice: 3600,

@@ -2678,7 +2678,7 @@ export const PICKAXE_ITEMS = {
     // Main Line pickaxes
     primitive_pickaxe: {
         id: "primitive_pickaxe",
-        icon: "primitivePickaxe.svg",
+        icon: "primitivePickaxe.png",
         category: "mining",
         slot: "pickaxe",
         name: "stone pickaxe",

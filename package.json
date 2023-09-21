@@ -2,11 +2,13 @@
   "name": "sword-clicker",
   "private": true,
   "scripts": {
-    "dev": "MONGO_URL=mongodb://admin:admin@127.0.0.1:27017/?replicaSet=dbrs MONGO_OPLOG_URL=mongodb://oplogger:oplogger@127.0.0.1:27017/local?replicaSet=dbrs&authSource=admin meteor run --settings settings-development.json",
+    "placeholder": "MONGO_URL=mongodb://admin:admin@127.0.0.1:27017/test?replicaSet=dbrs MONGO_OPLOG_URL=mongodb://oplogger:oplogger@127.0.0.1:27017/local?replicaSet=dbrs&authSource=admin",
+    "dev": "meteor run --settings settings-development.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
-    "format": "prettier --write \"**/*.{js,ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "colorize": "tsx ./dev/colorize.ts"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -76,6 +78,7 @@
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "stripe": "^4.17.1",
+    "tsx": "^3.12.10",
     "underscore": "^1.9.1",
     "utf-8-validate": "^6.0.3",
     "weighted-random": "^0.1.0"

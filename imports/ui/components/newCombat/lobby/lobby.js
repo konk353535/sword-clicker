@@ -488,6 +488,54 @@ Template.lobbyPage.rendered = function () {
 }
 
 Template.lobbyPage.helpers({
+    energyUseHelpContent() {
+        return `
+        <p>Energy use per fight can be increased for multiple experience and loot gains.</p>
+        <p>Energy use multiplier for loot drops affects quantity of drops instead of chances of drops.</p>
+        <p>For each multiplier, you will gain less and less experience and loot.</p>
+
+        <ul>
+          <li>1 energy = 100% normal XP and loot</li>
+          <li>5 energy = 400% normal XP and loot</li>
+          <li>10 energy = 700% normal XP and loot</li>
+          <li>20 energy = 1,300% normal XP and loot</li>
+          <li>30 energy = 1,800% normal XP and loot</li>
+          <li>40 energy = 2,200% normal XP and loot</li>
+        </ul>
+        `
+    },
+
+    floorRewardsHelpContent() {
+        return `
+      <p>Rewards are distributed when the community completes this floor.</p>
+      <b>Enhancer Keys</b>
+      <p>Top 10 players in wave contributions will each receive an Enhancer Key.</p>
+      <b>Gold</b>
+      <p>The gold is distributed equally between all floor participants.</p>
+      <b>Loot</b>
+      <p>The loot is distributed randomly to all floor participants.</p>
+      `
+    },
+
+    theTowerHelpContent() {
+        return `
+      <p>
+        <b>What</b><br />
+        The community must work together to progress through the 'Eternal Tower'
+      </p>
+      <p>
+        <b>Why</b><br />
+        The top players in point contributions will receive a powerful reward (see bottom of page)<br />
+        All players who contribute to pushing the current top floor will be eligible for floor rewards.
+      </p>
+      <p>
+        <b>How</b><br />
+        Groups of 1-5 players. Further you make it, more points you get.<br /><br />
+        Players can attempt the floor as many times as they wish per day.
+        Top 3 runs will get full point credit, subsequent attempts will award 10% points.
+      </p>`
+    },
+
     floorsList() {
         let floorsList = []
         let maxFloor = Template.instance().state.get("maxFloor")

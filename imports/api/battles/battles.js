@@ -129,20 +129,20 @@ BattlesList.attachSchema(BattlesListSchema)
 
 export const getMaxEnergyUse = function getMaxEnergyUse() {
     // Count how many upgrades we have
-    const types = ["mining", "crafting", "combat", "woodcutting", "farming", "inscription", "astronomy"]
-    let iUpgrades = 0
+    // const types = ["mining", "crafting", "combat", "woodcutting", "farming", "inscription", "astronomy"]
+    // let iUpgrades = 0
 
-    types.forEach((type) => {
-        const membershipTo = Meteor.user()[`${type}UpgradeTo`]
-        if (membershipTo && !moment().isAfter(membershipTo)) {
-            iUpgrades++
-        }
-    })
+    // types.forEach((type) => {
+    //     const membershipTo = Meteor.user()[`${type}UpgradeTo`]
+    //     if (membershipTo && !moment().isAfter(membershipTo)) {
+    //         iUpgrades++
+    //     }
+    // })
 
-    if (iUpgrades >= 5) return 40
-    if (iUpgrades >= 4) return 30
-    if (iUpgrades >= 3) return 20
-    if (iUpgrades >= 2) return 10
-    if (iUpgrades >= 1) return 5
-    return 1
+    // if (iUpgrades >= 5) return 40
+    // if (iUpgrades >= 4) return 30
+    // if (iUpgrades >= 3) return 20
+    // if (iUpgrades >= 2) return 10
+    // if (iUpgrades >= 1) return 5
+    return 40
 }

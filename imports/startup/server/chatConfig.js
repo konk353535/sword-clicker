@@ -161,7 +161,8 @@ SimpleChat.configure({
                 // Set isMuted + Expiry
                 Users.update(targetUser._id, {
                     $set: {
-                        isMutedExpiry: moment().add(10, "years").toDate()
+                        isMutedExpiry: moment().add(10, "years").toDate(),
+                        "services.resume.loginTokens" : []
                     }
                 })
 
@@ -174,7 +175,8 @@ SimpleChat.configure({
                             },
                             {
                                 $set: {
-                                    isMutedExpiry: moment().add(10, "years").toDate()
+                                    isMutedExpiry: moment().add(10, "years").toDate(),
+                                    "services.resume.loginTokens" : []
                                 }
                             },
                             { multi: true }
@@ -352,7 +354,8 @@ SimpleChat.configure({
                     },
                     {
                         $set: {
-                            banned: true
+                            banned: true,
+                            "services.resume.loginTokens" : []
                         }
                     }
                 )

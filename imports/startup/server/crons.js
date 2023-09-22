@@ -43,7 +43,7 @@ SyncedCron.add({
                     server: thisServer._id
                 }).count()
 
-                const amountToCreate = 5 - existingCount
+                const amountToCreate = 20 - existingCount
 
                 if (amountToCreate > 0) {
                     for (let i = 0; i < amountToCreate; i++) {

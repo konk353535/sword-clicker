@@ -48,16 +48,16 @@
                                   {{/if}}
                                   {{#if $eq name 'Game'}}
                                     <span class="direct-chat-name chat-{{this.custom.roomType}}">
-                                      {{name}}
+                                      {{name}}:&nbsp;
                                     </span>
                                   {{else if $eq name 'SERVER'}}
                                     <span class="direct-chat-name chat-{{this.custom.roomType}}">
-                                      {{name}}
+                                      {{name}}:&nbsp;
                                     </span>
                                   {{else}}
                                     <a href="/profile/{{name}}">
                                       <span class="direct-chat-name chat-{{this.custom.roomType}}">
-                                        {{name}}
+                                        {{name}}:&nbsp;
                                       </span>
                                     </a>
                                   {{/if}}
@@ -93,16 +93,16 @@
                                 {{/if}}
                                 {{#if $eq name 'Game'}}
                                   <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                    {{name}}
+                                    {{name}}:&nbsp;
                                   </span>
                                 {{else if $eq name 'SERVER'}}
                                   <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                    {{name}}
+                                    {{name}}:&nbsp;
                                   </span>
                                 {{else}}
                                   <a href="/profile/{{name}}">
                                     <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
-                                      {{name}}
+                                      {{name}}:&nbsp;
                                     </span>
                                   </a>
                                 {{/if}}

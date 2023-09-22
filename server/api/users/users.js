@@ -225,16 +225,16 @@ Meteor.methods({
             return false
         }
 
-        Chats.insert({
-            message: `Welcome new player ${userDoc.username} to the game!`,
-            username: "GAME",
-            name: "GAME",
-            date: new Date(),
-            custom: {
-                roomType: "General"
-            },
-            roomId: `General`
-        })
+        // Chats.insert({
+        //     message: `Welcome new player ${userDoc.username} to the game!`,
+        //     username: "GAME",
+        //     name: "GAME",
+        //     date: new Date(),
+        //     custom: {
+        //         roomType: "General"
+        //     },
+        //     roomId: `General`
+        // })
 
         return Users.update(
             {
@@ -254,16 +254,16 @@ Meteor.methods({
             return false
         }
 
-        return Chats.insert({
-            message: `Welcome new player ${userDoc.username} to the game!`,
-            username: "GAME",
-            name: "GAME",
-            date: new Date(),
-            custom: {
-                roomType: "General"
-            },
-            roomId: `General`
-        })
+        // return Chats.insert({
+        //     message: `Welcome new player ${userDoc.username} to the game!`,
+        //     username: "GAME",
+        //     name: "GAME",
+        //     date: new Date(),
+        //     custom: {
+        //         roomType: "General"
+        //     },
+        //     roomId: `General`
+        // })
     },
 
     "users.tutorialUpdate"(updateObject) {
@@ -512,8 +512,8 @@ const clientAddress = function clientAddress(in_clientAddress) {
 }
 
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.updateGuest' }, 10, 2 * MINUTE);
-DDPRateLimiter.addRule({ type: "method", name: "users.createGuest", clientAddress }, 3, 24 * 60 * MINUTE)
-DDPRateLimiter.addRule({ type: "method", name: "ATCreateUserServer", clientAddress }, 3, 24 * 60 * MINUTE)
+// DDPRateLimiter.addRule({ type: "method", name: "users.createGuest", clientAddress }, 3, 24 * 60 * MINUTE)
+// DDPRateLimiter.addRule({ type: "method", name: "ATCreateUserServer", clientAddress }, 3, 24 * 60 * MINUTE)
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.initUiState' }, 10, 10 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.activeUsers' }, 10, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'users.setUiState' }, 50, 1 * MINUTE);

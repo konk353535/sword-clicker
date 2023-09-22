@@ -14,10 +14,10 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
                 ;[
                     "x-forwarded-for",
                     "X-Forwarded-For",
-                    "x-real-ip",
-                    "X-Real-IP",
                     "cf-connecting-ip",
-                    "CF-Connecting-IP"
+                    "CF-Connecting-IP",
+                    "x-real-ip",
+                    "X-Real-IP"
                 ].forEach((httpHeader) => {
                     try {
                         if (connectionInfo.httpHeaders[httpHeader]) {
@@ -27,7 +27,7 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
 
                             // no IPv6
                             if (
-                                ipDiscovered != "" &&
+                                ipDiscovered === "" &&
                                 localIP &&
                                 typeof localIP === "string" &&
                                 localIP.length > 0 &&

@@ -27,6 +27,7 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
 
                             // no IPv6
                             if (
+                                ipDiscovered != "" &&
                                 localIP &&
                                 typeof localIP === "string" &&
                                 localIP.length > 0 &&

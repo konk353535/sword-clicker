@@ -10,10 +10,6 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
 
     if (connectionInfo) {
         try {
-            ipDiscovered = connectionInfo.clientAddress
-        } catch (err) {}
-
-        try {
             if (connectionInfo.httpHeaders) {
                 ;[
                     "x-forwarded-for",
@@ -25,7 +21,7 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
                 ].forEach((httpHeader) => {
                     try {
                         if (connectionInfo.httpHeaders[httpHeader]) {
-                            let localIP = connectionInfo.httpHeaders[httpHeader].split(/[ ,]/).filter(function (a) {
+                            let localIP = connectionInfo.httpHeaders[httpHeader].split(/[ ,]/).map(function (a) {
                                 return a.trim()
                             })[0]
 
@@ -41,6 +37,10 @@ export const getIPFromConnection = function getIPFromConnection(connectionInfo) 
                         }
                     } catch (err) {}
                 })
+            }
+
+            if (ipDiscovered === "") {
+                ipDiscovered = connectionInfo.clientAddress
             }
         } catch (err) {}
     }

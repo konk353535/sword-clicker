@@ -13,6 +13,7 @@ import { createNewServer, setServerStatus } from "/imports/api/servers/servers"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { CInt } from "/imports/utils.js"
+import { env } from "/server/validateEnv.js"
 
 import { ITEMS } from "/imports/constants/items/index.js"
 
@@ -461,8 +462,9 @@ SimpleChat.configure({
                     message: `Gave ${targetUser.username} ${targetAmount} x ${targetItem}`
                 })
                 return
-            } else if (/\/debugAllItems/.test(message) && userDoc.isSuperMod) {
+            } else if (/\/debugAllItems/.test(message) && userDoc.isSuperMod && env.NODE_ENV === "development") {
                 // give the caller one of every item
+                // only allow this command if in dev mode
                 Object.keys(ITEMS).forEach((itemId) => {
                     addItem(itemId, 1, userDoc._id)
                 })

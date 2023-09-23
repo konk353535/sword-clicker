@@ -57,6 +57,20 @@ function validData(data: any) {
     return false
 }
 
+// Utility for disconnecting a Socket
+function dropWebsocketConnection(oSocket: any) {
+    try {
+        if (validObject(oSocket) && validObject(oSocket._handle)) {
+            if (validObject(oSocket.destroy)) {
+                oSocket.destroy()
+            } else if (validObject(oSocket.close)) {
+                oSocket.close()
+            }
+        }
+    } catch (err) {}
+    return
+}
+
 type ConnectionValues = {
     queryData: z.infer<typeof queryDataSchema> | null
     targetServerUrl: string
@@ -182,39 +196,44 @@ server.use((req, res, next) => {
     return next()
 })
 
-server.use(
-    createProxyMiddleware("/", {
-        ws: true, // proxy websockets
-        router: (req) => {
-            const { targetServerUrl } = getConnectionValues(req)
+const proxyMiddleware = createProxyMiddleware("/", {
+    ws: true, // proxy websockets
+    router: (req) => {
+        const { targetServerUrl } = getConnectionValues(req)
 
-            return targetServerUrl.replace("https", "http")
-        },
-        onProxyReq: (proxyReq, req, res) => {
-            const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
-            const ipAddr = getIPandLog(req, false, connectionText)
-            // Note: slip the non-proxied original IP address of the player into the request
-            // URL so the battle node understands what IPs belong to which user.
-            req.url = `${req.url}&ipAddr=${ipAddr}`
-            if (wantLog) {
-                console.log(`Balancer - ${queryData?.balancer} | Proxying HTTP (${req.url}) to ${targetServerUrl}`)
-            }
-        },
-        onProxyReqWs: (proxyReq, req, res) => {
-            const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
-            const ipAddr = getIPandLog(req, false, connectionText)
-            // Note: slip the non-proxied original IP address of the player into the request
-            // URL so the battle node understands what IPs belong to which user.
-            req.url = `${req.url}&ipAddr=${ipAddr}`
-            if (wantLog) {
-                console.log(`Balancer - ${queryData?.balancer} | Proxying WebSocket (${req.url}) to ${targetServerUrl}`)
-            }
-        },
-        onError: (err, req, res, target) => {
-            console.log(`Proxy error: ${err}:`)
+        return targetServerUrl.replace("https", "http")
+    },
+    onProxyReq: (proxyReq, req, res) => {
+        const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
+        const ipAddr = getIPandLog(req, false, connectionText)
+        // Note: slip the non-proxied original IP address of the player into the request
+        // URL so the battle node understands what IPs belong to which user.
+        req.url = `${req.url}&ipAddr=${ipAddr}`
+        if (wantLog) {
+            console.log(`Balancer - ${queryData?.balancer} | Proxying HTTP (${req.url}) to ${targetServerUrl}`)
         }
-    })
-)
+    },
+    onProxyReqWs: (proxyReq, req, res) => {
+        const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
+        const ipAddr = getIPandLog(req, false, connectionText)
+        // Note: slip the non-proxied original IP address of the player into the request
+        // URL so the battle node understands what IPs belong to which user.
+        req.url = `${req.url}&ipAddr=${ipAddr}`
+        if (wantLog) {
+            console.log(`Balancer - ${queryData?.balancer} | Proxying WebSocket (${req.url}) to ${targetServerUrl}`)
+        }
+    },
+    onError: (err, req, res, target) => {
+        console.log(`Proxy error: ${err}:`)
+    },
+    onClose: (res, socket, head) => {
+        // view disconnected websocket connections
+        // console.log("Client disconnected", res)
+        // dropWebsocketConnection(socket)
+    }
+})
+
+server.use(proxyMiddleware)
 
 let proxyServer: ReturnType<typeof https.createServer> | ReturnType<typeof http.createServer>
 
@@ -235,6 +254,27 @@ if (env.NODE_ENV === "production") {
 } else {
     proxyServer = http.createServer(server)
 }
+
+proxyServer.on("timeout", function (socket) {
+    // Emitted if the socket times out from inactivity. This is only to notify that the
+    // socket has been idle. The user must manually close the connection.
+
+    // Note: can occur from timeout attempting to connect to battle-node or just the
+    // client timing out.
+
+    dropWebsocketConnection(socket)
+})
+
+// `httpServer` event
+// https://nodejs.org/api/http.html#http_event_clienterror
+proxyServer.on("clientError", function (err, socket) {
+    // If a client connection emits an 'error' event, it will be forwarded here.  Listener of this
+    // event is responsible for closing/destroying the underlying socket.
+    console.log("Proxy server clientError emitted:")
+    console.log(err)
+
+    dropWebsocketConnection(socket)
+})
 
 // Begin listening for basic web requests to upgrade to webSockets
 if (env.NODE_ENV === "production") {

@@ -620,7 +620,14 @@ export default class Battle {
             }
         }
 
-        request(req)
+        const startTime = process.hrtime()
+
+        request(req, () => {
+            const elapsed = process.hrtime(startTime)[1] / 1000000
+            console.log(
+                `[${this.id}] - battle end post duration: ${process.hrtime(startTime)[0]}s, ${elapsed.toFixed(3)}ms`
+            )
+        })
         const balancer = balancers[this.balancer]
         if (balancer != null) {
             balancer.remove()

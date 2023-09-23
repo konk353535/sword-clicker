@@ -27,6 +27,9 @@ import { distributeRewards, removeBattle, resolveLoot } from "/server/api/battle
 import { addItem } from "/server/api/items/items.js"
 import { newTownDay } from "/server/api/town/town.js"
 
+// console.log("worker ID", process.env['CLUSTER_WORKER_ID'])
+if (process.env['CLUSTER_WORKER_ID'] !== "1") return
+
 // Prefab some guest account
 SyncedCron.add({
     name: "Prefab Guests",

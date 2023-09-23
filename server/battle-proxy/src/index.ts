@@ -203,6 +203,8 @@ const proxyMiddleware = createProxyMiddleware("/", {
 
         return targetServerUrl.replace("https", "http")
     },
+    proxyTimeout: 1000 * 30,
+    timeout: 1000 * 30,
     onProxyReq: (proxyReq, req, res) => {
         const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
         const ipAddr = getIPandLog(req, false, connectionText)

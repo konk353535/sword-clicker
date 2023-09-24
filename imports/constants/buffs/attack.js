@@ -841,7 +841,8 @@ export const ATTACK_BUFFS = {
                 let localSecondsElapsed = secondsElapsed
 
                 const damageToTake = localSecondsElapsed * buff.data.healthLost
-                actualBattle.dealDamage(damageToTake, {
+
+                actualBattle.dealDamage(damageToTake * -1, {
                     attacker: caster,
                     defender: caster,
                     tickEvents: actualBattle.tickEvents,

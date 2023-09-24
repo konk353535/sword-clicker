@@ -227,7 +227,7 @@ const proxyMiddleware = createProxyMiddleware({
 
         return targetServerUrl.replace("https", "http")
     },
-    logLevel: "debug",
+    logLevel: "info",
     proxyTimeout: 1000 * 30,
     timeout: 1000 * 30,
     onProxyReq: (proxyReq, req, res) => {

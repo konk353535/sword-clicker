@@ -1,4 +1,4 @@
-FROM node:18-bookworm-slim as base
+FROM node:14-bullseye-slim as base
 
 ARG HTTP_PORT=3057
 # HTTPS_PORT does nothing in dev mode

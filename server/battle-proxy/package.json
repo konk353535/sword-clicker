@@ -6,7 +6,7 @@
         "start": "npm run build && cross-env NODE_ENV=production node --loader tsx build/index.js",
         "prod": "cross-env NODE_ENV=production node --loader tsx build/index.js",
         "devTracing": "cross-env tsx watch --clear-screen=false -r ./src/tracing.ts src/index.ts",
-        "dev": "cross-env NODE_ENV=development DEBUG=http-proxy-middleware* tsx watch --clear-screen=false src/index.ts",
+        "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"
     },
     "nodemonConfig": {

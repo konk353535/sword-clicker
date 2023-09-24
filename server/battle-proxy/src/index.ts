@@ -1,3 +1,5 @@
+// import "./tracing"
+
 import ConsistentHashing from "consistent-hashing"
 import express from "express"
 import basicAuth from "express-basic-auth"
@@ -71,6 +73,16 @@ function dropWebsocketConnection(oSocket: any) {
     return
 }
 
+// Utility for disconnecting a web request
+function dropHttpConnection(oResponse: any, iStatus = 403, sStatusReason = "Unauthorized") {
+    try {
+        oResponse.writeHead(iStatus, { "Content-Type": "text/plain" })
+        oResponse.write(sStatusReason)
+        oResponse.end()
+    } catch (err) {}
+    return
+}
+
 type ConnectionValues = {
     queryData: z.infer<typeof queryDataSchema> | null
     targetServerUrl: string
@@ -119,6 +131,16 @@ function getConnectionValues(req: http.IncomingMessage): ConnectionValues {
         wantLog: displayBlockedConnections
     }
 }
+
+// function getUniqueId(req: http.IncomingMessage) {
+//     const url = req.url?.split("?")[1]
+//     if (url == null) {
+//         throw new Error(`Unknown url: ${req.url}`)
+//     }
+//     const queryData = queryString.parse(url)
+
+//     return `${queryData.userId}#${queryData.conSeed}`
+// }
 
 // Utility for getting some IP information and optional logging to screen
 function getIPandLog(req: http.IncomingMessage, wantLog: boolean, connectionText: string) {
@@ -196,13 +218,16 @@ server.use((req, res, next) => {
     return next()
 })
 
-const proxyMiddleware = createProxyMiddleware("/", {
+// const connectionMap = new Map<string, { web?: Response; sock?: Socket }>()
+
+const proxyMiddleware = createProxyMiddleware({
     ws: true, // proxy websockets
     router: (req) => {
         const { targetServerUrl } = getConnectionValues(req)
 
         return targetServerUrl.replace("https", "http")
     },
+    logLevel: "debug",
     proxyTimeout: 1000 * 30,
     timeout: 1000 * 30,
     onProxyReq: (proxyReq, req, res) => {
@@ -214,6 +239,20 @@ const proxyMiddleware = createProxyMiddleware("/", {
         if (wantLog) {
             console.log(`Balancer - ${queryData?.balancer} | Proxying HTTP (${req.url}) to ${targetServerUrl}`)
         }
+
+        // do we already have a connection for this ID?
+        // const id = getUniqueId(req)
+
+        // console.log("id", id, "keys", connectionMap.keys())
+        // const conn = connectionMap.get(id)
+        // if (conn != null) {
+        //     // close previous
+        //     dropWebsocketConnection(conn.sock)
+        //     dropHttpConnection(conn.web)
+        //     connectionMap.set(id, { web: res })
+        // } else {
+        //     connectionMap.set(id, { web: res })
+        // }
     },
     onProxyReqWs: (proxyReq, req, res) => {
         const { queryData, targetServerUrl, connectionText, wantLog } = getConnectionValues(req)
@@ -224,14 +263,21 @@ const proxyMiddleware = createProxyMiddleware("/", {
         if (wantLog) {
             console.log(`Balancer - ${queryData?.balancer} | Proxying WebSocket (${req.url}) to ${targetServerUrl}`)
         }
+
+        // const id = getUniqueId(req)
+        // connectionMap.set(id, { sock: res })
     },
     onError: (err, req, res, target) => {
         console.log(`Proxy error: ${err}:`)
+        dropHttpConnection(res, 500, "Unknown error occurred.")
+        // const id = getUniqueId(req)
+        // connectionMap.delete(id)
     },
     onClose: (res, socket, head) => {
         // view disconnected websocket connections
-        // console.log("Client disconnected", res)
-        // dropWebsocketConnection(socket)
+        dropHttpConnection(res, 500, "Unknown error occurred.")
+        dropWebsocketConnection(socket)
+        // connectionMap.delete(id)
     }
 })
 
@@ -257,6 +303,8 @@ if (env.NODE_ENV === "production") {
     proxyServer = http.createServer(server)
 }
 
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_timeout
 proxyServer.on("timeout", function (socket) {
     // Emitted if the socket times out from inactivity. This is only to notify that the
     // socket has been idle. The user must manually close the connection.
@@ -265,6 +313,17 @@ proxyServer.on("timeout", function (socket) {
     // client timing out.
 
     dropWebsocketConnection(socket)
+})
+
+// `httpServer` inherits `net` emitted events
+// https://nodejs.org/api/net.html#net_event_error_1
+proxyServer.on("error", function (err) {
+    // Emitted when an error occurs. The 'close' event will be called directly following this event.
+
+    console.log("Proxy server error emitted:")
+    console.log(err)
+
+    // Note: since the socket is automatically closed, no further logic here.
 })
 
 // `httpServer` event

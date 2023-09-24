@@ -1,84 +1,91 @@
 <template name="selectAbilitiesPage">
-  <div class="container mt-2">
-    <h4 class="d-flex align-items-center">
-      Equipped Abilities
-    </h4>
-    <div class="d-flex flex-wrap mb-3">
-      <!-- Main Hand -->
-      {{#if equippedAbilitiesMap.mainHand}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
-      {{else}}
-        <div class="icon-box">
-          1
+    <div class="container mt-2">
+        <h4 class="d-flex align-items-center">
+            Equipped Abilities
+        </h4>
+        <div class="d-flex flex-wrap mb-3">
+            <!-- Main Hand -->
+            {{#if equippedAbilitiesMap.mainHand}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+            {{else}}
+                <div class="icon-box">
+                    1
+                </div>
+            {{/if}}
+            <!-- Off Hand -->
+            {{#if equippedAbilitiesMap.offHand}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+            {{else}}
+                <div class="icon-box">
+                    2
+                </div>
+            {{/if}}
+            <!-- Head -->
+            {{#if equippedAbilitiesMap.head}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+            {{else}}
+                <div class="icon-box">
+                    3
+                </div>
+            {{/if}}
+            <!-- Chest -->
+            {{#if equippedAbilitiesMap.chest}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+            {{else}}
+                <div class="icon-box">
+                    4
+                </div>
+            {{/if}}
+            <!-- Legs -->
+            {{#if equippedAbilitiesMap.legs}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+            {{else}}
+                <div class="icon-box">
+                    5
+                </div>
+            {{/if}}
+            <!-- Companion -->
+            {{#if equippedAbilitiesMap.companion}}
+                {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
+            {{else}}
+                <div class="icon-box">
+                    Companion
+                </div>
+            {{/if}}
         </div>
-      {{/if}}
-      <!-- Off Hand -->
-      {{#if equippedAbilitiesMap.offHand}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
-      {{else}}
-        <div class="icon-box">
-          2
-        </div>
-      {{/if}}
-      <!-- Head -->
-      {{#if equippedAbilitiesMap.head}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
-      {{else}}
-        <div class="icon-box">
-          3
-        </div>
-      {{/if}}
-      <!-- Chest -->
-      {{#if equippedAbilitiesMap.chest}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
-      {{else}}
-        <div class="icon-box">
-          4
-        </div>
-      {{/if}}
-      <!-- Legs -->
-      {{#if equippedAbilitiesMap.legs}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
-      {{else}}
-        <div class="icon-box">
-          5
-        </div>
-      {{/if}}
-      <!-- Companion -->
-      {{#if equippedAbilitiesMap.companion}}
-        {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
-      {{else}}
-        <div class="icon-box">
-          6
-        </div>
-      {{/if}}
-    </div>
 
-    <div class="p-1">
-      {{#if availableTomes}}
-        <h1>Available Tomes</h1>
-        <div class="d-flex flex-wrap">
-          {{#each availableTomes}}
-            {{> itemIcon item=this classes="small"}}
-          {{/each}}
+        <div class="p-1">
+            {{#if availableTomes}}
+                <h1>Available Tomes</h1>
+                <div class="d-flex flex-wrap">
+                    {{#each availableTomes}}
+                        {{> itemIcon item=this classes="small"}}
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
-      {{/if}}
-    </div>
 
-    <div class="p-1">
-      <h3>Library</h3>
-      <p>
-        You can learn abilities by crafting tomes in inscription, then come back to this page and read it.
-      </p>
-      <div class="d-flex flex-wrap">
-        {{#each abilityLibrary}}
-          {{> abilityLibraryIcon item=this}}
-        {{/each}}
-      </div>
-    </div>
+        <div class="p-1">
+            <h3>Library</h3>
+            <p>
+                You can learn abilities by crafting tomes in inscription, then come back to this page and read it.
+            </p>
+            <p>Learned</p>
+            <div class="d-flex flex-wrap">
+                {{#each abilityLibrary.learnt}}
+                    {{> abilityLibraryIcon item=this}}
+                {{/each}}
+            </div>
+            <p class="mt-2">Unlearned</p>
+            <div class="d-flex flex-wrap">
+                {{#each abilityLibrary.notLearnt}}
+                    {{> abilityLibraryIcon item=this}}
+                {{/each}}
+            </div>
+        </div>
 
-    <div class="select-battle-container">
-      <button class="btn btn-primary back-to-loadout-btn">Back to loadout</button>
+        <div class="select-battle-container">
+            <button class="btn btn-primary back-to-loadout-btn">Back to loadout</button>
+        </div>
     </div>
-  </div>
 </template>

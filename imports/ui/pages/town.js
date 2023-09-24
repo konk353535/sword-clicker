@@ -239,7 +239,7 @@ Template.townPage.helpers({
     },
 
     thisSectionKarmaInfo() {
-        const karmaData = karmaLevelValues(Template.instance().state.get("townSection"))
+        const karmaData = karmaLevelValues(Template.instance().state.get("townSection"), Town.findOne({}))
 
         if (!karmaData.isError) {
             //const thisSectionKarmaValue = CInt(Template.instance().state.get('thisSectionKarma'));

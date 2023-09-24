@@ -3,8 +3,6 @@ import moment from "moment"
 import _ from "underscore"
 import { env } from "/server/validateEnv"
 
-import { CInt } from "/imports/utils.js"
-
 import { Events } from "/imports/api/events/events"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Floors } from "/imports/api/floors/floors"
@@ -414,5 +412,39 @@ Meteor.publish("battlesList", function () {
 })
 
 Meteor.publish("servers", function () {
-    return Servers.find()
+    //Transform function
+    const transform = function (doc) {
+        if (doc.town) {
+            if(doc.town.day1goods) {
+                doc.town.day1goods = []
+            }
+            if(doc.town.day2goods) {
+                doc.town.day2goods = []
+            }
+            if(doc.town.day3goods) {
+                doc.town.day3goods = []
+            }
+        }
+        return doc
+    }
+
+    const self = this
+
+    const observer = Servers.find().observe({
+        added: function (document) {
+            self.added("servers", document._id, transform(document))
+        },
+        changed: function (newDocument, oldDocument) {
+            self.changed("servers", oldDocument._id, transform(newDocument))
+        },
+        removed: function (oldDocument) {
+            self.removed("servers", oldDocument._id)
+        }
+    })
+
+    self.onStop(function () {
+        observer.stop()
+    })
+
+    self.ready()
 })

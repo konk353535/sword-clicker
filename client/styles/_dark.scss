@@ -14,7 +14,10 @@ html.dark {
         color: #fff;
     }
     img.skill {
-        filter: invert(1)
+        filter: invert(1);
+    }
+    .required-weapon .weapon-type {
+        filter: invert(1);
     }
     .body-content {
         margin-bottom: 0;
@@ -29,7 +32,8 @@ html.dark {
     .side-link-item:hover {
         background-color: #212121 !important;
     }
-    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    .nav-tabs .nav-link.active,
+    .nav-tabs .nav-item.show .nav-link {
         background-color: #0275d8;
     }
     .text-muted {
@@ -72,6 +76,10 @@ html.dark {
     }
     .icon-box.not-learnt {
         border: 3px solid black;
+        background-color: #292929 !important;
+        img {
+            opacity: 0.6;
+        }
     }
     .progress-bar {
         background-color: #005cbf !important;

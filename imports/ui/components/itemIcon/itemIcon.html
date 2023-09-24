@@ -26,6 +26,7 @@
           {{#if $eq this.type 'weaponType'}}
             {{#each this.weaponTypes}}
               <img
+                class="weapon-type"
                 src="/icons/{{this}}.svg"
                 style="height: 20px; width: 20px;">
             {{/each}}
@@ -37,7 +38,11 @@
             {{#each this.weaponTypes}}
               <img
                 src="/icons/forbidden.svg"
-                style="height: 20px; width: 20px; background: url(/icons/{{this}}.svg) center center;">
+                style="position: absolute; top: 0; left: 0; height: 20px; width: 20px;">
+              <img
+              class="weapon-type"
+                src="/icons/{{this}}.svg"
+                style="position: absolute; top: 0; left: 0; height: 20px; width: 20px;">
             {{/each}}
           {{/if}}
         {{/each}}

@@ -199,6 +199,9 @@ Template.selectAbilitiesPage.helpers({
         })
         tempList = _.sortBy(tempList, "notLearnt")
 
-        return tempList
+        return {
+            learnt: tempList.filter((list) => !list.notLearnt),
+            notLearnt: tempList.filter((list) => list.notLearnt)
+        }
     }
 })

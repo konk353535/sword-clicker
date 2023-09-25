@@ -31,6 +31,7 @@ export const PLANTS = {
         ]
     },
 
+    // 0.25 hours, 1000g/hr
     marigold: {
         produces: "marigold",
         name: "marigold",
@@ -59,6 +60,7 @@ export const PLANTS = {
         ]
     },
 
+    // 0.25 hours, 1400g/hr
     blue_rose: {
         produces: "blue_rose",
         name: "blue rose",

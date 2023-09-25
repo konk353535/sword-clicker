@@ -253,15 +253,15 @@ export const MONSTER_BUFFS = {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2)
                         }
                         const newBuff = {
-                            id: "berserk",
+                            id: "mammoth_berserk",
                             data: {
                                 duration: Infinity,
                                 totalDuration: Infinity,
                                 icon: "berserk.svg",
-                                name: "berserk",
+                                name: "mammoth_berserk",
                                 level: 3
                             },
-                            constants: lookupBuff("berserk")
+                            constants: lookupBuff("mammoth_berserk")
                         }
                         addBuff({ buff: newBuff, target: target, caster: target, actualBattle })
                     }

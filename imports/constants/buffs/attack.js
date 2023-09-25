@@ -870,6 +870,94 @@ export const ATTACK_BUFFS = {
         }
     },
 
+    mammoth_berserk: {
+        duplicateTag: "mammoth_berserk", // Used to stop duplicate buffs
+        icon: "berserk.svg",
+        name: "berserk",
+        description({ buff, level }) {
+            let localLevel = CInt(level)
+            if (localLevel <= 0) {
+                localLevel = 1
+            }
+
+            const damagePerLevel = buff.constants.damagePercentageIncreasePerLevel
+            const damageTakenPerLevel = buff.constants.damageTakenPercentageIncreasePerLevel
+
+            const damageIncrease = buff.constants.damagePercentageIncreaseBase + damagePerLevel * localLevel
+            const damageTakenIncrease =
+                buff.constants.damageTakenPercentageIncreaseBase + damageTakenPerLevel * localLevel
+            const duration = buff.data.totalDuration
+
+            return `
+        <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
+        <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
+        You can\'t change your active target while berserking.<br />
+        Duration <b>${duration}s</b>`
+        },
+        constants: {
+            damagePercentageIncreaseBase: 35,
+            damagePercentageIncreasePerLevel: 5,
+            damageTakenPercentageIncreaseBase: 17,
+            damageTakenPercentageIncreasePerLevel: 3,
+            healthLostPerSecondBase: -1,
+            healthLostPerSecondPerLevel: 3
+        },
+        data: {
+            duration: 15,
+            totalDuration: 15
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+
+                buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
+                // Increases damage and attack speed
+                const damageIncrease =
+                    constants.damagePercentageIncreaseBase +
+                    constants.damagePercentageIncreasePerLevel * buff.data.level
+                // Damage taken
+                const damageTaken =
+                    constants.damageTakenPercentageIncreaseBase +
+                    constants.damageTakenPercentageIncreasePerLevel * buff.data.level
+
+                buff.data.damageIncrease = damageIncrease
+                buff.data.damageTakenIncrease = damageTaken
+
+                buff.data.extraAttackMax = target.stats.attackMax * (buff.data.damageIncrease / 100)
+                buff.data.extraAttack = target.stats.attack * (buff.data.damageIncrease / 100)
+
+                target.stats.attack += buff.data.extraAttack
+                target.stats.attackMax += buff.data.extraAttackMax
+                target.stats.attackSpeed *= 1 + buff.data.damageIncrease / 100
+                target.stats.damageTaken *= 1 + buff.data.damageTakenIncrease / 100
+
+                target.isAbleToChangeTargets = false
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (buff.duration !== Infinity) {
+                    buff.duration -= secondsElapsed
+                    if (buff.duration <= 0) {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                target.stats.attack -= buff.data.extraAttack
+                target.stats.attackMax -= buff.data.extraAttackMax
+                target.stats.attackSpeed /= 1 + buff.data.damageIncrease / 100
+                target.stats.damageTaken /= 1 + buff.data.damageTakenIncrease / 100
+
+                target.isAbleToChangeTargets = true
+            }
+        }
+    },
+
     double_edged_sword: {
         duplicateTag: "double_edged_sword", // Used to stop duplicate buffs
         icon: "doubleEdgedSword.svg",

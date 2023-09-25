@@ -266,14 +266,11 @@ SyncedCron.add({
         return parser.cron("0 0 * * * * *")
     },
     job: function () {
-		// Check if the boss has died first
-		checkBossDeath()
-		
         // Fetch current active floor
         const currentFloor = Floors.findOne({ floorComplete: false })
         const floorConstants = FLOORS[currentFloor.floor]
 
-        // Get bosses hp
+        // Get boss' HP
         const bossEnemyId = floorConstants.boss.enemy.id
         const bossEnemyConstants = ENEMIES[bossEnemyId]
 
@@ -288,14 +285,14 @@ SyncedCron.add({
         console.log(bossEnemyConstants)
         const newHealthMax = activeTowerUsers * bossEnemyConstants.stats.healthMax
         console.log(`new health max is ${newHealthMax}`)
-        Floors.update({ floorComplete: false }, { $set: { health: newHealthMax, healthMax: newHealthMax } })
+        Floors.update({ health: { $gt: 0 }, floorComplete: false }, { $set: { healthMax: newHealthMax } })
 
-        console.log("Have finally reset boss health")
+        console.log("Have re-evaluated boss max health")
 
-        // Clear hp dealt on leaderboards
+        // Clear HP dealt on leaderboards
         BossHealthScores.remove({})
 
-        console.log("Boss hp score reset")
+        console.log("Boss HP score (official attempts) reset")
 
         // Enable users to fight bosses again
         Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
@@ -318,167 +315,6 @@ SyncedCron.add({
     }
 })
 
-const checkBossDeath = function () {
-	Servers.find({})
-		.fetch()
-		.forEach((server) => {
-			// Fetch current active floor
-			const currentFloor = Floors.findOne({ server: server._id, floorComplete: false })
-
-			if (!currentFloor) {
-				return
-			}
-
-			// reset boss HP
-			if (moment().isAfter(currentFloor.bossResetAt)) {
-				if (Math.floor(currentFloor.health) <= 0) {
-					// kill the boss
-					console.log("Health is below 0")
-					// Complete the floor!
-					let updatedCount = Floors.update(
-						{
-							floor: currentFloor.floor,
-							server: currentFloor.server,
-							floorComplete: false
-						},
-						{
-							$set: {
-								floorComplete: true
-							}
-						}
-					)
-
-					//console.log(`Updated count is ${updatedCount}`);
-					if (updatedCount === 1) {
-						// Distribute rewards
-						distributeRewards({ floor: currentFloor.floor, server: currentFloor.server })
-
-						// Notify general chat
-						if (currentFloor.floor === env.MAX_FLOOR) {
-							Chats.insert({
-								message: `The boss on floor ${currentFloor.floor} has been defeated!
-			THE TOWER HAS BEEN COMPLETED!`,
-								username: "SERVER",
-								name: "SERVER",
-								date: new Date(),
-								custom: {
-									roomType: "Server"
-								},
-								roomId: `Server-${currentFloor.server}`
-							})
-						} else {
-							Chats.insert({
-								message: `The boss on floor ${currentFloor.floor} has been defeated!
-			Floor ${currentFloor.floor + 1} is now unlocked.`,
-								username: "SERVER",
-								name: "SERVER",
-								date: new Date(),
-								custom: {
-									roomType: "Server"
-								},
-								roomId: `Server-${currentFloor.server}`
-							})
-						}
-
-						// Insert the next floor (To do, make this pass a valid active tower users number)
-						const activeTowerUsers = FloorWaveScores.find({
-							server: currentFloor.server,
-							floor: currentFloor.floor,
-							points: {
-								$gte: 25
-							}
-						}).count()
-						//const newPointMax = FLOORS.getNewPointCount(currentFloor.floor + 1, activeTowerUsers);
-
-						// Get bosses hp
-						//const bossEnemyId = FLOORS[currentFloor.floor + 1].boss.enemy.id;
-						//const bossEnemyConstants = ENEMIES[bossEnemyId];
-
-						// Reset tower contributions for all
-						Combat.update(
-							{ towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
-							{ $set: { towerContributionsToday: 0 } },
-							{ multi: true }
-						)
-
-						BossHealthScores.remove({})
-
-						createNewFloor(
-							currentFloor.server,
-							currentFloor.floor + 1,
-							activeTowerUsers /*, newPointMax, bossEnemyConstants.stats.healthMax * activeTowerUsers */
-						)
-
-						// Create our next floor
-						/*
-		Floors.insert({
-		  floor: currentFloor.floor + 1,
-		  createdAt: new Date(),
-		  points: 0,
-		  pointsMax: newPointMax, // Need some kind of
-		  health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-		  healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers,
-		  floorComplete: false,
-		  server: currentFloor.server,
-		  loot: []
-		});
-		*/
-
-						// Enable users to fight bosses again
-						Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
-					}
-				} else {
-					// reset the boss
-					const floorConstants = FLOORS[currentFloor.floor]
-
-					// Get bosses hp
-					const bossEnemyId = floorConstants.boss.enemy.id
-					const bossEnemyConstants = ENEMIES[bossEnemyId]
-
-					const activeTowerUsers = FloorWaveScores.find({
-						server: server._id,
-						floor: currentFloor.floor,
-						points: {
-							$gte: 25
-						}
-					}).count()
-					console.log(`Server: ${server.name}: active tower users ${activeTowerUsers}`)
-					console.log(`boss enemy constants`)
-					console.log(bossEnemyConstants)
-					const resetDate = moment(currentFloor.bossResetAt).add(24, "hours").toDate()
-					console.log(`new health max is ${currentFloor.healthMax}`)
-					Floors.update(
-						{
-							server: server._id,
-							floor: currentFloor.floor,
-							floorComplete: false
-						},
-						{
-							$set: {
-								health: currentFloor.healthMax,
-								bossResetAt: resetDate
-							}
-						}
-					)
-
-					console.log("Have finally reset boss health")
-
-					// Clear hp dealt on leaderboards
-					BossHealthScores.remove({})
-
-					console.log("Boss hp score reset")
-
-					// Enable users to fight bosses again
-					Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
-
-					console.log("Fought boss is done now")
-
-					console.log("All done for boss battle reset")
-				}
-			}
-		})
-}
-
 // Reset tower things (daily)
 SyncedCron.add({
     name: "Check boss health / death",
@@ -486,7 +322,164 @@ SyncedCron.add({
         return parser.cron("* * * * * * *")
     },
     job: function () {
-        checkBossDeath();
+        Servers.find({})
+            .fetch()
+            .forEach((server) => {
+                // Fetch current active floor
+                const currentFloor = Floors.findOne({ server: server._id, floorComplete: false })
+
+                if (!currentFloor) {
+                    return
+                }
+
+                // reset boss HP
+                if (moment().isAfter(currentFloor.bossResetAt)) {
+                    if (Math.floor(currentFloor.health) <= 0) {
+                        // kill the boss
+                        console.log("Health is below 0")
+                        // Complete the floor!
+                        let updatedCount = Floors.update(
+                            {
+                                floor: currentFloor.floor,
+                                server: currentFloor.server,
+                                floorComplete: false
+                            },
+                            {
+                                $set: {
+                                    floorComplete: true
+                                }
+                            }
+                        )
+
+                        //console.log(`Updated count is ${updatedCount}`);
+                        if (updatedCount === 1) {
+                            // Distribute rewards
+                            distributeRewards({ floor: currentFloor.floor, server: currentFloor.server })
+
+                            // Notify general chat
+                            if (currentFloor.floor === env.MAX_FLOOR) {
+                                Chats.insert({
+                                    message: `The boss on floor ${currentFloor.floor} has been defeated!
+                THE TOWER HAS BEEN COMPLETED!`,
+                                    username: "SERVER",
+                                    name: "SERVER",
+                                    date: new Date(),
+                                    custom: {
+                                        roomType: "Server"
+                                    },
+                                    roomId: `Server-${currentFloor.server}`
+                                })
+                            } else {
+                                Chats.insert({
+                                    message: `The boss on floor ${currentFloor.floor} has been defeated!
+                Floor ${currentFloor.floor + 1} is now unlocked.`,
+                                    username: "SERVER",
+                                    name: "SERVER",
+                                    date: new Date(),
+                                    custom: {
+                                        roomType: "Server"
+                                    },
+                                    roomId: `Server-${currentFloor.server}`
+                                })
+                            }
+
+                            // Insert the next floor (To do, make this pass a valid active tower users number)
+                            const activeTowerUsers = FloorWaveScores.find({
+                                server: currentFloor.server,
+                                floor: currentFloor.floor,
+                                points: {
+                                    $gte: 25
+                                }
+                            }).count()
+                            //const newPointMax = FLOORS.getNewPointCount(currentFloor.floor + 1, activeTowerUsers);
+
+                            // Get bosses hp
+                            //const bossEnemyId = FLOORS[currentFloor.floor + 1].boss.enemy.id;
+                            //const bossEnemyConstants = ENEMIES[bossEnemyId];
+
+                            // Reset tower contributions for all
+                            Combat.update(
+                                { towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+                                { $set: { towerContributionsToday: 0 } },
+                                { multi: true }
+                            )
+
+                            BossHealthScores.remove({})
+
+                            createNewFloor(
+                                currentFloor.server,
+                                currentFloor.floor + 1,
+                                activeTowerUsers /*, newPointMax, bossEnemyConstants.stats.healthMax * activeTowerUsers */
+                            )
+
+                            // Create our next floor
+                            /*
+            Floors.insert({
+              floor: currentFloor.floor + 1,
+              createdAt: new Date(),
+              points: 0,
+              pointsMax: newPointMax, // Need some kind of
+              health: bossEnemyConstants.stats.healthMax * activeTowerUsers,
+              healthMax: bossEnemyConstants.stats.healthMax * activeTowerUsers,
+              floorComplete: false,
+              server: currentFloor.server,
+              loot: []
+            });
+            */
+
+                            // Enable users to fight bosses again
+                            Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
+                        }
+                    } else {
+                        // reset the boss
+                        const floorConstants = FLOORS[currentFloor.floor]
+
+                        // Get bosses hp
+                        const bossEnemyId = floorConstants.boss.enemy.id
+                        const bossEnemyConstants = ENEMIES[bossEnemyId]
+
+                        const activeTowerUsers = FloorWaveScores.find({
+                            server: server._id,
+                            floor: currentFloor.floor,
+                            points: {
+                                $gte: 25
+                            }
+                        }).count()
+                        console.log(`Server: ${server.name}: active tower users ${activeTowerUsers}`)
+                        console.log(`boss enemy constants`)
+                        console.log(bossEnemyConstants)
+                        const resetDate = moment(currentFloor.bossResetAt).add(24, "hours").toDate()
+                        console.log(`new health max is ${currentFloor.healthMax}`)
+                        Floors.update(
+                            {
+                                server: server._id,
+                                floor: currentFloor.floor,
+                                floorComplete: false
+                            },
+                            {
+                                $set: {
+                                    health: currentFloor.healthMax,
+                                    bossResetAt: resetDate
+                                }
+                            }
+                        )
+
+                        console.log("Have finally reset boss health")
+
+                        // Clear hp dealt on leaderboards
+                        BossHealthScores.remove({})
+
+                        console.log("Boss hp score reset")
+
+                        // Enable users to fight bosses again
+                        Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
+
+                        console.log("Fought boss is done now")
+
+                        console.log("All done for boss battle reset")
+                    }
+                }
+            })
     }
 })
 

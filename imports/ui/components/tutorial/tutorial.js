@@ -131,7 +131,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: `Equip pickaxe`,
+                    text: `Equip primitive pickaxe`,
                     current,
                     required,
                     tip: "Visit the Mine page > Equipment tab",
@@ -150,7 +150,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: "Hire a miner",
+                    text: "Hire a primitive miner",
                     current: 0,
                     required: 1,
                     tip: "Visit the Mine page > Miners tab",
@@ -169,7 +169,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: "Hire a prospector",
+                    text: "Hire a stone prospector",
                     current: 0,
                     required: 1,
                     tip: "Visit the Mine page > Prospectors tab",
@@ -204,7 +204,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: "Hire two woodcutters",
+                    text: "Hire two stone woodcutters",
                     current: 0,
                     required: 2,
                     tip: "Visit the Woodcut page",

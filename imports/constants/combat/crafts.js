@@ -31,33 +31,34 @@ import { ARCHER_CRAFTS } from "./crafts/archer"
 import { STAFF_CRAFTS } from "./crafts/staff"
 
 export const COMBAT_CRAFTS = Object.assign(
-    COPPER_CRAFTS,
-    TIN_CRAFTS,
-    BRONZE_CRAFTS,
-    IRON_CRAFTS,
-    SILVER_CRAFTS,
-    GOLD_CRAFTS,
-    CARBON_CRAFTS,
-    STEEL_CRAFTS,
-    PLATINUM_CRAFTS,
-    TITANIUM_CRAFTS,
-    TUNGSTEN_CRAFTS,
-    OBSIDIAN_CRAFTS,
-    COBALT_CRAFTS,
-    MITHRIL_CRAFTS,
-    ADAMANTIUM_CRAFTS,
-    ORICHALCUM_CRAFTS,
-    METEORITE_CRAFTS,
-    FAIRY_STEEL_CRAFTS,
-    ELVEN_STEEL_CRAFTS,
-    CURSED_CRAFTS,
-    DARKSTEEL_CRAFTS,
-    RADIANT_CRAFTS,
-    ASTRAL_CRAFTS,
-    TITANFOIL_CRAFTS,
-    RELICROCK_CRAFTS,
-    ETERNIUM_CRAFTS,
-    PRISMATIC_CRAFTS,
+//  STONE_CRAFTS,      // tier 0 (T0) -- just here for documentation/reference, 'STONE_CRAFTS' does not exist
+    COPPER_CRAFTS,     // tier 1 (T1)
+    TIN_CRAFTS,        // tier 2 (T2)
+    BRONZE_CRAFTS,     // tier 3 (T3)
+    IRON_CRAFTS,       // tier 4 (T4)
+    SILVER_CRAFTS,     // tier 5 (T5)
+    GOLD_CRAFTS,       // tier 6 (T6)
+    CARBON_CRAFTS,     // tier 7 (T7)
+    STEEL_CRAFTS,      // tier 8 (T8)
+    PLATINUM_CRAFTS,   // tier 9 (T9)
+    TITANIUM_CRAFTS,   // tier 10 (T10)
+    TUNGSTEN_CRAFTS,   // tier 11 (T11)
+    OBSIDIAN_CRAFTS,   // tier 12 (T12)
+    COBALT_CRAFTS,     // tier 13 (T13)
+    MITHRIL_CRAFTS,    // tier 14 (T14)
+    ADAMANTIUM_CRAFTS, // tier 15 (T15)
+    ORICHALCUM_CRAFTS, // tier 16 (T16)
+    METEORITE_CRAFTS,  // tier 17 (T17)
+    FAIRY_STEEL_CRAFTS,// tier 18 (T18)
+    ELVEN_STEEL_CRAFTS,// tier 19 (T19)
+    CURSED_CRAFTS,     // tier 20 (T20)
+    DARKSTEEL_CRAFTS,  // tier 21 (T21)
+    RADIANT_CRAFTS,    // tier 22 (T22)
+    ASTRAL_CRAFTS,     // tier 23 (T23)
+    TITANFOIL_CRAFTS,  // tier 24 (T24)
+    RELICROCK_CRAFTS,  // tier 25 (T25)
+    ETERNIUM_CRAFTS,   // tier 26 (T26)
+    PRISMATIC_CRAFTS,  // tier 27 (T27)
     AMULET_CRAFTS,
     STAFF_CRAFTS,
     ARCHER_CRAFTS

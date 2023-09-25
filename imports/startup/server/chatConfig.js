@@ -569,6 +569,107 @@ SimpleChat.configure({
 
                 return
             }
+            // } else if (/\/giveXp/.test(message) && userDoc.isSuperMod) {
+            //     const splitMessage = message.trim()?.split("/giveXp")?.[1]?.trim()?.split(" ")
+            //     console.log("split", splitMessage)
+
+            //     let targetUsername, targetSkill, targetAmount
+
+            //     if (splitMessage.length === 3) {
+            //         targetUsername = userDoc.username
+            //         targetSkill = splitMessage[1]
+            //         targetAmount = CInt(splitMessage[2])
+            //     } else {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Usage: /giveXp player skill amount` })
+            //         return
+            //     }
+
+            //     const targetUser = Users.findOne({
+            //         username: targetUsername.toLowerCase().trim()
+            //     })
+
+            //     if (!targetUser) {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Invalid target player '${targetUsername}'.` })
+            //         return
+            //     }
+
+            //     const skill = Skills.findOne({ owner: targetUser._id, type: targetSkill })
+
+            //     if (!skill) {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Invalid skill '${targetSkill}'.` })
+            //         return
+            //     }
+
+            //     addXp(targetSkill, targetAmount, targetUser._id, true, true)
+
+            //     sendUserChatMessage({
+            //         userId: userDoc._id,
+            //         message: `Adjusted ${targetUser.username} XP by ${targetAmount}`
+            //     })
+            //     return
+            // } else if (/\/setLevel/.test(message) && userDoc.isSuperMod) {
+            //     const splitMessage = message.trim()?.split("/setLevel")?.[1]?.trim()?.split(" ")
+            //     console.log("split", splitMessage)
+
+            //     let targetUsername, targetSkill, targetLevel
+
+            //     if (splitMessage.length === 3) {
+            //         targetUsername = userDoc.username
+            //         targetSkill = splitMessage[1]
+            //         targetLevel = CInt(splitMessage[2])
+            //     } else {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Usage: /setLevel <player> <skill> <level>` })
+            //         return
+            //     }
+
+            //     const targetUser = Users.findOne({
+            //         username: targetUsername.toLowerCase().trim()
+            //     })
+
+            //     if (!targetUser) {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Invalid target player '${targetUsername}'.` })
+            //         return
+            //     }
+
+            //     const skill = Skills.findOne({ owner: targetUser._id, type: targetSkill })
+
+            //     if (!skill) {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Invalid skill '${targetSkill}'.` })
+            //         return
+            //     }
+
+            //     if (targetLevel < 1) {
+            //         sendUserChatMessage({ userId: userDoc._id, message: `Can\'t set to level below 1.` })
+            //         return
+            //     }
+
+            //     const xpToNextLevel = SKILLS[targetSkill].xpToLevel(targetLevel - 1)
+
+            //     // Update Level
+            //     Skills.update(
+            //         {
+            //             _id: skill._id,
+            //             type: skill.type,
+            //             level: 0
+            //         },
+            //         {
+            //             $set: {
+            //                 level: targetLevel,
+            //                 totalXp: 0,
+            //                 xp: 0
+            //             }
+            //         }
+            //     )
+
+            //     // force the logic that comes from skill ups including combat stats, unlocked recipes, etc.
+            //     addXp(targetSkill, xpToNextLevel, targetUser._id, true, true)
+
+            //     sendUserChatMessage({
+            //         userId: userDoc._id,
+            //         message: `Set ${targetUser.username} level to ${targetLevel}`
+            //     })
+            //     return
+            // }
         }
 
         try {

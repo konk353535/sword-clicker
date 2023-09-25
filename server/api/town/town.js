@@ -59,9 +59,10 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
                             CInt(locateBuff.value.level) != CInt(karmaData[karmaDataPoint].currentLevel)
                         ) {
                             // Delete any existing buff
-                            const curBuffCursor = State.find(
-                                { name: karmaData[karmaDataPoint].buffName, server: thisServer._id }
-                            )
+                            const curBuffCursor = State.find({
+                                name: karmaData[karmaDataPoint].buffName,
+                                server: thisServer._id
+                            })
 
                             if (curBuffCursor.count() > 0) {
                                 const curBuffRemoveId = curBuffCursor.fetch()[0]._id
@@ -71,16 +72,14 @@ export const syncKarmaBuffs = function syncKarmaBuffs() {
 
                             // And create a new buff with the right level (or no buff at target level 0)
                             if (CInt(karmaData[karmaDataPoint].currentLevel) > 0) {
-                                State.insert(
-                                    {
-                                        name: karmaData[karmaDataPoint].buffName,
-                                        server: thisServer._id,
-                                        value: {
-                                            activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(),
-                                            level: karmaData[karmaDataPoint].currentLevel
-                                        }
+                                State.insert({
+                                    name: karmaData[karmaDataPoint].buffName,
+                                    server: thisServer._id,
+                                    value: {
+                                        activeTo: moment().utc().hours(23).minutes(59).seconds(59).toDate(),
+                                        level: karmaData[karmaDataPoint].currentLevel
                                     }
-                                )
+                                })
                             }
                         }
                     }
@@ -335,6 +334,17 @@ const consolidateGoods = function consolidateGoods(inputGoods) {
 
 Meteor.publish("town", function () {
     const transform = function (doc) {
+        if (doc.town) {
+            if (doc.town.day1goods) {
+                doc.town.day1goods = []
+            }
+            if (doc.town.day2goods) {
+                doc.town.day2goods = []
+            }
+            if (doc.town.day3goods) {
+                doc.town.day3goods = []
+            }
+        }
         return doc.town
     }
 

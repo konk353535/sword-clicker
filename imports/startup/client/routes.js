@@ -21,7 +21,6 @@ Router.route("/", {
         }
     }
 })
-
 ;["overview", "gameHome"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -33,7 +32,6 @@ Router.route("/", {
         }
     })
 })
-
 ;["guest", "guestSettings"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -55,7 +53,6 @@ Router.route("/achievements", {
         footer: { to: "footer" }
     }
 })
-
 ;["updates", "patchNotes", "changelog", "changes", "news"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -67,7 +64,17 @@ Router.route("/achievements", {
         }
     })
 })
-
+;["oldUpdates"].forEach((pageAlias) => {
+    Router.route(`/${pageAlias}`, {
+        name: pageAlias,
+        title: "Old Updates",
+        template: "oldUpdatesPage",
+        yieldRegions: {
+            nav: { to: "nav" },
+            footer: { to: "footer" }
+        }
+    })
+})
 ;["faq", "help"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -79,7 +86,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["info", "data"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -91,7 +97,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["shop", "store", "gems", "gemShop", "buy"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -103,7 +108,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["combat", "newCombat", "battle", "fight"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -115,7 +119,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["mine", "mining", "minePit"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -127,7 +130,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["items", "inventory", "craft", "crafting"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -139,7 +141,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["woodcut", "woodcutting", "lumber", "lumbering"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -151,7 +152,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["farm", "farming"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -163,7 +163,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["inscribe", "inscribing", "inscription", "enchantments", "alchemy"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -175,7 +174,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["magic", "astro", "astrology", "astronomy", "spells", "spellBook"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -187,7 +185,6 @@ Router.route("/achievements", {
         }
     })
 })
-
 ;["settlement", "hamlet", "village", "town", "city"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -209,7 +206,6 @@ Router.route("/chat", {
         footer: { to: "footer" }
     }
 })
-
 ;["/profile/:username", "/p/:username"].forEach((pageShortcut, idx) => {
     Router.route(pageShortcut, {
         name: `profilePage_${idx}`,
@@ -221,7 +217,6 @@ Router.route("/chat", {
         }
     })
 })
-
 ;["skills", "leaderboard", "ranking", "rankings"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
@@ -233,7 +228,6 @@ Router.route("/chat", {
         }
     })
 })
-
 ;["dev", "developer", "development", "debug", "test", "testing"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,

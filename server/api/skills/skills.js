@@ -53,7 +53,7 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs()
 Meteor.setInterval(updateGlobalBuffs, 30000)
 
-export const addXp = function (skillType, xp, specificUserId, ignoreBuff = false) {
+export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs = false, ignoreTownBuffs = false) {
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -66,13 +66,12 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff = false
         return
     }
 
-    const skillConstants = SKILLS[skill.type]
     const originalXp = skill.xp
 
     // 100% of XP earned
     let bonusXpPercent = 1
 
-    if (!ignoreBuff) {
+    if (!ignoreGlobalBuffs) {
         // global buffs add a 35% XP bonus to their relevant skills
         if (globalXpBuffs[skill.type]) {
             bonusXpPercent += 0.35
@@ -102,27 +101,31 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff = false
     }
 
     // new 2019-06-24, bonus based on personal karma
-    const userDoc = Users.findOne({ _id: owner })
-    if (userDoc) {
-        if (userDoc.townKarma && CInt(userDoc.townKarma) > 0) {
-            let personalKarmaBonus = CDbl(userDoc.townKarma) / (Math.pow(1.045, CDbl(skill.level) / 2.5) * 75) / 100.0
-            //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
+    if (!ignoreTownBuffs) {
+        const userDoc = Users.findOne({ _id: owner })
+        if (userDoc) {
+            if (userDoc.townKarma && CInt(userDoc.townKarma) > 0) {
+                let personalKarmaBonus = CDbl(userDoc.townKarma) / (Math.pow(1.045, CDbl(skill.level) / 2.5) * 75) / 100.0
+                //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
 
-            // cap personal karma bonus at 200%
-            if (personalKarmaBonus > 2.0) {
-                personalKarmaBonus = 2.0
+                // cap personal karma bonus at 200%
+                if (personalKarmaBonus > 2.0) {
+                    personalKarmaBonus = 2.0
+                }
+
+                bonusXpPercent += personalKarmaBonus
             }
-
-            bonusXpPercent += personalKarmaBonus
         }
     }
 
-    // mutate XP earned by bonus XP
-    xp *= bonusXpPercent
+    // mutate XP earned by bonus XP (with a final failsafe against bonuses)
+	if (!ignoreGlobalBuffs && !ignoreTownBuffs) {
+		xp *= bonusXpPercent
+	}
 
     skill.xp += xp
 
-    let xpToNextLevel = skillConstants.xpToLevel(skill.level)
+    let xpToNextLevel = SKILLS[skill.type].xpToLevel(skill.level)
 
     if (skill.xp >= xpToNextLevel) {
         let levelUps = 0
@@ -130,7 +133,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff = false
         while (skill.xp >= xpToNextLevel) {
             skill.xp -= xpToNextLevel
             levelUps += 1
-            xpToNextLevel = skillConstants.xpToLevel(skill.level + levelUps)
+            xpToNextLevel = SKILLS[skill.type].xpToLevel(skill.level + levelUps)
         }
 
         // Update Level
@@ -208,15 +211,15 @@ export const addXp = function (skillType, xp, specificUserId, ignoreBuff = false
             }
         })
 
-        // This can probably be optimized
-        /* Remove for performance reasons
-    Skills.update({
-      type: 'total',
-      owner
-    }, {
-      $inc: { totalXp: xp }
-    });
-    */
+        // This can probably be optimized (removed for performance reasons)
+        /*
+        Skills.update({
+            type: 'total',
+            owner
+        }, {
+            $inc: { totalXp: xp }
+        })
+        */
     }
 }
 

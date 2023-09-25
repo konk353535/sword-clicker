@@ -289,16 +289,6 @@ SyncedCron.add({
 
         console.log("Have re-evaluated boss max health")
 
-        // Clear HP dealt on leaderboards
-        BossHealthScores.remove({})
-
-        console.log("Boss HP score (official attempts) reset")
-
-        // Enable users to fight bosses again
-        Combat.update({ foughtBoss: true }, { $set: { foughtBoss: false } }, { multi: true })
-
-        console.log("Fought boss is done now")
-
         // Enable users to fight waves again
         Combat.update(
             { towerContributions: { $ne: [] } }, // always use an index to avoid blindly setting data for the whole database

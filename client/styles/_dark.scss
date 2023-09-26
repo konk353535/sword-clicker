@@ -19,6 +19,9 @@ html.dark {
     .required-weapon .weapon-type {
         filter: invert(1);
     }
+    .highscore-skills-container .select-skill img {
+        filter: invert(1);
+    }
     .body-content {
         margin-bottom: 0;
     }
@@ -334,5 +337,16 @@ html.dark {
         color: #fff;
         background-color: $dark-fg-color !important;
         border-color: #000 !important;
+    }
+
+    // achievements page
+    .achievements-page {
+        .ignore-not-met-text .text-danger {
+            color: $white !important;
+        }
+    }
+
+    #PETQS_UI {
+        background-color: transparent !important;
     }
 }

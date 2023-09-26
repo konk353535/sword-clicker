@@ -1,21 +1,30 @@
 <template name="updatesPage">
     <h2 class="my-3">Archived updates</h2>
-    <p>Updates from previous game are now available at <a href="/oldUpdates">oldUpdates</a>. Keep in mind they may be inaccurate or out of date due to age.</p>
+    <p>Updates from previous game are now available at <a href="/oldUpdates">oldUpdates</a>. Keep in mind they may be
+        inaccurate or out of date due to age.</p>
 
     <div style="height: 10px; line-height: 10px"><br /></div>
     <h2 class="my-3">Monday 25th Sept 2023</h2>
     <ul>
+        <li><b>Graphics</b></li>
+        <ul>
+            <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for bars, bows,
+                idols, mining anvils, woodcutting axes, mining hammers, pickaxes, pylons, and walls. Thank you!</li>
+        </ul>
         <li><b>Bugfixes</b></li>
         <ul>
-            <li>
-                Boss Health will no longer reset during the daily floor official run reset
-            </li>
+            <li>Boss Health will no longer reset during the daily floor official run reset</li>
+            <li>Mammoths no longer take damage from berserk</li>
+            
         </ul>
         <li><b>Minor Changes</b></li>
         <ul>
-            <li>
-                Small updates to tutorial for clarity
-            </li>
+            <li>Small updates to tutorial for clarity</li>
+            <li>Added another server-side tweak to help with town karma performance</li>
+            <li>Light theme chat no longer has a transparent background on mobile view</li>
+            <li>Fixed dark theme Achievement numbers being too dark to view</li>
+            <li>Fixed dark theme Rankings category icons being too dark to view</li>
+            <li>Fixed crafting one / many text being selectable in mobile view</li>
         </ul>
     </ul>
 
@@ -28,7 +37,9 @@
         </ul>
         <li><b>Minor Changes</b></li>
         <ul>
-            <li>Due to performance issues, the "Town items donated today" has been disabled in the UI. Town buffs will still calculate and apply correctly from the server. This mainly affects the "karma at this location" counter in the UI only.</li>
+            <li>Due to performance issues, the "Town items donated today" has been disabled in the UI. Town buffs will
+                still calculate and apply correctly from the server. This mainly affects the "karma at this location"
+                counter in the UI only.</li>
         </ul>
     </ul>
     <div style="height: 10px; line-height: 10px"><br /></div>

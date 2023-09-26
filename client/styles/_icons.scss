@@ -552,3 +552,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   pointer-events: none;
   flex: 0 0 auto;
 }
+
+.quick-craft, .single-craft {
+    user-select: none;
+}

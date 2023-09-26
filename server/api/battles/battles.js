@@ -414,23 +414,17 @@ Meteor.publish("battlesList", function () {
 Meteor.publish("servers", function () {
     //Transform function
     const transform = function (doc) {
-        if (doc.town) {
-            if(doc.town.day1goods) {
-                doc.town.day1goods = []
-            }
-            if(doc.town.day2goods) {
-                doc.town.day2goods = []
-            }
-            if(doc.town.day3goods) {
-                doc.town.day3goods = []
-            }
+        doc.town = {
+            day1goods: [],
+            day2goods: [],
+            day3goods: []
         }
         return doc
     }
 
     const self = this
 
-    const observer = Servers.find().observe({
+    const observer = Servers.find({}, { fields: { town: 0 } }).observe({
         added: function (document) {
             self.added("servers", document._id, transform(document))
         },

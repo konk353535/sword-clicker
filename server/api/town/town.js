@@ -334,23 +334,17 @@ const consolidateGoods = function consolidateGoods(inputGoods) {
 
 Meteor.publish("town", function () {
     const transform = function (doc) {
-        if (doc.town) {
-            if (doc.town.day1goods) {
-                doc.town.day1goods = []
-            }
-            if (doc.town.day2goods) {
-                doc.town.day2goods = []
-            }
-            if (doc.town.day3goods) {
-                doc.town.day3goods = []
-            }
+        doc.town = {
+            day1goods: [],
+            day2goods: [],
+            day3goods: []
         }
         return doc.town
     }
 
     const self = this
 
-    const observer = Servers.find({ _id: serverFromUser() }).observe({
+    const observer = Servers.find({ _id: serverFromUser() }, { fields: { town: 0 } }).observe({
         added: function (document) {
             self.added("town", document._id, transform(document))
         },

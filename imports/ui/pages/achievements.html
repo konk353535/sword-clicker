@@ -1,56 +1,56 @@
 <template name="achievementsPage">
+    <div class="achievements-page">
+        <h1>Achievements</h1>
 
-  <h1>Achievements</h1>
+        <div class="d-flex flex-row">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><b>Most Damage Done</b></th>
+                            <th><b>Most Healing Done</b></th>
+                            <th><b>Most Damage Taken</b></th>
+                            <th><b>Spells Cast</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{> formatNumber number=damageDone decimal=0}}</td>
+                            <td>{{> formatNumber number=healingDone decimal=0}}</td>
+                            <td>{{> formatNumber number=damageTaken decimal=0}}</td>
+                            <td>{{> formatNumber number=spellsCast decimal=0}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-  <div class="d-flex flex-row">
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th><b>Most Damage Done</b></th>
-            <th><b>Most Healing Done</b></th>
-            <th><b>Most Damage Taken</b></th>
-            <th><b>Spells Cast</b></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{> formatNumber number=damageDone decimal=0}}</td>
-            <td>{{> formatNumber number=healingDone decimal=0}}</td>
-            <td>{{> formatNumber number=damageTaken decimal=0}}</td>
-            <td>{{> formatNumber number=spellsCast decimal=0}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <ul class="nav nav-tabs my-3">
+            <li class="nav-item pqTabLink">
+                <a class="nav-link {{#if showPqAchieveTab}}active{{/if}}" href="#">Personal Quest</a>
+            </li>
+            <li class="nav-item combatTabLink">
+                <a class="nav-link {{#if showCombatAchieveTab}}active{{/if}}" href="#">Combat</a>
+            </li>
+            <li class="nav-item magicTabLink">
+                <a class="nav-link {{#if showMagicAchieveTab}}active{{/if}}" href="#">Magic</a>
+            </li>
+            <li class="nav-item towerTabLink">
+                <a class="nav-link {{#if showTowerAchieveTab}}active{{/if}}" href="#">Tower</a>
+            </li>
+        </ul>
+
+        {{#if showPqAchieveTab}}
+            {{> pqAchieveTab achievements=achievements}}
+        {{/if}}
+        {{#if showCombatAchieveTab}}
+            {{> combatAchieveTab achievements=achievements}}
+        {{/if}}
+        {{#if showMagicAchieveTab}}
+            {{> magicAchieveTab achievements=achievements}}
+        {{/if}}
+        {{#if showTowerAchieveTab}}
+            {{> towerAchieveTab achievements=achievements}}
+        {{/if}}
     </div>
-  </div>
-  
-  <ul class="nav nav-tabs my-3">
-  	<li class="nav-item pqTabLink">
-      <a class="nav-link {{#if showPqAchieveTab}}active{{/if}}" href="#">Personal Quest</a>
-    </li>
-    <li class="nav-item combatTabLink">
-      <a class="nav-link {{#if showCombatAchieveTab}}active{{/if}}" href="#">Combat</a>
-    </li>
-  	<li class="nav-item magicTabLink">
-      <a class="nav-link {{#if showMagicAchieveTab}}active{{/if}}" href="#">Magic</a>
-    </li>
-    <li class="nav-item towerTabLink">
-      <a class="nav-link {{#if showTowerAchieveTab}}active{{/if}}" href="#">Tower</a>
-    </li>
-  </ul>
-
-  {{#if showPqAchieveTab}}
-    {{> pqAchieveTab achievements=achievements}}
-  {{/if}}
-  {{#if showCombatAchieveTab}}
-    {{> combatAchieveTab achievements=achievements}}
-  {{/if}}
-  {{#if showMagicAchieveTab}}
-    {{> magicAchieveTab achievements=achievements}}
-  {{/if}}
-  {{#if showTowerAchieveTab}}
-    {{> towerAchieveTab achievements=achievements}}
-  {{/if}}
-
 </template>

@@ -610,7 +610,7 @@ SimpleChat.configure({
 
                  sendUserChatMessage({
                      userId: userDoc._id,
-                     message: `Adjusted ${targetUser.username} XP by ${targetAmount}`
+                     message: `Gave ${targetUser.username} ${targetAmount} ${targetSkill} XP`
                  })
                  return
              } else if (/\/setLevel/.test(message) && userDoc.isSuperMod) {
@@ -644,7 +644,7 @@ SimpleChat.configure({
                  }
 
                  if (targetLevel < 1) {
-                     sendUserChatMessage({ userId: userDoc._id, message: `Can\'t set to level below 1.` })
+                     sendUserChatMessage({ userId: userDoc._id, message: `Can\'t set level to below 1.` })
                      return
                  }
 				 
@@ -672,7 +672,7 @@ SimpleChat.configure({
 
                  sendUserChatMessage({
                      userId: userDoc._id,
-                     message: `Set ${targetUser.username} level to ${targetLevel}`
+                     message: `Set ${targetUser.username} ${targetSkill} level to ${targetLevel}`
                  })
                  return
              }

@@ -406,9 +406,7 @@ Template.craftingPage.helpers({
         if (itemViewLimit !== 0) {
             if (bShowHidden && bShowUnhidden) {
                 return ItemSorter(
-                    FetchSomeVisibleItems(highestFurnaceTier).concat(
-                        FetchSomeHiddenItems(highestFurnaceTier)
-                    )
+                    FetchSomeVisibleItems(highestFurnaceTier).concat(FetchSomeHiddenItems(highestFurnaceTier))
                 ).slice(0, itemViewLimit)
             } else if (bShowHidden) {
                 return ItemSorter(FetchSomeHiddenItems(highestFurnaceTier)).slice(0, itemViewLimit)

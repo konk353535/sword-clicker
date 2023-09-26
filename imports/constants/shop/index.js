@@ -129,7 +129,7 @@ export const PLAYER_ICONS = {
     tank_t1: {
         name: "tank T1",
         icon: "guyT1.png",
-        group: "tank_pack",
+        group: "tank_pack"
     },
     tank_t2: {
         name: "tank T2",
@@ -146,7 +146,7 @@ export const PLAYER_ICONS = {
     tank_t1_color: {
         name: "tank T1 Rare",
         icon: "guyT1Color.png",
-        group: "tank_pack",
+        group: "tank_pack"
     },
     tank_t2_color: {
         name: "tank T2 Rare",

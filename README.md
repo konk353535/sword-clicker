@@ -8,25 +8,29 @@ https://www.meteor.com/install
 Running meteor:
 Copy example-settings-development.json as settings-development.json
 If running with redis-oplog on local development:
-- Create a keyFile for mongodb by running `openssl rand -base64 756 > dev/mongo/mongo.key`
-- Set permissions on it `chown 999:999 dev/mongo/mongo.key`
-- Copy `docker-compose.dev.sample.yml` to `docker-compose.yml`
-- Configure mongodb with replication by running `docker compose up mongo mongo-setup` (it should complete and `mongo-setup` should exit), then ctrl+c to stop
-- Start the stack with `docker compose up mongo redis oplogToRedis -d`
-- You can now run `npm run dev` to start the meteor server with redis-oplog
+
+-   Create a keyFile for mongodb by running `openssl rand -base64 756 > dev/mongo/mongo.key`
+-   Set permissions on it `chown 999:999 dev/mongo/mongo.key`
+-   Copy `docker-compose.dev.sample.yml` to `docker-compose.yml`
+-   Configure mongodb with replication by running `docker compose up mongo mongo-setup` (it should complete and `mongo-setup` should exit), then ctrl+c to stop
+-   Start the stack with `docker compose up mongo redis oplogToRedis -d`
+-   You can now run `npm run dev` to start the meteor server with redis-oplog
 
 If not running with redis-oplog on local development:
-- Remove `cultofcoders:redis-oplog` and `disable-oplog` from `.meteor/packages`
-- Remove the `MONGO_URL=mongodb://admin:admin@127.0.0.1:27017/?replicaSet=dbrs MONGO_OPLOG_URL=mongodb://oplogger:oplogger@127.0.0.1:27017/local?replicaSet=dbrs&authSource=admin` from the `package.json` `dev` script
-- Run `npm run dev` to start the meteor server
+
+-   Remove `cultofcoders:redis-oplog` and `disable-oplog` from `.meteor/packages`
+-   Remove the `MONGO_URL=mongodb://admin:admin@127.0.0.1:27017/?replicaSet=dbrs MONGO_OPLOG_URL=mongodb://oplogger:oplogger@127.0.0.1:27017/local?replicaSet=dbrs&authSource=admin` from the `package.json` `dev` script
+-   Run `npm run dev` to start the meteor server
 
 Running the Battle-Proxy and Battle-Node:
-- Copy the `.env.sample` in `server/battle-proxy` and `server/battle-node` to `.env` in both projects
-- In each project, run `npm run dev`
+
+-   Copy the `.env.sample` in `server/battle-proxy` and `server/battle-node` to `.env` in both projects
+-   In each project, run `npm run dev`
 
 Running the Battle-Proxy and Battle-Node in docker:
-- Copy `docker-compose.dev.sample.yml` to `docker-compose.yml`
-- Run `docker compose up battle-proxy battle-node`
+
+-   Copy `docker-compose.dev.sample.yml` to `docker-compose.yml`
+-   Run `docker compose up battle-proxy battle-node`
 
 == Deployment
 
@@ -55,7 +59,7 @@ Mongo server needs to be running mongo accessible by Meteor server with single-n
 
 == Gotchas
 
-- Using redis-oplog for local dev seems to cause consistency issues because I think `meteor run` still uses a mongo on port 3001
+-   Using redis-oplog for local dev seems to cause consistency issues because I think `meteor run` still uses a mongo on port 3001
 
 == Growth
 

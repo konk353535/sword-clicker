@@ -5,15 +5,15 @@ import { Combat } from "/imports/api/combat/combat"
 import { State } from "/imports/api/state/state"
 import { Users } from "/imports/api/users/users"
 
-import { STATE_BUFFS } from "/imports/constants/state"
 import { PLAYER_ICONS } from "/imports/constants/shop"
+import { STATE_BUFFS } from "/imports/constants/state"
 
 import { activateGlobalBuff, getActiveGlobalBuff, getGlobalBuff } from "/imports/api/globalbuffs/globalbuffs"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { addItem, addRealGems, consumeGems, consumeOnlyRealGems, hasGems } from "/server/api/items/items.js"
 
-import _ from "underscore"
 import lodash from "lodash"
+import _ from "underscore"
 
 const stripe = require("stripe")(Meteor.settings.private.stripe)
 

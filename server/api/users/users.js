@@ -3,7 +3,6 @@ import moment from "moment"
 import uuid from "node-uuid"
 import _ from "underscore"
 
-import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { BlackList } from "/imports/api/blacklist/blacklist"
 import { Combat } from "/imports/api/combat/combat"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"

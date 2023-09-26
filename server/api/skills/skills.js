@@ -105,7 +105,8 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
         const userDoc = Users.findOne({ _id: owner })
         if (userDoc) {
             if (userDoc.townKarma && CInt(userDoc.townKarma) > 0) {
-                let personalKarmaBonus = CDbl(userDoc.townKarma) / (Math.pow(1.045, CDbl(skill.level) / 2.5) * 75) / 100.0
+                let personalKarmaBonus =
+                    CDbl(userDoc.townKarma) / (Math.pow(1.045, CDbl(skill.level) / 2.5) * 75) / 100.0
                 //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
 
                 // cap personal karma bonus at 200%
@@ -119,9 +120,9 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
     }
 
     // mutate XP earned by bonus XP (with a final failsafe against bonuses)
-	if (!ignoreGlobalBuffs && !ignoreTownBuffs) {
-		xp *= bonusXpPercent
-	}
+    if (!ignoreGlobalBuffs && !ignoreTownBuffs) {
+        xp *= bonusXpPercent
+    }
 
     skill.xp += xp
 

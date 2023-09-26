@@ -76,7 +76,6 @@ items.forEach((item) => {
         const baseFinal = `${out}/${icon.output}`.replace("@", "")
         execSync(`convert ${src} -resize ${item.options.resize} ${baseFinal}`)
         Object.entries(colors).forEach((color) => {
-
             const final = `${out}/${icon.output}`.replace("@", color[0])
             if (fs.existsSync(final)) {
                 fs.rmSync(final)

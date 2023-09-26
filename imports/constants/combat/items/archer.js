@@ -1275,7 +1275,7 @@ export const ARCHER_ITEMS = {
     copper_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "copper_quiver",
-        icon: "copperQuiver.svg",
+        icon: "quiver_t1.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1307,7 +1307,7 @@ export const ARCHER_ITEMS = {
     tin_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "tin_quiver",
-        icon: "tinQuiver.svg",
+        icon: "quiver_t2.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1339,7 +1339,7 @@ export const ARCHER_ITEMS = {
     bronze_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "bronze_quiver",
-        icon: "bronzeQuiver.svg",
+        icon: "quiver_t3.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1371,7 +1371,7 @@ export const ARCHER_ITEMS = {
     iron_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "iron_quiver",
-        icon: "ironQuiver.svg",
+        icon: "quiver_t4.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1403,7 +1403,7 @@ export const ARCHER_ITEMS = {
     silver_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "silver_quiver",
-        icon: "silverQuiver.svg",
+        icon: "quiver_t5.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1435,7 +1435,7 @@ export const ARCHER_ITEMS = {
     gold_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "gold_quiver",
-        icon: "goldQuiver.svg",
+        icon: "quiver_t6.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1467,7 +1467,7 @@ export const ARCHER_ITEMS = {
     carbon_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "carbon_quiver",
-        icon: "carbonQuiver.svg",
+        icon: "quiver_t7.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1499,7 +1499,7 @@ export const ARCHER_ITEMS = {
     steel_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "steel_quiver",
-        icon: "steelQuiver.svg",
+        icon: "quiver_t8.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1531,7 +1531,7 @@ export const ARCHER_ITEMS = {
     platinum_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "platinum_quiver",
-        icon: "platinumQuiver.svg",
+        icon: "quiver_t9.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1563,7 +1563,7 @@ export const ARCHER_ITEMS = {
     titanium_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "titanium_quiver",
-        icon: "titaniumQuiver.svg",
+        icon: "quiver_t10.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1595,7 +1595,7 @@ export const ARCHER_ITEMS = {
     tungsten_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "tungsten_quiver",
-        icon: "tungstenQuiver.svg",
+        icon: "quiver_t11.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1627,7 +1627,7 @@ export const ARCHER_ITEMS = {
     obsidian_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "obsidian_quiver",
-        icon: "obsidianQuiver.svg",
+        icon: "quiver_t12.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1659,7 +1659,7 @@ export const ARCHER_ITEMS = {
     cobalt_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "cobalt_quiver",
-        icon: "cobaltQuiver.svg",
+        icon: "quiver_t13.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1691,7 +1691,7 @@ export const ARCHER_ITEMS = {
     mithril_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "mithril_quiver",
-        icon: "mithrilQuiver.svg",
+        icon: "quiver_t14.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1723,7 +1723,7 @@ export const ARCHER_ITEMS = {
     adamantium_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "adamantium_quiver",
-        icon: "adamantiumQuiver.svg",
+        icon: "quiver_t15.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1755,7 +1755,7 @@ export const ARCHER_ITEMS = {
     orichalcum_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "orichalcum_quiver",
-        icon: "orichalcumQuiver.svg",
+        icon: "quiver_t16.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1787,7 +1787,7 @@ export const ARCHER_ITEMS = {
     meteorite_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "meteorite_quiver",
-        icon: "meteoriteQuiver.svg",
+        icon: "quiver_t17.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1819,7 +1819,7 @@ export const ARCHER_ITEMS = {
     fairy_steel_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "fairy_steel_quiver",
-        icon: "fairySteelQuiver.svg",
+        icon: "quiver_t18.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1851,7 +1851,7 @@ export const ARCHER_ITEMS = {
     elven_steel_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "elven_steel_quiver",
-        icon: "elvenSteelQuiver.svg",
+        icon: "quiver_t19.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1883,7 +1883,7 @@ export const ARCHER_ITEMS = {
     cursed_quiver: {
         // quivers are knives with mutated accuracy and no bonus damage
         id: "cursed_quiver",
-        icon: "cursedQuiver.svg",
+        icon: "quiver_t20.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1914,7 +1914,7 @@ export const ARCHER_ITEMS = {
 
     darksteel_quiver: {
         id: "darksteel_quiver",
-        icon: "darksteelQuiver.svg",
+        icon: "quiver_t21.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1946,7 +1946,7 @@ export const ARCHER_ITEMS = {
 
     radiant_quiver: {
         id: "radiant_quiver",
-        icon: "radiantQuiver.svg",
+        icon: "quiver_t22.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -1978,7 +1978,7 @@ export const ARCHER_ITEMS = {
 
     astral_quiver: {
         id: "astral_quiver",
-        icon: "astralQuiver.svg",
+        icon: "quiver_t23.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -2010,7 +2010,7 @@ export const ARCHER_ITEMS = {
 
     titanfoil_quiver: {
         id: "titanfoil_quiver",
-        icon: "titanfoilQuiver.svg",
+        icon: "quiver_t24.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -2042,7 +2042,7 @@ export const ARCHER_ITEMS = {
 
     relicrock_quiver: {
         id: "relicrock_quiver",
-        icon: "relicrockQuiver.svg",
+        icon: "quiver_t25.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -2074,7 +2074,7 @@ export const ARCHER_ITEMS = {
 
     eternium_quiver: {
         id: "eternium_quiver",
-        icon: "eterniumQuiver.svg",
+        icon: "quiver_t26.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
@@ -2106,7 +2106,7 @@ export const ARCHER_ITEMS = {
 
     prismatic_quiver: {
         id: "prismatic_quiver",
-        icon: "prismaticQuiver.svg",
+        icon: "quiver_t27.png",
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",

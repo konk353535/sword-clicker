@@ -10,7 +10,7 @@ export const GOLD_ITEMS = {
 
     copper_sculpture: {
         id: "copper_sculpture",
-        icon: "copperSculpture.svg",
+        icon: "sculpture_t1.png",
         category: "crafting",
         name: "copper sculpture",
         sellPrice: 45,
@@ -28,7 +28,7 @@ export const GOLD_ITEMS = {
 
     bronze_sculpture: {
         id: "bronze_sculpture",
-        icon: "bronzeSculpture.svg",
+        icon: "sculpture_t2.png",
         category: "crafting",
         name: "bronze sculpture",
         sellPrice: 125,
@@ -46,7 +46,7 @@ export const GOLD_ITEMS = {
 
     silver_sculpture: {
         id: "silver_sculpture",
-        icon: "silverSculpture.svg",
+        icon: "sculpture_t5.png",
         category: "crafting",
         name: "silver sculpture",
         sellPrice: 250,
@@ -73,7 +73,7 @@ export const GOLD_ITEMS = {
 
     carbon_sculpture: {
         id: "carbon_sculpture",
-        icon: "carbonSculpture.svg",
+        icon: "sculpture_t7.png",
         category: "crafting",
         name: "carbon sculpture",
         sellPrice: 550,
@@ -91,7 +91,7 @@ export const GOLD_ITEMS = {
 
     platinum_sculpture: {
         id: "platinum_sculpture",
-        icon: "platinumSculpture.svg",
+        icon: "sculpture_t9.png",
         category: "crafting",
         name: "platinum sculpture",
         sellPrice: 750,
@@ -109,7 +109,7 @@ export const GOLD_ITEMS = {
 
     tungsten_sculpture: {
         id: "tungsten_sculpture",
-        icon: "tungstenSculpture.svg",
+        icon: "sculpture_t11.png",
         category: "crafting",
         name: "tungsten sculpture",
         sellPrice: 900,
@@ -127,7 +127,7 @@ export const GOLD_ITEMS = {
 
     cobalt_sculpture: {
         id: "cobalt_sculpture",
-        icon: "cobaltSculpture.svg",
+        icon: "sculpture_t13.png",
         category: "crafting",
         name: "cobalt sculpture",
         sellPrice: 1100,
@@ -145,7 +145,7 @@ export const GOLD_ITEMS = {
 
     adamantium_sculpture: {
         id: "adamantium_sculpture",
-        icon: "adamantiumSculpture.svg",
+        icon: "sculpture_t15.png",
         category: "crafting",
         name: "adamantium sculpture",
         sellPrice: 1300,
@@ -163,7 +163,7 @@ export const GOLD_ITEMS = {
 
     meteorite_sculpture: {
         id: "meteorite_sculpture",
-        icon: "meteoriteSculpture.svg",
+        icon: "sculpture_t17.png",
         category: "crafting",
         name: "meteorite sculpture",
         sellPrice: 1500,
@@ -181,7 +181,7 @@ export const GOLD_ITEMS = {
 
     elven_steel_sculpture: {
         id: "elven_steel_sculpture",
-        icon: "elvenSteelSculpture.svg",
+        icon: "sculpture_t19.png",
         category: "crafting",
         name: "elven steel sculpture",
         sellPrice: 1800,

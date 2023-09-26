@@ -241,7 +241,7 @@ export const ARCHER_ITEMS = {
 
     pine_bow: {
         id: "pine_bow",
-        icon: "pineBow.svg",
+        icon: "bow_t1.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -279,7 +279,7 @@ export const ARCHER_ITEMS = {
 
     beech_bow: {
         id: "beech_bow",
-        icon: "beechBow.svg",
+        icon: "bow_t2.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -317,7 +317,7 @@ export const ARCHER_ITEMS = {
 
     ash_bow: {
         id: "ash_bow",
-        icon: "ashBow.svg",
+        icon: "bow_t3.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -355,7 +355,7 @@ export const ARCHER_ITEMS = {
 
     oak_bow: {
         id: "oak_bow",
-        icon: "oakBow.svg",
+        icon: "bow_t4.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -393,7 +393,7 @@ export const ARCHER_ITEMS = {
 
     maple_bow: {
         id: "maple_bow",
-        icon: "mapleBow.svg",
+        icon: "bow_t5.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -431,7 +431,7 @@ export const ARCHER_ITEMS = {
 
     walnut_bow: {
         id: "walnut_bow",
-        icon: "walnutBow.svg",
+        icon: "bow_t6.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -469,7 +469,7 @@ export const ARCHER_ITEMS = {
 
     cherry_bow: {
         id: "cherry_bow",
-        icon: "cherryBow.svg",
+        icon: "bow_t7.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -507,7 +507,7 @@ export const ARCHER_ITEMS = {
 
     mahogany_bow: {
         id: "mahogany_bow",
-        icon: "mahoganyBow.svg",
+        icon: "bow_t8.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -545,7 +545,7 @@ export const ARCHER_ITEMS = {
 
     elm_bow: {
         id: "elm_bow",
-        icon: "elmBow.svg",
+        icon: "bow_t9.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -583,7 +583,7 @@ export const ARCHER_ITEMS = {
 
     black_bow: {
         id: "black_bow",
-        icon: "blackBow.svg",
+        icon: "bow_t10.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -621,7 +621,7 @@ export const ARCHER_ITEMS = {
 
     blue_gum_bow: {
         id: "blue_gum_bow",
-        icon: "blueGumBow.svg",
+        icon: "bow_t11.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -659,7 +659,7 @@ export const ARCHER_ITEMS = {
 
     cedar_bow: {
         id: "cedar_bow",
-        icon: "cedarBow.svg",
+        icon: "bow_t12.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -697,7 +697,7 @@ export const ARCHER_ITEMS = {
 
     denya_bow: {
         id: "denya_bow",
-        icon: "denyaBow.svg",
+        icon: "bow_t13.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -735,7 +735,7 @@ export const ARCHER_ITEMS = {
 
     gombe_bow: {
         id: "gombe_bow",
-        icon: "gombeBow.svg",
+        icon: "bow_t14.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -773,7 +773,7 @@ export const ARCHER_ITEMS = {
 
     hickory_bow: {
         id: "hickory_bow",
-        icon: "hickoryBow.svg",
+        icon: "bow_t15.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -811,7 +811,7 @@ export const ARCHER_ITEMS = {
 
     larch_bow: {
         id: "larch_bow",
-        icon: "larchBow.svg",
+        icon: "bow_t16.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -849,7 +849,7 @@ export const ARCHER_ITEMS = {
 
     poplar_bow: {
         id: "poplar_bow",
-        icon: "poplarBow.svg",
+        icon: "bow_t17.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -887,7 +887,7 @@ export const ARCHER_ITEMS = {
 
     tali_bow: {
         id: "tali_bow",
-        icon: "taliBow.svg",
+        icon: "bow_t18.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -925,7 +925,7 @@ export const ARCHER_ITEMS = {
 
     willow_bow: {
         id: "willow_bow",
-        icon: "willowBow.svg",
+        icon: "bow_t19.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -963,7 +963,7 @@ export const ARCHER_ITEMS = {
 
     teak_bow: {
         id: "teak_bow",
-        icon: "teakBow.svg",
+        icon: "bow_t20.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1001,7 +1001,7 @@ export const ARCHER_ITEMS = {
 
     ebony_bow: {
         id: "ebony_bow",
-        icon: "ebonyBow.svg",
+        icon: "bow_t21.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1040,7 +1040,7 @@ export const ARCHER_ITEMS = {
 
     fiery_bow: {
         id: "fiery_bow",
-        icon: "fieryBow.svg",
+        icon: "bow_t22.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1079,7 +1079,7 @@ export const ARCHER_ITEMS = {
 
     tamarind_bow: {
         id: "tamarind_bow",
-        icon: "tamarindBow.svg",
+        icon: "bow_t23.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1118,7 +1118,7 @@ export const ARCHER_ITEMS = {
 
     magic_bow: {
         id: "magic_bow",
-        icon: "magicBow.svg",
+        icon: "bow_t24.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1157,7 +1157,7 @@ export const ARCHER_ITEMS = {
 
     petrified_bow: {
         id: "petrified_bow",
-        icon: "petrifiedBow.svg",
+        icon: "bow_t25.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1196,7 +1196,7 @@ export const ARCHER_ITEMS = {
 
     ancient_bow: {
         id: "ancient_bow",
-        icon: "ancientBow.svg",
+        icon: "bow_t26.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
@@ -1235,7 +1235,7 @@ export const ARCHER_ITEMS = {
 
     spiritroot_bow: {
         id: "spiritroot_bow",
-        icon: "spiritrootBow.svg",
+        icon: "bow_t27.png",
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",

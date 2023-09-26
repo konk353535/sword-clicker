@@ -204,8 +204,8 @@ Meteor.methods({
 
                 // Only show recipes we can craft, or recipes close to what we can craft ( 1 level away )
                 return (
-                    inscriptionSkill.level + 1 >=
-                    (recipe && recipe.requiredInscriptionLevel ? recipe.requiredInscriptionLevel : 0)
+                    inscriptionSkill?.level + 1 >=
+                    (recipe && recipe?.requiredInscriptionLevel ? recipe?.requiredInscriptionLevel : 0)
                 )
             })
 

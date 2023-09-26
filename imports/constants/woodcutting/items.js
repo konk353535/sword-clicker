@@ -2,7 +2,7 @@ console.log("exporting woodcutting/items.js WOODCUTTING_ITEMS")
 export const WOODCUTTING_ITEMS = {
     primitive_axe: {
         id: "primitive_axe",
-        icon: "primitiveAxe.png",
+        icon: "wcaxe_t0.png",
         category: "woodcutting",
         slot: "axe",
         name: "primitive axe",
@@ -21,7 +21,7 @@ export const WOODCUTTING_ITEMS = {
 
     copper_axe: {
         id: "copper_axe",
-        icon: "copperAxe.svg",
+        icon: "wcaxe_t1.png",
         category: "woodcutting",
         slot: "axe",
         name: "copper axe",
@@ -41,7 +41,7 @@ export const WOODCUTTING_ITEMS = {
 
     tin_axe: {
         id: "tin_axe",
-        icon: "tinAxe.svg",
+        icon: "wcaxe_t2.png",
         category: "woodcutting",
         slot: "axe",
         name: "tin axe",
@@ -61,7 +61,7 @@ export const WOODCUTTING_ITEMS = {
 
     bronze_axe: {
         id: "bronze_axe",
-        icon: "bronzeAxe.svg",
+        icon: "wcaxe_t3.png",
         category: "woodcutting",
         slot: "axe",
         name: "bronze axe",
@@ -81,7 +81,7 @@ export const WOODCUTTING_ITEMS = {
 
     iron_axe: {
         id: "iron_axe",
-        icon: "ironAxe.svg",
+        icon: "wcaxe_t4.png",
         category: "woodcutting",
         slot: "axe",
         name: "iron axe",
@@ -101,7 +101,7 @@ export const WOODCUTTING_ITEMS = {
 
     silver_axe: {
         id: "silver_axe",
-        icon: "silverAxe.svg",
+        icon: "wcaxe_t5.png",
         category: "woodcutting",
         slot: "axe",
         name: "silver axe",
@@ -121,7 +121,7 @@ export const WOODCUTTING_ITEMS = {
 
     gold_axe: {
         id: "gold_axe",
-        icon: "goldAxe.svg",
+        icon: "wcaxe_t6.png",
         category: "woodcutting",
         slot: "axe",
         name: "gold axe",
@@ -141,7 +141,7 @@ export const WOODCUTTING_ITEMS = {
 
     carbon_axe: {
         id: "carbon_axe",
-        icon: "carbonAxe.svg",
+        icon: "wcaxe_t7.png",
         category: "woodcutting",
         slot: "axe",
         name: "carbon axe",
@@ -161,7 +161,7 @@ export const WOODCUTTING_ITEMS = {
 
     steel_axe: {
         id: "steel_axe",
-        icon: "steelAxe.svg",
+        icon: "wcaxe_t8.png",
         category: "woodcutting",
         slot: "axe",
         name: "steel axe",
@@ -181,7 +181,7 @@ export const WOODCUTTING_ITEMS = {
 
     platinum_axe: {
         id: "platinum_axe",
-        icon: "platinumAxe.svg",
+        icon: "wcaxe_t9.png",
         category: "woodcutting",
         slot: "axe",
         name: "platinum axe",
@@ -201,7 +201,7 @@ export const WOODCUTTING_ITEMS = {
 
     titanium_axe: {
         id: "titanium_axe",
-        icon: "titaniumAxe.svg",
+        icon: "wcaxe_t10.png",
         category: "woodcutting",
         slot: "axe",
         name: "titanium axe",
@@ -221,7 +221,7 @@ export const WOODCUTTING_ITEMS = {
 
     tungsten_axe: {
         id: "tungsten_axe",
-        icon: "tungstenAxe.svg",
+        icon: "wcaxe_t11.png",
         category: "woodcutting",
         slot: "axe",
         name: "tungsten axe",
@@ -241,7 +241,7 @@ export const WOODCUTTING_ITEMS = {
 
     obsidian_axe: {
         id: "obsidian_axe",
-        icon: "obsidianAxe.svg",
+        icon: "wcaxe_t12.png",
         category: "woodcutting",
         slot: "axe",
         name: "obsidian axe",
@@ -261,7 +261,7 @@ export const WOODCUTTING_ITEMS = {
 
     cobalt_axe: {
         id: "cobalt_axe",
-        icon: "cobaltAxe.svg",
+        icon: "wcaxe_t13.png",
         category: "woodcutting",
         slot: "axe",
         name: "cobalt axe",
@@ -281,7 +281,7 @@ export const WOODCUTTING_ITEMS = {
 
     mithril_axe: {
         id: "mithril_axe",
-        icon: "mithrilAxe.svg",
+        icon: "wcaxe_t14.png",
         category: "woodcutting",
         slot: "axe",
         name: "mithril axe",
@@ -301,7 +301,7 @@ export const WOODCUTTING_ITEMS = {
 
     adamantium_axe: {
         id: "adamantium_axe",
-        icon: "adamantiumAxe.svg",
+        icon: "wcaxe_t15.png",
         category: "woodcutting",
         slot: "axe",
         name: "adamantium axe",
@@ -321,7 +321,7 @@ export const WOODCUTTING_ITEMS = {
 
     orichalcum_axe: {
         id: "orichalcum_axe",
-        icon: "orichalcumAxe.svg",
+        icon: "wcaxe_t16.png",
         category: "woodcutting",
         slot: "axe",
         name: "orichalcum axe",
@@ -341,7 +341,7 @@ export const WOODCUTTING_ITEMS = {
 
     meteorite_axe: {
         id: "meteorite_axe",
-        icon: "meteoriteAxe.svg",
+        icon: "wcaxe_t17.png",
         category: "woodcutting",
         slot: "axe",
         name: "meteorite axe",
@@ -361,7 +361,7 @@ export const WOODCUTTING_ITEMS = {
 
     fairy_steel_axe: {
         id: "fairy_steel_axe",
-        icon: "fairySteelAxe.svg",
+        icon: "wcaxe_t18.png",
         category: "woodcutting",
         slot: "axe",
         name: "fairy steel axe",
@@ -381,7 +381,7 @@ export const WOODCUTTING_ITEMS = {
 
     elven_steel_axe: {
         id: "elven_steel_axe",
-        icon: "elvenSteelAxe.svg",
+        icon: "wcaxe_t19.png",
         category: "woodcutting",
         slot: "axe",
         name: "elven steel axe",
@@ -401,7 +401,7 @@ export const WOODCUTTING_ITEMS = {
 
     cursed_axe: {
         id: "cursed_axe",
-        icon: "cursedAxe.svg",
+        icon: "wcaxe_t20.png",
         category: "woodcutting",
         slot: "axe",
         name: "cursed axe",
@@ -421,7 +421,7 @@ export const WOODCUTTING_ITEMS = {
 
     darksteel_axe: {
         id: "darksteel_axe",
-        icon: "darksteelAxe.svg",
+        icon: "wcaxe_t21.png",
         category: "woodcutting",
         slot: "axe",
         name: "darksteel axe",
@@ -441,7 +441,7 @@ export const WOODCUTTING_ITEMS = {
 
     radiant_axe: {
         id: "radiant_axe",
-        icon: "radiantAxe.svg",
+        icon: "wcaxe_t22.png",
         category: "woodcutting",
         slot: "axe",
         name: "radiant axe",
@@ -461,7 +461,7 @@ export const WOODCUTTING_ITEMS = {
 
     astral_axe: {
         id: "astral_axe",
-        icon: "astralAxe.svg",
+        icon: "wcaxe_t23.png",
         category: "woodcutting",
         slot: "axe",
         name: "astral axe",
@@ -481,7 +481,7 @@ export const WOODCUTTING_ITEMS = {
 
     titanfoil_axe: {
         id: "titanfoil_axe",
-        icon: "titanfoilAxe.svg",
+        icon: "wcaxe_t24.png",
         category: "woodcutting",
         slot: "axe",
         name: "titanfoil axe",
@@ -501,7 +501,7 @@ export const WOODCUTTING_ITEMS = {
 
     relicrock_axe: {
         id: "relicrock_axe",
-        icon: "relicrockAxe.svg",
+        icon: "wcaxe_t25.png",
         category: "woodcutting",
         slot: "axe",
         name: "relicrock axe",
@@ -521,7 +521,7 @@ export const WOODCUTTING_ITEMS = {
 
     eternium_axe: {
         id: "eternium_axe",
-        icon: "eterniumAxe.svg",
+        icon: "wcaxe_t26.png",
         category: "woodcutting",
         slot: "axe",
         name: "eternium axe",

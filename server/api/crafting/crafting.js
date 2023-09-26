@@ -405,7 +405,24 @@ const reforgeThisItem = function(craftingData, originalItem, reforgeData, itemEn
 				roomId: `Game-${originalItem.owner}`
 			})
 			
-			return stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove) == 1
+			const removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+	
+			if (removedItems !== 1) {
+				console.log(`stopReforgingThis() [on critical failure] found ${removedItems} items to delete instead of 1!`)
+				
+				const userDoc = Users.findOne({ _id: originalItem.owner })
+				const userName = (userDoc) ? userDoc?.username : `[user #${originalItem.owner}]`
+				
+				if (removedItems > 0) {
+					console.log(`... ${userName} had duplicate items in the reforge queue somehow?`)
+				} else {
+					console.log(`... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- going to try to clear it once more`)
+					
+					removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+				}
+			}
+			
+			return removedItems === 1
 		} else if (reforgeData.recipeData.isLooted && originalItem.rarityId === "uncommon") {
 			// if it didn't break, and the item is looted and at the lowest rarity already...
 			
@@ -504,7 +521,24 @@ const reforgeThisItem = function(craftingData, originalItem, reforgeData, itemEn
 		return
 	}
 	
-	return stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove) == 1
+	const removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+	
+	if (removedItems !== 1) {
+		console.log(`stopReforgingThis() [general] found ${removedItems} items to delete instead of 1!`)
+		
+		const userDoc = Users.findOne({ _id: originalItem.owner })
+		const userName = (userDoc) ? userDoc?.username : `[user #${originalItem.owner}]`
+		
+		if (removedItems > 0) {
+			console.log(`... ${userName} had duplicate items in the reforge queue somehow?`)
+		} else {
+			console.log(`... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- going to try to clear it once more`)
+			
+			removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+		}
+	}
+	
+	return removedItems === 1
 }
 
 Meteor.methods({

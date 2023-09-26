@@ -220,7 +220,7 @@ Meteor.methods({
         const newItems = []
         const popValues = [] // Store array of currentCrafting endDates
 
-        if (!inscription.currentlyCrafting) {
+        if (!inscription?.currentlyCrafting) {
             return
         }
 

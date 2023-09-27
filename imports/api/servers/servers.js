@@ -2,7 +2,6 @@ import { SimpleSchema } from "meteor/aldeed:simple-schema"
 import { Mongo } from "meteor/mongo"
 
 import { createNewFloor } from "/imports/api/floors/floors"
-import { createTown } from "/imports/api/town/town"
 import { CInt } from "/imports/utils.js"
 
 export const Servers = new Mongo.Collection("servers")
@@ -64,9 +63,6 @@ export const createNewServer = function createNewServer(name, iteration = 0) {
     if (newServer || serverDoc) {
         // if we created the server, then create the first floor data
         createNewFloor(serverDoc._id ? serverDoc._id : newServer, 1)
-
-        // and town data
-        createTown(serverDoc._id ? serverDoc._id : newServer)
 
         // and return the server ID
         return serverDoc._id ? serverDoc._id : newServer
@@ -148,6 +144,7 @@ ServersSchema = new SimpleSchema({
     announcement: { type: String, optional: true },
     town: { type: Object, optional: true },
     noGuests: { type: Boolean, optional: true },
+    townKarma: { type: Number, defaultValue: 0 },
     noNewAccounts: { type: Boolean, optional: true },
     "town.day1goods": { type: Array },
     "town.day1goods.$": { type: Object },

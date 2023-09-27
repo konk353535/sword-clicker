@@ -138,8 +138,8 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
         }
 
         // Update Level
-		if (skill.xp >= xpToNextLevel) {
-			Skills.update(
+		if (levelUps > 0) {
+			const skUpReturn = Skills.update(
 				{
 					_id: skill._id,
 					xp: originalXp,
@@ -197,7 +197,7 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
 
 		if (!doResetLogic) {
 			// Can probably be optimized
-			Skills.update(
+			const skUpReturn = Skills.update(
 				{
 					owner,
 					type: "total"

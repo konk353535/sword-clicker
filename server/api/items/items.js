@@ -24,7 +24,7 @@ import _ from "underscore"
 
 const math = require("mathjs")
 
-export const addItem = function (itemId, amount = 1, specificUserId) {
+export const addItem = function (itemId, amount = 1, specificUserId, useTx = false) {
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -131,7 +131,7 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
                     }
                 )
             } else {
-                Items.insert(newItemsList[0])
+                Items.insert(newItemsList[0], { tx: useTx })
             }
         } else {
             const updatedCount = Items.update(
@@ -151,13 +151,13 @@ export const addItem = function (itemId, amount = 1, specificUserId) {
                     owner,
                     category: itemConstants.category,
                     equipped: false
-                })
+                }, { tx: useTx })
             }
         }
     } else {
         newItemsList.forEach((newItem) => {
             // Insert
-            Items.insert(newItem)
+            Items.insert(newItem, { tx: useTx })
         })
     }
 }

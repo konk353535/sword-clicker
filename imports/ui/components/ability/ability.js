@@ -28,7 +28,7 @@ const castAbility = function (instance) {
     }
 
     // if we have an automatic target mode and a valid target, then use the ability automatically with no further user interaction required
-    if (targetType === "autoEnemy" && icons) {
+    if (targetType === "autoEnemy" && icons && icons.length > 0) {
         const targetId = icons[0].attr("data-unit-id")
         const battleId = currentBattleId
         const abilityId = instance.data.ability.id

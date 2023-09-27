@@ -638,9 +638,9 @@ Template.lobbyPage.helpers({
     },
 
     bossResetAt() {
-        const waveDetails = Template.instance().state.get("waveDetails")
+        const waveDetails = Template?.instance()?.state?.get("waveDetails")
 
-        return waveDetails.bossResetAt
+        return waveDetails?.bossResetAt
     },
 
     allGlobalBuffs() {

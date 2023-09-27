@@ -1280,7 +1280,7 @@ export const BOSS_BUFFS = {
                         id: uuid.v4(),
                         isEnemy: true,
                         tickOffset: 0,
-                        icon: "stoneWall.svg",
+                        icon: "wall_t0.png", // stoneWall.svg
                         name: "stone wall",
                         stats: birdStats,
                         buffs: []

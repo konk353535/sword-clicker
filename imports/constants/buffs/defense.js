@@ -1096,7 +1096,7 @@ export const DEFENSE_BUFFS = {
 
     holiday_cheer: {
         duplicateTag: "holiday_cheer", // Used to stop duplicate buffs
-        icon: "holidayCheer2.svg",
+        icon: "holidayCheerBuff.svg",
         name: "holiday cheer",
         description({ buff, level }) {
             const c = buff.constants

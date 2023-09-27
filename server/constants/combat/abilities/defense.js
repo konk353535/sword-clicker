@@ -31,7 +31,7 @@ export const DEFENSE_ABILITIES = {
     },
 
     holiday_cheer: {
-        icon: "holidayCheer.svg",
+        icon: "holidayCheerAbility.svg",
         name: "holiday cheer",
         id: "holiday_cheer",
         buffs: ["holiday_cheer"],

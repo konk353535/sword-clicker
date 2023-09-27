@@ -668,7 +668,7 @@ SimpleChat.configure({
                 )
 
                 // force the logic that comes from skill ups including combat stats, unlocked recipes, etc.
-                addXp(targetSkill, 0, targetUser._id, true, true)
+                addXp(targetSkill, 0, targetUser._id, true, true, true)
 
                 sendUserChatMessage({
                     userId: userDoc._id,

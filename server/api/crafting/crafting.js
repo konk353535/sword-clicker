@@ -742,7 +742,11 @@ Meteor.methods({
                 targetReforging = currentlyReforging
             }
         })
-
+		
+		if (!targetReforging || !targetReforging.itemData) {
+			return false
+		}
+		
         // Remove targetReforging from the array
         const filteredReforging = newReforging.filter((reforging) => {
             return reforging !== targetReforging
@@ -789,6 +793,7 @@ Meteor.methods({
 			tx.cancel() // Cancel transaction: "Cancel reforge item"
             return
         }
+
 
         const originalItem = JSON.parse(targetReforging.itemData)
 

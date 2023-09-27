@@ -219,12 +219,17 @@ Meteor.methods({
         const axeToUse = Items.findOne(
             {
                 itemId: woodcutterConstants.axeId,
-                owner: Meteor.userId()
+                owner: Meteor.userId(),
+				locked: false
             },
             {
                 sort: [["quality", "desc"]]
             }
         )
+		
+		if (!axeToUse) {
+			return
+		}
 
         // Do we have the requirements for this craft (items / levels / gold)
         if (!requirementsUtility(woodcutterConstants.required, 1)) {

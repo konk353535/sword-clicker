@@ -28,7 +28,7 @@ export const GOLD_ITEMS = {
 
     bronze_sculpture: {
         id: "bronze_sculpture",
-        icon: "sculpture_t2.png",
+        icon: "sculpture_t3.png",
         category: "crafting",
         name: "bronze sculpture",
         sellPrice: 125,

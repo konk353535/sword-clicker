@@ -330,8 +330,9 @@ const getReforgeData = function getReforgeData(_id) {
     }
 }
 
+// Must only be called from 'reforgeThisItem' in the context of a tx.start() transaction
 const stopReforgingThis = function (craftingData, originalItem, itemEndDatesToRemove) {
-    const updatedCount = Crafting.update(
+    const txSuccess = Crafting.update(
         {
             _id: craftingData._id,
             currentlyReforging: craftingData.currentlyReforging
@@ -345,21 +346,21 @@ const stopReforgingThis = function (craftingData, originalItem, itemEndDatesToRe
                     itemId: originalItem.itemId
                 }
             }
-        }
-    )
+        },
+		{
+			tx: true
+		}
+	)
 
-    if (updatedCount > 1) {
-        // likely to have a problem -- should never be able to remove multiple items with the same ID from the reforge queue
-        //todo: error?
-    }
-
-    return updatedCount
+    return txSuccess
 }
 
 const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemEndDatesToRemove) {
     const itemConstants = ITEMS[originalItem.itemId]
     const userRoll = Math.random()
-    let itemInsertedDoc, reforgeResult
+    let txSuccess, reforgeResult
+
+	tx.start("Reforge item queue update")
 
     if (userRoll <= reforgeData.chance) {
         // success in reforge
@@ -371,7 +372,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
 
     if (reforgeResult == 1) {
         // success
-        itemInsertedDoc = Items.insert({
+        txSuccess = Items.insert({
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -379,7 +380,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: reforgeData.rarityData.rarityId,
             enhanced: originalItem.enhanced
-        })
+        }, { tx: true })
 
         Chats.insert({
             message: `You were successful at reforging your ${
@@ -395,7 +396,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 roomType: "Game"
             },
             roomId: `Game-${originalItem.owner}`
-        })
+        }, { tx: true })
     } else if (reforgeResult == 2) {
         // failure
         if (Math.random() <= 0.05) {
@@ -415,60 +416,52 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                     roomType: "Game"
                 },
                 roomId: `Game-${originalItem.owner}`
-            })
+            }, { tx: true })
 
-            const removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+            const removedItemsSuccess = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
 
-            if (removedItems !== 1) {
+            if (!removedItemsSuccess) {
                 Events.insert({
                     owner: originalItem.owner,
                     event: "crafting.reforgeThisItem.failure",
                     date: new Date(),
                     data: {
-                        msg: `stopReforgingThis() [on critical failure] found ${removedItems} items to delete instead of 1!`
+                        msg: `stopReforgingThis() [on critical failure] couldn't remove items`
                     }
                 })
                 console.log(
-                    `stopReforgingThis() [on critical failure] found ${removedItems} items to delete instead of 1!`
+                    `stopReforgingThis() [on critical failure] couldn't remove items`
                 )
 
                 const userDoc = Users.findOne({ _id: originalItem.owner })
                 const userName = userDoc ? userDoc?.username : `[user #${originalItem.owner}]`
 
-                if (removedItems > 0) {
-                    Events.insert({
-                        owner: originalItem.owner,
-                        event: "crafting.reforgeThisItem.failure",
-                        date: new Date(),
-                        data: { msg: `... ${userName} had duplicate items in the reforge queue somehow?` }
-                    })
-                    console.log(`... ${userName} had duplicate items in the reforge queue somehow?`)
-                } else {
-                    Events.insert({
-                        owner: originalItem.owner,
-                        event: "crafting.reforgeThisItem.failure",
-                        date: new Date(),
-                        data: {
-                            msg: `... ${userName} may receive a duplicate of ${
-                                ITEMS[originalItem.itemId].name
-                            } -- going to try to clear it once more`
-                        }
-                    })
-                    console.log(
-                        `... ${userName} may receive a duplicate of ${
-                            ITEMS[originalItem.itemId].name
-                        } -- going to try to clear it once more`
-                    )
+				Events.insert({
+					owner: originalItem.owner,
+					event: "crafting.reforgeThisItem.failure",
+					date: new Date(),
+					data: {
+						msg: `... ${userName} may receive a duplicate of ${
+							ITEMS[originalItem.itemId].name
+						} -- rolling back the transaction as if it never happened`
+					}
+				})
+				console.log(
+					`... ${userName} may receive a duplicate of ${
+						ITEMS[originalItem.itemId].name
+					} -- rolling back the transaction as if it never happened`
+				)
+				
+				tx.cancel() // error, rollback transaction (we'll try again in the next 'crafting.updateGame')
+            } else {
+				tx.commit()
+			}
 
-                    removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
-                }
-            }
-
-            return removedItems === 1
+            return removedItemsSuccess
         } else if (reforgeData.recipeData.isLooted && originalItem.rarityId === "uncommon") {
             // if it didn't break, and the item is looted and at the lowest rarity already...
 
-            itemInsertedDoc = Items.insert({
+            txSuccess = Items.insert({
                 itemId: originalItem.itemId,
                 owner: originalItem.owner,
                 category: originalItem.category,
@@ -476,12 +469,12 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 quality: originalItem.quality,
                 rarityId: originalItem.rarityId,
                 enhanced: originalItem.enhanced
-            })
+            }, { tx: true })
         } else {
             // if it didn't break and it's an item that can have lowered rarity, then reduce rarity
 
             const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId
-            itemInsertedDoc = Items.insert({
+            txSuccess = Items.insert({
                 itemId: originalItem.itemId,
                 owner: originalItem.owner,
                 category: originalItem.category,
@@ -489,7 +482,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 quality: originalItem.quality,
                 rarityId: prevRarityId,
                 enhanced: originalItem.enhanced
-            })
+            }, { tx: true })
 
             Chats.insert({
                 message: `You were not successful at reforging your ${
@@ -505,11 +498,11 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                     roomType: "Game"
                 },
                 roomId: `Game-${originalItem.owner}`
-            })
+            }, { tx: true })
         }
     } else if (reforgeResult == 3) {
         // failure but 'paid_crafting' buff is active
-        itemInsertedDoc = Items.insert({
+        txSuccess = Items.insert({
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -517,7 +510,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: originalItem.rarityId,
             enhanced: originalItem.enhanced
-        })
+        }, { tx: true })
 
         if (reforgeData.recipeData.isLooted && originalItem.rarityId === "uncommon") {
             Chats.insert({
@@ -529,7 +522,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                     roomType: "Game"
                 },
                 roomId: `Game-${originalItem.owner}`
-            })
+            }, { tx: true })
         } else {
             Chats.insert({
                 message: `You were not successful at reforging your ${
@@ -544,11 +537,11 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                     roomType: "Game"
                 },
                 roomId: `Game-${originalItem.owner}`
-            })
+            }, { tx: true })
         }
     } else {
         // unknown result, just give them their old item back
-        itemInsertedDoc = Items.insert({
+        txSuccess = Items.insert({
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -556,7 +549,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: originalItem.rarityId,
             enhanced: originalItem.enhanced
-        })
+        }, { tx: true })
 
         Chats.insert({
             message: `You were not successful at reforging your ${itemConstants.name}.  A game error occurred and you were given your item back.`,
@@ -567,57 +560,48 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 roomType: "Game"
             },
             roomId: `Game-${originalItem.owner}`
-        })
+        }, { tx: true })
     }
 
-    if (!itemInsertedDoc) {
+    if (!txSuccess) {
+		tx.cancel() // error, rollback the entire transaction (we'll try again in the next 'crafting.updateGame')
         return
     }
 
-    const removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+    const removedItemsSuccess = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
 
-    if (removedItems !== 1) {
+    if (!removedItemsSuccess) {
         Events.insert({
             owner: originalItem.owner,
             event: "crafting.reforgeThisItem.removedItemsError",
             date: new Date(),
             data: {
-                msg: `stopReforgingThis() [general] found ${removedItems} items to delete instead of 1!`
+                msg: `stopReforgingThis() [general] couldn't remove items`
             }
         })
-        console.log(`stopReforgingThis() [general] found ${removedItems} items to delete instead of 1!`)
+        console.log(`stopReforgingThis() [general] couldn't remove items`)
 
         const userDoc = Users.findOne({ _id: originalItem.owner })
         const userName = userDoc ? userDoc?.username : `[user #${originalItem.owner}]`
 
-        if (removedItems > 0) {
-            Events.insert({
-                owner: originalItem.owner,
-                event: "crafting.reforgeThisItem.removedItemsError",
-                date: new Date(),
-                data: {
-                    msg: `... ${userName} had duplicate items in the reforge queue somehow?`
-                }
-            })
-            console.log(`... ${userName} had duplicate items in the reforge queue somehow?`)
-        } else {
-            Events.insert({
-                owner: originalItem.owner,
-                event: "crafting.reforgeThisItem.removedItemsError",
-                date: new Date(),
-                data: {
-                    msg: `... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
-                }
-            })
-            console.log(
-                `... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
-            )
-
-            removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
-        }
-    }
-
-    return removedItems === 1
+		Events.insert({
+			owner: originalItem.owner,
+			event: "crafting.reforgeThisItem.removedItemsError",
+			date: new Date(),
+			data: {
+				msg: `... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
+			}
+		})
+		console.log(
+			`... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
+		)
+		
+		tx.cancel() // error, rollback transaction (we'll try again in the next 'crafting.updateGame')
+    } else {
+		tx.commit()
+	}
+	
+    return removedItemsSuccess
 }
 
 Meteor.methods({

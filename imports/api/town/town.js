@@ -11,7 +11,8 @@ TownSchema = new SimpleSchema({
     server: { type: String },
     townBuilding: { type: String },
     itemId: { type: String },
-    count: { type: Number }
+    count: { type: Number, defaultValue: 0 },
+    karma: { type: Number, defaultValue: 0 }
 })
 
 Town.attachSchema(TownSchema)
@@ -251,7 +252,7 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
         let nextVal = 0
 
         townInfo.forEach((good) => {
-            curVal += calculateItemKarma(good.itemId) * good.count
+            curVal += good.karma
         })
 
         // baseline level 1 = 1000

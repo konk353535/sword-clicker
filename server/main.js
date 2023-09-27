@@ -25,6 +25,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { State } from "/imports/api/state/state"
 import { Users } from "/imports/api/users/users"
 import { Woodcutting } from "/imports/api/woodcutting/woodcutting"
+import { Town } from "/imports/api/town/town"
 
 import { createNewServer } from "/imports/api/servers/servers"
 import { getIPFromConnection, updateUserIP } from "/imports/api/users/users.js"
@@ -190,6 +191,8 @@ Meteor.startup(() => {
     FarmingSpace.createIndex({ index: 1 })
     BattleActions.createIndex({ battleId: 1 })
     State.createIndex({ name: 1 })
+    Town.createIndex({ server: 1 })
+    Town.createIndex({ townBuilding: 1 })
 
     // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
     /*

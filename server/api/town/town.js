@@ -136,6 +136,12 @@ const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
         )
     }
 
+    const itemConstants = ITEMS[currentItem.itemId]
+    if (!itemConstants) {
+        // this seems wrong
+        throw new Meteor.Error("cant-donate", "That item cannot be found.")
+    }
+
     let amountToDonate = amount
 
     if (amountToDonate >= currentItem.amount) {
@@ -161,11 +167,15 @@ const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
         }
     }
 
+    const newItem = Object.assign({}, itemConstants, currentItem)
+    const newKarma = autoPrecisionValue(calculateItemKarma(newItem) * amountToDonate)
+
     const inputItem = {
         server: serverDoc._id,
         townBuilding: building,
         itemId: currentItem.itemId,
-        count: amountToDonate
+        count: amountToDonate,
+        karma: newKarma
     }
 
     const existingItemData = Town.findOne({
@@ -175,27 +185,20 @@ const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
     })
 
     if (existingItemData) {
-        Town.update({ _id: existingItemData._id }, { $inc: { count: amountToDonate } })
+        Town.update({ _id: existingItemData._id }, { $inc: { count: amountToDonate, karma: newKarma } })
     } else {
         Town.insert(inputItem)
     }
 
     // update personal karma and server karma
     try {
-        const itemConstants = ITEMS[currentItem.itemId]
+        Users.update(Meteor.userId(), {
+            $inc: { townKarma: newKarma }
+        })
 
-        if (itemConstants) {
-            const newItem = Object.assign({}, itemConstants, currentItem)
-            const newKarma = autoPrecisionValue(calculateItemKarma(newItem) * amountToDonate)
-
-            Users.update(Meteor.userId(), {
-                $inc: { townKarma: newKarma }
-            })
-
-            Servers.update(serverDoc._id, {
-                $inc: { townKarma: newKarma }
-            })
-        }
+        Servers.update(serverDoc._id, {
+            $inc: { townKarma: newKarma }
+        })
     } catch (err) {
         console.log("Couldn't update personal karma for:", Meteor.user().username)
         console.log(err)

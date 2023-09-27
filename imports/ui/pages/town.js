@@ -317,8 +317,8 @@ Template.townPage.helpers({
 
                     const newItem = Object.assign({}, itemConstants, item)
                     newItem.amount = item.count
-                    newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count)
-                    newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue
+                    newItem.karmaValue = autoPrecisionValue(newItem.karma)
+                    newItem.reverseKarmaValue = 1000000000 - newItem.karma
                     const countFormatted = Numeral(item.count).format("0,0")
                     const karmaValueFormatted = Numeral(newItem.karmaValue).format("0,0")
                     newItem.customDescription = `<b>${countFormatted}</b> x donated<br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`

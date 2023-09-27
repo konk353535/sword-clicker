@@ -653,11 +653,11 @@ Meteor.methods({
 
         // Are we already reforging?
         if (crafting.currentlyReforging && crafting.currentlyReforging.length >= maxConcurrentReforges) {
-            throw new Meteor.Error("cant-reforge", "You are already reforging as many items as you can.")
+            throw new Meteor.Error("cant-reforge", `<span style="background-color: black; color: white;">You are already reforging as many items as you can ${crafting.currentlyReforging.length} vs ${maxConcurrentReforges} for crafting level ${crafting.craftingLevel}.</span>`)
         }
 
-        const reforgingItems = crafting.currentlyReforging.map((item) => item.itemId)
-        if (reforgingItems.includes(currentItem.itemId)) {
+        const reforgingItems = crafting.currentlyReforging.map((item) => item.origUid)
+        if (reforgingItems.includes(currentItem._id)) {
             const itemName = ITEMS[currentItem.itemId].name
                 .toLowerCase()
                 .split(" ")
@@ -665,9 +665,7 @@ Meteor.methods({
                 .join(" ")
             throw new Meteor.Error(
                 "cant-reforge",
-                `You are already reforging a${
-                    ["a", "e", "i", "o", "u"].includes(itemName.charAt(0).toLowerCase()) ? "n" : ""
-                } ${itemName}.`
+                `You are already reforging this ${itemName}.`
             )
         }
 
@@ -684,6 +682,7 @@ Meteor.methods({
         }
 
         const whatWereReforging = {
+			origUid: currentItem._id,
             itemId: currentItem.itemId,
             currentRarityId: currentItem.rarityId,
             itemData: JSON.stringify(currentItem),
@@ -693,6 +692,8 @@ Meteor.methods({
                 .add(reforgeData.recipeData.requiredCraftingLevel * 5 + 15, "seconds")
                 .toDate()
         }
+
+		tx.start("Reforge item into queue")
 
         // Add to currently reforging...
         const updatedCount = Crafting.update(
@@ -709,7 +710,14 @@ Meteor.methods({
             throw new Meteor.Error("cant-reforge", "Error setting reforging data.")
         }
 
-        Items.remove(currentItem._id)
+        Items.remove(
+			{
+				_id: currentItem._id
+			},
+            { tx: true }
+		)
+		
+		tx.commit()
 
         updateUserActivity({ userId: Meteor.userId() })
     },
@@ -761,8 +769,10 @@ Meteor.methods({
             }
         })
 
-        // Remove targetCrafting from current crafting array
-        const updatedCount = Crafting.update(
+		tx.start("Cancel reforge item")
+
+        // Remove targetReforging from current crafting array
+        const updatedQuerySuccess = Crafting.update(
             {
                 _id: crafting._id,
                 currentlyReforging: crafting.currentlyReforging
@@ -775,7 +785,8 @@ Meteor.methods({
             { tx: true }
         )
 
-        if (updatedCount === 0) {
+        if (!updatedQuerySuccess) {
+			tx.cancel() // Cancel transaction: "Cancel reforge item"
             return
         }
 
@@ -789,7 +800,10 @@ Meteor.methods({
             quality: originalItem.quality,
             rarityId: originalItem.rarityId,
             enhanced: originalItem.enhanced
-        })
+        },
+        { tx: true })
+		
+		tx.commit() // Commit transaction: "Cancel reforge item"
 
         updateUserActivity({ userId: Meteor.userId() })
     },

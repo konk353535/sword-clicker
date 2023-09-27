@@ -13,6 +13,7 @@ CraftingSchema = new SimpleSchema({
     "currentlyCrafting.$.endDate": { type: Date },
     "currentlyCrafting.$.amount": { type: Number },
     currentlyReforging: { type: [Object], defaultValue: [] },
+    "currentlyReforging.$.origUid": { type: String },
     "currentlyReforging.$.itemId": { type: String },
     "currentlyReforging.$.currentRarityId": { type: String },
     "currentlyReforging.$.itemData": { type: String },

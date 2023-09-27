@@ -949,8 +949,10 @@ Meteor.methods({
             }
         })
 
+		tx.start("Cancel crafting an item")
+
         // Remove targetCrafting from current crafting array
-        const updatedCount = Crafting.update(
+        const updatedQuerySuccess = Crafting.update(
             {
                 _id: crafting._id,
                 currentlyCrafting: crafting.currentlyCrafting
@@ -963,7 +965,8 @@ Meteor.methods({
             { tx: true }
         )
 
-        if (updatedCount === 0) {
+        if (!updatedQuerySuccess) {
+			tx.cancel()
             return
         }
 
@@ -972,10 +975,12 @@ Meteor.methods({
         recipeConstants.required.forEach((required) => {
             if (required.consumes) {
                 if (required.type === "item") {
-                    addItem(required.itemId, required.amount * targetCrafting.amount)
+                    addItem(required.itemId, required.amount * targetCrafting.amount, undefined, true)
                 }
             }
         })
+		
+		tx.commit()
 
         updateUserActivity({ userId: Meteor.userId() })
     },

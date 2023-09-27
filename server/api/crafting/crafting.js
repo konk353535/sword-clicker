@@ -332,6 +332,11 @@ const getReforgeData = function getReforgeData(_id) {
 
 // Must only be called from 'reforgeThisItem' in the context of a tx.start() transaction
 const stopReforgingThis = function (craftingData, originalItem, itemEndDatesToRemove) {
+	
+	if (!itemEndDatesToRemove || itemEndDatesToRemove.length === 0) {
+		return false
+	}
+	
     const txSuccess = Crafting.update(
         {
             _id: craftingData._id,
@@ -340,9 +345,7 @@ const stopReforgingThis = function (craftingData, originalItem, itemEndDatesToRe
         {
             $pull: {
                 currentlyReforging: {
-                    endDate: {
-                        $in: itemEndDatesToRemove
-                    },
+                    endDate: itemEndDatesToRemove[0],
                     itemId: originalItem.itemId
                 }
             }

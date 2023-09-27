@@ -606,11 +606,11 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 event: "crafting.reforgeThisItem.removedItemsError",
                 date: new Date(),
                 data: {
-                    msg: `... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
+                    msg: `... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
                 }
             })
             console.log(
-                `... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
+                `... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- going to try to clear it once more`
             )
 
             removedItems = stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)

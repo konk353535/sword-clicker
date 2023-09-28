@@ -118,7 +118,7 @@ export const ATTACK_ABILITIES = {
         requires: [
             {
                 type: "weaponType",
-                weaponTypes: ["shield"]
+                weaponTypes: ["shield", "buckler"]
             }
         ],
         description(level) {
@@ -221,7 +221,7 @@ export const ATTACK_ABILITIES = {
         requires: [
             {
                 type: "weaponType",
-                weaponTypes: ["shield"]
+                weaponTypes: ["shield", "buckler"]
             }
         ],
         target: "currentEnemy",

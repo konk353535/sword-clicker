@@ -127,7 +127,7 @@ export const DEFENSE_ABILITIES = {
         requires: [
             {
                 type: "weaponType",
-                weaponTypes: ["shield"]
+                weaponTypes: ["shield", "buckler"]
             }
         ],
         description(level) {

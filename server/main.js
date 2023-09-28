@@ -192,7 +192,7 @@ Meteor.startup(() => {
     BattleActions.createIndex({ battleId: 1 })
     State.createIndex({ name: 1 })
     Town.createIndex({ server: 1 })
-    Town.createIndex({ townBuilding: 1 })
+    // Town.createIndex({ townBuilding: 1 })
 
     // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
     /*

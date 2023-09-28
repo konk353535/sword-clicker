@@ -9,6 +9,7 @@ import "./displayCombatStats.html"
 function descriptors(str) {
     const terms = {
         damageConsistent: "damage",
+        bonusDamageConsistent: "bonus damage",
         attack: "min. dmg.",
         attackMax: "max. dmg.",
         accuracy: "accuracy",
@@ -53,9 +54,7 @@ Template.displayCombatStats.helpers({
             if (!extraStatsMap.attack) {
                 attackLabel += `${autoPrecisionValue(statsMap.attack)} `
             } else {
-                attackLabel += `(${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(
-                    statsMap.attack + extraStatsMap.attack
-                )}) `
+                attackLabel += `(${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attack + extraStatsMap.attack)}) `
             }
 
             if (statsMap.attackMax) {
@@ -65,9 +64,7 @@ Template.displayCombatStats.helpers({
                 if (!extraStatsMap.attackMax) {
                     attackMaxLabel += `${autoPrecisionValue(statsMap.attackMax)} `
                 } else {
-                    attackMaxLabel += `(${autoPrecisionValue(statsMap.attackMax)} - ${autoPrecisionValue(
-                        statsMap.attackMax + extraStatsMap.attackMax
-                    )}) `
+                    attackMaxLabel += `(${autoPrecisionValue(statsMap.attackMax)} - ${autoPrecisionValue(statsMap.attackMax + extraStatsMap.attackMax)}) `
                 }
                 attackMaxLabel += `${descriptors("attackMax")}`
 
@@ -116,9 +113,7 @@ Template.displayCombatStats.helpers({
 
             if (extraStatsMap[key]) {
                 statsArr.push({
-                    label: `${autoPrecisionValue(statsMap[key])} - ${autoPrecisionValue(
-                        statsMap[key] + extraStatsMap[key]
-                    )} ${descriptors(key)}`,
+                    label: `${autoPrecisionValue(statsMap[key])} - ${autoPrecisionValue(statsMap[key] + extraStatsMap[key])} ${descriptors(key)}`,
                     value: statsMap[key] + extraStatsMap[key],
                     key
                 })
@@ -140,12 +135,17 @@ Template.displayCombatStats.helpers({
 
         if (statsMap.attack) {
             if (statsMap.attackMax) {
-                statsArr.push({
-                    label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(
-                        statsMap.attackMax
-                    )} ${descriptors("damageConsistent")}`,
-                    key: "attack"
-                })
+                if (Template.instance().data?.slot === 'mainHand') {
+                    statsArr.push({
+                        label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attackMax)} ${descriptors("damageConsistent")}`,
+                        key: "attack"
+                    })
+                } else {
+                    statsArr.push({
+                        label: `${autoPrecisionValue(statsMap.attack)} - ${autoPrecisionValue(statsMap.attack + statsMap.attackMax)} ${descriptors("bonusDamageConsistent")}`,
+                        key: "attack"
+                    })
+                }
             } else {
                 statsArr.push({
                     label: `${autoPrecisionValue(statsMap.attack)} ${descriptors("damageConsistent")}`,

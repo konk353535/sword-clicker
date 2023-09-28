@@ -1433,7 +1433,7 @@ export const ARCHER_CRAFTS = {
 
     copper_quiver: {
         produces: "copper_quiver",
-        name: "copper quiver",
+        name: "pine quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "copper_quiver",
@@ -1477,7 +1477,7 @@ export const ARCHER_CRAFTS = {
 
     tin_quiver: {
         produces: "tin_quiver",
-        name: "tin quiver",
+        name: "beech quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "tin_quiver",
@@ -1521,7 +1521,7 @@ export const ARCHER_CRAFTS = {
 
     bronze_quiver: {
         produces: "bronze_quiver",
-        name: "bronze quiver",
+        name: "ash quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "bronze_quiver",
@@ -1565,7 +1565,7 @@ export const ARCHER_CRAFTS = {
 
     iron_quiver: {
         produces: "iron_quiver",
-        name: "iron quiver",
+        name: "oak quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "iron_quiver",
@@ -1609,7 +1609,7 @@ export const ARCHER_CRAFTS = {
 
     silver_quiver: {
         produces: "silver_quiver",
-        name: "silver quiver",
+        name: "maple quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "silver_quiver",
@@ -1661,7 +1661,7 @@ export const ARCHER_CRAFTS = {
 
     gold_quiver: {
         produces: "gold_quiver",
-        name: "gold quiver",
+        name: "walnut quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "gold_quiver",
@@ -1713,7 +1713,7 @@ export const ARCHER_CRAFTS = {
 
     carbon_quiver: {
         produces: "carbon_quiver",
-        name: "carbon quiver",
+        name: "cherry quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "carbon_quiver",
@@ -1765,7 +1765,7 @@ export const ARCHER_CRAFTS = {
 
     steel_quiver: {
         produces: "steel_quiver",
-        name: "steel quiver",
+        name: "mahogany quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "steel_quiver",
@@ -1817,7 +1817,7 @@ export const ARCHER_CRAFTS = {
 
     platinum_quiver: {
         produces: "platinum_quiver",
-        name: "platinum quiver",
+        name: "elm quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "platinum_quiver",
@@ -1869,7 +1869,7 @@ export const ARCHER_CRAFTS = {
 
     titanium_quiver: {
         produces: "titanium_quiver",
-        name: "titanium quiver",
+        name: "black quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "titanium_quiver",
@@ -1921,7 +1921,7 @@ export const ARCHER_CRAFTS = {
 
     tungsten_quiver: {
         produces: "tungsten_quiver",
-        name: "tungsten quiver",
+        name: "blue gum quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "tungsten_quiver",
@@ -1973,7 +1973,7 @@ export const ARCHER_CRAFTS = {
 
     obsidian_quiver: {
         produces: "obsidian_quiver",
-        name: "obsidian quiver",
+        name: "cedar quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "obsidian_quiver",
@@ -2025,7 +2025,7 @@ export const ARCHER_CRAFTS = {
 
     cobalt_quiver: {
         produces: "cobalt_quiver",
-        name: "cobalt quiver",
+        name: "denya quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "cobalt_quiver",
@@ -2077,7 +2077,7 @@ export const ARCHER_CRAFTS = {
 
     mithril_quiver: {
         produces: "mithril_quiver",
-        name: "mithril quiver",
+        name: "gombe quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "mithril_quiver",
@@ -2129,7 +2129,7 @@ export const ARCHER_CRAFTS = {
 
     adamantium_quiver: {
         produces: "adamantium_quiver",
-        name: "adamantium quiver",
+        name: "hickory quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "adamantium_quiver",
@@ -2181,7 +2181,7 @@ export const ARCHER_CRAFTS = {
 
     orichalcum_quiver: {
         produces: "orichalcum_quiver",
-        name: "orichalcum quiver",
+        name: "larch quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "orichalcum_quiver",
@@ -2233,7 +2233,7 @@ export const ARCHER_CRAFTS = {
 
     meteorite_quiver: {
         produces: "meteorite_quiver",
-        name: "meteorite quiver",
+        name: "poplar quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "meteorite_quiver",
@@ -2285,7 +2285,7 @@ export const ARCHER_CRAFTS = {
 
     cursed_quiver: {
         produces: "cursed_quiver",
-        name: "cursed quiver",
+        name: "teak quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "cursed_quiver",
@@ -2337,7 +2337,7 @@ export const ARCHER_CRAFTS = {
 
     darksteel_quiver: {
         produces: "darksteel_quiver",
-        name: "darksteel quiver",
+        name: "ebony quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "darksteel_quiver",
@@ -2406,7 +2406,7 @@ export const ARCHER_CRAFTS = {
 
     radiant_quiver: {
         produces: "radiant_quiver",
-        name: "radiant quiver",
+        name: "fiery quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "radiant_quiver",
@@ -2483,7 +2483,7 @@ export const ARCHER_CRAFTS = {
 
     astral_quiver: {
         produces: "astral_quiver",
-        name: "astral quiver",
+        name: "tamarind quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "astral_quiver",
@@ -2560,7 +2560,7 @@ export const ARCHER_CRAFTS = {
 
     titanfoil_quiver: {
         produces: "titanfoil_quiver",
-        name: "titanfoil quiver",
+        name: "magic quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "titanfoil_quiver",
@@ -2637,7 +2637,7 @@ export const ARCHER_CRAFTS = {
 
     relicrock_quiver: {
         produces: "relicrock_quiver",
-        name: "relicrock quiver",
+        name: "petrified quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "relicrock_quiver",
@@ -2714,7 +2714,7 @@ export const ARCHER_CRAFTS = {
 
     eternium_quiver: {
         produces: "eternium_quiver",
-        name: "eternium quiver",
+        name: "ancient quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "eternium_quiver",
@@ -2791,7 +2791,7 @@ export const ARCHER_CRAFTS = {
 
     prismatic_quiver: {
         produces: "prismatic_quiver",
-        name: "prismatic quiver",
+        name: "spiritroot quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "prismatic_quiver",

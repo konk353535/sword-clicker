@@ -156,6 +156,8 @@ Template.townPage.onCreated(function bodyOnCreated() {
             } else {
                 this.state.set("townSection", "dwellings")
             }
+
+            this.state.set("yourKarma", myUser.townKarma)
         }
     })
 

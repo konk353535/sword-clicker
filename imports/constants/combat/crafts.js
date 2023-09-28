@@ -30,6 +30,7 @@ import { AMULET_CRAFTS } from "./crafts/amulet"
 import { ARCHER_CRAFTS } from "./crafts/archer"
 import { STAFF_CRAFTS } from "./crafts/staff"
 
+// prettier-ignore
 export const COMBAT_CRAFTS = Object.assign(
 //  STONE_CRAFTS,      // tier 0 (T0) -- just here for documentation/reference, 'STONE_CRAFTS' does not exist
     COPPER_CRAFTS,     // tier 1 (T1)

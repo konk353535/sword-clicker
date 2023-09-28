@@ -53,7 +53,14 @@ const updateGlobalBuffs = () => {
 updateGlobalBuffs()
 Meteor.setInterval(updateGlobalBuffs, 30000)
 
-export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs = false, ignoreTownBuffs = false, doResetLogic = false) {
+export const addXp = function (
+    skillType,
+    xp,
+    specificUserId,
+    ignoreGlobalBuffs = false,
+    ignoreTownBuffs = false,
+    doResetLogic = false
+) {
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -138,33 +145,33 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
         }
 
         // Update Level
-		if (levelUps > 0) {
-			const skUpReturn = Skills.update(
-				{
-					_id: skill._id,
-					xp: originalXp,
-					level: skill.level
-				},
-				{
-					$set: {
-						level: skill.level + levelUps,
-						totalXp: skill.totalXp + xp,
-						xp: skill.xp
-					}
-				}
-			)
-		}
+        if (levelUps > 0) {
+            const skUpReturn = Skills.update(
+                {
+                    _id: skill._id,
+                    xp: originalXp,
+                    level: skill.level
+                },
+                {
+                    $set: {
+                        level: skill.level + levelUps,
+                        totalXp: skill.totalXp + xp,
+                        xp: skill.xp
+                    }
+                }
+            )
+        }
 
-		Chats.insert({
-			message: `Level Up! You are now level ${skill.level + levelUps} ${skill.type}`,
-			username: "Game",
-			name: "Game",
-			date: new Date(),
-			custom: {
-				roomType: "Game"
-			},
-			roomId: `Game-${owner}`
-		})
+        Chats.insert({
+            message: `Level Up! You are now level ${skill.level + levelUps} ${skill.type}`,
+            username: "Game",
+            name: "Game",
+            date: new Date(),
+            custom: {
+                roomType: "Game"
+            },
+            roomId: `Game-${owner}`
+        })
 
         // If this is attack / Defense / Health recompute combat
         if (skill.type === "attack" || skill.type === "defense" || skill.type === "health" || skill.type === "magic") {
@@ -195,18 +202,18 @@ export const addXp = function (skillType, xp, specificUserId, ignoreGlobalBuffs 
             updateMiningStats(owner, "", true)
         }
 
-		if (!doResetLogic) {
-			// Can probably be optimized
-			const skUpReturn = Skills.update(
-				{
-					owner,
-					type: "total"
-				},
-				{
-					$inc: { level: levelUps }
-				}
-			)
-		}
+        if (!doResetLogic) {
+            // Can probably be optimized
+            const skUpReturn = Skills.update(
+                {
+                    owner,
+                    type: "total"
+                },
+                {
+                    $inc: { level: levelUps }
+                }
+            )
+        }
     } else {
         // Just update exp
         Skills.update(skill._id, {

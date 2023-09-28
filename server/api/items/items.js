@@ -145,13 +145,16 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
             )
 
             if (!updatedCount) {
-                Items.insert({
-                    itemId,
-                    amount,
-                    owner,
-                    category: itemConstants.category,
-                    equipped: false
-                }, { tx: useTx })
+                Items.insert(
+                    {
+                        itemId,
+                        amount,
+                        owner,
+                        category: itemConstants.category,
+                        equipped: false
+                    },
+                    { tx: useTx }
+                )
             }
         }
     } else {

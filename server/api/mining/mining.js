@@ -240,7 +240,8 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "mining.buyMiner"(minerId) { // "mining.hireMiner"
+    "mining.buyMiner"(minerId) {
+        // "mining.hireMiner"
         const mining = Mining.findOne({ owner: Meteor.userId() })
         const targetMinerConstants = MINING.miners[minerId]
 

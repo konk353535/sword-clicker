@@ -73,10 +73,19 @@ export const addXp = function (
         return
     }
 
+    //console.log(`Player to receive ${xp} XP to ${skillType}`)
+
+    //console.log(`... ignore global buffs? ${ignoreGlobalBuffs}   ignore personal karma/town buffs?  ${ignoreTownBuffs}   do reset logic?  ${doResetLogic}`)
+
     const originalXp = skill.xp
 
     // 100% of XP earned
     let bonusXpPercent = 1
+
+    //console.log(`... base bonus XP multiplier: ${bonusXpPercent}`)
+
+    //console.log(`... global buffs:`)
+    //console.log(globalXpBuffs)
 
     if (!ignoreGlobalBuffs) {
         // global buffs add a 35% XP bonus to their relevant skills
@@ -107,6 +116,8 @@ export const addXp = function (
         }
     }
 
+    //console.log(`... bonus XP multiplier after global buffs: ${bonusXpPercent}`)
+
     // new 2019-06-24, bonus based on personal karma
     if (!ignoreTownBuffs) {
         const userDoc = Users.findOne({ _id: owner })
@@ -114,7 +125,8 @@ export const addXp = function (
             if (userDoc.townKarma && CInt(userDoc.townKarma) > 0) {
                 let personalKarmaBonus =
                     CDbl(userDoc.townKarma) / (Math.pow(1.045, CDbl(skill.level) / 2.5) * 75) / 100.0
-                //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", autoPrecisionValue(personalKarmaBonus));
+
+                //console.log("karma", CInt(userDoc.townKarma), "skill level", CInt(skill.level), "bonus", personalKarmaBonus);
 
                 // cap personal karma bonus at 200%
                 if (personalKarmaBonus > 2.0) {
@@ -126,10 +138,14 @@ export const addXp = function (
         }
     }
 
+    //console.log(`... bonus XP multiplier after personal karma/town buffs: ${bonusXpPercent}`)
+
     // mutate XP earned by bonus XP (with a final failsafe against bonuses)
-    if (!ignoreGlobalBuffs && !ignoreTownBuffs) {
+    if (!ignoreGlobalBuffs || !ignoreTownBuffs) {
         xp *= bonusXpPercent
     }
+
+    //console.log(`... final gain is ${xp} XP to ${skillType}`)
 
     skill.xp += xp
 

@@ -220,19 +220,26 @@ Meteor.methods({
             {
                 itemId: woodcutterConstants.axeId,
                 owner: Meteor.userId(),
-				locked: false
+                locked: false
             },
             {
                 sort: [["quality", "desc"]]
             }
         )
-		
-		if (!axeToUse) {
-			return
-		}
+
+        if (!axeToUse) {
+            return
+        }
+
+        let tempRequirementsWithoutItems = lodash.cloneDeep(woodcutterConstants.required).filter((requirement) => {
+            return requirement.type !== "item"
+        })
+
+        console.log(tempRequirementsWithoutItems)
+        //return
 
         // Do we have the requirements for this craft (items / levels / gold)
-        if (!requirementsUtility(woodcutterConstants.required, 1)) {
+        if (!requirementsUtility(tempRequirementsWithoutItems, 1)) {
             return
         }
 
@@ -259,6 +266,8 @@ Meteor.methods({
                 }
             }
         })
+
+        //Items.remove(axeToUse._id)
 
         updateUserActivity({ userId: Meteor.userId() })
     }

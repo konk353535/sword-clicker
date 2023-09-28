@@ -313,7 +313,8 @@ Template.chatWindow.events({
             const currentChatId = template.state.get("currentChat")
             // Room id is based
             const custom = {
-                roomType: currentChatId
+                roomType: currentChatId,
+                isAdmin: myUserDoc.isMod || myUserDoc.isSuperMod
             }
 
             let roomId
@@ -422,14 +423,21 @@ Template.chatWindow.helpers({
             return chat
         })
 
+        // this is set on message send now, no need to look up everyone's user data for every message received anymore
+        /*
         localChats.forEach((chat, idx) => {
             if (chat.userId) {
                 const userDoc = Users.findOne({ _id: chat.userId })
                 if (userDoc) {
                     localChats[idx].isAdmin = userDoc.isMod || userDoc.isSuperMod
+                    localChats[idx].custom.isAdmin = userDoc.isMod || userDoc.isSuperMod
+                } else {
+                    localChats[idx].isAdmin = false
+                    localChats[idx].custom.isAdmin = false
                 }
             }
         })
+        */
 
         return localChats
     },

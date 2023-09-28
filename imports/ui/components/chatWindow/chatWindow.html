@@ -36,26 +36,26 @@
                       {{#if wantCondensedChat}}
                           <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                                id="{{_id}}">
-                              <div class="direct-chat-text chat-{{this.custom.roomType}}">
+                              <div class="direct-chat-text chat-{{custom.roomType}}">
                                   <span class="direct-chat-timestamp" style="margin-left: 0px;">
                                     {{moFormat date "ddd hh:mma"}}
                                   </span>
-                                  {{#if this.isAdmin}}
+                                  {{#if custom.isAdmin}}
                                     <span style="margin: 0px;"><img src="/icons/tower.svg" style="height: 18px; margin: 0px;" /></span>
                                   {{/if}}
                                   {{#if this.avatar}}
                                     <span style="margin: 0px;"><img src="{{this.avatar}}" style="height: 18px; margin: 0px;" /></span>
                                   {{/if}}
                                   {{#if $eq name 'Game'}}
-                                    <span class="direct-chat-name chat-{{this.custom.roomType}}">
+                                    <span class="direct-chat-name chat-{{custom.roomType}}">
                                       {{name}}:&nbsp;
                                     </span>
                                   {{else if $eq name 'SERVER'}}
-                                    <span class="direct-chat-name chat-{{this.custom.roomType}}">
+                                    <span class="direct-chat-name chat-{{custom.roomType}}">
                                       {{name}}:&nbsp;
                                     </span>
                                   {{else}}
-                                    <a href="/profile/{{name}}"><span class="direct-chat-name chat-{{this.custom.roomType}}">{{name}}</span></a>:&nbsp;
+                                    <a href="/profile/{{name}}"><span class="direct-chat-name chat-{{custom.roomType}}">{{name}}</span></a>:&nbsp;
                                   {{/if}}
                                   <!-- /.direct-chat-info -->
                                   {{{message}}}
@@ -81,29 +81,29 @@
                           <div class="direct-chat-msg {{#if me}}right{{/if}} {{#unless viewedMe}}notViewed{{/unless}}"
                                id="{{_id}}">
                               <div class="direct-chat-info clearfix">
-                                {{#if this.isAdmin}}
+                                {{#if custom.isAdmin}}
                                   <span style="margin: 0px;"><img src="/icons/tower.svg" style="height: 18px; margin: 0px;" /></span>
                                 {{/if}}
                                 {{#if this.avatar}}
                                   <span style="margin: 0px;"><img src="{{this.avatar}}" style="height: 18px; margin: 0px;" /></span>
                                 {{/if}}
                                 {{#if $eq name 'Game'}}
-                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                  <span class="direct-chat-name pull-left chat-{{custom.roomType}}">
                                     {{name}}:&nbsp;
                                   </span>
                                 {{else if $eq name 'SERVER'}}
-                                  <span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">
+                                  <span class="direct-chat-name pull-left chat-{{custom.roomType}}">
                                     {{name}}:&nbsp;
                                   </span>
                                 {{else}}
-                                  <a href="/profile/{{name}}"><span class="direct-chat-name pull-left chat-{{this.custom.roomType}}">{{name}}</span></a>:&nbsp;
+                                  <a href="/profile/{{name}}"><span class="direct-chat-name pull-left chat-{{custom.roomType}}">{{name}}</span></a>:&nbsp;
                                 {{/if}}
                                 <span class="direct-chat-timestamp">
                                   {{moFormat date "MMM Do hh:mma"}}
                                 </span>
                               </div>
                               <!-- /.direct-chat-info -->
-                              <div class="direct-chat-text chat-{{this.custom.roomType}}">
+                              <div class="direct-chat-text chat-{{custom.roomType}}">
                                   {{{message}}}
                                   {{#if me}}
                                       <div class="direct-chat-checks">

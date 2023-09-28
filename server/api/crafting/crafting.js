@@ -351,7 +351,7 @@ const stopReforgingThis = function (craftingData, originalItem, itemEndDatesToRe
             }
         },
 		{
-			tx: true
+			tx: { instant: true }
 		}
 	)
 
@@ -365,6 +365,26 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
 
 	tx.start("Reforge item queue update")
 
+    const existingItem = Items.findOne({ _id: originalItem._id  })
+    if (existingItem) {
+        stopReforgingThis(craftingData, originalItem, itemEndDatesToRemove)
+        tx.commit()
+
+        const userDoc = Users.findOne({ _id: originalItem.owner })
+        const userName = userDoc ? userDoc?.username : `[user #${originalItem.owner}]`
+
+        Events.insert({
+			owner: originalItem.owner,
+			event: "crafting.reforgeThisItem.removedItemsError",
+			date: new Date(),
+			data: {
+				msg: `${userName} would have received a duplicate of ${ITEMS[originalItem.itemId].name} via reforging.  Was caught and removed silently.`
+			}
+		})
+        console.log(`${userName} would have received a duplicate of ${ITEMS[originalItem.itemId].name} via reforging.  Was caught and removed silently.`)
+        return true
+    }
+
     if (userRoll <= reforgeData.chance) {
         // success in reforge
         reforgeResult = 1
@@ -376,6 +396,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
     if (reforgeResult == 1) {
         // success
         txSuccess = Items.insert({
+            _id: originalItem._id,
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -383,7 +404,9 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: reforgeData.rarityData.rarityId,
             enhanced: originalItem.enhanced
-        }, { tx: true })
+        }, { tx: { instant: true } })
+
+        console.log(`txSuccess: ${txSuccess}`)
 
         Chats.insert({
             message: `You were successful at reforging your ${
@@ -465,6 +488,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             // if it didn't break, and the item is looted and at the lowest rarity already...
 
             txSuccess = Items.insert({
+                _id: originalItem._id,
                 itemId: originalItem.itemId,
                 owner: originalItem.owner,
                 category: originalItem.category,
@@ -472,12 +496,13 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 quality: originalItem.quality,
                 rarityId: originalItem.rarityId,
                 enhanced: originalItem.enhanced
-            }, { tx: true })
+            }, { tx: { instant: true } })
         } else {
             // if it didn't break and it's an item that can have lowered rarity, then reduce rarity
 
             const prevRarityId = ITEM_RARITIES[originalItem.rarityId].prevRarity.rarityId
             txSuccess = Items.insert({
+                _id: originalItem._id,
                 itemId: originalItem.itemId,
                 owner: originalItem.owner,
                 category: originalItem.category,
@@ -485,7 +510,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 quality: originalItem.quality,
                 rarityId: prevRarityId,
                 enhanced: originalItem.enhanced
-            }, { tx: true })
+            }, { tx: { instant: true } })
 
             Chats.insert({
                 message: `You were not successful at reforging your ${
@@ -506,6 +531,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
     } else if (reforgeResult == 3) {
         // failure but 'paid_crafting' buff is active
         txSuccess = Items.insert({
+            _id: originalItem._id,
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -513,7 +539,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: originalItem.rarityId,
             enhanced: originalItem.enhanced
-        }, { tx: true })
+        }, { tx: { instant: true } })
 
         if (reforgeData.recipeData.isLooted && originalItem.rarityId === "uncommon") {
             Chats.insert({
@@ -545,6 +571,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
     } else {
         // unknown result, just give them their old item back
         txSuccess = Items.insert({
+            _id: originalItem._id,
             itemId: originalItem.itemId,
             owner: originalItem.owner,
             category: originalItem.category,
@@ -552,7 +579,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             quality: originalItem.quality,
             rarityId: originalItem.rarityId,
             enhanced: originalItem.enhanced
-        }, { tx: true })
+        }, { tx: { instant: true } })
 
         Chats.insert({
             message: `You were not successful at reforging your ${itemConstants.name}.  A game error occurred and you were given your item back.`,
@@ -592,16 +619,16 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
 			event: "crafting.reforgeThisItem.removedItemsError",
 			date: new Date(),
 			data: {
-				msg: `... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
+				msg: `... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
 			}
 		})
 		console.log(
-			`... ${userName} may receive a duplicate of {ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
+			`... ${userName} may receive a duplicate of ${ITEMS[originalItem.itemId].name} -- rolling back the transaction as if it never happened`
 		)
 		
 		tx.cancel() // error, rollback transaction (we'll try again in the next 'crafting.updateGame')
     } else {
-		tx.commit()
+        tx.commit()
 	}
 	
     return removedItemsSuccess

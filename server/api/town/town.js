@@ -297,5 +297,86 @@ Meteor.methods({
 
         // update that the user is actively playing
         updateUserActivity({ userId: Meteor.userId() })
+    },
+
+    "town.migrateKarmaFromServer"() {
+        const userDoc = Users.findOne({ _id: Meteor.userId() })
+        const userIsAdmin = userDoc && userDoc.isSuperMod
+
+        if (!userIsAdmin) {
+            return false
+        }
+
+        const server = Servers.findOne({ _id: Meteor.user().server })
+        if (!server) {
+            return "Unable to find server"
+        }
+
+        const items = server?.town?.day1goods
+        if (!items) {
+            return "Unable to find items"
+        }
+
+        // set user karma to 0
+        Users.update(
+            { townKarma: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+            { $set: { townKarma: 0 } },
+            { multi: true }
+        )
+
+        // set server karma to 0
+        Servers.update(server._id, {
+            $set: {
+                townKarma: 0
+            }
+        })
+
+        for (const item of items) {
+            const itemConstants = ITEMS[item.itemId]
+            if (!itemConstants) {
+                // this seems wrong
+                console.log("Unable to look up item to convert", item.itemId)
+                continue
+            }
+
+            const newItem = Object.assign({}, itemConstants, item)
+            const newKarma = autoPrecisionValue(calculateItemKarma(newItem) * item.count)
+
+            const inputItem = {
+                server: server._id,
+                townBuilding: item.townBuilding,
+                itemId: item.itemId,
+                count: item.count,
+                karma: newKarma
+            }
+
+            console.log("inputItem", inputItem, "newItem", newItem)
+
+            const existingItemData = Town.findOne({
+                server: inputItem.server,
+                townBuilding: inputItem.townBuilding,
+                itemId: inputItem.itemId
+            })
+
+            if (existingItemData) {
+                Town.update({ _id: existingItemData._id }, { $inc: { count: item.count, karma: newKarma } })
+            } else {
+                Town.insert(inputItem)
+            }
+
+            // update personal karma and server karma
+            try {
+                Users.update(item.owner, {
+                    $inc: { townKarma: newKarma }
+                })
+
+                Servers.update(server._id, {
+                    $inc: { townKarma: newKarma }
+                })
+            } catch (err) {
+                console.log("Couldn't update personal karma for:", item.username)
+                console.log(err)
+            }
+        }
     }
 })

@@ -315,6 +315,7 @@ Template.chatWindow.events({
             const custom = {
                 roomType: currentChatId,
                 isAdmin: myUserDoc.isMod || myUserDoc.isSuperMod
+                //todo: when we add badges for achievements, custom titles, custom colors for chat, etc. -- place it here and then reference it within chatWindow.html
             }
 
             let roomId

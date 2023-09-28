@@ -64,7 +64,7 @@ export const GOLD_ITEMS = {
 
     gold_crown: {
         id: "gold_crown",
-        icon: "goldCrown.svg",
+        icon: "goldencrown.png",
         category: "crafting",
         name: "gold crown",
         sellPrice: 425,

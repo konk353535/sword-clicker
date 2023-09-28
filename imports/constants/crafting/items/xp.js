@@ -64,7 +64,7 @@ export const XP_ITEMS = {
 
     silver_essence_wall: {
         id: "silver_essence_wall",
-        icon: "silverEssenceWall.svg",
+        icon: "silveressencewall.png",
         category: "crafting",
         name: "silver essence wall",
         sellPrice: 10,

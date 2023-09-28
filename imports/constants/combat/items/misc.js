@@ -1549,7 +1549,7 @@ export const MISC_ITEMS = {
 
     copper_buckler: {
         id: "copper_buckler",
-        icon: "copperBuckler.svg",
+        icon: "buckler_t1.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1585,7 +1585,7 @@ export const MISC_ITEMS = {
 
     tin_buckler: {
         id: "tin_buckler",
-        icon: "tinBuckler.svg",
+        icon: "buckler_t1.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1633,7 +1633,7 @@ export const MISC_ITEMS = {
 
     bronze_buckler: {
         id: "bronze_buckler",
-        icon: "bronzeBuckler.svg",
+        icon: "buckler_t3.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1681,7 +1681,7 @@ export const MISC_ITEMS = {
 
     iron_buckler: {
         id: "iron_buckler",
-        icon: "ironBuckler.svg",
+        icon: "buckler_t4.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1729,7 +1729,7 @@ export const MISC_ITEMS = {
 
     silver_buckler: {
         id: "silver_buckler",
-        icon: "silverBuckler.svg",
+        icon: "buckler_t5.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1777,7 +1777,7 @@ export const MISC_ITEMS = {
 
     gold_buckler: {
         id: "gold_buckler",
-        icon: "goldBuckler.svg",
+        icon: "buckler_t6.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1825,7 +1825,7 @@ export const MISC_ITEMS = {
 
     carbon_buckler: {
         id: "carbon_buckler",
-        icon: "carbonBuckler.svg",
+        icon: "buckler_t7.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1873,7 +1873,7 @@ export const MISC_ITEMS = {
 
     steel_buckler: {
         id: "steel_buckler",
-        icon: "steelBuckler.svg",
+        icon: "buckler_t8.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1921,7 +1921,7 @@ export const MISC_ITEMS = {
 
     platinum_buckler: {
         id: "platinum_buckler",
-        icon: "platinumBuckler.svg",
+        icon: "buckler_t9.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -1969,7 +1969,7 @@ export const MISC_ITEMS = {
 
     titanium_buckler: {
         id: "titanium_buckler",
-        icon: "titaniumBuckler.svg",
+        icon: "buckler_t10.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2017,7 +2017,7 @@ export const MISC_ITEMS = {
 
     tungsten_buckler: {
         id: "tungsten_buckler",
-        icon: "tungstenBuckler.svg",
+        icon: "buckler_t11.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2065,7 +2065,7 @@ export const MISC_ITEMS = {
 
     obsidian_buckler: {
         id: "obsidian_buckler",
-        icon: "obsidianBuckler.svg",
+        icon: "buckler_t12.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2113,7 +2113,7 @@ export const MISC_ITEMS = {
 
     cobalt_buckler: {
         id: "cobalt_buckler",
-        icon: "cobaltBuckler.svg",
+        icon: "buckler_t13.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2161,7 +2161,7 @@ export const MISC_ITEMS = {
 
     mithril_buckler: {
         id: "mithril_buckler",
-        icon: "mithrilBuckler.svg",
+        icon: "buckler_t14.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2209,7 +2209,7 @@ export const MISC_ITEMS = {
 
     adamantium_buckler: {
         id: "adamantium_buckler",
-        icon: "adamantiumBuckler.svg",
+        icon: "buckler_t15.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2257,7 +2257,7 @@ export const MISC_ITEMS = {
 
     orichalcum_buckler: {
         id: "orichalcum_buckler",
-        icon: "orichalcumBuckler.svg",
+        icon: "buckler_t16.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2305,7 +2305,7 @@ export const MISC_ITEMS = {
 
     meteorite_buckler: {
         id: "meteorite_buckler",
-        icon: "meteoriteBuckler.svg",
+        icon: "buckler_t17.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2353,7 +2353,7 @@ export const MISC_ITEMS = {
 
     fairy_steel_buckler: {
         id: "fairy_steel_buckler",
-        icon: "fairySteelBuckler.svg",
+        icon: "buckler_t18.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2401,7 +2401,7 @@ export const MISC_ITEMS = {
 
     elven_steel_buckler: {
         id: "elven_steel_buckler",
-        icon: "elvenSteelBuckler.svg",
+        icon: "buckler_t19.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2449,7 +2449,7 @@ export const MISC_ITEMS = {
 
     cursed_buckler: {
         id: "cursed_buckler",
-        icon: "cursedBuckler.svg",
+        icon: "buckler_t20.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2497,7 +2497,7 @@ export const MISC_ITEMS = {
 
     darksteel_buckler: {
         id: "darksteel_buckler",
-        icon: "darksteelBuckler.svg",
+        icon: "buckler_t21.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2545,7 +2545,7 @@ export const MISC_ITEMS = {
 
     radiant_buckler: {
         id: "radiant_buckler",
-        icon: "radiantBuckler.svg",
+        icon: "buckler_t22.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2593,7 +2593,7 @@ export const MISC_ITEMS = {
 
     astral_buckler: {
         id: "astral_buckler",
-        icon: "astralBuckler.svg",
+        icon: "buckler_t23.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2641,7 +2641,7 @@ export const MISC_ITEMS = {
 
     titanfoil_buckler: {
         id: "titanfoil_buckler",
-        icon: "titanfoilBuckler.svg",
+        icon: "buckler_t24.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2689,7 +2689,7 @@ export const MISC_ITEMS = {
 
     relicrock_buckler: {
         id: "relicrock_buckler",
-        icon: "relicrockBuckler.svg",
+        icon: "buckler_t25.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2737,7 +2737,7 @@ export const MISC_ITEMS = {
 
     eternium_buckler: {
         id: "eternium_buckler",
-        icon: "eterniumBuckler.svg",
+        icon: "buckler_t26.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -2785,7 +2785,7 @@ export const MISC_ITEMS = {
 
     prismatic_buckler: {
         id: "prismatic_buckler",
-        icon: "prismaticBuckler.svg",
+        icon: "buckler_t27.png",
         category: "combat",
         weaponType: "buckler",
         slot: "offHand",
@@ -6874,7 +6874,7 @@ export const MISC_ITEMS = {
 
     bamboo_wall: {
         id: "bamboo_wall",
-        icon: "bambooWall.svg",
+        icon: "bamboowall.png",
         category: "crafting",
         name: "bamboo wall",
         sellPrice: 100,
@@ -6883,7 +6883,7 @@ export const MISC_ITEMS = {
 
     bamboo_shack: {
         id: "bamboo_shack",
-        icon: "bambooShack.svg",
+        icon: "bambooshack.png",
         category: "crafting",
         name: "bamboo shack",
         sellPrice: 400,

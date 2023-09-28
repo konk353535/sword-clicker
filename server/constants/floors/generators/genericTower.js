@@ -21,17 +21,17 @@ export const genericTowerMonsterGenerator = function (floor, room) {
             name: selectedMonster.name,
             buffs: lodash.cloneDeep(selectedMonster.buffs || []),
             stats: {
-                health: (room / 1.2) * 25 * floor * (1 + floor / 3.3) * (1 / totalUnits),
-                healthMax: (room / 1.2) * 25 * floor * (1 + floor / 3.3) * (1 / totalUnits),
-                attack: (room / 1.8) * 3.8 * floor * (1 + floor / 3.3),
-                attackMax: (room / 1.8) * 4.75 * floor * (1 + floor / 3.3),
-                magicPower: (room / 1.8) * 2.5 * floor * (1 + floor / 3.3),
-                attackSpeed: 0.5 + room / 30,
+                health: (room / 1.2) * 30 * floor * (1 + floor / 2.3) * (1 / totalUnits),
+                healthMax: (room / 1.2) * 30 * floor * (1 + floor / 2.3) * (1 / totalUnits),
+                attack: (room / 1.8) * 3.8 * floor * (1 + floor / 2.3),
+                attackMax: (room / 1.8) * 4.75 * floor * (1 + floor / 2.3),
+                magicPower: (room / 1.8) * 2.5 * floor * (1 + floor / 2.3),
+                attackSpeed: 0.6 + room / 30,
                 //accuracy: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)), // old and somewhat weak vs modern defense
-                accuracy: floor * 3 + (room / 3.5) * 6.5 * (floor * 1.2), // old and somewhat weak vs modern defense
-                armor: (room / 2.4) * 25 * (floor / 4),
+                accuracy: floor * 3 + (room / 3.5) * 7.5 * (floor * 1.2), // old and somewhat weak vs modern defense
+                armor: (room / 2.4) * 25 * (floor / 3.5),
                 //defense: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)), // old and fairly weak vs modern accuracy
-                defense: floor * 2 + (room / 5) * 8.5 * (floor * 1.4),
+                defense: floor * 2 + (room / 5) * 8.5 * (floor * 1.9),
                 // magicArmor: (room / 1.2) * 1.5 * floor * (1 + (floor / 3.3)), // old and extremely powerful at high floors
                 magicArmor: (room / 2) * 25 * (floor / 3),
                 //criticalChance: 0, // old, raised difficulty slightly by giving all monsters a 1% chance to crit

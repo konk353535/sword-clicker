@@ -6,7 +6,7 @@ import { LEVEL_FIVE_LOOT_TABLE } from "../../levels/level5"
 export const TOWER_FLOOR_5 = {
     1: {
         name: "Muddy Creek",
-        enemies: ["worm"],
+        enemies: ["worm", "bee"],
         rewards: []
     },
     2: {
@@ -72,7 +72,7 @@ export const TOWER_FLOOR_5 = {
     },
     5: {
         name: "Beech Tree",
-        enemies: ["beaver"],
+        enemies: ["crab", "beaver"],
         rewards: orderLootTable(
             LEVEL_FIVE_LOOT_TABLE.concat([
                 {
@@ -112,7 +112,7 @@ export const TOWER_FLOOR_5 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["spartan", "angry_miner"],
         rewards: orderLootTable(
             LEVEL_FIVE_LOOT_TABLE.concat([
                 {
@@ -144,8 +144,8 @@ export const TOWER_FLOOR_5 = {
         )
     },
     7: {
-        name: "Snake",
-        enemies: ["snake"],
+        name: "Stings",
+        enemies: ["snake", "bee", "wasp"],
         rewards: orderLootTable(
             LEVEL_FIVE_LOOT_TABLE.concat([
                 {

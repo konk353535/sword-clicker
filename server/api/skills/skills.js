@@ -61,9 +61,12 @@ export const addXp = function (
     ignoreTownBuffs = false,
     doResetLogic = false
 ) {
+    //todo: Aes, please explain?
+    /*
     if (xp === 0) {
         return
     }
+    */
 
     let owner
     if (specificUserId) {

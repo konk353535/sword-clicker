@@ -855,7 +855,7 @@ Meteor.methods({
                     currentlyReforging: sortedReforges
                 }
             },
-            { tx: true }
+            { tx: { instant: true } }
         )
 
         if (!updatedQuerySuccess) {
@@ -875,7 +875,7 @@ Meteor.methods({
                 rarityId: originalItem.rarityId,
                 enhanced: originalItem.enhanced
             },
-            { tx: true }
+            { tx: { instant: true } }
         )
 
         tx.commit() // Commit transaction: "Cancel reforge item"

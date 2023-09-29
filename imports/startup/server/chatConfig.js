@@ -16,7 +16,7 @@ import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { CInt } from "/imports/utils.js"
 import { env } from "/server/validateEnv.js"
 
-import { ITEMS } from "/imports/constants/items/index.js"
+import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { SKILLS } from "/server/constants/skills/index.js"
 
 import moment from "moment"
@@ -400,7 +400,7 @@ SimpleChat.configure({
             } else if (/\/giveItem/.test(message) && userDoc.isSuperMod) {
                 const splitMessage = message.trim().split(" ")
 
-                let targetUsername, targetItem, targetAmount
+                let targetUsername, targetItem, targetAmount, targetQuality = -1, targetRarityTier = ''
 
                 if (splitMessage.length === 2) {
                     targetUsername = userDoc.username
@@ -420,8 +420,19 @@ SimpleChat.configure({
                     targetUsername = splitMessage[1]
                     targetItem = splitMessage[2]
                     targetAmount = CInt(splitMessage[3])
+                } else if (splitMessage.length === 5) {
+                    targetUsername = splitMessage[1]
+                    targetItem = splitMessage[2]
+                    targetAmount = CInt(splitMessage[3])
+                    targetQuality = CInt(splitMessage[4])
+                } else if (splitMessage.length === 6) {
+                    targetUsername = splitMessage[1]
+                    targetItem = splitMessage[2]
+                    targetAmount = CInt(splitMessage[3])
+                    targetQuality = CInt(splitMessage[4])
+                    targetRarityTier = splitMessage[5]
                 } else {
-                    sendUserChatMessage({ userId: userDoc._id, message: `Usage: /giveItem <player> <item> <amount>` })
+                    sendUserChatMessage({ userId: userDoc._id, message: `Usage: /giveItem <player> <item> <amount> <quality> <rarity>` })
                     return
                 }
 
@@ -435,6 +446,16 @@ SimpleChat.configure({
 
                 if (!targetUser) {
                     sendUserChatMessage({ userId: userDoc._id, message: `Invalid target player '${targetUsername}'.` })
+                    return
+                }
+
+                if ((targetQuality !== -1) && (targetQuality < 0 || targetQuality < 0)) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid target quality ${targetQuality}.` })
+                    return
+                }
+                
+                if (targetRarityTier !== '' && !ITEM_RARITIES[targetRarityTier]) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid target rarity '${targetUsername}'.` })
                     return
                 }
 
@@ -452,16 +473,29 @@ SimpleChat.configure({
                         }
                     })
                     if (!itemConstants) {
+                        ITEMS_as_Array.forEach((itemConstant) => {
+                            if (itemConstant.name) {
+                                if (itemConstant.name.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
+                                    itemConstants = itemConstant
+                                    targetItem = itemConstants.id
+                                }
+                            }
+                        })
+                    }
+                    if (!itemConstants) {
                         sendUserChatMessage({ userId: userDoc._id, message: `Invalid item ID '${targetItem}'.'` })
                         return
                     }
                 }
 
-                addItem(targetItem, targetAmount, targetUser._id)
+                addItem(targetItem, targetAmount, targetUser._id, false, targetQuality, targetRarityTier)
+
+                const qualityText = (targetQuality >= 0) ? ` (${targetQuality}% quality)` : ''
+                const rarityText = (targetRarityTier != '') ? ` (${targetRarityTier} rarity)` : ''
 
                 sendUserChatMessage({
                     userId: userDoc._id,
-                    message: `Gave ${targetUser.username} ${targetAmount} x ${targetItem}`
+                    message: `Gave ${targetUser.username} ${targetAmount} x ${itemConstants.id}${qualityText}${rarityText}`
                 })
                 return
             } else if (/\/debugAllItems/.test(message) && userDoc.isSuperMod && env.NODE_ENV === "development") {

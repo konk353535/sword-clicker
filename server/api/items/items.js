@@ -10,7 +10,7 @@ import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { COMBAT_CRAFTS } from "/imports/constants/combat/crafts.js"
-import { ITEMS } from "/imports/constants/items/index.js"
+import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { CDbl, CInt } from "/imports/utils"
 import { updateCombatStats } from "/server/api/combat/combat.js"
 import { updateMiningStats } from "/server/api/mining/mining.js"
@@ -24,7 +24,7 @@ import _ from "underscore"
 
 const math = require("mathjs")
 
-export const addItem = function (itemId, amount = 1, specificUserId, useTx = false) {
+export const addItem = function (itemId, amount = 1, specificUserId, useTx = false, targetQuality = -1, targetRarityTier = '') {
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -40,10 +40,18 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
         return
     }
 
+    if (targetQuality == undefined) {
+        targetQuality = -1
+    }
+
+    if (targetRarityTier == undefined) {
+        targetRarityTier = ''
+    }
+
     if (itemConstants.itemSplit) {
         try {
             itemConstants.itemSplit.forEach((itemSplitItemId) => {
-                addItem(itemSplitItemId, amount, owner)
+                addItem(itemSplitItemId, amount, owner, useTx, targetQuality, targetRarityTier)
             })
         } catch (err) {
             console.log(`Couldn't add split item '${itemId}':`)
@@ -58,46 +66,126 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
             // Handle upgraded rarities
             let rarityId
             if (itemConstants.upgradeRarity) {
-                const upgradedRarityRoll = CDbl(Math.random() * 100.0)
-                itemConstants.upgradeRarity.forEach((thisRarityData) => {
-                    if (!rarityId) {
-                        let currentChance = thisRarityData.chance
+                if (targetRarityTier == '') {
+                    const upgradedRarityRoll = CDbl(Math.random() * 100.0)
+                    itemConstants.upgradeRarity.forEach((thisRarityData) => {
+                        if (!rarityId) {
+                            let currentChance = thisRarityData.chance
 
-                        // this perk doesn't exist anymore, it was converted to reforge chance
-                        /*const townBuffArmoryLevel = getBuffLevel('town_armory');
-            if (townBuffArmoryLevel > 0) {
-              currentChance *= 1 + (townBuffArmoryLevel * 0.05);
-            }*/
+                            // this perk doesn't exist anymore, it was converted to reforge chance
+                            /*const townBuffArmoryLevel = getBuffLevel('town_armory');
+                            if (townBuffArmoryLevel > 0) {
+                            currentChance *= 1 + (townBuffArmoryLevel * 0.05);
+                            }*/
 
-                        if (upgradedRarityRoll <= CDbl(currentChance)) {
-                            rarityId = thisRarityData.rarityId
+                            if (upgradedRarityRoll <= CDbl(currentChance)) {
+                                rarityId = thisRarityData.rarityId
+                            }
                         }
-                    }
-                })
+                    })
+                } else {
+                    rarityId = targetRarityTier
+                }
             }
 
             // Generate unique stats for each item
             const extraStats = {}
-            let myRoll = 0
-            let maxRoll = 0 // track how many extraStats we're rolling on
+            let ratedQuality = 0
 
-            // Roll for each of the stats
-            Object.keys(itemConstants.extraStats).forEach((statName) => {
-                const extra = itemConstants.extraStats[statName] * Math.random()
-                // Determine how good this roll was
-                maxRoll++
-                if (extra > 0) {
-                    extraStats[statName] = extra /* math.round(extra, 1) */
+            if (targetQuality === -1) {
+                // Create this item with random quality
 
-                    myRoll += extraStats[statName] / itemConstants.extraStats[statName]
-                }
-            })
+                let myRoll = 0
+                let maxRoll = 0 // track how many extraStats we're rolling on
 
-            let quality = 0
-            if (myRoll === 0 || maxRoll === 0) {
-                quality = 0
+                // Roll for each of the stats
+                Object.keys(itemConstants.extraStats).forEach((statName) => {
+                    const extra = itemConstants.extraStats[statName] * Math.random()
+                    // Determine how good this roll was
+                    maxRoll++
+                    if (extra > 0) {
+                        extraStats[statName] = extra /* math.round(extra, 1) */
+
+                        myRoll += extraStats[statName] / itemConstants.extraStats[statName]
+                    }
+                })
+
+                if (myRoll === 0 || maxRoll === 0) {
+                    ratedQuality = 0
+                } else {
+                    ratedQuality = Math.round((myRoll / maxRoll) * 100)
+                }                
             } else {
-                quality = Math.round((myRoll / maxRoll) * 100)
+                // Create this item with a targeted quality
+
+                // Initialize each stat to ~0%
+                Object.keys(itemConstants.extraStats).forEach((statName) => {
+                    extraStats[statName] = itemConstants.extraStats[statName] * 0.0001
+                })
+
+                // Mutate our extraStats by increasing the targetQuality at random
+                const increaseOptions = []
+                const extraStatKeys = Object.keys(itemConstants.extraStats).filter((extraStatKey) => {
+                    return itemConstants.extraStats[extraStatKey] !== 0 // filter any keys that have a max roll of 0 (avoid divide by 0 NaN and also avoid quality counting a null stat)
+                })
+                extraStatKeys.forEach((extraStatKey) => {
+                    const maxStat = itemConstants.extraStats[extraStatKey]
+                    const currentStat = extraStats[extraStatKey]
+
+                    if (currentStat !== maxStat) {
+                        // Stat percentage
+                        const statPercent = (currentStat / maxStat) * 100
+                        // Smallest increment
+                        // Divide by 100, as smallest increment of stat is 0.01
+
+                        let smallestIncrement = ((1 / maxStat) * 100) / extraStatKeys.length / 100
+
+                        if (smallestIncrement <= targetQuality) {
+                            increaseOptions.push({
+                                key: extraStatKey,
+                                smallestIncrement,
+                                currentStat,
+                                maxStat,
+                                maxIncrease: maxStat - currentStat /* math.round(maxStat - currentStat, 1) */
+                            })
+                        }
+                    }
+                })
+
+                // Randomly choose an increment
+                const shuffledIncreaseOptions = _.shuffle(increaseOptions)
+                // Keep track of total quality increase
+                let currentQualityIncrease = 0
+
+                shuffledIncreaseOptions.forEach((option) => {
+                    // Can we apply this upgrade in the least?
+                    let upgradePercentLeft = 100 - currentQualityIncrease
+                    if (upgradePercentLeft > targetQuality - currentQualityIncrease) {
+                        upgradePercentLeft = targetQuality - currentQualityIncrease
+                    }
+
+                    if (option.smallestIncrement <= upgradePercentLeft) {
+                        // Floor times left to add
+                        let timesToAdd = Math.floor(upgradePercentLeft / option.smallestIncrement) / 100
+                        if (timesToAdd > option.maxIncrease) {
+                            timesToAdd = option.maxIncrease
+                        }
+
+                        // Keep track of current quality increases
+                        // * 10 as smallest increment is 0.01 (or 0.0001)
+                        currentQualityIncrease += timesToAdd * option.smallestIncrement * 100
+
+                        // Handle edge case of this extra stat not existing
+                        if (!extraStats[option.key]) {
+                            extraStats[option.key] = 0
+                        }
+
+                        // Each add is 0.01 stat (or 0.0001)
+                        extraStats[option.key] += timesToAdd
+                    }
+                })
+                
+                ratedQuality = targetQuality;
             }
 
             newItemsList.push({
@@ -105,7 +193,7 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
                 owner,
                 category: itemConstants.category,
                 extraStats,
-                quality,
+                quality: ratedQuality,
                 rarityId
             })
         }

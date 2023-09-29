@@ -1,35 +1,21 @@
 import lodash from "lodash"
-import { Meteor } from "meteor/meteor"
 import { Mongo } from "meteor/mongo"
 
-import { Servers } from "/imports/api/servers/servers"
-import { serverFromUser } from "/imports/api/users/users"
 import { FARMING } from "/imports/constants/farming/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items"
 import { CInt } from "/imports/utils"
 
-export const Town = new Mongo.Collection("town") // pseudo-collection that's a sub-collection of Servers
+export const Town = new Mongo.Collection("town")
 
-export const createTown = function createTown(serverId) {
-    Servers.update(
-        {
-            _id: serverId
-        },
-        {
-            $set: {
-                town: {
-                    day1goods: [],
-                    day2goods: [],
-                    day3goods: [],
-                    day4goods: [],
-                    day5goods: [],
-                    day6goods: [],
-                    day7goods: []
-                }
-            }
-        }
-    )
-}
+TownSchema = new SimpleSchema({
+    server: { type: String },
+    townBuilding: { type: String },
+    itemId: { type: String },
+    count: { type: Number, defaultValue: 0 },
+    karma: { type: Number, defaultValue: 0 }
+})
+
+Town.attachSchema(TownSchema)
 
 export const calculateItemKarma = function calculateItemKarma(item__in) {
     let item
@@ -245,15 +231,7 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
 
         let townInfo
         if (typeof townInfo__in === "object") {
-            townInfo = townInfo__in
-        }
-        if (!townInfo || !townInfo.day1goods) {
-            const serverInfo = lodash.cloneDeep(Servers.findOne({ _id: serverFromUser() }))
-            if (!serverInfo || !serverInfo.town) {
-                townInfo = Meteor.call("town.getGoods", -1)
-            } else {
-                townInfo = serverInfo.town
-            }
+            townInfo = townInfo__in.filter((good) => good.townBuilding === townSection)
         }
 
         if (!townInfo) {
@@ -269,35 +247,13 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
             }
         }
 
-        const townGoods = [
-            townInfo.day1goods,
-            townInfo.day2goods,
-            townInfo.day3goods,
-            townInfo.day4goods,
-            townInfo.day5goods,
-            townInfo.day6goods,
-            townInfo.day7goods
-        ]
-
         let curVal = 0
         let lastDayVal = 0
         let nextVal = 0
 
-        for (let iDay = 0; iDay < 7; iDay++) {
-            if (iDay === 0) {
-                townGoods[iDay].forEach((good) => {
-                    if (good.townBuilding === townSection) {
-                        curVal += calculateItemKarma(good.itemId) * good.count
-                    }
-                })
-            } else if (iDay === 1) {
-                townGoods[iDay].forEach((good) => {
-                    if (good.townBuilding === townSection) {
-                        lastDayVal += calculateItemKarma(good.itemId) * good.count
-                    }
-                })
-            }
-        }
+        townInfo.forEach((good) => {
+            curVal += good.karma
+        })
 
         // baseline level 1 = 1000
         // baseline level 2 = 7943.2823472428150206591828283639
@@ -309,12 +265,12 @@ export const karmaLevelValues = function karmaLevelValues(townSection, townInfo_
         const baseLineLevel4 = Math.ceil(Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.3), 1.2), 1.15)) // = 240990.54286865948713077025766237 = 240991
         const baseLineLevel5 = Math.ceil(Math.pow(Math.pow(Math.pow(Math.pow(baseLineLevel1, 1.3), 1.2), 1.15), 1.1)) // = 832146.90068679357239584603696727 = 832147
 
-        let targetForCurrentDayLevel1 = lastDayVal / ((baseLineLevel4 + baseLineLevel5) / 2.0 / baseLineLevel1)
-        if (targetForCurrentDayLevel1 < baseLineLevel1) {
-            targetForCurrentDayLevel1 = baseLineLevel1
-        }
+        // let targetForCurrentDayLevel1 = lastDayVal / ((baseLineLevel4 + baseLineLevel5) / 2.0 / baseLineLevel1)
+        // if (targetForCurrentDayLevel1 < baseLineLevel1) {
+        //     targetForCurrentDayLevel1 = baseLineLevel1
+        // }
 
-        const valLevel1 = targetForCurrentDayLevel1
+        const valLevel1 = baseLineLevel1
         const valLevel2 = Math.pow(valLevel1, 1.3)
         const valLevel3 = Math.pow(valLevel2, 1.2)
         const valLevel4 = Math.pow(valLevel3, 1.15)

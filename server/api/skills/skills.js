@@ -61,6 +61,10 @@ export const addXp = function (
     ignoreTownBuffs = false,
     doResetLogic = false
 ) {
+    if (xp === 0) {
+        return
+    }
+
     let owner
     if (specificUserId) {
         owner = specificUserId

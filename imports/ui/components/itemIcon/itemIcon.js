@@ -521,7 +521,6 @@ const donateItem = function (event, instance) {
         itemData.donateSection,
         (err, res) => {
             if (err) toastr.warning(err.reason)
-            else Meteor.call("town.updatePersonalKarma")
         }
     )
 }

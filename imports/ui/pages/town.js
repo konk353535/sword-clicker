@@ -6,6 +6,7 @@ import _ from "underscore"
 
 import { getGlobalBuffs } from "/imports/api/globalbuffs/globalbuffs"
 import { Items } from "/imports/api/items/items.js"
+import { Servers } from "/imports/api/servers/servers.js"
 import { Skills } from "/imports/api/skills/skills.js"
 import { Town, calculateItemKarma, karmaLevelValues } from "/imports/api/town/town.js"
 import { Users } from "/imports/api/users/users.js"
@@ -132,21 +133,6 @@ const getDonatableItems = function getDonatableItems(instance) {
 Template.townPage.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
 
-    /*
-  Tracker.autorun(() => {
-    let isAdmin = false;    
-    if (Meteor.user()) {
-      const myUser = Meteor.user() ? Meteor.user() : Users.findOne({ _id: Meteor.userId() });    
-      if (myUser) {
-        isAdmin = myUser.isSuperMod;
-      }
-    }
-    if (!isAdmin) {
-      Router.go('/overview');
-    }
-  });
-  */
-
     Tracker.autorun(() => {
         const myUser = Users.findOne({ _id: Meteor.userId() })
 
@@ -156,8 +142,12 @@ Template.townPage.onCreated(function bodyOnCreated() {
             } else {
                 this.state.set("townSection", "dwellings")
             }
-
             this.state.set("yourKarma", myUser.townKarma)
+
+            const server = Servers.findOne({ _id: Meteor.user().server })
+            if (server) {
+                this.state.set("totalKarma", server.townKarma)
+            }
         }
     })
 
@@ -215,7 +205,6 @@ Template.townPage.events({
 
         Meteor.call("town.donateItems", itemsToDonate, Template.instance().state.get("townSection"), (err, res) => {
             if (err) toastr.warning(err.reason)
-            else Meteor.call("town.updatePersonalKarma")
         })
 
         Session.set("multiDonateItems", {})
@@ -241,7 +230,10 @@ Template.townPage.helpers({
     },
 
     thisSectionKarmaInfo() {
-        const karmaData = karmaLevelValues(Template.instance().state.get("townSection"), Town.findOne({}))
+        const karmaData = karmaLevelValues(
+            Template.instance().state.get("townSection"),
+            Town.find({ townBuilding: Template.instance().state.get("townSection") }).fetch()
+        )
 
         if (!karmaData.isError) {
             //const thisSectionKarmaValue = CInt(Template.instance().state.get('thisSectionKarma'));
@@ -292,7 +284,7 @@ Template.townPage.helpers({
     },
 
     totalKarma() {
-        return CInt(Template.instance().state.get("totalKarma"))
+        return Template.instance().state.get("totalKarma")
     },
 
     townSection() {
@@ -303,83 +295,48 @@ Template.townPage.helpers({
         return Session.get("multiDonate")
     },
 
-    townGoods(day = 1) {
+    townGoods() {
         try {
             const instance = Template.instance()
             const townSection = instance.state.get("townSection")
+            const townData = Town.find({ townBuilding: townSection }).fetch()
 
-            const townInfo = Town.findOne({})
-            let townGoodsThisDay
-            if (day === 1) {
-                townGoodsThisDay = townInfo.day1goods
-            } else if (day === 2) {
-                townGoodsThisDay = townInfo.day2goods
-            } else if (day === 3) {
-                townGoodsThisDay = townInfo.day3goods
-            } else if (day === 4) {
-                townGoodsThisDay = townInfo.day4goods
-            } else if (day === 5) {
-                townGoodsThisDay = townInfo.day5goods
-            } else if (day === 6) {
-                townGoodsThisDay = townInfo.day6goods
-            } else if (day === 7) {
-                townGoodsThisDay = townInfo.day7goods
-            }
+            let karmaThisSection = 0
+            let items = townData.map((item) => {
+                const itemConstants = ITEMS[item.itemId]
 
-            if (townGoodsThisDay && townGoodsThisDay.length > 0) {
-                let totalKarma = 0
-                let yourKarma = 0
-                let items = townGoodsThisDay.map(function (item) {
-                    const itemConstants = ITEMS[item.itemId]
-
-                    if (itemConstants) {
-                        let baseDescription = ""
-                        if (itemConstants.description) {
-                            if (_.isFunction(itemConstants.description)) {
-                                baseDescription = itemConstants.description()
-                            } else {
-                                baseDescription = itemConstants.description
-                            }
+                if (itemConstants) {
+                    let baseDescription = ""
+                    if (itemConstants.description) {
+                        if (_.isFunction(itemConstants.description)) {
+                            baseDescription = itemConstants.description()
+                        } else {
+                            baseDescription = itemConstants.description
                         }
-
-                        const newItem = Object.assign({}, itemConstants, item)
-                        newItem.amount = item.count
-                        newItem.karmaValue = autoPrecisionValue(calculateItemKarma(newItem) * item.count)
-                        newItem.reverseKarmaValue = 1000000000 - newItem.karmaValue
-                        const countFormatted = Numeral(item.count).format("0,0")
-                        const karmaValueFormatted = Numeral(newItem.karmaValue).format("0,0")
-                        newItem.customDescription = `<b>${countFormatted}</b> x donated by <i>${item.username}</i><br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`
-
-                        totalKarma += newItem.karmaValue
-                        if (item.username === Meteor.user().username) {
-                            yourKarma += newItem.karmaValue
-                        }
-
-                        return newItem
                     }
 
-                    console.log(`WARNING: player has item ${item.itemId} that does not exist!`)
-                    return item
-                })
+                    const newItem = Object.assign({}, itemConstants, item)
+                    newItem.amount = item.count
+                    newItem.karmaValue = autoPrecisionValue(newItem.karma)
+                    newItem.reverseKarmaValue = 1000000000 - newItem.karma
+                    const countFormatted = Numeral(item.count).format("0,0")
+                    const karmaValueFormatted = Numeral(newItem.karmaValue).format("0,0")
+                    newItem.customDescription = `<b>${countFormatted}</b> x donated<br /><b>${karmaValueFormatted}</b> karma<hr />${baseDescription}`
 
-                let karmaThisSection = 0
-                items = items.filter((item) => {
-                    if (item.townBuilding === townSection) {
-                        karmaThisSection += item.karmaValue
-                        return true
-                    }
-                    return false
-                })
+                    karmaThisSection += newItem.karmaValue
 
-                Template.instance().state.set("totalKarma", totalKarma)
-                Template.instance().state.set("yourKarma", yourKarma)
-                Template.instance().state.set("thisSectionKarma", karmaThisSection)
+                    return newItem
+                }
+                console.log(`WARNING: player has item ${item.itemId} that does not exist!`)
+                return item
+            })
 
-                items = _.sortBy(items, ["name"])
-                items = _.sortBy(items, ["reverseKarmaValue"])
+            Template.instance().state.set("thisSectionKarma", karmaThisSection)
 
-                return items
-            }
+            items = _.sortBy(items, ["name"])
+            items = _.sortBy(items, ["reverseKarmaValue"])
+
+            return items
         } catch (err) {}
         return false
     },

@@ -61,12 +61,9 @@ export const addXp = function (
     ignoreTownBuffs = false,
     doResetLogic = false
 ) {
-    //todo: Aes, please explain?
-    /*
-    if (xp === 0) {
+    if ((xp === 0) && (!doResetLogic)) {
         return
     }
-    */
 
     let owner
     if (specificUserId) {
@@ -171,15 +168,20 @@ export const addXp = function (
         if (levelUps > 0) {
             const skUpReturn = Skills.update(
                 {
-                    _id: skill._id,
+                    _id: skill._id
+		    // Note: used to also filter by these fields, but it's a performance gain not to and we aren't getting
+		    // any benefit from filtering this (no race condition capture logic).
+		    /*,
                     xp: originalXp,
-                    level: skill.level
+                    level: skill.level */
                 },
                 {
                     $set: {
                         level: skill.level + levelUps,
-                        totalXp: skill.totalXp + xp,
                         xp: skill.xp
+                    },
+                    $inc: {
+                        totalXp: xp
                     }
                 }
             )

@@ -427,6 +427,8 @@ export default class Battle {
                 damageDone: 0,
                 damageTaken: 0,
                 healingDone: 0,
+                damageMitigated: 0,
+                attacksDodged: 0,
                 damageDoneCompanion: 0,
                 damageTakenCompanion: 0,
                 healingDoneCompanion: 0

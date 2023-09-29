@@ -90,6 +90,8 @@
               <th>Damage Done</th>
               <th>Healing Done</th>
               <th>Damage Taken</th>
+              <th>Damage Mitigated</th>
+              <th>Attacks Dodged</th>
               <th>Loot</th>
             </tr>
             </thead>
@@ -100,6 +102,8 @@
                 <td>{{> ceilNumber this.damageDone}}</td>
                 <td>{{> ceilNumber this.healingDone}}</td>
                 <td>{{> ceilNumber this.damageTaken}}</td>
+                <td>{{> ceilNumber this.damageMitigated}}</td>
+                <td>{{> ceilNumber this.attacksDodged}}</td>
                 <td>
                   <div class="d-flex">
                     {{#each this.tickEvents}}

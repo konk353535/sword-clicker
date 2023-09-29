@@ -66,8 +66,10 @@ Template.battleLogRow.helpers({
                                     ? historyStatsWithCompanions[battleStatId].companionName
                                     : historyStatsWithCompanions[battleStatId].name + "'s companion",
                                 damageDone: historyStatsWithCompanions[battleStatId].damageDoneCompanion,
-                                healingDone: historyStatsWithCompanions[battleStatId].healingDoneCompanion,
                                 damageTaken: historyStatsWithCompanions[battleStatId].damageTakenCompanion,
+                                healingDone: historyStatsWithCompanions[battleStatId].healingDoneCompanion,
+                                damageMitigated: historyStatsWithCompanions[battleStatId].damageMitigated,
+                                attacksDodged: historyStatsWithCompanions[battleStatId].attacksDodged,
                                 owner: historyStatsWithCompanions[battleStatId].owner + "_companion",
                                 tickEvents: [] // companions don't earn XP, rewards, or loot
                             }

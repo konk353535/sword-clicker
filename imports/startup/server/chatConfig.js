@@ -683,9 +683,14 @@ SimpleChat.configure({
                 }
 
                 let totalXp = 0
-                for (let i = 1; i <= targetLevel; i++) {
-                    totalXp += SKILLS[targetSkill].xpToLevel(targetLevel - 1)
+                //console.log(`Total XP set: ${totalXp}, level: 0`)
+                for (let i = 1; i < targetLevel; i++) {
+                    let thisLevelUpReq = SKILLS[targetSkill].xpToLevel(i)
+                    totalXp += thisLevelUpReq
+                    //console.log(`XP required for level ${i+1} is ${thisLevelUpReq} XP, now require a total of ${totalXp} XP`)
                 }
+
+                //console.log(`Total XP set: ${totalXp}, skill ${skill._id}, level: ${targetLevel}`)
 
                 // Update Level
                 Skills.update(

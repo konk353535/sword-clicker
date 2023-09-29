@@ -40,7 +40,7 @@
         {{#if $eq currentGroup.leader currentUserId}}
           <div class="form-inline my-3">
             <form>
-              <input class="form-control group-user-input mr-1" type="text" name="text" placeholder="Username" />
+              <input class="form-control group-user-input mr-1" type="text" name="text" placeholder="Player Name" />
               <input class="btn btn-primary btn-invite" type="submit" value="Invite">
             </form>
             <button class="btn btn-danger ml-1 btn-kick">Kick</button>
@@ -52,7 +52,7 @@
       {{else}}
         <h3>Start a group</h3>
         <form class="invite-user form-inline">
-          <input class="form-control mr-3" type="text" name="text" placeholder="Username" />
+          <input class="form-control mr-3" type="text" name="text" placeholder="Player Name" />
           <input class="btn btn-primary" type="submit" value="Invite to group">
         </form>
 
@@ -75,7 +75,7 @@
     <div class="d-flex flex-column" style="flex: 1">
       <h3>Friends</h3>
       <form class="invite-friend form-inline">
-        <input class="form-control mr-3" type="text" name="text" placeholder="Username" />
+        <input class="form-control mr-3" type="text" name="text" placeholder="Player Name" />
         <input class="btn btn-primary" type="submit" value="Add friend">
       </form>
 

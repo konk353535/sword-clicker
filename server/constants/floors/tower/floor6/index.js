@@ -16,7 +16,7 @@ export const TOWER_FLOOR_6 = {
     },
     2: {
         name: "Farmers Market",
-        enemies: ["farmer"],
+        enemies: ["farmer", "farmer"],
         rewards: orderLootTable(
             LEVEL_SIX_LOOT_TABLE.concat([
                 {
@@ -85,7 +85,7 @@ export const TOWER_FLOOR_6 = {
     },
     5: {
         name: "Volcanic Chamber",
-        enemies: ["demon"],
+        enemies: ["warden", "demon"],
         rewards: orderLootTable(
             LEVEL_SIX_LOOT_TABLE.concat([
                 {
@@ -117,7 +117,7 @@ export const TOWER_FLOOR_6 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["angry_miner", "elephant"],
         rewards: orderLootTable(
             LEVEL_SIX_LOOT_TABLE.concat([
                 {

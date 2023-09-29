@@ -12,3 +12,10 @@
     right: 4px;
   }
 }
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    visibility: hidden;
+    display: none;
+  }
+}

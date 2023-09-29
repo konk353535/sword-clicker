@@ -290,11 +290,19 @@ SyncedCron.add({
         console.log("Have re-evaluated boss max health")
 
         // Enable users to fight waves again
+        // Filter to anyone with any offs attempts
         Combat.update(
             { towerContributions: { $ne: [] } }, // always use an index to avoid blindly setting data for the whole database
-            { $set: { towerContributions: [] } },
+            { $set: { towerContributions: [], towerContributionsToday: 0 } },
             { multi: true }
         )
+        // Filter to anyone with any contribution score
+        Combat.update(
+            { towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+            { $set: { towerContributions: [], towerContributionsToday: 0 } },
+            { multi: true }
+        )
+        // These two filters will skip anyone who hasn't played in the last day.
 
         // Reset gems today
         Users.update(
@@ -388,11 +396,19 @@ SyncedCron.add({
                             //const bossEnemyConstants = ENEMIES[bossEnemyId];
 
                             // Reset tower contributions for all
+                            // Filter to anyone with any offs attempts
                             Combat.update(
-                                { towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
-                                { $set: { towerContributionsToday: 0 } },
+                                { towerContributions: { $ne: [] } }, // always use an index to avoid blindly setting data for the whole database
+                                { $set: { towerContributions: [], towerContributionsToday: 0 } },
                                 { multi: true }
                             )
+                            // Filter to anyone with any contribution score
+                            Combat.update(
+                                { towerContributionsToday: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+                                { $set: { towerContributions: [], towerContributionsToday: 0 } },
+                                { multi: true }
+                            )
+                            // These two filters will skip anyone who hasn't played in the last day.
 
                             BossHealthScores.remove({})
 

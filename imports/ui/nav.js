@@ -54,8 +54,19 @@ Template.nav.onCreated(function bodyOnCreated() {
                     $("html").removeClass("dark")
                 }
             } else {
-                Session.set("darkModeEnabled", true)
+                Session.set("darkModeEnabled", true) // default
                 $("html").addClass("dark")
+            }
+            if (myUser.uiState && myUser.uiState.largeChatEnabled !== undefined) {
+                Session.set("largeChatEnabled", myUser.uiState.largeChatEnabled)
+                if (myUser.uiState.largeChatEnabled) {
+                    // add class to chat container
+                    $("html").addClass("large-chat-mode")
+                } else {
+                    $("html").removeClass("large-chat-mode")
+                }
+            } else {
+                Session.set("largeChatEnabled", false) // default
             }
         }
     })
@@ -158,6 +169,18 @@ Template.nav.events({
         Session.set("darkModeEnabled", true)
         Meteor.call("users.setUiState", "darkMode", true)
         $("html").addClass("dark")
+    },
+
+    "click .disable-large-chat"(event, instance) {
+        Session.set("largeChatEnabled", false)
+        Meteor.call("users.setUiState", "largeChatEnabled", false)
+        $("html").removeClass("large-chat-mode")
+    },
+
+    "click .enable-large-chat"(event, instance) {
+        Session.set("largeChatEnabled", true)
+        Meteor.call("users.setUiState", "largeChatEnabled", true)
+        $("html").addClass("large-chat-mode")
     },
 
     "click .battle-nav-link"(event, instance) {
@@ -317,6 +340,10 @@ Template.nav.helpers({
 
     darkModeEnabled() {
         return Session.get("darkModeEnabled")
+    },
+
+    largeChatEnabled() {
+        return Session.get("largeChatEnabled")
     },
 
     ngMode() {

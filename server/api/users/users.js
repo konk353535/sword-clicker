@@ -471,7 +471,8 @@ Meteor.methods({
             "townSection",
             "energyUse",
             "ngAutoMode",
-            "darkMode"
+            "darkMode",
+            "largeChatEnabled"
         ]
 
         if (_.contains(validIds, id)) {

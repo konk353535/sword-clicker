@@ -109,10 +109,20 @@ body {
 }
 
 @media (min-width: 768px) {
+    html.large-chat-mode .chat-container {
+        height: 33vh !important;
+        min-height: 240px !important;
+        width: 33vw !important;
+    }
+
+    html.large-chat-mode .chat-container .chat-scroll, html.large-chat-mode .chat-container .chat-scroll .direct-chat-messages {
+        height: calc(33vh - 40px);
+        min-height: 200px;
+    }
+
     .chat-container {
-        /* width: 550px; */
-		width: 33vw;
-		min-width: 550px;
+        width: 550px;
+        min-width: 550px;
         position: fixed;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
         background-color: white;

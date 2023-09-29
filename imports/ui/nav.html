@@ -203,6 +203,15 @@
                     Enable dark mode
                   </a>
                 {{/if}}
+                {{#if $eq largeChatEnabled true}}
+                  <a class="dropdown-item disable-large-chat" style="cursor: pointer">
+                    Reduce chat
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-large-chat" style="cursor: pointer">
+                    Enlarge chat
+                  </a>
+                {{/if}}
 
                 <a class="dropdown-item">
                   Server: {{ serverName }}

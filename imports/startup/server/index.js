@@ -551,7 +551,8 @@ Accounts.onCreateUser((options, user) => {
         showChat: false,
         showSummaryList: false,
         craftingFilter: "mining",
-        darkMode: true
+        darkMode: true,         // default
+        largeChatEnabled: false // deafult
     }
 
     let targetServer

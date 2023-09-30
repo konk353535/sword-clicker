@@ -115,6 +115,22 @@ export const DEFENSE_ABILITIES = {
         }
     },
 
+    distract: {
+        icon: "redirectDamage.svg",
+        name: "distract",
+        id: "distract",
+        buffs: ["distract"],
+        cooldown: 5,
+        slot: "any",
+        target: "self",
+        isPacifist: true,
+        isHidden: false,
+        description(level) {
+            const BUFF = BUFFS.distract
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
     volcanic_shield: {
         icon: "volcanicShield.svg",
         name: "volcanic shield",

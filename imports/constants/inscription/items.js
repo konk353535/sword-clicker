@@ -2970,6 +2970,19 @@ export const INSCRIPTION_ITEMS = {
         description: "Can be consumed to upgrade the iron will ability."
     },
 
+    distract_level_1_tome: {
+        id: "distract_level_1_tome",
+        icon: "tome.svg",
+        category: "tome",
+        name: "distract tome Lv. 1",
+        teaches: {
+            abilityId: "distract",
+            level: 1
+        },
+        sellPrice: 100,
+        description: "Can be consumed to learn the distract ability."
+    },
+
     taunt_level_1_tome: {
         id: "taunt_level_1_tome",
         icon: "tome.svg",

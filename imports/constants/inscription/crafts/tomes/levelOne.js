@@ -274,6 +274,19 @@ export const LEVEL_ONE_CRAFTS = {
         required: [UTIL.MANY_RED_150, UTIL.MANY_MAPLE_PAPER, UTIL.LEVEL_19]
     },
 
+    distract_level_1_tome: {
+        recipeFor: "inscription",
+        produces: "distract_level_1_tome",
+        name: "distract",
+        id: "distract_level_1_tome",
+        category: "tome",
+        timeToCraft: 900,
+        xp: 600,
+        maxToCraft: 1,
+        requiredInscriptionLevel: 22,
+        required: [UTIL.RED_150, UTIL.PURPLE_200, UTIL.MANY_WALNUT_PAPER, UTIL.LEVEL_22]
+    },
+
     slash_level_1_tome: {
         recipeFor: "inscription",
         produces: "slash_level_1_tome",

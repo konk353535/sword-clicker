@@ -564,7 +564,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         seedType: "herb",
         name: "garlic Seed",
-        description: "Used to grow garlic. Useful for inscription.",
+        description: "A rare seed!  Used to grow garlic. Useful for inscription.",
         sellPrice: 500,
         produces: "garlic"
     },
@@ -937,7 +937,7 @@ export const FARMING_ITEMS = {
         icon: "pineSeed.svg",
         category: "seed",
         name: "Pine Seed",
-        description: "Used to grow pine log. Long time to grow, gives good XP.",
+        description: "Used to grow pine logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         seedType: "tree",
         produces: "pine_log"
@@ -948,7 +948,7 @@ export const FARMING_ITEMS = {
         icon: "beechSeed.svg",
         category: "seed",
         name: "beech Seed",
-        description: "Used to grow beech log. Long time to grow, gives good XP.",
+        description: "Used to grow beech logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         seedType: "tree",
         produces: "beech_log"
@@ -959,7 +959,7 @@ export const FARMING_ITEMS = {
         icon: "ashSeed.svg",
         category: "seed",
         name: "ash Seed",
-        description: "Used to grow ash log. Long time to grow, gives good XP.",
+        description: "Used to grow ash logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         seedType: "tree",
         produces: "ash_log"
@@ -971,7 +971,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "oak Seed",
         seedType: "tree",
-        description: "Used to grow oak log. Long time to grow, gives good XP.",
+        description: "Used to grow oak logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "oak_log"
     },
@@ -982,7 +982,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "maple Seed",
         seedType: "tree",
-        description: "Used to grow maple log. Long time to grow, gives good XP.",
+        description: "Used to grow maple logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "maple_log"
     },
@@ -993,7 +993,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "walnut Seed",
         seedType: "tree",
-        description: "Used to grow walnut log. Long time to grow, gives good XP.",
+        description: "Used to grow walnut logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "walnut_log"
     },
@@ -1004,7 +1004,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "cherry Seed",
         seedType: "tree",
-        description: "Used to grow cherry log. Long time to grow, gives good XP.",
+        description: "Used to grow cherry logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "cherry_log"
     },
@@ -1015,7 +1015,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "mahogany Seed",
         seedType: "tree",
-        description: "Used to grow mahogany log. Long time to grow, gives good XP.",
+        description: "Used to grow mahogany logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "mahogany_log"
     },
@@ -1026,7 +1026,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "elm Seed",
         seedType: "tree",
-        description: "Used to grow elm log. Long time to grow, gives good XP.",
+        description: "Used to grow elm logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "elk_log"
     },
@@ -1037,7 +1037,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "black Seed",
         seedType: "tree",
-        description: "Used to grow black log. Long time to grow, gives good XP.",
+        description: "Used to grow black logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "black_log"
     },
@@ -1048,7 +1048,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "blue gum Seed",
         seedType: "tree",
-        description: "Used to grow blue gum log. Long time to grow, gives good XP.",
+        description: "Used to grow blue gum logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "blue_gum_log"
     },
@@ -1059,7 +1059,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "cedar Seed",
         seedType: "tree",
-        description: "Used to grow cedar log. Long time to grow, gives good XP.",
+        description: "Used to grow cedar logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "cedar_log"
     },
@@ -1070,7 +1070,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "denya Seed",
         seedType: "tree",
-        description: "Used to grow denya log. Long time to grow, gives good XP.",
+        description: "Used to grow denya logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "denya_log"
     },
@@ -1081,7 +1081,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "gombe Seed",
         seedType: "tree",
-        description: "Used to grow gombe log. Long time to grow, gives good XP.",
+        description: "Used to grow gombe logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "gombe_log"
     },
@@ -1092,7 +1092,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "hickory Seed",
         seedType: "tree",
-        description: "Used to grow hickory log. Long time to grow, gives good XP.",
+        description: "Used to grow hickory logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "hickory_log"
     },
@@ -1103,7 +1103,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "larch Seed",
         seedType: "tree",
-        description: "Used to grow larch log. Long time to grow, gives good XP.",
+        description: "Used to grow larch logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "larch_log"
     },
@@ -1114,7 +1114,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "poplar Seed",
         seedType: "tree",
-        description: "Used to grow poplar log. Long time to grow, gives good XP.",
+        description: "Used to grow poplar logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "poplar_log"
     },
@@ -1125,7 +1125,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "tali Seed",
         seedType: "tree",
-        description: "Used to grow tali log. Long time to grow, gives good XP.",
+        description: "Used to grow tali logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "tali_log"
     },
@@ -1136,7 +1136,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "teak Seed",
         seedType: "tree",
-        description: "Used to grow teak log. Long time to grow, gives good XP.",
+        description: "Used to grow teak logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "teak_log"
     },
@@ -1147,7 +1147,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "willow Seed",
         seedType: "tree",
-        description: "Used to grow willow log. Long time to grow, gives good XP.",
+        description: "Used to grow willow logs. Long time to grow, gives good XP.",
         sellPrice: 10,
         produces: "willow_log"
     },
@@ -1177,7 +1177,7 @@ export const FARMING_ITEMS = {
         seedType: "herb",
         category: "seed",
         name: "endive seed",
-        description: "Used to grow a endive. Useful for inscription",
+        description: "Used to grow endive. Useful for inscription",
         sellPrice: 200,
         produces: "endive"
     },
@@ -1196,7 +1196,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         seedType: "herb",
         name: "juniper seed",
-        description: "Used to grow a juniper. Useful for inscription",
+        description: "Used to grow juniper. Useful for inscription",
         sellPrice: 300,
         produces: "juniper"
     },
@@ -1215,7 +1215,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         seedType: "herb",
         name: "agrimony seed",
-        description: "Used to grow a agrimony. Useful for inscription",
+        description: "Used to grow agrimony. Useful for inscription",
         sellPrice: 300,
         produces: "agrimony"
     },
@@ -1234,7 +1234,7 @@ export const FARMING_ITEMS = {
         category: "seed",
         name: "cardoon seed",
         seedType: "herb",
-        description: "Used to grow a cardoon. Useful for inscription",
+        description: "A rare seed!  Used to grow cardoon. Useful for inscription",
         sellPrice: 300,
         produces: "cardoon"
     },
@@ -1252,7 +1252,7 @@ export const FARMING_ITEMS = {
         icon: "chilliSeed.svg",
         category: "seed",
         name: "chili seed",
-        description: "Used to grow a chili. Useful for inscription",
+        description: "A rare seed!  Used to grow chili. Useful for inscription",
         sellPrice: 300,
         seedType: "herb",
         produces: "chilli"
@@ -1271,7 +1271,7 @@ export const FARMING_ITEMS = {
         icon: "celerySeed.svg",
         category: "seed",
         name: "celery seed",
-        description: "Used to grow a celery. Useful for inscription",
+        description: "A rare seed!  Used to grow celery. Useful for inscription",
         sellPrice: 300,
         seedType: "herb",
         produces: "celery"
@@ -1290,7 +1290,7 @@ export const FARMING_ITEMS = {
         icon: "feverfewSeed.svg",
         category: "seed",
         name: "feverfew seed",
-        description: "Used to grow a feverfew. Useful for inscription",
+        description: "A rare seed!  Used to grow feverfew. Useful for inscription",
         sellPrice: 1000,
         seedType: "herb",
         produces: "feverfew"

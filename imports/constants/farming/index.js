@@ -1079,6 +1079,96 @@ export const FARMING = {
                     level: 12
                 }
             ]
+        },
+
+        chilli_seed: {
+            id: "chilli_seed",
+            itemId: "chilli_seed",
+            requiredFarmingLevel: 25, /* to plant and see in farming */
+            required: [
+                {
+                    type: "gold",
+                    amount: 200000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 45 /* to purchase */
+                }
+            ]
+        },
+
+        celery_seed: {
+            id: "ccelery_seed",
+            itemId: "celery_seed",
+            requiredFarmingLevel: 25, /* to plant and see in farming */
+            required: [
+                {
+                    type: "gold",
+                    amount: 100000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 57 /* to purchase */
+                }
+            ]
+        },
+
+        cardoon_seed: {
+            id: "cardoon_seed",
+            itemId: "cardoon_seed",
+            requiredFarmingLevel: 25, /* to plant and see in farming */
+            required: [
+                {
+                    type: "gold",
+                    amount: 500000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 61 /* to purchase */
+                }
+            ]
+        },
+
+        feverfew_seed: {
+            id: "feverfew_seed",
+            itemId: "feverfew_seed",
+            requiredFarmingLevel: 30, /* to plant and see in farming */
+            required: [
+                {
+                    type: "gold",
+                    amount: 1000000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 74 /* to purchase */
+                }
+            ]
+        },
+
+        garlic_seed: {
+            id: "garlic_seed",
+            itemId: "garlic_seed",
+            requiredFarmingLevel: 55, /* to plant and see in farming */
+            required: [
+                {
+                    type: "gold",
+                    amount: 1000000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 90 /* to purchase */
+                }
+            ]
         }
     }
 }

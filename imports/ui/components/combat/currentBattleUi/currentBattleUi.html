@@ -3,6 +3,14 @@
     <div style="height: calc(100vh - 54px); position: relative">
       <!-- Buffs list -->
       <div class="d-flex my-1" style="min-height: 58px">
+        {{#if battleEndsAt}}
+          <div class="buff-icon-container icon-box medium-icon d-flex flex-row justify-content-start align-items-center" style="position: relative">
+            <p class="text-muted d-flex m-0" style="font-size: 16px; line-height: 16px; text-align: center">
+              {{> readableDuration endDate=battleEndsAt}}
+            </p>
+          </div>
+        {{/if}}
+
         {{#each myUnitsBuffs}}
           {{> buffIcon buff=this}}
         {{/each}}

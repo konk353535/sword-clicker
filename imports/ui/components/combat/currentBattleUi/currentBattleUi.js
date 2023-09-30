@@ -392,6 +392,13 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         if (currentGroup) {
             localBalancer = currentGroup.balancer
         }
+        if (!this.state.get("battleEndsAt")) {
+            let duration = 10
+            if (currentBattleList.isBigBoss) {
+                duration = 30
+            }
+            this.state.set("battleEndsAt", moment(currentBattleList.createdAt).add(duration, "minutes").toDate())
+        }
         if (!window.battleSocket || !window.battleSocket.hasUser || localBalancer !== window.balancer) {
             let userData = {}
             try {
@@ -436,6 +443,10 @@ Template.currentBattleUi.helpers({
         }
 
         return currentBattle
+    },
+
+    battleEndsAt() {
+        return Template.instance().state.get("battleEndsAt")
     },
 
     unitClicked() {

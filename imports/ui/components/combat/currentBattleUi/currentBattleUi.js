@@ -81,6 +81,7 @@ const startBattle = (currentBattle, self) => {
                         "magic",
                         "criticalStrike",
                         "accuracy",
+                        "armor",
                         "dodge",
                         "bleed",
                         "bleeding",

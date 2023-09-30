@@ -1,6 +1,6 @@
 import type Battle from "."
 import { BUFFS } from "../../../../imports/constants/buffs"
-import { autoPrecisionValueTight } from "../../../../imports/utils"
+import { autoPrecisionValueTight, CDbl } from "../../../../imports/utils"
 import { dealDamageOpts } from "../types/tickOpts"
 
 export function dealDamage(
@@ -129,10 +129,14 @@ export function dealDamage(
     }
 
     let damageValue = autoPrecisionValueTight(damage).toString()
-    if (damageValue === "0") {
+    if (damageValue === "0" || CDbl(damage) <= 0.01) {
         damageValue = ""
         if (customIcon === "dodge") {
             damageValue = "Dodged"
+        } else {
+            customIcon = "armor"
+            customColor = "#888888"
+            damageValue = "Absorbed"
         }
 
         if (historyStats && historyStats[defender__id_to_use]) {

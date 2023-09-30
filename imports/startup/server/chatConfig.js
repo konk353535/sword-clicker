@@ -8,9 +8,9 @@ import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 import { addItem } from "/server/api/items/items.js"
 import { addXp } from "/server/api/skills/skills.js"
-import { Items } from "/server/api/items/items"
 
 import { activateGlobalBuff } from "/imports/api/globalbuffs/globalbuffs"
+import { Items } from "/imports/api/items/items"
 import { createNewServer, setServerStatus } from "/imports/api/servers/servers"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
@@ -771,8 +771,11 @@ SimpleChat.configure({
                     Items.insert(itemData)
                     sendUserChatMessage({ userId: userDoc._id, message: `Successfully restored item.` })
                 } catch (err) {
-                    console.log("unable to restore item", err)
-                    sendUserChatMessage({ userId: userDoc._id, message: `Failed to restore item (it may still exist?)` })
+                    console.log("unable to restore item", err.message.split("\n")[0])
+                    sendUserChatMessage({
+                        userId: userDoc._id,
+                        message: `Failed to restore item: ${err.message.split("\n")[0]}`
+                    })
                 }
 
                 return

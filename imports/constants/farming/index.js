@@ -1106,7 +1106,7 @@ export const FARMING = {
             required: [
                 {
                     type: "gold",
-                    amount: 100000,
+                    amount: 350000,
                     consumes: true
                 },
                 {

@@ -8,6 +8,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 import { addItem } from "/server/api/items/items.js"
 import { addXp } from "/server/api/skills/skills.js"
+import { Items } from "/server/api/items/items"
 
 import { activateGlobalBuff } from "/imports/api/globalbuffs/globalbuffs"
 import { createNewServer, setServerStatus } from "/imports/api/servers/servers"
@@ -400,7 +401,11 @@ SimpleChat.configure({
             } else if (/\/giveItem/.test(message) && userDoc.isSuperMod) {
                 const splitMessage = message.trim().split(" ")
 
-                let targetUsername, targetItem, targetAmount, targetQuality = -1, targetRarityTier = ''
+                let targetUsername,
+                    targetItem,
+                    targetAmount,
+                    targetQuality = -1,
+                    targetRarityTier = ""
 
                 if (splitMessage.length === 2) {
                     targetUsername = userDoc.username
@@ -432,7 +437,10 @@ SimpleChat.configure({
                     targetQuality = CInt(splitMessage[4])
                     targetRarityTier = splitMessage[5]
                 } else {
-                    sendUserChatMessage({ userId: userDoc._id, message: `Usage: /giveItem <player> <item> <amount> <quality> <rarity>` })
+                    sendUserChatMessage({
+                        userId: userDoc._id,
+                        message: `Usage: /giveItem <player> <item> <amount> <quality> <rarity>`
+                    })
                     return
                 }
 
@@ -449,12 +457,12 @@ SimpleChat.configure({
                     return
                 }
 
-                if ((targetQuality !== -1) && (targetQuality < 0 || targetQuality < 0)) {
+                if (targetQuality !== -1 && (targetQuality < 0 || targetQuality < 0)) {
                     sendUserChatMessage({ userId: userDoc._id, message: `Invalid target quality ${targetQuality}.` })
                     return
                 }
-                
-                if (targetRarityTier !== '' && !ITEM_RARITIES[targetRarityTier]) {
+
+                if (targetRarityTier !== "" && !ITEM_RARITIES[targetRarityTier]) {
                     sendUserChatMessage({ userId: userDoc._id, message: `Invalid target rarity '${targetUsername}'.` })
                     return
                 }
@@ -490,8 +498,8 @@ SimpleChat.configure({
 
                 addItem(targetItem, targetAmount, targetUser._id, false, targetQuality, targetRarityTier)
 
-                const qualityText = (targetQuality >= 0) ? ` (${targetQuality}% quality)` : ''
-                const rarityText = (targetRarityTier != '') ? ` (${targetRarityTier} rarity)` : ''
+                const qualityText = targetQuality >= 0 ? ` (${targetQuality}% quality)` : ""
+                const rarityText = targetRarityTier != "" ? ` (${targetRarityTier} rarity)` : ""
 
                 sendUserChatMessage({
                     userId: userDoc._id,
@@ -713,6 +721,60 @@ SimpleChat.configure({
                     userId: userDoc._id,
                     message: `Set ${targetUser.username} ${targetSkill} level to ${targetLevel}`
                 })
+                return
+            } else if (/\/restoreReforge/.test(message) && userDoc.isSuperMod) {
+                const splitMessage = message.trim()?.split("/restoreReforge")?.[1]?.trim()?.split(" ")
+
+                let targetUsername, targetUid
+
+                if (splitMessage.length === 2) {
+                    targetUsername = splitMessage[0]
+                    targetUid = splitMessage[1]
+                } else {
+                    sendUserChatMessage({
+                        userId: userDoc._id,
+                        message: `Usage: /restoreReforge player (itemId || itemUid)`
+                    })
+                    return
+                }
+
+                if (!targetUid) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid target item uid '${targetUid}'.` })
+                }
+
+                const targetUser = Users.findOne({
+                    username: targetUsername.toLowerCase().trim()
+                })
+
+                if (!targetUser) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid target player '${targetUsername}'.` })
+                    return
+                }
+
+                // find item from event
+                const reforgeEvent = Events.findOne(
+                    {
+                        owner: targetUser._id,
+                        event: "crafting.reforgeItem",
+                        $or: [{ "data.origUid": targetUid }, { "data.itemId": targetUid }]
+                    },
+                    { sort: { date: -1, limit: 1 } }
+                )
+
+                if (!reforgeEvent) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Could not find reforge event.` })
+                    return
+                }
+
+                try {
+                    const itemData = JSON.parse(reforgeEvent.data.itemData)
+                    Items.insert(itemData)
+                    sendUserChatMessage({ userId: userDoc._id, message: `Successfully restored item.` })
+                } catch (err) {
+                    console.log("unable to restore item", err)
+                    sendUserChatMessage({ userId: userDoc._id, message: `Failed to restore item (it may still exist?)` })
+                }
+
                 return
             }
         }

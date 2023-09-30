@@ -762,6 +762,13 @@ Meteor.methods({
                 .toDate()
         }
 
+        Events.insert({
+            owner: Meteor.userId(),
+            event: "crafting.reforgeItem",
+            date: new Date(),
+            data: whatWereReforging
+        })
+
         tx.start("Reforge item into queue")
 
         // Add to currently reforging...

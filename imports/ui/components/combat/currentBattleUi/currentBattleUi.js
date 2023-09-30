@@ -393,11 +393,7 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
             localBalancer = currentGroup.balancer
         }
         if (!this.state.get("battleEndsAt")) {
-            let duration = 10
-            if (currentBattleList.isBigBoss) {
-                duration = 30
-            }
-            this.state.set("battleEndsAt", moment(currentBattleList.createdAt).add(duration, "minutes").toDate())
+            this.state.set("battleEndsAt", moment(currentBattleList.createdAt).add((currentBattleList.isBigBoss) ? 30 : 10, "minutes").toDate())
         }
         if (!window.battleSocket || !window.battleSocket.hasUser || localBalancer !== window.balancer) {
             let userData = {}

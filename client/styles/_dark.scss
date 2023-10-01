@@ -201,10 +201,16 @@ html.dark {
         background-color: $dark-fg-color !important;
     }
 
+    .chat-container .btn {
+        color: #fff !important;
+        background-color: $dark-fg-color !important;
+        border-color: #000 !important;
+    }
+
     .buff-remaining-time {
         color: #56f;
     }
-    
+
     // Doesn't work (and be glad it doesn't, this would make every single .svg image white)
     /* img {
         fill: #fff !important;

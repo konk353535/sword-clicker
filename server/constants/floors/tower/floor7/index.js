@@ -16,7 +16,7 @@ export const TOWER_FLOOR_7 = {
     },
     3: {
         name: "Ash Tree",
-        enemies: ["beaver"],
+        enemies: ["beaver", "beaver", "beaver"],
         rewards: orderLootTable(
             LEVEL_SEVEN_LOOT_TABLE.concat([
                 {
@@ -59,7 +59,7 @@ export const TOWER_FLOOR_7 = {
     },
     5: {
         name: "Frozen Peak",
-        enemies: ["ice_giant"],
+        enemies: ["ice_giant", "water_mage"],
         rewards: orderLootTable(
             LEVEL_SEVEN_LOOT_TABLE.concat([
                 {
@@ -83,7 +83,7 @@ export const TOWER_FLOOR_7 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["angry_miner", "fire_mage"],
         rewards: orderLootTable(
             LEVEL_SEVEN_LOOT_TABLE.concat([
                 {

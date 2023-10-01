@@ -3,21 +3,21 @@ $dark-fg-color: #2a2a2a;
 $dark-uncraftable-color: #313131;
 $dark-text-muted: #808385;
 
-$svg-transform-white: invert(100%) sepia(100%) saturate(0%) brightness(500%) contrast(300%);
-$svg-transform-red: invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg) brightness(119%) contrast(119%);
-$svg-transform-orange: invert(42%) sepia(93%) saturate(500%) brightness(119%) contrast(119%);
-$svg-transform-yellow: invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg) brightness(119%) contrast(119%);
-$svg-transform-green: invert(42%) sepia(93%) saturate(1500%) hue-rotate(87deg) brightness(119%) contrast(119%);
-$svg-transform-blue: invert(42%) sepia(93%) saturate(10000%) hue-rotate(250deg) brightness(119%) contrast(119%);
-$svg-transform-purple: invert(42%) sepia(93%) saturate(10000%) hue-rotate(267deg) brightness(119%) contrast(119%);
-$svg-transform-brown: invert(42%) sepia(293%) saturate(150%) hue-rotate(350deg) brightness(75%) contrast(160%);
-$svg-transform-black: invert(42%) sepia(293%) saturate(100%) brightness(0%) contrast(100%);
-$svg-transform-gray: invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(22%);
-$svg-transform-light-gray: invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(42%);
-$svg-transform-beige: invert(42%) sepia(293%) saturate(50%) hue-rotate(33deg) brightness(119%) contrast(119%);
-$svg-transform-gold: invert(42%) sepia(93%) saturate(500%) hue-rotate(14deg) brightness(119%) contrast(119%);
-$svg-transform-magenta: invert(42%) sepia(93%) saturate(10000%) hue-rotate(294deg) brightness(100%) contrast(160%);
-$svg-transform-pink: invert(42%) sepia(93%) saturate(10000%) hue-rotate(330deg) brightness(500%) contrast(45%);
+$svg-transform-white: brightness(5.08) invert(100%);
+$svg-transform-red: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg) brightness(119%) contrast(119%);
+$svg-transform-orange: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) brightness(119%) contrast(119%);
+$svg-transform-yellow: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg) brightness(119%) contrast(119%);
+$svg-transform-green: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(87deg) brightness(119%) contrast(119%);
+$svg-transform-blue: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(250deg) brightness(119%) contrast(119%);
+$svg-transform-purple: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(267deg) brightness(119%) contrast(119%);
+$svg-transform-brown: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(150%) hue-rotate(350deg) brightness(75%) contrast(160%);
+$svg-transform-black: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(100%) brightness(0%) contrast(100%);
+$svg-transform-gray: brightness(5.08) invert(100%) invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(22%);
+$svg-transform-light-gray: brightness(5.08) invert(100%) invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(42%);
+$svg-transform-beige: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(50%) hue-rotate(33deg) brightness(119%) contrast(119%);
+$svg-transform-gold: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) hue-rotate(14deg) brightness(119%) contrast(119%);
+$svg-transform-magenta: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(294deg) brightness(100%) contrast(160%);
+$svg-transform-pink: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(330deg) brightness(500%) contrast(45%);
 
 html.dark {
     background-color: $dark-bg-color;
@@ -222,6 +222,7 @@ html.dark {
     img[src*="icons/adventureToken.svg"],
     img[src*="icons/amulet.svg"],
     img[src*="icons/ancientShard.svg"],
+    img[src*="icons/angryMiner.svg"],
     img[src*="icons/armor.svg"],
     img[src*="icons/armorPenetration.svg"],
     img[src*="icons/armorReduction.svg"],
@@ -231,9 +232,9 @@ html.dark {
     img[src*="icons/attackReduction.svg"],
     img[src*="icons/attackSpeed.svg"],
     img[src*="icons/babyFox.svg"],
-    img[src*="icons/bearTaunt.svg"],
     img[src*="icons/back.svg"],
     img[src*="icons/bagOfGems.svg"],
+    img[src*="icons/battleAxe.svg"],
     img[src*="icons/bearTaunt.svg"],
     img[src*="icons/beggar.svg"],
     img[src*="icons/bison.svg"],
@@ -255,7 +256,10 @@ html.dark {
     img[src*="icons/character.svg"],
     img[src*="icons/clickDamage.svg"],
     img[src*="icons/closedLock.svg"],
+    img[src*="icons/cobra.svg"],
+    img[src*="icons/combat.svg"],
     img[src*="icons/completeShard.svg"],
+    img[src*="icons/counterAttack.svg"],
     img[src*="icons/crafting.svg"],
     img[src*="icons/criticalChance.svg"],
     img[src*="icons/cutPurse.svg"],
@@ -265,10 +269,12 @@ html.dark {
     img[src*="icons/doubleEdgedSword.svg"],
     img[src*="icons/dragon.svg"],
     img[src*="icons/dragonfly.svg"],
+    img[src*="icons/duration.svg"],
+    img[src*="icons/dwarf.svg"],
     img[src*="icons/echidna.svg"],
+    img[src*="icons/elementalShield.svg"],
     img[src*="icons/evasiveManeuvers.svg"],
-    img[src*="icons/farmer.svg"],
-    img[src*="icons/farming.svg"],
+    img[src*="icons/eventSPDheist.svg"],
     img[src*="icons/farplaneTwistedVeins.svg"],
     img[src*="icons/fish.svg"],
     img[src*="icons/flamebreath.svg"],
@@ -280,15 +286,18 @@ html.dark {
     img[src*="icons/glasses.svg"],
     img[src*="icons/goat.svg"],
     img[src*="icons/gorillaLearning.svg"],
+    img[src*="icons/hammer.svg"],
     img[src*="icons/health.svg"],
     img[src*="icons/healthMax.svg"],
     img[src*="icons/help.svg"],
     img[src*="icons/hive.svg"],
+    img[src*="icons/honeycomb.svg"],
     img[src*="icons/inscription.svg"],
     img[src*="icons/kickInvite.svg"],
     img[src*="icons/leaderCrown.svg"],
     img[src*="icons/leave.svg"],
     img[src*="icons/lionBoss.svg"],
+    img[src*="icons/longSword.svg"],
     img[src*="icons/mage.svg"],
     img[src*="icons/magic.svg"],
     img[src*="icons/magicPower.svg"],
@@ -311,6 +320,8 @@ html.dark {
     img[src*="icons/personalQuest.svg"],
     img[src*="icons/plus.svg"],
     img[src*="icons/popOut.svg"],
+    img[src*="icons/prospector.svg"],
+    img[src*="icons/rapier.svg"],
     img[src*="icons/sharpRock.svg"],
     img[src*="icons/shield.svg"],
     img[src*="icons/shieldBash.svg"],
@@ -321,6 +332,8 @@ html.dark {
     img[src*="icons/snakeSkinChest.svg"],
     img[src*="icons/spartan.svg"],
     img[src*="icons/spear.svg"],
+    img[src*="icons/spikedArmor.svg"],
+    img[src*="icons/spiritBlink.svg"],
     img[src*="icons/staff.svg"],
     img[src*="icons/subtract.svg"],
     img[src*="icons/swipe.svg"],
@@ -336,6 +349,7 @@ html.dark {
     img[src*="icons/warden_shield.svg"],
     img[src*="icons/woodcutter.svg"],
     img[src*="icons/woodcutting.svg"],
+    img[src*="icons/worm.svg"],
     img[src*="icons/youngNinja"] {
         filter: $svg-transform-white;
     }
@@ -345,14 +359,27 @@ html.dark {
         filter: $svg-transform-red;
     }
 
+    // selectively turn some .svg images blue
+    img[src*="icons/acaiBerry.svg"],
+    img[src*="icons/acaiBerrySeed.svg"] {
+        filter: $svg-transform-blue;
+    }
+
     // selectively turn some .svg images brown
-    img[src*="icons/emptyFarmSpace.svg"] {
-        filter: $svg-transform-brown;
+    img[src*="icons/emptyFarmSpace.svg"],
+    img[src*="icons/farmer.svg"],
+    img[src*="icons/farming.svg"] {
+            filter: $svg-transform-brown;
     }
 
     // selectively turn some .svg images gold
     img[src*="icons/treasureChest.svg"]  {
         filter: $svg-transform-gold;
+    }
+
+    // selectively turn some .svg images pink
+    img[src*="icons/healingPower.svg"] {}
+        filter: $svg-transform-pink;
     }
 
     .modal-content {

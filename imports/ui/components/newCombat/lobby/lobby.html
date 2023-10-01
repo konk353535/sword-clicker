@@ -167,52 +167,45 @@
         {{#if $eq typeKey 'group'}}
             {{#unless floorDetails.isUnlocked}}
                 <div>
-                    {{#if $lte waveDetails.points waveDetails.pointsMax}}
-                        <div class="d-flex align-items-center flex-wrap py-2">
-                            <p style="margin: 0; padding-right: 1rem">Floor progression</p>
-                            <div class="progress" style="min-width: 200px; height: 30px;">
-                                <div class="progress-bar bg-danger justify-content-center align-items-center d-flex"
-                                    role="progressbar"
-                                    style="min-width: 75px; width: {{wavePointsProgress}}%; height: 30px;"
-                                    aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
-                                    {{> formatNumber number=waveDetails.points}} /
-                                    {{> formatNumber number=waveDetails.pointsMax}}
-                                </div>
+                    <div class="d-flex align-items-center flex-wrap py-2">
+                        <p style="margin: 0; padding-right: 1rem">Floor progression</p>
+                        <div class="progress" style="min-width: 200px; height: 30px;">
+                            <div class="progress-bar bg-danger justify-content-center align-items-center d-flex"
+                                role="progressbar"
+                                style="min-width: 75px; width: {{wavePointsProgress}}%; height: 30px;"
+                                aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
+                                {{> formatNumber number=waveDetails.points}} /
+                                {{> formatNumber number=waveDetails.pointsMax}}
                             </div>
                         </div>
+                    </div>
 
-                        <div class="d-flex align-items-center flex-wrap py-1">
-                            <p style="margin: 0; padding-right: 1rem">Your Top (Official) Contributions</p>
+                    <div class="d-flex align-items-center flex-wrap py-1">
+                        <p style="margin: 0; padding-right: 1rem">Your Top (Official) Contributions:</p>
+                        {{#if combat.towerContributions}}
                             {{#each combat.towerContributions}}
                                 <div class="mx-1 badge badge-warning">{{> formatNumber number=this decimal=1}}</div>
                             {{/each}}
-                        </div>
+                        {{else}}
+                            <p style="margin: 0;">No contributions today. Go fight the top floor!</p>
+                        {{/if}}
+                    </div>
 
-                    {{else}}
-                        <button class="btn btn-danger battle-boss-btn mr-2">Boss</button>
-                        {{waveDetails.health}} / {{waveDetails.healthMax}} HP
+                    {{#if $gt waveDetails.points waveDetails.pointsMax}}
+                        <div class="d-flex align-items-center mt-2">
+                            <button class="btn btn-danger battle-boss-btn mr-2">Boss</button>
+                            <p style="margin: 0;">{{waveDetails.health}} / {{waveDetails.healthMax}} HP</p>
+                        </div>
                     {{/if}}
                 </div>
                 <div>
                     {{#if $lte waveDetails.points waveDetails.pointsMax}}
-                        {{#if $gte (moDiff floorResetDate moNow 'minutes') 60}}
-                            Boss is locked.  Floor timer resets in {{moDiff floorResetDate moNow 'hours'}} hours.
-                        {{else}}
-                            Boss is locked.  Floor timer resets in {{moDiff floorResetDate moNow 'minutes'}} minutes.
-                        {{/if}}
+                        <p>Boss is locked. Floor timer resets in {{>readableDuration endDate=floorResetDate}}.</p>
                     {{else}}
                         {{#if $gt waveDetails.health 0}}
-                            {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}
-                                Boss will heal in {{moDiff bossResetAt moNow 'hours'}} hours.
-                            {{else}}
-                                Boss will heal in {{moDiff bossResetAt moNow 'minutes'}} minutes.
-                            {{/if}}
+                            <p>Boss will heal in {{>readableDuration endDate=bossResetAt}}.</p>
                         {{else}}
-                            {{#if $gte (moDiff bossResetAt moNow 'minutes') 60}}
-                                Boss defeated.  Next floor opens in {{moDiff bossResetAt moNow 'hours'}} hours.
-                            {{else}}
-                                Boss defeated.  Next floor opens in {{moDiff bossResetAt moNow 'minutes'}} minutes.
-                            {{/if}}
+                            <p>Boss defeated. Next floor opens in {{>readableDuration endDate=bossResetAt}}.</p>
                         {{/if}}
                     {{/if}}
                 </div>

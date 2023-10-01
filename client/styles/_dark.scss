@@ -201,7 +201,8 @@ html.dark {
         background-color: $dark-fg-color !important;
     }
 
-    .chat-container .btn {
+    .chat-container .btn#message-send {
+        color: #fff !important;
         background-color: $dark-fg-color !important;
         border-color: #000 !important;
     }

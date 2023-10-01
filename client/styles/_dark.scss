@@ -514,7 +514,7 @@ html.dark {
     }
 
     /* Current user */
-    button.btn.btn-secondary.dropdown-toggle {
+    button.btn.btn-secondary, button.btn.btn-secondary.dropdown-toggle {
         color: #fff;
         background-color: $dark-fg-color !important;
         border-color: #000 !important;

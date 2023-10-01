@@ -373,12 +373,12 @@ html.dark {
     }
 
     // selectively turn some .svg images gold
-    img[src*="icons/treasureChest.svg"]  {
+    img[src*="icons/treasureChest.svg"] {
         filter: $svg-transform-gold;
     }
 
     // selectively turn some .svg images pink
-    img[src*="icons/healingPower.svg"] {}
+    img[src*="icons/healingPower.svg"] {
         filter: $svg-transform-pink;
     }
 

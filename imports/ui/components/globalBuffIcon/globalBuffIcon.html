@@ -30,7 +30,7 @@
     </h3>
     <div class='popover-content'>
       <div style='max-width: 350px;'>
-        <span style="color: blue;">
+        <span class="buff-remaining-time">
           {{#if $gte (moDiff date moNow 'minutes') 60}}
             {{moDiff date moNow 'hours'}} hours,
             {{cappedMinutes (moDiff date moNow 'minutes')}} minutes

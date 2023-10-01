@@ -221,43 +221,43 @@ Template.itemIcon.helpers({
         if (item) {
             if (item.rarityId) {
                 if (item.rarityId === "crude") {
-                    borderStyle = "3px dotted #555555"
+                    borderStyle = "3px dotted #555555 !important"
                 } else if (item.rarityId === "rough") {
-                    borderStyle = "3px dotted #666644"
+                    borderStyle = "3px dotted #666644 !important"
                 } else if (item.rarityId === "improved") {
-                    borderStyle = "3px dashed #998800"
+                    borderStyle = "3px dashed #998800 !important"
                 } else if (item.rarityId === "mastercrafted") {
-                    borderStyle = "3px dashed #cc7700"
+                    borderStyle = "3px dashed #cc7700 !important"
                 } else if (item.rarityId === "masterforged") {
-                    borderStyle = "3px double #ee6622"
+                    borderStyle = "3px double #ee6622 !important"
                 } else if (item.rarityId === "ascended") {
-                    borderStyle = "3px double #ff2266"
+                    borderStyle = "3px double #ff2266 !important"
                 } else if (item.rarityId === "ethereal") {
-                    borderStyle = "3px double #FF5599"
+                    borderStyle = "3px double #FF5599 !important"
                 } else if (item.rarityId === "perfect") {
-                    borderStyle = "3px double #FF71aa"
+                    borderStyle = "3px double #FF71aa !important"
                 } else if (item.rarityId === "fine") {
-                    borderStyle = "3px dashed #66aaaa"
+                    borderStyle = "3px dashed #66aaaa !important"
                 } else if (item.rarityId === "rare") {
-                    borderStyle = "3px dashed #3388aa"
+                    borderStyle = "3px dashed #3388aa !important"
                 } else if (item.rarityId === "extraordinary") {
-                    borderStyle = "3px double #3366aa"
+                    borderStyle = "3px double #3366aa !important"
                 } else if (item.rarityId === "phenomenal") {
-                    borderStyle = "3px double #0055cc"
+                    borderStyle = "3px double #0055cc !important"
                 } else if (item.rarityId === "epic") {
-                    borderStyle = "3px double #0022ee"
+                    borderStyle = "3px double #0022ee !important"
                 } else if (item.rarityId === "divine") {
-                    borderStyle = "3px double #4444ff"
+                    borderStyle = "3px double #4444ff !important"
                 } else if (item.rarityId === "incredible") {
-                    borderStyle = "3px double #6141ff"
+                    borderStyle = "3px double #6141ff !important"
                 } else if (item.rarityId === "unparalleled") {
-                    borderStyle = "3px double #9151ff"
+                    borderStyle = "3px double #9151ff !important"
                 } else if (item.rarityId === "prized") {
-                    borderStyle = "3px double #883388"
+                    borderStyle = "3px double #883388 !important"
                 } else if (item.rarityId === "legendary") {
-                    borderStyle = "3px double #cc44cc"
+                    borderStyle = "3px double #cc44cc !important"
                 } else if (item.rarityId === "artifact") {
-                    borderStyle = "3px double #44cc44"
+                    borderStyle = "3px double #44cc44 !important"
                 }
             }
         }

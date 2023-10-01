@@ -3,6 +3,22 @@ $dark-fg-color: #2a2a2a;
 $dark-uncraftable-color: #313131;
 $dark-text-muted: #808385;
 
+$svg-transform-white: invert(100%) sepia(100%) saturate(0%) brightness(500%) contrast(300%);
+$svg-transform-red: invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg) brightness(119%) contrast(119%);
+$svg-transform-orange: invert(42%) sepia(93%) saturate(500%) brightness(119%) contrast(119%);
+$svg-transform-yellow: invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg) brightness(119%) contrast(119%);
+$svg-transform-green: invert(42%) sepia(93%) saturate(1500%) hue-rotate(87deg) brightness(119%) contrast(119%);
+$svg-transform-blue: invert(42%) sepia(93%) saturate(10000%) hue-rotate(250deg) brightness(119%) contrast(119%);
+$svg-transform-purple: invert(42%) sepia(93%) saturate(10000%) hue-rotate(267deg) brightness(119%) contrast(119%);
+$svg-transform-brown: invert(42%) sepia(293%) saturate(150%) hue-rotate(350deg) brightness(75%) contrast(160%);
+$svg-transform-black: invert(42%) sepia(293%) saturate(100%) brightness(0%) contrast(100%);
+$svg-transform-gray: invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(22%);
+$svg-transform-light-gray: invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(42%);
+$svg-transform-beige: invert(42%) sepia(293%) saturate(50%) hue-rotate(33deg) brightness(119%) contrast(119%);
+$svg-transform-gold: invert(42%) sepia(93%) saturate(500%) hue-rotate(14deg) brightness(119%) contrast(119%);
+$svg-transform-magenta: invert(42%) sepia(93%) saturate(10000%) hue-rotate(294deg) brightness(100%) contrast(160%);
+$svg-transform-pink: invert(42%) sepia(93%) saturate(10000%) hue-rotate(330deg) brightness(500%) contrast(45%);
+
 html.dark {
     background-color: $dark-bg-color;
     color: #fff;
@@ -184,9 +200,155 @@ html.dark {
     .chat-container .box-footer .input-group .input-group-btn .dropdown-menu {
         background-color: $dark-fg-color !important;
     }
-    img {
-        fill: #fff !important;
+
+    .buff-remaining-time {
+        color: #56f;
     }
+    
+    // Doesn't work (and be glad it doesn't, this would make every single .svg image white)
+    /* img {
+        fill: #fff !important;
+    } */
+
+    // selectively turn some .svg images white
+    img[src*="icons/accuracy.svg"],
+    img[src*="icons/add.svg"],
+    img[src*="icons/adventureToken.svg"],
+    img[src*="icons/amulet.svg"],
+    img[src*="icons/ancientShard.svg"],
+    img[src*="icons/armor.svg"],
+    img[src*="icons/armorPenetration.svg"],
+    img[src*="icons/armorReduction.svg"],
+    img[src*="icons/armorUp.svg"],
+    img[src*="icons/astronomy.svg"],
+    img[src*="icons/attack.svg"],
+    img[src*="icons/attackReduction.svg"],
+    img[src*="icons/attackSpeed.svg"],
+    img[src*="icons/babyFox.svg"],
+    img[src*="icons/bearTaunt.svg"],
+    img[src*="icons/back.svg"],
+    img[src*="icons/bagOfGems.svg"],
+    img[src*="icons/bearTaunt.svg"],
+    img[src*="icons/beggar.svg"],
+    img[src*="icons/bison.svg"],
+    img[src*="icons/bladeSlice.svg"],
+    img[src*="icons/bladeSpin.svg"],
+    img[src*="icons/boneWarrior.svg"],
+    img[src*="icons/boot.svg"],
+    img[src*="icons/boss.svg"],
+    img[src*="icons/bossDemon.svg"],
+    img[src*="icons/bossGenieLamp.svg"],
+    img[src*="icons/bossMage.svg"],
+    img[src*="icons/bossPoodle.svg"],
+    img[src*="icons/bossWolf.svg"],
+    img[src*="icons/bow.svg"],
+    img[src*="icons/boxOfGems.svg"],
+    img[src*="icons/bunchOfGems.svg"],
+    img[src*="icons/butterfly.svg"],
+    img[src*="icons/changeTarget.svg"],
+    img[src*="icons/character.svg"],
+    img[src*="icons/clickDamage.svg"],
+    img[src*="icons/closedLock.svg"],
+    img[src*="icons/completeShard.svg"],
+    img[src*="icons/crafting.svg"],
+    img[src*="icons/criticalChance.svg"],
+    img[src*="icons/cutPurse.svg"],
+    img[src*="icons/dagger.svg"],
+    img[src*="icons/defense.svg"],
+    img[src*="icons/defensiveStance.svg"],
+    img[src*="icons/doubleEdgedSword.svg"],
+    img[src*="icons/dragon.svg"],
+    img[src*="icons/dragonfly.svg"],
+    img[src*="icons/echidna.svg"],
+    img[src*="icons/evasiveManeuvers.svg"],
+    img[src*="icons/farmer.svg"],
+    img[src*="icons/farming.svg"],
+    img[src*="icons/farplaneTwistedVeins.svg"],
+    img[src*="icons/fish.svg"],
+    img[src*="icons/flamebreath.svg"],
+    img[src*="icons/fly.svg"],
+    img[src*="icons/fox.svg"],
+    img[src*="icons/frakenstein.svg"],
+    img[src*="icons/furiedDefense.svg"],
+    img[src*="icons/gathering.svg"],
+    img[src*="icons/glasses.svg"],
+    img[src*="icons/goat.svg"],
+    img[src*="icons/gorillaLearning.svg"],
+    img[src*="icons/health.svg"],
+    img[src*="icons/healthMax.svg"],
+    img[src*="icons/help.svg"],
+    img[src*="icons/hive.svg"],
+    img[src*="icons/inscription.svg"],
+    img[src*="icons/kickInvite.svg"],
+    img[src*="icons/leaderCrown.svg"],
+    img[src*="icons/leave.svg"],
+    img[src*="icons/lionBoss.svg"],
+    img[src*="icons/mage.svg"],
+    img[src*="icons/magic.svg"],
+    img[src*="icons/magicPower.svg"],
+    img[src*="icons/maximize.svg"],
+    img[src*="icons/meditate.svg"],
+    img[src*="icons/minimize.svg"],
+    img[src*="icons/mining.svg"],
+    img[src*="icons/monk.svg"],
+    img[src*="icons/mouse.svg"],
+    img[src*="icons/muscleMan.svg"],
+    img[src*="icons/nullify.svg"],
+    img[src*="icons/obsidianDwarvenIdol.svg"],
+    img[src*="icons/obsidianEssenceScroll.svg"],
+    img[src*="icons/obsidianPlateLegs.svg"],
+    img[src*="icons/obsidianProspector.svg"],
+    img[src*="icons/obsidianSpirit.svg"],
+    img[src*="icons/openLock.svg"],
+    img[src*="icons/page.svg"],
+    img[src*="icons/penetratingSlash.svg"],
+    img[src*="icons/personalQuest.svg"],
+    img[src*="icons/plus.svg"],
+    img[src*="icons/popOut.svg"],
+    img[src*="icons/sharpRock.svg"],
+    img[src*="icons/shield.svg"],
+    img[src*="icons/shieldBash.svg"],
+    img[src*="icons/shop.svg"],
+    img[src*="icons/skunk.svg"],
+    img[src*="icons/slash.svg"],
+    img[src*="icons/smokeDagger.svg"],
+    img[src*="icons/snakeSkinChest.svg"],
+    img[src*="icons/spartan.svg"],
+    img[src*="icons/spear.svg"],
+    img[src*="icons/staff.svg"],
+    img[src*="icons/subtract.svg"],
+    img[src*="icons/swipe.svg"],
+    img[src*="icons/thorSkull.svg"],
+    img[src*="icons/tome.svg"],
+    img[src*="icons/total.svg"],
+    img[src*="icons/tower.svg"],
+    img[src*="icons/trident.svg"],
+    img[src*="icons/vampire.svg"],
+    img[src*="icons/wand.svg"],
+    img[src*="icons/warCry.svg"],
+    img[src*="icons/warden.svg"],
+    img[src*="icons/warden_shield.svg"],
+    img[src*="icons/woodcutter.svg"],
+    img[src*="icons/woodcutting.svg"],
+    img[src*="icons/youngNinja"] {
+        filter: $svg-transform-white;
+    }
+
+    // selectively turn some .svg images red
+    img[src*="icons/thirstyFangs.svg"]  {
+        filter: $svg-transform-red;
+    }
+
+    // selectively turn some .svg images brown
+    img[src*="icons/emptyFarmSpace.svg"] {
+        filter: $svg-transform-brown;
+    }
+
+    // selectively turn some .svg images gold
+    img[src*="icons/treasureChest.svg"]  {
+        filter: $svg-transform-gold;
+    }
+
     .modal-content {
         background-color: $dark-fg-color !important;
     }

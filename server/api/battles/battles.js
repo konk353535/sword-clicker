@@ -221,8 +221,6 @@ Meteor.methods({
             }
         }
 
-        console.log("currentCommunityFloor", currentCommunityFloor)
-
         // if floor doesn't unlock, start at room 1 always
         if (FLOORS[floor].hasOwnProperty("unlocks") && !FLOORS[floor].unlocks) {
             isExplorationRun = true

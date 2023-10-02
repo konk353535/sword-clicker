@@ -411,7 +411,6 @@ export const startBattle = function ({
             usersSkills.filter((skill) => skill.type === "defense" || skill.type === "health"),
             (skill) => skill.level
         )
-        console.log("user", targetUser.username, "offense", offense, "defense", defense)
         avgOffense += offense.level
         avgDefense += defense.level
 
@@ -512,16 +511,11 @@ export const startBattle = function ({
         }
     })
 
-    console.log("SUMS: avgOffense", avgOffense, "avgDefense", avgDefense)
-
     avgOffense /= usersData.length
     avgDefense /= usersData.length
 
-    console.log("AVGS: avgOffense", avgOffense, "avgDefense", avgDefense)
-
     // calculate overall user average combat level
-    const averageCombat = (avgOffense + avgDefense) / 2
-    const overallAverageCombat = averageCombat / usersData.length
+    const overallAverageCombat = (avgOffense + avgDefense) / 2
     let adjustedFloorLevel = floor
     // The rough calculation is that each floor increases combat level by ~5
     const averageCombatFloor = overallAverageCombat / 5
@@ -530,7 +524,7 @@ export const startBattle = function ({
         adjustedFloorLevel = Math.min(averageCombatFloor, floor + 4)
     }
 
-    console.log("averageCombat", averageCombat, "overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
+    console.log("overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
 
     if (level) {
         // Is personalQuest (To Do)

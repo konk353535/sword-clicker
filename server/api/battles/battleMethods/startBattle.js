@@ -411,6 +411,7 @@ export const startBattle = function ({
             usersSkills.filter((skill) => skill.type === "defense" || skill.type === "health"),
             (skill) => skill.level
         )
+        console.log("user", targetUser.username, "offense", offense, "defense", defense)
         avgOffense += offense.level
         avgDefense += defense.level
 
@@ -511,8 +512,12 @@ export const startBattle = function ({
         }
     })
 
+    console.log("SUMS: avgOffense", avgOffense, "avgDefense", avgDefense)
+
     avgOffense /= usersData.length
     avgDefense /= usersData.length
+
+    console.log("AVGS: avgOffense", avgOffense, "avgDefense", avgDefense)
 
     // calculate overall user average combat level
     const averageCombat = (avgOffense + avgDefense) / 2
@@ -524,6 +529,8 @@ export const startBattle = function ({
         // clamp max adjustment to +4 floors for sanity
         adjustedFloorLevel = Math.min(averageCombatFloor, floor + 4)
     }
+
+    console.log("averageCombat", averageCombat, "overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
 
     if (level) {
         // Is personalQuest (To Do)
@@ -537,8 +544,10 @@ export const startBattle = function ({
     } else if (room >= 1 && room <= 7) {
         // Is tower room specific
         if (floor != null && currentCommunityFloor != null && floor === currentCommunityFloor) {
+            console.log("doing top floor adjustment")
             battleData.enemies = FLOORS.topFloorTowerMonsterGenerator(floor, room, adjustedFloorLevel)
         } else {
+            console.log("doing normal floor generator")
             battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room)
         }
     } else if (room === "boss") {

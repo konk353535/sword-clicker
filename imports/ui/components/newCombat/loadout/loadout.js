@@ -3,12 +3,14 @@ import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat.js"
 import { Items } from "/imports/api/items/items.js"
 import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 import { getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
 
+import { BUFFS } from "/imports/constants/buffs/index.js"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 import "./loadout.html"
@@ -105,8 +107,15 @@ Template.loadoutPage.helpers({
         })
 
         const equippedMap = {}
-        equippedAbilities.forEach((item) => {
-            equippedMap[item.slot] = item
+        equippedAbilities.forEach((ability) => {
+            equippedMap[ability.slot] = ability
+
+            if (BUFFS && BUFFS[ability.abilityId]) {
+                if (_.isFunction(BUFFS[ability.abilityId]?.description)) {
+                    equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({ buff: BUFFS[ability.abilityId], level: ability.level, characterClass: userCurrentClass() })
+                }
+            }
+
         })
 
         return equippedMap

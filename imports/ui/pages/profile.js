@@ -11,8 +11,10 @@ Template.profilePage.onCreated(function bodyOnCreated() {
     this.autorun(() => {
         const username = Router.current().params.username.toLowerCase()
 
+        this.state.set("username", username)
+
         // Fetch and load the profile
-        Meteor.call("skills.fetchProfile", username, (err, { skills, abilities, equipment, characterIcon }) => {
+        Meteor.call("skills.fetchProfile", username, (err, { skills, abilities, equipment, characterIcon, classData }) => {
             if (err) {
                 return toastr.error(err.reason)
             }
@@ -20,6 +22,7 @@ Template.profilePage.onCreated(function bodyOnCreated() {
             this.state.set("equipment", equipment)
             this.state.set("abilities", abilities)
             this.state.set("characterIcon", characterIcon)
+            this.state.set("class", classData)
 
             this.state.set(
                 "skills",
@@ -28,7 +31,6 @@ Template.profilePage.onCreated(function bodyOnCreated() {
                     return skill
                 })
             )
-            this.state.set("username", username)
         })
     })
 })
@@ -85,6 +87,10 @@ Template.profilePage.helpers({
             if (ability) {
                 if (BUFFS[ability.abilityId]) {
                     ability = { ...BUFFS[ability.abilityId], ...ability }
+
+                    if (_.isFunction(BUFFS[ability?.abilityId].description)) {
+                        ability.description = BUFFS[ability?.abilityId].description({ buff: BUFFS[ability?.abilityId], level: ability.level, characterClass: Template.instance().state.get("class") })
+                    }
                 }
             }
             return ability

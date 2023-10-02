@@ -9,6 +9,7 @@ import moment from "moment/moment"
 import _ from "underscore"
 import { Abilities } from "/imports/api/abilities/abilities"
 import { Astronomy } from "/imports/api/astronomy/astronomy"
+import { userCurrentClass } from "/imports/api/classes/classes"
 import { Combat } from "/imports/api/combat/combat"
 import { Crafting } from "/imports/api/crafting/crafting"
 import { Farming, FarmingSpace } from "/imports/api/farming/farming"
@@ -503,7 +504,9 @@ Meteor.methods({
 
             abilities: abilities_map,
 
-            characterIcon: targetUserCombat.characterIcon || "character.svg"
+            characterIcon: targetUserCombat.characterIcon || "character.svg",
+
+            classData: userCurrentClass(targetUser._id)
         }
 
         updateUserActivity({ userId: Meteor.userId() })

@@ -4,6 +4,7 @@ import { Template } from "meteor/templating"
 
 import { BUFFS } from "/imports/constants/buffs/index.js"
 
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 
 import "./abilityIconOther.html"
@@ -28,7 +29,8 @@ Template.abilityIconOther.helpers({
                 return instance.data.ability.description({
                     buff: BUFFS[instance.data.ability.abilityId],
                     level: instance.data.ability.level,
-                    townBuffLevel: getBuffLevel("town_armory")
+                    townBuffLevel: getBuffLevel("town_armory"),
+                    characterClass: userCurrentClass()
                 })
             }
             return instance.data.ability.description

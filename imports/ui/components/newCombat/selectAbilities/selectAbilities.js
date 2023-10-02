@@ -4,6 +4,7 @@ import { Template } from "meteor/templating"
 import _ from "underscore"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Items } from "/imports/api/items/items.js"
 import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
@@ -144,9 +145,15 @@ Template.selectAbilitiesPage.helpers({
         // todo: fill this in with logic from 'abilityLibrary()' helper
         //const tempAbilities = abilityLibrary();
         const equippedMap = {}
-        equippedAbilities.forEach((item) => {
-            if (item && item.slot && item.abilityId) {
-                equippedMap[item.slot] = Object.assign({}, /*tempAbilities[item.abilityId], */ item)
+        equippedAbilities.forEach((ability) => {
+            if (ability && ability.slot && ability.abilityId) {
+                equippedMap[ability.slot] = Object.assign({}, /*tempAbilities[ability.abilityId], */ ability)
+
+                if (BUFFS && BUFFS[ability.abilityId]) {
+                    if (_.isFunction(BUFFS[ability.abilityId]?.description)) {
+                        equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({ buff: BUFFS[ability.abilityId], level: ability.level, characterClass: userCurrentClass() })
+                    }
+                }
             }
         })
 
@@ -187,8 +194,20 @@ Template.selectAbilitiesPage.helpers({
                         Meteor.call("abilities.equip", this.ability.id)
                     }
                 }
+
+                if (BUFFS && BUFFS[ability.id]) {
+                    if (_.isFunction(BUFFS[ability.id]?.description)) {
+                        ability.description = BUFFS[ability.id].description({ buff: BUFFS[ability.id], level: learntAbility.level, characterClass: userCurrentClass() })
+                    }
+                }
             } else {
                 ability.notLearnt = true
+
+                if (BUFFS && BUFFS[ability.id]) {
+                    if (_.isFunction(BUFFS[ability.id]?.description)) {
+                        ability.description = BUFFS[ability.id].description({ buff: BUFFS[ability.id], level: 1, characterClass: userCurrentClass() })
+                    }
+                }
             }
 
             return ability

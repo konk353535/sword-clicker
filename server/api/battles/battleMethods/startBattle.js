@@ -12,6 +12,7 @@ import _ from "underscore"
 import { Abilities } from "/imports/api/abilities/abilities"
 import { Adventures } from "/imports/api/adventures/adventures"
 import { BattlesList } from "/imports/api/battles/battles"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
 import { Items } from "/imports/api/items/items"
@@ -20,8 +21,6 @@ import { Users, classFeatureUnlocked } from "/imports/api/users/users"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
-
-import { userCurrentClass } from "/server/api/classes/classes.js"
 
 export const startBattle = function ({
     floor,

@@ -21,6 +21,8 @@ import { Users, classFeatureUnlocked } from "/imports/api/users/users"
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
 
+import { userCurrentClass } from "/server/api/classes/classes.js"
+
 export const startBattle = function ({
     floor,
     room,
@@ -438,7 +440,8 @@ export const startBattle = function ({
             icon: userCombat.characterIcon || "character.svg",
             skills: usersSkillsArray,
             inactiveMinutes: inactiveMinutes,
-            enchantmentsList: []
+            enchantmentsList: [],
+            currentClass: userCurrentClass(userCombat.owner).data
         }
 
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives

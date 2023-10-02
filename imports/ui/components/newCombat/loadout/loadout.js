@@ -9,12 +9,19 @@ import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 import { getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
 
+import { CLASSES } from "/imports/constants/classes/index.js"
+
 import "./loadout.html"
+import { CompressionAlgorithm } from "@opentelemetry/exporter-collector"
 
 let isFetchingLibrary = false
 
 Template.loadoutPage.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
+
+    Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
+        this.state.set("currentClass", res?.equipped)
+    })
 
     this.autorun(() => {
         if (isFetchingLibrary || this.state.get("abilityLibrary")) return
@@ -50,6 +57,21 @@ Template.loadoutPage.events({
 
     "click .edit-abilities-btn"(event, instance) {
         instance.data.setPage("selectAbilities")
+    },
+
+    "click .select-class"(event, instance) {
+        const newClass = instance.$(event.target).closest(".select-class").data("class")
+        Meteor.call("classes.equipClass", Meteor.userId(), newClass, (err, res) => {
+            if (typeof err === 'undefined') {
+                if (res?.equipped == true) {
+                    instance.state.set("currentClass", newClass)
+                    Meteor.call("users.setUiState", "currentClass", newClass)
+                    toastr.success("You have changed your active class!")
+                } else if (res?.reason?.length > 0) {
+                    toastr.warning(res.reason)
+                }
+            }
+        })
     }
 })
 
@@ -119,7 +141,11 @@ Template.loadoutPage.helpers({
             })
         })
     },
-    
+
+    currentClass() {
+        return CLASSES.lookup(Template.instance().state.get("currentClass")).name
+    },
+
     classFeatureUnlocked() {
         return classFeatureUnlocked()
     }
@@ -136,7 +162,7 @@ Template.skinLibraryIcon.events({
                 toastr.warning(err.reason)
             }
         })
-    }
+    },
 })
 
 Template.skinLibraryIcon.rendered = function () {

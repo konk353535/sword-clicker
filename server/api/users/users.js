@@ -472,7 +472,8 @@ Meteor.methods({
             "energyUse",
             "ngAutoMode",
             "darkMode",
-            "largeChatEnabled"
+            "largeChatEnabled",
+            "currentClass"
         ]
 
         if (_.contains(validIds, id)) {

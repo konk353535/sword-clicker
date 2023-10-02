@@ -1,5 +1,30 @@
 <template name="loadoutPage">
   <div class="container mt-2">
+    {{#if classFeatureUnlocked}}
+    <h4 class="d-flex align-items-center">
+      Class
+    </h4>
+    <div class="d-flex flex-wrap mb-3">
+      <div class="mr-2 hidden-sm-down" style="line-height: 2.33em;">Active Class</div>
+      <div class="dropdown">
+          <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{currentClass}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
+              <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
+              <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
+              <a class="dropdown-item select-class" data-class="paladin" href="#">Paladin</a>
+              <a class="dropdown-item select-class" data-class="ranger" href="#">Ranger</a>
+              <a class="dropdown-item select-class" data-class="sage" href="#">Sage</a>
+              <a class="dropdown-item select-class" data-class="tactician" href="#">Tactician</a>
+              <a class="dropdown-item select-class" data-class="warmage" href="#">War Mage</a>
+              <a class="dropdown-item select-class" data-class="wizard" href="#">Wizard</a>
+          </div>
+        </div>
+    </div>
+    {{/if}}
     <h4 class="d-flex align-items-center">
       Gear
       <a href="#" class="ml-3 edit-gear-btn" style="font-size: 14px">Edit</a>

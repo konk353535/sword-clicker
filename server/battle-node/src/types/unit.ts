@@ -19,7 +19,8 @@ export type unit = {
     icon: string
     skills: any[]
     inactiveMinutes: number
-    enchantmentsList: any[]
+    enchantmentsList: any[],
+    currentClass?: any,
     isLamp?: boolean
     isNPC?: boolean
     isCompanion?: boolean

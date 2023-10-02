@@ -46,6 +46,7 @@ export default class Unit {
     isSoloCompanion: boolean
     inactiveMinutes: any
     enchantmentsList: any
+    currentClass?: any
     isStunned: boolean
     isCharmed: boolean
     isPacifist: boolean
@@ -304,6 +305,7 @@ export default class Unit {
             this.towerContributions = unit.towerContributions
             this.inactiveMinutes = unit.inactiveMinutes || 0
             this.enchantmentsList = unit.enchantmentsList
+            this.currentClass = unit.currentClass
             this.xpDistribution = unit.xpDistribution
             this.isTowerContribution = unit.isTowerContribution
 

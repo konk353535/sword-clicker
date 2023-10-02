@@ -766,23 +766,29 @@ export const ATTACK_BUFFS = {
         duplicateTag: "berserk", // Used to stop duplicate buffs
         icon: "berserk.svg",
         name: "berserk",
-        description({ buff, level }) {
+        description({ buff, level, characterClass }) {
             let localLevel = CInt(level)
             if (localLevel <= 0) {
                 localLevel = 1
             }
 
-            const damagePerLevel = buff.constants.damagePercentageIncreasePerLevel
-            const damageTakenPerLevel = buff.constants.damageTakenPercentageIncreasePerLevel
-            const healthLostPerLevel = buff.constants.healthLostPerSecondPerLevel
+            if (typeof characterClass === 'undefined') {
+                characterClass = { id: '', equipped: '' }
+            }
 
-            const damageIncrease = buff.constants.damagePercentageIncreaseBase + damagePerLevel * localLevel
-            const damageTakenIncrease =
-                buff.constants.damageTakenPercentageIncreaseBase + damageTakenPerLevel * localLevel
-            const healthLostPerSecond = buff.constants.healthLostPerSecondBase + healthLostPerLevel * localLevel
-            const duration = buff.data.totalDuration
+            const damagePerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.damagePercentageIncreasePerLevel : buff.constants.barbarian.damagePercentageIncreasePerLevel
+            const damageTakenPerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.damageTakenPercentageIncreasePerLevel : buff.constants.barbarian.damageTakenPercentageIncreasePerLevel
+            const healthLostPerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.healthLostPerSecondPerLevel : buff.constants.barbarian.healthLostPerSecondPerLevel
+
+            const damageIncrease = ((characterClass?.equipped != 'barbarian') ? buff.constants.damagePercentageIncreaseBase : buff.constants.barbarian.damagePercentageIncreaseBase) + damagePerLevel * localLevel
+            const damageTakenIncrease = ((characterClass?.equipped != 'barbarian') ? buff.constants.damageTakenPercentageIncreaseBase : buff.constants.barbarian.damageTakenPercentageIncreaseBase) + damageTakenPerLevel * localLevel
+            const healthLostPerSecond = ((characterClass?.equipped != 'barbarian') ? buff.constants.healthLostPerSecondBase : buff.constants.barbarian.healthLostPerSecondBase) + healthLostPerLevel * localLevel
+            const duration = (characterClass?.equipped != 'barbarian') ? buff.data.totalDuration : buff.data.barbarian.totalDuration
+
+            const classEffect = (characterClass?.equipped === 'barbarian') ? `This ability has been enhanced as a <b>${characterClass?.data?.name}</b><br />` : ''
 
             return `
+        ${classEffect}
         <b>+${damageIncrease.toFixed(0)}%</b> damage and attack speed. (+${damagePerLevel}% per lvl)<br />
         <b>+${damageTakenIncrease.toFixed(0)}%</b> damage taken. (+${damageTakenPerLevel}% per lvl)<br />
         You lose <b>${healthLostPerSecond.toFixed(0)} health</b> per second. (+${healthLostPerLevel} per lvl)<br />
@@ -795,19 +801,39 @@ export const ATTACK_BUFFS = {
             damageTakenPercentageIncreaseBase: 17,
             damageTakenPercentageIncreasePerLevel: 3,
             healthLostPerSecondBase: -1,
-            healthLostPerSecondPerLevel: 3
+            healthLostPerSecondPerLevel: 3,
+            barbarian: { // Barbarian version
+                damagePercentageIncreaseBase: 70,
+                damagePercentageIncreasePerLevel: 10,
+                damageTakenPercentageIncreaseBase: 17,
+                damageTakenPercentageIncreasePerLevel: 3,
+                healthLostPerSecondBase: -0.5,
+                healthLostPerSecondPerLevel: 1.5,
+            }
         },
         data: {
             duration: 15,
-            totalDuration: 15
+            totalDuration: 15,
+            barbarian: { // Barbarian version
+                duration: 30,
+                totalDuration: 30
+            }
         },
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
-                const constants =
+                let constants =
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
+
+                // Barbarian version
+                if (caster?.currentClass?.id === 'barbarian' && constants?.barbarian) {
+                    constants = constants.barbarian
+                    buff.duration = buff.data.barbarian.duration
+                    buff.data.duration = buff.data.barbarian.duration
+                    buff.data.totalDuration = buff.data.barbarian.totalDuration
+                }
 
                 buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 // Increases damage and attack speed

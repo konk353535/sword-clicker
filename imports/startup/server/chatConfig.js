@@ -665,7 +665,7 @@ SimpleChat.configure({
                     targetSkill = splitMessage[1]
                     targetLevel = CInt(splitMessage[2])
                 } else {
-                    sendUserChatMessage({ userId: userDoc._id, message: `Usage: /setLevel <player> <skill> <level>` })
+                    sendUserChatMessage({ userId: userDoc._id, message: "Usage: /setLevel <player> <skill> <level>" })
                     return
                 }
 

@@ -94,6 +94,8 @@ export type actualBattle = {
     room: "boss" | number
     wave: number
     level: number
+    adjustedFloorLevel: number
+    currentCommunityFloor: number
     historyStats: { [k in string]: HistoryStats }
     isTowerContribution: boolean
     isExplorationRun: boolean
@@ -113,6 +115,8 @@ type removeBattle = (id: string, intervalId: NodeJS.Timer) => void
 export default class Battle {
     floor: number
     room: "boss" | number
+    adjustedFloorLevel: number
+    currentCommunityFloor: number
     id: string
     io: Server
     level: number
@@ -187,6 +191,8 @@ export default class Battle {
         this.wave = battle.wave
         this.room = battle.room
         this.floor = battle.floor
+        this.adjustedFloorLevel = battle.adjustedFloorLevel
+        this.currentCommunityFloor = battle.currentCommunityFloor
         this.isExplorationRun = battle.isExplorationRun
         this.owners = battle.owners
         this.totalXpGain = battle.totalXpGain

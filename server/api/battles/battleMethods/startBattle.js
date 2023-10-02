@@ -31,7 +31,8 @@ export const startBattle = function ({
     isExplorationRun,
     isOldBoss,
     server,
-    energyUse
+    energyUse,
+    currentCommunityFloor
 }) {
     console.log("method - startBattle - start", moment().format("LLL hh:mm:ss SSS"))
     const ticksPerSecond = 1000 / BATTLES.tickDuration
@@ -43,24 +44,6 @@ export const startBattle = function ({
     }
 
     let battleData = { enemies: [] }
-    if (level) {
-        // Is personalQuest (To Do)
-        battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave)
-    } else if (room === 0) {
-        // Is tower explore (To Do)
-        // Does this do anything?
-
-        // Pete's note: this never does anything because isExplorationRun is true and room = 1 for full floor runs
-        battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor))
-    } else if (room >= 1 && room <= 7) {
-        // Is tower room specific
-        battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room)
-    } else if (room === "boss") {
-        // Is tower BOSS (To Do)
-        const boss = FLOORS[floor].boss.enemy
-        boss.monsterType = boss.id
-        battleData.enemies.push(boss)
-    }
 
     // Is user in a group? If so this is a group battle
     const currentGroup = Groups.findOne({
@@ -155,9 +138,6 @@ export const startBattle = function ({
 
     // check town buff level for perks
     const townBuffArmoryLevel = getBuffLevel("town_armory")
-
-    // Create clone of battle objects
-    let battleConstants = lodash.cloneDeep(battleData)
 
     const newBattle = {
         createdAt: new Date(),
@@ -317,6 +297,9 @@ export const startBattle = function ({
         )
     }
 
+    let avgOffense = 0
+    let avgDefense = 0
+
     // Inject users into battles units
     usersCombatStats.forEach((userCombat) => {
         const targetUser = usersData.find((userData) => userData._id === userCombat.owner)
@@ -420,6 +403,17 @@ export const startBattle = function ({
             }
         })
 
+        const offense = lodash.maxBy(
+            usersSkills.filter((skill) => skill.type === "attack" || skill.type === "magic"),
+            (skill) => skill.level
+        )
+        const defense = lodash.maxBy(
+            usersSkills.filter((skill) => skill.type === "defense" || skill.type === "health"),
+            (skill) => skill.level
+        )
+        avgOffense += offense.level
+        avgDefense += defense.level
+
         let inactiveMinutes = 99999
         if (targetUser.lastActivity) {
             inactiveMinutes = Math.round(moment().diff(moment(targetUser.lastActivity), "minutes"))
@@ -446,45 +440,6 @@ export const startBattle = function ({
             inactiveMinutes: inactiveMinutes,
             enchantmentsList: []
         }
-
-        // apply passive abilities effects first
-        /*
-    if (newUnit.abilities) {
-      newUnit.abilities.forEach((ability) => {
-        const abilityConstants = ABILITIES[ability.id];
-        if (abilityConstants && abilityConstants.isPassive && abilityConstants.buffs) {
-          abilityConstants.buffs.forEach((buffId) => {
-            const abilityBuffConstants = BUFFS[buffId];
-            if (abilityBuffConstants) {
-              const clonedConstants = abilityBuffConstants;
-              let newBuff = {
-                id: buffId,
-                icon: clonedConstants.icon,
-                name: clonedConstants.name,
-                data: clonedConstants.data,
-                duration: clonedConstants.data.durationTotal || clonedConstants.data.totalDuration
-              };
-
-              newBuff.data.id = clonedConstants.id || buffId;
-              newBuff.data.name = clonedConstants.name;
-              newBuff.data.icon = clonedConstants.icon;
-              newBuff.data.description = "";
-              if (clonedConstants.description) {
-                if (_.isFunction(clonedConstants.description)) {
-                  newBuff.data.description = clonedConstants.description({buff: clonedConstants, level: ability.level});
-                } else {
-                  newBuff.data.description = clonedConstants.description;
-                }
-              }
-              newUnit.buffs.push(newBuff);
-              console.log("Added passive ability:");
-              console.log(newBuff);
-            }
-          });
-        }
-      });
-    }
-    */
 
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
         // tried applying passives above first, but they wouldn't function correctly
@@ -556,6 +511,46 @@ export const startBattle = function ({
         }
     })
 
+    avgOffense /= usersData.length
+    avgDefense /= usersData.length
+
+    // calculate overall user average combat level
+    const averageCombat = (avgOffense + avgDefense) / 2
+    const overallAverageCombat = averageCombat / usersData.length
+    let adjustedFloorLevel = floor
+    // The rough calculation is that each floor increases combat level by ~5
+    const averageCombatFloor = overallAverageCombat / 5
+    if (floor != null && averageCombatFloor > floor) {
+        // clamp max adjustment to +4 floors for sanity
+        adjustedFloorLevel = Math.min(averageCombatFloor, floor + 4)
+    }
+
+    if (level) {
+        // Is personalQuest (To Do)
+        battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave)
+    } else if (room === 0) {
+        // Is tower explore (To Do)
+        // Does this do anything?
+
+        // Pete's note: this never does anything because isExplorationRun is true and room = 1 for full floor runs
+        battleData.enemies.push(FLOORS.easyTowerMonsterGenerator(floor))
+    } else if (room >= 1 && room <= 7) {
+        // Is tower room specific
+        if (floor != null && currentCommunityFloor != null && floor === currentCommunityFloor) {
+            battleData.enemies = FLOORS.topFloorTowerMonsterGenerator(floor, room, adjustedFloorLevel)
+        } else {
+            battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room)
+        }
+    } else if (room === "boss") {
+        // Is tower BOSS (To Do)
+        const boss = FLOORS[floor].boss.enemy
+        boss.monsterType = boss.id
+        battleData.enemies.push(boss)
+    }
+
+    // Create clone of battle objects
+    let battleConstants = lodash.cloneDeep(battleData)
+
     if (!hasEnergy) {
         return
     }
@@ -626,6 +621,8 @@ export const startBattle = function ({
     newBattle.isOldBoss = isOldBoss
     newBattle.deadUnits = []
     newBattle.deadEnemies = []
+    newBattle.adjustedFloorLevel = adjustedFloorLevel
+    newBattle.currentCommunityFloor = currentCommunityFloor
 
     // Is the currently active boss battle
     if (health) {

@@ -1,6 +1,6 @@
 console.log("importing floors/index.js personalQuestMonsterGenerator")
 import { easyTowerMonsterGenerator } from "./easyTower.js"
-import { genericTowerMonsterGenerator } from "./genericTower.js"
+import { genericTowerMonsterGenerator, topFloorTowerMonsterGenerator } from "./genericTower.js"
 import { hardTowerMonsterGenerator } from "./hardTower.js"
 import { personalQuestMonsterGenerator } from "./personalQuest.js"
 import { veryHardTowerMonsterGenerator } from "./veryHardTower.js"
@@ -17,5 +17,6 @@ export const GENERATORS = Object.assign({
     easyTowerMonsterGenerator,
     hardTowerMonsterGenerator,
     veryHardTowerMonsterGenerator,
-    genericTowerMonsterGenerator
+    genericTowerMonsterGenerator,
+    topFloorTowerMonsterGenerator
 })

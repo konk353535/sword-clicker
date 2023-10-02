@@ -28,7 +28,16 @@ export function checkGameOverConditions(this: Battle) {
                 this.deadEnemies = []
 
                 // Populate battle with next room
-                const newMonsters = FLOORS.genericTowerMonsterGenerator(this.floor, this.room)
+                let newMonsters
+                if (
+                    this.floor != null &&
+                    this.currentCommunityFloor != null &&
+                    this.floor === this.currentCommunityFloor
+                ) {
+                    newMonsters = FLOORS.topFloorTowerMonsterGenerator(this.floor, this.room, this.adjustedFloorLevel)
+                } else {
+                    newMonsters = FLOORS.genericTowerMonsterGenerator(this.floor, this.room)
+                }
 
                 // Inject into battle
                 newMonsters.forEach((monster: any) => {

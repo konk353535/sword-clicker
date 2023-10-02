@@ -221,15 +221,33 @@ Meteor.methods({
             }
         }
 
+        console.log("currentCommunityFloor", currentCommunityFloor)
+
         // if floor doesn't unlock, start at room 1 always
         if (FLOORS[floor].hasOwnProperty("unlocks") && !FLOORS[floor].unlocks) {
             isExplorationRun = true
             room = 1
-            return startBattle({ floor, room, server, isTowerContribution, isExplorationRun, energyUse })
+            return startBattle({
+                floor,
+                room,
+                server,
+                isTowerContribution,
+                isExplorationRun,
+                energyUse,
+                currentCommunityFloor: currentCommunityFloor.floor
+            })
         }
 
         // Eventually select a random battle appropriate to users level
-        startBattle({ floor, room, server, isTowerContribution, isExplorationRun, energyUse })
+        startBattle({
+            floor,
+            room,
+            server,
+            isTowerContribution,
+            isExplorationRun,
+            energyUse,
+            currentCommunityFloor: currentCommunityFloor.floor
+        })
 
         updateUserActivity({ userId: Meteor.userId() })
     },

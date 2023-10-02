@@ -5,6 +5,7 @@ import { Template } from "meteor/templating"
 import { Abilities } from "/imports/api/abilities/abilities.js"
 import { Combat } from "/imports/api/combat/combat.js"
 import { Items } from "/imports/api/items/items.js"
+import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 import { getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
 
@@ -117,6 +118,10 @@ Template.loadoutPage.helpers({
                 id: key
             })
         })
+    },
+    
+    classFeatureUnlocked() {
+        return classFeatureUnlocked()
     }
 })
 

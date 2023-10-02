@@ -5,6 +5,7 @@ import _ from "underscore"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
 import { Items } from "/imports/api/items/items.js"
+import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS } from "/imports/constants/items/index.js"
@@ -144,7 +145,9 @@ Template.selectAbilitiesPage.helpers({
         //const tempAbilities = abilityLibrary();
         const equippedMap = {}
         equippedAbilities.forEach((item) => {
-            equippedMap[item.slot] = Object.assign({}, /*tempAbilities[item.abilityId], */ item)
+            if (item && item.slot && item.abilityId) {
+                equippedMap[item.slot] = Object.assign({}, /*tempAbilities[item.abilityId], */ item)
+            }
         })
 
         return equippedMap
@@ -194,6 +197,10 @@ Template.selectAbilitiesPage.helpers({
         tempList = _.sortBy(tempList, "name")
         tempList = _.sortBy(tempList, function (ability) {
             if (ability.slot === "companion") return 0
+            if (!ability.isMagic) {
+                if (ability.isPassive) return 15
+                return 20
+            }
             if (ability.isPassive) return 5
             return 10
         })
@@ -203,5 +210,9 @@ Template.selectAbilitiesPage.helpers({
             learnt: tempList.filter((list) => !list.notLearnt),
             notLearnt: tempList.filter((list) => list.notLearnt)
         }
+    },
+    
+    classFeatureUnlocked() {
+        return classFeatureUnlocked()
     }
 })

@@ -99,7 +99,34 @@
           5
         </div>
       {{/if}}
-      <!-- Companion -->
+      {{#if classFeatureUnlocked}}
+        {{#if equippedAbilitiesMap.classAbil1}}
+              {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1}}
+          {{else}}
+              <div class="icon-box">
+                  6
+              </div>
+          {{/if}}
+      {{/if}}
+      {{#if classFeatureUnlocked}}
+          {{#if equippedAbilitiesMap.classAbil2}}
+              {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2}}
+          {{else}}
+              <div class="icon-box">
+                  7
+              </div>
+          {{/if}}
+      {{/if}}
+      {{#if classFeatureUnlocked}}
+          {{#if equippedAbilitiesMap.classAbil3}}
+              {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3}}
+          {{else}}
+              <div class="icon-box">
+                  8
+              </div>
+          {{/if}}
+      {{/if}}
+<!-- Companion -->
       {{#if equippedAbilitiesMap.companion}}
         {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
       {{else}}

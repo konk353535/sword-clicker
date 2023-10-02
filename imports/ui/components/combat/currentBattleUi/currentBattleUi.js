@@ -344,6 +344,7 @@ window.reconnectionTrigger = function (this_template) {
     }
 }
 
+let isFetchingLibraryExtra = false
 let tickerId
 Template.currentBattleUi.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
@@ -372,6 +373,27 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
             this.state.set("loading", false)
         }
     }, 1000)
+
+    this.autorun(() => {
+        if (isFetchingLibraryExtra || this.state.get("abilityLibraryExtra")) return
+
+        isFetchingLibraryExtra = true
+
+        // Fetch extra ability details that the server holds
+        const currentInstanceRef = this
+        Meteor.call("abilities.fetchLibraryExtra", function (err, data) {
+            if (!err) {
+                try {
+                    currentInstanceRef.state.set("abilityLibraryExtra", data)
+                } catch (err) {
+                    console.log("abilities.fetchLibraryExtra() API error", err)
+                }
+            }
+        })
+
+        isFetchingLibraryExtra = false
+    })
+
 
     Tracker.autorun(() => {
         //console.log(this.state.get('ticker')); // konk left this debug in, disabling it for now (psouza4: 2018-10-30)
@@ -500,7 +522,10 @@ Template.currentBattleUi.helpers({
             head: 2,
             chest: 3,
             legs: 4,
-            companion: 5
+            classAbil1: 5,
+            classAbil2: 6,
+            classAbil3: 7,
+            companion: 36
         }
 
         const currentBattle = Template.instance().state.get("currentBattle")
@@ -521,10 +546,24 @@ Template.currentBattleUi.helpers({
             })
         }
 
+        const instanceDataToUse = Template.instance().state.get("abilityLibraryExtra") 
+        let abilitiesConstantsFromMeteorAPI = {}
+        if (instanceDataToUse) {
+            abilitiesConstantsFromMeteorAPI = Object.fromEntries(instanceDataToUse.map(k => [k.id, k]));
+        }
+
         const equippedAbilities = myAbilities.learntAbilities
             .map((ability) => {
                 ability.index = abilityIndexes[ability.slot]
-                ability.hotkey = ability.index + 1
+                // some abilities can't be used manually, so they don't get a hotkey
+                if (
+                    (ability.slot === 'companion') ||
+                    (abilitiesConstantsFromMeteorAPI && abilitiesConstantsFromMeteorAPI.hasOwnProperty(ability?.abilityId) && abilitiesConstantsFromMeteorAPI[ability?.abilityId]?.isPassive)
+                ) {
+                    ability.hotkey = ''
+                } else {
+                    ability.hotkey =  ability.index + 1
+                }
                 return ability
             })
             .filter((ability) => {

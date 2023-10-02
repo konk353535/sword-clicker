@@ -134,6 +134,23 @@ export const serverFromUser = function serverFromUser(userId__in = false) {
     return false
 }
 
+export const classFeatureUnlocked = function(userId__in = false) {
+    try {
+        if (userId__in) {
+            const userDoc = Users.findOne({ _id: userId__in })
+            if (userDoc && userDoc.stats && userDoc.stats.towerHighestClear) {
+                return userDoc.stats.towerHighestClear >= 10
+            }
+        } else {
+            const user = Meteor.user()
+            if (user && user.stats && user.stats.towerHighestClear) {
+                return user.stats.towerHighestClear >= 10
+            }
+        }
+    } catch (err) {}
+    return false
+}
+
 UserSchema = new SimpleSchema({
     _id: { type: String },
     createdAt: { type: Date },

@@ -16,7 +16,7 @@ import { Combat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
 import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
-import { Users } from "/imports/api/users/users"
+import { Users, classFeatureUnlocked } from "/imports/api/users/users"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
@@ -215,6 +215,108 @@ export const startBattle = function ({
         }
     }).fetch()
 
+    // screen for too many abilities in someone's loadout
+    let invalidLoadoutsMessage = ''
+    usersCombatStats.forEach((userCombat) => {
+        const targetUser = usersData.find((userData) => userData._id === userCombat.owner)
+
+        let companionTokens = 0
+        const companionTokensDoc = Items.findOne({
+            owner: userCombat.owner,
+            itemId: "companion_token"
+        })
+        if (companionTokensDoc && companionTokensDoc.amount) {
+            companionTokens += CInt(companionTokensDoc.amount)
+        }
+
+        const userCombatStats = {}
+        COMBAT.statsArr.forEach((statName) => {
+            if (userCombat.stats[statName] !== undefined) {
+                userCombatStats[statName] = userCombat.stats[statName]
+            }
+        })
+
+        // Fetch this users currently equipped abilities
+        const usersAbilities = Abilities.findOne({
+            owner: userCombat.owner
+        })
+
+        const now = moment()
+        const secondsElapsed = moment.duration(now.diff(usersAbilities.lastGameUpdated)).asSeconds()
+        let broughtCompanion = false
+
+        let abilityCount = 0
+        const usersEquippedAbilities = usersAbilities.learntAbilities
+            .filter((ability) => {
+                // only allow abilities that are equipped
+                if (!ability.equipped) {
+                    return false
+                }
+
+                // get some constants
+                const abilityConstants = ABILITIES[ability.abilityId]
+                if (!abilityConstants) {
+                    return false
+                }
+
+                // don't allow companion abilities without tokens to spend on them
+                if (abilityConstants.slot === "companion") {
+                    if (CInt(floor) === 0 || companionTokens === 0) {
+                        return false
+                    }
+
+                    broughtCompanion = true
+                } else {
+                    abilityCount++;
+
+                    console.log(`Ability '${ability.abilityId}' for '${targetUser.username}', count ${abilityCount}`)
+
+                    // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature
+                    if ((abilityCount > 5) && (!classFeatureUnlocked(targetUser._id))) {
+                        if (invalidLoadoutsMessage.indexOf(targetUser.username) === -1) {
+                            if (invalidLoadoutsMessage !== '') {
+                                invalidLoadoutsMessage += ', ';
+                            }
+                            invalidLoadoutsMessage += targetUser.username;
+                        }
+                        return false
+                    } else if (abilityCount > 8) {
+                        if (invalidLoadoutsMessage.indexOf(targetUser.username) === -1) {
+                            if (invalidLoadoutsMessage !== '') {
+                                invalidLoadoutsMessage += ', ';
+                            }
+                            invalidLoadoutsMessage += targetUser.username;
+                        }
+                        return false
+                    }
+                }
+
+                return true
+            })
+            .map((ability) => {
+                if (ability.currentCooldown > 0) {
+                    ability.currentCooldown -= secondsElapsed
+                }
+
+                return {
+                    id: ability.abilityId,
+                    level: ability.level,
+                    currentCooldown: 0, // ability.currentCooldown || 0,  /* note: set this to 0 in case they 'go too fast' */
+                    casts: ability.casts,
+                    totalCasts: 0,
+                    isSpell: ability.isSpell,
+                    isPacifist: ability.isPacifist
+                }
+            })
+    })
+
+    if (invalidLoadoutsMessage !== '') {
+        throw new Meteor.Error(
+            "loadout-error",
+            `The following party members have invalid ability loadouts (too many abilities): ${invalidLoadoutsMessage}`
+        )
+    }
+
     // Inject users into battles units
     usersCombatStats.forEach((userCombat) => {
         const targetUser = usersData.find((userData) => userData._id === userCombat.owner)
@@ -244,6 +346,7 @@ export const startBattle = function ({
         const secondsElapsed = moment.duration(now.diff(usersAbilities.lastGameUpdated)).asSeconds()
         let broughtCompanion = false
 
+        let abilityCount = 0
         const usersEquippedAbilities = usersAbilities.learntAbilities
             .filter((ability) => {
                 // only allow abilities that are equipped
@@ -264,6 +367,13 @@ export const startBattle = function ({
                     }
 
                     broughtCompanion = true
+                } else {
+                    // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature (should already be filtered, but just in case...)
+                    if ((abilityCount >= 5) && (!classFeatureUnlocked(targetUser._id))) {
+                        return false
+                    } else if (abilityCount >= 8) {
+                        return false
+                    }
                 }
 
                 return true

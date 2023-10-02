@@ -10,7 +10,8 @@ export const CLASSES = {
         eligible: function(uid) {
             return classFeatureUnlocked(uid)
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     barbarian: {
@@ -19,7 +20,8 @@ export const CLASSES = {
         eligible: function() {
             return true
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ 'class_perk_barbarian' ]
     },
     
     duelist: {
@@ -28,7 +30,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     paladin: {
@@ -37,7 +40,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     ranger: {
@@ -46,7 +50,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     sage: {
@@ -55,7 +60,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     tactician: {
@@ -64,7 +70,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     warmage: {
@@ -73,7 +80,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     wizard: {
@@ -82,7 +90,8 @@ export const CLASSES = {
         eligible: function() {
             return false
         },
-        exclusiveAbilities: [ ]
+        exclusiveAbilities: [ ],
+        autoBuffs: [ ]
     },
     
     lookup: function(id) {

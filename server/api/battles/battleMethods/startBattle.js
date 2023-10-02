@@ -446,6 +446,8 @@ export const startBattle = function ({
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
         // tried applying passives above first, but they wouldn't function correctly
 
+        userCombat.enchantments = ((userCombat.enchantments) ? userCombat.enchantments : []).concat(newUnit.currentClass.autoBuffs)
+
         if (userCombat.enchantments) {
             //console.log("START :: startbattle player enchantments");
             //console.log(userCombat.enchantments);

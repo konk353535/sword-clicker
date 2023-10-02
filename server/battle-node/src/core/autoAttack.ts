@@ -45,7 +45,7 @@ export function autoAttack(
         }
 
         // Custom icon undefined by default
-        let customIcon = undefined
+        let customIcon: string | undefined = undefined
 
         // Adjust icon per source
         if (source === "phantom_strikes") {
@@ -94,7 +94,8 @@ export function autoAttack(
                         actualBattle: this,
                         damageDealt,
                         rawDamage,
-                        source: "autoattack"
+                        source: "autoattack",
+                        customIcon
                     })
                 }
             })

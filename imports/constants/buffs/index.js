@@ -1,5 +1,6 @@
 import { ATTACK_BUFFS } from "./attack"
 import { BOSS_BUFFS } from "./boss"
+import { CLASS_BUFFS } from "./class"
 import { COMPANION_BUFFS } from "./companions"
 import { CRAFTED_ENCHANTMENT_BUFFS } from "./crafted_enchantments"
 import { DEFENSE_BUFFS } from "./defense"
@@ -19,5 +20,6 @@ export const BUFFS = Object.assign(
     MONSTER_BUFFS,
     BOSS_BUFFS,
     COMPANION_BUFFS,
-    MISC_BUFFS
+    MISC_BUFFS,
+    CLASS_BUFFS
 )

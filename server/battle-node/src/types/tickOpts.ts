@@ -7,6 +7,7 @@ export type autoAttackOpts = {
     originalAutoAttack?: boolean
     damageModifier?: number
     source?: string
+    customIcon?: string | undefined
 }
 
 export type castAbilityOpts = {

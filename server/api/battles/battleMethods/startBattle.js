@@ -551,12 +551,12 @@ export const startBattle = function ({
         battleData.enemies.push(boss)
     }
 
-    // Create clone of battle objects
-    let battleConstants = lodash.cloneDeep(battleData)
-
     if (!hasEnergy) {
         return
     }
+
+    // Create clone of battle objects
+    let battleConstants = lodash.cloneDeep(battleData)
 
     let totalXpGain = 0
     let hasBoss = false

@@ -3,7 +3,10 @@ $dark-fg-color: #2a2a2a;
 $dark-uncraftable-color: #313131;
 $dark-text-muted: #808385;
 
+// Seems safe in every instance, if not a bit boring
 $svg-transform-white: brightness(5.08) invert(100%);
+
+// These colors cause weirdness in certain locations... the filters want to shade the entire image depending on the parent DOM container
 $svg-transform-red: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg) brightness(119%) contrast(119%);
 $svg-transform-orange: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) brightness(119%) contrast(119%);
 $svg-transform-yellow: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg) brightness(119%) contrast(119%);
@@ -222,7 +225,6 @@ html.dark {
     img[src*="icons/adventureToken.svg"],
     img[src*="icons/amulet.svg"],
     img[src*="icons/ancientShard.svg"],
-    img[src*="icons/angryMiner.svg"],
     img[src*="icons/armor.svg"],
     img[src*="icons/armorPenetration.svg"],
     img[src*="icons/armorReduction.svg"],
@@ -270,7 +272,6 @@ html.dark {
     img[src*="icons/dragon.svg"],
     img[src*="icons/dragonfly.svg"],
     img[src*="icons/duration.svg"],
-    img[src*="icons/dwarf.svg"],
     img[src*="icons/echidna.svg"],
     img[src*="icons/elementalShield.svg"],
     img[src*="icons/evasiveManeuvers.svg"],
@@ -337,7 +338,7 @@ html.dark {
     img[src*="icons/staff.svg"],
     img[src*="icons/subtract.svg"],
     img[src*="icons/swipe.svg"],
-    img[src*="icons/thorSkull.svg"],
+    img[src*="icons/thorsSkull.svg"],
     img[src*="icons/tome.svg"],
     img[src*="icons/total.svg"],
     img[src*="icons/tower.svg"],
@@ -356,30 +357,30 @@ html.dark {
 
     // selectively turn some .svg images red
     img[src*="icons/thirstyFangs.svg"]  {
-        filter: $svg-transform-red;
+        filter: $svg-transform-white;
     }
 
     // selectively turn some .svg images blue
     img[src*="icons/acaiBerry.svg"],
     img[src*="icons/acaiBerrySeed.svg"] {
-        filter: $svg-transform-blue;
+        filter: $svg-transform-white;
     }
 
     // selectively turn some .svg images brown
     img[src*="icons/emptyFarmSpace.svg"],
     img[src*="icons/farmer.svg"],
     img[src*="icons/farming.svg"] {
-            filter: $svg-transform-brown;
+            filter: $svg-transform-white;
     }
 
     // selectively turn some .svg images gold
     img[src*="icons/treasureChest.svg"] {
-        filter: $svg-transform-gold;
+        filter: $svg-transform-white;
     }
 
     // selectively turn some .svg images pink
     img[src*="icons/healingPower.svg"] {
-        filter: $svg-transform-pink;
+        filter: $svg-transform-white;
     }
 
     .modal-content {

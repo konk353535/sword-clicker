@@ -6,4 +6,5 @@ export type ability = {
     totalCasts: number
     isSpell: boolean
     isPacifist: boolean
+    isTaunt: boolean
 }

@@ -125,6 +125,13 @@ export function applyBattleActions(this: Battle) {
                     }
                     targetAbility.cdAdjust = undefined
                 }
+
+                // Paladins reduce the cooldowns of all taunts by 15%
+                if (casterUnit.currentClass && casterUnit.currentClass?.id === "paladin") {
+                    if (targetAbility.isTaunt) {
+                        targetAbility.currentCooldown *= 0.85
+                    }
+                }
             }
         }
     })

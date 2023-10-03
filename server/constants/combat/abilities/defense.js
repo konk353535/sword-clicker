@@ -11,6 +11,7 @@ export const DEFENSE_ABILITIES = {
         target: "allEnemies",
         isPacifist: true,
         isHidden: false,
+        isTaunt: true,
         requires: [
             {
                 type: "weaponType",
@@ -55,6 +56,7 @@ export const DEFENSE_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isTaunt: true,
         description(level) {
             const BUFF = BUFFS.eel_taunt
             return BUFF.description({ buff: BUFF, level })
@@ -70,6 +72,7 @@ export const DEFENSE_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isTaunt: true,
         description(level) {
             const BUFF = BUFFS.lion_taunt
             return BUFF.description({ buff: BUFF, level })
@@ -85,6 +88,7 @@ export const DEFENSE_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isTaunt: true,
         description(level) {
             const BUFF = BUFFS.bear_taunt
             return BUFF.description({ buff: BUFF, level })
@@ -109,6 +113,7 @@ export const DEFENSE_ABILITIES = {
         target: "currentEnemy",
         isPacifist: true,
         isHidden: false,
+        isTaunt: true,
         description(level) {
             const BUFF = BUFFS.taunt
             return BUFF.description({ buff: BUFF, level })

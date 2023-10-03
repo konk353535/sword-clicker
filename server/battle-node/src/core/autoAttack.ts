@@ -129,6 +129,23 @@ export function autoAttack(
             source: "autoattack"
         })
 
+        // Tick targetDodgedDamage event on attacker
+        if (attacker.buffs) {
+            attacker.buffs.forEach((buff) => {
+                buff.constants = BUFFS[buff.id]
+                if (buff.constants.events.onTargetDodgedDamage) {
+                    // Dodged Damage
+                    buff.constants.events.onTargetDodgedDamage({
+                        buff,
+                        defender,
+                        attacker,
+                        actualBattle: this,
+                        source: "autoattack"
+                    })
+                }
+            })
+        }
+
         // Tick dodgedDamage event on defender
         if (defender.buffs) {
             defender.buffs.forEach((buff) => {

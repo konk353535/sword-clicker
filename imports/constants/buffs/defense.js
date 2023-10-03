@@ -517,6 +517,21 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (caster?.currentClass?.id === "paladin") {
+                    if (target.target != caster.id) {
+                        // trigger a heal for the original target
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "paladin_inspiration",
+                                buffData: {
+                                    allowDuplicates: true
+                                }
+                            }),
+                            target: target.targetUnit
+                        })
+                    }
+                }
+
                 target.target = caster.id
                 buff.data.damage = caster.stats.magicPower * 2
 
@@ -569,6 +584,21 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (caster?.currentClass?.id === "paladin") {
+                    if (target.target != caster.id) {
+                        // trigger a heal for the original target
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "paladin_inspiration",
+                                buffData: {
+                                    allowDuplicates: true
+                                }
+                            }),
+                            target: target.targetUnit
+                        })
+                    }
+                }
+
                 target.target = caster.id
                 buff.data.damage = caster.stats.attackMax * 0.75
 
@@ -620,6 +650,21 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (caster?.currentClass?.id === "paladin") {
+                    if (target.target != caster.id) {
+                        // trigger a heal for the original target
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "paladin_inspiration",
+                                buffData: {
+                                    allowDuplicates: true
+                                }
+                            }),
+                            target: target.targetUnit
+                        })
+                    }
+                }
+
                 target.target = caster.id
                 buff.data.attack = target.stats.attackMax * 0.1
                 target.stats.attack -= buff.data.attack
@@ -677,6 +722,21 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (caster?.currentClass?.id === "paladin") {
+                    if (target.target != caster.id) {
+                        // trigger a heal for the original target
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "paladin_inspiration",
+                                buffData: {
+                                    allowDuplicates: true
+                                }
+                            }),
+                            target: target.targetUnit
+                        })
+                    }
+                }
+
                 if (target.target === caster.id) {
                     // already being targeted)
                     if (caster) {
@@ -732,6 +792,21 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (caster?.currentClass?.id === "paladin") {
+                    if (target.target != caster.id) {
+                        // trigger a heal for the original target
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "paladin_inspiration",
+                                buffData: {
+                                    allowDuplicates: true
+                                }
+                            }),
+                            target: target.targetUnit
+                        })
+                    }
+                }
+
                 target.target = caster.id
 
                 buff.data.endDate = moment().add(0, "seconds").toDate()

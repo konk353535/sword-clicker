@@ -19,7 +19,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_barbarian__brawn"],
         autoBuffs: ["class_perk_barbarian"]
     },
 
@@ -61,7 +61,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_paladin__bulwark"],
         autoBuffs: [],
         equipmentBonuses: {
             hammer: {

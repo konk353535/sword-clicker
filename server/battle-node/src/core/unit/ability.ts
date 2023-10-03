@@ -14,7 +14,8 @@ export default class Ability {
     level: number
     totalCasts: number
     isSpell: boolean
-    isPacifist: any
+    isPacifist: boolean
+    isTaunt: boolean
     cdAdjust?: ((abil: Ability) => number) | undefined
     allowedWhileDead?: boolean
     isEnchantment?: boolean
@@ -81,8 +82,9 @@ export default class Ability {
         this.totalCasts = ability.totalCasts
         this._currentCooldown = ability.currentCooldown
         this._casts = ability.casts
-        this.isSpell = ability.isSpell || this.constants.isSpell
-        this.isPacifist = ability.isPacifist || this.constants.isPacifist
+        this.isSpell = ability.isSpell || this.constants.isSpell || false
+        this.isPacifist = ability.isPacifist || this.constants.isPacifist || false
+        this.isTaunt = ability.isTaunt || this.constants.isTaunt || false
     }
 
     cast(targets: Unit[]) {
@@ -109,7 +111,8 @@ export default class Ability {
             casts: this.casts,
             totalCasts: this.totalCasts,
             isSpell: this.isSpell,
-            isPacifist: this.isPacifist
+            isPacifist: this.isPacifist,
+            isTaunt: this.isTaunt
         }
     }
 }

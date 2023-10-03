@@ -869,6 +869,57 @@ export const MAGIC_BUFFS = {
         }
     },
 
+    paladin_inspiration: {
+        duplicateTag: "paladin_inspiration", // Used to stop duplicate buffs
+        icon: "paladinInspiration.svg",
+        name: "paladin inspiration",
+        description({ buff, level }) {
+            const c = buff.constants
+            return `
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP).`
+        },
+        constants: {
+            healBase: 10,
+            healMPRatio: 2.25,
+            removesCurse: true
+        },
+        data: {
+            allowDuplicates: true,
+            duration: 1.5,
+            totalDuration: 1.5
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+                const healBase = constants.healBase
+                const healMP = constants.healMPRatio * caster.stats.magicPower
+                const totalHeal = healBase + healMP
+
+                actualBattle.healTarget(totalHeal, {
+                    caster,
+                    target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    healSource: buff
+                })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {}
+        }
+    },
+
     angels_touch: {
         duplicateTag: "angels_touch", // Used to stop duplicate buffs
         icon: "angelsTouch.svg",

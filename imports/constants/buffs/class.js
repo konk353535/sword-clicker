@@ -82,6 +82,150 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_passive_barbarian__brawn: {
+        duplicateTag: "class_passive_barbarian__brawn", // Used to stop duplicate buffs
+        icon: "barbarianBrawn.svg",
+        name: "Brawn",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        Any time you miss with an auto-attack, you add a stack of <i>Brawl</i> that increases all of your
+        damage by +10% per stack (to a maximum of +200%).  Atacks are reduced by 3 when you successfully
+        hit with an auto-attack to a minimum of 0 stacks.`
+        },
+        constants: {},
+        data: {
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.stacks = 0
+                buff.data.damageBoosted = {
+                    attack: 0,
+                    attackMax: 0
+                }
+            },
+
+            onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
+                if (source == "autoattack") {
+                    if (buff.stacks < 20) {
+                        buff.stacks++
+                    }
+                }
+            },
+
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
+                if (source == "autoattack") {
+                    buff.stacks -= 3
+                    if (buff.stacks < 0) {
+                        buff.stacks = 0
+                    }
+                }
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                // undo existing bonuses
+                target.stats.attack -= buff.data.damageBoosted.attack
+                target.stats.attackMax -= buff.data.damageBoosted.attackMax
+
+                // calculate new bonuses
+                buff.data.damageBoosted.attack = target.stats.attack * buff.stacks * 0.1
+                buff.data.damageBoosted.attackMax = target.stats.attackMax * buff.stacks * 0.1
+
+                // apply new bonuses
+                target.stats.attack += buff.data.damageBoosted.attack
+                target.stats.attackMax += buff.data.damageBoosted.attackMax
+            },
+        }
+    },
+
+    class_passive_paladin__bulwark: {
+        duplicateTag: "class_passive_paladin__bulwark", // Used to stop duplicate buffs
+        icon: "warden_shield.svg",
+        name: "Bulwark",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that 
+        prevents all damage.  Each time the ally would take damage, a stack is deducted.
+        When all stacks are gone, this protection ends.`
+        },
+        constants: {},
+        data: {
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                // apply it to all the friendly units
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (true || friendlyUnit.id !== caster.id) {
+                        caster.applyBuffTo({
+                            buff: caster.generateBuff({
+                                buffId: "class_passive_paladin__bulwark_effect",
+                                buffData: {
+                                    stacks: 5
+                                }
+                            }),
+                            target: friendlyUnit
+                        })
+                    }
+                })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
+            },
+        }
+    },
+
+    class_passive_paladin__bulwark_effect: {
+        duplicateTag: "class_passive_paladin__bulwark_effect", // Used to stop duplicate buffs
+        icon: "warden_shield.svg",
+        name: "Bulwark",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        A Paladin has granted you stacks of <i>>Bulwark</i> protection at the beginning of this
+        battle that prevents all damage.  Each time you would take damage, a stack is deducted.
+        When all stacks are gone, this protection ends.`
+        },
+        constants: {},
+        data: {
+            stacks: 5
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                if (buff.data.hitsRequired == null) {
+                    buff.stacks = buff.data.hitsRequired = 5
+                    target.stats.armor += 10000
+                    target.stats.magicArmor += 10000
+                }
+            },
+
+            onTookDamage({ buff, defender, attacker, actualBattle }) {
+                buff.data.hitsRequired--
+                buff.stacks = buff.data.hitsRequired
+
+                if (buff.data.hitsRequired <= 0) {
+                    defender.stats.armor -= 10000
+                    defender.stats.magicArmor -= 10000
+    
+                    if (defender.stats.armor <= 1) {
+                        defender.stats.armor = 1
+                    }
+                    if (defender.stats.magicArmor <= 1) {
+                        defender.stats.magicArmor = 1
+                    }
+                    removeBuff({ buff, target: defender, caster: defender, actualBattle })
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_perk_sage: {
         duplicateTag: "class_perk_sage", // Used to stop duplicate buffs
         icon: "",

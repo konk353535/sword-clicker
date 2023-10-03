@@ -33,7 +33,6 @@ Meteor.methods({
             const userCurrentClassEquipped = userCurrentClass(uid).data
 
             if (userCurrentClassEquipped.id != newClass) {
-                //todo: logic for equipping a new class
                 const thisUser = Users.findOne({ _id: uid })
 
                 userUnequipAllItems(uid)

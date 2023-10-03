@@ -154,6 +154,8 @@ Meteor.methods({
             throw new Meteor.Error("not-learnt", "You haven't learned this ability.")
         }
 
+        const userClass = userCurrentClass()
+        
         const targetEquipConstants = ABILITIES[targetEquip.abilityId]
 
         if (targetEquipConstants.slot === "any") {

@@ -159,6 +159,10 @@ Template.loadoutPage.helpers({
 
     classFeatureUnlocked() {
         return classFeatureUnlocked()
+    },
+    
+    isTactician() {
+        return userCurrentClass().equipped === 'tactician'
     }
 })
 

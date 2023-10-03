@@ -14,7 +14,6 @@ import { BUFFS } from "/imports/constants/buffs/index.js"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 import "./loadout.html"
-import { CompressionAlgorithm } from "@opentelemetry/exporter-collector"
 
 let isFetchingLibrary = false
 
@@ -64,7 +63,7 @@ Template.loadoutPage.events({
     "click .select-class"(event, instance) {
         const newClass = instance.$(event.target).closest(".select-class").data("class")
         Meteor.call("classes.equipClass", Meteor.userId(), newClass, (err, res) => {
-            if (typeof err === 'undefined') {
+            if (typeof err === "undefined") {
                 if (res?.equipped == true) {
                     instance.state.set("currentClass", newClass)
                     Meteor.call("users.setUiState", "currentClass", newClass)
@@ -112,10 +111,13 @@ Template.loadoutPage.helpers({
 
             if (BUFFS && BUFFS[ability.abilityId]) {
                 if (_.isFunction(BUFFS[ability.abilityId]?.description)) {
-                    equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({ buff: BUFFS[ability.abilityId], level: ability.level, characterClass: userCurrentClass() })
+                    equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({
+                        buff: BUFFS[ability.abilityId],
+                        level: ability.level,
+                        characterClass: userCurrentClass()
+                    })
                 }
             }
-
         })
 
         return equippedMap
@@ -171,7 +173,7 @@ Template.skinLibraryIcon.events({
                 toastr.warning(err.reason)
             }
         })
-    },
+    }
 })
 
 Template.skinLibraryIcon.rendered = function () {

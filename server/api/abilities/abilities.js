@@ -155,7 +155,7 @@ Meteor.methods({
         }
 
         const userClass = userCurrentClass()
-        
+
         const targetEquipConstants = ABILITIES[targetEquip.abilityId]
 
         if (targetEquipConstants.slot === "any") {
@@ -168,30 +168,29 @@ Meteor.methods({
                     availableSlots = availableSlots.filter((slot) => {
                         // User does not have the Classes feature unlocked yet, so nothing can be slotted into 'classAbil1', 'classAbil2', or 'classAbil3' at all
                         if (!userClass.unlocked) {
-                            if (slot.indexOf('class') === 0) {
+                            if (slot.indexOf("class") === 0) {
                                 return false
                             }
                             // else fall through and use default logic
                         } else {
-                            if (userClass.equipped === 'tactician') {
+                            if (userClass.equipped === "tactician") {
                                 // anything goes anywhere (except companion abilities)
                                 // (do nothing there -- just fall through and use default logic)
                             } else {
                                 // all classes except tactician force 5 active and 3 passive abilities as a cap
 
-                                if (ABILITY.slotsForClasses[slot].allowedType === 'active') {
+                                if (ABILITY.slotsForClasses[slot].allowedType === "active") {
                                     if (targetEquipConstants?.isPassive) {
                                         // not allowed to use a passive ability in an active-only slot
                                         return false
                                     }
-                                }
-                                else if (ABILITY.slotsForClasses[slot].allowedType === 'passive') {
+                                } else if (ABILITY.slotsForClasses[slot].allowedType === "passive") {
                                     if (!targetEquipConstants?.isPassive) {
                                         // not allowed to use an active ability in a passive-only slot
                                         return false
                                     }
                                 }
-                                
+
                                 // else fall through and use default logic
                             }
                         }
@@ -202,7 +201,7 @@ Meteor.methods({
 
             if (userClass.unlocked) {
                 if (availableSlots.length === ABILITY.slots.length) {
-                    if (userClass.equipped === 'tactician') {
+                    if (userClass.equipped === "tactician") {
                         // anything goes anywhere (except companion abilities)
                         // (do nothing there -- just fall through and use default logic)
                     } else {
@@ -216,7 +215,7 @@ Meteor.methods({
                             // force active abilities to be used in active-only slots
                             availableSlots = ABILITY.activeSlots
                         }
-                        
+
                         // else fall through and use default logic
                     }
                 }

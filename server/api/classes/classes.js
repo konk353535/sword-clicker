@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor"
 
 import { Abilities } from "/imports/api/abilities/abilities"
-import { userEligibleForClass, userCurrentClass } from "/imports/api/classes/classes"
+import { userCurrentClass, userEligibleForClass } from "/imports/api/classes/classes"
 import { Items } from "/imports/api/items/items"
 import { Users, classFeatureUnlocked, updateUserActivity } from "/imports/api/users/users.js"
 
@@ -11,19 +11,15 @@ import { ABILITIES } from "/server/constants/combat/index"
 
 import { updateCombatStats } from "/server/api/combat/combat.js"
 
-const userUnequipAllItems = function(uid) {
-    Items.update(
-        { owner: uid, category: "combat" },
-        { $set: { equipped: false } },
-        { multi: true }
-    )
+const userUnequipAllItems = function (uid) {
+    Items.update({ owner: uid, category: "combat" }, { $set: { equipped: false } }, { multi: true })
 }
 
-const userUnequipAllAbilities = function(uid) {
+const userUnequipAllAbilities = function (uid) {
     Abilities.update(
         { owner: uid },
         { $set: { "learntAbilities.$[].equipped": false } }, // thank you: https://stackoverflow.com/questions/64758739/ and https://docs.mongodb.com/manual/reference/operator/update/positional-all/
-        { multi: true, bypassCollection2: true }             // thank you: https://stackoverflow.com/questions/61936551/
+        { multi: true, bypassCollection2: true } // thank you: https://stackoverflow.com/questions/61936551/
     )
 }
 
@@ -58,25 +54,22 @@ Meteor.methods({
                         }
                     })
                 })
-                
+
                 userNewClassToEquip.exclusiveAbilities.forEach((thisAbility) => {
                     const abilityConstants = ABILITIES[thisAbility]
 
-                    Abilities.update(
-                        userAbilities._id,
-                        {
-                            $push: {
-                                learntAbilities: {
-                                    abilityId: thisAbility,
-                                    level: 1,
-                                    equipped: false,
-                                    isSpell: abilityConstants.isMagic,
-                                    casts: abilityConstants.isMagic ? 1 : undefined,
-                                    currentCooldown: 0
-                                }
+                    Abilities.update(userAbilities._id, {
+                        $push: {
+                            learntAbilities: {
+                                abilityId: thisAbility,
+                                level: 1,
+                                equipped: false,
+                                isSpell: abilityConstants.isMagic,
+                                casts: abilityConstants.isMagic ? 1 : undefined,
+                                currentCooldown: 0
                             }
                         }
-                    )
+                    })
                 })
 
                 // update that the user was active
@@ -88,10 +81,10 @@ Meteor.methods({
                 //       actually be set to is sent back.
             }
 
-            return { equipped: true, reason: '' }
+            return { equipped: true, reason: "" }
         }
 
-        return { equipped: false, reason: 'Ineligible for class swap' }
+        return { equipped: false, reason: "Ineligible for class swap" }
     },
 
     "classes.getCurrentClass"(uid) {
@@ -111,7 +104,7 @@ Meteor.methods({
 
         Meteor.call("classes.equipClass", uid, defaultClass.id)
 
-        return { unlocked: classFeatureUnlocked(uid), equipped: defaultClass.id, data: defaultClass };
+        return { unlocked: classFeatureUnlocked(uid), equipped: defaultClass.id, data: defaultClass }
     }
 })
 

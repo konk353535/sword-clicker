@@ -134,7 +134,7 @@ export const serverFromUser = function serverFromUser(userId__in = false) {
     return false
 }
 
-export const classFeatureUnlocked = function(userId__in = false) {
+export const classFeatureUnlocked = function (userId__in = false) {
     try {
         if (userId__in) {
             const userDoc = Users.findOne({ _id: userId__in })

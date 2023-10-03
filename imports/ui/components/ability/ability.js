@@ -159,7 +159,7 @@ Template.ability.rendered = function () {
         classAbil2: 6,
         classAbil3: 7,
         changeTarget: 35, // t
-        companion: 36, // u
+        companion: 36 // u
     }
     $(document).on(`keyup.${slot}`, (e) => {
         if (keyCodes[slot] != null && e.which === 49 + keyCodes[slot]) {

@@ -1,8 +1,4 @@
-import moment from "moment"
-import _ from "underscore"
-
-import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
-import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
+import { CDbl } from "../../utils.js"
 
 export const CLASS_BUFFS = {
     class_perk_barbarian: {
@@ -12,8 +8,7 @@ export const CLASS_BUFFS = {
         description() {
             return ``
         },
-        constants: {
-        },
+        constants: {},
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -21,10 +16,10 @@ export const CLASS_BUFFS = {
             hideBuff: true
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) { },
+            onApply({ buff, target, caster, actualBattle }) {},
 
-            onDidDamage: function({ buff, defender, attacker, actualBattle, damageDealt, source, customIcon }) {
-                if (customIcon === 'basicDamageCrit') {
+            onDidDamage: function ({ buff, defender, attacker, actualBattle, damageDealt, source, customIcon }) {
+                if (customIcon === "basicDamageCrit") {
                     // Add bleed debuff
                     attacker.applyBuffTo({
                         buff: attacker.generateBuff({

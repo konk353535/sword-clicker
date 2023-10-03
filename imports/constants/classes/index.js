@@ -1,102 +1,101 @@
-import { Users, classFeatureUnlocked } from "/imports/api/users/users.js"
+import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 console.log("exporting classes/index.js CLASSES")
 
 export const CLASSES = {
-    
     wanderer: {
-        id: 'wanderer',
-        name: 'Wanderer',
-        eligible: function(uid) {
+        id: "wanderer",
+        name: "Wanderer",
+        eligible: function (uid) {
             return classFeatureUnlocked(uid)
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     barbarian: {
-        id: 'barbarian',
-        name: 'Barbarian',
-        eligible: function() {
+        id: "barbarian",
+        name: "Barbarian",
+        eligible: function () {
             return true
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ 'class_perk_barbarian' ]
+        exclusiveAbilities: [],
+        autoBuffs: ["class_perk_barbarian"]
     },
-    
+
     duelist: {
-        id: 'duelist',
-        name: 'Duelist',
-        eligible: function() {
+        id: "duelist",
+        name: "Duelist",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     paladin: {
-        id: 'paladin',
-        name: 'Paladin',
-        eligible: function() {
+        id: "paladin",
+        name: "Paladin",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     ranger: {
-        id: 'ranger',
-        name: 'Ranger',
-        eligible: function() {
+        id: "ranger",
+        name: "Ranger",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     sage: {
-        id: 'sage',
-        name: 'Sage',
-        eligible: function() {
+        id: "sage",
+        name: "Sage",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     tactician: {
-        id: 'tactician',
-        name: 'Tactician',
-        eligible: function() {
+        id: "tactician",
+        name: "Tactician",
+        eligible: function () {
             return true
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     warmage: {
-        id: 'warmage',
-        name: 'War Mage',
-        eligible: function() {
+        id: "warmage",
+        name: "War Mage",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
+
     wizard: {
-        id: 'wizard',
-        name: 'Wizard',
-        eligible: function() {
+        id: "wizard",
+        name: "Wizard",
+        eligible: function () {
             return false
         },
-        exclusiveAbilities: [ ],
-        autoBuffs: [ ]
+        exclusiveAbilities: [],
+        autoBuffs: []
     },
-    
-    lookup: function(id) {
-        if (typeof id !== 'undefined') {
-            id = id.trim().toLowerCase().replace(' ', '')
+
+    lookup: function (id) {
+        if (typeof id !== "undefined") {
+            id = id.trim().toLowerCase().replace(" ", "")
 
             if (id in CLASSES) {
                 return CLASSES[id]
@@ -104,9 +103,8 @@ export const CLASSES = {
         }
         return CLASSES.default()
     },
-    
-    default: function() {
-        return CLASSES['wanderer']
-    }
 
+    default: function () {
+        return CLASSES["wanderer"]
+    }
 }

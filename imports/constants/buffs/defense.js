@@ -773,7 +773,7 @@ export const DEFENSE_BUFFS = {
                 buff.data.endDate = moment().add(0, "seconds").toDate()
 
                 let allFriendlyCombatUnitsExcludingSelf = []
-                _.forEach(actualBattle.units, function(thisFriendlyUnit) {
+                _.forEach(actualBattle.units, function (thisFriendlyUnit) {
                     if (thisFriendlyUnit.id != caster.id) {
                         allFriendlyCombatUnitsExcludingSelf.push(thisFriendlyUnit)
                     }
@@ -784,7 +784,7 @@ export const DEFENSE_BUFFS = {
                     return
                 }
 
-                _.forEach(actualBattle.enemies, function(thisEnemyUnit) {
+                _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
                     // If this enemy is targeting the casting player...
                     if (thisEnemyUnit.target == caster.id) {
                         // ... then find a new friendly unit (player or companion) that *isn't* the caster for the enemy to target instead

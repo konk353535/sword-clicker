@@ -10,7 +10,7 @@ import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { COMBAT_CRAFTS } from "/imports/constants/combat/crafts.js"
-import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
+import { ITEMS } from "/imports/constants/items/index.js"
 import { CDbl, CInt } from "/imports/utils"
 import { updateCombatStats } from "/server/api/combat/combat.js"
 import { updateMiningStats } from "/server/api/mining/mining.js"
@@ -24,7 +24,14 @@ import _ from "underscore"
 
 const math = require("mathjs")
 
-export const addItem = function (itemId, amount = 1, specificUserId, useTx = false, targetQuality = -1, targetRarityTier = '') {
+export const addItem = function (
+    itemId,
+    amount = 1,
+    specificUserId,
+    useTx = false,
+    targetQuality = -1,
+    targetRarityTier = ""
+) {
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -45,7 +52,7 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
     }
 
     if (targetRarityTier == undefined) {
-        targetRarityTier = ''
+        targetRarityTier = ""
     }
 
     if (itemConstants.itemSplit) {
@@ -66,7 +73,7 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
             // Handle upgraded rarities
             let rarityId
             if (itemConstants.upgradeRarity) {
-                if (targetRarityTier == '') {
+                if (targetRarityTier == "") {
                     const upgradedRarityRoll = CDbl(Math.random() * 100.0)
                     itemConstants.upgradeRarity.forEach((thisRarityData) => {
                         if (!rarityId) {
@@ -114,7 +121,7 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
                     ratedQuality = 0
                 } else {
                     ratedQuality = Math.round((myRoll / maxRoll) * 100)
-                }                
+                }
             } else {
                 // Create this item with a targeted quality
 
@@ -184,8 +191,8 @@ export const addItem = function (itemId, amount = 1, specificUserId, useTx = fal
                         extraStats[option.key] += timesToAdd
                     }
                 })
-                
-                ratedQuality = targetQuality;
+
+                ratedQuality = targetQuality
             }
 
             newItemsList.push({

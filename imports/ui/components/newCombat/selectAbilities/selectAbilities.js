@@ -151,7 +151,11 @@ Template.selectAbilitiesPage.helpers({
 
                 if (BUFFS && BUFFS[ability.abilityId]) {
                     if (_.isFunction(BUFFS[ability.abilityId]?.description)) {
-                        equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({ buff: BUFFS[ability.abilityId], level: ability.level, characterClass: userCurrentClass() })
+                        equippedMap[ability.slot].description = BUFFS[ability.abilityId].description({
+                            buff: BUFFS[ability.abilityId],
+                            level: ability.level,
+                            characterClass: userCurrentClass()
+                        })
                     }
                 }
             }
@@ -197,7 +201,11 @@ Template.selectAbilitiesPage.helpers({
 
                 if (BUFFS && BUFFS[ability.id]) {
                     if (_.isFunction(BUFFS[ability.id]?.description)) {
-                        ability.description = BUFFS[ability.id].description({ buff: BUFFS[ability.id], level: learntAbility.level, characterClass: userCurrentClass() })
+                        ability.description = BUFFS[ability.id].description({
+                            buff: BUFFS[ability.id],
+                            level: learntAbility.level,
+                            characterClass: userCurrentClass()
+                        })
                     }
                 }
             } else {
@@ -205,7 +213,11 @@ Template.selectAbilitiesPage.helpers({
 
                 if (BUFFS && BUFFS[ability.id]) {
                     if (_.isFunction(BUFFS[ability.id]?.description)) {
-                        ability.description = BUFFS[ability.id].description({ buff: BUFFS[ability.id], level: 1, characterClass: userCurrentClass() })
+                        ability.description = BUFFS[ability.id].description({
+                            buff: BUFFS[ability.id],
+                            level: 1,
+                            characterClass: userCurrentClass()
+                        })
                     }
                 }
             }
@@ -230,12 +242,12 @@ Template.selectAbilitiesPage.helpers({
             notLearnt: tempList.filter((list) => list.notLearnt)
         }
     },
-    
+
     classFeatureUnlocked() {
         return classFeatureUnlocked()
     },
 
     isTactician() {
-        return userCurrentClass().equipped === 'tactician'
+        return userCurrentClass().equipped === "tactician"
     }
 })

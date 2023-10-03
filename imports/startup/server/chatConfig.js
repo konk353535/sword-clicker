@@ -457,12 +457,12 @@ SimpleChat.configure({
                     return
                 }
 
-                if ((targetQuality !== -1) && (targetQuality < 0 || targetQuality < 0)) {
+                if (targetQuality !== -1 && (targetQuality < 0 || targetQuality < 0)) {
                     sendUserChatMessage({ userId: userDoc._id, message: `Invalid target quality ${targetQuality}.` })
                     return
                 }
 
-                if (targetRarityTier !== '' && !ITEM_RARITIES[targetRarityTier]) {
+                if (targetRarityTier !== "" && !ITEM_RARITIES[targetRarityTier]) {
                     sendUserChatMessage({ userId: userDoc._id, message: `Invalid target rarity '${targetUsername}'.` })
                     return
                 }
@@ -498,8 +498,8 @@ SimpleChat.configure({
 
                 addItem(targetItem, targetAmount, targetUser._id, false, targetQuality, targetRarityTier)
 
-                const qualityText = (targetQuality >= 0) ? ` (${targetQuality}% quality)` : ''
-                const rarityText = (targetRarityTier != '') ? ` (${targetRarityTier} rarity)` : ''
+                const qualityText = targetQuality >= 0 ? ` (${targetQuality}% quality)` : ""
+                const rarityText = targetRarityTier != "" ? ` (${targetRarityTier} rarity)` : ""
 
                 sendUserChatMessage({
                     userId: userDoc._id,

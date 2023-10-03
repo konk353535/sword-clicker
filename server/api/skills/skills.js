@@ -62,7 +62,7 @@ export const addXp = function (
     ignoreTownBuffs = false,
     doResetLogic = false
 ) {
-    if ((xp === 0) && (!doResetLogic)) {
+    if (xp === 0 && !doResetLogic) {
         return
     }
 
@@ -170,9 +170,9 @@ export const addXp = function (
             const skUpReturn = Skills.update(
                 {
                     _id: skill._id
-		    // Note: used to also filter by these fields, but it's a performance gain not to and we aren't getting
-		    // any benefit from filtering this (no race condition capture logic).
-		    /*,
+                    // Note: used to also filter by these fields, but it's a performance gain not to and we aren't getting
+                    // any benefit from filtering this (no race condition capture logic).
+                    /*,
                     xp: originalXp,
                     level: skill.level */
                 },

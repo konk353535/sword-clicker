@@ -772,20 +772,45 @@ export const ATTACK_BUFFS = {
                 localLevel = 1
             }
 
-            if (typeof characterClass === 'undefined') {
-                characterClass = { id: '', equipped: '' }
+            if (typeof characterClass === "undefined") {
+                characterClass = { id: "", equipped: "" }
             }
 
-            const damagePerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.damagePercentageIncreasePerLevel : buff.constants.barbarian.damagePercentageIncreasePerLevel
-            const damageTakenPerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.damageTakenPercentageIncreasePerLevel : buff.constants.barbarian.damageTakenPercentageIncreasePerLevel
-            const healthLostPerLevel = (characterClass?.equipped != 'barbarian') ? buff.constants.healthLostPerSecondPerLevel : buff.constants.barbarian.healthLostPerSecondPerLevel
+            const damagePerLevel =
+                characterClass?.equipped != "barbarian"
+                    ? buff.constants.damagePercentageIncreasePerLevel
+                    : buff.constants.barbarian.damagePercentageIncreasePerLevel
+            const damageTakenPerLevel =
+                characterClass?.equipped != "barbarian"
+                    ? buff.constants.damageTakenPercentageIncreasePerLevel
+                    : buff.constants.barbarian.damageTakenPercentageIncreasePerLevel
+            const healthLostPerLevel =
+                characterClass?.equipped != "barbarian"
+                    ? buff.constants.healthLostPerSecondPerLevel
+                    : buff.constants.barbarian.healthLostPerSecondPerLevel
 
-            const damageIncrease = ((characterClass?.equipped != 'barbarian') ? buff.constants.damagePercentageIncreaseBase : buff.constants.barbarian.damagePercentageIncreaseBase) + damagePerLevel * localLevel
-            const damageTakenIncrease = ((characterClass?.equipped != 'barbarian') ? buff.constants.damageTakenPercentageIncreaseBase : buff.constants.barbarian.damageTakenPercentageIncreaseBase) + damageTakenPerLevel * localLevel
-            const healthLostPerSecond = ((characterClass?.equipped != 'barbarian') ? buff.constants.healthLostPerSecondBase : buff.constants.barbarian.healthLostPerSecondBase) + healthLostPerLevel * localLevel
-            const duration = (characterClass?.equipped != 'barbarian') ? buff.data.totalDuration : buff.data.barbarian.totalDuration
+            const damageIncrease =
+                (characterClass?.equipped != "barbarian"
+                    ? buff.constants.damagePercentageIncreaseBase
+                    : buff.constants.barbarian.damagePercentageIncreaseBase) +
+                damagePerLevel * localLevel
+            const damageTakenIncrease =
+                (characterClass?.equipped != "barbarian"
+                    ? buff.constants.damageTakenPercentageIncreaseBase
+                    : buff.constants.barbarian.damageTakenPercentageIncreaseBase) +
+                damageTakenPerLevel * localLevel
+            const healthLostPerSecond =
+                (characterClass?.equipped != "barbarian"
+                    ? buff.constants.healthLostPerSecondBase
+                    : buff.constants.barbarian.healthLostPerSecondBase) +
+                healthLostPerLevel * localLevel
+            const duration =
+                characterClass?.equipped != "barbarian" ? buff.data.totalDuration : buff.data.barbarian.totalDuration
 
-            const classEffect = (characterClass?.equipped === 'barbarian') ? `This ability has been enhanced as a <b>${characterClass?.data?.name}</b><br />` : ''
+            const classEffect =
+                characterClass?.equipped === "barbarian"
+                    ? `This ability has been enhanced as a <b>${characterClass?.data?.name}</b><br />`
+                    : ""
 
             return `
         ${classEffect}
@@ -802,19 +827,21 @@ export const ATTACK_BUFFS = {
             damageTakenPercentageIncreasePerLevel: 3,
             healthLostPerSecondBase: -1,
             healthLostPerSecondPerLevel: 3,
-            barbarian: { // Barbarian version
+            barbarian: {
+                // Barbarian version
                 damagePercentageIncreaseBase: 70,
                 damagePercentageIncreasePerLevel: 10,
                 damageTakenPercentageIncreaseBase: 17,
                 damageTakenPercentageIncreasePerLevel: 3,
                 healthLostPerSecondBase: -0.5,
-                healthLostPerSecondPerLevel: 1.5,
+                healthLostPerSecondPerLevel: 1.5
             }
         },
         data: {
             duration: 15,
             totalDuration: 15,
-            barbarian: { // Barbarian version
+            barbarian: {
+                // Barbarian version
                 duration: 30,
                 totalDuration: 30
             }
@@ -828,7 +855,7 @@ export const ATTACK_BUFFS = {
                         : lookupBuff(buff.id).constants
 
                 // Barbarian version
-                if (caster?.currentClass?.id === 'barbarian' && constants?.barbarian) {
+                if (caster?.currentClass?.id === "barbarian" && constants?.barbarian) {
                     constants = constants.barbarian
                     buff.duration = buff.data.barbarian.duration
                     buff.data.duration = buff.data.barbarian.duration

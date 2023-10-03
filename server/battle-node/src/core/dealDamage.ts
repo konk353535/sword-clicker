@@ -118,7 +118,7 @@ export function dealDamage(
             historyStats[attacker__id_to_use].damageDoneCompanion += damage
         }
     }
-    
+
     if (historyStats && historyStats[defender__id_to_use]) {
         if (!defender.isCompanion) {
             historyStats[defender__id_to_use].damageTaken += damage
@@ -141,10 +141,10 @@ export function dealDamage(
 
         if (historyStats && historyStats[defender__id_to_use]) {
             if (!defender.isCompanion) {
-                historyStats[defender__id_to_use].attacksDodged ++
+                historyStats[defender__id_to_use].attacksDodged++
             } else {
                 historyStats[defender__id_to_use].companionName = defender.name
-                historyStats[defender__id_to_use].attacksDodged ++
+                historyStats[defender__id_to_use].attacksDodged++
             }
         }
     } else {
@@ -155,7 +155,7 @@ export function dealDamage(
                 historyStats[defender__id_to_use].companionName = defender.name
                 historyStats[defender__id_to_use].damageMitigated += rawDamage - damage
             }
-        }        
+        }
     }
 
     if (tickEvents) {

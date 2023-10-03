@@ -8,40 +8,40 @@ export const ABILITY = {
     passiveSlots: ["classAbil1", "classAbil2", "classAbil3"],
     slotsForClasses: {
         mainHand: {
-            slot: 'mainHand',
-            allowedType: 'active'
+            slot: "mainHand",
+            allowedType: "active"
         },
         offHand: {
-            slot: 'offHand',
-            allowedType: 'active'
+            slot: "offHand",
+            allowedType: "active"
         },
         head: {
-            slot: 'head',
-            allowedType: 'active'
+            slot: "head",
+            allowedType: "active"
         },
         chest: {
-            slot: 'chest',
-            allowedType: 'active'
+            slot: "chest",
+            allowedType: "active"
         },
         legs: {
-            slot: 'legs',
-            allowedType: 'active'
+            slot: "legs",
+            allowedType: "active"
         },
         classAbil1: {
-            slot: 'classAbil1',
-            allowedType: 'passive'
+            slot: "classAbil1",
+            allowedType: "passive"
         },
         classAbil2: {
-            slot: 'classAbil2',
-            allowedType: 'passive'
+            slot: "classAbil2",
+            allowedType: "passive"
         },
         classAbil3: {
-            slot: 'classAbil3',
-            allowedType: 'passive'
+            slot: "classAbil3",
+            allowedType: "passive"
         },
         companion: {
-            slot: 'companion',
-            allowedType: 'companion'
+            slot: "companion",
+            allowedType: "companion"
         }
     }
 }

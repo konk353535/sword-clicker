@@ -5,8 +5,8 @@ import "./ceilNumber.html"
 Template.ceilNumber.helpers({
     formattedNumber() {
         const number = Template.instance()?.data
-        if (typeof number === 'undefined') {
-            return '0'
+        if (typeof number === "undefined") {
+            return "0"
         }
         return Math.round(number)
     }

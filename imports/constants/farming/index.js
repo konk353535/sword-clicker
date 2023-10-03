@@ -1084,7 +1084,7 @@ export const FARMING = {
         chilli_seed: {
             id: "chilli_seed",
             itemId: "chilli_seed",
-            requiredFarmingLevel: 25, /* to plant and see in farming */
+            requiredFarmingLevel: 25 /* to plant and see in farming */,
             required: [
                 {
                     type: "gold",
@@ -1102,7 +1102,7 @@ export const FARMING = {
         celery_seed: {
             id: "ccelery_seed",
             itemId: "celery_seed",
-            requiredFarmingLevel: 25, /* to plant and see in farming */
+            requiredFarmingLevel: 25 /* to plant and see in farming */,
             required: [
                 {
                     type: "gold",
@@ -1120,7 +1120,7 @@ export const FARMING = {
         cardoon_seed: {
             id: "cardoon_seed",
             itemId: "cardoon_seed",
-            requiredFarmingLevel: 25, /* to plant and see in farming */
+            requiredFarmingLevel: 25 /* to plant and see in farming */,
             required: [
                 {
                     type: "gold",
@@ -1138,7 +1138,7 @@ export const FARMING = {
         feverfew_seed: {
             id: "feverfew_seed",
             itemId: "feverfew_seed",
-            requiredFarmingLevel: 30, /* to plant and see in farming */
+            requiredFarmingLevel: 30 /* to plant and see in farming */,
             required: [
                 {
                     type: "gold",
@@ -1156,7 +1156,7 @@ export const FARMING = {
         garlic_seed: {
             id: "garlic_seed",
             itemId: "garlic_seed",
-            requiredFarmingLevel: 55, /* to plant and see in farming */
+            requiredFarmingLevel: 55 /* to plant and see in farming */,
             required: [
                 {
                     type: "gold",

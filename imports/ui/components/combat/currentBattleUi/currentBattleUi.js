@@ -72,7 +72,6 @@ const startBattle = (currentBattle, self) => {
                         "basicDamage",
                         "basicDamageMagic",
                         "basicDamageCrit",
-
                         "attack",
                         "criticalChance",
                         "criticalDamage",
@@ -89,7 +88,6 @@ const startBattle = (currentBattle, self) => {
                         "thirstyFangs",
                         "phantomStrikes",
                         "confused",
-
                         "armorReduction",
                         "babyFireFox",
                         "bisonAxe",
@@ -394,7 +392,6 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
         isFetchingLibraryExtra = false
     })
 
-
     Tracker.autorun(() => {
         //console.log(this.state.get('ticker')); // konk left this debug in, disabling it for now (psouza4: 2018-10-30)
 
@@ -416,7 +413,12 @@ Template.currentBattleUi.onCreated(function bodyOnCreated() {
             localBalancer = currentGroup.balancer
         }
         if (!this.state.get("battleEndsAt")) {
-            this.state.set("battleEndsAt", moment(currentBattleList.createdAt).add((currentBattleList.isBigBoss) ? 30 : 10, "minutes").toDate())
+            this.state.set(
+                "battleEndsAt",
+                moment(currentBattleList.createdAt)
+                    .add(currentBattleList.isBigBoss ? 30 : 10, "minutes")
+                    .toDate()
+            )
         }
         if (!window.battleSocket || !window.battleSocket.hasUser || localBalancer !== window.balancer) {
             let userData = {}
@@ -546,10 +548,10 @@ Template.currentBattleUi.helpers({
             })
         }
 
-        const instanceDataToUse = Template.instance().state.get("abilityLibraryExtra") 
+        const instanceDataToUse = Template.instance().state.get("abilityLibraryExtra")
         let abilitiesConstantsFromMeteorAPI = {}
         if (instanceDataToUse) {
-            abilitiesConstantsFromMeteorAPI = Object.fromEntries(instanceDataToUse.map(k => [k.id, k]));
+            abilitiesConstantsFromMeteorAPI = Object.fromEntries(instanceDataToUse.map((k) => [k.id, k]))
         }
 
         const equippedAbilities = myAbilities.learntAbilities
@@ -557,12 +559,14 @@ Template.currentBattleUi.helpers({
                 ability.index = abilityIndexes[ability.slot]
                 // some abilities can't be used manually, so they don't get a hotkey
                 if (
-                    (ability.slot === 'companion') ||
-                    (abilitiesConstantsFromMeteorAPI && abilitiesConstantsFromMeteorAPI.hasOwnProperty(ability?.abilityId) && abilitiesConstantsFromMeteorAPI[ability?.abilityId]?.isPassive)
+                    ability.slot === "companion" ||
+                    (abilitiesConstantsFromMeteorAPI &&
+                        abilitiesConstantsFromMeteorAPI.hasOwnProperty(ability?.abilityId) &&
+                        abilitiesConstantsFromMeteorAPI[ability?.abilityId]?.isPassive)
                 ) {
-                    ability.hotkey = ''
+                    ability.hotkey = ""
                 } else {
-                    ability.hotkey =  ability.index + 1
+                    ability.hotkey = ability.index + 1
                 }
                 return ability
             })

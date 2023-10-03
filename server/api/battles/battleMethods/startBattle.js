@@ -197,7 +197,7 @@ export const startBattle = function ({
     }).fetch()
 
     // screen for too many abilities in someone's loadout
-    let invalidLoadoutsMessage = ''
+    let invalidLoadoutsMessage = ""
     usersCombatStats.forEach((userCombat) => {
         const targetUser = usersData.find((userData) => userData._id === userCombat.owner)
 
@@ -248,25 +248,25 @@ export const startBattle = function ({
 
                     broughtCompanion = true
                 } else {
-                    abilityCount++;
+                    abilityCount++
 
                     console.log(`Ability '${ability.abilityId}' for '${targetUser.username}', count ${abilityCount}`)
 
                     // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature
-                    if ((abilityCount > 5) && (!classFeatureUnlocked(targetUser._id))) {
+                    if (abilityCount > 5 && !classFeatureUnlocked(targetUser._id)) {
                         if (invalidLoadoutsMessage.indexOf(targetUser.username) === -1) {
-                            if (invalidLoadoutsMessage !== '') {
-                                invalidLoadoutsMessage += ', ';
+                            if (invalidLoadoutsMessage !== "") {
+                                invalidLoadoutsMessage += ", "
                             }
-                            invalidLoadoutsMessage += targetUser.username;
+                            invalidLoadoutsMessage += targetUser.username
                         }
                         return false
                     } else if (abilityCount > 8) {
                         if (invalidLoadoutsMessage.indexOf(targetUser.username) === -1) {
-                            if (invalidLoadoutsMessage !== '') {
-                                invalidLoadoutsMessage += ', ';
+                            if (invalidLoadoutsMessage !== "") {
+                                invalidLoadoutsMessage += ", "
                             }
-                            invalidLoadoutsMessage += targetUser.username;
+                            invalidLoadoutsMessage += targetUser.username
                         }
                         return false
                     }
@@ -291,7 +291,7 @@ export const startBattle = function ({
             })
     })
 
-    if (invalidLoadoutsMessage !== '') {
+    if (invalidLoadoutsMessage !== "") {
         throw new Meteor.Error(
             "loadout-error",
             `The following party members have invalid ability loadouts (too many abilities): ${invalidLoadoutsMessage}`
@@ -353,7 +353,7 @@ export const startBattle = function ({
                     broughtCompanion = true
                 } else {
                     // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature (should already be filtered, but just in case...)
-                    if ((abilityCount >= 5) && (!classFeatureUnlocked(targetUser._id))) {
+                    if (abilityCount >= 5 && !classFeatureUnlocked(targetUser._id)) {
                         return false
                     } else if (abilityCount >= 8) {
                         return false
@@ -446,7 +446,9 @@ export const startBattle = function ({
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
         // tried applying passives above first, but they wouldn't function correctly
 
-        userCombat.enchantments = ((userCombat.enchantments) ? userCombat.enchantments : []).concat(newUnit.currentClass.autoBuffs)
+        userCombat.enchantments = (userCombat.enchantments ? userCombat.enchantments : []).concat(
+            newUnit.currentClass.autoBuffs
+        )
 
         if (userCombat.enchantments) {
             //console.log("START :: startbattle player enchantments");

@@ -220,19 +220,18 @@ Meteor.methods({
             {
                 itemId: woodcutterConstants.axeId,
                 owner: Meteor.userId(),
-				locked: false
+                locked: false
             },
             {
                 sort: [["quality", "desc"]]
             }
         )
-		
-		if (!axeToUse) {
-			return
-		}
 
-        let tempRequirementsWithoutItems = lodash.cloneDeep(woodcutterConstants.required)
-        .filter((requirement) => {
+        if (!axeToUse) {
+            return
+        }
+
+        let tempRequirementsWithoutItems = lodash.cloneDeep(woodcutterConstants.required).filter((requirement) => {
             return requirement.type !== "item"
         })
 

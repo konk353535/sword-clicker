@@ -277,12 +277,15 @@ Meteor.methods({
         const validIds = [
             "hideCrafting",
             "highlightCrafting",
+
             "hideWoodcutting",
             "highlightWoodcutting",
+
             "hideFarming",
             "highlightFarming",
             "hideFarmingPlots",
             "highlightFarmingPlots",
+
             "hideInscription",
             "highlightInscription",
             "hideInscriptionAbilities",
@@ -291,6 +294,7 @@ Meteor.methods({
             "highlightInscriptionPaper",
             "hideInscriptionPigments",
             "highlightInscriptionPigments",
+
             "hideCombat",
             "highlightCombat",
             "highlightCombatEquipment",
@@ -298,6 +302,7 @@ Meteor.methods({
             "highlightCombatTower",
             "highlightCombatPersonalQuest",
             "highlightCombatAdventures",
+
             "hideCombatEquipment",
             "hideCombatAbilities",
             "hideCombatTower",
@@ -305,12 +310,14 @@ Meteor.methods({
             "hideCombatAdventures",
             "hideCombatGroup",
             "hideCombatBattleLog",
+
             "hideMiningEquipment",
             "highlightMiningEquipment",
             "hideMiningMiners",
             "highlightMiningMiners",
             "hideMiningProspectors",
             "highlightMiningProspectors",
+
             "currentStep"
         ]
 

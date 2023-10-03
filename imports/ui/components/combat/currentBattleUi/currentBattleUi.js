@@ -559,10 +559,8 @@ Template.currentBattleUi.helpers({
                 ability.index = abilityIndexes[ability.slot]
                 // some abilities can't be used manually, so they don't get a hotkey
                 if (
-                    ability.slot === "companion" ||
-                    (abilitiesConstantsFromMeteorAPI &&
-                        abilitiesConstantsFromMeteorAPI.hasOwnProperty(ability?.abilityId) &&
-                        abilitiesConstantsFromMeteorAPI[ability?.abilityId]?.isPassive)
+                    (ability.slot === "companion") ||
+                    (abilitiesConstantsFromMeteorAPI && abilitiesConstantsFromMeteorAPI.hasOwnProperty(ability?.abilityId) && abilitiesConstantsFromMeteorAPI[ability?.abilityId]?.isPassive)
                 ) {
                     ability.hotkey = ""
                 } else {

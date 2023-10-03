@@ -14,28 +14,24 @@ Template.profilePage.onCreated(function bodyOnCreated() {
         this.state.set("username", username)
 
         // Fetch and load the profile
-        Meteor.call(
-            "skills.fetchProfile",
-            username,
-            (err, { skills, abilities, equipment, characterIcon, classData }) => {
-                if (err) {
-                    return toastr.error(err.reason)
-                }
-
-                this.state.set("equipment", equipment)
-                this.state.set("abilities", abilities)
-                this.state.set("characterIcon", characterIcon)
-                this.state.set("class", classData)
-
-                this.state.set(
-                    "skills",
-                    skills.map((skill) => {
-                        skill.percentage = Math.round((skill.xp / skill.xpToLevel) * 100)
-                        return skill
-                    })
-                )
+        Meteor.call("skills.fetchProfile", username, (err, { skills, abilities, equipment, characterIcon, classData }) => {
+            if (err) {
+                return toastr.error(err.reason)
             }
-        )
+
+            this.state.set("equipment", equipment)
+            this.state.set("abilities", abilities)
+            this.state.set("characterIcon", characterIcon)
+            this.state.set("class", classData)
+
+            this.state.set(
+                "skills",
+                skills.map((skill) => {
+                    skill.percentage = Math.round((skill.xp / skill.xpToLevel) * 100)
+                    return skill
+                })
+            )
+        })
     })
 })
 

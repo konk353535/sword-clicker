@@ -19,7 +19,7 @@ const userUnequipAllAbilities = function (uid) {
     Abilities.update(
         { owner: uid },
         { $set: { "learntAbilities.$[].equipped": false } }, // thank you: https://stackoverflow.com/questions/64758739/ and https://docs.mongodb.com/manual/reference/operator/update/positional-all/
-        { multi: true, bypassCollection2: true } // thank you: https://stackoverflow.com/questions/61936551/
+        { multi: true, bypassCollection2: true }             // thank you: https://stackoverflow.com/questions/61936551/
     )
 }
 
@@ -58,18 +58,21 @@ Meteor.methods({
                 userNewClassToEquip.exclusiveAbilities.forEach((thisAbility) => {
                     const abilityConstants = ABILITIES[thisAbility]
 
-                    Abilities.update(userAbilities._id, {
-                        $push: {
-                            learntAbilities: {
-                                abilityId: thisAbility,
-                                level: 1,
-                                equipped: false,
-                                isSpell: abilityConstants.isMagic,
-                                casts: abilityConstants.isMagic ? 1 : undefined,
-                                currentCooldown: 0
+                    Abilities.update(
+                        userAbilities._id,
+                        {
+                            $push: {
+                                learntAbilities: {
+                                    abilityId: thisAbility,
+                                    level: 1,
+                                    equipped: false,
+                                    isSpell: abilityConstants.isMagic,
+                                    casts: abilityConstants.isMagic ? 1 : undefined,
+                                    currentCooldown: 0
+                                }
                             }
                         }
-                    })
+                    )
                 })
 
                 // update that the user was active

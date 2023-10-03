@@ -62,7 +62,7 @@ export const addXp = function (
     ignoreTownBuffs = false,
     doResetLogic = false
 ) {
-    if (xp === 0 && !doResetLogic) {
+    if ((xp === 0) && (!doResetLogic)) {
         return
     }
 

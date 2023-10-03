@@ -552,7 +552,7 @@ Accounts.onCreateUser((options, user) => {
         showChat: false,
         showSummaryList: false,
         craftingFilter: "mining",
-        darkMode: true, // default
+        darkMode: true,         // default
         largeChatEnabled: false // deafult
     }
 

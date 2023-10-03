@@ -353,7 +353,7 @@ export const startBattle = function ({
                     broughtCompanion = true
                 } else {
                     // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature (should already be filtered, but just in case...)
-                    if (abilityCount >= 5 && !classFeatureUnlocked(targetUser._id)) {
+                    if ((abilityCount >= 5) && (!classFeatureUnlocked(targetUser._id))) {
                         return false
                     } else if (abilityCount >= 8) {
                         return false
@@ -446,9 +446,7 @@ export const startBattle = function ({
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
         // tried applying passives above first, but they wouldn't function correctly
 
-        userCombat.enchantments = (userCombat.enchantments ? userCombat.enchantments : []).concat(
-            newUnit.currentClass.autoBuffs
-        )
+        userCombat.enchantments = ((userCombat.enchantments) ? userCombat.enchantments : []).concat(newUnit.currentClass.autoBuffs)
 
         if (userCombat.enchantments) {
             //console.log("START :: startbattle player enchantments");

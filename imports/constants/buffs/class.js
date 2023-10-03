@@ -1,4 +1,8 @@
-import { CDbl } from "../../utils.js"
+import moment from "moment"
+import _ from "underscore"
+
+import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
+import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
 
 export const CLASS_BUFFS = {
     class_perk_barbarian: {
@@ -8,7 +12,8 @@ export const CLASS_BUFFS = {
         description() {
             return ``
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,

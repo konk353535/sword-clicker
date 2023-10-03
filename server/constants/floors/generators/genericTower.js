@@ -107,11 +107,7 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
                 healthMax: (room / 1.2) * 30 * adjustedFloorLevel * (1 + adjustedFloorLevel / 2.3) * (1 / totalUnits),
                 attack: (room / 1.8) * 3.8 * adjustedFloorLevel * (1 + adjustedFloorLevel / 2.3),
                 attackMax: (room / 1.8) * 4.75 * adjustedFloorLevel * (1 + adjustedFloorLevel / 2.3),
-                magicPower:
-                    (room / 1.8) *
-                    2.5 *
-                    ((floor + adjustedFloorLevel) / 2.0) *
-                    (1 + (floor + adjustedFloorLevel) / 2.0 / 2.3),
+                magicPower: (room / 1.8) * 2.5 * ((floor + adjustedFloorLevel) / 2.0) * (1 + ((floor + adjustedFloorLevel) / 2.0) / 2.3),
                 attackSpeed: 0.6 + room / 30,
                 //accuracy: ((floor * 2) + (room / 4) * 6.5 * (floor * 1.1)), // old and somewhat weak vs modern defense
                 accuracy: adjustedFloorLevel * 3 + (room / 3.5) * 7.5 * (adjustedFloorLevel * 1.2), // old and somewhat weak vs modern defense

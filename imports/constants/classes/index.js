@@ -231,7 +231,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: [],
+        autoBuffs: ["class_perk_sage"],
         equipmentBonuses: {
             staff: {
                 magicPower: {

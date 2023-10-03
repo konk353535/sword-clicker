@@ -26,6 +26,22 @@ export function dealDamage(
         return 0
     }
 
+    if (defender.currentClass && defender.currentClass?.id === "tactician") {
+        if (Math.random() <= 0.1) {
+            // Tacticians have a 10% chance to completely nullify any tick of damage, whether it's from autoattack, DoT ticks, spell casts, etc.
+            return 0
+        }
+    }
+    
+    if (attacker.currentClass && attacker.currentClass?.id === "duelist") {
+        if (!isMagic) {
+            if (attacker.target != defender.id) {
+                // Duelists deal +50% physical damage to targets they aren't directly targeting
+                rawDamage *= 1.5
+            }
+        }
+    }
+
     const isMagicOrig = isMagic
 
     // if the attacker wants to flip phys to magic or magic to phys

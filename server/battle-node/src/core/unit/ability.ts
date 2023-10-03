@@ -76,7 +76,7 @@ export default class Ability {
 
         this.id = ability.id
         // @ts-expect-error
-        this.constants = Object.assign({}, ABILITIES[ability.id], this.unit?.currentClass?.abilityPatch[ability.id]) // patch class overrides for requirements to active abilities and spells (including passives)
+        this.constants = Object.assign({}, ABILITIES[ability.id], this.unit?.currentClass?.abilityPatch ? this.unit?.currentClass?.abilityPatch[ability.id] : {}) // patch class overrides for requirements to active abilities and spells (including passives)
         this.level = ability.level
         this.totalCasts = ability.totalCasts
         this._currentCooldown = ability.currentCooldown

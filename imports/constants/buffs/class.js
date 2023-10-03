@@ -80,5 +80,45 @@ export const CLASS_BUFFS = {
 
             onRemove({ buff, target, caster }) {}
         }
+    },
+
+    class_perk_sage: {
+        duplicateTag: "class_perk_sage", // Used to stop duplicate buffs
+        icon: "",
+        name: "Class Perk: Sage",
+        description() {
+            return ``
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true,
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onDidHealing({ buff, target, caster, actualBattle, healAmount, healSource }) {
+                if (!healSource) {
+                    return
+                }
+
+                const healSourceConsts =
+                    healSource.constants && healSource.constants.constants
+                        ? healSource.constants.constants
+                        : lookupBuff(healSource.id).constants
+                if (healSourceConsts.reducesCooldowns && caster.abilities) {
+                    caster.abilities.forEach((ability) => {
+                        ability._currentCooldown -= 2.0
+                    })
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+
+            onRemove({ buff, target, caster }) {}
+        }
     }
 }

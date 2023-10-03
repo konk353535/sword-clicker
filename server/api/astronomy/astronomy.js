@@ -6,6 +6,7 @@ import _ from "underscore"
 import { ASTRONOMY } from "/imports/constants/astronomy/index.js"
 
 import { Astronomy } from "/imports/api/astronomy/astronomy"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Users } from "/imports/api/users/users"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
@@ -302,10 +303,20 @@ Meteor.methods({
             }
 
             let localMageAttackSpeed = currentMage.stats.attackSpeed
+            let mageAttackSpeedBuffFromClass = 0
+            let mageAttackSpeedBuffFromTown = 0
+
+            const userClass = userCurrentClass()
+            if (userClass?.unlocked && userClass?.equipped === "wizard") {
+                mageAttackSpeedBuffFromClass = 0.25
+            }
+
             const townBuffObservatoryLevel = getBuffLevel("town_observatory")
             if (townBuffObservatoryLevel > 0) {
-                localMageAttackSpeed *= 1 + (townBuffObservatoryLevel + 1) * 0.03 // 6% - 18%
+                mageAttackSpeedBuffFromTown = (townBuffObservatoryLevel + 1) * 0.03 // 6% - 18%
             }
+
+            localMageAttackSpeed *= 1 + mageAttackSpeedBuffFromClass + mageAttackSpeedBuffFromTown
 
             // Calculate shard fragments found
             let totalFound = localMageAttackSpeed * localHoursElapsed

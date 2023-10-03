@@ -5,6 +5,7 @@ import { Template } from "meteor/templating"
 import lodash from "lodash"
 
 import { Astronomy } from "/imports/api/astronomy/astronomy.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Items } from "/imports/api/items/items.js"
 import { Skills } from "/imports/api/skills/skills.js"
 
@@ -130,10 +131,20 @@ Template.astronomyTab.helpers({
                 mage.primaryAction = {}
             }
 
+            let mageAttackSpeedBuffFromClass = 0
+            let mageAttackSpeedBuffFromTown = 0
+
+            const userClass = userCurrentClass()
+            if (userClass?.unlocked && userClass?.equipped === "wizard") {
+                mageAttackSpeedBuffFromClass = 0.25
+            }
+
             const townBuffObservatoryLevel = getBuffLevel("town_observatory")
             if (townBuffObservatoryLevel > 0) {
-                mage.stats.attackSpeed *= 1 + (townBuffObservatoryLevel + 1) * 0.03 // 6% - 18%
+                mageAttackSpeedBuffFromTown + (townBuffObservatoryLevel + 1) * 0.03 // 6% - 18%
             }
+
+            mage.stats.attackSpeed *= 1 + mageAttackSpeedBuffFromClass + mageAttackSpeedBuffFromTown
 
             //console.log(mage);
         })

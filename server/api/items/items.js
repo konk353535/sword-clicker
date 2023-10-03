@@ -1039,13 +1039,13 @@ Meteor.methods({
                         // offHand slot is not a quiver and this mainHand is a bow, unequip the offHand slot
                         affectedSlots.push("offHand")
                     } else {
-                        // offHand slot is a quiver and this mainHand is a bow, no logic
+                        // offHand slot is a quiver and this mainHand is a bow, no logic (let it happen)
                     }
                 } else {
-                    // no offHand slot equipped, no logic
+                    // no offHand slot equipped, no logic (let it happen)
                 }
             }
-            // or UNLESS this 2h mainHand is a rapier and offHand slot is a buckler (applies to Duelists only)
+            // or UNLESS this 2h mainHand are rapiers and offHand slot is a buckler (applies to Duelists only)
             else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "rapier") {
                 const offHandEquipped = Items.findOne({
                     owner: Meteor.userId(),
@@ -1054,16 +1054,34 @@ Meteor.methods({
                 })
                 if (offHandEquipped) {
                     if (ITEMS[offHandEquipped.itemId].weaponType !== "buckler") {
-                        // offHand slot is not a buckler and this mainHand is a rapier, unequip the offHand slot
+                        // offHand slot is not a buckler and this mainHand are rapiers, unequip the offHand slot
                         affectedSlots.push("offHand")
                     } else {
-                        // offHand slot is a buckler and this mainHand is a buckler, no logic
+                        // offHand slot is a buckler and this mainHand are rapiers, no logic (let it happen)
                     }
                 } else {
-                    // no offHand slot equipped, no logic
+                    // no offHand slot equipped, no logic (let it happen)
+                }
+            } 
+            // or UNLESS this 2h mainHand is a longsword and offHand slot is a kite shield, buckler, or spirit shield (applies to Paladins only)
+            else if (userClass.unlocked && userClass.equipped == "paladin" && itemConstants.weaponType === "longSword") {
+                const offHandEquipped = Items.findOne({
+                    owner: Meteor.userId(),
+                    equipped: true,
+                    slot: "offHand"
+                })
+                if (offHandEquipped) {
+                    if (ITEMS[offHandEquipped.itemId].weaponType !== "buckler" && ITEMS[offHandEquipped.itemId].weaponType !== "shield") {
+                        // offHand slot is not a buckler or shield and this mainHand is a longsword, unequip the offHand slot
+                        affectedSlots.push("offHand")
+                    } else {
+                        // offHand slot is a buckler or shield and this mainHand is a longsword, no logic (let it happen)
+                    }
+                } else {
+                    // no offHand slot equipped, no logic (let it happen)
                 }
             } else {
-                // this mainHand is not a bow or a rapier-while-duelist, blindly unequip anything in offHand slot
+                // this mainHand is not a bow ... or ... a rapier-while-duelist ... or ... a longsword-while-paladin, blindly unequip anything in offHand slot
                 affectedSlots.push("offHand")
             }
         } else if (itemConstants.isWeapon) {
@@ -1083,7 +1101,7 @@ Meteor.methods({
                     // offHand slot is not a quiver and this mainHand is not a bow, no logic
                 }
             } else {
-                // no offHand slot equipped, no logic
+                // no offHand slot equipped, no logic (let it happen)
             }
         }
 
@@ -1103,7 +1121,7 @@ Meteor.methods({
                             // mainHand slot is not a bow and this offHand is a quiver, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")
                         } else {
-                            // mainHand slot is a bow and this offHand is a quiver, no logic
+                            // mainHand slot is a bow and this offHand is a quiver, no logic (let it happen)
                         }
                     } // or UNLESS this offHand is a buckler and our mainHand are rapiers while the user is a Dualist class
                     else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "buckler") {
@@ -1111,10 +1129,18 @@ Meteor.methods({
                             // mainHand slot are not rapiers and this offHand is a buckler, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")
                         } else {
-                            // mainHand slot are rapiers and this offHand is a buckler, no logic
+                            // mainHand slot are rapiers and this offHand is a buckler, no logic (let it happen)
+                        }
+                    } // or UNLESS this offHand is a buckler or shield and our mainHand is a longsword while the user is a Paladin class
+                    else if (userClass.unlocked && userClass.equipped == "paladin" && (itemConstants.weaponType === "buckler" || itemConstants.weaponType === "shield")) {
+                        if (ITEMS[mainHandEquipped.itemId].weaponType !== "longSword") {
+                            // mainHand slot is not a longsword and this offHand is a buckler or shield, unequip the 2H mainHand slot
+                            affectedSlots.push("mainHand")
+                        } else {
+                            // mainHand slot is a longsword and this offHand is a buckler or shield, no logic (let it happen)
                         }
                     } else {
-                        // this offHand is not a buckler at all, unequip the 2H mainHand slot
+                        // at this point, the offHand item unequips the equipped 2H mainHand slot
                         affectedSlots.push("mainHand")
                     }
                 } else {

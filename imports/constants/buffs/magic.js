@@ -625,7 +625,8 @@ export const MAGIC_BUFFS = {
             healMPRatio: 1.1,
             healthCost: 2,
             healthCostMPRatio: 0.075,
-            removesCurse: true
+            removesCurse: true,
+            reducesCooldowns: true
         },
         data: {
             duration: 0,
@@ -691,7 +692,8 @@ export const MAGIC_BUFFS = {
             armorMPRatio: 0.7,
             healthCost: 5,
             healthCostMPRatio: 0.15,
-            removesCurse: true
+            removesCurse: true,
+            reducesCooldowns: true
         },
         data: {
             duration: 0,
@@ -764,7 +766,8 @@ export const MAGIC_BUFFS = {
             healMPRatio: 1,
             healthCost: 5,
             healthCostMPRatio: 0.15,
-            removesCurse: true
+            removesCurse: true,
+            reducesCooldowns: true
         },
         data: {
             duration: 0,
@@ -822,7 +825,8 @@ export const MAGIC_BUFFS = {
             healMPRatio: 1.25,
             healthCost: 10,
             healthCostMPRatio: 0.13,
-            removesCurse: true
+            removesCurse: true,
+            reducesCooldowns: true
         },
         data: {
             duration: 0,
@@ -880,7 +884,8 @@ export const MAGIC_BUFFS = {
             healMPRatio: 4,
             healthCost: 50,
             healthCostMPRatio: 0.5,
-            removesCurse: true
+            removesCurse: true,
+            reducesCooldowns: true
         },
         data: {
             duration: 0,

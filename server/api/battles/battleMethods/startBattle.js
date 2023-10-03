@@ -314,7 +314,7 @@ export const startBattle = function ({
             companionTokens += CInt(companionTokensDoc.amount)
         }
 
-        const userCombatStats = {}
+        let userCombatStats = {}
         COMBAT.statsArr.forEach((statName) => {
             if (userCombat.stats[statName] !== undefined) {
                 userCombatStats[statName] = userCombat.stats[statName]
@@ -420,6 +420,13 @@ export const startBattle = function ({
             inactiveMinutes = Math.round(moment().diff(moment(targetUser.lastActivity), "minutes"))
         }
 
+        let thisUnitClass = userCurrentClass(userCombat.owner).data
+        thisUnitClass.reforge = { } // the battle node does not need this data and it can be a lot
+
+        if (thisUnitClass?.id === 'barbarian') {
+            userCombatStats.magicPower = 0
+        }
+
         const newUnit = {
             id: userCombat.owner,
             owner: userCombat.owner,
@@ -440,7 +447,7 @@ export const startBattle = function ({
             skills: usersSkillsArray,
             inactiveMinutes: inactiveMinutes,
             enchantmentsList: [],
-            currentClass: userCurrentClass(userCombat.owner).data
+            currentClass: thisUnitClass
         }
 
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives

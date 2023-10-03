@@ -7,6 +7,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 
 import { updateUserActivity } from "/imports/api/users/users.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { COMBAT_CRAFTS } from "/imports/constants/combat/crafts.js"
@@ -1013,6 +1014,15 @@ Meteor.methods({
 
             if (!hasEquipRequirements) {
                 throw new Meteor.Error("equip-requirement", requirementString)
+            }
+        }
+
+        if (itemSlot == "head") {
+            const userClass = userCurrentClass()
+            if (userClass.unlocked) {
+                if (userClass.equipped == "duelist") {
+                    throw new Meteor.Error("equip-requirement", `${userClass.data.name}s are unable to equip head gear.`)
+                }
             }
         }
 

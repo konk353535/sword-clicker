@@ -23,7 +23,7 @@ export const CLASS_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
 
-            onDidDamage: function ({ buff, defender, attacker, actualBattle, damageDealt, source, customIcon }) {
+            onDidDamage: function ({ buff, defender, attacker, actualBattle, damageDealt, source, customIcon, originalAutoAttack }) {
                 if (customIcon === "basicDamageCrit") {
                     // Add bleed debuff
                     attacker.applyBuffTo({
@@ -43,9 +43,40 @@ export const CLASS_BUFFS = {
                         target: defender // alternatively can use attacker.targetUnit
                     })
                 }
+
+                // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
+                if (originalAutoAttack) {
+                    console.log(attacker && attacker.mainHandWeapon)
+                    if (attacker.mainHandWeapon?.weaponType?.indexOf('_long_sword') !== -1 || attacker.mainHandWeapon?.weaponType?.indexOf('_battle_axe') !== -1) {
+                        if (Math.random() <= 0.25) {
+                            if (attacker) {
+                                // Get the defender
+                                const ourTargetUnit = attacker.targetUnit
+                                if (ourTargetUnit) {
+                                    // Get enemies both side of him
+                                    const ourTargetsAllies = ourTargetUnit.adjacentAllies
+                                    if (ourTargetsAllies && ourTargetsAllies.length > 0) {
+                                        ourTargetUnit.adjacentAllies.forEach((newTarget) => {
+                                            // Call auto attack on them as well
+                                            actualBattle.autoAttack({
+                                                attacker,
+                                                defender: newTarget,
+                                                tickEvents: actualBattle.tickEvents,
+                                                historyStats: actualBattle.historyStats,
+                                                originalAutoAttack: false
+                                            })
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
 
-            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                target.stats.magicPower = 0
+            },
 
             onRemove({ buff, target, caster }) {}
         }

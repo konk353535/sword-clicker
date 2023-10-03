@@ -10,6 +10,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 
 import { getActiveGlobalBuff, getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { CRAFTING } from "/imports/constants/crafting/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
@@ -266,10 +267,18 @@ const getReforgeData = function getReforgeData(_id) {
         }
     })
 
-    if (!recipeData) {
-        if (ITEMS[currentItem.itemId].reforgeRecipe && ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting) {
+    if (!recipeData || !recipeData.requiredCraftingLevel) {
+        const classReforgeData = userCurrentClass()?.data?.reforge
+        let itemConstants = lodash.clone(ITEMS[currentItem.itemId])
+
+        if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
             recipeData = {
-                requiredCraftingLevel: ITEMS[currentItem.itemId].reforgeRecipe.requiresCrafting,
+                requiredCraftingLevel: itemConstants.reforgeRecipe.requiresCrafting,
+                isLooted: true
+            }
+        } else if (classReforgeData && classReforgeData[currentItem.itemId] && classReforgeData[currentItem.itemId].requiresCrafting) {
+            recipeData = {
+                requiredCraftingLevel: classReforgeData[currentItem.itemId].requiresCrafting,
                 isLooted: true
             }
         }

@@ -2,12 +2,14 @@ import { Meteor } from "meteor/meteor"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import lodash from "lodash"
 import moment from "moment"
 
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS } from "/imports/constants/shop/index.js"
 
 import { BattlesList } from "/imports/api/battles/battles.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Crafting } from "/imports/api/crafting/crafting.js"
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { Items } from "/imports/api/items/items.js"
@@ -908,6 +910,8 @@ const FetchSomeHiddenItems = function (highestFurnaceTier) {
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
 
+    const classReforgeData = userCurrentClass()?.data?.reforge
+
     return Items.find(
         {
             equipped: false,
@@ -924,7 +928,7 @@ const FetchSomeHiddenItems = function (highestFurnaceTier) {
     )
         .map(itemModifier)
         .filter((item) => {
-            const itemConstants = ITEMS[item.itemId]
+            let itemConstants = lodash.clone(ITEMS[item.itemId])
             if (itemConstants) {
                 if (item.itemId.indexOf("_furnace") !== -1 && !itemConstants.isCraftingScroll) {
                     if (itemConstants.tier < highestFurnaceTier) {
@@ -943,6 +947,16 @@ const FetchSomeHiddenItems = function (highestFurnaceTier) {
 
                         let successChance = -1000
                         let isReforgableLooted = false
+
+                        if (!itemConstants.reforgeRecipe || !itemConstants.reforgeRecipe.requiresCrafting) {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = classReforgeData[item.itemId]
+                            }
+                        } else {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                            }
+                        }
 
                         if (
                             !recipeData &&
@@ -1045,6 +1059,8 @@ const FetchSomeVisibleItems = function (highestFurnaceTier) {
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
 
+    const classReforgeData = userCurrentClass()?.data?.reforge
+
     return Items.find(
         {
             equipped: false,
@@ -1061,7 +1077,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier) {
     )
         .map(itemModifier)
         .filter((item) => {
-            const itemConstants = ITEMS[item.itemId]
+            let itemConstants = lodash.clone(ITEMS[item.itemId])
             if (itemConstants) {
                 if (item.itemId.indexOf("_furnace") !== -1 && !itemConstants.isCraftingScroll) {
                     if (itemConstants.tier < highestFurnaceTier) {
@@ -1080,6 +1096,16 @@ const FetchSomeVisibleItems = function (highestFurnaceTier) {
 
                         let successChance = -1000
                         let isReforgableLooted = false
+
+                        if (!itemConstants.reforgeRecipe || !itemConstants.reforgeRecipe.requiresCrafting) {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = classReforgeData[item.itemId]
+                            }
+                        } else {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                            }
+                        }
 
                         if (
                             !recipeData &&
@@ -1182,6 +1208,8 @@ const FetchAllHiddenItems = function (highestFurnaceTier) {
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
 
+    const classReforgeData = userCurrentClass()?.data?.reforge
+
     return Items.find(
         {
             equipped: false,
@@ -1196,7 +1224,7 @@ const FetchAllHiddenItems = function (highestFurnaceTier) {
     )
         .map(itemModifier)
         .filter((item) => {
-            const itemConstants = ITEMS[item.itemId]
+            let itemConstants = lodash.clone(ITEMS[item.itemId])
             if (itemConstants) {
                 if (item.itemId.indexOf("_furnace") !== -1 && !itemConstants.isCraftingScroll) {
                     if (itemConstants.tier < highestFurnaceTier) {
@@ -1215,6 +1243,16 @@ const FetchAllHiddenItems = function (highestFurnaceTier) {
 
                         let successChance = -1000
                         let isReforgableLooted = false
+
+                        if (!itemConstants.reforgeRecipe || !itemConstants.reforgeRecipe.requiresCrafting) {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = classReforgeData[item.itemId]
+                            }
+                        } else {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                            }
+                        }
 
                         if (
                             !recipeData &&
@@ -1317,6 +1355,8 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
     const craftingSkill = Skills.findOne({ type: "crafting" })
     const townBuffArmoryLevel = getBuffLevel("town_armory")
 
+    const classReforgeData = userCurrentClass()?.data?.reforge
+
     return Items.find(
         {
             equipped: false,
@@ -1331,7 +1371,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
     )
         .map(itemModifier)
         .filter((item) => {
-            const itemConstants = ITEMS[item.itemId]
+            let itemConstants = lodash.clone(ITEMS[item.itemId])
             if (itemConstants) {
                 if (item.itemId.indexOf("_furnace") !== -1 && !itemConstants.isCraftingScroll) {
                     if (itemConstants.tier < highestFurnaceTier) {
@@ -1351,6 +1391,16 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
                         let successChance = -1000
                         let isReforgableLooted = false
 
+                        if (!itemConstants.reforgeRecipe || !itemConstants.reforgeRecipe.requiresCrafting) {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = classReforgeData[item.itemId]
+                            }
+                        } else {
+                            if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
+                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                            }
+                        }
+                        
                         if (
                             !recipeData &&
                             itemConstants.reforgeRecipe &&

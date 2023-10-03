@@ -6,6 +6,7 @@ import _ from "underscore"
 
 import { Abilities } from "/imports/api/abilities/abilities"
 import { BattlesList } from "/imports/api/battles/battles"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { requirementsUtility } from "/server/api/crafting/crafting"
@@ -163,10 +164,61 @@ Meteor.methods({
             myAbilities.learntAbilities.forEach((ability) => {
                 if (ability.equipped) {
                     availableSlots = availableSlots.filter((slot) => {
+                        // User does not have the Classes feature unlocked yet, so nothing can be slotted into 'classAbil1', 'classAbil2', or 'classAbil3' at all
+                        if (!userClass.unlocked) {
+                            if (slot.indexOf('class') === 0) {
+                                return false
+                            }
+                            // else fall through and use default logic
+                        } else {
+                            if (userClass.equipped === 'tactician') {
+                                // anything goes anywhere (except companion abilities)
+                                // (do nothing there -- just fall through and use default logic)
+                            } else {
+                                // all classes except tactician force 5 active and 3 passive abilities as a cap
+
+                                if (ABILITY.slotsForClasses[slot].allowedType === 'active') {
+                                    if (targetEquipConstants?.isPassive) {
+                                        // not allowed to use a passive ability in an active-only slot
+                                        return false
+                                    }
+                                }
+                                else if (ABILITY.slotsForClasses[slot].allowedType === 'passive') {
+                                    if (!targetEquipConstants?.isPassive) {
+                                        // not allowed to use an active ability in a passive-only slot
+                                        return false
+                                    }
+                                }
+                                
+                                // else fall through and use default logic
+                            }
+                        }
                         return slot !== ability.slot && slot !== "companion" // 'any' equipped abilities can't fit into companion slots
                     })
                 }
             })
+
+            if (userClass.unlocked) {
+                if (availableSlots.length === ABILITY.slots.length) {
+                    if (userClass.equipped === 'tactician') {
+                        // anything goes anywhere (except companion abilities)
+                        // (do nothing there -- just fall through and use default logic)
+                    } else {
+                        // all classes except tactician force 5 active and 3 passive abilities as a cap
+
+                        if (targetEquipConstants?.isPassive) {
+                            // force passive abilities to be used in passive-only slots
+                            availableSlots = ABILITY.passiveSlots
+                        }
+                        if (!targetEquipConstants?.isPassive) {
+                            // force active abilities to be used in active-only slots
+                            availableSlots = ABILITY.activeSlots
+                        }
+                        
+                        // else fall through and use default logic
+                    }
+                }
+            }
 
             if (availableSlots.length > 0) {
                 const slotToUse = availableSlots[0]

@@ -1141,7 +1141,7 @@ export const ARCHER_CRAFTS = {
 
     magic_bow: {
         produces: "magic_bow",
-        name: "magic-infused bow",
+        name: "sagewood bow",
         recipeFor: "crafting",
         category: "combat",
         id: "magic_bow",
@@ -2560,7 +2560,7 @@ export const ARCHER_CRAFTS = {
 
     titanfoil_quiver: {
         produces: "titanfoil_quiver",
-        name: "magic quiver",
+        name: "sagewood quiver",
         recipeFor: "crafting",
         category: "combat",
         id: "titanfoil_quiver",

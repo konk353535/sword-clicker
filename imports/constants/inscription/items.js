@@ -640,7 +640,7 @@ export const INSCRIPTION_ITEMS = {
         id: "magic_paper",
         icon: "magicPaper.png",
         category: "paper",
-        name: "magic paper",
+        name: "sagewood paper",
         sellPrice: 1600,
         description: "Used in inscription with pigments to make ability books"
     },
@@ -649,7 +649,7 @@ export const INSCRIPTION_ITEMS = {
         id: "magic_book",
         icon: "magicBook.png",
         category: "paper",
-        name: "magic book",
+        name: "sagewood book",
         sellPrice: 9000,
         description: "Provides inscription insight."
     },

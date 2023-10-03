@@ -76,10 +76,10 @@ export const ARCHER_ITEMS = {
         icon: "magicBowScroll.svg",
         category: "crafting",
         isCraftingScroll: true,
-        name: "magic bow scroll",
+        name: "sagewood bow scroll",
         teaches: "magic_bow",
         sellPrice: 1500,
-        description: `A magic scroll, made from titanfoil inks.`,
+        description: `A sagewood scroll, made from titanfoil inks.`,
         shiftActionData: {
             description: "Learn a hidden recipe"
         }
@@ -188,10 +188,10 @@ export const ARCHER_ITEMS = {
         icon: "titanfoilQuiverScroll.svg",
         category: "crafting",
         isCraftingScroll: true,
-        name: "magic quiver scroll",
+        name: "sagewood quiver scroll",
         teaches: "titanfoil_quiver",
         sellPrice: 1500,
-        description: `A magic scroll, made from titanfoil inks.`,
+        description: `A sagewood scroll, made from titanfoil inks.`,
         shiftActionData: {
             description: "Learn a hidden recipe"
         }
@@ -1122,10 +1122,10 @@ export const ARCHER_ITEMS = {
         category: "combat",
         weaponType: "bow",
         slot: "mainHand",
-        name: "magic-infused bow",
+        name: "sagewood bow",
         sellPrice: Math.round(3000 * TITANFOIL_MULTIPLIER),
         description:
-            "A slow but powerful ranged weapon of magic-imbued wood and filigree titanfoil metals.  Bows are useless without quivers.",
+            "A slow but powerful ranged weapon of sagewood and filigree titanfoil metals.  Bows are useless without quivers.",
         isTwoHanded: true,
         isWeapon: true,
         isEquippable: true,
@@ -2014,10 +2014,10 @@ export const ARCHER_ITEMS = {
         category: "combat",
         weaponType: "quiver",
         slot: "offHand",
-        name: "magic quiver",
+        name: "sagewood quiver",
         sellPrice: 1800,
         description:
-            "A fine quiver made from titanfoil metals and filled with magic arrows.  Bows are useless without quivers.",
+            "A fine quiver made from titanfoil metals and filled with sagewood arrows.  Bows are useless without quivers.",
         isEquippable: true,
         stats: {
             accuracy: 17 * KNIFE_TO_QUIVER_ACCURACY

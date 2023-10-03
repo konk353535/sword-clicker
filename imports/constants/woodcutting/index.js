@@ -1062,7 +1062,7 @@ export const WOODCUTTING = {
             xp: 1000 * 4,
             id: "magic_log",
             icon: "magicLog.png",
-            name: "magic log",
+            name: "sagewood log",
             itemId: "magic_log",
             chance: 0.01 / 4
         },

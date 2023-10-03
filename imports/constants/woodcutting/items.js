@@ -770,8 +770,8 @@ export const WOODCUTTING_ITEMS = {
         id: "magic_log",
         icon: "magicLog.png",
         category: "woodcutting",
-        name: "magic log",
-        description: "A chopped log from a wild, magic tree, suitable for crafting.",
+        name: "sagewood log",
+        description: "A chopped log from a wild, magic sagewood tree, suitable for crafting.",
         sellPrice: 210
     },
 

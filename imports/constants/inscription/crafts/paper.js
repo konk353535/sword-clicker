@@ -1246,7 +1246,7 @@ export const PAPER_CRAFTS = {
     magic_paper: {
         recipeFor: "inscription",
         produces: "magic_paper",
-        name: "magic paper",
+        name: "sagewood paper",
         id: "magic_paper",
         category: "paper",
         timeToCraft: 160,
@@ -1273,7 +1273,7 @@ export const PAPER_CRAFTS = {
     magic_book: {
         recipeFor: "inscription",
         produces: "magic_book",
-        name: "magic book",
+        name: "sagewood book",
         id: "magic_book",
         category: "book",
         timeToCraft: 1200,

@@ -40,6 +40,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal pine staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 2,
@@ -71,6 +72,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal beech staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 4,
@@ -109,6 +111,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal ash staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 6,
@@ -147,6 +150,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal oak staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 8,
@@ -185,6 +189,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal maple staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 10,
@@ -223,6 +228,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal walnut staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 12,
@@ -261,6 +267,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal cherry staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 14,
@@ -299,6 +306,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal mahogany staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 16,
@@ -337,6 +345,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal elm staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 18,
@@ -375,6 +384,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal black staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 20,
@@ -413,6 +423,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal blue gum staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 22,
@@ -451,6 +462,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal cedar staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 24,
@@ -489,6 +501,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal denya staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 26,
@@ -527,6 +540,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal gombe staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 28,
@@ -565,6 +579,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal hickory staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 30,
@@ -603,6 +618,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal larch staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 32,
@@ -641,6 +657,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal poplar staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 34,
@@ -679,6 +696,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal tali staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 36,
@@ -717,6 +735,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal willow staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 38,
@@ -755,6 +774,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal teak staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 40,
@@ -793,6 +813,7 @@ export const STAFF_ITEMS = {
         description: "A staff from an old dwarf",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 15,
@@ -837,6 +858,7 @@ export const STAFF_ITEMS = {
         description: "The ruby lusts for blood",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 15,
@@ -883,6 +905,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful pine wand with copper inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 0,
@@ -915,6 +938,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful beech wand with tin inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 2,
@@ -954,6 +978,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful ash wand with bronze inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 4,
@@ -993,6 +1018,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful oak wand with iron inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 6,
@@ -1032,6 +1058,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful maple wand with silver inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 8,
@@ -1071,6 +1098,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful walnut wand with gold inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 10,
@@ -1110,6 +1138,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful cherry wand with carbon inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 12,
@@ -1149,6 +1178,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful mahogany wand with steel inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 14,
@@ -1188,6 +1218,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful elm wand with platinum inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 16,
@@ -1227,6 +1258,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful black wood wand with titanium inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 18,
@@ -1266,6 +1298,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful glue gum wand with tungsten inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 20,
@@ -1305,6 +1338,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful cedar wand with an obsidian tip brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 22,
@@ -1344,6 +1378,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful denya wand with cobalt inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 24,
@@ -1383,6 +1418,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful gombe wand with mithril inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 26,
@@ -1422,6 +1458,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful hickory wand with adamantium inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 28,
@@ -1461,6 +1498,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful larch wand with orichalcum inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 30,
@@ -1500,6 +1538,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful poplar wand with a meteorite tip brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 32,
@@ -1539,6 +1578,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful tali wand with fairy steel inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 34,
@@ -1578,6 +1618,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful willow wand with elven steel inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 36,
@@ -1617,6 +1658,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful teak wand with cursed metal inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 38,
@@ -1656,6 +1698,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful ebony wand with darksteel inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 40,
@@ -1695,6 +1738,7 @@ export const STAFF_ITEMS = {
         description: "An ornate charred wand with a radiant tip brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 42,
@@ -1734,6 +1778,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful tamarind wand with astral metal inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 44,
@@ -1773,6 +1818,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful sagewood wand with titanfoil inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 46,
@@ -1812,6 +1858,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful petrified wand with relicrock inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 48,
@@ -1851,6 +1898,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful ancient wood wand with eternium inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 50,
@@ -1890,6 +1938,7 @@ export const STAFF_ITEMS = {
         description: "A beautiful spiritroot wand with purestone inlays brimming with magical potential.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             attack: 1,
             attackMax: 50 * 1.09375,
@@ -1929,6 +1978,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 6,
@@ -1973,6 +2023,7 @@ export const STAFF_ITEMS = {
         description: "What seems like a normal walnut staff",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 8,
@@ -2017,6 +2068,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 15,
@@ -2061,6 +2113,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 20,
@@ -2105,6 +2158,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 27,
@@ -2149,6 +2203,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 34,
@@ -2193,6 +2248,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 41,
@@ -2237,6 +2293,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 48,
@@ -2281,6 +2338,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 55,
@@ -2325,6 +2383,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 65,
@@ -2369,6 +2428,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 75,
@@ -2413,6 +2473,7 @@ export const STAFF_ITEMS = {
         description: "A sharp trident, beaming with magical energy",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         stats: {
             attack: 90,
@@ -2458,6 +2519,7 @@ export const STAFF_ITEMS = {
         description: "A strange device capable of casting magic and doubling as a weapon.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         xpDistribution: {
             attack: 0.33,
             defense: 0.17,
@@ -2513,6 +2575,7 @@ export const STAFF_ITEMS = {
         description: "A powerful weapon capable of dealing exceptional physical and magical damage with each strike.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         isTwoHanded: true,
         xpDistribution: {
             attack: 0.225,

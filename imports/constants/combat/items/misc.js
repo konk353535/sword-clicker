@@ -1220,6 +1220,7 @@ export const MISC_ITEMS = {
             requiresCrafting: 115
         }
     },
+
     titanfoil_kite_shield: {
         id: "titanfoil_kite_shield",
         icon: "titanfoilKiteShield.png",
@@ -1264,6 +1265,7 @@ export const MISC_ITEMS = {
             requiresCrafting: 120
         }
     },
+
     relicrock_kite_shield: {
         id: "relicrock_kite_shield",
         icon: "relicrockKiteShield.png",
@@ -5583,6 +5585,7 @@ export const MISC_ITEMS = {
         sellPrice: 500,
         description: "An odd trinket that once held magic power.",
         isEquippable: true,
+        isMagic: true,
         stats: {},
         extraStats: {},
         requiredEquip: [
@@ -5604,6 +5607,7 @@ export const MISC_ITEMS = {
         sellPrice: 50,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 11.3,
             magicArmor: 7.3
@@ -5636,6 +5640,7 @@ export const MISC_ITEMS = {
         sellPrice: 125,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 13.5,
             magicArmor: 9.6
@@ -5675,6 +5680,7 @@ export const MISC_ITEMS = {
         sellPrice: 195,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 16.5,
             magicArmor: 12.4
@@ -5714,6 +5720,7 @@ export const MISC_ITEMS = {
         sellPrice: 270,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 20,
             magicArmor: 15.7
@@ -5753,6 +5760,7 @@ export const MISC_ITEMS = {
         sellPrice: 340,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 24,
             magicArmor: 19.4
@@ -5792,6 +5800,7 @@ export const MISC_ITEMS = {
         sellPrice: 415,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 28.4,
             magicArmor: 23.5
@@ -5831,6 +5840,7 @@ export const MISC_ITEMS = {
         sellPrice: 485,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 33.2,
             magicArmor: 27.8
@@ -5870,6 +5880,7 @@ export const MISC_ITEMS = {
         sellPrice: 560,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 38.3,
             magicArmor: 32.5
@@ -5909,6 +5920,7 @@ export const MISC_ITEMS = {
         sellPrice: 630,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 43.8,
             magicArmor: 37.4
@@ -5948,6 +5960,7 @@ export const MISC_ITEMS = {
         sellPrice: 705,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 49.5,
             magicArmor: 42.6
@@ -5987,6 +6000,7 @@ export const MISC_ITEMS = {
         sellPrice: 775,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 55.6,
             magicArmor: 48.1
@@ -6026,6 +6040,7 @@ export const MISC_ITEMS = {
         sellPrice: 850,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 62,
             magicArmor: 53.7
@@ -6065,6 +6080,7 @@ export const MISC_ITEMS = {
         sellPrice: 920,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 68.6,
             magicArmor: 59.6
@@ -6104,6 +6120,7 @@ export const MISC_ITEMS = {
         sellPrice: 995,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 75.5,
             magicArmor: 65.7
@@ -6143,6 +6160,7 @@ export const MISC_ITEMS = {
         sellPrice: 1065,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 82.6,
             magicArmor: 72
@@ -6182,6 +6200,7 @@ export const MISC_ITEMS = {
         sellPrice: 1140,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 90,
             magicArmor: 78.4
@@ -6221,6 +6240,7 @@ export const MISC_ITEMS = {
         sellPrice: 1210,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 97.6,
             magicArmor: 85.1
@@ -6260,6 +6280,7 @@ export const MISC_ITEMS = {
         sellPrice: 1285,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 105.5,
             magicArmor: 91.9
@@ -6299,6 +6320,7 @@ export const MISC_ITEMS = {
         sellPrice: 1355,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 113.5,
             magicArmor: 98.9
@@ -6338,6 +6360,7 @@ export const MISC_ITEMS = {
         sellPrice: 1430,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 121.8,
             magicArmor: 106.1
@@ -6377,6 +6400,7 @@ export const MISC_ITEMS = {
         sellPrice: 1500,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 130.3,
             magicArmor: 113.4
@@ -6416,6 +6440,7 @@ export const MISC_ITEMS = {
         sellPrice: 1575,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 139,
             magicArmor: 120.9
@@ -6455,6 +6480,7 @@ export const MISC_ITEMS = {
         sellPrice: 1645,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 147.9,
             magicArmor: 128.6
@@ -6494,6 +6520,7 @@ export const MISC_ITEMS = {
         sellPrice: 1720,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 157,
             magicArmor: 136.4
@@ -6533,6 +6560,7 @@ export const MISC_ITEMS = {
         sellPrice: 1790,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 166.3,
             magicArmor: 144.3
@@ -6572,6 +6600,7 @@ export const MISC_ITEMS = {
         sellPrice: 1865,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 175.7,
             magicArmor: 152.4
@@ -6611,6 +6640,7 @@ export const MISC_ITEMS = {
         sellPrice: 1865 * 1.09375,
         description: "The shield pulls at your spirit",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 175.7 * 1.09375,
             magicArmor: 152.4 * 1.09375
@@ -7081,6 +7111,7 @@ export const MISC_ITEMS = {
         sellPrice: 1000,
         description: "A mystical device of wisdom and knowledge",
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 3,
             healingPower: 0.1,
@@ -7103,6 +7134,7 @@ export const MISC_ITEMS = {
         sellPrice: 1000,
         description: "A mystical device of wisdom and knowledge",
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 9,
             healingPower: 0.1,
@@ -7126,6 +7158,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and diminished device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 0,
             magicPower: 5,
@@ -7160,6 +7193,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and cracked device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 1,
             magicPower: 6,
@@ -7201,6 +7235,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and dim device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 1,
             magicPower: 7,
@@ -7242,6 +7277,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and malformed device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 2,
             magicPower: 8,
@@ -7283,6 +7319,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and pale device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 2,
             magicPower: 9,
@@ -7324,6 +7361,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and magic-touched device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 3,
             magicPower: 10,
@@ -7365,6 +7403,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and weak device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 3,
             magicPower: 11,
@@ -7406,6 +7445,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and tainted device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 4,
             magicPower: 12,
@@ -7447,6 +7487,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and shimmering device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 4,
             magicPower: 13,
@@ -7488,6 +7529,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and glittering device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 5,
             magicPower: 14,
@@ -7529,6 +7571,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and glowing device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 5,
             magicPower: 15.5,
@@ -7570,6 +7613,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and pulsating device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 6,
             magicPower: 17,
@@ -7611,6 +7655,7 @@ export const MISC_ITEMS = {
         description: "Some decorative balloons that glow and shimmer with magic.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 15,
             magicArmor: 15,
@@ -7653,6 +7698,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and runed device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 6,
             magicPower: 18.5,
@@ -7694,6 +7740,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and billowing device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 7,
             magicPower: 20,
@@ -7735,6 +7782,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and pristine device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 7,
             magicPower: 21.5,
@@ -7776,6 +7824,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and arcane device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 8,
             magicPower: 23,
@@ -7817,6 +7866,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and powerful device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 8,
             magicPower: 24.5,
@@ -7858,6 +7908,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and dangerous device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 9,
             magicPower: 26,
@@ -7899,6 +7950,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and prismatic device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 9,
             magicPower: 27.5,
@@ -7940,6 +7992,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and cataclysmic device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 10,
             magicPower: 29,
@@ -7981,6 +8034,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and intense device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 10,
             magicPower: 32.3,
@@ -8022,6 +8076,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and primal device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 11,
             magicPower: 35.1,
@@ -8063,6 +8118,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and overflowing device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 11,
             magicPower: 37.9,
@@ -8104,6 +8160,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and phantasmal device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 12,
             magicPower: 40.7,
@@ -8145,6 +8202,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and farplane device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 12,
             magicPower: 43.5,
@@ -8186,6 +8244,7 @@ export const MISC_ITEMS = {
         description: "A mysterious and exalted device.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             defense: 13,
             magicPower: 46.3,
@@ -8227,6 +8286,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 4,
             healingPower: 8
@@ -8257,6 +8317,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 5,
             healingPower: 8
@@ -8294,6 +8355,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 6,
             healingPower: 8
@@ -8331,6 +8393,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 7,
             healingPower: 8
@@ -8368,6 +8431,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 8,
             healingPower: 8
@@ -8405,6 +8469,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 9,
             healingPower: 8
@@ -8442,6 +8507,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 10,
             healingPower: 8
@@ -8479,6 +8545,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 11,
             healingPower: 8
@@ -8516,6 +8583,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 12,
             healingPower: 8
@@ -8553,6 +8621,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 13,
             healingPower: 8
@@ -8590,6 +8659,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 14.5,
             healingPower: 8
@@ -8627,6 +8697,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 16,
             healingPower: 8
@@ -8664,6 +8735,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 17.5,
             healingPower: 8
@@ -8701,6 +8773,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 19,
             healingPower: 8
@@ -8738,6 +8811,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 20.5,
             healingPower: 8
@@ -8775,6 +8849,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 22,
             healingPower: 8
@@ -8812,6 +8887,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 23.5,
             healingPower: 8
@@ -8849,6 +8925,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 25,
             healingPower: 8
@@ -8886,6 +8963,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 26.5,
             healingPower: 8
@@ -8923,6 +9001,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 28,
             healingPower: 8
@@ -8960,6 +9039,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 30.5,
             healingPower: 10
@@ -8997,6 +9077,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 33,
             healingPower: 10
@@ -9034,6 +9115,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 35.5,
             healingPower: 10
@@ -9071,6 +9153,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 38,
             healingPower: 12
@@ -9108,6 +9191,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 40.5,
             healingPower: 12
@@ -9145,6 +9229,7 @@ export const MISC_ITEMS = {
         description: "A font of arcane secrets.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 43,
             healingPower: 13
@@ -9180,6 +9265,7 @@ export const MISC_ITEMS = {
         sellPrice: 1,
         description: "Seems to spread holiday cheer",
         isEquippable: true,
+        isMagic: true,
         stats: {
             attackSpeed: -0.1,
             magicPower: 20,
@@ -9209,6 +9295,7 @@ export const MISC_ITEMS = {
         sellPrice: 1,
         description: "You'll be spry and agile in this for certain!",
         isEquippable: true,
+        isMagic: true,
         stats: {
             accuracy: 25,
             attackSpeed: 0.15,
@@ -9387,6 +9474,7 @@ export const MISC_ITEMS = {
         sellPrice: 1,
         description: "They're so cute!",
         isEquippable: true,
+        isMagic: true,
         stats: {
             armor: 25
         },
@@ -9514,6 +9602,7 @@ export const MISC_ITEMS = {
         description: "An ordinarily cauldron with unordinary ingredients.",
         isWeapon: true,
         isEquippable: true,
+        isMagic: true,
         stats: {
             magicPower: 35
         },

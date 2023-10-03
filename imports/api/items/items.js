@@ -4,6 +4,7 @@ import { Mongo } from "meteor/mongo"
 
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { CDbl } from "/imports/utils.js"
 
 export const Items = new Mongo.Collection("items")
@@ -26,6 +27,49 @@ ItemsSchema = new SimpleSchema({
 })
 
 Items.attachSchema(ItemsSchema)
+
+export const applyClassBonuses = function applyClassBonuses(statsObj, itemConstants) {
+    let localStatsObj
+
+    try {
+        const userClass = userCurrentClass()
+        localStatsObj = lodash.cloneDeep(statsObj)
+
+        if (userClass.unlocked && userClass.data && userClass.data.equipmentBonuses) {
+            Object.keys(localStatsObj).forEach((statName) => {
+                // ensure that property refers to a stat of any value
+                if (typeof localStatsObj[statName] !== 'undefined') {
+                    // if the class modifies this stat
+                    if (userClass.data.equipmentBonuses[itemConstants.weaponType || itemConstants.slot] && userClass.data.equipmentBonuses[itemConstants.weaponType || itemConstants.slot][statName]) {
+                        // then let's go!
+                        const classModifications = userClass.data.equipmentBonuses[itemConstants.weaponType || itemConstants.slot][statName]
+
+                        let processRule = true
+                        if (classModifications.ifMagic && !itemConstants.isMagic) {
+                            processRule = false
+                        }
+                        else if (classModifications.unlessMagic && itemConstants.isMagic) {
+                            processRule = false
+                        }
+
+                        if (processRule) {
+                            if (classModifications.valueAdd) {
+                                // apply additive stats first (REMINDER: this gets applied to both the base item and the extra, so use half values in constants)
+                                localStatsObj[statName] += CDbl(classModifications?.valueAdd)
+                            }
+                            if (classModifications.valueMultiply !== 'undefined') {
+                                // apply multiplicative stats second (NOTE: this gets applied to both, but since it scales, use full values in constants)
+                                localStatsObj[statName] *= CDbl(classModifications.valueMultiply)
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    } catch (err) {}
+
+    return localStatsObj ? localStatsObj : statsObj
+}
 
 export const applyRarities = function applyRarities(statsObj, rarityId) {
     let localStatsObj

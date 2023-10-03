@@ -31,6 +31,18 @@ export const CLASSES = {
         },
         exclusiveAbilities: [],
         autoBuffs: [],
+        equipmentBonuses: {
+            buckler: {
+                accuracy: {
+                    valueMultiply: 2
+                }
+            },
+            rapier: {
+                defense: {
+                    valueMultiply: 0
+                }
+            }
+        },
         abilityPatch: {
             twin_blades: {
                 requires: [
@@ -50,7 +62,37 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: []
+        autoBuffs: [],
+        equipmentBonuses: {
+            hammer: {
+                attackMax: {
+                    valueMultiply: 2
+                }
+            },
+            spear: {
+                attackMax: {
+                    valueMultiply: 2
+                }
+            },
+            chest: {
+                healthMax: {
+                    valueMultiply: 2,
+                    unlessMagic: true
+                }
+            },
+            leg: {
+                healthMax: {
+                    valueMultiply: 2,
+                    unlessMagic: true
+                }
+            },
+            head: {
+                healthMax: {
+                    valueMultiply: 2,
+                    unlessMagic: true
+                }
+            }
+        }
     },
 
     ranger: {
@@ -60,7 +102,126 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: []
+        autoBuffs: [],
+        equipmentBonuses: {
+            bow: {
+                attackSpeed: {
+                    valueAdd: 0.1
+                }
+            },
+            dagger: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            spear: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            shortSword: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            longSword: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            battleAxe: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            knife: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            orb: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            shield: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            tome: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            buckler: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            trident: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            wand: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            staff: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            hammer: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            }
+        }
     },
 
     sage: {
@@ -71,6 +232,13 @@ export const CLASSES = {
         },
         exclusiveAbilities: [],
         autoBuffs: [],
+        equipmentBonuses: {
+            staff: {
+                magicPower: {
+                    valueMultiply: 3
+                }
+            }
+        },
         reforge: {
             pine_staff: {
                 requiresCrafting: 5
@@ -153,6 +321,60 @@ export const CLASSES = {
         },
         exclusiveAbilities: [],
         autoBuffs: [],
+        equipmentBonuses: {
+            trident: {
+                attackSpeed: {
+                    valueAdd: 0.3
+                }
+            },
+            neck: {
+                attack: {
+                    valueMultiply: 2
+                },
+                attackMax: {
+                    valueMultiply: 2
+                },
+                criticalChance: {
+                    valueMultiply: 2
+                },
+                criticalDamage: {
+                    valueMultiply: 2
+                },
+                damage: {
+                    valueMultiply: 2
+                },
+                accuracy: {
+                    valueMultiply: 2
+                },
+                healthMax: {
+                    valueMultiply: 2
+                },
+                defense: {
+                    valueMultiply: 2
+                },
+                armor: {
+                    valueMultiply: 2
+                },
+                magicArmor: {
+                    valueMultiply: 2
+                },
+                energyStorage: {
+                    valueMultiply: 2
+                },
+                energyRegen: {
+                    valueMultiply: 2
+                },
+                magicPower: {
+                    valueMultiply: 2
+                },
+                healingPower: {
+                    valueMultiply: 2
+                },
+                attackSpeed: {
+                    valueMultiply: 2
+                }
+            }
+        },
         reforge: {
             brown_wizard_hat: {
                 requiresCrafting: 8
@@ -273,6 +495,20 @@ export const CLASSES = {
         },
         exclusiveAbilities: [],
         autoBuffs: [],
+        equipmentBonuses: {
+            tome: {
+                magicPower: {
+                    valueMultiply: 2,
+                    ifMagic: true
+                }
+            },
+            orb: {
+                magicPower: {
+                    valueMultiply: 2,
+                    ifMagic: true
+                }
+            }
+        },
         reforge: {
             copper_wand: {
                 requiresCrafting: 5

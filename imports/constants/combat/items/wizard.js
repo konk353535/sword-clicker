@@ -8,6 +8,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 750,
         description: "Seems to smother healing energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 60,
             magicPower: 15,
@@ -37,6 +38,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 17500,
         description: "A wreath of eternal flames.",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 250,
             magicPower: 35,
@@ -66,6 +68,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 500,
         description: "Helps emit healing energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             accuracy: -25,
@@ -98,6 +101,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 600,
         description: "Helps emit healing energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             magicPower: 6,
@@ -136,6 +140,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 600,
         description: "Helps emit healing energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             magicPower: 6,
@@ -174,6 +179,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 100,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             magicPower: 3,
@@ -210,6 +216,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 300,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 60,
             magicPower: 6,
@@ -246,6 +253,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 1000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 70,
             magicPower: 10,
@@ -282,6 +290,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 80,
             magicPower: 15,
@@ -318,6 +327,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 100,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             magicPower: 3,
@@ -354,6 +364,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 300,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 60,
             magicPower: 6,
@@ -390,6 +401,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 1000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 70,
             magicPower: 10,
@@ -426,6 +438,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 80,
             magicPower: 15,
@@ -462,6 +475,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 100,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 30,
             magicPower: 3,
@@ -498,6 +512,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 300,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 60,
             magicPower: 6,
@@ -534,6 +549,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 1000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 70,
             magicPower: 10,
@@ -570,6 +586,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 80,
             magicPower: 15,
@@ -606,6 +623,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 90,
             magicPower: 20,
@@ -642,6 +660,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 90,
             magicPower: 20,
@@ -678,6 +697,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 90,
             magicPower: 20,
@@ -714,6 +734,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2750,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 100,
             magicPower: 25,
@@ -750,6 +771,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2750,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 100,
             magicPower: 25,
@@ -786,6 +808,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 2750,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 100,
             magicPower: 25,
@@ -822,6 +845,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 110,
             magicPower: 30,
@@ -858,6 +882,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 110,
             magicPower: 30,
@@ -894,6 +919,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3000,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 110,
             magicPower: 30,
@@ -930,6 +956,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3250,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 120,
             magicPower: 35,
@@ -966,6 +993,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3250,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 120,
             magicPower: 35,
@@ -1002,6 +1030,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3250,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 120,
             magicPower: 35,
@@ -1038,6 +1067,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 130,
             magicPower: 40,
@@ -1074,6 +1104,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 130,
             magicPower: 40,
@@ -1110,6 +1141,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 130,
             magicPower: 40,
@@ -1146,6 +1178,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 150,
             magicPower: 48,
@@ -1182,6 +1215,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 150,
             magicPower: 48,
@@ -1218,6 +1252,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 150,
             magicPower: 48,
@@ -1254,6 +1289,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 180,
             magicPower: 58,
@@ -1290,6 +1326,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 180,
             magicPower: 58,
@@ -1326,6 +1363,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 180,
             magicPower: 58,
@@ -1362,6 +1400,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 250,
             magicPower: 70,
@@ -1398,6 +1437,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 250,
             magicPower: 70,
@@ -1434,6 +1474,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 3500,
         description: "Helps emit magical energy",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 250,
             magicPower: 70,
@@ -1470,6 +1511,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 75000,
         description: "Emits dark energy, threatening to corrupt the wearer's soul.",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 350,
             magicPower: 80,
@@ -1500,6 +1542,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 75000,
         description: "Emits dark energy, threatening to corrupt the wearer's soul.",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 350,
             magicPower: 80,
@@ -1530,6 +1573,7 @@ export const WIZARD_ITEMS = {
         sellPrice: 75000,
         description: "Emits dark energy, threatening to corrupt the wearer's soul.",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healthMax: 350,
             magicPower: 80,

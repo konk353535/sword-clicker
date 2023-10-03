@@ -983,9 +983,10 @@ Meteor.methods({
         })
 
         const itemConstants = ITEMS[item.itemId]
-        // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fix
+        // SECURITY ISSUE: We're trusting the user to send the correct itemId here, needs to be fixed
         const itemSlot = itemConstants.slot
         const itemCategory = itemConstants.category
+        const userClass = userCurrentClass()
 
         // Can we equip the specified item?
         if (itemConstants.requiredEquip) {
@@ -1018,11 +1019,8 @@ Meteor.methods({
         }
 
         if (itemSlot == "head") {
-            const userClass = userCurrentClass()
-            if (userClass.unlocked) {
-                if (userClass.equipped == "duelist") {
-                    throw new Meteor.Error("equip-requirement", `${userClass.data.name}s are unable to equip head gear.`)
-                }
+            if (userClass.unlocked && userClass.equipped == "duelist") {
+                throw new Meteor.Error("equip-requirement", `${userClass.data.name}s are unable to equip head gear.`)
             }
         }
 
@@ -1046,8 +1044,26 @@ Meteor.methods({
                 } else {
                     // no offHand slot equipped, no logic
                 }
+            }
+            // or UNLESS this 2h mainHand is a rapier and offHand slot is a buckler (applies to Duelists only)
+            else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "rapier") {
+                const offHandEquipped = Items.findOne({
+                    owner: Meteor.userId(),
+                    equipped: true,
+                    slot: "offHand"
+                })
+                if (offHandEquipped) {
+                    if (ITEMS[offHandEquipped.itemId].weaponType !== "buckler") {
+                        // offHand slot is not a buckler and this mainHand is a rapier, unequip the offHand slot
+                        affectedSlots.push("offHand")
+                    } else {
+                        // offHand slot is a buckler and this mainHand is a buckler, no logic
+                    }
+                } else {
+                    // no offHand slot equipped, no logic
+                }
             } else {
-                // this mainHand is not a bow, blindly unequip anything in offHand slot
+                // this mainHand is not a bow or a rapier-while-duelist, blindly unequip anything in offHand slot
                 affectedSlots.push("offHand")
             }
         } else if (itemConstants.isWeapon) {
@@ -1089,8 +1105,16 @@ Meteor.methods({
                         } else {
                             // mainHand slot is a bow and this offHand is a quiver, no logic
                         }
+                    } // or UNLESS this offHand is a buckler and our mainHand are rapiers while the user is a Dualist class
+                    else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "buckler") {
+                        if (ITEMS[mainHandEquipped.itemId].weaponType !== "rapier") {
+                            // mainHand slot are not rapiers and this offHand is a buckler, unequip the 2H mainHand slot
+                            affectedSlots.push("mainHand")
+                        } else {
+                            // mainHand slot are rapiers and this offHand is a buckler, no logic
+                        }
                     } else {
-                        // this offHand is not a quiver, unequip the 2H mainHand slot
+                        // this offHand is not a buckler at all, unequip the 2H mainHand slot
                         affectedSlots.push("mainHand")
                     }
                 } else {

@@ -3,7 +3,7 @@ import { Abilities } from "/imports/api/abilities/abilities"
 import { Battles } from "/imports/api/battles/battles"
 import { Combat, userAverageCombat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
-import { Items, applyRarities } from "/imports/api/items/items"
+import { Items, applyClassBonuses, applyRarities } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 
@@ -100,9 +100,9 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         }
 
         if (combatItem.constants.stats) {
-            const combatItemBaseStats = applyRarities(combatItem.constants.stats, combatItem.rarityId)
+            const combatItemBaseStats = applyRarities(applyClassBonuses(combatItem.constants.stats, combatItem.constants), combatItem.rarityId)
             const combatItemExtraStats = combatItem.extraStats
-                ? applyRarities(combatItem.extraStats, combatItem.rarityId)
+                ? applyRarities(applyClassBonuses(combatItem.extraStats, combatItem.constants), combatItem.rarityId)
                 : undefined
 
             const itemStats = lodash.cloneDeep(combatItemBaseStats)

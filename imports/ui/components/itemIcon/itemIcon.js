@@ -10,7 +10,7 @@ import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { WOODCUTTING } from "/imports/constants/woodcutting/index.js"
 
-import { applyRarities } from "/imports/api/items/items.js"
+import { applyClassBonuses, applyRarities } from "/imports/api/items/items.js"
 import { CInt } from "/imports/utils.js"
 
 import "./itemIcon.html"
@@ -328,9 +328,9 @@ Template.itemIcon.helpers({
         const constants = item.itemId ? ITEMS[item.itemId] : undefined
         const statsObj =
             constants && constants.stats
-                ? applyRarities(constants.stats, item.rarityId)
-                : applyRarities(item.stats, item.rarityId)
-        const extraStats = item.extraStats ? applyRarities(item.extraStats, item.rarityId) : undefined
+                ? applyRarities(applyClassBonuses(constants.stats, constants), item.rarityId)
+                : applyRarities(applyClassBonuses(item.stats, constants), item.rarityId)
+        const extraStats = item.extraStats ? applyRarities(applyClassBonuses(item.extraStats, constants), item.rarityId) : undefined
 
         if (extraStats) {
             Object.keys(extraStats).forEach((statName) => {

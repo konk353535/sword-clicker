@@ -31,6 +31,12 @@ export function unitAutoAttacks(this: Battle, units: Unit[]) {
                     canAutoAttack = false
                 }
 
+                if (this.units.length > 1) {
+                    if (unit.currentClass?.id === "sage") {
+                        canAutoAttack = false
+                    }
+                }
+
                 if (canAutoAttack) {
                     this.autoAttack({
                         attacker: unit,

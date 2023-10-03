@@ -4,70 +4,135 @@
             Equipped Abilities
         </h4>
         <div class="d-flex flex-wrap mb-3">
-            <!-- Main Hand -->
-            {{#if equippedAbilitiesMap.mainHand}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
-            {{else}}
-                <div class="icon-box">
-                    1
-                </div>
-            {{/if}}
-            <!-- Off Hand -->
-            {{#if equippedAbilitiesMap.offHand}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
-            {{else}}
-                <div class="icon-box">
-                    2
-                </div>
-            {{/if}}
-            <!-- Head -->
-            {{#if equippedAbilitiesMap.head}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
-            {{else}}
-                <div class="icon-box">
-                    3
-                </div>
-            {{/if}}
-            <!-- Chest -->
-            {{#if equippedAbilitiesMap.chest}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
-            {{else}}
-                <div class="icon-box">
-                    4
-                </div>
-            {{/if}}
-            <!-- Legs -->
-            {{#if equippedAbilitiesMap.legs}}
-                {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
-            {{else}}
-                <div class="icon-box">
-                    5
-                </div>
-            {{/if}}
+            
             {{#if classFeatureUnlocked}}
+                <!-- Main Hand -->
+                {{#if equippedAbilitiesMap.mainHand}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+                {{else}}
+                    <div class="icon-box" style="text-align: center;">
+                        1
+                        {{#if $neq isTactician true}}
+                            <br />Active
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <!-- Off Hand -->
+                {{#if equippedAbilitiesMap.offHand}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+                {{else}}
+                    <div class="icon-box" style="text-align: center;">
+                        2
+                        {{#if $neq isTactician true}}
+                            <br />Active
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <!-- Head -->
+                {{#if equippedAbilitiesMap.head}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+                {{else}}
+                    <div class="icon-box" style="text-align: center;">
+                        3
+                        {{#if $neq isTactician true}}
+                            <br />Active
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <!-- Chest -->
+                {{#if equippedAbilitiesMap.chest}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+                {{else}}
+                    <div class="icon-box" style="text-align: center;">
+                        4
+                        {{#if $neq isTactician true}}
+                            <br />Active
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <!-- Legs -->
+                {{#if equippedAbilitiesMap.legs}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+                {{else}}
+                    <div class="icon-box" style="text-align: center;">
+                        5
+                        {{#if $neq isTactician true}}
+                            <br />Active
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <!-- classAbil1 -->
                 {{#if equippedAbilitiesMap.classAbil1}}
                     {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1}}
                 {{else}}
-                    <div class="icon-box">
+                    <div class="icon-box" style="text-align: center;">
                         6
+                        {{#if $neq isTactician true}}
+                            <br />Passive
+                        {{/if}}
                     </div>
                 {{/if}}
-            {{/if}}
-            {{#if classFeatureUnlocked}}
+                <!-- classAbil2 -->
                 {{#if equippedAbilitiesMap.classAbil2}}
                     {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2}}
                 {{else}}
-                    <div class="icon-box">
+                    <div class="icon-box" style="text-align: center;">
                         7
+                        {{#if $neq isTactician true}}
+                            <br />Passive
+                        {{/if}}
                     </div>
                 {{/if}}
-            {{/if}}
-            {{#if classFeatureUnlocked}}
+                <!-- classAbil3 -->
                 {{#if equippedAbilitiesMap.classAbil3}}
                     {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3}}
                 {{else}}
-                    <div class="icon-box">
+                    <div class="icon-box" style="text-align: center;">
                         8
+                        {{#if $neq isTactician true}}
+                            <br />Passive
+                        {{/if}}
+                    </div>
+                {{/if}}
+            {{else}}
+                <!-- Main Hand -->
+                {{#if equippedAbilitiesMap.mainHand}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+                {{else}}
+                    <div class="icon-box">
+                        1
+                    </div>
+                {{/if}}
+                <!-- Off Hand -->
+                {{#if equippedAbilitiesMap.offHand}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+                {{else}}
+                    <div class="icon-box">
+                        2
+                    </div>
+                {{/if}}
+                <!-- Head -->
+                {{#if equippedAbilitiesMap.head}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+                {{else}}
+                    <div class="icon-box">
+                        3
+                    </div>
+                {{/if}}
+                <!-- Chest -->
+                {{#if equippedAbilitiesMap.chest}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+                {{else}}
+                    <div class="icon-box">
+                        4
+                    </div>
+                {{/if}}
+                <!-- Legs -->
+                {{#if equippedAbilitiesMap.legs}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+                {{else}}
+                    <div class="icon-box">
+                        5
                     </div>
                 {{/if}}
             {{/if}}

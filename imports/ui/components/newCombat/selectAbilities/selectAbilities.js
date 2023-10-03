@@ -233,5 +233,9 @@ Template.selectAbilitiesPage.helpers({
     
     classFeatureUnlocked() {
         return classFeatureUnlocked()
+    },
+
+    isTactician() {
+        return userCurrentClass().equipped === 'tactician'
     }
 })

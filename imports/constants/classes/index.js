@@ -68,7 +68,7 @@ export const CLASSES = {
         id: 'tactician',
         name: 'Tactician',
         eligible: function() {
-            return false
+            return true
         },
         exclusiveAbilities: [ ],
         autoBuffs: [ ]

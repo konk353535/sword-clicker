@@ -70,6 +70,10 @@ Template.selectAbilitiesPage.events({
         instance.data.setPage("loadout")
     },
 
+    "click .remove-all-abilities-btn"(event, instance) {
+        Meteor.call("abilities.unequipAll")
+    },
+
     "click .battle-nav-link"(event, instance) {
         console.log("battle nav link clicked")
         instance.data.setPage("loadout")
@@ -227,15 +231,15 @@ Template.selectAbilitiesPage.helpers({
 
         tempList = _.sortBy(tempList, "name")
         tempList = _.sortBy(tempList, function (ability) {
-            if (ability.slot === "companion") return 0
-            if (!ability.isMagic) {
-                if (ability.isPassive) return 15
-                return 20
+            if (ability.slot === "companion") return 0 // companions first
+            if (ability.isMagic) {
+                if (ability.isPassive) return 15 // magical passives fourth
+                return 20 // magical actives fifth
             }
-            if (ability.isPassive) return 5
-            return 10
+            if (ability.isPassive) return 5 // passives second
+            return 10 // actives third
         })
-        tempList = _.sortBy(tempList, "notLearnt")
+        //tempList = _.sortBy(tempList, "notLearnt")
 
         return {
             learnt: tempList.filter((list) => !list.notLearnt),

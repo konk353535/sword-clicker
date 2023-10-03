@@ -60,6 +60,14 @@ Template.loadoutPage.events({
         instance.data.setPage("selectAbilities")
     },
 
+    "click .remove-all-gear-btn"(event, instance) {
+        Meteor.call("items.unequipAllCombat")
+    },
+
+    "click .remove-all-abilities-btn"(event, instance) {
+        Meteor.call("abilities.unequipAll")
+    },
+
     "click .select-class"(event, instance) {
         const newClass = instance.$(event.target).closest(".select-class").data("class")
         Meteor.call("classes.equipClass", Meteor.userId(), newClass, (err, res) => {
@@ -78,12 +86,19 @@ Template.loadoutPage.events({
 
 Template.loadoutPage.helpers({
     equippedItemsMap() {
+        const instance = Template.instance()
         const equippedItems = Items.find({
             category: "combat",
             equipped: true
         }).map((item) => {
             item.hideCount = true
-            item.primaryAction = {}
+            item.primaryAction = {
+                description: "edit gear loadout",
+                item,
+                method() {
+                    instance.data.setPage("selectGear")
+                }
+            }
             return item
         })
 
@@ -102,6 +117,15 @@ Template.loadoutPage.helpers({
         }
 
         const equippedAbilities = myAbilities.learntAbilities.filter((ability) => {
+            const instance = Template.instance()
+            ability.primaryAction = {
+                description: "edit ability loadout",
+                ability,
+                method() {
+                    instance.data.setPage("selectAbilities")
+                }
+            }
+
             return ability.equipped
         })
 

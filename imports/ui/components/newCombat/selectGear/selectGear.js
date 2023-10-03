@@ -14,6 +14,10 @@ Template.selectGearPage.onCreated(function bodyOnCreated() {
 Template.selectGearPage.events({
     "click .back-to-loadout-btn"(event, instance) {
         instance.data.setPage("loadout")
+    },
+
+    "click .remove-all-gear-btn"(event, instance) {
+        Meteor.call("items.unequipAllCombat")
     }
 })
 

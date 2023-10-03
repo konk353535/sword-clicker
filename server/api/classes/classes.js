@@ -11,11 +11,11 @@ import { ABILITIES } from "/server/constants/combat/index"
 
 import { updateCombatStats } from "/server/api/combat/combat.js"
 
-const userUnequipAllItems = function (uid) {
+export const userUnequipAllItems = function (uid) {
     Items.update({ owner: uid, category: "combat" }, { $set: { equipped: false } }, { multi: true })
 }
 
-const userUnequipAllAbilities = function (uid) {
+export const userUnequipAllAbilities = function (uid) {
     Abilities.update(
         { owner: uid },
         { $set: { "learntAbilities.$[].equipped": false } }, // thank you: https://stackoverflow.com/questions/64758739/ and https://docs.mongodb.com/manual/reference/operator/update/positional-all/

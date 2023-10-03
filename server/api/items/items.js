@@ -16,6 +16,7 @@ import { updateCombatStats } from "/server/api/combat/combat.js"
 import { updateMiningStats } from "/server/api/mining/mining.js"
 import { addXp } from "/server/api/skills/skills.js"
 import { flattenObjectForMongo } from "/server/utils"
+import { userUnequipAllItems } from "/server/api/classes/classes.js"
 
 import Numeral from "numeral"
 
@@ -968,6 +969,10 @@ Meteor.methods({
         })
 
         updateUserActivity({ userId: Meteor.userId() })
+    },
+
+    "items.unequipAllCombat"() {
+        userUnequipAllItems(Meteor.userId())
     },
 
     "items.equip"(_id) {

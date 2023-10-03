@@ -16,6 +16,7 @@ import { ABILITIES, ABILITY } from "/server/constants/combat/index"
 import { MAGIC } from "/server/constants/magic/index"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
+import { userUnequipAllAbilities } from "/server/api/classes/classes.js"
 import { consumeItem } from "/server/api/items/items"
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
@@ -140,6 +141,10 @@ Meteor.methods({
 
         // Merge with required items to craft said abilities
         return mySpellAbilities
+    },
+
+    "abilities.unequipAll"() {
+        userUnequipAllAbilities(Meteor.userId())
     },
 
     "abilities.equip"(abilityId) {
@@ -383,6 +388,7 @@ Meteor.methods({
                     icon: abilityConstant.icon,
                     isHidden: abilityConstant.isHidden,
                     cooldown: abilityConstant.cooldown,
+                    isMagic: abilityConstant.isMagic || false,
                     isPassive: abilityConstant.isPassive || false,
                     isPacifist: abilityConstant.isPacifist || false,
                     requires: abilityConstant.requires,
@@ -463,6 +469,7 @@ Meteor.methods({
                     buff: abilityConstant.buffs && abilityConstant.buffs.length > 0 ? abilityConstant.buffs[0] : "",
                     isPassive: abilityConstant.isPassive || false,
                     isPacifist: abilityConstant.isPacifist || false,
+                    isMagic: abilityConstant.isMagic || false,
                     requires: abilityConstant.requires,
                     cantUseWith: abilityConstant.cantUseWith
                 }

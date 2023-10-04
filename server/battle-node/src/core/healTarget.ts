@@ -16,6 +16,14 @@ export function healTarget(
         return // error
     }
 
+    // Useful debug, please don't remove
+    //console.log("=== HEAL TRACKING :: START ===")
+    //console.log(`Caster of heal: ${caster?._name || caster?.id || "<unknown>"}`)
+    //console.log(`Target of heal: ${target?._name || target?.id || "<unknown>"}`)
+    //console.log(`Heal source: ${healSource?.constants?.duplicateTag || healSource?.data?.duplicateTag || healSource?.id || "<unknown>"}`)
+    //console.log(healSource) // this is usually an object ref to the buff that applied the effect
+    //console.log("=== HEAL TRACKING :: END ===")
+
     if (caster.stats && caster.stats.healingPower && _.isFinite(caster.stats.healingPower)) {
         healAmount *= 1 + caster.stats.healingPower / 100
     }

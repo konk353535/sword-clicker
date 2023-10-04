@@ -46,8 +46,7 @@ export const CLASS_BUFFS = {
 
                 // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
                 if (originalAutoAttack) {
-                    console.log(attacker && attacker.mainHandWeapon)
-                    if (attacker.mainHandWeapon?.weaponType?.indexOf('_long_sword') !== -1 || attacker.mainHandWeapon?.weaponType?.indexOf('_battle_axe') !== -1) {
+                    if (attacker.mainHandWeapon?.indexOf('_long_sword') !== -1 || attacker.mainHandWeapon?.indexOf('_battle_axe') !== -1) {
                         if (Math.random() <= 0.25) {
                             if (attacker) {
                                 // Get the defender
@@ -135,6 +134,30 @@ export const CLASS_BUFFS = {
                 target.stats.attack += buff.data.damageBoosted.attack
                 target.stats.attackMax += buff.data.damageBoosted.attackMax
             },
+        }
+    },
+
+    class_passive_duelist__driven: {
+        duplicateTag: "class_passive_duelist__driven", // Used to stop duplicate buffs
+        icon: "duelistDriven.svg",
+        name: "Driven",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        Your damage is reduced by half, but you auto-attack twice as fast.`
+        },
+        constants: {},
+        data: {
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                target.stats.attackSpeed *= 2.0
+                target.stats.attack /= 2.0
+                target.stats.attackMax /= 2.0
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
         }
     },
 
@@ -226,6 +249,128 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_perk_ranger: {
+        duplicateTag: "class_perk_ranger", // Used to stop duplicate buffs
+        icon: "rangerPerk.svg",
+        name: "Ranger: Perk",
+        description() {
+            return `
+        Class trait<br/>
+        Every time you successfully hit with a bow, you gain a stack of this perk that increases
+        your attack speed by +20% per stack (up to a maximum of +100% at 5 stacks) which is reset
+        when an auto-attack misses.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.stacks = 0
+                buff.data.damageBoosted = {
+                    attackSpeed: 0
+                }
+
+                if (target.mainHandWeapon?.indexOf('_bow') !== -1 ) {
+                    caster.applyBuffTo({
+                        buff: target.generateBuff({
+                            buffId: "class_perk_ranger_volley",
+                            buffData: {
+                                stacks: 0
+                            }
+                        }),
+                        target
+                    })
+                }
+            },
+
+            onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
+                if (source == "autoattack") {
+                    buff.stacks = 0
+                }
+            },
+
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
+                if (source == "autoattack") {
+                    buff.stacks++
+                    if (buff.stacks > 5) {
+                        buff.stacks = 5
+                    }
+                }
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                // undo existing bonus
+                target.stats.attackSpeed -= buff.data.damageBoosted.attackSpeed
+
+                if (target.mainHandWeapon?.indexOf('_bow') === -1 ) {
+                    buff.stacks = 0
+                    buff.data.damageBoosted.attackSpeed = 0
+                    removeBuff({ buff, target, caster, actualBattle })
+                    //todo: possibly hide the buff and unhide it if we ever implement a weapon-disarming feature
+                    return
+                }
+
+                // calculate new bonus
+                buff.data.damageBoosted.attackSpeed = target.stats.attack + (buff.stacks * 0.1)
+
+                // apply new bonus
+                target.stats.attackSpeed += buff.data.damageBoosted.attackSpeed
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_perk_ranger_volley: {
+        duplicateTag: "class_perk_ranger_volley", // Used to stop duplicate buffs
+        icon: "rangerPerk.svg",
+        name: "Ranger: Perk",
+        description() {
+            return `
+        Class trait<br/>
+        The fewer active and passive abilities slotted in your loadout, the more maximum
+        shots that Volley can fire.  Each empty ability slot adds +1 to Volley's maximum
+        number of arrows.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.stacks = 0
+                buff.data.didStacks = false
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.didStacks) {
+                    buff.data.didStacks = true
+                    
+                    if (target.abilities) {
+                        let abilityCount = 0
+                        target.abilities.forEach((ability) => {
+                            if (ability.slot != "companion") {
+                                abilityCount++
+                            }
+                        })
+                        if (abilityCount < 8) {
+                            buff.stacks = 8 - abilityCount
+                        }
+                    }
+                }
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_perk_sage: {
         duplicateTag: "class_perk_sage", // Used to stop duplicate buffs
         icon: "",
@@ -266,6 +411,55 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_passive_sage__ward: {
+        duplicateTag: "class_passive_sage__ward", // Used to stop duplicate buffs
+        icon: "sageWard.svg",
+        name: "Ward",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        Prevents you from being directly targeted unless there are no other allies remaining in battle.`
+        },
+        constants: {},
+        data: {
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (this.units.length <= 1) {
+                    return
+                }
+
+                //todo: improve this, this forces enemies to retarget every tick -- it'd be more efficient and possibly
+                //      prevent an edge case race condition by patching where targets are originally assigned instead
+
+                let targetingUs = 0
+                actualBattle.enemies.forEach((enemy) => {
+                    if (enemy.target == target.id) {
+                        targetingUs++
+                    }
+                })
+                if (targetingUs > 0) {
+                    let allFriendlyCombatUnitsExcludingSelf = []
+                    _.forEach(actualBattle.units, function (thisFriendlyUnit) {
+                        if (thisFriendlyUnit.id != target.id) {
+                            allFriendlyCombatUnitsExcludingSelf.push(thisFriendlyUnit)
+                        }
+                    })
+
+                    actualBattle.enemies.forEach((enemy) => {
+                        if (enemy.target == target.id) {
+                            enemy.target = _.sample(allFriendlyCombatUnitsExcludingSelf).id
+                        }
+                    })
+
+                }
+            },
+        }
+    },
+
     class_perk_warmage: {
         duplicateTag: "class_perk_warmage", // Used to stop duplicate buffs
         icon: "",
@@ -285,7 +479,6 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-                console.log("onTookDamage - perk_warmage")
                 if (damageDealt > 0) {
                     // reduce max health by 1%
 
@@ -328,7 +521,6 @@ export const CLASS_BUFFS = {
 
             // for abilities and spells, including the 'magic_blade' proc from tridents -- does not include auto-attack (that's 'onDidDamage'), which can't hit for magic damage
             onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
-                console.log("onDidRawDamage - perk_warmage")
                 if (magic && damageDealt > 0) {
                     // increase max health by 1%
 
@@ -343,5 +535,5 @@ export const CLASS_BUFFS = {
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
         }
-    },
+    }
 }

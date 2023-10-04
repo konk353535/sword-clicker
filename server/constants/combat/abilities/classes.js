@@ -17,6 +17,23 @@ export const CLASS_ABILITIES = {
             return BUFF.description({ buff: BUFF, level })
         }
     },
+
+    class_passive_duelist__driven: {
+        icon: "duelistDriven.svg",
+        name: "Driven",
+        id: "class_passive_duelist__driven",
+        buffs: ["class_passive_duelist__driven"],
+        cooldown: 0,
+        isPassive: true,
+        slot: "any",
+        target: "self",
+        isPacifist: false,
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_passive_duelist__driven
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
     
     class_passive_paladin__bulwark: {
         icon: "warden_shield.svg",
@@ -31,6 +48,23 @@ export const CLASS_ABILITIES = {
         isHidden: true,
         description(level) {
             const BUFF = BUFFS.class_passive_paladin__bulwark
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_passive_sage__ward: {
+        icon: "sageWard.svg",
+        name: "Ward",
+        id: "class_passive_sage__ward",
+        buffs: ["class_passive_sage__ward"],
+        cooldown: 0,
+        isPassive: true,
+        slot: "any",
+        target: "self",
+        isPacifist: true,
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_passive_sage__ward
             return BUFF.description({ buff: BUFF, level })
         }
     },

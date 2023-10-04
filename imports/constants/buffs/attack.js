@@ -1661,8 +1661,20 @@ export const ATTACK_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const lowerRange = buffConstants.minimumShots
-                const upperRange = buffConstants.extraShotsBase + buffConstants.extraShotsPerLevel * buff.data.level
+                let  upperRange = buffConstants.extraShotsBase + buffConstants.extraShotsPerLevel * buff.data.level
                 const extraDamage = buffConstants.extraDamagePerLevel * buff.data.level
+
+                if (caster?.currentClass?.id === "ranger") {
+                    let rangerVolleyBuff = undefined
+                    target.buffs.forEach((thisBuff) => {
+                        if (thisBuff.id === "class_perk_ranger_volley") {
+                            rangerVolleyBuff = thisBuff
+                        }
+                    })
+                    if (rangerVolleyBuff) {
+                        upperRange += CInt(rangerVolleyBuff?._stacks)
+                    }
+                }
 
                 const randomAttackCount = Math.ceil(Math.random() * upperRange + lowerRange)
 

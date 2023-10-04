@@ -32,7 +32,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_duelist__driven"],
         autoBuffs: [],
         equipmentBonuses: {
             buckler: {
@@ -107,7 +107,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: [],
+        autoBuffs: ["class_perk_ranger"],
         equipmentBonuses: {
             bow: {
                 attackSpeed: {
@@ -236,7 +236,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_sage__ward"],
         autoBuffs: ["class_perk_sage"],
         equipmentBonuses: {
             staff: {

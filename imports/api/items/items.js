@@ -37,7 +37,7 @@ export const applyClassBonuses = function applyClassBonuses(statsObj, itemConsta
 
         if (userClass.unlocked && userClass.data && userClass.data.equipmentBonuses) {
             Object.keys(localStatsObj).forEach((statName) => {
-                // ensure that property refers to a stat of any value
+                // ensure that property refers to a stat of any value (don't simplify this to 'if (localStatsObj[statName])' or a value of 0 will get skipped)
                 if (typeof localStatsObj[statName] !== 'undefined') {
                     // if the class modifies this stat
                     if (userClass.data.equipmentBonuses[itemConstants.weaponType || itemConstants.slot] && userClass.data.equipmentBonuses[itemConstants.weaponType || itemConstants.slot][statName]) {
@@ -53,11 +53,11 @@ export const applyClassBonuses = function applyClassBonuses(statsObj, itemConsta
                         }
 
                         if (processRule) {
-                            if (classModifications.valueAdd) {
+                            if (typeof classModifications.valueAdd !== 'undefined') {
                                 // apply additive stats first (REMINDER: this gets applied to both the base item and the extra, so use half values in constants)
-                                localStatsObj[statName] += CDbl(classModifications?.valueAdd)
+                                localStatsObj[statName] += CDbl(classModifications.valueAdd)
                             }
-                            if (classModifications.valueMultiply !== 'undefined') {
+                            if (typeof classModifications.valueMultiply !== 'undefined') {
                                 // apply multiplicative stats second (NOTE: this gets applied to both, but since it scales, use full values in constants)
                                 localStatsObj[statName] *= CDbl(classModifications.valueMultiply)
                             }

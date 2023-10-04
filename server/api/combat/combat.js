@@ -199,13 +199,16 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         owner: userId
     })
 
-    const userClass = userCurrentClass()
-    if (userClass && userClass.unlocked) {
-        const userClassData = (newClass === undefined || typeof newClass === 'undefined') ? userClass.data : newClass
-        if (userClassData.id == "wizard") {
-            playerData.stats.health /= 2.0
-            playerData.stats.healthMax /= 2.0
+    try {
+        const userClass = userCurrentClass(userId)
+        if (userClass && userClass.unlocked) {
+            const userClassData = (newClass === undefined || typeof newClass === 'undefined') ? userClass.data : newClass
+            if (userClassData.id == "wizard") {
+                playerData.stats.health /= 2.0
+                playerData.stats.healthMax /= 2.0
+            }
         }
+    } catch (err) {
     }
 
     // If health is above healthMax, reset health

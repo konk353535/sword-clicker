@@ -423,14 +423,13 @@ export const CLASS_BUFFS = {
         constants: {},
         data: {
             duration: Infinity,
-            totalDuration: Infinity,
-            hideBuff: true
+            totalDuration: Infinity
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                if (this.units.length <= 1) {
+                if (actualBattle.units.length <= 1) {
                     return
                 }
 

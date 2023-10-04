@@ -13,6 +13,7 @@ const TYPES = {
 }
 
 import { Battles, BattlesList, getMaxEnergyUse } from "/imports/api/battles/battles.js"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat.js"
 import { getGlobalBuffs } from "/imports/api/globalbuffs/globalbuffs"
 import { Groups } from "/imports/api/groups/groups.js"
@@ -852,6 +853,7 @@ Template.lobbyPage.helpers({
             } else {
                 userCombat.isLeader = false
             }
+            userCombat.classIcon = userCurrentClass(userCombat.owner).icon
 
             return userCombat
         })

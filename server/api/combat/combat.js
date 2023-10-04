@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor"
 import { Abilities } from "/imports/api/abilities/abilities"
+import { userCurrentClass } from "/imports/api/classes/classes"
 import { Battles } from "/imports/api/battles/battles"
 import { Combat, userAverageCombat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
@@ -29,7 +30,7 @@ const isAmuletNoncombatStats = (slot, statKey) => {
     return slot === "neck" && amuletNoncomatStats.includes(statKey)
 }
 
-export const updateCombatStats = function (userId, username, amuletChanged = false) {
+export const updateCombatStats = function (userId, username, amuletChanged = false, newClass = undefined) {
     // Build up our object of skills
     const playerData = {
         stats: {
@@ -198,8 +199,17 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         owner: userId
     })
 
+    const userClass = userCurrentClass()
+    if (userClass && userClass.unlocked) {
+        const userClassData = (newClass === undefined || typeof newClass === 'undefined') ? userClass.data : newClass
+        if (userClassData.id == "wizard") {
+            playerData.stats.health /= 2.0
+            playerData.stats.healthMax /= 2.0
+        }
+    }
+
     // If health is above healthMax, reset health
-    if (currentCombat.stats.health > playerData.stats.healthMax) {
+    if ((currentCombat.stats.health > playerData.stats.healthMax) || (playerData.stats.health > playerData.stats.healthMax)) {
         playerData.stats.health = playerData.stats.healthMax
     }
 

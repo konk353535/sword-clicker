@@ -23,6 +23,7 @@ Template.profilePage.onCreated(function bodyOnCreated() {
             this.state.set("abilities", abilities)
             this.state.set("characterIcon", characterIcon)
             this.state.set("class", classData)
+            this.state.set("classIcon", classData?.icon)
 
             this.state.set(
                 "skills",
@@ -83,6 +84,7 @@ Template.profilePage.helpers({
     },
 
     equippedAbilitiesMap() {
+        const instance = Template.instance()
         function abilityDataCombined(ability) {
             if (ability) {
                 if (BUFFS[ability.abilityId]) {
@@ -92,7 +94,7 @@ Template.profilePage.helpers({
                         ability.description = BUFFS[ability?.abilityId].description({
                             buff: BUFFS[ability?.abilityId],
                             level: ability.level,
-                            characterClass: Template.instance().state.get("class")
+                            characterClass: instance.state.get("class")
                         })
                     }
                 }
@@ -108,6 +110,9 @@ Template.profilePage.helpers({
             abilitiesMap["head"] = abilityDataCombined(abilitiesMap.head)
             abilitiesMap["chest"] = abilityDataCombined(abilitiesMap.chest)
             abilitiesMap["legs"] = abilityDataCombined(abilitiesMap.legs)
+            abilitiesMap["classAbil1"] = abilityDataCombined(abilitiesMap.classAbil1)
+            abilitiesMap["classAbil2"] = abilityDataCombined(abilitiesMap.classAbil2)
+            abilitiesMap["classAbil3"] = abilityDataCombined(abilitiesMap.classAbil3)
             abilitiesMap["companion"] = abilityDataCombined(abilitiesMap.companion)
         }
 
@@ -117,6 +122,16 @@ Template.profilePage.helpers({
     characterIcon() {
         const instance = Template.instance()
         return instance.state.get("characterIcon")
+    },
+
+    classIcon() {
+        const instance = Template.instance()
+        return instance.state.get("classIcon")
+    },
+
+    classFeatureUnlocked() {
+        const instance = Template.instance()
+        return instance.state.get("class").unlocked == true
     },
 
     username() {

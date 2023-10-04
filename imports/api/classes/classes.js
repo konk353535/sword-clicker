@@ -32,17 +32,19 @@ export const userCurrentClass = function (uid) {
                         unlocked: classFeatureUnlocked(uid),
                         eligible: userEligibleForClass(uid, equippedClass),
                         equipped: equippedClass.id,
-                        data: equippedClass
+                        data: equippedClass,
+                        icon: equippedClass.icon
                     }
                 }
             }
 
             return {
-	        unlocked: classFeatureUnlocked(uid),
-	        eligible: classFeatureUnlocked(uid),
-	        equipped: defaultClass.id,
-	        data: defaultClass
-	    }
+                unlocked: classFeatureUnlocked(uid),
+                eligible: classFeatureUnlocked(uid),
+                equipped: defaultClass.id,
+                data: defaultClass,
+                icon: 'classNone.png'
+            }
         }
     }
 
@@ -50,6 +52,7 @@ export const userCurrentClass = function (uid) {
         unlocked: false,
         eligible: false,
         equipped: defaultClass.id,
-        data: defaultClass
+        data: defaultClass,
+        icon: 'classNone.png'
     }
 }

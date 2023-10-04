@@ -26,7 +26,10 @@
     <div class="col-md-6">
       <div class="d-flex flex-wrap">
         <div class="icon-box" style="border: none">
-          <img src="/icons/{{characterIcon}}">
+          <div class="icon-box" style="position: relative;">
+            <img src="/icons/{{characterIcon}}">
+            <img src="/icons/{{classIcon}}" style="border: none; position: absolute; left: -12px; top: -12px; z-index: 50; width: 48px; height: 48px;">
+          </div>
         </div>
         <!-- Main Hand -->
         {{#if equippedItemsMap.mainHand}}
@@ -78,56 +81,131 @@
         {{/if}}
       </div>
       <div class="d-flex flex-wrap">
-        <div class="icon-box" style="border: none">
-          <br />
-        </div>
-        <!-- Main Hand -->
-        {{#if equippedAbilitiesMap.mainHand}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.mainHand}}
+        {{#if classFeatureUnlocked}}
+          <!-- Main Hand -->
+          {{#if equippedAbilitiesMap.mainHand}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.mainHand}}
+          {{else}}
+            <div class="icon-box">
+              1
+            </div>
+          {{/if}}
+          <!-- Off Hand -->
+          {{#if equippedAbilitiesMap.offHand}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.offHand}}
+          {{else}}
+            <div class="icon-box">
+              2
+            </div>
+          {{/if}}
+          <!-- Head -->
+          {{#if equippedAbilitiesMap.head}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.head}}
+          {{else}}
+            <div class="icon-box">
+              3
+            </div>
+          {{/if}}
+          <!-- Chest -->
+          {{#if equippedAbilitiesMap.chest}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.chest}}
+          {{else}}
+            <div class="icon-box">
+              4
+            </div>
+          {{/if}}
+          <!-- Legs -->
+          {{#if equippedAbilitiesMap.legs}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.legs}}
+          {{else}}
+            <div class="icon-box">
+              5
+            </div>
+          {{/if}}
+          <!-- classAbil1 -->
+          {{#if equippedAbilitiesMap.classAbil1}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.classAbil1}}
+          {{else}}
+            <div class="icon-box">
+              6
+            </div>
+          {{/if}}
+          <!-- classAbil2 -->
+          {{#if equippedAbilitiesMap.classAbil2}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.classAbil2}}
+          {{else}}
+            <div class="icon-box">
+              7
+            </div>
+          {{/if}}
+          <!-- classAbil3 -->
+          {{#if equippedAbilitiesMap.classAbil3}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.classAbil3}}
+          {{else}}
+            <div class="icon-box">
+              8
+            </div>
+          {{/if}}
+          <!-- Companion -->
+          {{#if equippedAbilitiesMap.companion}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.companion}}
+          {{else}}
+            <div class="icon-box">
+              Companion
+            </div>
+          {{/if}}
         {{else}}
-          <div class="icon-box">
-            1
+          <div class="icon-box" style="border: none">
+            <br />
           </div>
-        {{/if}}
-        <!-- Off Hand -->
-        {{#if equippedAbilitiesMap.offHand}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.offHand}}
-        {{else}}
-          <div class="icon-box">
-            2
-          </div>
-        {{/if}}
-        <!-- Head -->
-        {{#if equippedAbilitiesMap.head}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.head}}
-        {{else}}
-          <div class="icon-box">
-            3
-          </div>
-        {{/if}}
-        <!-- Chest -->
-        {{#if equippedAbilitiesMap.chest}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.chest}}
-        {{else}}
-          <div class="icon-box">
-            4
-          </div>
-        {{/if}}
-        <!-- Legs -->
-        {{#if equippedAbilitiesMap.legs}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.legs}}
-        {{else}}
-          <div class="icon-box">
-            5
-          </div>
-        {{/if}}
-        <!-- Companion -->
-        {{#if equippedAbilitiesMap.companion}}
-          {{> abilityIconOther ability=equippedAbilitiesMap.companion}}
-        {{else}}
-          <div class="icon-box">
-            Companion
-          </div>
+          <!-- Main Hand -->
+          {{#if equippedAbilitiesMap.mainHand}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.mainHand}}
+          {{else}}
+            <div class="icon-box">
+              1
+            </div>
+          {{/if}}
+          <!-- Off Hand -->
+          {{#if equippedAbilitiesMap.offHand}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.offHand}}
+          {{else}}
+            <div class="icon-box">
+              2
+            </div>
+          {{/if}}
+          <!-- Head -->
+          {{#if equippedAbilitiesMap.head}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.head}}
+          {{else}}
+            <div class="icon-box">
+              3
+            </div>
+          {{/if}}
+          <!-- Chest -->
+          {{#if equippedAbilitiesMap.chest}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.chest}}
+          {{else}}
+            <div class="icon-box">
+              4
+            </div>
+          {{/if}}
+          <!-- Legs -->
+          {{#if equippedAbilitiesMap.legs}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.legs}}
+          {{else}}
+            <div class="icon-box">
+              5
+            </div>
+          {{/if}}
+          <!-- Companion -->
+          {{#if equippedAbilitiesMap.companion}}
+            {{> abilityIconOther ability=equippedAbilitiesMap.companion}}
+          {{else}}
+            <div class="icon-box">
+              Companion
+            </div>
+          {{/if}}
         {{/if}}
       </div>
     </div>

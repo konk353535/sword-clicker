@@ -86,12 +86,32 @@ export function dealDamage(
 
         defender.stats.health -= damage
 
-        // Tick tookDamage event on defender
+        // Tick didRawDamage event on defender
+        if (attacker.buffs) {
+            attacker.buffs.forEach((buff) => {
+                buff.constants = BUFFS[buff.id]
+                if (buff.constants.events.onDidRawDamage) {
+                    // Did Raw Damage
+                    buff.constants.events.onDidRawDamage({
+                        buff,
+                        defender,
+                        attacker,
+                        actualBattle: this,
+                        rawDamage,
+                        damageDealt: damage,
+                        source: source ? source : "other",
+                        magic: isMagic
+                    })
+                }
+            })
+        }
+
+        // Tick tookRawDamage event on defender
         if (defender.buffs) {
             defender.buffs.forEach((buff) => {
                 buff.constants = BUFFS[buff.id]
                 if (buff.constants.events.onTookRawDamage) {
-                    // Took Damage
+                    // Took Raw Damage
                     buff.constants.events.onTookRawDamage({
                         buff,
                         defender,
@@ -99,7 +119,8 @@ export function dealDamage(
                         actualBattle: this,
                         rawDamage,
                         damageDealt: damage,
-                        source: source ? source : "other"
+                        source: source ? source : "other",
+                        magic: isMagic
                     })
                 }
             })

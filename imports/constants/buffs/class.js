@@ -89,7 +89,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive ability<br />
-        Any time you miss with an auto-attack, you add a stack of <i>Brawl</i> that increases all of your
+        Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your
         damage by +10% per stack (to a maximum of +200%).  Atacks are reduced by 3 when you successfully
         hit with an auto-attack to a minimum of 0 stacks.`
         },
@@ -264,5 +264,84 @@ export const CLASS_BUFFS = {
 
             onRemove({ buff, target, caster }) {}
         }
-    }
+    },
+
+    class_perk_warmage: {
+        duplicateTag: "class_perk_warmage", // Used to stop duplicate buffs
+        icon: "",
+        name: "Class Perk: War Mage",
+        description() {
+            return ``
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true,
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                console.log("onTookDamage - perk_warmage")
+                if (damageDealt > 0) {
+                    // reduce max health by 1%
+
+                    const amountToReduceHealthBy = 0.01 * defender.stats.healthMaxOrig
+
+                    if (amountToReduceHealthBy < defender.stats.healthMax) {
+                        defender.stats.healthMax -= amountToReduceHealthBy
+                    } else {
+                        // to a minimum of 1%
+                        defender.stats.healthMax = amountToReduceHealthBy
+                    }
+
+                    if (defender.stats.health > defender.stats.healthMax) {
+                        defender.stats.health = defender.stats.healthMax
+                    }
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_passive_warmage__glorious_destiny: {
+        duplicateTag: "class_passive_warmage__glorious_destiny", // Used to stop duplicate buffs
+        icon: "warmageGloriousDestiny.svg",
+        name: "Glorious Destiny",
+        description({ buff, level }) {
+            return `
+        Passive ability<br />
+        Dealing magic damage restores 2% of your maximum health.`
+        },
+        constants: {},
+        data: {
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            // for abilities and spells, including the 'magic_blade' proc from tridents -- does not include auto-attack (that's 'onDidDamage'), which can't hit for magic damage
+            onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
+                console.log("onDidRawDamage - perk_warmage")
+                if (magic && damageDealt > 0) {
+                    // increase max health by 1%
+
+                    const amountToIncreaseHealthBy = 0.01 * attacker.stats.healthMaxOrig
+
+                    attacker.stats.healthMax += amountToIncreaseHealthBy
+                    if (attacker.stats.healthMax > attacker.stats.healthMaxOrig) {
+                        attacker.stats.healthMax = attacker.stats.healthMaxOrig
+                    }
+                }
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+        }
+    },
 }

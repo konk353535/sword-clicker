@@ -6,6 +6,7 @@ export const CLASSES = {
     wanderer: {
         id: "wanderer",
         name: "Wanderer",
+        icon: "classWanderer.png",
         eligible: function (uid) {
             return classFeatureUnlocked(uid)
         },
@@ -16,6 +17,7 @@ export const CLASSES = {
     barbarian: {
         id: "barbarian",
         name: "Barbarian",
+        icon: "classBarbarian.png",
         eligible: function () {
             return true
         },
@@ -26,6 +28,7 @@ export const CLASSES = {
     duelist: {
         id: "duelist",
         name: "Duelist",
+        icon: "classDuelist.png",
         eligible: function () {
             return true
         },
@@ -58,6 +61,7 @@ export const CLASSES = {
     paladin: {
         id: "paladin",
         name: "Paladin",
+        icon: "classPaladin.png",
         eligible: function () {
             return true
         },
@@ -98,6 +102,7 @@ export const CLASSES = {
     ranger: {
         id: "ranger",
         name: "Ranger",
+        icon: "classRanger.png",
         eligible: function () {
             return true
         },
@@ -227,6 +232,7 @@ export const CLASSES = {
     sage: {
         id: "sage",
         name: "Sage",
+        icon: "classSage.png",
         eligible: function () {
             return true
         },
@@ -306,6 +312,7 @@ export const CLASSES = {
     tactician: {
         id: "tactician",
         name: "Tactician",
+        icon: "classTactician.png",
         eligible: function () {
             return true
         },
@@ -316,11 +323,12 @@ export const CLASSES = {
     warmage: {
         id: "warmage",
         name: "War Mage",
+        icon: "classWarMage.png",
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
-        autoBuffs: [],
+        exclusiveAbilities: ["class_passive_warmage__glorious_destiny"],
+        autoBuffs: ["class_perk_warmage"],
         equipmentBonuses: {
             trident: {
                 attackSpeed: {
@@ -484,12 +492,35 @@ export const CLASSES = {
             exalted_wizard_shorts: {
                 requiresCrafting: 130
             }
+        },
+        abilityPatch: {
+            blizzard: {
+                requires: [
+                ]
+            },
+            poison_dart: {
+                requires: [
+                ]
+            },
+            magic_wisdom: {
+                requires: [
+                ]
+            },
+            affliction: {
+                requires: [
+                ]
+            },
+            meteor_strike: {
+                requires: [
+                ]
+            }
         }
     },
 
     wizard: {
         id: "wizard",
         name: "Wizard",
+        icon: "classWizard.png",
         eligible: function () {
             return true
         },

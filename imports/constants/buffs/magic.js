@@ -32,7 +32,7 @@ export const MAGIC_BUFFS = {
                 const magicPowerBase = constants.magicPowerBase
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -81,7 +81,7 @@ export const MAGIC_BUFFS = {
                 const magicPowerBase = constants.magicPowerBase
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -143,7 +143,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -213,7 +213,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -286,7 +286,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -348,7 +348,7 @@ export const MAGIC_BUFFS = {
                 const totalArmor = armorBase + armorMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -411,7 +411,7 @@ export const MAGIC_BUFFS = {
                 const damageDecimal = constants.damageBase / 100
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -498,7 +498,7 @@ export const MAGIC_BUFFS = {
                 const damageDecimal = constants.damageBase / 100
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -574,7 +574,7 @@ export const MAGIC_BUFFS = {
                 const totalIncrease = increaseBase + increaseMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -644,7 +644,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -711,7 +711,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -785,7 +785,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -844,7 +844,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -954,7 +954,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1013,7 +1013,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1092,7 +1092,7 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1162,7 +1162,7 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const healthBase = constants.healthCost
-                const totalHealth = healthBase
+                const totalHealth = healthBase / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1221,7 +1221,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1311,7 +1311,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1397,7 +1397,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1468,7 +1468,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1548,7 +1548,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1625,7 +1625,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1691,7 +1691,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1775,7 +1775,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1858,7 +1858,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1915,7 +1915,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1973,7 +1973,7 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2133,7 +2133,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2373,7 +2373,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2451,7 +2451,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2509,7 +2509,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2567,7 +2567,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -2625,7 +2625,7 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = healthBase + healthMP
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {

@@ -181,6 +181,10 @@ Template.loadoutPage.helpers({
         return CLASSES.lookup(Template.instance().state.get("currentClass")).name
     },
 
+    currentClassIcon() {
+        return CLASSES.lookup(Template.instance().state.get("currentClass")).icon
+    },
+
     classFeatureUnlocked() {
         return classFeatureUnlocked()
     },

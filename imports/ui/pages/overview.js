@@ -3,6 +3,7 @@ import { Template } from "meteor/templating"
 
 import { Adventures } from "/imports/api/adventures/adventures.js"
 import { BattlesList } from "/imports/api/battles/battles"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat"
 import { Crafting } from "/imports/api/crafting/crafting"
 import { FarmingSpace } from "/imports/api/farming/farming"
@@ -306,6 +307,7 @@ Template.overviewPage.helpers({
             } else {
                 userCombat.isLeader = false
             }
+            userCombat.classIcon = userCurrentClass(userCombat.owner).icon
 
             return userCombat
         })

@@ -38,10 +38,6 @@ Meteor.methods({
                 userUnequipAllItems(uid)
                 userUnequipAllAbilities(uid)
 
-                if (thisUser) {
-                    updateCombatStats(uid, thisUser.username, true)
-                }
-
                 const userAbilities = Abilities.findOne({ owner: uid })
 
                 userCurrentClassEquipped.exclusiveAbilities.forEach((thisAbility) => {
@@ -73,6 +69,11 @@ Meteor.methods({
                         }
                     )
                 })
+
+                if (thisUser) {
+                    // pass the data to the new class here since it's not actually set yet
+                    updateCombatStats(uid, thisUser.username, true, userNewClassToEquip)
+                }
 
                 // update that the user was active
                 updateUserActivity({ userId: Meteor.userId() })

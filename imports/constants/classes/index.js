@@ -132,7 +132,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_active_ranger__blaze_arrows", "class_active_ranger__sleet_arrows", "class_active_ranger__storm_arrows" ],
         autoBuffs: ["class_trait_ranger"],
         equipmentBonuses: {
             bow: {

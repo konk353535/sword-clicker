@@ -448,6 +448,236 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_active_ranger__blaze_arrows: {
+        duplicateTag: "class_active_ranger__blaze_arrows",
+        icon: "rangerBlazeArrows.svg",
+        name: "Blaze Arrows",
+        description({ buff, level }) {
+            return `
+        A fiery attack that deals <b>${(buff.constants.initialDamage*100).toFixed(0)}%</b> damage immediately and sets
+        the target on fire, burning for <b>${(buff.constants.fireDamage*100).toFixed(0)}%</b> damage every second for
+        <b>8</b> seconds.`
+        },
+        constants: {
+            initialDamage: 0.5,
+            fireDamage: 0.2
+        },
+        data: {},
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const fireDamage = buffConstants.fireDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+
+                actualBattle.dealDamage(initialDamage, {
+                    attacker: caster,
+                    defender: target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    customIcon: "rangerBlazeArrows.svg"
+                })
+
+                const newBuff = {
+                    id: "class_active_ranger__blaze_arrows__burning_effect",
+                    data: {
+                        duration: 8,
+                        totalDuration: 8,
+                        totalDamage: fireDamage,
+                        sourceId: caster.id,
+                        caster: caster.id,
+                        timeTillDamage: 0,
+                        allowDuplicates: true,
+                        icon: "ignite.svg",
+                        name: "Blaze Arrow",
+                        duplicateTag: "class_active_ranger__blaze_arrows__burning_effect"
+                    }
+                }
+
+                addBuff({ buff: newBuff, target, caster, actualBattle })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
+            }
+        }
+    },
+
+    class_active_ranger__blaze_arrows__burning_effect: {
+        duplicateTag: "class_active_ranger__blaze_arrows__burning_effect",
+        icon: "ignite.svg",
+        name: "Blaze Arrow",
+        description({ buff, level }) {
+            return ``
+        },
+        constants: {},
+        data: {
+            duration: 8,
+            totalDuration: 8,
+            allowDuplicates: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+                buff.data.timeTillDamage -= secondsElapsed
+
+                if (buff.data.timeTillDamage <= 0) {
+                    actualBattle.dealDamage(buff.data.totalDamage, {
+                        attacker: actualBattle.allUnitsMap[buff.data.sourceId],
+                        defender: target,
+                        tickEvents: actualBattle.tickEvents,
+                        historyStats: actualBattle.historyStats,
+                        customIcon: "ignite.svg"
+                    })
+                    buff.data.timeTillDamage = 1
+                }
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {}
+        }
+    },
+
+    class_active_ranger__sleet_arrows: {
+        duplicateTag: "class_active_ranger__sleet_arrows",
+        icon: "rangerSleetArrows.svg",
+        name: "Sleet Arrows",
+        description({ buff, level }) {
+            return `
+        An icy attack that deals <b>${(buff.constants.initialDamage*100).toFixed(0)}%</b> damage
+        and chills the target, lowering its attack speed by <b>50%</b> for 4 seconds.`
+        },
+        constants: {
+            initialDamage: 1.1
+        },
+        data: {},
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+
+                actualBattle.dealDamage(initialDamage, {
+                    attacker: caster,
+                    defender: target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    customIcon: "rangerSleetArrows.svg"
+                })
+
+                const newBuff = {
+                    id: "frosted_attacks",
+                    data: {
+                        duration: 4,
+                        totalDuration: 4,
+                        attackSpeedDecrease: 50,
+                        sourceId: caster.id,
+                        caster: caster.id,
+                        allowDuplicates: true,
+                        icon: "frostedAttacks.svg",
+                        description: `Reduces your attack speed by 50%`,
+                        name: "Sleet Arrow",
+                    }
+                }
+
+                addBuff({ buff: newBuff, target, caster, actualBattle })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
+            }
+        }
+    },
+
+    class_active_ranger__storm_arrows: {
+        duplicateTag: "class_active_ranger__storm_arrows",
+        icon: "rangerStormArrows.svg",
+        name: "Storm Arrows",
+        description({ buff, level }) {
+            return `
+        An electrified attack that deals <b>${(buff.constants.initialDamage*100).toFixed(0)}%</b>
+        damage and shocks the target, lowering its armor by half of your accuracy for 4 seconds.`
+        },
+        constants: {
+            initialDamage: 0.65,
+            armorReductionPerAccuracy: 0.5
+        },
+        data: {},
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+
+                actualBattle.dealDamage(initialDamage, {
+                    attacker: caster,
+                    defender: target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    customIcon: "rangerStormArrows.svg"
+                })
+
+                const newBuff = {
+                    id: "class_active_ranger__storm_arrows__armor_reduction_effect",
+                    data: {
+                        duration: 4,
+                        totalDuration: 4,
+                        armorReduction: buffConstants.armorReductionPerAccuracy * caster.stats.accuracy,
+                        sourceId: caster.id,
+                        caster: caster.id,
+                        allowDuplicates: true,
+                        icon: "rangerStormArrowEffect.svg",
+                        description: `Reduces your armor by 50%`,
+                        name: "Sleet Arrow",
+                    }
+                }
+
+                addBuff({ buff: newBuff, target, caster, actualBattle })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
+            }
+        }
+    },
+
+    class_active_ranger__storm_arrows__armor_reduction_effect: {
+        duplicateTag: "class_active_ranger__storm_arrows__armor_reduction_effect",
+        icon: "rangerStormArrowEffect.svg",
+        name: "Storm Arrow",
+        description({ buff, level }) {
+            return ``
+        },
+        constants: {},
+        data: {
+            duration: 4,
+            totalDuration: 4,
+            allowDuplicates: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                // 'armorReduction' here is set when addBuff is called from another buff
+                buff.data.targetArmorLoweredAmount = buff.armorReduction || buff.data.armorReduction || 0
+
+                target.stats.armor -= buff.data.targetArmorLoweredAmount
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {
+                target.stats.armor += buff.data.targetArmorLoweredAmount
+            }
+        }
+    },
+
     class_trait_sage: {
         duplicateTag: "class_trait_sage",
         icon: "classSage.png",

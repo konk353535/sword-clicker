@@ -52,6 +52,69 @@ export const CLASS_ABILITIES = {
         }
     },
 
+    class_active_ranger__blaze_arrows: {
+        icon: "rangerBlazeArrows.svg",
+        name: "Blaze Arrows",
+        id: "class_active_ranger__blaze_arrows",
+        buffs: ["class_active_ranger__blaze_arrows"],
+        requires: [
+            {
+                type: "weaponType",
+                weaponTypes: ["bow"]
+            }
+        ],
+        cooldown: 12,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_ranger__blaze_arrows
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_ranger__sleet_arrows: {
+        icon: "rangerSleetArrows.svg",
+        name: "Sleet Arrows",
+        id: "class_active_ranger__sleet_arrows",
+        buffs: ["class_active_ranger__sleet_arrows"],
+        requires: [
+            {
+                type: "weaponType",
+                weaponTypes: ["bow"]
+            }
+        ],
+        cooldown: 12,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_ranger__sleet_arrows
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_ranger__storm_arrows: {
+        icon: "rangerStormArrows.svg",
+        name: "Storm Arrows",
+        id: "class_active_ranger__storm_arrows",
+        buffs: ["class_active_ranger__storm_arrows"],
+        requires: [
+            {
+                type: "weaponType",
+                weaponTypes: ["bow"]
+            }
+        ],
+        cooldown: 12,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_ranger__storm_arrows
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
     class_passive_sage__ward: {
         icon: "sageWard.svg",
         name: "Ward",

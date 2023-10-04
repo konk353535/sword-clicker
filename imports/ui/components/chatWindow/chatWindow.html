@@ -45,6 +45,8 @@
                                   {{/if}}
                                   {{#if custom.isAdmin}}
                                     <span style="margin: 0px;"><img src="/icons/tower.svg" style="height: 18px; margin: 0px;" /></span>
+                                  {{else if custom.classIcon}}
+                                    <span style="margin: 0px;"><img src="/icons/{{custom.classIcon}}" style="height: 18px; margin: 0px;" /></span>
                                   {{/if}}
                                   {{#if $eq name 'Game'}}
                                     <span class="direct-chat-name chat-{{custom.roomType}}">

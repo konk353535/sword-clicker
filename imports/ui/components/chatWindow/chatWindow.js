@@ -7,6 +7,7 @@ import { Template } from "meteor/templating"
 
 import moment from "moment"
 
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Groups } from "/imports/api/groups/groups.js"
 import { Users } from "/imports/api/users/users"
 
@@ -314,7 +315,8 @@ Template.chatWindow.events({
             // Room id is based
             const custom = {
                 roomType: currentChatId,
-                isAdmin: myUserDoc.isMod || myUserDoc.isSuperMod
+                isAdmin: myUserDoc.isMod || myUserDoc.isSuperMod,
+                classIcon: userCurrentClass().unlocked ? userCurrentClass().icon : undefined
                 //todo: when we add badges for achievements, custom titles, custom colors for chat, etc. -- place it here and then reference it within chatWindow.html
             }
 

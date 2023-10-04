@@ -21,6 +21,7 @@ import { Abilities } from "/imports/api/abilities/abilities"
 import { Battles, BattlesList } from "/imports/api/battles/battles"
 import { Combat } from "/imports/api/combat/combat"
 import { BossHealthScores } from "/imports/api/floors/bossHealthScores"
+import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Floors } from "/imports/api/floors/floors"
 import { Groups } from "/imports/api/groups/groups"
@@ -149,7 +150,7 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
     const totalContributors = sortedFloorWaveScores.length
 
     console.log("floor", floor, "server", server)
-    let rewards = Floors.findOne({ floor: floor, server: server }).loot
+    let rewards = FloorLoot.find({ floor: floor, server: server }).fetch()
     // get gold out first
     let gold = _.findWhere(rewards, { type: "gold" })
 
@@ -1235,25 +1236,39 @@ export const completeBattle = function (actualBattle) {
                         })
                     )
 
-                    let floorRewards = []
-                    if (currentFloor.loot) {
-                        floorRewards = cleanRewards(currentFloor.loot.concat(rewardsGained))
-                    } else {
-                        floorRewards = cleanRewards(rewardsGained)
-                    }
-
-                    Floors.update(
-                        {
-                            floor: actualBattle.floor,
-                            server: actualBattle.server,
-                            floorComplete: false
-                        },
-                        {
-                            $set: {
-                                loot: floorRewards
-                            }
+                    let floorRewards = cleanRewards(rewardsGained)
+                    floorRewards.forEach((reward) => {
+                        let existingReward
+                        if (reward.type === "item") {
+                            existingReward = FloorLoot.findOne({
+                                server: actualBattle.server,
+                                floor: actualBattle.floor,
+                                itemId: reward.itemId
+                            })
+                        } else if (reward.type === "gold") {
+                            existingReward = FloorLoot.findOne({
+                                server: actualBattle.server,
+                                floor: actualBattle.floor,
+                                type: "gold"
+                            })
                         }
-                    )
+
+                        if (existingReward != null) {
+                            // increment
+                            FloorLoot.update(existingReward._id, {
+                                $inc: {
+                                    amount: reward.amount
+                                }
+                            })
+                        } else {
+                            // insert
+                            FloorLoot.insert({
+                                server: actualBattle.server,
+                                floor: actualBattle.floor,
+                                ...reward
+                            })
+                        }
+                    })
                 }
             }
         } else if (actualBattle.level && actualBattle.wave) {

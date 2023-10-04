@@ -8,6 +8,7 @@ import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Floors } from "/imports/api/floors/floors"
 
 import { Battles, BattlesList, getMaxEnergyUse } from "/imports/api/battles/battles.js"
+import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { Groups } from "/imports/api/groups/groups"
 import { Servers } from "/imports/api/servers/servers"
 
@@ -24,6 +25,41 @@ const setBattleAgain = function (floor, room) {
 }
 
 const MAX_FLOOR_FAILSAFE = 27
+
+// {[server._id]: [loot]}
+let serverFloorLoots = new Map()
+
+const updateFloorRewards = () => {
+    Servers.find({}, { fields: { _id: 1 } })
+        .fetch()
+        .forEach((server) => {
+            const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: server._id })
+            if (currentCommunityFloor != null) {
+                serverFloorLoots.set(
+                    server._id,
+                    FloorLoot.find({
+                        server: server._id,
+                        floor: currentCommunityFloor.floor
+                    })
+                        .fetch()
+                        .map(function (reward) {
+                            if (reward.type === "item") {
+                                const rewardInfo = ITEMS[reward.itemId]
+                                reward.icon = rewardInfo && rewardInfo.icon ? rewardInfo.icon : ""
+                                reward.name = rewardInfo && rewardInfo.icon ? rewardInfo.name : "Unknown"
+                                reward.extraStats = rewardInfo && rewardInfo.icon ? rewardInfo.extraStats : {}
+                                reward.description =
+                                    rewardInfo && rewardInfo.icon ? rewardInfo.description : `Item ID: ${reward.itemId}`
+                            }
+                            return reward
+                        })
+                )
+            }
+        })
+}
+
+updateFloorRewards()
+Meteor.setInterval(updateFloorRewards, 30000)
 
 const serverMaxFloor = function serverMaxFloor() {
     // try {
@@ -285,17 +321,7 @@ Meteor.methods({
                     bossResetAt: currentFloor.bossResetAt
                 },
                 floorDetails: {
-                    rewards: currentFloor.loot.map(function (reward) {
-                        if (reward.type === "item") {
-                            const rewardInfo = ITEMS[reward.itemId]
-                            reward.icon = rewardInfo && rewardInfo.icon ? rewardInfo.icon : ""
-                            reward.name = rewardInfo && rewardInfo.icon ? rewardInfo.name : "Unknown"
-                            reward.extraStats = rewardInfo && rewardInfo.icon ? rewardInfo.extraStats : {}
-                            reward.description =
-                                rewardInfo && rewardInfo.icon ? rewardInfo.description : `Item ID: ${reward.itemId}`
-                        }
-                        return reward
-                    }),
+                    rewards: serverFloorLoots.get(Meteor.user().server) ?? [],
                     unlocks: specifiedFloorConstants.hasOwnProperty("unlocks") ? specifiedFloorConstants.unlocks : true,
                     isUnlocked: false,
                     rooms: [

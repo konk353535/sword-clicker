@@ -15,6 +15,7 @@ import { Crafting } from "/imports/api/crafting/crafting"
 import { Events } from "/imports/api/events/events"
 import { Farming, FarmingSpace } from "/imports/api/farming/farming"
 import { BossHealthScores } from "/imports/api/floors/bossHealthScores"
+import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Floors } from "/imports/api/floors/floors.js"
 import { Groups } from "/imports/api/groups/groups.js"
@@ -192,7 +193,7 @@ Meteor.startup(() => {
     BattleActions.createIndex({ battleId: 1 })
     State.createIndex({ name: 1 })
     Town.createIndex({ server: 1 })
-    // Town.createIndex({ townBuilding: 1 })
+    FloorLoot.createIndex({ server: 1, floor: 1 })
 
     // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
     /*

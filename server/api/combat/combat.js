@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import { Abilities } from "/imports/api/abilities/abilities"
-import { userCurrentClass } from "/imports/api/classes/classes"
 import { Battles } from "/imports/api/battles/battles"
+import { userCurrentClass } from "/imports/api/classes/classes"
 import { Combat, userAverageCombat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
 import { Items, applyClassBonuses, applyRarities } from "/imports/api/items/items"
@@ -17,6 +17,8 @@ import { getActiveGlobalBuff } from "/imports/api/globalbuffs/globalbuffs.js"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { CInt, IsValid } from "/imports/utils.js"
 
+import { Floors } from "/imports/api/floors/floors"
+import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS, getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
@@ -101,7 +103,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         }
 
         if (combatItem.constants.stats) {
-            const combatItemBaseStats = applyRarities(applyClassBonuses(combatItem.constants.stats, combatItem.constants), combatItem.rarityId)
+            const combatItemBaseStats = applyRarities(
+                applyClassBonuses(combatItem.constants.stats, combatItem.constants),
+                combatItem.rarityId
+            )
             const combatItemExtraStats = combatItem.extraStats
                 ? applyRarities(applyClassBonuses(combatItem.extraStats, combatItem.constants), combatItem.rarityId)
                 : undefined
@@ -212,7 +217,10 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     }
 
     // If health is above healthMax, reset health
-    if ((currentCombat.stats.health > playerData.stats.healthMax) || (playerData.stats.health > playerData.stats.healthMax)) {
+    if (
+        currentCombat.stats.health > playerData.stats.healthMax ||
+        playerData.stats.health > playerData.stats.healthMax
+    ) {
         playerData.stats.health = playerData.stats.healthMax
     }
 
@@ -488,6 +496,44 @@ Meteor.methods({
         Battles.update(battle._id, update)
 
         updateUserActivity({ userId: Meteor.userId() })
+    },
+
+    "combat.migrateFloorLoot"() {
+        Floors.find().fetch().forEach((floor) => {
+            // migrate the loot
+            floor.loot.forEach((reward) => {
+                let existingReward
+                if (reward.type === "item") {
+                    existingReward = FloorLoot.findOne({
+                        server: floor.server,
+                        floor: floor.floor,
+                        itemId: reward.itemId
+                    })
+                } else if (reward.type === "gold") {
+                    existingReward = FloorLoot.findOne({
+                        server: floor.server,
+                        floor: floor.floor,
+                        type: "gold"
+                    })
+                }
+
+                if (existingReward != null) {
+                    // increment
+                    FloorLoot.update(existingReward._id, {
+                        $inc: {
+                            amount: reward.amount
+                        }
+                    })
+                } else {
+                    // insert
+                    FloorLoot.insert({
+                        server: floor.server,
+                        floor: floor.floor,
+                        ...reward
+                    })
+                }
+            })
+        })
     }
 })
 

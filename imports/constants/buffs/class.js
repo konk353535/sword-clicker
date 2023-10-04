@@ -89,7 +89,7 @@ export const CLASS_BUFFS = {
             return `
         Passive ability<br />
         Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your
-        damage by +10% per stack (to a maximum of +200%).  Atacks are reduced by 3 when you successfully
+        damage by +10% per stack (to a maximum of +200%).  Stacks are reduced by 3 when you successfully
         hit with an auto-attack to a minimum of 0 stacks.`
         },
         constants: {},
@@ -422,6 +422,8 @@ export const CLASS_BUFFS = {
         },
         constants: {},
         data: {
+            duration: Infinity,
+            totalDuration: Infinity,
             hideBuff: true
         },
         events: {

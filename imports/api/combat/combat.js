@@ -99,6 +99,7 @@ CombatSchema = new SimpleSchema({
     mainHandWeapon: { type: String, optional: true },
     mainHandType: { type: String, optional: true },
     offHandType: { type: String, optional: true },
+    offHandIsMagic: { type: Boolean, optional: true },
 
     buffs: { type: [Object], optional: true, defaultValue: [] },
     "buffs.$.id": { type: String },

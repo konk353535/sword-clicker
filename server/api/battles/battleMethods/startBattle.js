@@ -440,6 +440,7 @@ export const startBattle = function ({
             mainHandWeapon: userCombat.mainHandWeapon,
             mainHandType: userCombat.mainHandType,
             offHandType: userCombat.offHandType,
+            offHandIsMagic: userCombat.offHandIsMagic,
             stats: userCombatStats,
             xpDistribution: userCombat.xpDistribution,
             tickOffset: _.random(0, 2) + 4,

@@ -37,6 +37,7 @@ export default class Unit {
     mainHandWeapon: any
     mainHandType: any
     offHandType: any
+    offHandIsMagic: any
     towerContributions: any
     monsterType?: string
     isLamp: boolean
@@ -302,6 +303,7 @@ export default class Unit {
             this.mainHandWeapon = unit.mainHandWeapon
             this.mainHandType = unit.mainHandType
             this.offHandType = unit.offHandType
+            this.offHandIsMagic = unit.offHandIsMagic
             this.towerContributions = unit.towerContributions
             this.inactiveMinutes = unit.inactiveMinutes || 0
             this.enchantmentsList = unit.enchantmentsList

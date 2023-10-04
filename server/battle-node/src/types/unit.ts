@@ -13,6 +13,7 @@ export type unit = {
     mainHandWeapon: string
     mainHandType: string
     offHandType?: string
+    offHandIsMagic?: boolean
     stats: any
     xpDistribution: any
     tickOffset: number

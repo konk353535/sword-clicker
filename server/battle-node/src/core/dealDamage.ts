@@ -166,7 +166,7 @@ export function dealDamage(
     }
 
     let damageValue = autoPrecisionValueTight(damage).toString()
-    if (damageValue === "0" || CDbl(damage) <= 0.01) {
+    if (damageValue === "0" || CDbl(damage) <= 0.1) {
         damageValue = ""
         if (customIcon === "dodge") {
             damageValue = "Dodged"

@@ -138,14 +138,16 @@ const startBattle = (currentBattle, self) => {
                     // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
                     let customIcon = tickEvent.customIcon
                     if (customIcon) {
-                        try {
-                            if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
-                                customIcon = customIcon.substring(0, customIcon.length - 4)
-                            } else if (customIcon.indexOf(".png", customIcon.length - ".png".length) !== -1) {
-                                customIcon = "basicDamage" // we don't support .png in glyphs-based fonts
+                        if (customIcon != "noicon") {
+                            try {
+                                if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
+                                    customIcon = customIcon.substring(0, customIcon.length - 4)
+                                } else if (customIcon.indexOf(".png", customIcon.length - ".png".length) !== -1) {
+                                    customIcon = "basicDamage" // we don't support .png in glyphs-based fonts
+                                }
+                            } catch (err) {
+                                customIcon = "basicDamage"
                             }
-                        } catch (err) {
-                            customIcon = "basicDamage"
                         }
                     } else {
                         customIcon = "basicDamage"
@@ -156,12 +158,18 @@ const startBattle = (currentBattle, self) => {
                         //customIcon = 'basicDamage';
                     }
 
+                    let elementIconHTML = ""
+
+                    if (customIcon != "noicon") {
+                        elementIconHTML = `<i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>`
+                    }
+
                     const element = $(`
             <p
               class='floating-text'
               data-count=1
               style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-              <i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>
+              ${elementIconHTML}
               ${tickEvent.label}
             </p>
           `)

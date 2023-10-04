@@ -99,6 +99,8 @@ export const CLASS_BUFFS = {
         },
         constants: {},
         data: {
+            duration: Infinity,
+            totalDuration: Infinity
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
@@ -179,7 +181,10 @@ export const CLASS_BUFFS = {
         While equipped when you are a Duelist this is <b>always active</b>`
         },
         constants: {},
-        data: {},
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity
+        },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 target.stats.attackSpeed *= 2.0
@@ -231,7 +236,9 @@ export const CLASS_BUFFS = {
         },
         constants: {},
         data: {
-            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
+            duration: Infinity,
+            totalDuration: Infinity,
+                // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
             hideBuff: true
         },
         events: {
@@ -270,6 +277,8 @@ export const CLASS_BUFFS = {
         },
         constants: {},
         data: {
+            duration: Infinity,
+            totalDuration: Infinity,
             stacks: 5
         },
         events: {
@@ -340,6 +349,8 @@ export const CLASS_BUFFS = {
                         buff: target.generateBuff({
                             buffId: "class_trait_ranger_volley",
                             buffData: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
                                 stacks: 0
                             }
                         }),
@@ -558,7 +569,6 @@ export const CLASS_BUFFS = {
         data: {
             duration: 2.2,
             totalDuration: 2.2,
-            isEnchantment: true,
             allowDuplicates: true
         },
         events: {
@@ -636,6 +646,53 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_passive_tactician__grit: {
+        duplicateTag: "class_passive_tactician__grit",
+        icon: "tacticianGrit.svg",
+        name: "Grit",
+        description({ buff, level }) {
+            return `
+        Passive class ability<br />
+        For every 5% Health you are missing from your original Maximum Health,
+        your Defense and Magic Armor increases by +4%.<br />
+        While equipped when you are a Tactician this is <b>always active</b>`
+        },
+        constants: {},
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.statsBoosted = {
+                    defense: 0,
+                    magicArmor: 0
+                }
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                // undo existing bonuses
+                target.stats.defense -= buff.data.statsBoosted.defense
+                target.stats.magicArmor -= buff.data.statsBoosted.magicArmor
+
+                // calculate new bonuses
+                const missingHealthIncrements = CInt((1.0 - (target.stats.health / target.stats.origStats.healthMax)) / 0.05)
+                buff.data.statsBoosted.defense = missingHealthIncrements * 0.04 * target.stats.origStats.defense
+                buff.data.statsBoosted.magicArmor = missingHealthIncrements * 0.04 * target.stats.origStats.magicArmor
+
+                buff.custom = true
+                buff.data.custom = true
+                buff.customText = `+${missingHealthIncrements*4}%`
+
+                // apply new bonuses
+                target.stats.defense += buff.data.statsBoosted.defense
+                target.stats.magicArmor += buff.data.statsBoosted.magicArmor
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_trait_warmage: {
         duplicateTag: "class_trait_warmage",
         icon: "classWarMage.png",
@@ -696,7 +753,10 @@ export const CLASS_BUFFS = {
         While equipped when you are a War Mage this is <b>always active</b>`
         },
         constants: {},
-        data: {},
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity
+        },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
 

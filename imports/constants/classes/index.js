@@ -390,7 +390,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_tactician__grit"],
         autoBuffs: ['class_trait_tactician']
     },
 

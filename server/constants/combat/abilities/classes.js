@@ -68,6 +68,23 @@ export const CLASS_ABILITIES = {
             return BUFF.description({ buff: BUFF, level })
         }
     },
+
+    class_passive_tactician__grit: {
+        icon: "tacticianGrit.svg",
+        name: "Grit",
+        id: "class_passive_tactician__grit",
+        buffs: ["class_passive_tactician__grit"],
+        cooldown: 0,
+        isPassive: true,
+        slot: "any",
+        target: "self",
+        isPacifist: true,
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_passive_tactician__grit
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
     
     class_passive_warmage__glorious_destiny: {
         icon: "warmageGloriousDestiny.svg",

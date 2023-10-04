@@ -59,7 +59,7 @@ const updateFloorRewards = () => {
 }
 
 updateFloorRewards()
-Meteor.setInterval(updateFloorRewards, 30000)
+Meteor.setInterval(updateFloorRewards, 60000)
 
 const serverMaxFloor = function serverMaxFloor() {
     // try {

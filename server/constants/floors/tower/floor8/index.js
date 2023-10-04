@@ -6,7 +6,7 @@ import { LEVEL_EIGHT_LOOT_TABLE } from "../../levels/level8"
 export const TOWER_FLOOR_8 = {
     1: {
         name: "Long Grass",
-        enemies: ["snake"],
+        enemies: ["snake", "grasshopper"],
         rewards: orderLootTable([
             {
                 chance: 1 / 3,
@@ -112,7 +112,7 @@ export const TOWER_FLOOR_8 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["echidna", "angry_miner"],
         rewards: orderLootTable(
             LEVEL_EIGHT_LOOT_TABLE.concat([
                 {
@@ -149,7 +149,7 @@ export const TOWER_FLOOR_8 = {
     },
     7: {
         name: "Magician's Headquarters",
-        enemies: ["blue_mage"],
+        enemies: ["blue_mage", "vampire"],
         rewards: orderLootTable(
             LEVEL_EIGHT_LOOT_TABLE.concat([
                 {

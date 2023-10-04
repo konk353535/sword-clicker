@@ -103,10 +103,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         }
 
         if (combatItem.constants.stats) {
-            const combatItemBaseStats = applyRarities(
-                applyClassBonuses(combatItem.constants.stats, combatItem.constants),
-                combatItem.rarityId
-            )
+            const combatItemBaseStats = applyRarities(applyClassBonuses(combatItem.constants.stats, combatItem.constants), combatItem.rarityId)
             const combatItemExtraStats = combatItem.extraStats
                 ? applyRarities(applyClassBonuses(combatItem.extraStats, combatItem.constants), combatItem.rarityId)
                 : undefined
@@ -216,10 +213,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     } catch (err) {}
 
     // If health is above healthMax, reset health
-    if (
-        currentCombat.stats.health > playerData.stats.healthMax ||
-        playerData.stats.health > playerData.stats.healthMax
-    ) {
+    if ((currentCombat.stats.health > playerData.stats.healthMax) || (playerData.stats.health > playerData.stats.healthMax)) {
         playerData.stats.health = playerData.stats.healthMax
     }
 

@@ -22,7 +22,33 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: ["class_passive_barbarian__brawn"],
-        autoBuffs: ["class_perk_barbarian"]
+        autoBuffs: ["class_trait_barbarian"],
+        equipmentBonuses: {
+            chest: {
+                magicPower: {
+                    valueMultiply: 0
+                },
+                healingPower: {
+                    valueMultiply: 0
+                }
+            },
+            leg: {
+                magicPower: {
+                    valueMultiply: 0
+                },
+                healingPower: {
+                    valueMultiply: 0
+                }
+            },
+            head: {
+                magicPower: {
+                    valueMultiply: 0
+                },
+                healingPower: {
+                    valueMultiply: 0
+                }
+            }
+        }
     },
 
     duelist: {
@@ -33,7 +59,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: ["class_passive_duelist__driven"],
-        autoBuffs: [],
+        autoBuffs: ["class_trait_duelist"],
         equipmentBonuses: {
             buckler: {
                 accuracy: {
@@ -66,7 +92,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: ["class_passive_paladin__bulwark"],
-        autoBuffs: [],
+        autoBuffs: ["class_trait_paladin"],
         equipmentBonuses: {
             hammer: {
                 attackMax: {
@@ -107,7 +133,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: ["class_perk_ranger"],
+        autoBuffs: ["class_trait_ranger"],
         equipmentBonuses: {
             bow: {
                 attackSpeed: {
@@ -237,149 +263,11 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: ["class_passive_sage__ward"],
-        autoBuffs: ["class_perk_sage"],
+        autoBuffs: ["class_trait_sage"],
         equipmentBonuses: {
             staff: {
-                magicPower: {
-                    valueMultiply: 3
-                }
-            }
-        },
-        reforge: {
-            pine_staff: {
-                requiresCrafting: 5
-            },
-            beech_staff: {
-                requiresCrafting: 10
-            },
-            ash_staff: {
-                requiresCrafting: 15
-            },
-            oak_staff: {
-                requiresCrafting: 20
-            },
-            maple_staff: {
-                requiresCrafting: 25
-            },
-            walnut_staff: {
-                requiresCrafting: 30
-            },
-            cherry_staff: {
-                requiresCrafting: 35
-            },
-            mahogany_staff: {
-                requiresCrafting: 40
-            },
-            elm_staff: {
-                requiresCrafting: 45
-            },
-            black_staff: {
-                requiresCrafting: 50
-            },
-            blue_gum_staff: {
-                requiresCrafting: 55
-            },
-            cedar_staff: {
-                requiresCrafting: 60
-            },
-            denya_staff: {
-                requiresCrafting: 65
-            },
-            gombe_staff: {
-                requiresCrafting: 70
-            },
-            hickory_staff: {
-                requiresCrafting: 75
-            },
-            larch_staff: {
-                requiresCrafting: 80
-            },
-            poplar_staff: {
-                requiresCrafting: 85
-            },
-            tali_staff: {
-                requiresCrafting: 90
-            },
-            willow_staff: {
-                requiresCrafting: 95
-            },
-            teak_staff: {
-                requiresCrafting: 100
-            }
-        }
-    },
-
-    tactician: {
-        id: "tactician",
-        name: "Tactician",
-        icon: "classTactician.png",
-        eligible: function () {
-            return true
-        },
-        exclusiveAbilities: [],
-        autoBuffs: []
-    },
-
-    warmage: {
-        id: "warmage",
-        name: "War Mage",
-        icon: "classWarMage.png",
-        eligible: function () {
-            return true
-        },
-        exclusiveAbilities: ["class_passive_warmage__glorious_destiny"],
-        autoBuffs: ["class_perk_warmage"],
-        equipmentBonuses: {
-            trident: {
-                attackSpeed: {
-                    valueAdd: 1.2
-                }
-            },
-            neck: {
-                attack: {
-                    valueMultiply: 2
-                },
-                attackMax: {
-                    valueMultiply: 2
-                },
-                criticalChance: {
-                    valueMultiply: 2
-                },
-                criticalDamage: {
-                    valueMultiply: 2
-                },
-                damage: {
-                    valueMultiply: 2
-                },
-                accuracy: {
-                    valueMultiply: 2
-                },
-                healthMax: {
-                    valueMultiply: 2
-                },
-                defense: {
-                    valueMultiply: 2
-                },
-                armor: {
-                    valueMultiply: 2
-                },
-                magicArmor: {
-                    valueMultiply: 2
-                },
-                energyStorage: {
-                    valueMultiply: 2
-                },
-                energyRegen: {
-                    valueMultiply: 2
-                },
-                magicPower: {
-                    valueMultiply: 2
-                },
                 healingPower: {
-                    valueMultiply: 2
-                },
-                attackSpeed: {
-                    valueMultiply: 2
+                    valueMultiply: 3
                 }
             }
         },
@@ -492,6 +380,121 @@ export const CLASSES = {
             exalted_wizard_shorts: {
                 requiresCrafting: 130
             }
+        }
+    },
+
+    tactician: {
+        id: "tactician",
+        name: "Tactician",
+        icon: "classTactician.png",
+        eligible: function () {
+            return true
+        },
+        exclusiveAbilities: [],
+        autoBuffs: ['class_trait_tactician']
+    },
+
+    warmage: {
+        id: "warmage",
+        name: "War Mage",
+        icon: "classWarMage.png",
+        eligible: function () {
+            return true
+        },
+        exclusiveAbilities: ["class_passive_warmage__glorious_destiny"],
+        autoBuffs: ["class_trait_warmage"],
+        equipmentBonuses: {
+            trident: {
+                attackSpeed: {
+                    valueAdd: 1
+                }
+            },
+            neck: {
+                attack: {
+                    valueMultiply: 2
+                },
+                attackMax: {
+                    valueMultiply: 2
+                },
+                criticalChance: {
+                    valueMultiply: 2
+                },
+                criticalDamage: {
+                    valueMultiply: 2
+                },
+                damage: {
+                    valueMultiply: 2
+                },
+                accuracy: {
+                    valueMultiply: 2
+                },
+                healthMax: {
+                    valueMultiply: 2
+                },
+                defense: {
+                    valueMultiply: 2
+                },
+                armor: {
+                    valueMultiply: 2
+                },
+                magicArmor: {
+                    valueMultiply: 2
+                },
+                energyStorage: {
+                    valueMultiply: 2
+                },
+                energyRegen: {
+                    valueMultiply: 2
+                },
+                magicPower: {
+                    valueMultiply: 2
+                },
+                healingPower: {
+                    valueMultiply: 2
+                },
+                attackSpeed: {
+                    valueMultiply: 2
+                }
+            }
+        },
+        reforge: {
+            brown_trident: {
+                requiresCrafting: 8
+            },
+            blue_trident: {
+                requiresCrafting: 24
+            },
+            purple_trident: {
+                requiresCrafting: 41
+            },
+            orange_trident: {
+                requiresCrafting: 57
+            },
+            amber_trident: {
+                requiresCrafting: 73
+            },
+            violet_trident: {
+                requiresCrafting: 78
+            },
+            crimson_trident: {
+                requiresCrafting: 83
+            },
+            azure_trident: {
+                requiresCrafting: 86
+            },
+            verdant_trident: {
+                requiresCrafting: 89
+            },
+            serpent_trident: {
+                requiresCrafting: 98
+            },
+            inferno_trident: {
+                requiresCrafting: 114
+            },
+            exalted_trident: {
+                requiresCrafting: 130
+            }
+            
         },
         abilityPatch: {
             blizzard: {
@@ -525,7 +528,7 @@ export const CLASSES = {
             return true
         },
         exclusiveAbilities: [],
-        autoBuffs: [],
+        autoBuffs: ["class_trait_wizard"],
         equipmentBonuses: {
             tome: {
                 magicPower: {

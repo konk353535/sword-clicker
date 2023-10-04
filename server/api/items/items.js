@@ -1018,6 +1018,12 @@ Meteor.methods({
             }
         }
 
+        if (itemConstants?.isMagic) {
+            if (userClass.unlocked && userClass.equipped == "barbarian") {
+                throw new Meteor.Error("equip-requirement", `${userClass.data.name}s are unable to equip those.`)
+            }
+        }
+
         if (itemSlot == "head") {
             if (userClass.unlocked && userClass.equipped == "duelist") {
                 throw new Meteor.Error("equip-requirement", `${userClass.data.name}s are unable to equip head gear.`)

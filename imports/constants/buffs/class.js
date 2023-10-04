@@ -5,20 +5,24 @@ import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
 import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
 
 export const CLASS_BUFFS = {
-    class_perk_barbarian: {
-        duplicateTag: "class_perk_barbarian", // Used to stop duplicate buffs
-        icon: "",
-        name: "Class Perk: Barbarian",
+    class_trait_barbarian: {
+        duplicateTag: "class_trait_barbarian",
+        icon: "classBarbarian.png",
+        name: "Class Trait: Barbarian",
         description() {
-            return ``
+            return `
+        Your critical hits have a chance to inflict bleeding for 3 seconds.
+        Broad swords and battle axes have a 25% chance to strike enemies adjacent to your target.
+        You may not wear magical head, chest, or leg equipment.
+        Your Magic Power in combat is always 0, even if another effect would say otherwise.<br />
+        While you are a Barbarian this is <b>always active</b>`
         },
         constants: {
         },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            isEnchantment: true,
-            hideBuff: true
+            isEnchantment: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
@@ -82,15 +86,16 @@ export const CLASS_BUFFS = {
     },
 
     class_passive_barbarian__brawn: {
-        duplicateTag: "class_passive_barbarian__brawn", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_barbarian__brawn",
         icon: "barbarianBrawn.svg",
         name: "Brawn",
         description({ buff, level }) {
             return `
-        Passive ability<br />
+        Passive class ability<br />
         Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your
         damage by +10% per stack (to a maximum of +200%).  Stacks are reduced by 3 when you successfully
-        hit with an auto-attack to a minimum of 0 stacks.`
+        hit with an auto-attack to a minimum of 0 stacks.<br />
+        While equipped when you are a Barbarian this is <b>always active</b>`
         },
         constants: {},
         data: {
@@ -137,19 +142,44 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_trait_duelist: {
+        duplicateTag: "class_trait_duelist",
+        icon: "classDuelist.png",
+        name: "Class Trait: Duelist",
+        description() {
+            return `
+        <i>Twin Blades</i> and other dagger/rapier-only abilities can also be used with short swords,
+        scimitars, and longswords.  Physical damage dealt to an enemy you aren't directly targeting
+        is increased by 50%.  Rapiers and bucklers may be equipped together.  Double accuracy benefit
+        from rapiers.  Rapiers no longer reduce Defense.<br />
+        While you are a Duelist this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_passive_duelist__driven: {
-        duplicateTag: "class_passive_duelist__driven", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_duelist__driven",
         icon: "duelistDriven.svg",
         name: "Driven",
         description({ buff, level }) {
             return `
-        Passive ability<br />
-        Your damage is reduced by half, but you auto-attack twice as fast.`
+        Passive class ability<br />
+        Your damage is reduced by half, but you auto-attack twice as fast.<br />
+        While equipped when you are a Duelist this is <b>always active</b>`
         },
         constants: {},
-        data: {
-            hideBuff: true
-        },
+        data: {},
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 target.stats.attackSpeed *= 2.0
@@ -161,26 +191,54 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_trait_paladin: {
+        duplicateTag: "class_trait_paladin",
+        icon: "classPaladin.png",
+        name: "Class Trait: Paladin",
+        description() {
+            return `
+        A successful taunt triggers a heal for the ally the enemy was targeting.  15% faster
+        cooldowns for taunt abilities.  Longswords and shields may be equipped together.
+        Double Max Attack from hammers and spears.  Double health benefit from non-magical
+        head, chest, and leg equipment.<br />
+        While you are a Paladin this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_passive_paladin__bulwark: {
-        duplicateTag: "class_passive_paladin__bulwark", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_paladin__bulwark",
         icon: "warden_shield.svg",
         name: "Bulwark",
         description({ buff, level }) {
             return `
-        Passive ability<br />
+        Passive class ability<br />
         Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that 
         prevents all damage.  Each time the ally would take damage, a stack is deducted.
-        When all stacks are gone, this protection ends.`
+        When all stacks are gone, this protection ends.<br />
+        While equipped when you are a Paladin this is <b>always active</b>`
         },
         constants: {},
         data: {
+            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
             hideBuff: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 // apply it to all the friendly units
                 actualBattle.units.forEach((friendlyUnit) => {
-                    if (true || friendlyUnit.id !== caster.id) {
+                    if (friendlyUnit.id !== caster.id) {
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
                                 buffId: "class_passive_paladin__bulwark_effect",
@@ -201,13 +259,12 @@ export const CLASS_BUFFS = {
     },
 
     class_passive_paladin__bulwark_effect: {
-        duplicateTag: "class_passive_paladin__bulwark_effect", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_paladin__bulwark_effect",
         icon: "warden_shield.svg",
         name: "Bulwark",
         description({ buff, level }) {
             return `
-        Passive ability<br />
-        A Paladin has granted you stacks of <i>>Bulwark</i> protection at the beginning of this
+        A Paladin has granted you 5 stacks of <i>>Bulwark</i> protection at the beginning of this
         battle that prevents all damage.  Each time you would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.`
         },
@@ -216,7 +273,6 @@ export const CLASS_BUFFS = {
             stacks: 5
         },
         events: {
-            // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
                     buff.stacks = buff.data.hitsRequired = 5
@@ -239,6 +295,7 @@ export const CLASS_BUFFS = {
                     if (defender.stats.magicArmor <= 1) {
                         defender.stats.magicArmor = 1
                     }
+
                     removeBuff({ buff, target: defender, caster: defender, actualBattle })
                 }
             },
@@ -249,16 +306,19 @@ export const CLASS_BUFFS = {
         }
     },
 
-    class_perk_ranger: {
-        duplicateTag: "class_perk_ranger", // Used to stop duplicate buffs
-        icon: "rangerPerk.svg",
-        name: "Ranger: Perk",
+    class_trait_ranger: {
+        duplicateTag: "class_trait_ranger",
+        icon: "classRanger.png",
+        name: "Class Trait: Ranger",
         description() {
             return `
-        Class trait<br/>
-        Every time you successfully hit with a bow, you gain a stack of this perk that increases
-        your attack speed by +20% per stack (up to a maximum of +100% at 5 stacks) which is reset
-        when an auto-attack misses.`
+        Every time you successfully hit with a bow, you gain a stack of this trait that increases
+        your attack speed by +20% per stack (up to a maximum of +100% at 5 stacks).  You lose 2
+        stacks any time an auto-attack misses.
+        Each unused ability slot adds 1 to the maximum number of arrows fired from <i>Volley</i>.
+        Bow Attack Speed raised by +10%.
+        Non-Bow Damage lowered by -20%.<br />
+        While you are a Ranger this is <b>always active</b>`
         },
         constants: {
         },
@@ -274,10 +334,11 @@ export const CLASS_BUFFS = {
                     attackSpeed: 0
                 }
 
+                // not wielding a weapon with itemId containing '_bow' ?
                 if (target.mainHandWeapon?.indexOf('_bow') !== -1 ) {
                     caster.applyBuffTo({
                         buff: target.generateBuff({
-                            buffId: "class_perk_ranger_volley",
+                            buffId: "class_trait_ranger_volley",
                             buffData: {
                                 stacks: 0
                             }
@@ -287,17 +348,21 @@ export const CLASS_BUFFS = {
                 }
             },
 
-            onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
+                // hitting with an autoattack increases stacks by 1
                 if (source == "autoattack") {
-                    buff.stacks = 0
+                    if (buff.stacks < 5) {
+                        buff.stacks++
+                    }
                 }
             },
 
-            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
+            onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
+                // missing with an autoattack decreases stacks by 2
                 if (source == "autoattack") {
-                    buff.stacks++
-                    if (buff.stacks > 5) {
-                        buff.stacks = 5
+                    buff.stacks -= 2
+                    if (buff.stacks < 0) {
+                        buff.stacks = 0
                     }
                 }
             },
@@ -306,6 +371,7 @@ export const CLASS_BUFFS = {
                 // undo existing bonus
                 target.stats.attackSpeed -= buff.data.damageBoosted.attackSpeed
 
+                // not wielding a weapon with itemId containing '_bow' ?
                 if (target.mainHandWeapon?.indexOf('_bow') === -1 ) {
                     buff.stacks = 0
                     buff.data.damageBoosted.attackSpeed = 0
@@ -325,16 +391,16 @@ export const CLASS_BUFFS = {
         }
     },
 
-    class_perk_ranger_volley: {
-        duplicateTag: "class_perk_ranger_volley", // Used to stop duplicate buffs
-        icon: "rangerPerk.svg",
-        name: "Ranger: Perk",
+    class_trait_ranger_volley: {
+        duplicateTag: "class_trait_ranger_volley",
+        icon: "rangerTrait.svg",
+        name: "Class Trait: Ranger",
         description() {
             return `
-        Class trait<br/>
         The fewer active and passive abilities slotted in your loadout, the more maximum
         shots that Volley can fire.  Each empty ability slot adds +1 to Volley's maximum
-        number of arrows.`
+        number of arrows.<br />
+        While you are a Ranger this is <b>always active</b>`
         },
         constants: {
         },
@@ -371,20 +437,26 @@ export const CLASS_BUFFS = {
         }
     },
 
-    class_perk_sage: {
-        duplicateTag: "class_perk_sage", // Used to stop duplicate buffs
-        icon: "",
-        name: "Class Perk: Sage",
+    class_trait_sage: {
+        duplicateTag: "class_trait_sage",
+        icon: "classSage.png",
+        name: "Class Trait: Sage",
         description() {
-            return ``
+            return `
+        Healing a target reduces all of your active ability cooldowns by 2 seconds and places
+        a protective blessing upon them for 2 seconds that reduces the damage they take by
+        25%.
+        Triple Healing Power benefit from staves
+        Can reforge most magical clothing.
+        Cannot auto-attack when in combat with allies.<br />
+        While you are a Sage this is <b>always active</b>`
         },
         constants: {
         },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            isEnchantment: true,
-            hideBuff: true
+            isEnchantment: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
@@ -394,13 +466,37 @@ export const CLASS_BUFFS = {
                     return
                 }
 
+                const newBuff = {
+                    id: "class_trait_sage__sages_blessing",
+                    data: {
+                        duration: 2.2,
+                        totalDuration: 2.2,
+                        caster: caster.id,
+                        allowDuplicates: true,
+                        icon: "sagesBlessing.svg",
+                        name: "Sage's Blessing",
+                        description: "A Sage's blessing is preventing 15% of the damage you would ordinarily take."
+                    }
+                }
+
+                addBuff({ buff: newBuff, target, caster })
+
                 const healSourceConsts =
                     healSource.constants && healSource.constants.constants
                         ? healSource.constants.constants
                         : lookupBuff(healSource.id).constants
                 if (healSourceConsts.reducesCooldowns && caster.abilities) {
                     caster.abilities.forEach((ability) => {
-                        ability._currentCooldown -= 2.0
+                        // healing spells reduce the cooldown of ALL abilities by 2 seconds
+                        if (ability._currentCooldown > 0.0) {
+                            ability._currentCooldown -= 2.0
+                            
+                            // don't reduce below 0
+                            if (ability._currentCooldown <= 0.0) {
+                                // will be cleared by the combat server on the next tick
+                                ability._currentCooldown = 0.01
+                            }
+                        }
                     })
                 }
             },
@@ -412,13 +508,14 @@ export const CLASS_BUFFS = {
     },
 
     class_passive_sage__ward: {
-        duplicateTag: "class_passive_sage__ward", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_sage__ward",
         icon: "sageWard.svg",
         name: "Ward",
         description({ buff, level }) {
             return `
-        Passive ability<br />
-        Prevents you from being directly targeted unless there are no other allies remaining in battle.`
+        Passive class ability<br />
+        Prevents you from being directly targeted unless there are no other allies remaining in battle.
+        While equipped when you are a Sage this is <b>always active</b>`
         },
         constants: {},
         data: {
@@ -433,48 +530,132 @@ export const CLASS_BUFFS = {
                     return
                 }
 
-                //todo: improve this, this forces enemies to retarget every tick -- it'd be more efficient and possibly
-                //      prevent an edge case race condition by patching where targets are originally assigned instead
+                //todo: improve this, this forces enemies (that are targeting the player) to retarget every tick;
+                //      it'd be more efficient and possibly prevent an edge case race condition by patching where
+                //      targets are originally assigned instead
 
-                let targetingUs = 0
-                actualBattle.enemies.forEach((enemy) => {
+                // pick someone new (filtering us out)
+                for (let enemy of actualBattle.enemies) {
                     if (enemy.target == target.id) {
-                        targetingUs++
+                        enemy.target = _.sample(actualBattle.units.filter((thisFriendlyUnit) => {
+                            return thisFriendlyUnit.id !== target.id
+                        })).id
                     }
-                })
-                if (targetingUs > 0) {
-                    let allFriendlyCombatUnitsExcludingSelf = []
-                    _.forEach(actualBattle.units, function (thisFriendlyUnit) {
-                        if (thisFriendlyUnit.id != target.id) {
-                            allFriendlyCombatUnitsExcludingSelf.push(thisFriendlyUnit)
-                        }
-                    })
-
-                    actualBattle.enemies.forEach((enemy) => {
-                        if (enemy.target == target.id) {
-                            enemy.target = _.sample(allFriendlyCombatUnitsExcludingSelf).id
-                        }
-                    })
-
                 }
             },
         }
     },
 
-    class_perk_warmage: {
-        duplicateTag: "class_perk_warmage", // Used to stop duplicate buffs
-        icon: "",
-        name: "Class Perk: War Mage",
+    class_trait_sage__sages_blessing: {
+        duplicateTag: "class_trait_sage__sages_blessing",
+        icon: "sagesBlessing.svg",
+        name: "Sage's Blessing",
+        description({ buff, level }) {
+            return `
+        A Sage's blessing is preventing 15% of the damage you would ordinarily take.`
+        },
+        constants: {},
+        data: {
+            duration: 2.2,
+            totalDuration: 2.2,
+            isEnchantment: true,
+            allowDuplicates: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                target.stats.damageTaken -= 0.15
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                if (buff.duration !== Infinity) {
+                    buff.duration -= secondsElapsed
+                    if (buff.duration <= 0) {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                target.stats.damageTaken += 0.15
+            }
+        }
+    },
+
+    class_trait_tactician: {
+        duplicateTag: "class_trait_tactician",
+        icon: "classTactician.png",
+        name: "Class Trait: Tactician",
         description() {
-            return ``
+            return `
+        You gain +20% damage and +15% accuracy, except:<br />
+        You lose 5% damage and 4% accuracy for every active ability slotted in your loadout beyond 3 active abilities.<br />
+        You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout beyond 3 passive abilities.<br />
+        You have a 10% chance to prevent damage, which cannot be reduced, prevented, or nullified.<br />
+        While you are a Tactician this is <b>always active</b>`
         },
         constants: {
         },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            isEnchantment: true,
-            hideBuff: true
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                if (target.abilities) {
+                    let passiveAbilityCount = 0
+                    let activeAbilityCount = 0
+                    target.abilities.forEach((ability) => {
+                        if (ability.slot != "companion") {
+                            passiveAbilityCount += (ability.isPassive) ? 1 : 0
+                            activeAbilityCount += (ability.isPassive) ? 0 : 1
+                        }
+                    })
+
+                    const damageBuff = 0.20 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.05)
+                    const accuracyBuff = 0.15 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.04)
+                    
+                    buff.custom = true
+                    buff.data.custom = true
+
+                    const damageBuffText = (damageBuff >= 0) ? `+${(damageBuff*100.0).toFixed(0)}` : `${(damageBuff*100.0).toFixed(0)}`
+                    const accuracyBuffText = (accuracyBuff >= 0) ? `+${(accuracyBuff*100.0).toFixed(0)}` : `${(accuracyBuff*100.0).toFixed(0)}`
+
+                    buff.customText = `${damageBuffText} / ${accuracyBuffText}`
+
+                    target.stats.attack += target.stats.attack * (1.0 + damageBuff)
+                    target.stats.attackMax += target.stats.attackMax * (1.0 + damageBuff)
+                    target.stats.accuracy += target.stats.accuracy * (1.0 + accuracyBuff)
+                }
+
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_trait_warmage: {
+        duplicateTag: "class_trait_warmage",
+        icon: "classWarMage.png",
+        name: "Class Trait: War Mage",
+        description() {
+            return `
+        Whenever you inflict magic damage in combat, your maximum health is restored by 0.5% of its original amount.
+        Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.
+        May cast hostile spells while wielding any style of weapon.
+        Can reforge tridents.
+        Triple Attack Speed for tridents and tridents now deal 100% of your auto-attack damage as additional magic damage.
+        Double all stat benefits from amulets.<br />
+        While you are a War Mage this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
@@ -505,27 +686,26 @@ export const CLASS_BUFFS = {
     },
 
     class_passive_warmage__glorious_destiny: {
-        duplicateTag: "class_passive_warmage__glorious_destiny", // Used to stop duplicate buffs
+        duplicateTag: "class_passive_warmage__glorious_destiny",
         icon: "warmageGloriousDestiny.svg",
         name: "Glorious Destiny",
         description({ buff, level }) {
             return `
-        Passive ability<br />
-        Dealing magic damage restores 2% of your maximum health.`
+        Passive class ability<br />
+        Dealing magic damage restores 0.5% of your maximum health.<br />
+        While equipped when you are a War Mage this is <b>always active</b>`
         },
         constants: {},
-        data: {
-            hideBuff: true
-        },
+        data: {},
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
 
             // for abilities and spells, including the 'magic_blade' proc from tridents -- does not include auto-attack (that's 'onDidDamage'), which can't hit for magic damage
             onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
                 if (magic && damageDealt > 0) {
-                    // increase max health by 1%
+                    // increase max health by 0.5%
 
-                    const amountToIncreaseHealthBy = 0.01 * attacker.stats.healthMaxOrig
+                    const amountToIncreaseHealthBy = 0.005 * attacker.stats.healthMaxOrig
 
                     attacker.stats.healthMax += amountToIncreaseHealthBy
                     if (attacker.stats.healthMax > attacker.stats.healthMaxOrig) {
@@ -535,6 +715,31 @@ export const CLASS_BUFFS = {
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+        }
+    },
+
+    class_trait_wizard: {
+        duplicateTag: "class_trait_wizard",
+        icon: "classWizard.png",
+        name: "Class Trait: Wizard",
+        description() {
+            return `
+        Can reforge wands, tomes, and orbs.  Astronomy mages produce magic shards 25% faster.  Double
+        Magic Power benefit from tomes and orbs.  Maximum Health is reduced by half.  The Maximum
+        Health cost of all spells is reduced by half.<br />
+        While you are a Wizard this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+            onRemove({ buff, target, caster }) {}
         }
     }
 }

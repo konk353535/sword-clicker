@@ -1667,7 +1667,7 @@ export const ATTACK_BUFFS = {
                 if (caster?.currentClass?.id === "ranger") {
                     let rangerVolleyBuff = undefined
                     target.buffs.forEach((thisBuff) => {
-                        if (thisBuff.id === "class_perk_ranger_volley") {
+                        if (thisBuff.id === "class_trait_ranger_volley") {
                             rangerVolleyBuff = thisBuff
                         }
                     })

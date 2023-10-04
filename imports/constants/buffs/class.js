@@ -1,3 +1,5 @@
+import lodash from "lodash"
+import uuid from "node-uuid"
 import moment from "moment"
 import _ from "underscore"
 
@@ -205,7 +207,10 @@ export const CLASS_BUFFS = {
         A successful taunt triggers a heal for the ally the enemy was targeting.  15% faster
         cooldowns for taunt abilities.  Longswords and shields may be equipped together.
         Double Max Attack from hammers and spears.  Double health benefit from non-magical
-        head, chest, and leg equipment.<br />
+        head, chest, and leg equipment.  Your squire always follows you into battle; he
+        does not fight, but can take some damage.  You automatically intercept half of the
+        damage your squire receives.  If your squire dies, you will be stunned for 60
+        seconds.<br />
         While you are a Paladin this is <b>always active</b>`
         },
         constants: {
@@ -217,7 +222,181 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+            
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.summonedSquireYet) {
+                    buff.data.summonedSquireYet = true
+
+                    const paladinSquire = {
+                        owner: target.id + "_companion",
+                        id: uuid.v4(),
+                        tickOffset: 0,
+                        isNPC: true,
+                        isCompanion: true,
+                        isSoloCompanion: false
+                    }
+
+                    paladinSquire.icon = "guyT1.png"
+                    paladinSquire.name = target.name + "'s squire",
+                    paladinSquire.stats = {
+                        attack: 0.001,
+                        attackMax: 0.001,
+                        attackSpeed: 0.001,
+                        accuracy: 0.001,
+                        health: target.stats.healthMax * 0.5,
+                        healthMax: target.stats.healthMax * 0.5,
+                        defense: target.stats.defense * 0.5,
+                        armor: target.stats.armor * 0.33,
+                        magicArmor: target.stats.magicArmor * 0.33,
+                        magicPower: 0.001,
+                        healingPower: 0.001,
+                        damageTaken: 1,
+                        damageOutput: 0
+                    }
+                    paladinSquire.buffs = []
+
+                    paladinSquire.buffs.push(
+                        {
+                            id: "paladin_trait_squire_damage_interception",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                name: "Squire Interception",
+                                icon: "warden_shield.svg",
+                                unitToSendDamageTo: target.id
+                            }
+                        }
+                    ) 
+
+                    let broughtBulwark = false
+                    caster.abilities.forEach((ability) => {
+                        // if this player brought Bulwark to battle, apply it to this new unit
+                        if (ability?.id === "class_passive_paladin__bulwark") {
+                            broughtBulwark = true
+                        }
+                    })
+
+                    if (broughtBulwark) {
+                        paladinSquire.buffs.push(
+                            {
+                                id: "class_passive_paladin__bulwark_effect",
+                                data: {
+                                    duration: Infinity,
+                                    totalDuration: Infinity,
+                                    name: "Bulwark",
+                                    icon: "warden_shield.svg",
+                                    stacks: 5,
+                                }
+                            }
+                        )
+                    }
+
+                    let allFriendlyCombatUnits = []
+                    _.forEach(actualBattle.units, function (thisFriendlyUnit) {
+                        allFriendlyCombatUnits.push(thisFriendlyUnit)
+                    })
+
+                    // add the squire to combat (but 'actualBattle.units' does not get updated until next tick)
+                    actualBattle.addUnit(paladinSquire)
+                    buff.data.squireUnit = paladinSquire.id
+
+                    allFriendlyCombatUnits.push(paladinSquire)
+
+                    // cheezy hack: now that this squire exists, randomize every enemy to target random friendly units
+                    //              otherwise the squire will never be targeted in PQ or the first floor of a multi-room tower
+                    _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
+                        thisEnemyUnit.target = _.sample(allFriendlyCombatUnits).id
+                    })
+                }
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    paladin_trait_squire_damage_interception: {
+        duplicateTag: "paladin_trait_squire_damage_interception",
+        icon: "warden_shield.svg",
+        name: "Squire Interception",
+        description({ buff, level }) {
+            return `
+        Redirects 50% damage from the squire back to the paladin.`
+        },
+        constants: {},
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true,
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onTick({ buff, target, caster, actualBattle }) {},
+
+            onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+                if (buff.data.unitToSendDamageTo) {
+                    // try fo find ally
+                    const paladinAlly = actualBattle.units.find((ally) => {
+                        return ally.id === buff.data.unitToSendDamageTo
+                    })
+                    if (!lodash.isUndefined(paladinAlly)) {
+                        // redirect half the damage from self back to the paladin
+                        const redirectDamage = damageDealt * 0.5
+
+                        actualBattle.healTarget(redirectDamage, {
+                            caster: paladinAlly,
+                            target: defender,
+                            healSource: buff
+                        })
+
+                        if (redirectDamage >= 0.1) {
+                            actualBattle.dealDamage(redirectDamage, {
+                                attacker: defender,
+                                defender: paladinAlly,
+                                tickEvents: actualBattle.tickEvents,
+                                customIcon: "warden_shield.svg" // buff.data.icon
+                            })
+
+                            const healthPercentage = defender.stats.health / defender.stats.healthMax
+
+                            if (healthPercentage <= 0.3) {
+                                defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "noicon", defender)
+                            } else if (healthPercentage <= 0.6) {
+                                defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#E27600", "noicon", defender)
+                            }
+                        }
+                    }
+                }
+            },
+
+            onBeforeDeath({ buff, target, actualBattle }) {
+                if (buff.data.unitToSendDamageTo) {
+                    // try fo find ally
+                    const paladinAlly = actualBattle.units.find((ally) => {
+                        return ally.id === buff.data.unitToSendDamageTo
+                    })
+                    if (!lodash.isUndefined(paladinAlly)) {
+                        // penalize the paladin for losing his squire!
+
+                        paladinAlly.tickMessage("Squire Died", "#CC0000", "noicon", paladinAlly)
+
+                        const newBuff = {
+                            id: "stunned",
+                            data: {
+                                duration: 60,
+                                totalDuration: 60,
+                                icon: "stunned.svg",
+                                name: "Mourning",
+                                description: `Your squire has fallen in combat!  You are stunned and can't take any actions or fight.`
+                            }
+                        }
+
+                        addBuff({ buff: newBuff, target: paladinAlly, caster: target, actualBattle })
+                    }
+                }
+            },
+
             onRemove({ buff, target, caster }) {}
         }
     },
@@ -285,8 +464,8 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
                     buff.stacks = buff.data.hitsRequired = 5
-                    target.stats.armor += 10000
-                    target.stats.magicArmor += 10000
+                    target.stats.armor += 100000
+                    target.stats.magicArmor += 100000
                 }
             },
 
@@ -295,8 +474,8 @@ export const CLASS_BUFFS = {
                 buff.stacks = buff.data.hitsRequired
 
                 if (buff.data.hitsRequired <= 0) {
-                    defender.stats.armor -= 10000
-                    defender.stats.magicArmor -= 10000
+                    defender.stats.armor -= 100000
+                    defender.stats.magicArmor -= 100000
     
                     if (defender.stats.armor <= 1) {
                         defender.stats.armor = 1
@@ -1028,7 +1207,88 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
+            
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
+            
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_passive_wizard__summon_familiar: {
+        duplicateTag: "class_passive_wizard__summon_familiar",
+        icon: "wizardSummonFamiliar.png",
+        name: "Summon Familiar",
+        description() {
+            return `
+        Passive class ability<br />
+        You summon a familiar to battle based on whatever you have equipped in your offhand.<br />
+        While equipped when you are a Wizard this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+            
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.summonedFamiliarYet) {
+                    buff.data.summonedFamiliarYet = true
+
+                    //console.log(target)
+                    //console.log(`^ ^ ^   SUMMON FAMILIAR   ^ ^ ^`)
+
+                    let summonType = ""
+
+                    if (target.offHandType === "orb") {
+                        summonType = "Orb"
+                    } else if (target.offHandType === "tome") {
+                        summonType = "Tome"
+                    } else if (target.offHandType === "shield" && target.offHandIsMagic) {
+                        summonType = "Spirit"
+                    } else {
+                        return
+                    }
+
+                    const wizardFamiliar = {
+                        owner: target.id + "_companion",
+                        id: uuid.v4(),
+                        tickOffset: 0,
+                        isNPC: true,
+                        isCompanion: true,
+                        isSoloCompanion: false
+                    }
+
+                    wizardFamiliar.icon = `wizardSummonFamiliar${summonType}.svg`
+                    wizardFamiliar.name = target.name + "'s " + summonType.toLowerCase(),
+                    wizardFamiliar.stats = {
+                        attack: 0.001,
+                        attackMax: 0.001,
+                        attackSpeed: 0.001,
+                        accuracy: 0.001,
+                        health: target.stats.healthMax * 0.5,
+                        healthMax: target.stats.healthMax * 0.5,
+                        defense: target.stats.defense * 0.5,
+                        armor: target.stats.armor * 0.33,
+                        magicArmor: target.stats.magicArmor * 0.33,
+                        magicPower: 0.001,
+                        healingPower: 0.001,
+                        damageTaken: 1,
+                        damageOutput: 0
+                    }
+                    wizardFamiliar.buffs = []
+
+                    //todo: add buffs that let the familiar do stuff!
+
+                    // add the familiar to combat
+                    actualBattle.addUnit(wizardFamiliar)
+                    buff.data.familiarUnit = wizardFamiliar.id
+                }
+            },
+            
             onRemove({ buff, target, caster }) {}
         }
     }

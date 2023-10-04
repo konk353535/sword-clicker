@@ -163,5 +163,21 @@ export const CLASS_ABILITIES = {
             const BUFF = BUFFS.class_passive_warmage__glorious_destiny
             return BUFF.description({ buff: BUFF, level })
         }
+    },
+
+    class_passive_wizard__summon_familiar: {
+        icon: "wizardSummonFamiliar.svg",
+        name: "Summon Familiar",
+        id: "class_passive_wizard__summon_familiar",
+        buffs: ["class_passive_wizard__summon_familiar"],
+        cooldown: 0,
+        isPassive: true,
+        slot: "any",
+        target: "self",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_passive_wizard__summon_familiar
+            return BUFF.description({ buff: BUFF, level })
+        }
     }
 }

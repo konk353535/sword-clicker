@@ -527,7 +527,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: [],
+        exclusiveAbilities: ["class_passive_wizard__summon_familiar"],
         autoBuffs: ["class_trait_wizard"],
         equipmentBonuses: {
             tome: {

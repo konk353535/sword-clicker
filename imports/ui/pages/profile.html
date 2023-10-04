@@ -28,7 +28,7 @@
         <div class="icon-box" style="border: none">
           <div class="icon-box" style="position: relative;">
             <img src="/icons/{{characterIcon}}">
-            <img src="/icons/{{classIcon}}" style="border: none; position: absolute; left: -12px; top: -12px; z-index: 50; width: 48px; height: 48px;">
+            <img src="/icons/{{classIcon}}" style="border: none; position: absolute; left: -12px; top: -12px; z-index: 14; width: 48px; height: 48px;">
           </div>
         </div>
         <!-- Main Hand -->
@@ -47,20 +47,20 @@
             Off Hand
           </div>
         {{/if}}
-        <!-- Head -->
-        {{#if equippedItemsMap.head}}
-          {{> itemIcon item=equippedItemsMap.head}}
-        {{else}}
-          <div class="icon-box">
-            Head
-          </div>
-        {{/if}}
         <!-- Neck -->
         {{#if equippedItemsMap.neck}}
           {{> itemIcon item=equippedItemsMap.neck}}
         {{else}}
           <div class="icon-box">
             Neck
+          </div>
+        {{/if}}
+        <!-- Head -->
+        {{#if equippedItemsMap.head}}
+          {{> itemIcon item=equippedItemsMap.head}}
+        {{else}}
+          <div class="icon-box">
+            Head
           </div>
         {{/if}}
         <!-- Chest -->
@@ -155,7 +155,7 @@
             </div>
           {{/if}}
         {{else}}
-          <div class="icon-box" style="border: none">
+          <div class="icon-box hide-on-mobile" style="border: none">
             <br />
           </div>
           <!-- Main Hand -->

@@ -143,6 +143,7 @@ export default class Battle {
     units: Unit[]
     enemies: Unit[]
     tickCount: number
+    roomTickCount: number
     intervalId: NodeJS.Timer
     unitsMap: { [k in string]: Unit }
     enemiesMap: { [k in string]: Unit }
@@ -223,6 +224,7 @@ export default class Battle {
         this.units = battle.units.map((unit) => new Unit(unit, this))
         this.enemies = battle.enemies.map((unit) => new Unit(unit, this))
         this.tickCount = 0
+        this.roomTickCount = 0
         this.initHelpers()
         this.intervalId = setInterval(() => {
             this.tick()
@@ -406,7 +408,7 @@ export default class Battle {
 
         this.tickUnitsAndBuffs()
 
-        if (this.tickCount >= 4) {
+        if (this.roomTickCount >= 4) {
             this.unitAutoAttacks(this.enemies)
             this.unitAutoAttacks(this.units)
         }
@@ -418,6 +420,7 @@ export default class Battle {
         if (this.tickCount >= 4) this.checkGameOverConditions()
 
         this.tickCount++
+        this.roomTickCount++
         this.postTick()
     }
 

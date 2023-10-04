@@ -12,8 +12,10 @@ export function checkGameOverConditions(this: Battle) {
     if (this.enemies.length === 0 || this.units.length === 0) {
         // Before we end the battle, make sure it shouldn't continue
         if (this.isExplorationRun && this.units.length > 0) {
+            this.roomTickCount = 0 // reset the room tick count
+
             if (this.room !== "boss" && this.room < 7) {
-                this.tickCount = 3 // give us back a delay
+                //this.tickCount = 3 // give us back a delay
 
                 this.room += 1
 

@@ -23,7 +23,8 @@ export function postTick(this: Battle) {
                         connectedSocket.emit("tick", {
                             tickEvents: data.tickEvents,
                             deltaEvents: data.deltaEvents,
-                            tickCount: data.tickCount
+                            tickCount: data.tickCount,
+                            roomTickCount: data.roomTickCount
                         })
                     } catch (err) {
                         console.log(err)

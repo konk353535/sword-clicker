@@ -17,8 +17,8 @@ import { getActiveGlobalBuff } from "/imports/api/globalbuffs/globalbuffs.js"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { CInt, IsValid } from "/imports/utils.js"
 
-import { Floors } from "/imports/api/floors/floors"
 import { FloorLoot } from "/imports/api/floors/floorLoot"
+import { Floors } from "/imports/api/floors/floors"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS, getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
@@ -207,14 +207,13 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     try {
         const userClass = userCurrentClass(userId)
         if (userClass && userClass.unlocked) {
-            const userClassData = (newClass === undefined || typeof newClass === 'undefined') ? userClass.data : newClass
+            const userClassData = newClass === undefined || typeof newClass === "undefined" ? userClass.data : newClass
             if (userClassData.id == "wizard") {
                 playerData.stats.health /= 2.0
                 playerData.stats.healthMax /= 2.0
             }
         }
-    } catch (err) {
-    }
+    } catch (err) {}
 
     // If health is above healthMax, reset health
     if (
@@ -499,41 +498,50 @@ Meteor.methods({
     },
 
     "combat.migrateFloorLoot"() {
-        Floors.find().fetch().forEach((floor) => {
-            // migrate the loot
-            floor.loot.forEach((reward) => {
-                let existingReward
-                if (reward.type === "item") {
-                    existingReward = FloorLoot.findOne({
-                        server: floor.server,
-                        floor: floor.floor,
-                        itemId: reward.itemId
-                    })
-                } else if (reward.type === "gold") {
-                    existingReward = FloorLoot.findOne({
-                        server: floor.server,
-                        floor: floor.floor,
-                        type: "gold"
-                    })
-                }
+        const userDoc = Users.findOne({ _id: Meteor.userId() })
+        const userIsAdmin = userDoc && userDoc.isSuperMod
 
-                if (existingReward != null) {
-                    // increment
-                    FloorLoot.update(existingReward._id, {
-                        $inc: {
-                            amount: reward.amount
-                        }
-                    })
-                } else {
-                    // insert
-                    FloorLoot.insert({
-                        server: floor.server,
-                        floor: floor.floor,
-                        ...reward
-                    })
-                }
+        if (!userIsAdmin) {
+            return false
+        }
+
+        Floors.find()
+            .fetch()
+            .forEach((floor) => {
+                // migrate the loot
+                floor.loot.forEach((reward) => {
+                    let existingReward
+                    if (reward.type === "item") {
+                        existingReward = FloorLoot.findOne({
+                            server: floor.server,
+                            floor: floor.floor,
+                            itemId: reward.itemId
+                        })
+                    } else if (reward.type === "gold") {
+                        existingReward = FloorLoot.findOne({
+                            server: floor.server,
+                            floor: floor.floor,
+                            type: "gold"
+                        })
+                    }
+
+                    if (existingReward != null) {
+                        // increment
+                        FloorLoot.update(existingReward._id, {
+                            $inc: {
+                                amount: reward.amount
+                            }
+                        })
+                    } else {
+                        // insert
+                        FloorLoot.insert({
+                            server: floor.server,
+                            floor: floor.floor,
+                            ...reward
+                        })
+                    }
+                })
             })
-        })
     }
 })
 

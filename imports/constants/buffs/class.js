@@ -262,7 +262,7 @@ export const CLASS_BUFFS = {
                                 duration: Infinity,
                                 totalDuration: Infinity,
                                 name: "Squire Interception",
-                                icon: "warden_shield.svg",
+                                icon: "paladinSquireInterception.svg",
                                 unitToSendDamageTo: target.id
                             }
                         }
@@ -284,7 +284,7 @@ export const CLASS_BUFFS = {
                                     duration: Infinity,
                                     totalDuration: Infinity,
                                     name: "Bulwark",
-                                    icon: "warden_shield.svg",
+                                    icon: "paladinBulwark.svg",
                                     stacks: 5,
                                 }
                             }
@@ -316,7 +316,7 @@ export const CLASS_BUFFS = {
 
     paladin_trait_squire_damage_interception: {
         duplicateTag: "paladin_trait_squire_damage_interception",
-        icon: "warden_shield.svg",
+        icon: "paladinSquireInterception.svg",
         name: "Squire Interception",
         description({ buff, level }) {
             return `
@@ -355,7 +355,7 @@ export const CLASS_BUFFS = {
                                 attacker: defender,
                                 defender: paladinAlly,
                                 tickEvents: actualBattle.tickEvents,
-                                customIcon: "warden_shield.svg" // buff.data.icon
+                                customIcon: buff.data.icon
                             })
 
                             const healthPercentage = defender.stats.health / defender.stats.healthMax
@@ -403,7 +403,7 @@ export const CLASS_BUFFS = {
 
     class_passive_paladin__bulwark: {
         duplicateTag: "class_passive_paladin__bulwark",
-        icon: "warden_shield.svg",
+        icon: "paladinBulwark.svg",
         name: "Bulwark",
         description({ buff, level }) {
             return `
@@ -446,7 +446,7 @@ export const CLASS_BUFFS = {
 
     class_passive_paladin__bulwark_effect: {
         duplicateTag: "class_passive_paladin__bulwark_effect",
-        icon: "warden_shield.svg",
+        icon: "paladinBulwark.svg",
         name: "Bulwark",
         description({ buff, level }) {
             return `
@@ -666,7 +666,7 @@ export const CLASS_BUFFS = {
                         caster: caster.id,
                         timeTillDamage: 0,
                         allowDuplicates: true,
-                        icon: "ignite.svg",
+                        icon: "rangerBlazeArrows.svg",
                         name: "Blaze Arrow",
                         duplicateTag: "class_active_ranger__blaze_arrows__burning_effect"
                     }
@@ -683,7 +683,7 @@ export const CLASS_BUFFS = {
 
     class_active_ranger__blaze_arrows__burning_effect: {
         duplicateTag: "class_active_ranger__blaze_arrows__burning_effect",
-        icon: "ignite.svg",
+        icon: "rangerBlazeArrows.svg",
         name: "Blaze Arrow",
         description({ buff, level }) {
             return ``
@@ -707,7 +707,7 @@ export const CLASS_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "ignite.svg"
+                        customIcon: "rangerBlazeArrows.svg"
                     })
                     buff.data.timeTillDamage = 1
                 }

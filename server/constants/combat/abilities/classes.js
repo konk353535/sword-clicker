@@ -36,7 +36,7 @@ export const CLASS_ABILITIES = {
     },
     
     class_passive_paladin__bulwark: {
-        icon: "warden_shield.svg",
+        icon: "paladinBulwark.svg",
         name: "Bulwark",
         id: "class_passive_paladin__bulwark",
         buffs: ["class_passive_paladin__bulwark"],

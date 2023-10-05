@@ -2690,7 +2690,8 @@ export const COMPANION_BUFFS = {
                 buff.data.timeTillAction = 0.0
                 buff.data.CDAirBall = 0.0
                 buff.data.CDMend = 0.0
-                ;(buff.data.CDWaterBall = 0.0), (buff.data.CDWaterDart = 0.0)
+                buff.data.CDWaterBall = 0.0
+                buff.data.CDWaterDart = 0.0
                 buff.data.CDWaterWave = 0.0
             },
 

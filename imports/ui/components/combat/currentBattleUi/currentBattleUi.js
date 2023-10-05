@@ -132,7 +132,8 @@ const startBattle = (currentBattle, self) => {
                         "penetratingSlash",
                         "shieldBash",
                         "bladeSpin",
-                        "powerShot"
+                        "powerShot",
+                        "noicon"
                     ]
 
                     // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font

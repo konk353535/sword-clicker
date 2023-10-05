@@ -1,0 +1,1296 @@
+<template name="viewClassesPage">
+    <br class="hide-on-mobile" />
+    Classes are a feature that unlock after you clear the tower floor level 10 or above. You must completely clear the
+    tower floor to qualify for and unlock classes.<br />
+    <br />
+    Once unlocked, you will automatically become a base class of <i>Wanderer</i> and your ability loadout changes from
+    five slots for active or passive abilities into eight slots that are divided between five dedicated active slots
+    and three dedicated passive slots. Each of the classes are detailed below with their traits and unique
+    abilities.<br />
+    <div class="d-flex flex-grow" style="margin-top: 8px;">
+        <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+    </div>
+    <div class="hide-on-mobile">
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Wanderers</b> are simply the base class and do not confer any benefits or hindrances beyond the
+                        changes to how many abilities can be equipped.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Barbarians</b> are the masters of of weilding large weapons to excellent effect and causing
+                        physical carnage.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classBarbarian.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Brawn</b>
+                                    <img src="/icons/barbarianBrawn.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases
+                                    all of your damage by +10% per stack (to a maximum of +200%). Stacks are reduced by 3
+                                    when you successfully hit with an auto-attack to a minimum of 0 stacks.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Your critical hits will inflict <b>Bleeding</b>
+                                    <img src="/icons/bleeding.svg" style="width: 16px; height: 16px;" />
+                                    for 3 seconds. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Broad swords and battle axes have a 25% chance to strike enemies adjacent to your
+                                    target. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Magic Power stat in combat is always 0 and cannot be raised; unable to equip magical
+                                    head, chest, or leg equipment. Class traits are always active.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Duelists</b> are a blur of blades and speed with few equals in their skill with quick weapons
+                        and precision.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classDuelist.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Driven</b>
+                                    <img src="/icons/duelistDriven.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Upon entering combat, your damage is reduced by half, but you auto-attack twice as
+                                    fast.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    <b>Twin Blades</b>
+                                    <img src="/icons/twinBlades.svg" style="width: 16px; height: 16px;" />
+                                    can also be used with short swords, scimitars, and longswords. Physical damage dealt
+                                    to an enemy you aren't directly targeting is increased by 50%. Class traits are always
+                                    active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Rapiers and bucklers may be equipped together. Double accuracy benefit from rapiers.
+                                    Rapiers no longer reduce Defense. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Cannot equip head armor. Class traits are always active.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Paladins</b> are mighty defenders of their allies, bolstered by their determination.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classPaladin.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Bulwark</b>
+                                    <img src="/icons/paladinBulwark.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that
+                                    prevents all damage.  Each time the ally would take damage, a stack is deducted. When
+                                    all stacks are gone, this protection ends.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    A successful taunt triggers <b>Paladin's Inspiration</b>
+                                    <img src="/icons/paladinInspiration.svg" style="width: 16px; height: 16px;" /> which
+                                    heals the ally the enemy was targeting for <b>30 + 20% Magic Power</b>.  All taunt
+                                    abilities have 15% reduced cooldowns.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Longswords and shields may be equipped together. Double Max Attack from hammers and
+                                    spears.  Double health benefit from non-magical head, chest, and leg equipment.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You are charged with a duty to defend a squire who always follows you into battle; he
+                                    does not fight, but can take damage. You automatically <b>Intercept</b>
+                                    <img src="/icons/paladinSquireInterception.svg" style="width: 16px; height: 16px;" />
+                                    half of the damage your squire receives. If your squire dies, you will be stunned
+                                    and unable to auto-attack or use abilities for <b>60</b> seconds.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Rangers</b> know archery and the value of keeping distance between themselves and danger. Armed
+                        with a variety of trick shots and special munitions, Rangers make short work of tough enemies.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classRanger.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Blaze Arrows</b>
+                                    <img src="/icons/rangerBlazeArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    A fiery attack that deals <b>50%</b> damage immediately and sets the target on
+                                    <b>Fire</b>
+                                    <img src="/icons/ignite.svg" style="width: 16px; height: 16px;" />,
+                                    burning for <b>20%</b> damage every second for <b>8</b> seconds.  Cooldown: <b>12</b>
+                                    seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Sleet Arrows</b>
+                                    <img src="/icons/rangerSleetArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    An icy attack that deals <b>110%</b> damage and <b>Chills</b>
+                                    <img src="/icons/frostedAttacks.svg" style="width: 16px; height: 16px;" />
+                                    the target, lowering its attack speed by <b>50%</b> for 4 seconds.  Cooldown:
+                                    <b>12</b> seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Storm Arrows</b>
+                                    <img src="/icons/rangerStormArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    An electrified attack that deals <b>65%</b> damage and <b>Shocks</b>
+                                    <img src="/icons/rangerStormArrowEffect.svg" style="width: 16px; height: 16px;" />
+                                    the target, lowering its armor by <b>50% Accuracy</b> for 4 seconds.  Cooldown:
+                                    <b>12</b> seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Every time you successfully hit with a bow, you gain a stack of <b>Marksman</b>
+                                    <img src="/icons/rangerTrait.svg" style="width: 16px; height: 16px;" />
+                                    that increases your attack speed by <b>+20%</b> per stack (up to a maximum of
+                                    <b>+100%</b> at 5 stacks).  You lose 2 stacks of <b>Marksman</b> any time an
+                                    auto-attack misses. Each unused ability slot in your equipped loadout adds <b>1</b> to
+                                    the maximum number of arrows fired from <b>Volley</b>
+                                    <img src="/icons/volley.svg" style="width: 16px; height: 16px;" />.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Bow Attack Speed raised by +10%. 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Non-Bow Damage lowered by -20%.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Sages</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classSage.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Ward</b>
+                                    <img src="/icons/sageWard.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Prevents you from being directly targeted unless there are no other allies remaining in battle.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Healing a target reduces all of your active ability cooldowns by 2 seconds and places a
+                                    protective <b>Sage's Blessing</b>
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
+                                    upon the healed target for 2 seconds that reduces the damage they take by 25%.
+                                    <b>Sage's Blessing</b>
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
+                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending Waters</b>
+                                    <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
+                                    and <b>Mending Spring</b>
+                                    <img src="/icons/mendingSpring.svg" style="width: 16px; height: 16px;" />.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Triple Healing Power benefit from staves. Can reforge most magical clothing.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Sages cannot auto-attack while in combat with any allies.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Tacticians</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classTactician.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Grit</b>
+                                    <img src="/icons/tacticianGrit.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    For every 5% Health you are missing from your original Maximum Health, your Defense and
+                                    Magic Armor increases by +4%.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You have no restrictions on what combination of active or passive abilities may be
+                                    slotted in your 8-ability loadout (no dedicated slots).<br />
+                                    You gain +20% damage and +15% accuracy, except:<br />
+                                    You lose 5% damage and 4% accuracy for every active ability slotted in your loadout
+                                    beyond 3 active abilities.<br />
+                                    You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout
+                                    beyond 3 passive abilities.<br />
+                                    You have a 10% chance to negate any damage, which cannot be reduced, prevented, or
+                                    nullified.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    None.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Tacticians do not gain any specialized equipment trait.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>War Mages</b> The banner of the War Mages are constructed in the vague visage of a great demon
+                        whose name and appearance is lost to time. Legends say they wept for the suffering of mortals, and
+                        abandoned their eternal life to bestow the gift of magic among the meek and destitute. The tridents
+                        of these proud flags are enchanted in honor of their sacrifice.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classWarMage.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Glorious Destiny</b>
+                                    <img src="/icons/warmageGloriousDestiny.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Dealing magic damage restores 0.5% of your Maximum Health.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    May cast hostile spells while wielding any style of weapon.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal 100% of
+                                    your auto-attack damage as additional magic damage. Double all stat benefits from amulets.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Whenever you are struck in combat, your Maximum Health is reduced by 1% of its original
+                                    amount.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Wizards</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top" rowspan="2">
+                        <img src="/icons/classWizard.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12pt;" colspan="2">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Summon Familiar</b>
+                                    <img src="/icons/wizardSummonFamiliar.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You summon a familiar to battle based on whatever you have equipped in your offhand.
+                                    For spirit shields, a <b>Spirit</b>
+                                    <img src="/icons/wizardSummonFamiliarSpirit.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will persuade enemies to attack it.  Using an orb, an
+                                    <b>Orb</b>
+                                    <img src="/icons/wizardSummonFamiliarOrb.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will aggressively damage any enemy it sees.  Wielding a
+                                    tome, a <b>Tome</b>
+                                    <img src="/icons/wizardSummonFamiliarTome.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will occassionally heal allies.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    The Maximum Health cost of all spells is reduced by half.  Astronomy mages produce
+                                    magic shards 25% faster.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Can reforge wands, tomes, and orbs.  Double Magic Power benefit from tomes and orbs.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Maximum Health is reduced by half.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="hide-on-desktop">
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Wanderers</b> are simply the base class and do not confer any benefits or hindrances beyond the
+                        changes to how many abilities can be equipped.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Barbarians</b> are the masters of of weilding large weapons to excellent effect and causing
+                        physical carnage.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classBarbarian.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr >
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Brawn</b>
+                                    <img src="/icons/barbarianBrawn.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases
+                                    all of your damage by +10% per stack (to a maximum of +200%). Stacks are reduced by 3
+                                    when you successfully hit with an auto-attack to a minimum of 0 stacks.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Your critical hits will inflict <b>Bleeding</b>
+                                    <img src="/icons/bleeding.svg" style="width: 16px; height: 16px;" />
+                                    for 3 seconds. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Broad swords and battle axes have a 25% chance to strike enemies adjacent to your
+                                    target. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Magic Power stat in combat is always 0 and cannot be raised; unable to equip magical
+                                    head, chest, or leg equipment. Class traits are always active.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Duelists</b> are a blur of blades and speed with few equals in their skill with quick weapons
+                        and precision.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classDuelist.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Driven</b>
+                                    <img src="/icons/duelistDriven.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Upon entering combat, your damage is reduced by half, but you auto-attack twice as
+                                    fast.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    <b>Twin Blades</b>
+                                    <img src="/icons/twinBlades.svg" style="width: 16px; height: 16px;" />
+                                    can also be used with short swords, scimitars, and longswords. Physical damage dealt
+                                    to an enemy you aren't directly targeting is increased by 50%. Class traits are always
+                                    active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Rapiers and bucklers may be equipped together. Double accuracy benefit from rapiers.
+                                    Rapiers no longer reduce Defense. Class traits are always active.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Cannot equip head armor. Class traits are always active.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Paladins</b> are mighty defenders of their allies, bolstered by their determination.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classPaladin.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Bulwark</b>
+                                    <img src="/icons/paladinBulwark.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that
+                                    prevents all damage.  Each time the ally would take damage, a stack is deducted. When
+                                    all stacks are gone, this protection ends.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    A successful taunt triggers <b>Paladin's Inspiration</b>
+                                    <img src="/icons/paladinInspiration.svg" style="width: 16px; height: 16px;" /> which
+                                    heals the ally the enemy was targeting for <b>30 + 20% Magic Power</b>.  All taunt
+                                    abilities have 15% reduced cooldowns.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Longswords and shields may be equipped together. Double Max Attack from hammers and
+                                    spears.  Double health benefit from non-magical head, chest, and leg equipment.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You are charged with a duty to defend a squire who always follows you into battle; he
+                                    does not fight, but can take damage. You automatically <b>Intercept</b>
+                                    <img src="/icons/paladinSquireInterception.svg" style="width: 16px; height: 16px;" />
+                                    half of the damage your squire receives. If your squire dies, you will be stunned
+                                    and unable to auto-attack or use abilities for <b>60</b> seconds.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Rangers</b> know archery and the value of keeping distance between themselves and danger. Armed
+                        with a variety of trick shots and special munitions, Rangers make short work of tough enemies.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classRanger.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Blaze Arrows</b>
+                                    <img src="/icons/rangerBlazeArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    A fiery attack that deals <b>50%</b> damage immediately and sets the target on
+                                    <b>Fire</b>
+                                    <img src="/icons/ignite.svg" style="width: 16px; height: 16px;" />,
+                                    burning for <b>20%</b> damage every second for <b>8</b> seconds.  Cooldown: <b>12</b>
+                                    seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Sleet Arrows</b>
+                                    <img src="/icons/rangerSleetArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    An icy attack that deals <b>110%</b> damage and <b>Chills</b>
+                                    <img src="/icons/frostedAttacks.svg" style="width: 16px; height: 16px;" />
+                                    the target, lowering its attack speed by <b>50%</b> for 4 seconds.  Cooldown:
+                                    <b>12</b> seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Active Class Ability<br />
+                                    <b>Storm Arrows</b>
+                                    <img src="/icons/rangerStormArrows.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    An electrified attack that deals <b>65%</b> damage and <b>Shocks</b>
+                                    <img src="/icons/rangerStormArrowEffect.svg" style="width: 16px; height: 16px;" />
+                                    the target, lowering its armor by <b>50% Accuracy</b> for 4 seconds.  Cooldown:
+                                    <b>12</b> seconds.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Every time you successfully hit with a bow, you gain a stack of <b>Marksman</b>
+                                    <img src="/icons/rangerTrait.svg" style="width: 16px; height: 16px;" />
+                                    that increases your attack speed by <b>+20%</b> per stack (up to a maximum of
+                                    <b>+100%</b> at 5 stacks).  You lose 2 stacks of <b>Marksman</b> any time an
+                                    auto-attack misses. Each unused ability slot in your equipped loadout adds <b>1</b> to
+                                    the maximum number of arrows fired from <b>Volley</b>
+                                    <img src="/icons/volley.svg" style="width: 16px; height: 16px;" />.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Bow Attack Speed raised by +10%. 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Non-Bow Damage lowered by -20%.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Sages</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classSage.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Ward</b>
+                                    <img src="/icons/sageWard.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Prevents you from being directly targeted unless there are no other allies remaining in battle.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Healing a target reduces all of your active ability cooldowns by 2 seconds and places a
+                                    protective <b>Sage's Blessing</b>
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
+                                    upon the healed target for 2 seconds that reduces the damage they take by 25%.
+                                    <b>Sage's Blessing</b>
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
+                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending Waters</b>
+                                    <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
+                                    and <b>Mending Spring</b>
+                                    <img src="/icons/mendingSpring.svg" style="width: 16px; height: 16px;" />.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Triple Healing Power benefit from staves. Can reforge most magical clothing.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Sages cannot auto-attack while in combat with any allies.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Tacticians</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classTactician.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Grit</b>
+                                    <img src="/icons/tacticianGrit.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    For every 5% Health you are missing from your original Maximum Health, your Defense and
+                                    Magic Armor increases by +4%.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You have no restrictions on what combination of active or passive abilities may be
+                                    slotted in your 8-ability loadout (no dedicated slots).<br />
+                                    You gain +20% damage and +15% accuracy, except:<br />
+                                    You lose 5% damage and 4% accuracy for every active ability slotted in your loadout
+                                    beyond 3 active abilities.<br />
+                                    You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout
+                                    beyond 3 passive abilities.<br />
+                                    You have a 10% chance to negate any damage, which cannot be reduced, prevented, or
+                                    nullified.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    None.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Tacticians do not gain any specialized equipment trait.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>War Mages</b> The banner of the War Mages are constructed in the vague visage of a great demon
+                        whose name and appearance is lost to time. Legends say they wept for the suffering of mortals, and
+                        abandoned their eternal life to bestow the gift of magic among the meek and destitute. The tridents
+                        of these proud flags are enchanted in honor of their sacrifice.
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classWarMage.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Glorious Destiny</b>
+                                    <img src="/icons/warmageGloriousDestiny.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Dealing magic damage restores 0.5% of your Maximum Health.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    May cast hostile spells while wielding any style of weapon.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal 100% of
+                                    your auto-attack damage as additional magic damage. Double all stat benefits from amulets.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Whenever you are struck in combat, your Maximum Health is reduced by 1% of its original
+                                    amount.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="descriptive-section">
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
+                <tr>
+                    <td style="font-size: 16pt; margin-top: 16px;">
+                        <b>Wizards</b>
+                    </td>
+                    <td width="10"></td>
+                    <td align="right" valign="top">
+                        <img src="/icons/classWizard.png" class="class-page-class-icon" style="margin-top: 16px; margin-bottom: 16px;" />
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px; width: 100%;">
+                <tr>
+                    <td style="font-size: 12pt;">
+                        <table cellspacing="0" cellpadding="2" style="border: none;">
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Passive Class Ability<br />
+                                    <b>Summon Familiar</b>
+                                    <img src="/icons/wizardSummonFamiliar.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    You summon a familiar to battle based on whatever you have equipped in your offhand.
+                                    For spirit shields, a <b>Spirit</b>
+                                    <img src="/icons/wizardSummonFamiliarSpirit.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will persuade enemies to attack it.  Using an orb, an
+                                    <b>Orb</b>
+                                    <img src="/icons/wizardSummonFamiliarOrb.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will aggressively damage any enemy it sees.  Wielding a
+                                    tome, a <b>Tome</b>
+                                    <img src="/icons/wizardSummonFamiliarTome.svg" style="width: 16px; height: 16px;" />
+                                    familiar is summoned that will occassionally heal allies.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Combat Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    The Maximum Health cost of all spells is reduced by half.  Astronomy mages produce
+                                    magic shards 25% faster.<br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Equipment Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Can reforge wands, tomes, and orbs.  Double Magic Power benefit from tomes and orbs.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="white-space: nowrap;">
+                                    Class Hindrance Trait
+                                </td>
+                                <td valign="top" width="16">
+                                    <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
+                                </td>
+                                <td valign="top">
+                                    Maximum Health is reduced by half.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex flex-grow justify-content-center" style="margin: 16px;">
+        <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+    </div>
+</template>

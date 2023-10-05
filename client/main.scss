@@ -265,12 +265,22 @@ body {
             margin-left: $spacer;
         }
     }
+
+    .class-page-class-icon {
+        width: 192px;
+        height: 192px;
+    }
 }
 
 @media (max-width: 768px) {
     // So nav tabs don't expand too far on mobile
     .nav-tabs {
         overflow-x: scroll;
+    }
+
+    .class-page-class-icon {
+        width: 64x;
+        height: 64px;
     }
 }
 
@@ -437,4 +447,16 @@ body {
 
 .whiteframe-4dp {
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.descriptive-section {
+    width: 100%;
+    font-size: 20pt;
+    color: black;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+
+    table {
+        width: calc(100% - 24px);
+    }
 }

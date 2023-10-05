@@ -13,6 +13,13 @@
   }
 }
 
+@media (min-width: 768px) {
+  .hide-on-desktop {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .hide-on-mobile {
     visibility: hidden;

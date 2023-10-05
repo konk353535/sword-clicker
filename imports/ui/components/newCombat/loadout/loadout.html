@@ -23,7 +23,10 @@
               <a class="dropdown-item select-class" data-class="wizard" href="#">Wizard</a>
           </div>
         </div>
-        <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;"><img width="56" height="56" src="/icons/{{currentClassIcon}}" style="border: none; width: 56px; height: 56px;" /></div>
+        <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;">
+          <img width="56" height="56" src="/icons/{{currentClassIcon}}" style="border: none; width: 56px; height: 56px;" />
+          <button class="btn btn-primary view-classes-btn" style="width: 120px; margin-left: 10px;">Classes info</button>
+        </div>
       </div>
     {{/if}}
     <h4 class="d-flex align-items-center">
@@ -235,7 +238,7 @@
     </div>
 
     <div class="d-flex flex-grow justify-content-center" style="margin-top: 30px">
-      <button class="btn btn-primary continue-btn" style="width: 150px">Back to lobby</button>
+      <button class="btn btn-primary back-to-lobby-btn" style="width: 150px">Back to lobby</button>
     </div>
   </div>
 </template>

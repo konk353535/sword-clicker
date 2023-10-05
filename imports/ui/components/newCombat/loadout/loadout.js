@@ -48,8 +48,12 @@ Template.loadoutPage.onCreated(function bodyOnCreated() {
 })
 
 Template.loadoutPage.events({
-    "click .continue-btn"(event, instance) {
+    "click .back-to-lobby-btn"(event, instance) {
         instance.data.setPage("lobby")
+    },
+
+    "click .view-classes-btn"(event, instance) {
+        instance.data.setPage("viewClasses")
     },
 
     "click .edit-gear-btn"(event, instance) {

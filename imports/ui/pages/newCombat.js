@@ -12,6 +12,7 @@ import "../components/newCombat/otherBattlers/otherBattlers.js"
 import "../components/newCombat/recentBattles/recentBattles.js"
 import "../components/newCombat/selectAbilities/selectAbilities.js"
 import "../components/newCombat/selectGear/selectGear.js"
+import "../components/newCombat/viewClasses/viewClasses.js"
 import "./newCombat.html"
 
 Template.newCombatPage.onCreated(function bodyOnCreated() {

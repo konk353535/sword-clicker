@@ -1550,6 +1550,7 @@ export const ATTACK_BUFFS = {
                             ? buff.constants.constants
                             : lookupBuff(buff.id).constants
                     buff.duration += buffConstants.extraTimePerLevel * buff.data.level
+                    buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 }
                 target.cantMiss = true
             },

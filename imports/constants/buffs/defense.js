@@ -970,11 +970,16 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
-                if (buff.constants && buff.constants.constants) {
-                    const constants = buff.constants.constants ? buff.constants.constants : buff.constants
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+
+                if (constants) {
                     buff.duration += buff.data.level * constants.durationPerLevel
+                    buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 }
-                //buff.data.endDate = moment().add(buff.duration, 'seconds').toDate();
+                
                 buff.data.damageReduction = target.stats.damageTaken * (99.9999 / 100)
                 target.stats.damageTaken -= buff.data.damageReduction
             },

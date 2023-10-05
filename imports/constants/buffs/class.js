@@ -417,7 +417,7 @@ export const CLASS_BUFFS = {
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-                // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
+            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
             hideBuff: true
         },
         events: {
@@ -1216,7 +1216,7 @@ export const CLASS_BUFFS = {
 
     class_passive_wizard__summon_familiar: {
         duplicateTag: "class_passive_wizard__summon_familiar",
-        icon: "wizardSummonFamiliar.png",
+        icon: "wizardSummonFamiliar.svg",
         name: "Summon Familiar",
         description() {
             return `
@@ -1229,7 +1229,8 @@ export const CLASS_BUFFS = {
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            isEnchantment: true
+            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
+            hideBuff: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
@@ -1237,9 +1238,6 @@ export const CLASS_BUFFS = {
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 if (!buff.data.summonedFamiliarYet) {
                     buff.data.summonedFamiliarYet = true
-
-                    //console.log(target)
-                    //console.log(`^ ^ ^   SUMMON FAMILIAR   ^ ^ ^`)
 
                     let summonType = ""
 
@@ -1269,23 +1267,122 @@ export const CLASS_BUFFS = {
                         attackMax: 0.001,
                         attackSpeed: 0.001,
                         accuracy: 0.001,
-                        health: target.stats.healthMax * 0.5,
-                        healthMax: target.stats.healthMax * 0.5,
-                        defense: target.stats.defense * 0.5,
-                        armor: target.stats.armor * 0.33,
-                        magicArmor: target.stats.magicArmor * 0.33,
-                        magicPower: 0.001,
-                        healingPower: 0.001,
+                        health: target.stats.healthMax * 1.35,
+                        healthMax: target.stats.healthMax * 1.35,
+                        defense: target.stats.defense * 0.65,
+                        armor: target.stats.armor * 0.65,
+                        magicArmor: target.stats.magicArmor * 0.65,
+                        magicPower: target.stats.magicPower * 0.5,
+                        healingPower: target.stats.healingPower * 0.75,
                         damageTaken: 1,
-                        damageOutput: 0
+                        damageOutput: 1
                     }
                     wizardFamiliar.buffs = []
 
-                    //todo: add buffs that let the familiar do stuff!
+                    if (summonType == "Orb") {
+                        // skirmisher
 
-                    // add the familiar to combat
+                        wizardFamiliar.stats.attack = target.stats.magicPower * 0.3
+                        wizardFamiliar.stats.attackMax = target.stats.magicPower * 0.8
+                        wizardFamiliar.stats.attackSpeed = 0.6
+                        wizardFamiliar.stats.accuracy = target.stats.magicPower
+
+                        // multiple attack logic
+                        wizardFamiliar.buffs.push({
+                            id: "companion_skeletal_warrior",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                allowDuplicates: false,
+                                sourceId: caster.id,
+                                caster: caster.id,
+                                icon: wizardFamiliar.icon,
+                                name: `${summonType} Familiar`,
+                                description: ``,
+                                duplicateTag: "companion_skeletal_warrior",
+                                level: 2,
+                                hideBuff: true
+                            }
+                        })
+                    }
+
+                    if (summonType == "Tome") {
+                        // healer
+
+                        // multiple healer logic
+                        wizardFamiliar.buffs.push({
+                            id: "companion_healer",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                allowDuplicates: false,
+                                sourceId: caster.id,
+                                caster: caster.id,
+                                icon: wizardFamiliar.icon,
+                                name: `${summonType} Familiar`,
+                                description: ``,
+                                duplicateTag: "companion_healer",
+                                level: 2,
+                                hideBuff: true
+                            }
+                        })
+                    }
+
+                    if (summonType == "Spirit") {
+                        // defender
+                        wizardFamiliar.stats.armor = target.stats.armor * 1.25
+                        wizardFamiliar.stats.health = target.stats.healthMax * 1.75
+                        wizardFamiliar.stats.healthMax = target.stats.healthMax * 1.75
+
+                        // taunt
+                        wizardFamiliar.buffs.push({
+                            id: "companion_taunt",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                name: "companion taunt",
+                                icon: "taunt.svg",
+                                timeTillCharge: 0.4,
+                                level: buff.data.level,
+                                hideBuff: true
+                            }
+                        })
+
+                        // evasive maneuvers
+                        wizardFamiliar.buffs.push({
+                            id: "companion_pig_logic_lny",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                allowDuplicates: false,
+                                sourceId: caster.id,
+                                caster: caster.id,
+                                icon: wizardFamiliar.icon,
+                                name: `${summonType} Familiar`,
+                                description: ``,
+                                duplicateTag: "companion_pig_logic_lny",
+                                level: 2,
+                                hideBuff: true
+                            }
+                        })
+                    }
+
+                    // stat adjuster based on party size (36% at group size 10, 56% at group size 5, 100% at group size 1)
+                    const partySizeAdjustment = 1 - ((actualBattle.units.length - 1)/((actualBattle.units.length - 1) + 5))
+
+                    wizardFamiliar.stats.attack *= partySizeAdjustment
+                    wizardFamiliar.stats.attackMax *= partySizeAdjustment
+                    wizardFamiliar.stats.accuracy *= partySizeAdjustment
+                    wizardFamiliar.stats.armor *= partySizeAdjustment
+                    wizardFamiliar.stats.health *= partySizeAdjustment
+                    wizardFamiliar.stats.healthMax *= partySizeAdjustment
+
+                    // add the familiar unit to combat
                     actualBattle.addUnit(wizardFamiliar)
                     buff.data.familiarUnit = wizardFamiliar.id
+
+                    // end this buff
+                    removeBuff({ buff, target, caster, actualBattle })
                 }
             },
             

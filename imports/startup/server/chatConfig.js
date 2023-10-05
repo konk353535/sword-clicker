@@ -477,6 +477,9 @@ SimpleChat.configure({
                             if (itemConstant.name.trim().toLowerCase() == targetItem.toLowerCase()) {
                                 itemConstants = itemConstant
                                 targetItem = itemConstants.id
+                            } else if (itemConstant.id.trim().toLowerCase() == targetItem.toLowerCase()) {
+                                itemConstants = itemConstant
+                                targetItem = itemConstants.id
                             }
                         }
                     })
@@ -487,11 +490,16 @@ SimpleChat.configure({
                                     itemConstants = itemConstant
                                     targetItem = itemConstants.id
                                 }
+                            } else if (itemConstant.id) {
+                                if (itemConstant.id.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
+                                    itemConstants = itemConstant
+                                    targetItem = itemConstants.id
+                                }
                             }
                         })
                     }
                     if (!itemConstants) {
-                        sendUserChatMessage({ userId: userDoc._id, message: `Invalid item ID '${targetItem}'.'` })
+                        sendUserChatMessage({ userId: userDoc._id, message: `Invalid item name or ID '${targetItem}'.'` })
                         return
                     }
                 }

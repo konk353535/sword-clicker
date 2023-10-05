@@ -330,7 +330,9 @@ Template.itemIcon.helpers({
             constants && constants.stats
                 ? applyRarities(applyClassBonuses(constants.stats, constants), item.rarityId)
                 : applyRarities(applyClassBonuses(item.stats, constants), item.rarityId)
-        const extraStats = item.extraStats ? applyRarities(applyClassBonuses(item.extraStats, constants), item.rarityId) : undefined
+        const extraStats = item.extraStats
+            ? applyRarities(applyClassBonuses(item.extraStats, constants), item.rarityId)
+            : undefined
 
         if (extraStats) {
             Object.keys(extraStats).forEach((statName) => {
@@ -401,7 +403,7 @@ Template.itemIcon.helpers({
     multiSelling() {
         const instance = Template.instance()
         let selling = false
-        if (!_.isUndefined(Session.get("multiSellItems"))) {
+        if (!_.isUndefined(Session.get("multiSellItems")) && instance?.data?.item?._id != null) {
             selling = Session.get("multiSellItems").hasOwnProperty(instance.data.item._id)
         }
         return selling
@@ -410,7 +412,7 @@ Template.itemIcon.helpers({
     multiDonating() {
         const instance = Template.instance()
         let donating = false
-        if (!_.isUndefined(Session.get("multiDonateItems"))) {
+        if (!_.isUndefined(Session.get("multiDonateItems")) && instance?.data?.item?._id != null) {
             donating = Session.get("multiDonateItems").hasOwnProperty(instance.data.item._id)
         }
         return donating
@@ -419,7 +421,7 @@ Template.itemIcon.helpers({
     multiShowing() {
         const instance = Template.instance()
         let showing = false
-        if (!_.isUndefined(Session.get("multiShowItems"))) {
+        if (!_.isUndefined(Session.get("multiShowItems")) && instance?.data?.item?._id != null) {
             showing = Session.get("multiShowItems").hasOwnProperty(instance.data.item._id)
         }
         return showing
@@ -428,7 +430,7 @@ Template.itemIcon.helpers({
     multiHiding() {
         const instance = Template.instance()
         let hiding = false
-        if (!_.isUndefined(Session.get("multiHideItems"))) {
+        if (!_.isUndefined(Session.get("multiHideItems")) && instance?.data?.item?._id != null) {
             hiding = Session.get("multiHideItems").hasOwnProperty(instance.data.item._id)
         }
         return hiding

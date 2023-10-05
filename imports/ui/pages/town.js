@@ -8,7 +8,7 @@ import { getGlobalBuffs } from "/imports/api/globalbuffs/globalbuffs"
 import { Items } from "/imports/api/items/items.js"
 import { Servers } from "/imports/api/servers/servers.js"
 import { Skills } from "/imports/api/skills/skills.js"
-import { Town, calculateItemKarma, karmaLevelValues } from "/imports/api/town/town.js"
+import { calculateItemKarma, karmaLevelValues } from "/imports/api/town/town.js"
 import { Users } from "/imports/api/users/users.js"
 import { CDbl, CInt, autoPrecisionValue } from "/imports/utils.js"
 
@@ -153,7 +153,10 @@ Template.townPage.onCreated(function bodyOnCreated() {
 
     Tracker.autorun(() => {
         Meteor.subscribe("servers")
-        Meteor.subscribe("town")
+    })
+
+    Meteor.call("town.getGoods", (err, res) => {
+        this.state.set("townGoods", res)
     })
 })
 
@@ -230,26 +233,25 @@ Template.townPage.helpers({
     },
 
     thisSectionKarmaInfo() {
-        const karmaData = karmaLevelValues(
-            Template.instance().state.get("townSection"),
-            Town.find({ townBuilding: Template.instance().state.get("townSection") }).fetch()
-        )
+        const townGoods = Template.instance().state.get("townGoods")
+        if (townGoods != null) {
+            const karmaData = karmaLevelValues(Template.instance().state.get("townSection"), townGoods)
 
-        if (!karmaData.isError) {
-            //const thisSectionKarmaValue = CInt(Template.instance().state.get('thisSectionKarma'));
-            const thisSectionKarmaValue = karmaData.curVal
-            const thisSectionKarmaNextValue = karmaData.nextVal
+            if (!karmaData.isError) {
+                const thisSectionKarmaValue = karmaData.curVal
+                const thisSectionKarmaNextValue = karmaData.nextVal
 
-            if (thisSectionKarmaValue > 0 || thisSectionKarmaNextValue > 0) {
-                const thisSectionKarmaFormatted = Numeral(thisSectionKarmaValue).format("0,0")
-                const thisSectionKarmaNextFormatted = Numeral(thisSectionKarmaNextValue).format("0,0")
-                return `
-          &nbsp; &nbsp; 
-          <span style="font-size: 10pt; color: #777;">
-            <i>
-              <b>${thisSectionKarmaFormatted}</b> / <b>${thisSectionKarmaNextFormatted}</b> karma at this location
-            </i>
-          </span>`
+                if (thisSectionKarmaValue > 0 || thisSectionKarmaNextValue > 0) {
+                    const thisSectionKarmaFormatted = Numeral(thisSectionKarmaValue).format("0,0")
+                    const thisSectionKarmaNextFormatted = Numeral(thisSectionKarmaNextValue).format("0,0")
+                    return `
+              &nbsp; &nbsp; 
+              <span style="font-size: 10pt; color: #777;">
+                <i>
+                  <b>${thisSectionKarmaFormatted}</b> / <b>${thisSectionKarmaNextFormatted}</b> karma at this location
+                </i>
+              </span>`
+                }
             }
         }
 
@@ -299,7 +301,8 @@ Template.townPage.helpers({
         try {
             const instance = Template.instance()
             const townSection = instance.state.get("townSection")
-            const townData = Town.find({ townBuilding: townSection }).fetch()
+            const townGoods = instance.state.get("townGoods")
+            const townData = townGoods.filter((good) => good.townBuilding === townSection)
 
             let karmaThisSection = 0
             let items = townData.map((item) => {
@@ -355,4 +358,7 @@ Template.townPage.events({
     }
 })
 
-Template.townPage.onDestroyed(function bodyOnDestroyed() {})
+Template.townPage.onDestroyed(function bodyOnDestroyed() {
+    Session.set("multiDonate", false)
+    Session.set("multiDonateItems", {})
+})

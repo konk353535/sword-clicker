@@ -209,7 +209,7 @@ const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
 
 Meteor.publish("town", function () {
     return Town.find({
-        server: serverFromUser
+        server: serverFromUser()
     })
 })
 

@@ -249,3 +249,14 @@ Template.itemList.helpers({
         return `<p>Click to lock the selected items.</p>`
     }
 })
+
+Template.itemList.onDestroyed(function bodyOnDestroyed() {
+    Session.set("multiSell", false)
+    Session.set("multiSellItems", {})
+    Session.set("multiLock", false)
+    Session.set("multiLockItems", {})
+    Session.set("multiHide", false)
+    Session.set("multiHideItems", {})
+    Session.set("multiShow", false)
+    Session.set("multiShowItems", {})
+})

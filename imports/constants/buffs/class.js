@@ -13,7 +13,7 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Barbarian",
         description() {
             return `
-        Your critical hits have a chance to inflict bleeding for 3 seconds.
+        Your critical hits will inflict bleeding for 3 seconds.
         Broad swords and battle axes have a 25% chance to strike enemies adjacent to your target.
         You may not wear magical head, chest, or leg equipment.
         Your Magic Power in combat is always 0, even if another effect would say otherwise.<br />
@@ -311,6 +311,57 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_paladin_inspiration: {
+        duplicateTag: "class_paladin_inspiration", // Used to stop duplicate buffs
+        icon: "paladinInspiration.svg",
+        name: "Paladin's Inspiration",
+        description({ buff, level }) {
+            const c = buff.constants
+            return `
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP).`
+        },
+        constants: {
+            healBase: 30,
+            healMPRatio: 2.25,
+            removesCurse: true
+        },
+        data: {
+            allowDuplicates: true,
+            duration: 1.5,
+            totalDuration: 1.5
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+                const healBase = constants.healBase
+                const healMP = constants.healMPRatio * caster.stats.magicPower
+                const totalHeal = healBase + healMP
+
+                actualBattle.healTarget(totalHeal, {
+                    caster,
+                    target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    healSource: buff
+                })
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {}
         }
     },
 
@@ -1009,7 +1060,7 @@ export const CLASS_BUFFS = {
         You gain +20% damage and +15% accuracy, except:<br />
         You lose 5% damage and 4% accuracy for every active ability slotted in your loadout beyond 3 active abilities.<br />
         You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout beyond 3 passive abilities.<br />
-        You have a 10% chance to prevent damage, which cannot be reduced, prevented, or nullified.<br />
+        You have a 10% chance to negate damage, which cannot be reduced, prevented, or nullified.<br />
         While you are a Tactician this is <b>always active</b>`
         },
         constants: {
@@ -1108,7 +1159,6 @@ export const CLASS_BUFFS = {
         name: "Class Trait: War Mage",
         description() {
             return `
-        Whenever you inflict magic damage in combat, your maximum health is restored by 0.5% of its original amount.
         Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.
         May cast hostile spells while wielding any style of weapon.
         Can reforge tridents.

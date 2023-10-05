@@ -522,7 +522,7 @@ export const DEFENSE_BUFFS = {
                         // trigger a heal for the original target
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
-                                buffId: "paladin_inspiration",
+                                buffId: "class_paladin_inspiration",
                                 buffData: {
                                     allowDuplicates: true
                                 }
@@ -589,7 +589,7 @@ export const DEFENSE_BUFFS = {
                         // trigger a heal for the original target
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
-                                buffId: "paladin_inspiration",
+                                buffId: "class_paladin_inspiration",
                                 buffData: {
                                     allowDuplicates: true
                                 }
@@ -655,7 +655,7 @@ export const DEFENSE_BUFFS = {
                         // trigger a heal for the original target
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
-                                buffId: "paladin_inspiration",
+                                buffId: "class_paladin_inspiration",
                                 buffData: {
                                     allowDuplicates: true
                                 }
@@ -727,7 +727,7 @@ export const DEFENSE_BUFFS = {
                         // trigger a heal for the original target
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
-                                buffId: "paladin_inspiration",
+                                buffId: "class_paladin_inspiration",
                                 buffData: {
                                     allowDuplicates: true
                                 }
@@ -797,7 +797,7 @@ export const DEFENSE_BUFFS = {
                         // trigger a heal for the original target
                         caster.applyBuffTo({
                             buff: caster.generateBuff({
-                                buffId: "paladin_inspiration",
+                                buffId: "class_paladin_inspiration",
                                 buffData: {
                                     allowDuplicates: true
                                 }

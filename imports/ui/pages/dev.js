@@ -105,6 +105,22 @@ Template.devPage.events({
                 instance.state.set("lastMeteorCallResult", prepText(data))
             }
         })
+    },
+
+    "click .meteor-deploy-btn"(event, instance) {
+        Meteor.call("server.deployFlag", "deploy_meteor")
+    },
+
+    "click .battle-deploy-btn"(event, instance) {
+        Meteor.call("server.deployFlag", "deploy_battle")
+    },
+
+    "click .both-deploy-btn"(event, instance) {
+        Meteor.call("server.deployFlag", "deploy_all")
+    },
+
+    "click .unset-deploy-btn"(event, instance) {
+        Meteor.call("server.unsetDeployFlag")
     }
 })
 

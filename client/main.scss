@@ -1,10 +1,10 @@
 // these are fixes for fancybox, ref: https://www.denisbouquet.com/fancybox-sass-compile-error-max/
 @function max($numbers...) {
-    @return m#{a}x(#{$numbers})
+    @return m#{a}x(#{$numbers});
 }
-    
+
 @function min($numbers...) {
-    @return m#{i}n(#{$numbers})
+    @return m#{i}n(#{$numbers});
 }
 
 /* CSS declarations go here */
@@ -27,403 +27,414 @@
 @import "styles/battleLog.scss";
 @import "styles/dark.scss";
 
-html, body {
-  font-family: 'Roboto', sans-serif;
-  background-color: $gray-lightest;
+html,
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: $gray-lightest;
+}
+
+html {
+    &.deploy_meteor,
+    &.deploy_battle,
+    &.deploy_all {
+        .deploy-announcement {
+            background-color: #FAA0A0 !important;
+        }
+    }
 }
 
 .mine-pit-container {
-  touch-action: manipulation;
+    touch-action: manipulation;
 }
 
 .bg-purple {
-  background-color: $color-purple-1;
+    background-color: $color-purple-1;
 }
 
 .navbar-inverse .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .navbar-nav > .nav-item {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .text-white {
-  color: white;
+    color: white;
 }
 
 @media (max-width: 768px) {
-  .navbar-inner-container {
-    width: 100%;
-  }
+    .navbar-inner-container {
+        width: 100%;
+    }
 }
 
 .navbar-toggler-right {
-  right: 0;
+    right: 0;
 }
 
 .select-battle-container {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  border-top: 1px solid $gray-lighter;
-  background-color: $gray-lightest;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-top: 1px solid $gray-lighter;
+    background-color: $gray-lightest;
 }
 
 .body-content {
-  margin-left: $spacer / 2;
-  margin-right: $spacer / 2;
-  margin-bottom: 100px;
+    margin-left: $spacer / 2;
+    margin-right: $spacer / 2;
+    margin-bottom: 100px;
 }
 
 .ignore-not-met-text .text-danger {
-  color: initial !important;
+    color: initial !important;
 }
 
-body { padding-right: 0 !important }
+body {
+    padding-right: 0 !important;
+}
 
 @media (min-width: 1200px) {
-  .inactive-adventure {
-    flex: 0 1 32.33%;
-  }
+    .inactive-adventure {
+        flex: 0 1 32.33%;
+    }
 }
 
 @media (max-width: 1200px) {
-  .inactive-adventure {
-    flex: 0 1 49%;
-  }
+    .inactive-adventure {
+        flex: 0 1 49%;
+    }
 }
 
 @media (max-width: 576px) {
-  .inactive-adventure {
-    flex: 0 1 100%;
-  }
+    .inactive-adventure {
+        flex: 0 1 100%;
+    }
 }
 
 .active-adventure {
-  flex: 1 1 100%;
+    flex: 1 1 100%;
 }
 
 .cursor-not-allowed {
-  cursor: not-allowed;
+    cursor: not-allowed;
 }
 
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .tier-filter {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .flex-grow {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .battle-unit-red {
-  color: $brand-danger;
+    color: $brand-danger;
 }
 
 @media screen and (max-width: 768px) {
-  .battle-unit-name {
-    font-size: 10px;
-  }
+    .battle-unit-name {
+        font-size: 10px;
+    }
 }
 
 .battle-unit-name {
-  display: inline-block;
-  word-break: break-word;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  text-align: center;
-  height: 50px;
+    display: inline-block;
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-align: center;
+    height: 50px;
 }
 
 .battle-unit-border-red {
-  border-color: $brand-danger;
+    border-color: $brand-danger;
 }
 
 .battle-unit-container {
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  &.invitee-unit img {
-    background-color: $gray-lighter;
-    border-color: $gray-lighter;
-    opacity: 0.5;
-  }
-
-  & > .text-capitalize {
+    max-width: 120px;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100px;
-  }
+    white-space: nowrap;
+
+    &.invitee-unit img {
+        background-color: $gray-lighter;
+        border-color: $gray-lighter;
+        opacity: 0.5;
+    }
+
+    & > .text-capitalize {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
 }
 
 .buff-container {
-  width: 120px;
+    width: 120px;
 }
 
 .battle-units-container {
-  border-right: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
 }
 
 @media screen and (max-width: 768px) {
-  .battle-unit-container {
-    max-width: 80px;
-  }
+    .battle-unit-container {
+        max-width: 80px;
+    }
 
-  .buff-container {
-    width: 80px;
-  }
+    .buff-container {
+        width: 80px;
+    }
 
-  .lobby-container .battle-unit-container {
-    max-width: 100px;
-    margin-top: 20px;
-  }
+    .lobby-container .battle-unit-container {
+        max-width: 100px;
+        margin-top: 20px;
+    }
 
-  .lobby-container .buff-container {
-    width: 100px;
-  }
+    .lobby-container .buff-container {
+        width: 100px;
+    }
 
-  .battle-units-container {
-    border-bottom: 1px solid #dfdfdf;
-    border-right: none;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-  }
-
+    .battle-units-container {
+        border-bottom: 1px solid #dfdfdf;
+        border-right: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 }
 
 #at-btn {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .at-pwd-link {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .at-form p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .at-signup-link {
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
-
-  // Fix so tables are full width on pc
-  .table-responsive {
-    display: table;
-  }
-
-  // General fix so more content is visible on mobile
-  .body-content {
-    margin-left: $spacer;
-    margin-right: $spacer;
-  }
-
-  // Desktop specific optimization for the equipment screen
-  .stats-row {
-    width: 50%;
-  }
-
-  .equipment-row {
-    width: 50%;
-    margin-right: $spacer;
-  }
-
-  .skills-page {
-    .player-skills-container {
-      width: 50%;
-      margin-right: $spacer;
+    // Fix so tables are full width on pc
+    .table-responsive {
+        display: table;
     }
 
-    .highscore-skills-container {
-      width: 50%;
-      margin-left: $spacer;
+    // General fix so more content is visible on mobile
+    .body-content {
+        margin-left: $spacer;
+        margin-right: $spacer;
     }
-  }
+
+    // Desktop specific optimization for the equipment screen
+    .stats-row {
+        width: 50%;
+    }
+
+    .equipment-row {
+        width: 50%;
+        margin-right: $spacer;
+    }
+
+    .skills-page {
+        .player-skills-container {
+            width: 50%;
+            margin-right: $spacer;
+        }
+
+        .highscore-skills-container {
+            width: 50%;
+            margin-left: $spacer;
+        }
+    }
 }
 
 @media (max-width: 768px) {
-  // So nav tabs don't expand too far on mobile
-  .nav-tabs {
-    overflow-x: scroll;
-  }
+    // So nav tabs don't expand too far on mobile
+    .nav-tabs {
+        overflow-x: scroll;
+    }
 }
 
 .disabled-row {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 // Inscription level filter badges
 .level-filter {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .farm-space-container.inactive > .icon-box {
-  background-color: $gray-light;
-  cursor: not-allowed;
+    background-color: $gray-light;
+    cursor: not-allowed;
 }
 
 @keyframes fadeOutUp {
-  0% {
-    opacity: 1
-  }
+    0% {
+        opacity: 1;
+    }
 
-  50% {
-    opacity: 1;
-    transform: translate3d(0, -150%, 0);
-  }
+    50% {
+        opacity: 1;
+        transform: translate3d(0, -150%, 0);
+    }
 
-  100% {
-    opacity: 0;
-    transform: translate3d(0, -300%, 0);
-  }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, -300%, 0);
+    }
 }
 
 .fadeOutUp {
-  animation-timing-function: linear;
-  animation-name: fadeOutUp;
+    animation-timing-function: linear;
+    animation-name: fadeOutUp;
 }
 
 .floating-text {
-  animation-duration: 3.5s;
-  pointer-events: none;
-  position: absolute;
-  cursor: pointer;
-  text-decoration: bold;
-  font-size: 18px;
-  user-select: none;
-  background-color: white;
-  padding: $spacer * 0.25;
-  border: 1px solid $gray;
-  border-radius: 4px;
-
-  & > i {
-    user-select: none;
+    animation-duration: 3.5s;
+    pointer-events: none;
+    position: absolute;
     cursor: pointer;
-  }
+    text-decoration: bold;
+    font-size: 18px;
+    user-select: none;
+    background-color: white;
+    padding: $spacer * 0.25;
+    border: 1px solid $gray;
+    border-radius: 4px;
+
+    & > i {
+        user-select: none;
+        cursor: pointer;
+    }
 }
 
 @media (max-width: 768px) {
-  .floating-text {
-    font-size: 10px;
-  }
+    .floating-text {
+        font-size: 10px;
+    }
 }
 
-
 .floor-image {
-  width: 96px;
+    width: 96px;
 }
 
 .alert-secondary {
-  border: 1px solid $gray-lighter;
+    border: 1px solid $gray-lighter;
 }
 
 .table-centered {
-  td {
-    text-align: center;
-    vertical-align: middle;
-  }
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
 
-  th {
-    text-align: center;
-    vertical-align: middle;
-  }
+    th {
+        text-align: center;
+        vertical-align: middle;
+    }
 }
 
 .select-skill-active {
-  background-color: $blue;
-  color: white;
+    background-color: $blue;
+    color: white;
 }
 
 .drop {
-  // So we can show tooltips on modals
-  z-index: 1050;
+    // So we can show tooltips on modals
+    z-index: 1050;
 }
 
 .health-bar {
-  width: 96px;
+    width: 96px;
 }
 
 .health-bar-tiny {
-  width: 32px;
+    width: 32px;
 }
 
 .energy-bar-tiny {
-  width: 32px;
+    width: 32px;
 }
 
 @media screen and (max-width: 768px) {
-  .health-bar {
-    width: 80px;
-    font-size: 10px;
-  }
-  .energy-bar {
-    width: 80px;
-    font-size: 10px;
-  }
+    .health-bar {
+        width: 80px;
+        font-size: 10px;
+    }
+    .energy-bar {
+        width: 80px;
+        font-size: 10px;
+    }
 }
 
 .my-tooltip-inner {
-  min-width: 150px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
-  background-color: white;
+    min-width: 150px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    background-color: white;
 }
 
 .drop-element {
-  pointer-events: none !important;
-  user-select: none !important;
+    pointer-events: none !important;
+    user-select: none !important;
 }
 
 .tooltip.show {
-  opacity: 1.0;
+    opacity: 1;
 }
 
 .popover-title {
-  text-align: left;
+    text-align: left;
 }
 
-.tippy-backdrop, .tippy-tooltip {
-  background-color: rgba(0, 0, 0, 0) !important;
+.tippy-backdrop,
+.tippy-tooltip {
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .tippy-tooltip {
-  font-size: 1rem;
-  color: #292b2c;
+    font-size: 1rem;
+    color: #292b2c;
 }
 
 .tippy-popper {
-  min-width: 150px;
+    min-width: 150px;
 }
 
 .item-tooltip-content {
-  color: #292b2c;
+    color: #292b2c;
 }
 
 .item-tooltip-content {
-  display: none;
-  text-align: left;
+    display: none;
+    text-align: left;
 }
 
 .tippy-popper .item-tooltip-content {
-  display: block;
+    display: block;
 }
 
 .whiteframe-4dp {
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }

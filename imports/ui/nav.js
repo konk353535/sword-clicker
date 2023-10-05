@@ -348,5 +348,22 @@ Template.nav.helpers({
 
     ngMode() {
         return Session.get("ngAutoMode")
+    },
+
+    hasDeployFlag() {
+        return Session.get("deployFlag") !== false
+    },
+
+    deployFlagText() {
+        const flag = Session.get("deployFlag")
+        if (flag === "deploy_meteor") {
+            return "Incoming update ~5 minutes. The battle server will not be restarted, but while the game is updating, combat interactions will be interrupted for 20-30 seconds."
+        } else if (flag === "deploy_battle") {
+            return "Incoming update ~5 minutes. The battle server will be restarted, so please make sure you are finished with your battles at the time."
+        } else if (flag === "deploy_all") {
+            return "Incoming update: ~5 minutes. All services will be interrupted, so please make sure you are finished with your battles at the time."
+        }
+
+        return ""
     }
 })

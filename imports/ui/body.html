@@ -1,25 +1,24 @@
 <template name="myLayout">
-  {{> yield 'nav'}}
+    {{> yield 'nav'}}
 
-  <div class="body-content" id="content" style="position: relative;">
+    <div class="body-content" id="content" style="position: relative;">
+        <div class="d-sm-flex flex-grow">
+            <div class="flex-grow">
+                {{#unless inCurrentBattle}}
+                    {{#if currentUser.tutorial}}
+                        {{> tutorial}}
+                    {{/if}}
+                {{/unless}}
+                {{> yield}}
+            </div>
+            {{> summaryList}}
+        </div>
 
-    <div class="d-sm-flex flex-grow">
-      <div class="flex-grow">
-        {{#unless inCurrentBattle}}
-          {{#if currentUser.tutorial}}
-            {{> tutorial}}
-          {{/if}}
-        {{/unless}}
-        {{> yield}}
-      </div>
-      {{> summaryList}}
+        {{#if currentUser}}
+            {{#unless $eq currentRoute 'chat'}}
+                {{> chatWindow}}
+            {{/unless}}
+        {{/if}}
     </div>
-
-    {{#if currentUser}}
-      {{#unless $eq currentRoute 'chat'}}
-        {{> chatWindow}}
-      {{/unless}}
-    {{/if}}
-  </div>
 
 </template>

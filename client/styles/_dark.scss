@@ -7,24 +7,44 @@ $dark-text-muted: #808385;
 $svg-transform-white: brightness(5.08) invert(100%);
 
 // These colors cause weirdness in certain locations... the filters want to shade the entire image depending on the parent DOM container
-$svg-transform-red: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg) brightness(119%) contrast(119%);
-$svg-transform-orange: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) brightness(119%) contrast(119%);
-$svg-transform-yellow: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg) brightness(119%) contrast(119%);
-$svg-transform-green: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(87deg) brightness(119%) contrast(119%);
-$svg-transform-blue: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(250deg) brightness(119%) contrast(119%);
-$svg-transform-purple: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(267deg) brightness(119%) contrast(119%);
-$svg-transform-brown: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(150%) hue-rotate(350deg) brightness(75%) contrast(160%);
+$svg-transform-red: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(350deg)
+    brightness(119%) contrast(119%);
+$svg-transform-orange: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) brightness(119%)
+    contrast(119%);
+$svg-transform-yellow: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(33deg)
+    brightness(119%) contrast(119%);
+$svg-transform-green: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(87deg)
+    brightness(119%) contrast(119%);
+$svg-transform-blue: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(250deg)
+    brightness(119%) contrast(119%);
+$svg-transform-purple: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(267deg)
+    brightness(119%) contrast(119%);
+$svg-transform-brown: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(150%) hue-rotate(350deg)
+    brightness(75%) contrast(160%);
 $svg-transform-black: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(100%) brightness(0%) contrast(100%);
 $svg-transform-gray: brightness(5.08) invert(100%) invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(22%);
-$svg-transform-light-gray: brightness(5.08) invert(100%) invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(42%);
-$svg-transform-beige: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(50%) hue-rotate(33deg) brightness(119%) contrast(119%);
-$svg-transform-gold: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) hue-rotate(14deg) brightness(119%) contrast(119%);
-$svg-transform-magenta: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(294deg) brightness(100%) contrast(160%);
-$svg-transform-pink: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(330deg) brightness(500%) contrast(45%);
+$svg-transform-light-gray: brightness(5.08) invert(100%) invert(100%) sepia(100%) saturate(0%) brightness(100%)
+    contrast(42%);
+$svg-transform-beige: brightness(5.08) invert(100%) invert(42%) sepia(293%) saturate(50%) hue-rotate(33deg)
+    brightness(119%) contrast(119%);
+$svg-transform-gold: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(500%) hue-rotate(14deg)
+    brightness(119%) contrast(119%);
+$svg-transform-magenta: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(294deg)
+    brightness(100%) contrast(160%);
+$svg-transform-pink: brightness(5.08) invert(100%) invert(42%) sepia(93%) saturate(10000%) hue-rotate(330deg)
+    brightness(500%) contrast(45%);
 
 html.dark {
     background-color: $dark-bg-color;
     color: #fff;
+
+    &.deploy_meteor,
+    &.deploy_battle,
+    &.deploy_all {
+        .deploy-announcement {
+            background-color: #662121 !important;
+        }
+    }
 
     body,
     .home-page-content > div,
@@ -356,7 +376,7 @@ html.dark {
     }
 
     // selectively turn some .svg images red
-    img[src*="icons/thirstyFangs.svg"]  {
+    img[src*="icons/thirstyFangs.svg"] {
         filter: $svg-transform-white;
     }
 
@@ -370,7 +390,7 @@ html.dark {
     img[src*="icons/emptyFarmSpace.svg"],
     img[src*="icons/farmer.svg"],
     img[src*="icons/farming.svg"] {
-            filter: $svg-transform-white;
+        filter: $svg-transform-white;
     }
 
     // selectively turn some .svg images gold
@@ -515,7 +535,8 @@ html.dark {
     }
 
     /* Current user */
-    button.btn.btn-secondary, button.btn.btn-secondary.dropdown-toggle {
+    button.btn.btn-secondary,
+    button.btn.btn-secondary.dropdown-toggle {
         color: #fff;
         background-color: $dark-fg-color !important;
         border-color: #000 !important;

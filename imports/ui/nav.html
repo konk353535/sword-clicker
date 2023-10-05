@@ -1,5 +1,13 @@
 <template name="nav">
-  <nav class="navbar navbar-toggleable-md bg-primary navbar-inverse {{#unless $eq currentRoute 'home'}}sticky-top{{/unless}}">
+  <nav class="navbar navbar-toggleable-md bg-primary navbar-inverse {{#unless $eq currentRoute 'home'}}sticky-top{{/unless}}" style="flex-wrap: wrap">
+    {{#if hasDeployFlag}}
+        <div class="d-flex justify-content-center deploy-announcement" style="width: 100%;">
+            <p class="my-3 px-3">
+                {{ deployFlagText }}
+            </p>
+        </div>
+    {{/if}}
+
     <div class="navbar-inner-container d-flex" style="width: 100%">
       
       <!-- mobile dropdown button -->

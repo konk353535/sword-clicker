@@ -10,6 +10,8 @@ export const DEFAULT_SERVER = "Classic"
 // export const DEFAULT_SERVER = 'Seasonal';
 export const CLASSIC_SERVER = "Classic"
 
+export const validDeployFlags = ["deploy_meteor", "deploy_battle", "deploy_all"]
+
 export const createNewServer = function createNewServer(name, iteration = 0) {
     // default server name
     if (!name || typeof name !== "string") {

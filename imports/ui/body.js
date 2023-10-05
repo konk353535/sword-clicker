@@ -8,7 +8,9 @@ import { Adventures } from "/imports/api/adventures/adventures.js"
 import { Battles, BattlesList } from "/imports/api/battles/battles.js"
 import { Combat } from "/imports/api/combat/combat.js"
 import { Groups } from "/imports/api/groups/groups.js"
+import { validDeployFlags } from "/imports/api/servers/servers"
 import { Skills } from "/imports/api/skills/skills.js"
+import { State } from "/imports/api/state/state.js"
 
 import { FARMING } from "/imports/constants/farming/index.js"
 import { GLOBALBUFFS } from "/imports/constants/globalbuffs/index.js"
@@ -225,6 +227,23 @@ Template.body.onCreated(function () {
                 }
             }
         })
+    })
+
+    // track deploy flag
+    Tracker.autorun(() => {
+        let deployFlags = State.findOne({
+            name: { $in: validDeployFlags }
+        })
+
+        if (deployFlags != null) {
+            $("html").addClass(deployFlags.name)
+            Session.set("deployFlag", deployFlags.name)
+        } else {
+            validDeployFlags.forEach((flag) => {
+                $("html").removeClass(flag)
+            })
+            Session.set("deployFlag", false)
+        }
     })
 
     $.fn.extend({

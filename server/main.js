@@ -21,7 +21,7 @@ import { Floors } from "/imports/api/floors/floors.js"
 import { Groups } from "/imports/api/groups/groups.js"
 import { Items } from "/imports/api/items/items"
 import { Mining, MiningSpace } from "/imports/api/mining/mining"
-import { CLASSIC_SERVER, Servers } from "/imports/api/servers/servers"
+import { CLASSIC_SERVER, Servers, validDeployFlags } from "/imports/api/servers/servers"
 import { Skills } from "/imports/api/skills/skills"
 import { State } from "/imports/api/state/state"
 import { Town } from "/imports/api/town/town"
@@ -210,5 +210,11 @@ Meteor.startup(() => {
         // On server startup, remove all old transactions to prune the size of the transactions collection.
         // Paired with a daily restart script, this should occur daily at a specific time.
         tx.Transactions.remove({})
+
+        State.remove({
+            name: {
+                $in: validDeployFlags
+            }
+        })
     }
 })

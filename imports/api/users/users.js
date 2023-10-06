@@ -265,9 +265,9 @@ UserSchema = new SimpleSchema({
 
     townKarma: { type: Number, optional: true, defaultValue: 0 },
 
-    classData: { type: Object },
-    "classData.currentClass": { type: String },
-    "classData.changeCooldown": { type: Date },
+    classData: { type: Object, optional: true },
+    "classData.currentClass": { type: String, optional: true },
+    "classData.changeCooldown": { type: Date, optional: true },
 
     version: { type: Number, optional: true, defaultValue: 1 }
 })

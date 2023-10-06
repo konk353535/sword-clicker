@@ -976,6 +976,43 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
+    "items.findAndConsume"(uid, itemId) {
+         // Check we have the item
+
+        const targetItem = Items.findOne({owner: uid, itemId})
+
+        if (!targetItem || targetItem.amount < 1) {
+            return { message: `Item ID ${itemId} does not exist.` }
+        }
+
+        // Check this is an item we can pull data for
+        const itemConstants = ITEMS[itemId]
+        if (!itemConstants) {
+            return { message: `Item ID ${itemId} does not have data.` }
+        }
+
+        // if ItemId in an approved list
+        var validItemIds = [
+            "class_cooldown_reset_token"
+        ]
+
+        if (!validItemIds.includes(itemId)) {
+            return { message: `Item ID ${itemId} can't be consumed.` }
+        }
+
+        // Remove 1 of the item
+        consumeItem(targetItem, 1)
+
+        updateUserActivity({ userId: Meteor.userId() })
+
+        if (itemId == "class_cooldown_reset_token") {
+            clearClassCooldown(uid)
+            return { success: "Your class cooldown has been reset!" }
+        }
+
+        return { success: "Done." }
+    },
+
     "items.unequipAllCombat"() {
         userUnequipAllItems(Meteor.userId())
     },

@@ -25,6 +25,32 @@ Template.loadoutPage.onCreated(function bodyOnCreated() {
     Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
         this.state.set("currentClass", res?.equipped)
         this.state.set("currentClassCooldown", res?.cooldown)
+        this.state.set("companionTokenCount", 0)
+
+        $(".reset-cooldown-btn").prop("disabled", "disabled")
+
+        const stateRef = this.state
+
+        const checkCooldownResetTokens = function() {
+            let resetTokenCount = 0
+
+            const itemDoc = Items.findOne({ itemId: "class_cooldown_reset_token" })
+            if (itemDoc && itemDoc.amount) {
+                resetTokenCount = itemDoc.amount
+            }
+
+            stateRef.set("companionTokenCount", resetTokenCount)
+            
+            let playerHasCooldown = false
+            const classChangeCooldown = stateRef.get("currentClassCooldown")
+            if (classChangeCooldown) {
+                if (moment().isBefore(classChangeCooldown)) {
+                    playerHasCooldown = true
+                }
+            }
+            
+            $(".reset-cooldown-btn").prop("disabled", (playerHasCooldown && resetTokenCount > 0) ? "" : "disabled")
+        }
         
         Meteor.setInterval(() => {
             const classChangeCooldown = this.state.get("currentClassCooldown")
@@ -35,7 +61,7 @@ Template.loadoutPage.onCreated(function bodyOnCreated() {
                     this.state.set("currentClassCooldown", false)
                 }
             }
-            
+
             if (++this.intervalRotation > 5) {
                 this.intervalRotation = 1
 
@@ -43,9 +69,13 @@ Template.loadoutPage.onCreated(function bodyOnCreated() {
 
                 Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
                     instRef.state.set("currentClassCooldown", res.cooldown)
+
+                    checkCooldownResetTokens()
                 })
             }
         }, 1000)
+
+        checkCooldownResetTokens()
     })
 
     this.autorun(() => {
@@ -94,6 +124,38 @@ Template.loadoutPage.events({
 
     "click .remove-all-abilities-btn"(event, instance) {
         Meteor.call("abilities.unequipAll")
+    },
+
+    "click .reset-cooldown-btn"(event, instance) {
+        $(event.target).addClass("reset-cooldown-confirm-btn btn-danger")
+        $(event.target).removeClass("reset-cooldown-btn btn-warning")
+        $(event.target).html(`Confirm reset? <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">${instance.state.get("companionTokenCount")}`)
+    },
+
+    "click .reset-cooldown-confirm-btn"(event, instance) {
+        const companionTokenCount = instance.state.get("companionTokenCount")
+
+        Meteor.call("items.findAndConsume", Meteor.userId(), "class_cooldown_reset_token", function(err, res) {
+            if (!err) {
+                if (res.message) {
+                    toastr.warning(res.message)
+                    return
+                }
+
+                if (res.success) {
+                    toastr.success(res.success)
+                    $(event.target).html(`Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">${companionTokenCount-1}`)
+                    return
+                }
+            }
+
+            toastr.error("An unexpected error occurred during the attempt.")
+        })
+
+        $(event.target).addClass("reset-cooldown-btn btn-warning")
+        $(event.target).removeClass("reset-cooldown-confirm-btn btn-danger")
+        $(event.target).html(`Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">${instance.state.get("companionTokenCount")}`)
+        $(event.target).prop("disabled", "disabled")
     },
 
     "click .select-class"(event, instance) {
@@ -267,6 +329,14 @@ Template.loadoutPage.helpers({
             }
         }
         return "element-hider"
+    },
+
+    resetTokenCount() {
+        const itemDoc = Items.findOne({ itemId: "class_cooldown_reset_token" })
+        if (itemDoc && itemDoc.amount) {
+            return itemDoc.amount
+        }
+        return 0
     }
 })
 

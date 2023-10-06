@@ -205,6 +205,19 @@ Template.shopPage.events({
         })
     },
 
+    "click .buy-class-reset-token"() {
+        if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
+            return
+        }
+
+        Meteor.call("shop.buyItem", { itemId: "class_cooldown_reset_token" }, (err, res) => {
+            if (err) {
+                return toastr.error("An unexpected error occurred when buying item.")
+            }
+            toastr.success("Successfully purchased.")
+        })
+    },
+
     "click .buy-gift_box_holiday2018"() {
         if (Meteor.user().gems + Meteor.user().fakeGems < 10) {
             return

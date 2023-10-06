@@ -248,6 +248,10 @@ Meteor.methods({
             {
                 id: "lemonade",
                 cost: 10
+            },
+            {
+                id: "class_cooldown_reset_token",
+                cost: 25
             }
         ]
 

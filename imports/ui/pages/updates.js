@@ -9,3 +9,11 @@ Template.updatesPage.onCreated(function bodyOnCreated() {
 
     Meteor.call("users.readNewUpdates")
 })
+
+Template.updatesPage.events({
+    "click .view-class-details-link"(event, instance) {
+        Meteor.call("users.setUiState", "autopage", "viewClasses", function() {
+            Router.go("battle")
+        })
+    },
+})

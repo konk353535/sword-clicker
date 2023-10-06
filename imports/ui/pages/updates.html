@@ -1,5 +1,78 @@
 <template name="updatesPage">
 
+    <h2 class="my-3">Friday 6th October 2023</h2>
+    <ul>
+        <li><b>New Feature: Classes</b></li>
+        <ul>
+            <li>Upon clearing the Tower floor 10 and claiming the associated achievement, you will unlock this new feature which lets you set your active character Class!</li>
+            <li>When you first unlock the feature, you will automatically become a <i>Wanderer</i>, the base class that does not have any specific benefits other than an additional 3 ability slots to use.</li>
+            <li>A new option in the Battle > Loadout page (visible in Solo and Group battle types) will appear with options to select and view all of the available classes, including a full decription of every ability and trait that each class offers.</li>
+            <li>When changing to a new class, you will enter a 12-hour cooldown period where you may not change to any other class during the duration.  Tokens are available in the Shop to skip this cooldown limitation, but in general we want the selection of playing a class to be permanent enough for players to enjoy the strategic value while not too permanent that you can't change your mind later on.</li>
+            <li>If you would like to read the details available for all of the classes in advance, you may <a href="#" class="view-class-details-link">view them here</a>.  Spoilers, obviously!</li>
+        </ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>Your reforging "roll" has been tweaked to not round up numbers visually.  For example, previously rolling a 79.95 would round up to 80.0 and would be frustrating if the game said you needed an 80.0 but still failed.</li>
+            <li>Blue text links are now easier to see in dark mode.</li>
+            <li>The close "X" button for popup prompts is now themed properly in dark mode.</li>
+        </ul>
+    </ul>
+
+    <h2 class="my-3">Thursday 5th October 2023</h2>
+    <ul>
+        <li><b>Bugfixes</b></li>
+        <ul>
+            <li>Evasive Maneuvers and Precise Shots should now properly extend their duration as the level of the ability is raised.</li>
+        </ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>Buffs that extend their own duration will now show properly in the realtime battle interface.</li>
+        </ul>
+    </ul>
+
+    <h2 class="my-3">Wednesday 4th October 2023</h2>
+    <ul>
+        <li><b>Balance Changes</b></li>
+        <ul>
+            <li>Each new room in the tower now has the same auto-attack tick delay as the first room.  This delay is 0.8 seconds and prevents either side from auto-attacking during this time to give players a more fair chance to load in and react to the battle.  Keep in mind that this delay only affects auto-attacks and both friendly and enemy units can still use abilities during this time and passive effects will still occur</li>
+        </ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>When equipment slots are displayed, the display of neck items has been moved to show before head items in order to group the equipment items together.</li>
+            <li>Chat names and channels will now appear bold to increase readability.</li>
+            <li>The skill XP bar in dark mode under Rankings is now easier to read.</li>
+        </ul>
+        <li><b>Performance Changes</b></li>
+        <ul>
+            <li>Town donations have been further optimized to reduce network overhead.</li>
+        </ul>
+    </ul>
+
+    <h2 class="my-3">Tuesday 3rd October 2023</h2>
+    <ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>Renamed wands to use wood tier names instead of metal tier names.</li>
+            <li>Renamed 'magic wood' to 'sagewood'.</li>
+        </ul>
+        <li><b>Performance Changes</b></li>
+        <ul>
+            <li>Tower Floor loot has been highly optimized to reduce network overhead.</li>
+        </ul>
+    </ul>
+
+    <h2 class="my-3">Monday 2nd October 2023</h2>
+    <ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>Black or very dark gray dark mode icons have been color-inverted to be white so they are visible under this theme.</li>
+            <li>Text in the Tower/group lobby page have been updated to better indicate if the boss is locked, how much health it has, floor progression, and official attempts/contribution status.</li>
+            <li>Passive combat abilities and companion abilities will no longer how their hotkey label during battle.</li>
+            <li>The hotkey label for changing targets has been uppercased from 't' to "T".</li>
+            <li>Renamed 'chili' back to 'chilli'.</li>
+        </ul>
+    </ul>
+
     <h2 class="my-3">Sunday 1st October 2023</h2>
     <ul>
         <li><b>Bugfixes</b></li>
@@ -224,4 +297,11 @@
         Updates from previous game changes are now available at <a href="/oldUpdates">the old updates page</a>.
 	    Keep in mind they may be inaccurate or out of date due to age.
     </p>
+
+    <script language="javascript" type="text/javascript">
+        window.setTimeout(function() {
+            window.scrollTo(0, 0);
+        }, 1)
+    </script>
+
 </template>

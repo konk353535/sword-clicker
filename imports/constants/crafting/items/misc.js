@@ -59,6 +59,15 @@ export const MISC_ITEMS = {
         description: "Can be traded for new adventures."
     },
 
+    companion_token: {
+        id: "companion_token",
+        icon: "companionToken.svg",
+        category: "crafting",
+        name: "companion token",
+        sellPrice: 0,
+        description: "Automatically spent when bringing companions to battle."
+    },
+
     class_cooldown_reset_token: {
         id: "class_cooldown_reset_token",
         icon: "classCooldownResetToken.svg",

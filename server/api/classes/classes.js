@@ -29,7 +29,7 @@ const setClass = function(uid, newClass) {
         uid = Meteor.userId()
     }
 
-    let newCooldown = (newClass == "wanderer")
+    let newCooldown = (newClass == CLASSES.default().id)
         ? moment().add(-1, "seconds").toDate()
         : moment().add(12, "hours").toDate()
 
@@ -94,7 +94,6 @@ const classMayChange = function(uid, newClass) {
 
 Meteor.methods({
     "classes.clearCooldown"(targetUid) {
-        const userDoc = Users.findOne({ _id: Meteor.userId() })
         const userIsAdmin = userDoc && userDoc.isSuperMod
 
         if (!userIsAdmin) {
@@ -104,9 +103,49 @@ Meteor.methods({
         if (targetUid == null || !targetUid || typeof targetUid === 'undefined') {
             return false
         }
-        
+
+        const userDoc = Users.findOne({ _id: targetUid })
+
+        if (!userDoc) {
+            return false
+        }
+
         clearClassCooldown(targetUid)
         return true
+    },
+
+    "classes.welcome"(uid) {
+        if (uid == null || !uid || typeof uid === 'undefined') {
+            uid = Meteor.userId()
+        }
+
+        if (!classMayChange(uid)) {
+            return { equipped: false, reason: "Ineligible for class change." }
+        }
+
+        const userNewClassToEquip = CLASSES.default()
+
+        if (userEligibleForClass(uid, userNewClassToEquip)) {
+            // going from 'nothing' to 'wanderer'/default:
+            
+            // don't unequip any gear
+            // do unequip abilities (since loadout restrictions apply now)
+            userUnequipAllAbilities(uid)
+            // set the class data
+            setClass(uid, userNewClassToEquip.id)
+
+            if (thisUser) {
+                // pass the data to the new class here since it's not actually set yet (update: Meteor.call moved here, so it might be)
+                updateCombatStats(uid, thisUser.username, true, userNewClassToEquip)
+            }
+
+            // update that the user was active
+            updateUserActivity({ userId: uid })
+
+            return { equipped: true, reason: "" }
+        }
+
+        return { equipped: false, reason: "Ineligible for class change." }
     },
 
     "classes.equipClass"(uid, newClass) {
@@ -114,7 +153,7 @@ Meteor.methods({
             uid = Meteor.userId()
         }
 
-        if (!classMayChange()) {
+        if (!classMayChange(uid)) {
             return { equipped: false, reason: "Ineligible for class change." }
         }
 
@@ -129,7 +168,7 @@ Meteor.methods({
                 userUnequipAllItems(uid)
                 userUnequipAllAbilities(uid)
 
-                if (userCurrentClassEquipped.id != "wanderer") {
+                if (userCurrentClassEquipped.id != CLASSES.default().id) {
                     Meteor.call("crafting.cancelReforgeAll")
                 }
 
@@ -174,7 +213,7 @@ Meteor.methods({
                 }
 
                 // update that the user was active
-                updateUserActivity({ userId: Meteor.userId() })
+                updateUserActivity({ userId: uid })
 
                 // note: the actual state of setting the user's active class is done when we return true/false success to the client
                 //       from 'loadout.js'.  On true, the client calls 'users.setUiState' with the new class ID.  In every case where

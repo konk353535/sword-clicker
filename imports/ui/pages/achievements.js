@@ -58,9 +58,11 @@ Template.achievementsPage.events({
                 instance.state.set("achievements", achievements)
 
                 if (achieveId == "tower_10") {
-                    toastr.success("You have unlocked a new feature: Classes!")
-                    Meteor.call("users.setUiState", "autopage", "viewClasses", function() {
-                        Router.go("battle")
+                    Meteor.call("classes.welcome",  Meteor.userId(), function() {
+                        toastr.success("You have unlocked a new feature: Classes!")
+                        Meteor.call("users.setUiState", "autopage", "viewClasses", function() {
+                            Router.go("battle")
+                        })
                     })
                 }
             }

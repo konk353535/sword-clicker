@@ -23,6 +23,10 @@ import { addXp } from "/server/api/skills/skills.js"
 // If met will return true and take items
 // If not met, will return false and take no items
 export const requirementsUtility = function (requirements, amountToCraft = 1) {
+    if (amountToCraft <= 0) {
+        return false
+    }
+
     const requiredSkillList = requirements
         .filter((requirement) => {
             return requirement.type === "skill"

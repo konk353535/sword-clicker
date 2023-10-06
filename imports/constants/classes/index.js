@@ -282,6 +282,12 @@ export const CLASSES = {
             }
         },
         reforge: {
+            druids_shirt: {
+                requiresCrafting: 16
+            },
+            druids_pants: {
+                requiresCrafting: 16
+            },
             brown_wizard_hat: {
                 requiresCrafting: 8
             },

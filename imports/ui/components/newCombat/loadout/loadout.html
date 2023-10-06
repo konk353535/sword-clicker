@@ -4,23 +4,24 @@
     <h4 class="d-flex align-items-center">
       Class
     </h4>
-    <div class="d-flex flex-wrap mb-3">
-      <div class="mr-2 hidden-sm-down" style="line-height: 2.33em;">Active Class</div>
-      <div class="dropdown">
+    <div class="hide-on-mobile">
+      <div class="d-flex flex-wrap mb-3">
+        <div class="mr-2 hidden-sm-down" style="line-height: 2.33em;">Active Class</div>
+        <div class="dropdown">
           <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
-              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{currentClass}}
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{currentClass}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
-              <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
-              <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
-              <a class="dropdown-item select-class" data-class="paladin" href="#">Paladin</a>
-              <a class="dropdown-item select-class" data-class="ranger" href="#">Ranger</a>
-              <a class="dropdown-item select-class" data-class="sage" href="#">Sage</a>
-              <a class="dropdown-item select-class" data-class="tactician" href="#">Tactician</a>
-              <a class="dropdown-item select-class" data-class="warmage" href="#">War Mage</a>
-              <a class="dropdown-item select-class" data-class="wizard" href="#">Wizard</a>
+            <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
+            <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
+            <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
+            <a class="dropdown-item select-class" data-class="paladin" href="#">Paladin</a>
+            <a class="dropdown-item select-class" data-class="ranger" href="#">Ranger</a>
+            <a class="dropdown-item select-class" data-class="sage" href="#">Sage</a>
+            <a class="dropdown-item select-class" data-class="tactician" href="#">Tactician</a>
+            <a class="dropdown-item select-class" data-class="warmage" href="#">War Mage</a>
+            <a class="dropdown-item select-class" data-class="wizard" href="#">Wizard</a>
           </div>
         </div>
         <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;">
@@ -30,10 +31,44 @@
         </div>
       </div>
       {{#if classChangeCooldown}}
-        <div style="margin-top: -18px; margin-bottom: 24px;" class="{{classChangeCooldownStyle}}">
+      <div style="margin-top: -18px; margin-bottom: 24px;" class="{{classChangeCooldownStyle}}">
+        You have changed to another class recently.  Your cooldown before you can change again expires in {{>readableDuration endDate=classChangeCooldown}}.<br />
+      </div>
+      {{/if}}
+    </div>
+    <div class="hide-on-desktop" style="margin-bottom: 16px;">
+      <div class="d-flex flex-wrap mb-3">
+        <div class="dropdown">
+          <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{currentClass}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
+            <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
+            <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
+            <a class="dropdown-item select-class" data-class="paladin" href="#">Paladin</a>
+            <a class="dropdown-item select-class" data-class="ranger" href="#">Ranger</a>
+            <a class="dropdown-item select-class" data-class="sage" href="#">Sage</a>
+            <a class="dropdown-item select-class" data-class="tactician" href="#">Tactician</a>
+            <a class="dropdown-item select-class" data-class="warmage" href="#">War Mage</a>
+            <a class="dropdown-item select-class" data-class="wizard" href="#">Wizard</a>
+          </div>
+        </div>
+        <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;">
+          <img width="56" height="56" src="/icons/{{currentClassIcon}}" style="border: none; width: 56px; height: 56px;" />
+          <button class="btn btn-primary view-classes-btn" style="width: 50px; margin-left: 10px;">?</button>
+        </div>
+      </div>
+      <div class="d-flex flex-grow justify-content-center" style="line-height: 2.33em; margin-top: -10px;">
+        <button class="btn btn-warning reset-cooldown-btn" style="width: 195px; margin-left: 10px;">Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">{{resetTokenCount}}</button>
+      </div>
+      {{#if classChangeCooldown}}
+        <div style="margin-top: 8px; margin-bottom: 24px;" class="{{classChangeCooldownStyle}}">
           You have changed to another class recently.  Your cooldown before you can change again expires in {{>readableDuration endDate=classChangeCooldown}}.<br />
         </div>
       {{/if}}
+    </div>
     {{/if}}
     <h4 class="d-flex align-items-center">
       Gear

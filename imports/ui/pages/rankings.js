@@ -4,6 +4,8 @@ import { Template } from "meteor/templating"
 
 import { Skills } from "/imports/api/skills/skills.js"
 
+import { CLASSES } from "/imports/constants/classes/index.js"
+
 import "./rankings.html"
 
 Template.rankingsPage.onCreated(function bodyOnCreated() {
@@ -32,8 +34,9 @@ Template.rankingsPage.onCreated(function bodyOnCreated() {
             })
         } else {
             Meteor.call("skills.highscores", skillName, showAll200, (err, res) => {
-                res.forEach((item, index) => {
-                    item.rank = index + 1
+                res.forEach((thisPlayer, index) => {
+                    thisPlayer.rank = index + 1
+                    thisPlayer.icon = thisPlayer.icon || CLASSES.lookup(thisPlayer?.classData?.currentClass).icon || "invis.gif"
                 })
                 this.state.set("highscores", res)
             })

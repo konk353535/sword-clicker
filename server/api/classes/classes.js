@@ -4,6 +4,7 @@ import { Abilities } from "/imports/api/abilities/abilities"
 import { userCurrentClass, userEligibleForClass } from "/imports/api/classes/classes"
 import { Items } from "/imports/api/items/items"
 import { Users, classFeatureUnlocked, updateUserActivity } from "/imports/api/users/users.js"
+import { Skills } from "/imports/api/skills/skills"
 
 import { CLASSES } from "/imports/constants/classes/index.js"
 
@@ -45,6 +46,18 @@ const setClass = function(uid, newClass) {
                 }
             }
         }
+    )
+
+    Skills.update(
+        {
+            owner: uid
+        },
+        {
+            $set: {
+                icon: CLASSES.lookup(newClass).icon
+            }
+        },
+        { multi: true }
     )
 }
 

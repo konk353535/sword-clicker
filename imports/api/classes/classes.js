@@ -41,7 +41,7 @@ export const userCurrentClass = function (uid) {
             eligible: classFeatureUnlocked(uid),
             equipped: defaultClass.id,
             data: defaultClass,
-            icon: defaultClass.icon,
+            icon: undefined,
             cooldown: undefined
         }
     }
@@ -51,7 +51,7 @@ export const userCurrentClass = function (uid) {
         eligible: false,
         equipped: defaultClass.id,
         data: defaultClass,
-        icon: defaultClass.icon,
+        icon: undefined,
         cooldown: undefined
     }
 }

@@ -536,7 +536,8 @@ Meteor.methods({
                     },
                     fields: {
                         personalQuest: 1,
-                        username: 1
+                        username: 1,
+                        classData: 1
                     },
                     limit
                 }

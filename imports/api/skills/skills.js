@@ -13,6 +13,7 @@ SkillsSchema = new SimpleSchema({
     server: { type: String },
     level: { type: Number, defaultValue: 1 },
     rank: { type: Number, optional: true },
+    icon: { type: String, optional: true },
     owner: { type: String, regEx: SimpleSchema.RegEx.Id }
 })
 

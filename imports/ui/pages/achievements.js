@@ -56,6 +56,13 @@ Template.achievementsPage.events({
                 const achievements = instance.state.get("achievements")
                 _.findWhere(achievements, { id: achieveId }).collected = true
                 instance.state.set("achievements", achievements)
+
+                if (achieveId == "tower_10") {
+                    toastr.success("You have unlocked a new feature: Classes!")
+                    Meteor.call("users.setUiState", "autopage", "viewClasses", function() {
+                        Router.go("battle")
+                    })
+                }
             }
         })
     },

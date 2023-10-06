@@ -28,6 +28,11 @@
           <button class="btn btn-primary view-classes-btn" style="width: 120px; margin-left: 10px;">Classes info</button>
         </div>
       </div>
+      {{#if classChangeCooldown}}
+        <div style="margin-top: -18px; margin-bottom: 24px;" class="{{classChangeCooldownStyle}}">
+          You have changed to another class recently.  Your cooldown before you can change again expires in {{>readableDuration endDate=classChangeCooldown}}.<br />
+        </div>
+      {{/if}}
     {{/if}}
     <h4 class="d-flex align-items-center">
       Gear
@@ -241,6 +246,51 @@
       <button class="btn btn-primary back-to-lobby-btn" style="width: 150px">Back to lobby</button>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal classSelectionConfirm" tabindex="-1" role="dialog" aria-labelledby="classSelectionConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="classSelectionConfirmModalLabel">Confirm Class Change</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to class change to become a <b>{{classChangeSelectionChoice}}</b>?<br />
+          
+          {{#if $neq currentClass 'Wanderer'}}
+            <br />
+            Access to all abilities and traits unique to {{currentClass}}s will be removed and all of your existing
+            equipment and abilities will be unequipped as part of the class change.<br />
+            <br />
+            Your reforge queue will be cancelled and those items returned to you.  Classes can change how items are
+            reforged.<br />
+          {{/if}}
+          
+          {{#if $neq classChangeSelectionChoice 'Wanderer'}}
+            <br />
+            You will not be able change your class selection again for the next 12 hours.<br />
+          {{/if}}
+        </div>
+        <div class="modal-footer">
+          <div class="row" style="width:100%">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-danger chance-class-confirm-btn pull-left">
+              Change to {{classChangeSelectionChoice}} 
+              <img src="/icons/{{classChangeSelectionChoiceIcon}}" style="width: 24px; height: 24px; margin-top: -2px;" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <template name="skinLibraryIcon">

@@ -787,6 +787,38 @@ SimpleChat.configure({
                 }
 
                 return
+            } else if (/\/resetClassCooldown/.test(message)) {
+                const splitMessage = message.trim()?.split("/resetClassCooldown")?.[1]?.trim()?.split(" ")
+
+                let targetUsername
+
+                if (splitMessage.length === 1) {
+                    targetUsername = splitMessage[0]
+                } else {
+                    sendUserChatMessage({
+                        userId: userDoc._id,
+                        message: `Usage: /resetClassCooldown player`
+                    })
+                    return
+                }
+
+                const targetUser = Users.findOne({
+                    username: targetUsername.toLowerCase().trim()
+                })
+
+                if (!targetUser) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid target player '${targetUsername}'.` })
+                    return
+                }
+
+                Meteor.call("classes.clearCooldown", targetUser._id, function(err, dat) {
+                    if (err || !dat) {
+                        sendUserChatMessage({ userId: userDoc._id, message: `Problem clearing class change cooldown for ${targetUsername}.  ${err}.` })
+                    } else {
+                        sendUserChatMessage({ userId: userDoc._id, message: `Cleared class change cooldown for ${targetUsername}.` })
+                    }
+                })
+                return
             }
         }
 

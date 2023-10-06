@@ -323,6 +323,8 @@ Template.body.onCreated(function () {
     Meteor.subscribe("battlesList")
     // State
     Meteor.subscribe("state")
+    // Achievement (needed for classes to work)
+    Meteor.subscribe("achievements")
 
     // Only use these if summary list is showing & not mobile
 })

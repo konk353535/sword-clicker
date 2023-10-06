@@ -134,10 +134,13 @@ Template.astronomyTab.helpers({
             let mageAttackSpeedBuffFromClass = 0
             let mageAttackSpeedBuffFromTown = 0
 
+            // Disabled for now to prevent parking/afk/idling as this class just for this benefit
+            /*
             const userClass = userCurrentClass()
             if (userClass?.unlocked && userClass?.equipped === "wizard") {
                 mageAttackSpeedBuffFromClass = 0.25
             }
+            */
 
             const townBuffObservatoryLevel = getBuffLevel("town_observatory")
             if (townBuffObservatoryLevel > 0) {

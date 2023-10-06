@@ -14,9 +14,8 @@ import { ITEMS } from "/imports/constants/items/index.js"
 import "./viewClasses.html"
 
 Template.viewClassesPage.onCreated(function bodyOnCreated() {
-    this.state = new ReactiveDict()
-
     this.autorun(() => {
+        Meteor.call("users.setUiState", "autopage", "")
     })
 })
 

@@ -234,6 +234,38 @@ export const TOWER_ACHIEVEMENTS = {
                 type: "item",
                 itemId: "skeletal_warrior_tome_level_2",
                 amount: 1
+            },
+            {
+                type: "feature",
+                icon: "classBarbarian.png"
+            },
+            {
+                type: "feature",
+                icon: "classDuelist.png"
+            },
+            {
+                type: "feature",
+                icon: "classPaladin.png"
+            },
+            {
+                type: "feature",
+                icon: "classRanger.png"
+            },
+            {
+                type: "feature",
+                icon: "classSage.png"
+            },
+            {
+                type: "feature",
+                icon: "classTactician.png"
+            },
+            {
+                type: "feature",
+                icon: "classWarMage.png"
+            },
+            {
+                type: "feature",
+                icon: "classWizard.png"
             }
         ]
     },

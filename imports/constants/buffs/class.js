@@ -1243,9 +1243,10 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Wizard",
         description() {
             return `
-        Can reforge wands, tomes, and orbs.  Astronomy mages produce magic shards 25% faster.  Double
-        Magic Power benefit from tomes and orbs.  Maximum Health is reduced by half.  The Maximum
-        Health cost of all spells is reduced by half.<br />
+        Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from
+        spellcasting and reading codexes.  Double Magic Power benefit from tomes and
+        orbs.  Maximum Health is reduced by half.  The Maximum Health cost of all
+        spells is reduced by half.<br />
         While you are a Wizard this is <b>always active</b>`
         },
         constants: {

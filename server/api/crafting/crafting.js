@@ -807,6 +807,71 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
+    "crafting.cancelReforgeAll"() {
+        const crafting = Crafting.findOne({
+            owner: Meteor.userId()
+        })
+
+        const userDoc = Meteor.user()
+
+        if (!crafting || !crafting.currentlyReforging) {
+            return false
+        }
+
+        const newReforging = lodash.cloneDeep(crafting.currentlyReforging)
+
+        if (!newReforging || newReforging.length <= 0) {
+            return false
+        }
+
+        tx.start("Cancel reforge all items")
+
+        // Remove targetReforging from current crafting array
+        const updatedQuerySuccess = Crafting.update(
+            {
+                _id: crafting._id,
+                currentlyReforging: [crafting.currentlyReforging]
+            },
+            {
+                $set: {
+                    currentlyReforging: []
+                }
+            },
+            { tx: { instant: true } }
+        )
+
+        if (!updatedQuerySuccess) {
+            tx.cancel() // Cancel transaction: "Cancel reforge all items"
+            return
+        }
+
+        try {
+            newReforging.forEach((targetReforging) => {
+                const originalItem = JSON.parse(targetReforging.itemData)
+
+                Items.insert(
+                    {
+                        itemId: originalItem.itemId,
+                        owner: originalItem.owner,
+                        category: originalItem.category,
+                        extraStats: originalItem.extraStats,
+                        quality: originalItem.quality,
+                        rarityId: originalItem.rarityId,
+                        enhanced: originalItem.enhanced
+                    },
+                    { tx: { instant: true } }
+                )
+            })
+        } catch (err) {
+            tx.cancel() // Cancel transaction: "Cancel reforge all items"
+            return
+        }
+
+        tx.commit() // Commit transaction: "Cancel reforge all items"
+
+        updateUserActivity({ userId: Meteor.userId() })
+    },
+
     "crafting.cancelReforge"(targetEndDate) {
         const crafting = Crafting.findOne({
             owner: Meteor.userId()

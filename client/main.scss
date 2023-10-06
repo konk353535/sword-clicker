@@ -460,3 +460,8 @@ body {
         width: calc(100% - 24px);
     }
 }
+
+.element-hider {
+    display: none;
+    visibility: hidden;
+}

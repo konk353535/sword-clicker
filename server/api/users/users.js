@@ -473,7 +473,7 @@ Meteor.methods({
             "ngAutoMode",
             "darkMode",
             "largeChatEnabled",
-            "currentClass"
+            "autopage"
         ]
 
         if (_.contains(validIds, id)) {
@@ -550,7 +550,8 @@ Meteor.publish("userData", function () {
                     isGuest: 1,
                     isMutedExpiry: 1,
                     stats: 1,
-                    townKarma: 1
+                    townKarma: 1,
+                    classData: 1
                 }
             }
         )

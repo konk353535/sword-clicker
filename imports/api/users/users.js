@@ -1,6 +1,8 @@
 import { SimpleSchema } from "meteor/aldeed:simple-schema"
 import { Meteor } from "meteor/meteor"
 
+import { Achievements } from "/imports/api/achievements/achievements"
+
 import moment from "moment/moment"
 
 export const Users = Meteor.users
@@ -135,18 +137,16 @@ export const serverFromUser = function serverFromUser(userId__in = false) {
 }
 
 export const classFeatureUnlocked = function (userId__in = false) {
+    if (userId__in == null || !userId__in || typeof userId__in === 'undefined') {
+        userId__in = Meteor.userId()
+    }
+
+    const achievements = Achievements.findOne({
+        owner: userId__in
+    })
+
     try {
-        if (userId__in) {
-            const userDoc = Users.findOne({ _id: userId__in })
-            if (userDoc && userDoc.stats && userDoc.stats.towerHighestClear) {
-                return userDoc.stats.towerHighestClear >= 10
-            }
-        } else {
-            const user = Meteor.user()
-            if (user && user.stats && user.stats.towerHighestClear) {
-                return user.stats.towerHighestClear >= 10
-            }
-        }
+        return achievements?.collected?.tower_10
     } catch (err) {}
     return false
 }
@@ -264,6 +264,10 @@ UserSchema = new SimpleSchema({
     "stats.combatMostDamageTaken": { type: Number, defaultValue: 0 },
 
     townKarma: { type: Number, optional: true, defaultValue: 0 },
+
+    classData: { type: Object },
+    "classData.currentClass": { type: String },
+    "classData.changeCooldown": { type: Date },
 
     version: { type: Number, optional: true, defaultValue: 1 }
 })

@@ -59,13 +59,29 @@ export const MISC_ITEMS = {
         description: "Can be traded for new adventures."
     },
 
-    companion_token: {
-        id: "companion_token",
-        icon: "companionToken.svg",
-        category: "crafting",
-        name: "companion token",
+    class_cooldown_reset_token: {
+        id: "class_cooldown_reset_token",
+        icon: "classCooldownResetToken.svg",
+        category: "class_cooldown_reset_token",
+        name: "Class Cooldown Reset Token",
         sellPrice: 0,
-        description: "Automatically spent when bringing companions to battle."
+        description: "Consume to instantly reset your class change cooldown.",
+        shiftActionData: {
+            description: "Reset your class change cooldown."
+        }
+    },
+
+    pine_magic_book: {
+        id: "pine_magic_book",
+        icon: "magic_tome_1.svg",
+        category: "magic_book",
+        name: "Codex of Tutoring",
+        sellPrice: 100,
+        magicXp: 500,
+        description: "Can be consumed for 500 Magic XP.",
+        shiftActionData: {
+            description: "consume for 500 Magic XP."
+        }
     },
 
     gift_box_holiday: {

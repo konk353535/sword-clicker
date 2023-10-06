@@ -19,6 +19,7 @@ import { cleanRewards } from "/server/utils"
 import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { Abilities } from "/imports/api/abilities/abilities"
 import { Battles, BattlesList } from "/imports/api/battles/battles"
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat"
 import { BossHealthScores } from "/imports/api/floors/bossHealthScores"
 import { FloorLoot } from "/imports/api/floors/floorLoot"
@@ -1335,6 +1336,11 @@ export const completeBattle = function (actualBattle) {
         })
 
         if (totalMagicXp > 0) {
+            const userClass = userCurrentClass(unit.owner)
+            if (userClass?.unlocked && userClass?.equipped === "wizard") {
+                totalMagicXp *= 1.25
+            }
+
             finalTickEvents.push({
                 type: "xp",
                 amount: totalMagicXp,

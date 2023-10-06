@@ -17,7 +17,7 @@ import { updateCombatStats } from "/server/api/combat/combat.js"
 import { updateMiningStats } from "/server/api/mining/mining.js"
 import { addXp } from "/server/api/skills/skills.js"
 import { flattenObjectForMongo } from "/server/utils"
-import { userUnequipAllItems } from "/server/api/classes/classes.js"
+import { userUnequipAllItems, clearClassCooldown } from "/server/api/classes/classes.js"
 
 import Numeral from "numeral"
 
@@ -538,6 +538,10 @@ Meteor.methods({
 
         if (baseItem.category === "item_box") {
             UseItemBox(baseItem, baseItemConstants, targetItem, targetItemConstants)
+        }
+
+        if (baseItem.category === "class_cooldown_reset_token") {
+            useClassCooldownResetToken(baseItem, baseItemConstants, targetItem, targetItemConstants)
         }
 
         if (baseItem.itemId === "jade") {
@@ -1348,8 +1352,28 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
         return
     }
 
+    let codexMagicXPValue = baseItemConstants.magicXp
+
+    const userClass = userCurrentClass()
+    if (userClass?.unlocked && userClass?.equipped === "wizard") {
+        codexMagicXPValue *= 1.25
+    }
+
     // Logic
-    addXp("magic", baseItemConstants.magicXp)
+    addXp("magic", codexMagicXPValue)
+
+    // Post Logic & Cleanup
+    ConsumeItem(baseItem)
+}
+
+export const useClassCooldownResetToken = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+    // Validation
+    if (baseItem.category !== "class_cooldown_reset_token") {
+        return
+    }
+
+    // Logic
+    clearClassCooldown(Meteor.userId())
 
     // Post Logic & Cleanup
     ConsumeItem(baseItem)

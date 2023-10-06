@@ -64,6 +64,8 @@ Meteor.methods({
                 })
             } else if (reward.type === "xp") {
                 addXp(reward.skill, reward.amount, userDoc._id, true)
+            } else if (reward.type === "feature") {
+                //reward.message
             }
         })
 

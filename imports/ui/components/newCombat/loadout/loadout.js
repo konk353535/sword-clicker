@@ -14,14 +14,38 @@ import { BUFFS } from "/imports/constants/buffs/index.js"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 import "./loadout.html"
+import moment from "moment"
 
 let isFetchingLibrary = false
 
 Template.loadoutPage.onCreated(function bodyOnCreated() {
+    this.intervalRotation = 0
     this.state = new ReactiveDict()
 
     Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
         this.state.set("currentClass", res?.equipped)
+        this.state.set("currentClassCooldown", res?.cooldown)
+        
+        Meteor.setInterval(() => {
+            const classChangeCooldown = this.state.get("currentClassCooldown")
+    
+            if (classChangeCooldown) {
+                if (moment().isAfter(classChangeCooldown)) {
+                    // simulate new data to trigger the reactive variable
+                    this.state.set("currentClassCooldown", false)
+                }
+            }
+            
+            if (++this.intervalRotation > 5) {
+                this.intervalRotation = 1
+
+                const instRef = this
+
+                Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
+                    instRef.state.set("currentClassCooldown", res.cooldown)
+                })
+            }
+        }, 1000)
     })
 
     this.autorun(() => {
@@ -74,11 +98,31 @@ Template.loadoutPage.events({
 
     "click .select-class"(event, instance) {
         const newClass = instance.$(event.target).closest(".select-class").data("class")
+
+        const classChangeCooldown = instance.state.get("currentClassCooldown")
+        if (classChangeCooldown) {
+            if (moment().isBefore(classChangeCooldown)) {
+                toastr.warning("You are still on class change cooldown.")
+                return
+            }
+        }
+
+        instance.state.set("classChangeSelection", newClass)
+        Template.instance().$(".classSelectionConfirm").modal("show")
+    },
+
+    "click .chance-class-confirm-btn"(event, instance) {
+        Template.instance().$(".classSelectionConfirm").modal("hide")
+
+        const newClass = instance.state.get("classChangeSelection")
+
         Meteor.call("classes.equipClass", Meteor.userId(), newClass, (err, res) => {
             if (typeof err === "undefined") {
-                if (res?.equipped == true) {
+                if (res?.equipped) {
                     instance.state.set("currentClass", newClass)
-                    Meteor.call("users.setUiState", "currentClass", newClass)
+                    Meteor.call("classes.getCurrentClass", Meteor.userId(), (err, res) => {
+                        instance.state.set("currentClassCooldown", res.cooldown)
+                    })
                     toastr.success("You have changed your active class!")
                 } else if (res?.reason?.length > 0) {
                     toastr.warning(res.reason)
@@ -195,6 +239,34 @@ Template.loadoutPage.helpers({
     
     isTactician() {
         return userCurrentClass().equipped === 'tactician'
+    },
+
+    classChangeSelectionChoice() {
+        return CLASSES.lookup(Template.instance().state.get("classChangeSelection")).name
+    },
+
+    classChangeSelectionChoiceIcon() {
+        return CLASSES.lookup(Template.instance().state.get("classChangeSelection")).icon
+    },
+
+    classChangeCooldown() {
+        const classChangeCooldown = Template.instance().state.get("currentClassCooldown")
+        if (classChangeCooldown) {
+            if (moment().isBefore(classChangeCooldown)) {
+                return classChangeCooldown
+            }
+        }
+        return undefined
+    },
+
+    classChangeCooldownStyle() {
+        const classChangeCooldown = Template.instance().state.get("currentClassCooldown")
+        if (classChangeCooldown) {
+            if (moment().isBefore(classChangeCooldown)) {
+                return ""
+            }
+        }
+        return "element-hider"
     }
 })
 

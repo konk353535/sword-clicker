@@ -209,7 +209,12 @@ Template.lobbyPage.onCreated(function bodyOnCreated() {
             this.state.set("maxLevel", userDoc.personalQuest.level)
             this.state.set("maxLevelCurrentWave", userDoc.personalQuest.wave)
         }
-    })
+    })/*,
+
+//todo: remove debug (all of this)
+    Tracker.autorun(() => {
+        Template.instance().data.setPage("viewClasses")
+    })*/
 })
 
 Template.lobbyPage.events({
@@ -450,6 +455,15 @@ Template.lobbyPage.rendered = function () {
     }
 
     const instance = Template.instance()
+
+    Tracker.autorun(() => {
+        const myUser = Users.findOne({ _id: Meteor.userId() })
+        if (myUser) {
+            if (myUser.uiState && myUser.uiState.autopage !== undefined) {
+                instance.data.setPage(myUser.uiState.autopage)
+            }
+        }
+    })
 
     Tracker.autorun(() => {
         const myUser = Users.findOne({ _id: Meteor.userId() })

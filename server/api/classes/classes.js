@@ -10,6 +10,7 @@ import { CLASSES } from "/imports/constants/classes/index.js"
 import { ABILITIES } from "/server/constants/combat/index"
 
 import { updateCombatStats } from "/server/api/combat/combat.js"
+import moment from "moment"
 
 export const userUnequipAllItems = function (uid) {
     Items.update({ owner: uid, category: "combat" }, { $set: { equipped: false } }, { multi: true })
@@ -23,9 +24,99 @@ export const userUnequipAllAbilities = function (uid) {
     )
 }
 
+const setClass = function(uid, newClass) {
+    if (uid == null || !uid || typeof uid === 'undefined') {
+        uid = Meteor.userId()
+    }
+
+    let newCooldown = (newClass == "wanderer")
+        ? moment().add(-1, "seconds").toDate()
+        : moment().add(12, "hours").toDate()
+
+    Users.update(
+        {
+            _id: uid
+        },
+        {
+            $set: {
+                classData: {
+                    currentClass: newClass,
+                    changeCooldown: newCooldown
+                }
+            }
+        }
+    )
+}
+
+export const clearClassCooldown = function(uid) {
+    if (uid == null || !uid || typeof uid === 'undefined') {
+        uid = Meteor.userId()
+    }
+
+    Users.update(
+        {
+            _id: uid
+        },
+        {
+            $set: {
+                classData: {
+                    currentClass: userCurrentClass(uid).equipped,
+                    changeCooldown:  moment().add(-1, "seconds").toDate()
+                }
+            }
+        }
+    )
+}
+
+const classMayChange = function(uid, newClass) {
+    if (uid == null || !uid || typeof uid === 'undefined') {
+        uid = Meteor.userId()
+    }
+
+    if (!userCurrentClass(uid).unlocked) {
+        return false
+    }
+    
+    const userDoc = Users.findOne(uid)
+
+    if (!userDoc) {
+        return false
+    }
+
+    if (userDoc.classData && userDoc.classData.changeCooldown) {
+        if (moment().isBefore(userDoc.classData.changeCooldown)) {
+            return false
+        }
+    }
+
+    return true
+}
+
 Meteor.methods({
+    "classes.clearCooldown"(targetUid) {
+        const userDoc = Users.findOne({ _id: Meteor.userId() })
+        const userIsAdmin = userDoc && userDoc.isSuperMod
+
+        if (!userIsAdmin) {
+            return false
+        }
+
+        if (targetUid == null || !targetUid || typeof targetUid === 'undefined') {
+            return false
+        }
+        
+        clearClassCooldown(targetUid)
+        return true
+    },
+
     "classes.equipClass"(uid, newClass) {
-        //todo: check if they're on class swap cooldown
+        if (uid == null || !uid || typeof uid === 'undefined') {
+            uid = Meteor.userId()
+        }
+
+        if (!classMayChange()) {
+            return { equipped: false, reason: "Ineligible for class change." }
+        }
 
         const userNewClassToEquip = CLASSES.lookup(newClass)
 
@@ -37,6 +128,10 @@ Meteor.methods({
 
                 userUnequipAllItems(uid)
                 userUnequipAllAbilities(uid)
+
+                if (userCurrentClassEquipped.id != "wanderer") {
+                    Meteor.call("crafting.cancelReforgeAll")
+                }
 
                 const userAbilities = Abilities.findOne({ owner: uid })
 
@@ -70,8 +165,11 @@ Meteor.methods({
                     )
                 })
 
+                setClass(uid, newClass)
+                //Meteor.call("users.setUiState", "currentClass", newClass)
+
                 if (thisUser) {
-                    // pass the data to the new class here since it's not actually set yet
+                    // pass the data to the new class here since it's not actually set yet (update: Meteor.call moved here, so it might be)
                     updateCombatStats(uid, thisUser.username, true, userNewClassToEquip)
                 }
 
@@ -82,23 +180,29 @@ Meteor.methods({
                 //       from 'loadout.js'.  On true, the client calls 'users.setUiState' with the new class ID.  In every case where
                 //       we check the user's active class, their eligibilty is verified server-side and the class ID that they should
                 //       actually be set to is sent back.
+
+                // note: ** UPDATE ** Meteor.call was moved here, so the above may no longer be true
             }
 
             return { equipped: true, reason: "" }
         }
 
-        return { equipped: false, reason: "Ineligible for class swap" }
+        return { equipped: false, reason: "Ineligible for class change." }
     },
 
     "classes.getCurrentClass"(uid) {
+        if (uid == null || !uid || typeof uid === 'undefined') {
+            uid = Meteor.userId()
+        }
+        
         const thisUser = Users.findOne({ _id: uid })
 
         if (thisUser) {
-            if (thisUser.uiState && thisUser.uiState.currentClass) {
-                const equippedClass = CLASSES.lookup(thisUser.uiState.currentClass)
+            if (thisUser.classData && thisUser.classData.currentClass) {
+                const equippedClass = CLASSES.lookup(thisUser.classData.currentClass)
 
                 if (userEligibleForClass(uid, equippedClass)) {
-                    return { unlocked: classFeatureUnlocked(uid), equipped: equippedClass.id, data: equippedClass }
+                    return { unlocked: classFeatureUnlocked(uid), equipped: equippedClass.id, data: equippedClass, cooldown: moment().isBefore(thisUser.classData.changeCooldown) ? thisUser.classData.changeCooldown : false }
                 }
             }
         }
@@ -107,7 +211,7 @@ Meteor.methods({
 
         Meteor.call("classes.equipClass", uid, defaultClass.id)
 
-        return { unlocked: classFeatureUnlocked(uid), equipped: defaultClass.id, data: defaultClass }
+        return { unlocked: classFeatureUnlocked(uid), equipped: defaultClass.id, data: defaultClass, cooldown: undefined }
     }
 })
 
@@ -121,3 +225,4 @@ const userId = function userId(userId) {
 }
 
 DDPRateLimiter.addRule({ type: "method", name: "classes.equipClass", userId }, 10, 3 * SECOND)
+DDPRateLimiter.addRule({ type: "method", name: "classes.getCurrentClass", userId }, 1 * SECOND)

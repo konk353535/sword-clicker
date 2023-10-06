@@ -75,15 +75,55 @@
                     5
                   </div>
                 {{/if}}
-                <!-- Companion -->
-                {{#if equippedAbilitiesMap.companion}}
-                  {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
-                {{else}}
-                  <div class="item-icon-container item icon-box tiny">
-                    6
-                  </div>
+                {{#if $eq classFeatureUnlocked false}}
+                  <!-- Companion -->
+                  {{#if equippedAbilitiesMap.companion}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      C
+                    </div>
+                  {{/if}}
                 {{/if}}
               </div>
+              {{#if classFeatureUnlocked}}
+                <div class="d-flex flex-wrap align-items-center summary-abilities">
+                  <!-- classAbil1 -->
+                  {{#if equippedAbilitiesMap.classAbil1}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      6
+                    </div>
+                  {{/if}}
+                  <!-- classAbil2 -->
+                  {{#if equippedAbilitiesMap.classAbil2}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      7
+                    </div>
+                  {{/if}}
+                  <!-- classAbil3 -->
+                  {{#if equippedAbilitiesMap.classAbil3}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      8
+                    </div>
+                  {{/if}}
+                  <!-- (vacant slot) -->
+                  <div class="item-icon-container item icon-box tiny" style="border: none"></div>
+                  <!-- Companion -->
+                  {{#if equippedAbilitiesMap.companion}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      C
+                    </div>
+                  {{/if}}
+                </div>
+              {{/if}}
             {{else}}
               <h6><a href="/battle" class="group-nav-link">Abilities</a></h6>
               <div class="d-flex flex-wrap align-items-center summary-abilities">
@@ -126,15 +166,55 @@
                     5
                   </div>
                 {{/if}}
-                <!-- Companion -->
-                {{#if equippedAbilitiesMap.companion}}
-                  {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
-                {{else}}
-                  <div class="item-icon-container item icon-box tiny">
-                    6
-                  </div>
+                {{#if $eq classFeatureUnlocked false}}
+                  <!-- Companion -->
+                  {{#if equippedAbilitiesMap.companion}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      C
+                    </div>
+                  {{/if}}
                 {{/if}}
               </div>
+              {{#if classFeatureUnlocked}}
+                <div class="d-flex flex-wrap align-items-center summary-abilities">
+                  <!-- classAbil1 -->
+                  {{#if equippedAbilitiesMap.classAbil1}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      6
+                    </div>
+                  {{/if}}
+                  <!-- classAbil2 -->
+                  {{#if equippedAbilitiesMap.classAbil2}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      7
+                    </div>
+                  {{/if}}
+                  <!-- classAbil3 -->
+                  {{#if equippedAbilitiesMap.classAbil3}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3 classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      8
+                    </div>
+                  {{/if}}
+                  <!-- (vacant slot) -->
+                  <div class="item-icon-container item icon-box tiny" style="border: none"></div>
+                  <!-- Companion -->
+                  {{#if equippedAbilitiesMap.companion}}
+                    {{> abilityLibraryIcon item=equippedAbilitiesMap.companion classes='tiny'}}
+                  {{else}}
+                    <div class="item-icon-container item icon-box tiny">
+                      C
+                    </div>
+                  {{/if}}
+                </div>
+              {{/if}}
             {{/if}}
             
             {{#if currentGroup}}

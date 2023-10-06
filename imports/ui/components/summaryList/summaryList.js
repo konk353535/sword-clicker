@@ -5,6 +5,7 @@ import { Template } from "meteor/templating"
 import { Abilities } from "/imports/api/abilities/abilities.js"
 import { Adventures } from "/imports/api/adventures/adventures.js"
 import { BattlesList } from "/imports/api/battles/battles.js"
+import { classFeatureUnlocked } from "/imports/api/users/users.js"
 import { Combat } from "/imports/api/combat/combat.js"
 import { Crafting } from "/imports/api/crafting/crafting.js"
 import { FarmingSpace } from "/imports/api/farming/farming.js"
@@ -214,5 +215,9 @@ Template.summaryList.helpers({
 
             return userCombat
         })
+    },
+    
+    classFeatureUnlocked() {
+        return classFeatureUnlocked()
     }
 })

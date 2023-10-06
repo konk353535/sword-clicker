@@ -571,7 +571,11 @@ html.dark {
     
     .descriptive-section {
         color: white !important;
-        background-color: #3f3f3f !important;
+        background-color: #3f3f3f;
+    }
+
+    .style-active-class {
+        background-color: #57473f;
     }
 
     button.close {

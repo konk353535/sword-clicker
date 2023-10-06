@@ -10,12 +10,12 @@
     Once unlocked, you will automatically become a base class of <i>Wanderer</i> and your ability loadout changes from
     five slots for active or passive abilities into eight slots that are divided between five dedicated active slots
     and three dedicated passive slots. Each of the classes are detailed below with their traits and unique
-    abilities.<br />
+    abilities.  Class traits are always active for as long as you are that class.<br />
     <div class="d-flex flex-grow" style="margin-top: 8px;">
         <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
     </div>
     <div class="hide-on-mobile">
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'wanderer'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -25,7 +25,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'barbarian'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -64,7 +64,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
@@ -104,7 +104,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'duelist'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -142,7 +142,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
@@ -184,7 +184,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-sectio {{#if $eq currentClass 'paladin'}}style-active-class{{/if}}n">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -223,7 +223,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
@@ -269,7 +269,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'ranger'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -343,7 +343,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
@@ -385,7 +385,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'sage'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -422,7 +422,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
@@ -467,7 +467,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'tactician'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -506,7 +506,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
@@ -550,7 +550,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'warmage'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -587,7 +587,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
@@ -625,7 +625,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'wizard'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr style="border-bottom: 1px solid #999;">
                     <td style="font-size: 16pt; margin-top: 16px; padding-bottom: 12px;">
@@ -672,7 +672,7 @@
                             </tr>
                             <tr>
                                 <td width="200" valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
@@ -711,7 +711,7 @@
         </div>
     </div>
     <div class="hide-on-desktop">
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'wanderer'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -721,7 +721,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'barbarian'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -762,7 +762,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
@@ -802,7 +802,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'duelist'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -842,7 +842,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
@@ -884,7 +884,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'paladin'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -925,7 +925,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
@@ -971,7 +971,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'ranger'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -1047,7 +1047,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
@@ -1089,7 +1089,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'sage'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -1128,7 +1128,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
@@ -1173,7 +1173,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'tactician'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -1214,7 +1214,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
@@ -1258,7 +1258,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'warmage'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -1297,7 +1297,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
@@ -1335,7 +1335,7 @@
                 </tr>
             </table>
         </div>
-        <div class="descriptive-section">
+        <div class="descriptive-section {{#if $eq currentClass 'wizard'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
@@ -1384,7 +1384,7 @@
                             </tr>
                             <tr>
                                 <td valign="top" style="white-space: nowrap;">
-                                    Class Combat Trait
+                                    Class General Trait
                                 </td>
                                 <td valign="top" width="16">
                                     <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />

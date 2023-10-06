@@ -1,15 +1,7 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
-import _ from "underscore"
 
-import { Abilities } from "/imports/api/abilities/abilities.js"
 import { userCurrentClass } from "/imports/api/classes/classes.js"
-import { Items } from "/imports/api/items/items.js"
-import { classFeatureUnlocked } from "/imports/api/users/users.js"
-
-import { BUFFS } from "/imports/constants/buffs/index.js"
-import { ITEMS } from "/imports/constants/items/index.js"
 
 import "./viewClasses.html"
 
@@ -26,4 +18,7 @@ Template.viewClassesPage.events({
 })
 
 Template.viewClassesPage.helpers({
+    currentClass() {
+        return userCurrentClass().equipped
+    }
 })

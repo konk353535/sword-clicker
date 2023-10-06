@@ -160,14 +160,20 @@ Template.loadoutPage.events({
 
     "click .select-class"(event, instance) {
         const newClass = instance.$(event.target).closest(".select-class").data("class")
+        const existingClass = instance.state.get("currentClass")
 
+        if (existingClass == newClass) {
+            toastr.warning(`You are already a ${CLASSES.lookup(existingClass).name}!`)
+            return
+        }
+        
         const classChangeCooldown = instance.state.get("currentClassCooldown")
         if (classChangeCooldown) {
             if (moment().isBefore(classChangeCooldown)) {
                 toastr.warning("You are still on class change cooldown.")
                 return
             }
-        }
+        }        
 
         instance.state.set("classChangeSelection", newClass)
         Template.instance().$(".classSelectionConfirm").modal("show")
@@ -176,7 +182,13 @@ Template.loadoutPage.events({
     "click .chance-class-confirm-btn"(event, instance) {
         Template.instance().$(".classSelectionConfirm").modal("hide")
 
+        const existingClass = instance.state.get("currentClass")
         const newClass = instance.state.get("classChangeSelection")
+
+        if (existingClass == newClass) {
+            toastr.warning(`You are already a ${CLASSES.lookup(existingClass).name}!`)
+            return
+        }
 
         Meteor.call("classes.equipClass", Meteor.userId(), newClass, (err, res) => {
             if (typeof err === "undefined") {

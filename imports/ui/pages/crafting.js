@@ -447,7 +447,7 @@ const GetMetaWord = function (word, item, data) {
 
         let desc = ""
         if (IsValid(data.description)) {
-            if (typeof data["decription"] == "function") {
+            if (typeof data["description"] == "function") {
                 desc = data.description()
             } else {
                 desc = data.description
@@ -815,7 +815,7 @@ const ItemSorter = function (itemList_in) {
 
             let newItemData = { ...itemConsts, ...item }
 
-            if (typeof newItemData.decription === "function") {
+            if (typeof newItemData.description === "function") {
                 newItemData.description = newItemData.description()
             }
 

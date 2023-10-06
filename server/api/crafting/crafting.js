@@ -423,13 +423,15 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             { tx: { instant: true } }
         )
 
+        //console.log(`Reforge actual roll ${userRoll}, telling user it was ${((1 - userRoll - 0.0005) * 100).toFixed(1)} to avoid rounding issues`)
+
         console.log(`txSuccess: ${txSuccess}`)
 
         Chats.insert(
             {
                 message: `You were successful at reforging your ${
                     itemConstants.name
-                }, improving its structure (rarity increased)!  (rolled ${((1 - userRoll) * 100).toFixed(1)}, needed ${(
+                }, improving its structure (rarity increased)!  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(1)}, needed ${(
                     (1 - reforgeData.chance) *
                     100
                 ).toFixed(0)})`,
@@ -452,7 +454,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `While attempting to reforge your ${
                         itemConstants.name
-                    }, the item cracked and fell to pieces.  (rolled ${((1 - userRoll) * 100).toFixed(1)}, needed ${(
+                    }, the item cracked and fell to pieces.  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(1)}, needed ${(
                         (1 - reforgeData.chance) *
                         100
                     ).toFixed(0)})`,
@@ -543,7 +545,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `You were not successful at reforging your ${
                         itemConstants.name
-                    }, worsening its structure (rarity decreased).  (rolled ${((1 - userRoll) * 100).toFixed(
+                    }, worsening its structure (rarity decreased).  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(
                         1
                     )}, needed ${((1 - reforgeData.chance) * 100).toFixed(0)})`,
                     username: "Game",
@@ -592,7 +594,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `You were not successful at reforging your ${
                         itemConstants.name
-                    }.  The active crafting buff prevents it from worsening.  (rolled ${((1 - userRoll) * 100).toFixed(
+                    }.  The active crafting buff prevents it from worsening.  (rolled ${((1 - userRoll - 0.005) * 100).toFixed(
                         1
                     )}, needed ${((1 - reforgeData.chance) * 100).toFixed(0)})`,
                     username: "Game",

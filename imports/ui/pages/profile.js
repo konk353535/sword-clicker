@@ -131,7 +131,7 @@ Template.profilePage.helpers({
 
     classFeatureUnlocked() {
         const instance = Template.instance()
-        return instance.state.get("class").unlocked == true
+        return instance.state.get("class")?.unlocked === true
     },
 
     username() {

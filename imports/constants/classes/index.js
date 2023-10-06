@@ -106,21 +106,31 @@ export const CLASSES = {
             },
             chest: {
                 healthMax: {
-                    valueMultiply: 2,
+                    valueMultiply: 3,
                     unlessMagic: true
                 }
             },
             leg: {
                 healthMax: {
-                    valueMultiply: 2,
+                    valueMultiply: 3,
                     unlessMagic: true
                 }
             },
             head: {
                 healthMax: {
-                    valueMultiply: 2,
+                    valueMultiply: 3,
                     unlessMagic: true
                 }
+            }
+        },
+        abilityPatch: {
+            scream: {
+                requires: [
+                    {
+                        type: "weaponType",
+                        weaponTypes: ["spear", "hammer", "longSword"]
+                    }
+                ]
             }
         }
     },

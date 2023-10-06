@@ -1,26 +1,46 @@
 <template name="viewClassesPage">
     <br class="hide-on-mobile" />
-    <div style="font-size: 20pt;">
+    {{#if classFeatureUnlocked}}
+      <div style="font-size: 20pt;">
         <b>Congratulations: You've Unlocked Classes!</b><br />
-    </div>
-    <br />
-    Classes are a feature that unlock after you clear the tower floor level 10 or above. You must completely clear the
-    tower floor to qualify for and unlock classes.<br />
-    <br />
-    Once unlocked, you will automatically become a base class of <i>Wanderer</i> and your ability loadout changes from
-    five slots for active or passive abilities into eight slots that are divided between five dedicated active slots
-    and three dedicated passive slots. Each of the classes are detailed below with their traits and unique
-    abilities.  Class traits are always active for as long as you are that class.<br />
+      </div>
+      <br />
+      Classes are a feature that you unlocked after you cleared the tower floor level 10.<br />
+      <br />
+      Now that Classes are unlocked, you will automatically become a base class of <i>Wanderer</i> and your ability
+      loadout changed from five slots for active or passive abilities into eight slots that are divided between five
+      dedicated active slots and three dedicated passive slots. Each of the classes are detailed below with their
+      traits and unique abilities. Class traits are always active for as long as you are that class.<br />
+    {{else}}
+      <div style="font-size: 20pt;">
+        <b>Classes Are Locked For You</b><br />
+      </div>
+      <br />
+      You have not yet unlocked the Classes feature, so you won't see any way to select or use a class or their
+      benefits yet.<br />
+      <br />
+      Classes are a feature that unlock after you clear the tower floor level 10. You must completely clear the
+      tower floor to qualify for and unlock classes.<br />
+      <br />
+      Once unlocked, you will automatically become a base class of <i>Wanderer</i> and your ability loadout changes from
+      five slots for active or passive abilities into eight slots that are divided between five dedicated active slots
+      and three dedicated passive slots. Each of the classes are detailed below with their traits and unique
+      abilities. Class traits are always active for as long as you are that class.<br />
+    {{/if}}
     <div class="d-flex flex-grow" style="margin-top: 8px;">
+      {{#if classFeatureUnlocked}}
         <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+      {{else}}
+        <button class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
+      {{/if}}
     </div>
     <div class="hide-on-mobile">
         <div class="descriptive-section {{#if $eq currentClass 'wanderer'}}style-active-class{{/if}}">
             <table cellspacing="0" cellpadding="0" style="border: none; margin: 16px 0 16px 16px; padding: 0px;">
                 <tr>
                     <td style="font-size: 16pt; margin-top: 16px;">
-                        <b>Wanderers</b> are simply the base class and do not confer any benefits or hindrances beyond the
-                        changes to how many abilities can be equipped.
+                        <b>Wanderers</b> are simply the base class and do not confer any benefits or hindrances beyond
+                        the changes to how many abilities can be equipped.
                     </td>
                 </tr>
             </table>
@@ -58,8 +78,8 @@
                                 </td>
                                 <td valign="top">
                                     Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases
-                                    all of your damage by +10% per stack (to a maximum of +200%). Stacks are reduced by 3
-                                    when you successfully hit with an auto-attack to a minimum of 0 stacks.
+                                    all of your damage by <b>+10%</b> per stack (to a maximum of +200%). Stacks are reduced
+                                    by 3 when you successfully hit with an auto-attack to a minimum of 0 stacks.
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +92,7 @@
                                 <td valign="top">
                                     Your critical hits will inflict <b>Bleeding</b>
                                     <img src="/icons/bleeding.svg" style="width: 16px; height: 16px;" />
-                                    for 3 seconds.
+                                    for <b>3</b> seconds that cause <b>10% Max Damage</b> per second.
                                 </td>
                             </tr>
                             <tr>
@@ -83,8 +103,8 @@
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Broad swords and battle axes have a 25% chance to strike enemies adjacent to your
-                                    target.
+                                    Broad swords and battle axes have a <b>25%</b> chance to strike enemies adjacent
+                                    to your target.
                                 </td>
                             </tr>
                             <tr>
@@ -150,10 +170,10 @@
                                 <td valign="top">
                                     <b>Twin Blades</b>
                                     <img src="/icons/twinBlades.svg" style="width: 16px; height: 16px;" />
-                                    can also be used with short swords, scimitars, and longswords. Physical damage dealt
-                                    to an enemy you aren't directly targeting is increased by 50%. Class traits are always
-                                    active. When striking an enemy with an auto-attack, you reduce their physical armor
-                                    and defense by 1% of their original maximum.
+                                    can also be used with short swords, scimitars, and longswords. Physical damage
+                                    dealt to an enemy you aren't directly targeting is increased by <b>50%</b>. When
+                                    striking an enemy with an auto-attack, you reduce their physical armor and defense
+                                    by <b>2%</b> of their original maximum.
                                 </td>
                             </tr>
                             <tr>
@@ -216,9 +236,9 @@
                                     <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that
-                                    prevents all damage.  Each time the ally would take damage, a stack is deducted. When
-                                    all stacks are gone, this protection ends.
+                                    Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle
+                                    that prevents all damage.  Each time the ally would take damage, a stack is
+                                    deducted. When all stacks are gone, this protection ends.
                                 </td>
                             </tr>
                             <tr>
@@ -232,7 +252,7 @@
                                     A successful taunt triggers <b>Paladin's Inspiration</b>
                                     <img src="/icons/paladinInspiration.svg" style="width: 16px; height: 16px;" /> which
                                     heals the ally the enemy was targeting for <b>30 + 20% Magic Power</b>.  All taunt
-                                    abilities have 15% reduced cooldowns. <b>Scream</b>
+                                    abilities have <b>15%</b> reduced cooldowns. <b>Scream</b>
                                     <img src="/icons/scream.svg" style="width: 16px; height: 16px;" /> can also be used
                                     with longswords.
                                 </td>
@@ -260,8 +280,9 @@
                                     You are charged with a duty to defend a squire who always follows you into battle; he
                                     does not fight, but can take damage. You automatically <b>Intercept</b>
                                     <img src="/icons/paladinSquireInterception.svg" style="width: 16px; height: 16px;" />
-                                    half of the damage your squire receives. If your squire dies, you will be stunned
-                                    and unable to auto-attack or use abilities for <b>60</b> seconds.
+                                    half of the damage your squire receives. If your squire dies, you will be Stunned
+                                    <img src="/icons/stunned.svg" style="width: 16px; height: 16px;" /> and unable to
+                                    use abilities or auto-attack for <b>60</b> seconds.
                                 </td>
                             </tr>
                         </table>
@@ -302,11 +323,11 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    A fiery attack that deals <b>50%</b> damage immediately and sets the target on
+                                    A fiery attack that deals <b>50% Damage</b> immediately and sets the target on
                                     <b>Fire</b>
                                     <img src="/icons/ignite.svg" style="width: 16px; height: 16px;" />,
-                                    burning for <b>20%</b> damage every second for <b>8</b> seconds.  Cooldown: <b>12</b>
-                                    seconds.
+                                    burning for <b>20%</b> physical damage every second for <b>8</b> seconds.
+                                    Cooldown: <b>12</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -319,7 +340,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    An icy attack that deals <b>110%</b> damage and <b>Chills</b>
+                                    An icy attack that deals <b>110% Damage</b> and <b>Chills</b>
                                     <img src="/icons/frostedAttacks.svg" style="width: 16px; height: 16px;" />
                                     the target, lowering its attack speed by <b>50%</b> for 4 seconds.  Cooldown:
                                     <b>12</b> seconds.
@@ -335,7 +356,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    An electrified attack that deals <b>65%</b> damage and <b>Shocks</b>
+                                    An electrified attack that deals <b>65% Damage</b> and <b>Shocks</b>
                                     <img src="/icons/rangerStormArrowEffect.svg" style="width: 16px; height: 16px;" />
                                     the target, lowering its armor by <b>50% Accuracy</b> for 4 seconds.  Cooldown:
                                     <b>12</b> seconds.
@@ -354,7 +375,7 @@
                                     that increases your attack speed by <b>+20%</b> per stack (up to a maximum of
                                     <b>+100%</b> at 5 stacks).  You lose 2 stacks of <b>Marksman</b> any time an
                                     auto-attack misses. Each unused ability slot in your equipped loadout adds <b>1</b> to
-                                    the maximum number of arrows fired from <b>Volley</b>
+                                    the maximum possible number of arrows fired from <b>Volley</b>
                                     <img src="/icons/volley.svg" style="width: 16px; height: 16px;" />.
                                 </td>
                             </tr>
@@ -366,7 +387,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Bow Attack Speed raised by +10%. 
+                                    Bow Attack Speed raised by <b>+10%</b>. 
                                 </td>
                             </tr>
                             <tr>
@@ -377,7 +398,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Non-Bow Damage lowered by -20%.
+                                    Non-Bow Damage lowered by <b>-20%</b>.
                                 </td>
                             </tr>
                         </table>
@@ -417,7 +438,8 @@
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Prevents you from being directly targeted unless there are no other allies remaining in battle.
+                                    Prevents you from being directly targeted unless there are no other allies
+                                    remaining in battle.
                                 </td>
                             </tr>
                             <tr>
@@ -428,13 +450,15 @@
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Healing a target reduces all of your active ability cooldowns by 2 seconds and places a
-                                    protective <b>Sage's Blessing</b>
+                                    Healing a target reduces all of your active ability cooldowns by <b>2</b> seconds
+                                    and places a protective <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
-                                    upon the healed target for 2 seconds that reduces the damage they take by 25%.
+                                    upon the healed target for <b>2</b> seconds that reduces the damage they take by
+                                    <b>25%</b>.
                                     <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
-                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending Waters</b>
+                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending
+                                    Waters</b>
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     and <b>Mending Spring</b>
                                     <img src="/icons/mendingSpring.svg" style="width: 16px; height: 16px;" />.
@@ -500,8 +524,8 @@
                                     <img src="/icons/classTactician.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    For every 5% Health you are missing from your original Maximum Health, your Defense and
-                                    Magic Armor increases by +4%.
+                                    For every 5% Health you are missing from your original Maximum Health, your Defense
+                                    and Magic Armor increases by <b>+4%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -514,12 +538,12 @@
                                 <td valign="top">
                                     You have no restrictions on what combination of active or passive abilities may be
                                     slotted in your 8-ability loadout (no dedicated slots).<br />
-                                    You gain +20% damage and +15% accuracy, except:<br />
-                                    You lose 5% damage and 4% accuracy for every active ability slotted in your loadout
+                                    You gain <b>+20%</b> damage and <b>+15%</b> accuracy, <i>except</i>:<br />
+                                    You <i>lose</i> 5% damage and 4% accuracy for every active ability slotted in your loadout
                                     beyond 3 active abilities.<br />
-                                    You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout
+                                    You <i>lose</i> 5% damage and 4% accuracy for every passive passive slotted in your loadout
                                     beyond 3 passive abilities.<br />
-                                    You have a 10% chance to negate any damage, which cannot be reduced, prevented, or
+                                    You have a <b>10%</b> chance to negate any damage, which cannot be reduced, prevented, or
                                     nullified.<br />
                                 </td>
                             </tr>
@@ -582,7 +606,7 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Dealing magic damage restores 0.5% of your Maximum Health.
+                                    Dealing magic damage restores <b>0.5%</b> of your Maximum Health.
                                 </td>
                             </tr>
                             <tr>
@@ -604,8 +628,9 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal 100% of
-                                    your auto-attack damage as additional magic damage. Double all stat benefits from amulets.
+                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal
+                                    <b>100%</b> of your auto-attack damage as additional magic damage instead of the
+                                    usual 25%. Double all stat benefits from amulets.
                                 </td>
                             </tr>
                             <tr>
@@ -616,8 +641,8 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Whenever you are struck in combat, your Maximum Health is reduced by 1% of its original
-                                    amount.
+                                    Whenever you are struck in combat, your Maximum Health is reduced by <b>1%</b> of
+                                    its original amount.
                                 </td>
                             </tr>
                         </table>
@@ -667,7 +692,8 @@
                                     familiar is summoned that will aggressively damage any enemy it sees.  Wielding a
                                     tome, a <b>Tome</b>
                                     <img src="/icons/wizardSummonFamiliarTome.svg" style="width: 16px; height: 16px;" />
-                                    familiar is summoned that will occassionally heal allies.
+                                    familiar is summoned that will occassionally heal allies. All familiars get weaker
+                                    the more allies you have in battle when the familiar is summoned.
                                 </td>
                             </tr>
                             <tr>
@@ -679,7 +705,7 @@
                                 </td>
                                 <td valign="top">
                                     The Maximum Health cost of all spells is reduced by half.  Magic XP earned from
-                                    spellcasting and consuming codexes is increased by 25%.
+                                    spellcasting and consuming codexes is increased by <b>25%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -690,7 +716,8 @@
                                     <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Can reforge wands, tomes, and orbs.  Double Magic Power benefit from tomes and orbs.
+                                    Can reforge wands, tomes, and orbs.  Double Magic Power benefit from tomes and
+                                    orbs.
                                 </td>
                             </tr>
                             <tr>
@@ -755,9 +782,10 @@
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases
-                                    all of your damage by +10% per stack (to a maximum of +200%). Stacks are reduced by 3
-                                    when you successfully hit with an auto-attack to a minimum of 0 stacks.
+                                    Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that
+                                    increases all of your damage by <b>+10%</b> per stack (to a maximum of +200%).
+                                    Stacks are reduced by 3 when you successfully hit with an auto-attack to a minimum
+                                    of 0 stacks.
                                 </td>
                             </tr>
                             <tr>
@@ -770,7 +798,7 @@
                                 <td valign="top">
                                     Your critical hits will inflict <b>Bleeding</b>
                                     <img src="/icons/bleeding.svg" style="width: 16px; height: 16px;" />
-                                    for 3 seconds.
+                                    for <b>3</b> seconds that cause <b>10% Max Damage</b> per second.
                                 </td>
                             </tr>
                             <tr>
@@ -781,8 +809,8 @@
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Broad swords and battle axes have a 25% chance to strike enemies adjacent to your
-                                    target.
+                                    Broad swords and battle axes have a <b>25%</b> chance to strike enemies adjacent
+                                    to your target.
                                 </td>
                             </tr>
                             <tr>
@@ -793,8 +821,8 @@
                                     <img src="/icons/classBarbarian.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Magic Power stat in combat is always 0 and cannot be raised; unable to equip magical
-                                    head, chest, or leg equipment.
+                                    Magic Power stat in combat is always <b>0</b> and cannot be raised; unable to
+                                    equip magical head, chest, or leg equipment.
                                 </td>
                             </tr>
                         </table>
@@ -850,10 +878,10 @@
                                 <td valign="top">
                                     <b>Twin Blades</b>
                                     <img src="/icons/twinBlades.svg" style="width: 16px; height: 16px;" />
-                                    can also be used with short swords, scimitars, and longswords. Physical damage dealt
-                                    to an enemy you aren't directly targeting is increased by 50%. Class traits are always
-                                    active. When striking an enemy with an auto-attack, you reduce their physical armor
-                                    and defense by 1% of their original maximum.
+                                    can also be used with short swords, scimitars, and longswords. Physical damage
+                                    dealt to an enemy you aren't directly targeting is increased by <b>50%</b>. When
+                                    striking an enemy with an auto-attack, you reduce their physical armor and defense
+                                    by <b>2%</b> of their original maximum.
                                 </td>
                             </tr>
                             <tr>
@@ -876,7 +904,7 @@
                                     <img src="/icons/classDuelist.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Cannot equip head armor.
+                                    Cannot equip head slot items.
                                 </td>
                             </tr>
                         </table>
@@ -918,9 +946,9 @@
                                     <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that
-                                    prevents all damage.  Each time the ally would take damage, a stack is deducted. When
-                                    all stacks are gone, this protection ends.
+                                    Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle
+                                    that prevents all damage. Each time the ally would take damage, a stack is
+                                    deducted. When all stacks are gone, this protection ends.
                                 </td>
                             </tr>
                             <tr>
@@ -932,9 +960,9 @@
                                 </td>
                                 <td valign="top">
                                     A successful taunt triggers <b>Paladin's Inspiration</b>
-                                    <img src="/icons/paladinInspiration.svg" style="width: 16px; height: 16px;" /> which
-                                    heals the ally the enemy was targeting for <b>30 + 20% Magic Power</b>.  All taunt
-                                    abilities have 15% reduced cooldowns. <b>Scream</b>
+                                    <img src="/icons/paladinInspiration.svg" style="width: 16px; height: 16px;" />
+                                    which heals the ally the enemy was targeting for <b>30 + 20% Magic Power</b>. All
+                                    taunt abilities have <b>15%</b> reduced cooldowns. <b>Scream</b>
                                     <img src="/icons/scream.svg" style="width: 16px; height: 16px;" /> can also be used
                                     with longswords.
                                 </td>
@@ -948,7 +976,7 @@
                                 </td>
                                 <td valign="top">
                                     Longswords and shields may be equipped together. Double Max Attack from hammers and
-                                    spears.  Triple health benefit from non-magical head, chest, and leg equipment.
+                                    spears. Triple health benefit from non-magical head, chest, and leg equipment.
                                 </td>
                             </tr>
                             <tr>
@@ -959,11 +987,12 @@
                                     <img src="/icons/classPaladin.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    You are charged with a duty to defend a squire who always follows you into battle; he
-                                    does not fight, but can take damage. You automatically <b>Intercept</b>
+                                    You are charged with a duty to defend a squire who always follows you into battle;
+                                    he does not fight, but can take damage. You automatically <b>Intercept</b>
                                     <img src="/icons/paladinSquireInterception.svg" style="width: 16px; height: 16px;" />
-                                    half of the damage your squire receives. If your squire dies, you will be stunned
-                                    and unable to auto-attack or use abilities for <b>60</b> seconds.
+                                    half of the damage your squire receives. If your squire dies, you will be Stunned
+                                    <img src="/icons/stunned.svg" style="width: 16px; height: 16px;" /> and unable to
+                                    use abilities or auto-attack for <b>60</b> seconds.
                                 </td>
                             </tr>
                         </table>
@@ -1006,11 +1035,11 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    A fiery attack that deals <b>50%</b> damage immediately and sets the target on
+                                    A fiery attack that deals <b>50% Damage</b> immediately and sets the target on
                                     <b>Fire</b>
                                     <img src="/icons/ignite.svg" style="width: 16px; height: 16px;" />,
-                                    burning for <b>20%</b> damage every second for <b>8</b> seconds.  Cooldown: <b>12</b>
-                                    seconds.
+                                    burning for <b>20%</b> physical damage every second for <b>8</b> seconds.
+                                    Cooldown: <b>12</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -1023,7 +1052,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    An icy attack that deals <b>110%</b> damage and <b>Chills</b>
+                                    An icy attack that deals <b>110% Damage</b> and <b>Chills</b>
                                     <img src="/icons/frostedAttacks.svg" style="width: 16px; height: 16px;" />
                                     the target, lowering its attack speed by <b>50%</b> for 4 seconds.  Cooldown:
                                     <b>12</b> seconds.
@@ -1039,7 +1068,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    An electrified attack that deals <b>65%</b> damage and <b>Shocks</b>
+                                    An electrified attack that deals <b>65% Damage</b> and <b>Shocks</b>
                                     <img src="/icons/rangerStormArrowEffect.svg" style="width: 16px; height: 16px;" />
                                     the target, lowering its armor by <b>50% Accuracy</b> for 4 seconds.  Cooldown:
                                     <b>12</b> seconds.
@@ -1058,7 +1087,7 @@
                                     that increases your attack speed by <b>+20%</b> per stack (up to a maximum of
                                     <b>+100%</b> at 5 stacks).  You lose 2 stacks of <b>Marksman</b> any time an
                                     auto-attack misses. Each unused ability slot in your equipped loadout adds <b>1</b> to
-                                    the maximum number of arrows fired from <b>Volley</b>
+                                    the maximum possible number of arrows fired from <b>Volley</b>
                                     <img src="/icons/volley.svg" style="width: 16px; height: 16px;" />.
                                 </td>
                             </tr>
@@ -1070,7 +1099,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Bow Attack Speed raised by +10%. 
+                                    Bow Attack Speed raised by <b>+10%</b>. 
                                 </td>
                             </tr>
                             <tr>
@@ -1081,7 +1110,7 @@
                                     <img src="/icons/classRanger.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Non-Bow Damage lowered by -20%.
+                                    Non-Bow Damage lowered by <b>-20%</b>.
                                 </td>
                             </tr>
                         </table>
@@ -1123,7 +1152,8 @@
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Prevents you from being directly targeted unless there are no other allies remaining in battle.
+                                    Prevents you from being directly targeted unless there are no other allies
+                                    remaining in battle.
                                 </td>
                             </tr>
                             <tr>
@@ -1134,13 +1164,15 @@
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Healing a target reduces all of your active ability cooldowns by 2 seconds and places a
-                                    protective <b>Sage's Blessing</b>
+                                    Healing a target reduces all of your active ability cooldowns by <b>2</b> seconds
+                                    and places a protective <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
-                                    upon the healed target for 2 seconds that reduces the damage they take by 25%.
+                                    upon the healed target for <b>2</b> seconds that reduces the damage they take by
+                                    <b>25%</b>.
                                     <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
-                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending Waters</b>
+                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending
+                                    Waters</b>
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     and <b>Mending Spring</b>
                                     <img src="/icons/mendingSpring.svg" style="width: 16px; height: 16px;" />.
@@ -1154,7 +1186,7 @@
                                     <img src="/icons/classSage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Triple Healing Power benefit from staves. Can reforge most magical clothing.
+                                    Double Healing Power benefit from staves. Can reforge most magical clothing.
                                 </td>
                             </tr>
                             <tr>
@@ -1209,7 +1241,7 @@
                                 </td>
                                 <td valign="top">
                                     For every 5% Health you are missing from your original Maximum Health, your Defense and
-                                    Magic Armor increases by +4%.
+                                    Magic Armor increases by <b>+4%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -1222,12 +1254,12 @@
                                 <td valign="top">
                                     You have no restrictions on what combination of active or passive abilities may be
                                     slotted in your 8-ability loadout (no dedicated slots).<br />
-                                    You gain +20% damage and +15% accuracy, except:<br />
-                                    You lose 5% damage and 4% accuracy for every active ability slotted in your loadout
+                                    You gain <b>+20%</b> damage and <b>+15%</b> accuracy, <i>except</i>:<br />
+                                    You <i>lose</i> 5% damage and 4% accuracy for every active ability slotted in your loadout
                                     beyond 3 active abilities.<br />
-                                    You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout
+                                    You <i>lose</i> 5% damage and 4% accuracy for every passive passive slotted in your loadout
                                     beyond 3 passive abilities.<br />
-                                    You have a 10% chance to negate any damage, which cannot be reduced, prevented, or
+                                    You have a <b>10%</b> chance to negate any damage, which cannot be reduced, prevented, or
                                     nullified.<br />
                                 </td>
                             </tr>
@@ -1292,7 +1324,7 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Dealing magic damage restores 0.5% of your Maximum Health.
+                                    Dealing magic damage restores <b>0.5%</b> of your Maximum Health.
                                 </td>
                             </tr>
                             <tr>
@@ -1314,8 +1346,9 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal 100% of
-                                    your auto-attack damage as additional magic damage. Double all stat benefits from amulets.
+                                    Can reforge tridents. Triple Attack Speed for tridents and tridents now deal
+                                    <b>100%</b> of your auto-attack damage as additional magic damage instead of the
+                                    usual 25%. Double all stat benefits from amulets.
                                 </td>
                             </tr>
                             <tr>
@@ -1326,8 +1359,8 @@
                                     <img src="/icons/classWarMage.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Whenever you are struck in combat, your Maximum Health is reduced by 1% of its original
-                                    amount.
+                                    Whenever you are struck in combat, your Maximum Health is reduced by <b>1%</b> of
+                                    its original amount.
                                 </td>
                             </tr>
                         </table>
@@ -1379,7 +1412,8 @@
                                     familiar is summoned that will aggressively damage any enemy it sees.  Wielding a
                                     tome, a <b>Tome</b>
                                     <img src="/icons/wizardSummonFamiliarTome.svg" style="width: 16px; height: 16px;" />
-                                    familiar is summoned that will occassionally heal allies.
+                                    familiar is summoned that will occassionally heal allies. All familiars get weaker
+                                    the more allies you have in battle when the familiar is summoned.
                                 </td>
                             </tr>
                             <tr>
@@ -1390,8 +1424,8 @@
                                     <img src="/icons/classWizard.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    The Maximum Health cost of all spells is reduced by half.  Magic XP earned from
-                                    spellcasting and consuming codexes is increased by 25%.
+                                    The Maximum Health cost of all spells is reduced by half. Magic XP earned from
+                                    spellcasting and consuming codexes is increased by <b>25%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -1423,7 +1457,11 @@
         </div>
     </div>
     <div class="d-flex flex-grow justify-content-center" style="margin: 16px;">
+      {{#if classFeatureUnlocked}}
         <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+      {{else}}
+        <button class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
+      {{/if}}
     </div>
 
     <script language="javascript" type="text/javascript">

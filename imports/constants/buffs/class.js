@@ -305,7 +305,7 @@ export const CLASS_BUFFS = {
                                     totalDuration: Infinity,
                                     name: "Bulwark",
                                     icon: "paladinBulwark.svg",
-                                    stacks: 5,
+                                    stacks: 3,
                                 }
                             }
                         )
@@ -479,7 +479,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Grants all allies 5 stacks of <i>Bulwark</i> protection at the beginning of battle that 
+        Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle that 
         prevents all damage.  Each time the ally would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.<br />
         While equipped when you are a Paladin this is <b>always active</b>`
@@ -500,7 +500,7 @@ export const CLASS_BUFFS = {
                             buff: caster.generateBuff({
                                 buffId: "class_passive_paladin__bulwark_effect",
                                 buffData: {
-                                    stacks: 5
+                                    stacks: 3
                                 }
                             }),
                             target: friendlyUnit
@@ -521,7 +521,7 @@ export const CLASS_BUFFS = {
         name: "Bulwark",
         description({ buff, level }) {
             return `
-        A Paladin has granted you 5 stacks of <i>>Bulwark</i> protection at the beginning of this
+        A Paladin has granted you 3 stacks of <i>Bulwark</i> protection at the beginning of this
         battle that prevents all damage.  Each time you would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.`
         },
@@ -529,18 +529,18 @@ export const CLASS_BUFFS = {
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            stacks: 5
+            stacks: 3
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
-                    buff.stacks = buff.data.hitsRequired = 5
+                    buff.stacks = buff.data.hitsRequired = 3
                     target.stats.armor += 100000
                     target.stats.magicArmor += 100000
                 }
             },
 
-            onTookDamage({ buff, defender, attacker, actualBattle }) {
+            onTookRawDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
                 buff.data.hitsRequired--
                 buff.stacks = buff.data.hitsRequired
 
@@ -937,7 +937,7 @@ export const CLASS_BUFFS = {
         Healing a target reduces all of your active ability cooldowns by 2 seconds and places
         a protective blessing upon them for 2 seconds that reduces the damage they take by
         25%.
-        Triple Healing Power benefit from staves
+        Double Healing Power benefit from staves
         Can reforge most magical clothing.
         Cannot auto-attack when in combat with allies.<br />
         While you are a Sage this is <b>always active</b>`

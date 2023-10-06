@@ -277,7 +277,7 @@ export const CLASSES = {
         equipmentBonuses: {
             staff: {
                 healingPower: {
-                    valueMultiply: 3
+                    valueMultiply: 2
                 }
             }
         },

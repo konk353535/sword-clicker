@@ -22,7 +22,7 @@
             <div class="progress-bar bg-danger" role="progressbar" style="width: {{combat.healthPercentage}}%" aria-valuenow="{{combat.healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
-        {{#if combat.amulet.energyStorage}}
+        {{#if $gt combat.amulet.energyStorage 0}}
           <div class="d-flex flex-column m-3 combat-amulet-container" style="width: 200px">
             <div class="d-flex align-items-center">
               <img src="/icons/amulet.svg" class="extra-small-icon mr-1">

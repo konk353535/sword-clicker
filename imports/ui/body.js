@@ -284,7 +284,7 @@ Template.body.onCreated(function () {
         const isFullHealth = combat.stats.health >= combat.stats.healthMax
         const isFullEnergy = combat.stats.energy >= combat.stats.energyMax
         let isFullAmuletEnergy = true
-        if (combat.amulet) {
+        if (combat.amulet && combat.amulet?.energyStorage > 0) {
             isFullAmuletEnergy = combat.amulet.energy >= combat.amulet.energyStorage
         }
 

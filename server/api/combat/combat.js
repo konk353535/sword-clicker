@@ -59,7 +59,13 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         mainHandType: "",
         offHandType: "",
         offHandIsMagic: false,
-        xpDistribution: {}
+        xpDistribution: {},
+        amulet: {
+            damage: 0,
+            energy: 0,
+            energyRegen: 0,
+            energyStorage: 0
+        },
     }
 
     if (username) {

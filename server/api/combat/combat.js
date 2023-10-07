@@ -70,8 +70,11 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         return
     }
 
-    const userDoc = Users.findOne({ _id: userId })
-    const healthBeforeRecalc = playerData.stats.health
+    const currentCombat = Combat.findOne({
+        owner: userId
+    })
+
+    const healthBeforeRecalc = currentCombat.stats.health
 
     // Fetch all equipped combat items
     const combatItems = Items.find({
@@ -205,10 +208,6 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     if (playerData.stats.attackSpeed <= 0) {
         playerData.stats.attackSpeed = 0.25
     }
-
-    const currentCombat = Combat.findOne({
-        owner: userId
-    })
 
     try {
         const userClass = userCurrentClass(userId)

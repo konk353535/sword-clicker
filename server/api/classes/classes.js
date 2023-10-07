@@ -14,7 +14,15 @@ import { updateCombatStats } from "/server/api/combat/combat.js"
 import moment from "moment"
 
 export const userUnequipAllItems = function (uid) {
+    if (uid == null || !uid || typeof uid === 'undefined') {
+        uid = Meteor.userId()
+    }
+    
     Items.update({ owner: uid, category: "combat" }, { $set: { equipped: false } }, { multi: true })
+
+    const thisUser = Users.findOne({ _id: uid })
+
+    updateCombatStats(uid, thisUser.username, true)
 }
 
 export const userUnequipAllAbilities = function (uid) {
@@ -146,6 +154,8 @@ Meteor.methods({
             userUnequipAllAbilities(uid)
             // set the class data
             setClass(uid, userNewClassToEquip.id)
+
+            const thisUser = Users.findOne({ _id: uid })
 
             if (thisUser) {
                 // pass the data to the new class here since it's not actually set yet (update: Meteor.call moved here, so it might be)

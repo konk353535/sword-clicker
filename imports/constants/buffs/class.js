@@ -184,7 +184,7 @@ export const CLASS_BUFFS = {
                         defender.stats.defense = 1
                     }
 
-                    defender.tickMessage(lodash.sample(["Shred", "Tear", "Rip", "Pierce"]), "#994444", "noicon", defender)
+                    defender.tickMessage(lodash.sample(["Shred", "Tear", "Rip", "Pierce"]), "#994444", "rapier", defender)
                 }
             },
 
@@ -432,9 +432,9 @@ export const CLASS_BUFFS = {
                             const healthPercentage = defender.stats.health / defender.stats.healthMax
 
                             if (healthPercentage <= 0.3) {
-                                defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "noicon", defender)
+                                defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "paladinSquireInterception", defender)
                             } else if (healthPercentage <= 0.6) {
-                                defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#E27600", "noicon", defender)
+                                defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#E27600", "paladinSquireInterception", defender)
                             }
                         }
                     }

@@ -63,22 +63,24 @@ const startBattle = (currentBattle, self) => {
     })
 
     // Find enemies that I'm targetting
-    currentBattle.enemies.forEach((enemy) => {
-        enemy.isThisMyTarget = !!(myUnit && myUnit.target === enemy.id)
+    if (myUnit) {
+        currentBattle.enemies.forEach((enemy) => {
+            enemy.isThisMyTarget = !!(myUnit && myUnit.target === enemy.id)
 
-        if (enemy.id == myUnit.target) {
-            myUnit.targettingName = (enemy?.name) || (enemy?.id) || "?"
-            myUnit.targettingIcon = (enemy?.icon) || "invis.gif"
-        }
-
-        // Find enemies that my allies targetting
-        currentBattle.units.forEach((friendly) => {
-            if (enemy.id == friendly.target) {
-                friendly.targettingName = (enemy?.name) || (enemy?.id) || "?"
-                friendly.targettingIcon = (enemy?.icon) || "invis.gif"
+            if (enemy.id == myUnit.target) {
+                myUnit.targettingName = (enemy?.name) || (enemy?.id) || "?"
+                myUnit.targettingIcon = (enemy?.icon) || "invis.gif"
             }
+
+            // Find enemies that my allies targetting
+            currentBattle.units.forEach((friendly) => {
+                if (enemy.id == friendly.target) {
+                    friendly.targettingName = (enemy?.name) || (enemy?.id) || "?"
+                    friendly.targettingIcon = (enemy?.icon) || "invis.gif"
+                }
+            })
         })
-    })
+    }
 
     self.state.set("currentBattle", currentBattle)
 
@@ -178,10 +180,14 @@ const startBattle = (currentBattle, self) => {
                         "shieldBash",
                         "bladeSpin",
                         "powerShot",
+                        "paladinSquireInterception",
+                        "paladinInspiration",
+                        "rapier", 
                         "noicon"
                     ]
 
                     // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
+                    /*
                     let customIcon = tickEvent.customIcon
                     if (customIcon) {
                         if (customIcon != "noicon") {
@@ -195,30 +201,66 @@ const startBattle = (currentBattle, self) => {
                                 customIcon = "basicDamage"
                             }
                         }
+                        
+                        if (customIcon == "stun" || customIcon == "stunned") {
+                            customIcon = "confused"
+                        }
                     } else {
                         customIcon = "basicDamage"
                     }
+                    */
 
-                    if (!validIcons.includes(customIcon)) {
-                        console.log("INVALID CUSTOM ICON: " + customIcon)
-                        //customIcon = 'basicDamage';
-                    }
-
+                    let customIcon = tickEvent.customIcon
                     let elementIconHTML = ""
 
+                    if (customIcon) {
+                        //console.log(`Tick event with icon: ${customIcon}`)
+
+                        if (customIcon != "noicon") {
+                            try {
+                                if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
+                                    customIcon = customIcon.substring(0, customIcon.length - 4)
+                                }
+                            } catch (err) {
+                                customIcon = "noicon"
+                            }
+                        
+                            if (customIcon == "stun" || customIcon == "stunned") {
+                                customIcon = "confused"
+                            }
+                        }
+
+                       // console.log(`... tick event icon became: ${customIcon}`)
+
+                        if (validIcons.includes(customIcon)) {
+                            const iconSize = 16
+                            
+                            if (customIcon != "noicon") {
+                                elementIconHTML = `<img src="/icons/${customIcon}.svg" width="${iconSize}" height="${iconSize}" style="width: ${iconSize}px; height: ${iconSize}px; margin-top: -3px; border: none;" />`
+                            }
+                        } else {
+                            console.log("INVALID CUSTOM TICK EVENT ICON: " + customIcon)
+                        }
+                    } else {
+                        console.log(`TICK EVENT WITH NO ICON`)
+                    }
+
+
+                    /*
                     if (customIcon != "noicon") {
                         elementIconHTML = `<i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>`
                     }
+                    */
 
                     const element = $(`
-            <p
-              class='floating-text'
-              data-count=1
-              style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-              ${elementIconHTML}
-              ${tickEvent.label}
-            </p>
-          `)
+                        <p
+                        class='floating-text'
+                        data-count=1
+                        style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
+                        ${elementIconHTML}
+                        ${tickEvent.label}
+                        </p>
+                    `)
 
                     $("body").append(element)
                     $(element).animateCss("fadeOutUp")

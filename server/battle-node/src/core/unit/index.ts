@@ -381,7 +381,7 @@ export default class Unit {
 
     checkDeath() {
         if (this.battleRef) {
-            this.battleRef.checkDeath(this)
+            this.battleRef.checkDeath(this, this)
         }
     }
 

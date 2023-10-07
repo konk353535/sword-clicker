@@ -411,6 +411,7 @@ export const CLASS_BUFFS = {
                     const paladinAlly = actualBattle.units.find((ally) => {
                         return ally.id === buff.data.unitToSendDamageTo
                     })
+                    
                     if (!lodash.isUndefined(paladinAlly)) {
                         // redirect half the damage from self back to the paladin
                         const redirectDamage = damageDealt * 0.5
@@ -428,14 +429,23 @@ export const CLASS_BUFFS = {
                                 tickEvents: actualBattle.tickEvents,
                                 customIcon: buff.data.icon
                             })
+                        }
 
-                            const healthPercentage = defender.stats.health / defender.stats.healthMax
+                        const healthPercentage = defender.stats.health / defender.stats.healthMax
 
-                            if (healthPercentage <= 0.3) {
-                                defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "paladinSquireInterception", defender)
-                            } else if (healthPercentage <= 0.6) {
-                                defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#E27600", "paladinSquireInterception", defender)
-                            }
+                        if (healthPercentage <= 0.3) {
+                            defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "chatBubble", defender)
+                        } else if (healthPercentage <= 0.6) {
+                            defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#e27600", "chatBubble", defender)
+                        }
+                    } else {
+                        // paladin is dead already -_-
+                        const healthPercentage = defender.stats.health / defender.stats.healthMax
+
+                        if (healthPercentage <= 0.3) {
+                            defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "chatBubble", defender)
+                        } else if (healthPercentage <= 0.6) {
+                            defender.tickMessage(lodash.sample(["Ouch", "Oof", "Owie"]), "#e27600", "chatBubble", defender)
                         }
                     }
                 }

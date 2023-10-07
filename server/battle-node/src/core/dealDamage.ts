@@ -126,7 +126,7 @@ export function dealDamage(
             })
         }
 
-        this.checkDeath(defender)
+        this.checkDeath(defender, attacker)
     }
 
     let attacker__id_to_use = attacker.id

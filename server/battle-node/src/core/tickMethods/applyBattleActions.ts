@@ -40,7 +40,7 @@ export function applyBattleActions(this: Battle) {
                     // Set health to -1
                     unit.stats.health = -1
                     // Ensure the unit is picked up as dead
-                    this.checkDeath(unit)
+                    this.checkDeath(unit, unit)
                 })
                 this.end()
             }

@@ -94,176 +94,194 @@ const startBattle = (currentBattle, self) => {
 
         if (!Session.get("floatingTextDisabled")) {
             currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
-                const offset = $(`#${tickEvent.to}`).offset()
-                if (offset) {
-                    let color = "red"
-                    let fontSize = "inherit"
 
-                    if (tickEvent.label === 0) {
-                        // what is this supposed to handle??
-                        color = "blue"
-                        fontSize = "10px"
-                    } else if (tickEvent.customColor) {
-                        color = tickEvent.customColor
-                    }
+                if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
+                    const uidDied = tickEvent.to
+                    const uidSource = tickEvent.from
+                    const deathMessage = tickEvent.label.charAt(0).toUpperCase() + tickEvent.label.substring(1)
 
-                    // Determine left based on tick # + tickEventIndex
-                    offset.left += -25 + (tickEventIndex % 3) * 55 // -25 to 85
-
-                    // Attempt to push floating text down when more than 1 row
-                    if (tickEventIndex % 2 >= 1) {
-                        offset.top += 40
-                    }
-
-                    var validIcons = [
-                        "basicDamage",
-                        "basicDamageMagic",
-                        "basicDamageCrit",
-                        "attack",
-                        "criticalChance",
-                        "criticalDamage",
-                        "damage",
-                        "health",
-                        "magic",
-                        "criticalStrike",
-                        "accuracy",
-                        "armor",
-                        "dodge",
-                        "bleed",
-                        "bleeding",
-                        "poison",
-                        "thirstyFangs",
-                        "phantomStrikes",
-                        "confused",
-                        "armorReduction",
-                        "babyFireFox",
-                        "bisonAxe",
-                        "boneKingsAxe",
-                        "battleAxe",
-                        "magicBlade",
-                        "demonsHeartDamage",
-                        "demonsHeart",
-                        "eventVDcupidbow",
-                        "redirectDamage",
-                        "obsidianPlateLegs",
-                        "troglodyte",
-                        "affliction",
-                        "lightningDart",
-                        "lightningStorm",
-                        "blizzard",
-                        "iceDart",
-                        "earthDart",
-                        "earthBall",
-                        "earthenFist",
-                        "ignite",
-                        "inferno",
-                        "fireWave",
-                        "fireDart",
-                        "fireBall",
-                        "meteorStrike",
-                        "spikedArmor",
-                        "intimidate",
-                        "eelTaunt",
-                        "lionTaunt",
-                        "bearTaunt",
-                        "volcanicShield",
-                        "deepWounds",
-                        "bisonBlue",
-                        "bisonRed",
-                        "counterAttack",
-                        "thirstyFangs1",
-                        "berserk",
-                        "doubleEdgedSword",
-                        "execute",
-                        "slash",
-                        "penetratingSlash",
-                        "shieldBash",
-                        "bladeSpin",
-                        "powerShot",
-                        "paladinSquireInterception",
-                        "paladinInspiration",
-                        "rapier", 
-                        "noicon"
-                    ]
-
-                    // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
-                    /*
-                    let customIcon = tickEvent.customIcon
-                    if (customIcon) {
-                        if (customIcon != "noicon") {
-                            try {
-                                if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
-                                    customIcon = customIcon.substring(0, customIcon.length - 4)
-                                } else if (customIcon.indexOf(".png", customIcon.length - ".png".length) !== -1) {
-                                    customIcon = "basicDamage" // we don't support .png in glyphs-based fonts
-                                }
-                            } catch (err) {
-                                customIcon = "basicDamage"
-                            }
-                        }
-                        
-                        if (customIcon == "stun" || customIcon == "stunned") {
-                            customIcon = "confused"
-                        }
+                    if (uidDied == Meteor.userId()) {
+                        toastr.error(deathMessage)
                     } else {
-                        customIcon = "basicDamage"
+                        toastr.warning(deathMessage)
                     }
-                    */
+                } else if (tickEvent.eventType == "death-enemy") {
+                    const deathMessage = tickEvent.label.charAt(0).toUpperCase() + tickEvent.label.substring(1)
+                    toastr.success(deathMessage)
+                } else {
+                    const offset = $(`#${tickEvent.to}`).offset()
+                    if (offset) {
+                        let color = "red"
+                        let fontSize = "inherit"
 
-                    let customIcon = tickEvent.customIcon
-                    let elementIconHTML = ""
+                        if (tickEvent.label === 0) {
+                            // what is this supposed to handle??
+                            color = "blue"
+                            fontSize = "10px"
+                        } else if (tickEvent.customColor) {
+                            color = tickEvent.customColor
+                        }
 
-                    if (customIcon) {
-                        //console.log(`Tick event with icon: ${customIcon}`)
+                        // Determine left based on tick # + tickEventIndex
+                        offset.left += -25 + (tickEventIndex % 3) * 55 // -25 to 85
 
-                        if (customIcon != "noicon") {
-                            try {
-                                if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
-                                    customIcon = customIcon.substring(0, customIcon.length - 4)
+                        // Attempt to push floating text down when more than 1 row
+                        if (tickEventIndex % 2 >= 1) {
+                            offset.top += 40
+                        }
+
+                        var validIcons = [
+                            "basicDamage",
+                            "basicDamageMagic",
+                            "basicDamageCrit",
+                            "attack",
+                            "criticalChance",
+                            "criticalDamage",
+                            "damage",
+                            "health",
+                            "magic",
+                            "criticalStrike",
+                            "accuracy",
+                            "armor",
+                            "dodge",
+                            "bleed",
+                            "bleeding",
+                            "poison",
+                            "thirstyFangs",
+                            "phantomStrikes",
+                            "confused",
+                            "armorReduction",
+                            "babyFireFox",
+                            "bisonAxe",
+                            "boneKingsAxe",
+                            "battleAxe",
+                            "magicBlade",
+                            "demonsHeartDamage",
+                            "demonsHeart",
+                            "eventVDcupidbow",
+                            "redirectDamage",
+                            "obsidianPlateLegs",
+                            "troglodyte",
+                            "affliction",
+                            "lightningDart",
+                            "lightningStorm",
+                            "blizzard",
+                            "iceDart",
+                            "earthDart",
+                            "earthBall",
+                            "earthenFist",
+                            "ignite",
+                            "inferno",
+                            "fireWave",
+                            "fireDart",
+                            "fireBall",
+                            "meteorStrike",
+                            "spikedArmor",
+                            "intimidate",
+                            "eelTaunt",
+                            "lionTaunt",
+                            "bearTaunt",
+                            "volcanicShield",
+                            "deepWounds",
+                            "bisonBlue",
+                            "bisonRed",
+                            "counterAttack",
+                            "thirstyFangs1",
+                            "berserk",
+                            "doubleEdgedSword",
+                            "execute",
+                            "slash",
+                            "penetratingSlash",
+                            "shieldBash",
+                            "bladeSpin",
+                            "powerShot",
+                            "paladinSquireInterception",
+                            "paladinInspiration",
+                            "rapier", 
+                            "chatBubble",
+                            "skull",
+                            "noicon"
+                        ]
+
+                        // check icon, if it references an .svg, strip the file extension off to hopefully match with an IcoMoon CSS font
+                        /*
+                        let customIcon = tickEvent.customIcon
+                        if (customIcon) {
+                            if (customIcon != "noicon") {
+                                try {
+                                    if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
+                                        customIcon = customIcon.substring(0, customIcon.length - 4)
+                                    } else if (customIcon.indexOf(".png", customIcon.length - ".png".length) !== -1) {
+                                        customIcon = "basicDamage" // we don't support .png in glyphs-based fonts
+                                    }
+                                } catch (err) {
+                                    customIcon = "basicDamage"
                                 }
-                            } catch (err) {
-                                customIcon = "noicon"
                             }
-                        
+                            
                             if (customIcon == "stun" || customIcon == "stunned") {
                                 customIcon = "confused"
                             }
+                        } else {
+                            customIcon = "basicDamage"
                         }
+                        */
 
-                       // console.log(`... tick event icon became: ${customIcon}`)
+                        let customIcon = tickEvent.customIcon
+                        let elementIconHTML = ""
 
-                        if (validIcons.includes(customIcon)) {
-                            const iconSize = 16
-                            
+                        if (customIcon) {
+                            //console.log(`Tick event with icon: ${customIcon}`)
+
                             if (customIcon != "noicon") {
-                                elementIconHTML = `<img src="/icons/${customIcon}.svg" width="${iconSize}" height="${iconSize}" style="width: ${iconSize}px; height: ${iconSize}px; margin-top: -3px; border: none;" />`
+                                try {
+                                    if (customIcon.indexOf(".svg", customIcon.length - ".svg".length) !== -1) {
+                                        customIcon = customIcon.substring(0, customIcon.length - 4)
+                                    }
+                                } catch (err) {
+                                    customIcon = "noicon"
+                                }
+                            
+                                if (customIcon == "stun" || customIcon == "stunned") {
+                                    customIcon = "confused"
+                                }
+                            }
+
+                            // console.log(`... tick event icon became: ${customIcon}`)
+
+                            if (validIcons.includes(customIcon)) {
+                                const iconSize = 16
+                                
+                                if (customIcon != "noicon") {
+                                    elementIconHTML = `<img src="/icons/${customIcon}.svg" width="${iconSize}" height="${iconSize}" style="width: ${iconSize}px; height: ${iconSize}px; margin-top: -3px; border: none;" />`
+                                }
+                            } else {
+                                console.log("INVALID CUSTOM TICK EVENT ICON: " + customIcon)
                             }
                         } else {
-                            console.log("INVALID CUSTOM TICK EVENT ICON: " + customIcon)
+                            console.log(`TICK EVENT WITH NO ICON`)
                         }
-                    } else {
-                        console.log(`TICK EVENT WITH NO ICON`)
+
+
+                        /*
+                        if (customIcon != "noicon") {
+                            elementIconHTML = `<i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>`
+                        }
+                        */
+
+                        const element = $(`
+                            <p
+                            class='floating-text'
+                            data-count=1
+                            style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
+                            ${elementIconHTML}
+                            ${tickEvent.label}
+                            </p>
+                        `)
+
+                        $("body").append(element)
+                        $(element).animateCss("fadeOutUp")
                     }
-
-
-                    /*
-                    if (customIcon != "noicon") {
-                        elementIconHTML = `<i class="lilIcon-basicDamage lilIcon-${customIcon}"></i>`
-                    }
-                    */
-
-                    const element = $(`
-                        <p
-                        class='floating-text'
-                        data-count=1
-                        style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
-                        ${elementIconHTML}
-                        ${tickEvent.label}
-                        </p>
-                    `)
-
-                    $("body").append(element)
-                    $(element).animateCss("fadeOutUp")
                 }
             })
         }

@@ -309,7 +309,7 @@ export const DEFENSE_BUFFS = {
                 caster.stats.health /= 1 + buff.data.healthIncrease
                 caster.stats.healthMax /= 1 + buff.data.healthIncrease
                 caster.stats.healthMaxOrig /= 1 + buff.data.healthIncrease
-                actualBattle.checkDeath(caster)
+                actualBattle.checkDeath(caster, target)
             }
         }
     },

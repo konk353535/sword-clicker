@@ -1457,7 +1457,7 @@ export const ENCHANTMENT_BUFFS = {
                                 }
                             })
                         }
-                        actualBattle.checkDeath(friendly_unit)
+                        actualBattle.checkDeath(friendly_unit, target)
                     })
 
                     // calculate new bonus
@@ -1559,7 +1559,7 @@ export const ENCHANTMENT_BUFFS = {
           buff.data.secondsElapsed += secondsElapsed;
           const percentDamage = (buff.data.secondsElapsed / 12) * 100;
           target.stats.health -= ((target.stats.healthMax / 100) * percentDamage) * secondsElapsed;
-          actualBattle.checkDeath(target)
+          actualBattle.checkDeath(target, caster)
         }
       },
 
@@ -2499,7 +2499,7 @@ export const ENCHANTMENT_BUFFS = {
                 caster.stats.health /= 1 + buff.data.healthIncrease
                 caster.stats.healthMax /= 1 + buff.data.healthIncrease
                 caster.stats.healthMaxOrig /= 1 + buff.data.healthIncrease
-                actualBattle.checkDeath(caster)
+                actualBattle.checkDeath(caster, target)
             }
         }
     },

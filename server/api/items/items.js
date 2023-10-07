@@ -1130,21 +1130,14 @@ Meteor.methods({
                 }
             }
             // or UNLESS this 2h mainHand is a longsword and offHand slot is a kite shield, buckler, or spirit shield (applies to Paladins only)
-            else if (
-                userClass.unlocked &&
-                userClass.equipped == "paladin" &&
-                itemConstants.weaponType === "longSword"
-            ) {
+            else if (userClass.unlocked && userClass.equipped == "paladin" && itemConstants.weaponType === "longSword") {
                 const offHandEquipped = Items.findOne({
                     owner: Meteor.userId(),
                     equipped: true,
                     slot: "offHand"
                 })
                 if (offHandEquipped) {
-                    if (
-                        ITEMS[offHandEquipped.itemId].weaponType !== "buckler" &&
-                        ITEMS[offHandEquipped.itemId].weaponType !== "shield"
-                    ) {
+                    if (ITEMS[offHandEquipped.itemId].weaponType !== "buckler" && ITEMS[offHandEquipped.itemId].weaponType !== "shield") {
                         // offHand slot is not a buckler or shield and this mainHand is a longsword, unequip the offHand slot
                         affectedSlots.push("offHand")
                     } else {
@@ -1197,11 +1190,7 @@ Meteor.methods({
                             // mainHand slot is a bow and this offHand is a quiver, no logic (let it happen)
                         }
                     } // or UNLESS this offHand is a buckler and our mainHand are rapiers while the user is a Dualist class
-                    else if (
-                        userClass.unlocked &&
-                        userClass.equipped == "duelist" &&
-                        itemConstants.weaponType === "buckler"
-                    ) {
+                    else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "buckler") {
                         if (ITEMS[mainHandEquipped.itemId].weaponType !== "rapier") {
                             // mainHand slot are not rapiers and this offHand is a buckler, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")
@@ -1209,11 +1198,7 @@ Meteor.methods({
                             // mainHand slot are rapiers and this offHand is a buckler, no logic (let it happen)
                         }
                     } // or UNLESS this offHand is a buckler or shield and our mainHand is a longsword while the user is a Paladin class
-                    else if (
-                        userClass.unlocked &&
-                        userClass.equipped == "paladin" &&
-                        (itemConstants.weaponType === "buckler" || itemConstants.weaponType === "shield")
-                    ) {
+                    else if (userClass.unlocked && userClass.equipped == "paladin" && (itemConstants.weaponType === "buckler" || itemConstants.weaponType === "shield")) {
                         if (ITEMS[mainHandEquipped.itemId].weaponType !== "longSword") {
                             // mainHand slot is not a longsword and this offHand is a buckler or shield, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")

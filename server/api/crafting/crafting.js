@@ -1090,6 +1090,10 @@ Meteor.methods({
             }
         })
 
+        if (!targetCrafting) {
+            return
+        }
+
         // Remove targetCrafting from the array
         const filteredCrafting = newCrafting.filter((crafting) => {
             return crafting !== targetCrafting
@@ -1128,7 +1132,7 @@ Meteor.methods({
                     currentlyCrafting: sortedCrafts
                 }
             },
-            { tx: true }
+            { tx: true, instant: true}
         )
 
         if (!updatedQuerySuccess) {
@@ -1310,6 +1314,7 @@ const userId = function userId(userId) {
 DDPRateLimiter.addRule({ type: "method", name: "crafting.craftItem", userId }, 10, 20000)
 DDPRateLimiter.addRule({ type: "method", name: "crafting.fetchRecipes", userId }, 5, 10000)
 DDPRateLimiter.addRule({ type: "method", name: "crafting.updateGame", userId }, 1, 3 * SECOND)
+DDPRateLimiter.addRule({ type: "method", name: "crafting.cancelCraft", userId }, 2, SECOND / 3)
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'crafting' }, 20, 1 * MINUTE);
 
 Meteor.publish("crafting", function () {

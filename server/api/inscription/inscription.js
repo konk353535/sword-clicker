@@ -119,6 +119,10 @@ Meteor.methods({
             }
         })
 
+        if (!targetCrafting) {
+            return
+        }
+
         // Remove targetCrafting from the array
         const filteredCrafting = newCrafting.filter((crafting) => {
             return crafting !== targetCrafting
@@ -141,8 +145,10 @@ Meteor.methods({
             }
         })
 
+        tx.start("Cancel inscribing an item")
+
         // Remove targetCrafting from current crafting array
-        const updatedCount = Inscription.update(
+        const updatedQuerySuccess = Inscription.update(
             {
                 _id: inscription._id,
                 currentlyCrafting: inscription.currentlyCrafting
@@ -151,10 +157,12 @@ Meteor.methods({
                 $set: {
                     currentlyCrafting: sortedCrafts
                 }
-            }
+            },
+            { tx: true, instant: true}
         )
 
-        if (updatedCount === 0) {
+        if (!updatedQuerySuccess) {
+            tx.cancel()
             return
         }
 
@@ -163,10 +171,12 @@ Meteor.methods({
         recipeConstants.required.forEach((required) => {
             if (required.consumes) {
                 if (required.type === "item") {
-                    addItem(required.itemId, required.amount * targetCrafting.amount)
+                    addItem(required.itemId, required.amount * targetCrafting.amount, undefined, true)
                 }
             }
         })
+
+        tx.commit()
 
         updateUserActivity({ userId: Meteor.userId() })
     },
@@ -271,11 +281,19 @@ Meteor.methods({
     }
 })
 
-const MINUTE = 60 * 1000
+const MILLISECOND = 1
+const SECOND = MILLISECOND * 1000
+const MINUTE = 60 * SECOND
+const HOUR = 60 * MINUTE
 
+const userId = function userId(userId) {
+    return userId
+
+}
 // DDPRateLimiter.addRule({ type: 'method', name: 'inscription.craftItem' }, 10, 2 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'inscription.fetchRecipes' }, 10, 5 * MINUTE);
 // DDPRateLimiter.addRule({ type: 'method', name: 'inscription.updateGame' }, 10, 1 * MINUTE);
+DDPRateLimiter.addRule({ type: "method", name: "crafting.cancelCraft", userId }, 2, SECOND / 3)
 // DDPRateLimiter.addRule({ type: 'subscription', name: 'inscription' }, 100, 10 * MINUTE);
 
 Meteor.publish("inscription", function () {

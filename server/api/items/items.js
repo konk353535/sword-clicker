@@ -6,18 +6,18 @@ import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 
-import { updateUserActivity } from "/imports/api/users/users.js"
 import { userCurrentClass } from "/imports/api/classes/classes.js"
+import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { COMBAT_CRAFTS } from "/imports/constants/combat/crafts.js"
 import { ITEMS } from "/imports/constants/items/index.js"
 import { CDbl, CInt } from "/imports/utils"
+import { clearClassCooldown, userUnequipAllItems } from "/server/api/classes/classes.js"
 import { updateCombatStats } from "/server/api/combat/combat.js"
 import { updateMiningStats } from "/server/api/mining/mining.js"
 import { addXp } from "/server/api/skills/skills.js"
 import { flattenObjectForMongo } from "/server/utils"
-import { userUnequipAllItems, clearClassCooldown } from "/server/api/classes/classes.js"
 
 import Numeral from "numeral"
 
@@ -34,6 +34,22 @@ export const addItem = function (
     targetQuality = -1,
     targetRarityTier = ""
 ) {
+    if (Meteor.user().logEvents) {
+        Events.insert(
+            {
+                owner: Meteor.userId(),
+                event: "trace.items.addItem",
+                date: new Date(),
+                data: {
+                    stack: new Error().stack,
+                    itemId: itemId,
+                    amount: amount
+                }
+            },
+            () => {}
+        )
+    }
+
     let owner
     if (specificUserId) {
         owner = specificUserId
@@ -870,10 +886,13 @@ Meteor.methods({
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "items.eat",
+                    owner: Meteor.userId(),
+                    event: "trace.items.eat",
                     date: new Date(),
-                    data: { itemId }
+                    data: {
+                        stack: new Error().stack,
+                        itemId: itemId
+                    }
                 },
                 () => {}
             )
@@ -977,9 +996,9 @@ Meteor.methods({
     },
 
     "items.findAndConsume"(uid, itemId) {
-         // Check we have the item
+        // Check we have the item
 
-        const targetItem = Items.findOne({owner: uid, itemId})
+        const targetItem = Items.findOne({ owner: uid, itemId })
 
         if (!targetItem || targetItem.amount < 1) {
             return { message: `Item ID ${itemId} does not exist.` }
@@ -992,9 +1011,7 @@ Meteor.methods({
         }
 
         // if ItemId in an approved list
-        var validItemIds = [
-            "class_cooldown_reset_token"
-        ]
+        var validItemIds = ["class_cooldown_reset_token"]
 
         if (!validItemIds.includes(itemId)) {
             return { message: `Item ID ${itemId} can't be consumed.` }
@@ -1109,16 +1126,23 @@ Meteor.methods({
                 } else {
                     // no offHand slot equipped, no logic (let it happen)
                 }
-            } 
+            }
             // or UNLESS this 2h mainHand is a longsword and offHand slot is a kite shield, buckler, or spirit shield (applies to Paladins only)
-            else if (userClass.unlocked && userClass.equipped == "paladin" && itemConstants.weaponType === "longSword") {
+            else if (
+                userClass.unlocked &&
+                userClass.equipped == "paladin" &&
+                itemConstants.weaponType === "longSword"
+            ) {
                 const offHandEquipped = Items.findOne({
                     owner: Meteor.userId(),
                     equipped: true,
                     slot: "offHand"
                 })
                 if (offHandEquipped) {
-                    if (ITEMS[offHandEquipped.itemId].weaponType !== "buckler" && ITEMS[offHandEquipped.itemId].weaponType !== "shield") {
+                    if (
+                        ITEMS[offHandEquipped.itemId].weaponType !== "buckler" &&
+                        ITEMS[offHandEquipped.itemId].weaponType !== "shield"
+                    ) {
                         // offHand slot is not a buckler or shield and this mainHand is a longsword, unequip the offHand slot
                         affectedSlots.push("offHand")
                     } else {
@@ -1171,7 +1195,11 @@ Meteor.methods({
                             // mainHand slot is a bow and this offHand is a quiver, no logic (let it happen)
                         }
                     } // or UNLESS this offHand is a buckler and our mainHand are rapiers while the user is a Dualist class
-                    else if (userClass.unlocked && userClass.equipped == "duelist" && itemConstants.weaponType === "buckler") {
+                    else if (
+                        userClass.unlocked &&
+                        userClass.equipped == "duelist" &&
+                        itemConstants.weaponType === "buckler"
+                    ) {
                         if (ITEMS[mainHandEquipped.itemId].weaponType !== "rapier") {
                             // mainHand slot are not rapiers and this offHand is a buckler, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")
@@ -1179,7 +1207,11 @@ Meteor.methods({
                             // mainHand slot are rapiers and this offHand is a buckler, no logic (let it happen)
                         }
                     } // or UNLESS this offHand is a buckler or shield and our mainHand is a longsword while the user is a Paladin class
-                    else if (userClass.unlocked && userClass.equipped == "paladin" && (itemConstants.weaponType === "buckler" || itemConstants.weaponType === "shield")) {
+                    else if (
+                        userClass.unlocked &&
+                        userClass.equipped == "paladin" &&
+                        (itemConstants.weaponType === "buckler" || itemConstants.weaponType === "shield")
+                    ) {
                         if (ITEMS[mainHandEquipped.itemId].weaponType !== "longSword") {
                             // mainHand slot is not a longsword and this offHand is a buckler or shield, unequip the 2H mainHand slot
                             affectedSlots.push("mainHand")
@@ -1242,6 +1274,23 @@ Meteor.methods({
     },
 
     "items.sellItem"(_id, itemId, amount) {
+        if (Meteor.user().logEvents) {
+            Events.insert(
+                {
+                    owner: Meteor.userId(),
+                    event: "trace.items.sell",
+                    date: new Date(),
+                    data: {
+                        stack: new Error().stack,
+                        _id: _id,
+                        itemId: itemId,
+                        amount: amount
+                    }
+                },
+                () => {}
+            )
+        }
+
         if (amount <= 0) {
             return
         }

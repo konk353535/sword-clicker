@@ -119,6 +119,10 @@ export const newTownDay = function newTownDay() {
 const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
     // todo: validate item qualifies for building, maybe add to ITEMS constants?
 
+    if (amount <= 0) {
+        return
+    }
+
     const serverDoc = Servers.findOne({ _id: serverFromUser() })
     if (!serverDoc) {
         return
@@ -274,7 +278,9 @@ Meteor.methods({
 
         arrayOfItems.forEach((thisItem) => {
             if (thisItem._id && thisItem.itemId && thisItem.amount) {
-                donateThisItem(thisItem._id, thisItem.itemId, thisItem.amount, building)
+                if (thisItem.amount > 0) {
+                    donateThisItem(thisItem._id, thisItem.itemId, thisItem.amount, building)
+                }
             }
         })
 
@@ -307,76 +313,79 @@ Meteor.methods({
             return false
         }
 
-        const server = Servers.findOne({ _id: Meteor.user().server })
-        if (!server) {
-            return "Unable to find server"
-        }
+        // this method should no longer be required
+        return false
 
-        const items = server?.town?.day1goods
-        if (!items) {
-            return "Unable to find items"
-        }
+        // const server = Servers.findOne({ _id: Meteor.user().server })
+        // if (!server) {
+        //     return "Unable to find server"
+        // }
 
-        // set user karma to 0
-        Users.update(
-            { townKarma: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
-            { $set: { townKarma: 0 } },
-            { multi: true }
-        )
+        // const items = server?.town?.day1goods
+        // if (!items) {
+        //     return "Unable to find items"
+        // }
 
-        // set server karma to 0
-        Servers.update(server._id, {
-            $set: {
-                townKarma: 0
-            }
-        })
+        // // set user karma to 0
+        // Users.update(
+        //     { townKarma: { $ne: 0 } }, // always use an index to avoid blindly setting data for the whole database
+        //     { $set: { townKarma: 0 } },
+        //     { multi: true }
+        // )
 
-        for (const item of items) {
-            const itemConstants = ITEMS[item.itemId]
-            if (!itemConstants) {
-                // this seems wrong
-                console.log("Unable to look up item to convert", item.itemId)
-                continue
-            }
+        // // set server karma to 0
+        // Servers.update(server._id, {
+        //     $set: {
+        //         townKarma: 0
+        //     }
+        // })
 
-            const newItem = Object.assign({}, itemConstants, item)
-            const newKarma = autoPrecisionValue(calculateItemKarma(newItem) * item.count)
+        // for (const item of items) {
+        //     const itemConstants = ITEMS[item.itemId]
+        //     if (!itemConstants) {
+        //         // this seems wrong
+        //         console.log("Unable to look up item to convert", item.itemId)
+        //         continue
+        //     }
 
-            const inputItem = {
-                server: server._id,
-                townBuilding: item.townBuilding,
-                itemId: item.itemId,
-                count: item.count,
-                karma: newKarma
-            }
+        //     const newItem = Object.assign({}, itemConstants, item)
+        //     const newKarma = autoPrecisionValue(calculateItemKarma(newItem) * item.count)
 
-            console.log("inputItem", inputItem, "newItem", newItem)
+        //     const inputItem = {
+        //         server: server._id,
+        //         townBuilding: item.townBuilding,
+        //         itemId: item.itemId,
+        //         count: item.count,
+        //         karma: newKarma
+        //     }
 
-            const existingItemData = Town.findOne({
-                server: inputItem.server,
-                townBuilding: inputItem.townBuilding,
-                itemId: inputItem.itemId
-            })
+        //     console.log("inputItem", inputItem, "newItem", newItem)
 
-            if (existingItemData) {
-                Town.update({ _id: existingItemData._id }, { $inc: { count: item.count, karma: newKarma } })
-            } else {
-                Town.insert(inputItem)
-            }
+        //     const existingItemData = Town.findOne({
+        //         server: inputItem.server,
+        //         townBuilding: inputItem.townBuilding,
+        //         itemId: inputItem.itemId
+        //     })
 
-            // update personal karma and server karma
-            try {
-                Users.update(item.owner, {
-                    $inc: { townKarma: newKarma }
-                })
+        //     if (existingItemData) {
+        //         Town.update({ _id: existingItemData._id }, { $inc: { count: item.count, karma: newKarma } })
+        //     } else {
+        //         Town.insert(inputItem)
+        //     }
 
-                Servers.update(server._id, {
-                    $inc: { townKarma: newKarma }
-                })
-            } catch (err) {
-                console.log("Couldn't update personal karma for:", item.username)
-                console.log(err)
-            }
-        }
+        //     // update personal karma and server karma
+        //     try {
+        //         Users.update(item.owner, {
+        //             $inc: { townKarma: newKarma }
+        //         })
+
+        //         Servers.update(server._id, {
+        //             $inc: { townKarma: newKarma }
+        //         })
+        //     } catch (err) {
+        //         console.log("Couldn't update personal karma for:", item.username)
+        //         console.log(err)
+        //     }
+        // }
     }
 })

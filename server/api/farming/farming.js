@@ -237,13 +237,17 @@ Meteor.methods({
 
     "farming.plant"(plantId) {
         const userDoc = Meteor.user()
-        if (userDoc.logEvents) {
+
+        if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "farming.plant.single",
+                    owner: Meteor.userId(),
+                    event: "trace.farming.plant.single",
                     date: new Date(),
-                    data: { plantId }
+                    data: {
+                        stack: new Error().stack,
+                        plantId: plantId
+                    }
                 },
                 () => {}
             )
@@ -321,13 +325,16 @@ Meteor.methods({
 
         const userDoc = Meteor.user()
 
-        if (userDoc.logEvents) {
+        if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "farming.plant.all",
+                    owner: Meteor.userId(),
+                    event: "trace.farming.plant.all",
                     date: new Date(),
-                    data: { plantId }
+                    data: {
+                        stack: new Error().stack,
+                        plantId: plantId
+                    }
                 },
                 () => {}
             )

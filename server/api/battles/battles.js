@@ -109,13 +109,17 @@ Meteor.methods({
         const maxLevel = userDoc.personalQuest.level
         const maxWave = userDoc.personalQuest.wave
 
-        if (userDoc.logEvents) {
+        if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "battle.personal.start",
+                    owner: Meteor.userId(),
+                    event: "trace.battle.personal.start",
                     date: new Date(),
-                    data: { level }
+                    data: {
+                        stack: new Error().stack,
+                        level: level,
+                        energyUse: energyUse
+                    }
                 },
                 () => {}
             )
@@ -169,10 +173,15 @@ Meteor.methods({
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "battle.tower.start",
+                    owner: Meteor.userId(),
+                    event: "trace.battle.tower.start",
                     date: new Date(),
-                    data: { floor, room }
+                    data: {
+                        stack: new Error().stack,
+                        floor: floor,
+                        room: room,
+                        energyUse: energyUse
+                    }
                 },
                 () => {}
             )

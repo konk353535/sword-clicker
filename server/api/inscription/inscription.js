@@ -83,10 +83,14 @@ Meteor.methods({
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "inscription.craftItem",
+                    owner: Meteor.userId(),
+                    event: "trace.inscription.craftItem",
                     date: new Date(),
-                    data: { recipeId, amount }
+                    data: {
+                        stack: new Error().stack,
+                        recipeId: recipeId,
+                        amount: amount
+                    }
                 },
                 () => {}
             )

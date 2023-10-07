@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor"
 
 import { Achievements } from "/imports/api/achievements/achievements"
 import { Users } from "/imports/api/users/users"
+import { Events } from "/imports/api/events/events"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { ITEMS } from "/imports/constants/items/index.js"
 import { addItem } from "/server/api/items/items.js"
@@ -11,6 +12,18 @@ import { ACHIEVEMENTS } from "/server/constants/achievement/index.js"
 Meteor.methods({
     // Collect a specific achievement
     "achievements.collect"(id) {
+        Events.insert(
+            {
+                owner: Meteor.userId(),
+                event: "achievements.collect",
+                date: new Date(),
+                data: {
+                    id: id
+                }
+            },
+            () => {}
+        )
+
         // Has this already been collected?
         const userDoc = Meteor.user()
         let achievements = Achievements.findOne({

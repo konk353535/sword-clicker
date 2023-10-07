@@ -974,10 +974,14 @@ Meteor.methods({
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
-                    owner: this.userId,
-                    event: "crafting.craftItem",
+                    owner: Meteor.userId(),
+                    event: "trace.crafting.craftItem",
                     date: new Date(),
-                    data: { recipeId, amount }
+                    data: {
+                        stack: new Error().stack,
+                        recipeId: recipeId,
+                        amount: amount
+                    }
                 },
                 () => {}
             )

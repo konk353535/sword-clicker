@@ -7,6 +7,7 @@ import { ASTRONOMY } from "/imports/constants/astronomy/index.js"
 
 import { Astronomy } from "/imports/api/astronomy/astronomy"
 import { userCurrentClass } from "/imports/api/classes/classes.js"
+import { Events } from "/imports/api/events/events"
 import { Users } from "/imports/api/users/users"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
@@ -183,6 +184,19 @@ Meteor.methods({
             }
         })
 
+        Events.insert(
+            {
+                owner: Meteor.userId(),
+                event: "astronomy.depositMageGold",
+                date: new Date(),
+                data: {
+                    index: index,
+                    amount: amount
+                }
+            },
+            () => {}
+        )
+
         updateUserActivity({ userId: Meteor.userId() })
     },
     // Withdraw gold from mage
@@ -222,6 +236,19 @@ Meteor.methods({
                 mages: astronomy.mages
             }
         })
+
+        Events.insert(
+            {
+                owner: Meteor.userId(),
+                event: "astronomy.withdrawMageGold",
+                date: new Date(),
+                data: {
+                    index: index,
+                    amount: amount
+                }
+            },
+            () => {}
+        )
 
         updateUserActivity({ userId: Meteor.userId() })
     },

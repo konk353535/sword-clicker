@@ -66,6 +66,13 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         playerData.username = username
     }
 
+    if (!userId || userId == null || typeof userId === 'undefined') {
+        return
+    }
+
+    const userDoc = Users.findOne({ _id: userId })
+    const healthBeforeRecalc = playerData.stats.health
+
     // Fetch all equipped combat items
     const combatItems = Items.find({
         owner: userId,
@@ -217,6 +224,16 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     // If health is above healthMax, reset health
     if ((currentCombat.stats.health > playerData.stats.healthMax) || (playerData.stats.health > playerData.stats.healthMax)) {
         playerData.stats.health = playerData.stats.healthMax
+    }
+    
+    // If health is above our original health, don't increase it
+    if (playerData.stats.health > healthBeforeRecalc) {
+        playerData.stats.health = healthBeforeRecalc
+    }
+    
+    // Health must be a minimum of 0.1 for sanity sake
+    if (playerData.stats.health < 0.1) {
+        playerData.stats.health = 0.1
     }
 
     Users.update(

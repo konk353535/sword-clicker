@@ -73,11 +73,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?hocgeo');
-  src:  url('fonts/icomoon.eot?hocgeo#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?hocgeo') format('truetype'),
-    url('fonts/icomoon.woff?hocgeo') format('woff'),
-    url('fonts/icomoon.svg?hocgeo#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?gkmz78');
+  src:  url('fonts/icomoon.eot?gkmz78#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?gkmz78') format('truetype'),
+    url('fonts/icomoon.woff?gkmz78') format('woff'),
+    url('fonts/icomoon.svg?gkmz78#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -86,7 +86,7 @@
 [class^="lilIcon-"], [class*=" lilIcon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -98,647 +98,829 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.lilIcon-basicDamage:before {
-  content: "\e902";
-}
-.lilIcon-basicDamageMagic:before {
-  content: "\e999";
-}
-.lilIcon-basicDamageCrit:before {
-  content: "\e928";
-}
-.lilIcon-gold:before {
-  content: "\e909";
-  color: #dcbd23;
-}
-.lilIcon-gems:before {
-  content: "\e92b";
-  color: #b36ae2;
-}
-.lilIcon-attack:before {
-  content: "\e99a";
-  color: #492;
-}
-.lilIcon-attackSpeed:before {
-  content: "\e903";
-  color: #492;
-}
 .lilIcon-accuracy:before {
   content: "\e900";
   color: #492;
 }
-.lilIcon-criticalChance:before {
-  content: "\e90e";
-  color: #454;
-}
-.lilIcon-criticalDamage:before {
-  content: "\e916";
-  color: #454;
-}
-.lilIcon-force:before {
-  content: "\e917";
-  color: #454;
-}
-.lilIcon-shred:before {
-  content: "\e919";
-  color: #454;
-}
-.lilIcon-health:before {
-  content: "\e90a";
-  color: #d00;
-}
-.lilIcon-healthMax:before {
-  content: "\e92a";
-  color: #d00;
-}
-.lilIcon-defense:before {
-  content: "\e905";
-  color: #998144;
-}
-.lilIcon-armor:before {
+.lilIcon-affliction:before {
   content: "\e901";
-  color: #998144;
-}
-.lilIcon-magicArmor:before {
-  content: "\e933";
   color: #5f327c;
 }
-.lilIcon-magicPower:before {
-  content: "\e930";
-  color: #00f;
+.lilIcon-ancientShard:before {
+  content: "\e902";
 }
-.lilIcon-focus:before {
-  content: "\e91a";
-  color: #00f;
+.lilIcon-armor:before {
+  content: "\e903";
+  color: #998144;
 }
-.lilIcon-healingPower:before {
-  content: "\e935";
-  color: #f69;
-}
-.lilIcon-damage:before {
-  content: "\e934";
-  color: #f5d327;
-}
-.lilIcon-energyStorage:before {
-  content: "\e908";
-  color: #f5d327;
-}
-.lilIcon-energyPerHit:before {
-  content: "\e906";
-  color: #f5d327;
-}
-.lilIcon-energyRegen:before {
-  content: "\e907";
-  color: #f5d327;
-}
-.lilIcon-crafting:before {
+.lilIcon-armorReduction:before {
   content: "\e904";
 }
-.lilIcon-mining:before {
-  content: "\e90c";
-}
-.lilIcon-miner:before {
-  content: "\e90b";
-}
-.lilIcon-prospector:before {
-  content: "\e91e";
-}
-.lilIcon-woodcutting:before {
-  content: "\e90d";
-}
-.lilIcon-woodcutter:before {
-  content: "\e924";
-}
-.lilIcon-farming:before {
-  content: "\e926";
-  color: #0365c0;
-}
-.lilIcon-farmSpace:before {
-  content: "\e939";
-  color: #862;
-}
-.lilIcon-farmer:before {
-  content: "\e918";
-}
-.lilIcon-inscription:before {
-  content: "\e929";
-  color: #307;
-}
-.lilIcon-magic:before {
-  content: "\e92f";
-  color: #00f;
+.lilIcon-armory:before {
+  content: "\e905";
 }
 .lilIcon-astronomy:before {
-  content: "\e92d";
+  content: "\e906";
 }
-.lilIcon-completeShard:before {
-  content: "\e936";
+.lilIcon-attack:before {
+  content: "\e907";
+  color: #492;
 }
-.lilIcon-ancientShard:before {
-  content: "\e937";
+.lilIcon-attackSpeed:before {
+  content: "\e908";
+  color: #492;
 }
-.lilIcon-total:before {
-  content: "\e925";
+.lilIcon-babyFireFox:before {
+  content: "\e909";
+  color: #f40;
 }
-.lilIcon-dwelling:before {
-  content: "\e910";
+.lilIcon-basicDamage:before {
+  content: "\e90a";
 }
-.lilIcon-quarry:before {
-  content: "\e911";
+.lilIcon-basicDamageCrit:before {
+  content: "\e90b";
 }
-.lilIcon-lumberYard:before {
-  content: "\e912";
+.lilIcon-basicDamageMagic:before {
+  content: "\e90c";
 }
-.lilIcon-armory:before {
-  content: "\e913";
+.lilIcon-battleAxe:before {
+  content: "\e90d";
 }
-.lilIcon-library:before {
-  content: "\e914";
+.lilIcon-bearTaunt:before {
+  content: "\e90e";
 }
-.lilIcon-observatory:before {
-  content: "\e915";
-}
-.lilIcon-criticalStrike:before {
-  content: "\e932";
-  color: #454;
-}
-.lilIcon-bleed:before {
+.lilIcon-berserk:before {
   content: "\e90f";
   color: #861001;
 }
-.lilIcon-bleeding:before {
-  content: "\e91c";
-  color: #861001;
-}
-.lilIcon-poison:before {
-  content: "\e931";
-  color: #0a5d19;
-}
-.lilIcon-dodge:before {
-  content: "\e942";
-}
-.lilIcon-thirstyFangs:before {
-  content: "\e943";
-}
-.lilIcon-phantomStrikes:before {
-  content: "\e944";
-  color: #999;
-}
-.lilIcon-confused:before {
-  content: "\e946";
-  color: #ed0;
-}
-.lilIcon-shop:before {
-  content: "\e938";
-}
-.lilIcon-armorReduction:before {
-  content: "\e998";
-}
-.lilIcon-babyFireFox:before {
-  content: "\e997";
-  color: #f40;
-}
 .lilIcon-bisonAxe:before {
-  content: "\e996";
+  content: "\e910";
   color: #be5b0c;
 }
-.lilIcon-boneKingsAxe:before {
-  content: "\e995";
-  color: #861001;
-}
-.lilIcon-battleAxe:before {
-  content: "\e994";
-}
-.lilIcon-magicBlade:before {
-  content: "\e993";
+.lilIcon-bisonBlue:before {
+  content: "\e911";
   color: #0365c0;
 }
-.lilIcon-demonsHeartDamage:before {
-  content: "\e992";
-  color: #c82606;
+.lilIcon-bisonRed:before {
+  content: "\e912";
+  color: #a60505;
+}
+.lilIcon-bladeSpin:before {
+  content: "\e913";
+}
+.lilIcon-bleed:before {
+  content: "\e914";
+  color: #861001;
+}
+.lilIcon-bleeding:before {
+  content: "\e915";
+  color: #861001;
+}
+.lilIcon-blizzard:before {
+  content: "\e916";
+  color: #51a7f9;
+}
+.lilIcon-boneKingsAxe:before {
+  content: "\e917";
+  color: #861001;
+}
+.lilIcon-bow:before {
+  content: "\e918";
+}
+.lilIcon-completeShard:before {
+  content: "\e919";
+}
+.lilIcon-confused:before {
+  content: "\e91a";
+  color: #ed0;
+}
+.lilIcon-counterAttack:before {
+  content: "\e91b";
+}
+.lilIcon-crafting:before {
+  content: "\e91c";
+}
+.lilIcon-criticalChance:before {
+  content: "\e91d";
+  color: #454;
+}
+.lilIcon-criticalDamage:before {
+  content: "\e91e";
+  color: #454;
+}
+.lilIcon-criticalStrike:before {
+  content: "\e91f";
+  color: #454;
+}
+.lilIcon-damage:before {
+  content: "\e920";
+  color: #f5d327;
+}
+.lilIcon-deepWounds:before {
+  content: "\e921";
+  color: #861001;
+}
+.lilIcon-defense:before {
+  content: "\e922";
+  color: #998144;
 }
 .lilIcon-demonsHeart:before {
-  content: "\e991";
+  content: "\e923";
   color: #c82606;
 }
+.lilIcon-demonsHeartDamage:before {
+  content: "\e924";
+  color: #c82606;
+}
+.lilIcon-dodge:before {
+  content: "\e925";
+}
+.lilIcon-doubleEdgedSword:before {
+  content: "\e926";
+}
+.lilIcon-dwelling:before {
+  content: "\e927";
+}
+.lilIcon-earthBall:before {
+  content: "\e928";
+  color: #82400a;
+}
+.lilIcon-earthDart:before {
+  content: "\e929";
+  color: #82400a;
+}
+.lilIcon-earthenFist:before {
+  content: "\e92a";
+  color: #8b572a;
+}
+.lilIcon-eelTaunt:before {
+  content: "\e92b";
+  color: #367eeb;
+}
+.lilIcon-energyPerHit:before {
+  content: "\e92c";
+  color: #f5d327;
+}
+.lilIcon-energyRegen:before {
+  content: "\e92d";
+  color: #f5d327;
+}
+.lilIcon-energyStorage:before {
+  content: "\e92e";
+  color: #f5d327;
+}
 .lilIcon-eventVDcupidbow:before {
-  content: "\e990";
+  content: "\e92f";
   color: #ed0e76;
 }
+.lilIcon-execute:before {
+  content: "\e930";
+  color: #861001;
+}
+.lilIcon-farmer:before {
+  content: "\e931";
+}
+.lilIcon-farming:before {
+  content: "\e932";
+  color: #0365c0;
+}
+.lilIcon-farmSpace .path1:before {
+  content: "\e933";
+  color: rgb(136, 102, 34);
+}
+.lilIcon-farmSpace .path2:before {
+  content: "\e934";
+  margin-left: -1em;
+  color: rgb(136, 102, 34);
+}
+.lilIcon-farmSpace .path3:before {
+  content: "\e935";
+  margin-left: -1em;
+  color: rgb(136, 102, 34);
+}
+.lilIcon-farmSpace .path4:before {
+  content: "\e936";
+  margin-left: -1em;
+  color: rgb(0, 68, 136);
+}
+.lilIcon-farmSpace .path5:before {
+  content: "\e937";
+  margin-left: -1em;
+  color: rgb(0, 68, 136);
+}
+.lilIcon-farmSpace .path6:before {
+  content: "\e938";
+  margin-left: -1em;
+  color: rgb(136, 102, 34);
+}
+.lilIcon-farmSpace .path7:before {
+  content: "\e939";
+  margin-left: -1em;
+  color: rgb(136, 102, 34);
+}
+.lilIcon-fireBall:before {
+  content: "\e93a";
+  color: #be5b0c;
+}
+.lilIcon-fireDart:before {
+  content: "\e93b";
+  color: #be5b0c;
+}
+.lilIcon-fireWave:before {
+  content: "\e93c";
+  color: #d0021b;
+}
+.lilIcon-focus:before {
+  content: "\e93d";
+  color: #00f;
+}
+.lilIcon-force:before {
+  content: "\e93e";
+  color: #454;
+}
+.lilIcon-gems:before {
+  content: "\e93f";
+  color: #b36ae2;
+}
+.lilIcon-gold:before {
+  content: "\e940";
+  color: #dcbd23;
+}
+.lilIcon-hammer:before {
+  content: "\e941";
+}
+.lilIcon-healingPower:before {
+  content: "\e942";
+  color: #f69;
+}
+.lilIcon-health:before {
+  content: "\e943";
+  color: #d00;
+}
+.lilIcon-healthMax:before {
+  content: "\e944";
+  color: #d00;
+}
+.lilIcon-iceDart:before {
+  content: "\e945";
+  color: #51a7f9;
+}
+.lilIcon-ignite:before {
+  content: "\e946";
+  color: #c82606;
+}
+.lilIcon-inferno:before {
+  content: "\e947";
+  color: #e25822;
+}
+.lilIcon-inscription:before {
+  content: "\e948";
+  color: #307;
+}
+.lilIcon-intimidate:before {
+  content: "\e949";
+  color: #990;
+}
+.lilIcon-library:before {
+  content: "\e94a";
+}
+.lilIcon-lightningDart:before {
+  content: "\e94b";
+  color: #f5d327;
+}
+.lilIcon-lightningStorm:before {
+  content: "\e94c";
+  color: #dcbd23;
+}
+.lilIcon-lionTaunt:before {
+  content: "\e94d";
+  color: #950002;
+}
+.lilIcon-longSword:before {
+  content: "\e94e";
+}
+.lilIcon-lumberYard:before {
+  content: "\e94f";
+}
+.lilIcon-magic:before {
+  content: "\e950";
+  color: #00f;
+}
+.lilIcon-magicArmor:before {
+  content: "\e951";
+  color: #5f327c;
+}
+.lilIcon-magicBlade:before {
+  content: "\e952";
+  color: #0365c0;
+}
+.lilIcon-magicPower:before {
+  content: "\e953";
+  color: #00f;
+}
+.lilIcon-meteorStrike:before {
+  content: "\e954";
+  color: #861001;
+}
+.lilIcon-miner:before {
+  content: "\e955";
+}
+.lilIcon-mining:before {
+  content: "\e956";
+}
+.lilIcon-observatory:before {
+  content: "\e957";
+}
+.lilIcon-obsidianPlateLegs:before {
+  content: "\e958";
+}
+.lilIcon-paladinInspiration .path1:before {
+  content: "\e959";
+  color: rgb(68, 85, 153);
+}
+.lilIcon-paladinInspiration .path2:before {
+  content: "\e95a";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path3:before {
+  content: "\e95b";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path4:before {
+  content: "\e95c";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path5:before {
+  content: "\e95d";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path6:before {
+  content: "\e95e";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path7:before {
+  content: "\e95f";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path8:before {
+  content: "\e960";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path9:before {
+  content: "\e961";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path10:before {
+  content: "\e962";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path11:before {
+  content: "\e963";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path12:before {
+  content: "\e964";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path13:before {
+  content: "\e965";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path14:before {
+  content: "\e966";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path15:before {
+  content: "\e967";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path16:before {
+  content: "\e968";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path17:before {
+  content: "\e969";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path18:before {
+  content: "\e96a";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinInspiration .path19:before {
+  content: "\e96b";
+  margin-left: -1.25em;
+  color: rgb(255, 255, 255);
+}
+.lilIcon-paladinSquireInterception .path1:before {
+  content: "\e96c";
+  color: rgb(32, 71, 170);
+}
+.lilIcon-paladinSquireInterception .path2:before {
+  content: "\e96d";
+  margin-left: -0.978515625em;
+  color: rgb(153, 187, 255);
+}
+.lilIcon-paladinSquireInterception .path3:before {
+  content: "\e96e";
+  margin-left: -0.978515625em;
+  color: rgb(153, 187, 255);
+}
+.lilIcon-paladinSquireInterception .path4:before {
+  content: "\e96f";
+  margin-left: -0.978515625em;
+  color: rgb(136, 170, 221);
+}
+.lilIcon-paladinSquireInterception .path5:before {
+  content: "\e970";
+  margin-left: -0.978515625em;
+  color: rgb(255, 255, 68);
+}
+.lilIcon-paladinSquireInterception .path6:before {
+  content: "\e971";
+  margin-left: -0.978515625em;
+  color: rgb(102, 119, 204);
+}
+.lilIcon-paladinSquireInterception .path7:before {
+  content: "\e972";
+  margin-left: -0.978515625em;
+  color: rgb(102, 119, 204);
+}
+.lilIcon-penetratingSlash:before {
+  content: "\e973";
+}
+.lilIcon-phantomStrikes:before {
+  content: "\e974";
+  color: #999;
+}
+.lilIcon-poison:before {
+  content: "\e975";
+  color: #0a5d19;
+}
+.lilIcon-powerShot:before {
+  content: "\e976";
+  color: #541;
+}
+.lilIcon-prospector:before {
+  content: "\e977";
+}
+.lilIcon-quarry:before {
+  content: "\e978";
+}
+.lilIcon-quiver:before {
+  content: "\e979";
+}
+.lilIcon-rapier:before {
+  content: "\e97a";
+}
 .lilIcon-redirectDamage .path1:before {
-  content: "\e98c";
+  content: "\e97b";
   color: rgb(153, 0, 0);
 }
 .lilIcon-redirectDamage .path2:before {
-  content: "\e98d";
+  content: "\e97c";
   margin-left: -1em;
   color: rgb(136, 136, 136);
 }
 .lilIcon-redirectDamage .path3:before {
-  content: "\e98e";
+  content: "\e97d";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
 .lilIcon-redirectDamage .path4:before {
-  content: "\e98f";
+  content: "\e97e";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
-.lilIcon-obsidianPlateLegs:before {
-  content: "\e98b";
+.lilIcon-shield:before {
+  content: "\e97f";
+}
+.lilIcon-shop:before {
+  content: "\e980";
+}
+.lilIcon-shred:before {
+  content: "\e981";
+  color: #454;
+}
+.lilIcon-slash:before {
+  content: "\e982";
+}
+.lilIcon-spear:before {
+  content: "\e983";
+}
+.lilIcon-spikedArmor:before {
+  content: "\e984";
+  color: #4c4c4c;
+}
+.lilIcon-staff:before {
+  content: "\e985";
+}
+.lilIcon-thirstyFangs:before {
+  content: "\e986";
+}
+.lilIcon-tome:before {
+  content: "\e987";
+}
+.lilIcon-total:before {
+  content: "\e988";
 }
 .lilIcon-troglodyte .path1:before {
-  content: "\e954";
+  content: "\e989";
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path2:before {
-  content: "\e955";
+  content: "\e98a";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path3:before {
-  content: "\e956";
+  content: "\e98b";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path4:before {
-  content: "\e957";
+  content: "\e98c";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path5:before {
-  content: "\e958";
+  content: "\e98d";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path6:before {
-  content: "\e959";
+  content: "\e98e";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path7:before {
-  content: "\e95a";
+  content: "\e98f";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path8:before {
-  content: "\e95b";
+  content: "\e990";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path9:before {
-  content: "\e95c";
+  content: "\e991";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path10:before {
-  content: "\e95d";
+  content: "\e992";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path11:before {
-  content: "\e95e";
+  content: "\e993";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path12:before {
-  content: "\e95f";
+  content: "\e994";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path13:before {
-  content: "\e960";
+  content: "\e995";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path14:before {
-  content: "\e961";
+  content: "\e996";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path15:before {
-  content: "\e962";
+  content: "\e997";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path16:before {
-  content: "\e963";
+  content: "\e998";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path17:before {
-  content: "\e964";
+  content: "\e999";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path18:before {
-  content: "\e965";
+  content: "\e99a";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path19:before {
-  content: "\e966";
+  content: "\e99b";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path20:before {
-  content: "\e967";
+  content: "\e99c";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path21:before {
-  content: "\e968";
+  content: "\e99d";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path22:before {
-  content: "\e969";
+  content: "\e99e";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path23:before {
-  content: "\e96a";
+  content: "\e99f";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path24:before {
-  content: "\e96b";
+  content: "\e9a0";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path25:before {
-  content: "\e96c";
+  content: "\e9a1";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path26:before {
-  content: "\e96d";
+  content: "\e9a2";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path27:before {
-  content: "\e96e";
+  content: "\e9a3";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path28:before {
-  content: "\e96f";
+  content: "\e9a4";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path29:before {
-  content: "\e970";
+  content: "\e9a5";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path30:before {
-  content: "\e971";
+  content: "\e9a6";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path31:before {
-  content: "\e972";
+  content: "\e9a7";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path32:before {
-  content: "\e973";
+  content: "\e9a8";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path33:before {
-  content: "\e974";
+  content: "\e9a9";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path34:before {
-  content: "\e975";
+  content: "\e9aa";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path35:before {
-  content: "\e976";
+  content: "\e9ab";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path36:before {
-  content: "\e977";
+  content: "\e9ac";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path37:before {
-  content: "\e978";
+  content: "\e9ad";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path38:before {
-  content: "\e979";
+  content: "\e9ae";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path39:before {
-  content: "\e97a";
+  content: "\e9af";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path40:before {
-  content: "\e97b";
+  content: "\e9b0";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path41:before {
-  content: "\e97c";
+  content: "\e9b1";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path42:before {
-  content: "\e97d";
+  content: "\e9b2";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path43:before {
-  content: "\e97e";
+  content: "\e9b3";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path44:before {
-  content: "\e97f";
+  content: "\e9b4";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path45:before {
-  content: "\e980";
+  content: "\e9b5";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path46:before {
-  content: "\e981";
+  content: "\e9b6";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path47:before {
-  content: "\e982";
+  content: "\e9b7";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path48:before {
-  content: "\e983";
+  content: "\e9b8";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path49:before {
-  content: "\e984";
+  content: "\e9b9";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path50:before {
-  content: "\e985";
+  content: "\e9ba";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path51:before {
-  content: "\e986";
+  content: "\e9bb";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path52:before {
-  content: "\e987";
+  content: "\e9bc";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path53:before {
-  content: "\e988";
+  content: "\e9bd";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
 .lilIcon-troglodyte .path54:before {
-  content: "\e989";
+  content: "\e9be";
   margin-left: -0.9912109375em;
   color: rgb(119, 187, 0);
 }
 .lilIcon-troglodyte .path55:before {
-  content: "\e98a";
+  content: "\e9bf";
   margin-left: -0.9912109375em;
   color: rgb(17, 68, 17);
 }
-.lilIcon-affliction:before {
-  content: "\e953";
-  color: #5f327c;
-}
-.lilIcon-lightningDart:before {
-  content: "\e952";
-  color: #f5d327;
-}
-.lilIcon-lightningStorm:before {
-  content: "\e951";
-  color: #dcbd23;
-}
-.lilIcon-blizzard:before {
-  content: "\e950";
-  color: #51a7f9;
-}
-.lilIcon-iceDart:before {
-  content: "\e94f";
-  color: #51a7f9;
-}
-.lilIcon-earthDart:before {
-  content: "\e94e";
-  color: #82400a;
-}
-.lilIcon-earthBall:before {
-  content: "\e94d";
-  color: #82400a;
-}
-.lilIcon-earthenFist:before {
-  content: "\e94c";
-  color: #8b572a;
-}
-.lilIcon-ignite:before {
-  content: "\e94b";
-  color: #c82606;
-}
-.lilIcon-inferno:before {
-  content: "\e94a";
-  color: #e25822;
-}
-.lilIcon-fireWave:before {
-  content: "\e949";
-  color: #d0021b;
-}
-.lilIcon-fireDart:before {
-  content: "\e948";
-  color: #be5b0c;
-}
-.lilIcon-fireBall:before {
-  content: "\e947";
-  color: #be5b0c;
-}
-.lilIcon-meteorStrike:before {
-  content: "\e945";
-  color: #861001;
-}
-.lilIcon-spikedArmor:before {
-  content: "\e941";
-  color: #4c4c4c;
-}
-.lilIcon-intimidate:before {
-  content: "\e940";
-  color: #990;
-}
-.lilIcon-eelTaunt:before {
-  content: "\e93f";
-  color: #367eeb;
-}
-.lilIcon-lionTaunt:before {
-  content: "\e93e";
-  color: #950002;
-}
-.lilIcon-bearTaunt:before {
-  content: "\e93d";
-}
 .lilIcon-volcanicShield:before {
-  content: "\e93c";
+  content: "\e9c0";
   color: #c82606;
 }
-.lilIcon-deepWounds:before {
-  content: "\e93b";
-  color: #861001;
+.lilIcon-woodcutter:before {
+  content: "\e9c1";
 }
-.lilIcon-bisonBlue:before {
-  content: "\e93a";
-  color: #0365c0;
-}
-.lilIcon-bisonRed:before {
-  content: "\e92e";
-  color: #a60505;
-}
-.lilIcon-counterAttack:before {
-  content: "\e92c";
-}
-.lilIcon-berserk:before {
-  content: "\e927";
-  color: #861001;
-}
-.lilIcon-doubleEdgedSword:before {
-  content: "\e923";
-}
-.lilIcon-execute:before {
-  content: "\e922";
-  color: #861001;
-}
-.lilIcon-slash:before {
-  content: "\e921";
-}
-.lilIcon-penetratingSlash:before {
-  content: "\e920";
-}
-.lilIcon-shieldBash:before {
-  content: "\e91f";
-}
-.lilIcon-bladeSpin:before {
-  content: "\e91d";
-}
-.lilIcon-powerShot:before {
-  content: "\e91b";
-  color: #541;
+.lilIcon-woodcutting:before {
+  content: "\e9c2";
 }

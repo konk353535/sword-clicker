@@ -34,10 +34,19 @@ export const addItem = function (
     targetQuality = -1,
     targetRarityTier = ""
 ) {
-    if (Meteor.user().logEvents) {
+    let owner
+    if (specificUserId) {
+        owner = specificUserId
+    } else {
+        owner = Meteor.userId()
+    }
+
+    // this MUST be userDoc and not `Meteor.userId()` because Meteor.userId can only be invoked in method calls or publications.
+    const userDoc = Users.findOne(owner)
+    if (userDoc.logEvents) {
         Events.insert(
             {
-                owner: Meteor.userId(),
+                owner: userDoc._id,
                 event: "trace.items.addItem",
                 date: new Date(),
                 data: {
@@ -48,13 +57,6 @@ export const addItem = function (
             },
             () => {}
         )
-    }
-
-    let owner
-    if (specificUserId) {
-        owner = specificUserId
-    } else {
-        owner = Meteor.userId()
     }
 
     const newItemsList = []

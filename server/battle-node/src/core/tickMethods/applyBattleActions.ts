@@ -59,7 +59,7 @@ export function applyBattleActions(this: Battle) {
 
             // sorry bud, you can't change targets right now and you sure can't click-target an enemy you're not targeting
             if (targetId !== casterUnit.target) {
-                if (casterUnit.isAbleToChangeTargets) {
+                if (!casterUnit.isAbleToChangeTargets) {
                     return
                 }
 

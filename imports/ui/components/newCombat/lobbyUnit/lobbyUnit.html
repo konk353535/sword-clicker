@@ -38,6 +38,9 @@
           {{#if unit.isLeader}}
             <img src="/icons/leaderCrownYellow.svg" class="mr-1" width="24" height="24" />
           {{/if}}
+          {{#if unit.isInvitee}}
+            <i class="material-icons">hourglass_full</i>
+          {{/if}}
           {{#each unit.buffs}}
             {{#unless this.data.hideBuff}}
               <img src="/icons/{{this.data.icon}}" width="24" height="24" />

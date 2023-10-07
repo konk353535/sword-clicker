@@ -19,6 +19,8 @@ import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { Users, classFeatureUnlocked } from "/imports/api/users/users"
 
+import { env } from "/server/validateEnv"
+
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
 
@@ -353,7 +355,7 @@ export const startBattle = function ({
                     broughtCompanion = true
                 } else {
                     // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature (should already be filtered, but just in case...)
-                    if ((abilityCount >= 5) && (!classFeatureUnlocked(targetUser._id))) {
+                    if (abilityCount >= 5 && !classFeatureUnlocked(targetUser._id)) {
                         return false
                     } else if (abilityCount >= 8) {
                         return false
@@ -421,9 +423,9 @@ export const startBattle = function ({
         }
 
         let thisUnitClass = userCurrentClass(userCombat.owner).data
-        thisUnitClass.reforge = { } // the battle node does not need this data and it can be a lot
+        thisUnitClass.reforge = {} // the battle node does not need this data and it can be a lot
 
-        if (thisUnitClass?.id === 'barbarian') {
+        if (thisUnitClass?.id === "barbarian") {
             userCombatStats.magicPower = 0
         }
 
@@ -454,7 +456,9 @@ export const startBattle = function ({
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives
         // tried applying passives above first, but they wouldn't function correctly
 
-        userCombat.enchantments = ((userCombat.enchantments) ? userCombat.enchantments : []).concat(newUnit.currentClass.autoBuffs)
+        userCombat.enchantments = (userCombat.enchantments ? userCombat.enchantments : []).concat(
+            newUnit.currentClass.autoBuffs
+        )
 
         if (userCombat.enchantments) {
             //console.log("START :: startbattle player enchantments");
@@ -592,8 +596,13 @@ export const startBattle = function ({
 
         // This is the current active boss battle
         if (enemyConstants.isBoss && health) {
+            const floorPercent = 1 - (env.MAX_FLOOR - floor) / env.MAX_FLOOR
             enemyStats.health = health
             enemyStats.healthMax = health
+            enemyStats.damageTaken = 0.3
+            enemyStats.force = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number
+            enemyStats.shred = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, armor formula
+            enemyStats.focus = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, magic armor formula
         }
 
         if (enemyConstants.isBoss && isOldBoss) {

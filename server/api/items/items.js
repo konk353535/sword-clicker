@@ -44,7 +44,7 @@ export const addItem = function (
     // this MUST be userDoc and not `Meteor.userId()` because Meteor.userId can only be invoked in method calls or publications.
     // also prefab guests calls this, so userDoc *may* not exist
     const userDoc = Users.findOne(owner)
-    if (userDoc?.logEvents) {
+    if (userDoc != null && userDoc?._id != null && amount > 100) {
         Events.insert(
             {
                 owner: userDoc._id,

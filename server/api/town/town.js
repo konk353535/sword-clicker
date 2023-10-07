@@ -4,6 +4,7 @@ import { Items } from "/imports/api/items/items"
 import { Servers } from "/imports/api/servers/servers"
 import { State } from "/imports/api/state/state"
 import { Users } from "/imports/api/users/users.js"
+import { Events } from "/imports/api/events/events"
 
 import { ITEMS } from "/imports/constants/items/index.js"
 
@@ -118,6 +119,24 @@ export const newTownDay = function newTownDay() {
 
 const donateThisItem = function donateThisItem(_id, itemId, amount, building) {
     // todo: validate item qualifies for building, maybe add to ITEMS constants?
+
+    if (Meteor.user().logEvents) {
+        Events.insert(
+            {
+                owner: Meteor.userId(),
+                event: "trace.items.donateThisItem",
+                date: new Date(),
+                data: {
+                    stack: new Error().stack,
+                    _id: _id,
+                    itemId: itemId,
+                    amount: amount,
+                    building: building
+                }
+            },
+            () => {}
+        )
+    }
 
     if (amount <= 0) {
         return

@@ -106,6 +106,11 @@ Meteor.methods({
             throw new Meteor.Error("invalid-spell", "invalid spell")
         }
 
+        // Are we crafting at least one item
+        if (amount <= 0) {
+            throw new Meteor.Error("cant-craft", "Choose a positive quantity of spells to craft.")
+        }
+
         if (!requirementsUtility(spellConstants.required, amount)) {
             throw new Meteor.Error("missed-requirements", "don't meet requirements")
         }

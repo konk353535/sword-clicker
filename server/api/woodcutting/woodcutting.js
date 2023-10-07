@@ -9,6 +9,7 @@ import { WOODCUTTING } from "/imports/constants/woodcutting/index.js"
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
+import { Events } from "/imports/api/events/events"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { Woodcutting } from "/imports/api/woodcutting/woodcutting"
 import { requirementsUtility } from "/server/api/crafting/crafting"
@@ -158,6 +159,22 @@ Meteor.methods({
                 definiteSwingCount -= definiteGenerateLogs
             })
         })
+
+        if (Meteor.user().logEvents) {
+            Events.insert(
+                {
+                    owner: Meteor.userId(),
+                    event: "trace.woodcutting.gameUpdate",
+                    date: new Date(),
+                    data: {
+                        stack: new Error().stack,
+                        minutesElapsed: minutesElapsed,
+                        gainedItems: gainedItems
+                    }
+                },
+                () => {}
+            )
+        }
 
         Object.keys(gainedItems).forEach((itemId) => {
             addItem(itemId, gainedItems[itemId])

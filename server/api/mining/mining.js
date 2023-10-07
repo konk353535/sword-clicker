@@ -14,6 +14,7 @@ import { Mining, MiningSpace } from "/imports/api/mining/mining"
 import { Skills } from "/imports/api/skills/skills"
 import { State } from "/imports/api/state/state"
 import { Users } from "/imports/api/users/users"
+import { Events } from "/imports/api/events/events"
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { CDbl, CInt } from "/imports/utils.js"
 import { requirementsUtility } from "/server/api/crafting/crafting"
@@ -679,6 +680,22 @@ Meteor.methods({
 
             if (gainedXp > 0) {
                 addXp("mining", gainedXp)
+            }
+
+            if (Meteor.user().logEvents) {
+                Events.insert(
+                    {
+                        owner: Meteor.userId(),
+                        event: "trace.mining.gameUpdate",
+                        date: new Date(),
+                        data: {
+                            stack: new Error().stack,
+                            secondsElapsed: secondsElapsed,
+                            gainedItems: gainedItems
+                        }
+                    },
+                    () => {}
+                )
             }
 
             Object.keys(gainedItems).forEach((key) => {

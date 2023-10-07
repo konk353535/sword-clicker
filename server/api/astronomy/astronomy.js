@@ -497,6 +497,22 @@ Meteor.methods({
             }
         )
 
+        if (Meteor.user().logEvents) {
+            Events.insert(
+                {
+                    owner: Meteor.userId(),
+                    event: "trace.astronomy.gameUpdate",
+                    date: new Date(),
+                    data: {
+                        stack: new Error().stack,
+                        hoursElapsed: hoursElapsed,
+                        gainedItems: gainedItems
+                    }
+                },
+                () => {}
+            )
+        }
+
         if (astronomyUpdated) {
             Object.keys(gainedItems).forEach((itemId) => {
                 addItem(itemId, gainedItems[itemId])

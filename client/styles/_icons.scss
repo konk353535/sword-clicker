@@ -180,7 +180,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   border-color: $brand-warning;
 }
 .my-target.icon-box {
-  border-color: $brand-danger;
+  border: 2px solid $brand-danger !important;
 }
 
 // Used in inscription to stop icon box having a border

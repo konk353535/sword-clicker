@@ -7,7 +7,11 @@
             <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
           </a>
         {{else}}
-          <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+          {{#if unit.targettingPlayer}}
+            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.targettingName}}<br />{{unit.name}}</span>
+          {{else}}
+            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}"><img src="/icons/{{unit.targettingIcon}}" width="20" height="20" stlye="height: 20px !important; width: 20px !important; border: none;" /><br >{{unit.name}}</span>
+          {{/if}}
         {{/if}}
       {{/if}}
       {{#if viewProfile}}
@@ -19,7 +23,7 @@
               class="icon-box battle-unit
                 {{#if unit.leader}}leader-icon{{/if}}
                 {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
-                {{#if unit.myTarget}}battle-unit-border-red{{/if}}
+                {{#if unit.isThisMyTarget}}battle-unit-border-red{{/if}}
                 {{#if small}}item-icon-container small{{/if}}"
           >
         </a>
@@ -29,7 +33,7 @@
             id={{unit.id}}
             data-unit-id={{unit.id}}
             class="icon-box battle-unit
-              {{#if unit.myTarget}}my-target{{/if}}
+              {{#if unit.isThisMyTarget}}my-target{{/if}}
               {{#if unit.leader}}leader-icon{{/if}}
               {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
               {{#if small}}item-icon-container small{{/if}}"

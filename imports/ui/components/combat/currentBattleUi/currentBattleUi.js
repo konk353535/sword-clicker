@@ -25,14 +25,59 @@ const startBattle = (currentBattle, self) => {
         self.state.set("myUnit", myUnit)
     }
 
+    
+    // Initialize all units
+    currentBattle.units.forEach((friendly) => {
+        friendly.targettingName = ""
+        friendly.targettingIcon =  "invis.gif"
+    })
+    currentBattle.enemies.forEach((enemy) => {
+        enemy.targettingName = ""
+        enemy.targettingIcon = "invis.gif"
+    })
+
     // Find enemies that are targetting my unit
     currentBattle.enemies.forEach((enemy) => {
         enemy.targettingPlayer = !!(myUnit && enemy.target === myUnit.id)
+        enemy.targettingName = ""
+        enemy.targettingIcon = "invis.gif"
+
+        if (enemy.targettingPlayer) {
+            enemy.targettingName = "⚔️  YOU  ⚔️"
+        } else {
+            currentBattle.units.forEach((friendly) => {
+                if (friendly.id == enemy.target) {
+                    enemy.targettingName = (friendly?.name) || (friendly?.id) || "?"
+                    enemy.targettingIcon = (friendly?.icon) || "invis.gif"
+                }
+            })
+            if (currentBattle.enemyUnits) {
+                currentBattle.enemyUnits.forEach((otherEnemyUnit) => {
+                    if (otherEnemyUnit.id == enemy.target) {
+                        enemy.targettingName = (otherEnemyUnit?.name) || (otherEnemyUnit?.id) || "?"
+                        enemy.targettingIcon = (otherEnemyUnit?.icon) || "invis.gif"
+                    }
+                })
+            }
+        }
     })
 
-    // Find enemies that i'm targetting
+    // Find enemies that I'm targetting
     currentBattle.enemies.forEach((enemy) => {
-        enemy.myTarget = !!(myUnit && myUnit.target === enemy.id)
+        enemy.isThisMyTarget = !!(myUnit && myUnit.target === enemy.id)
+
+        if (enemy.id == myUnit.target) {
+            myUnit.targettingName = (enemy?.name) || (enemy?.id) || "?"
+            myUnit.targettingIcon = (enemy?.icon) || "invis.gif"
+        }
+
+        // Find enemies that my allies targetting
+        currentBattle.units.forEach((friendly) => {
+            if (enemy.id == friendly.target) {
+                friendly.targettingName = (enemy?.name) || (enemy?.id) || "?"
+                friendly.targettingIcon = (enemy?.icon) || "invis.gif"
+            }
+        })
     })
 
     self.state.set("currentBattle", currentBattle)

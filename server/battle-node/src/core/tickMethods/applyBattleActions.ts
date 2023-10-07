@@ -16,9 +16,7 @@ export function applyBattleActions(this: Battle) {
             if (!casterUnit.isAbleToChangeTargets) {
                 return
             }
-        }
 
-        if (abilityId === "changeTarget") {
             const targetId = action.targets?.[0]
 
             if (targetId == null) {
@@ -59,29 +57,39 @@ export function applyBattleActions(this: Battle) {
                 return
             }
 
+            // sorry bud, you can't change targets right now and you sure can't click-target an enemy you're not targeting
             if (targetId !== casterUnit.target) {
-                casterUnit.target = targetId
-            } else {
-                const targetUnit = this.enemiesMap[targetId]
-
-                // Ensure caster unit has sufficient energy
-                if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
-                    // if this unit is actively using their amulet click charges versus another unit, then they're clearly not inactive
-                    casterUnit.inactiveMinutes = 0
-
-                    casterUnit.amulet.energy -= 1
-                    this.deltaEvents.push({
-                        type: "abs",
-                        path: `unitsMap.${casterUnit.id}.amulet.energy`,
-                        value: casterUnit.amulet.energy
-                    })
-                    this.dealDamage(casterUnit.amulet.damage, {
-                        attacker: casterUnit,
-                        defender: targetUnit,
-                        tickEvents: this.tickEvents,
-                        historyStats: this.historyStats
-                    })
+                if (casterUnit.isAbleToChangeTargets) {
+                    return
                 }
+
+                // change target and then proceed with the amulet click damage
+                casterUnit.target = targetId
+            }
+
+            if (casterUnit.isPacifist) {
+                return
+            }
+
+            const targetUnit = this.enemiesMap[targetId]
+
+            // Ensure caster unit has sufficient energy
+            if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {
+                // if this unit is actively using their amulet click charges versus another unit, then they're clearly not inactive
+                casterUnit.inactiveMinutes = 0
+
+                casterUnit.amulet.energy -= 1
+                this.deltaEvents.push({
+                    type: "abs",
+                    path: `unitsMap.${casterUnit.id}.amulet.energy`,
+                    value: casterUnit.amulet.energy
+                })
+                this.dealDamage(casterUnit.amulet.damage, {
+                    attacker: casterUnit,
+                    defender: targetUnit,
+                    tickEvents: this.tickEvents,
+                    historyStats: this.historyStats
+                })
             }
         } else {
             if (!casterUnit.abilitiesMap || !casterUnit.abilitiesMap[abilityId]) {

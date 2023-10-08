@@ -24,7 +24,6 @@ const startBattle = (currentBattle, self) => {
     if (myUnit) {
         self.state.set("myUnit", myUnit)
     }
-
     
     // Initialize all units
     currentBattle.units.forEach((friendly) => {
@@ -85,29 +84,47 @@ const startBattle = (currentBattle, self) => {
     self.state.set("currentBattle", currentBattle)
 
     if (currentBattle) {
+        const uidPlayer = Meteor.userId()
+
         if (currentBattle.tickEvents.length > 3) {
             // Only show user owned ticks
             currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
-                return tickEvent.from === Meteor.userId() || tickEvent.to === Meteor.userId()
+                return tickEvent.from === uidPlayer || tickEvent.to === uidPlayer
             })
         }
 
         if (!Session.get("floatingTextDisabled")) {
             currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
 
-                if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
-                    const uidDied = tickEvent.to
-                    const uidSource = tickEvent.from
-                    const deathMessage = tickEvent.label.charAt(0).toUpperCase() + tickEvent.label.substring(1)
+                let combatLabel = (tickEvent?.label || "").trim()
+                const uidTo = (tickEvent?.to || "").trim()
+                const uidSource = (tickEvent?.from || "").trim()
 
-                    if (uidDied == Meteor.userId()) {
-                        toastr.error(deathMessage)
+                if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
+                    if (uidTo == uidPlayer) {
+                        if ((uidFrom == uidTo) && (combatLabel.indexOf(" slain by ") !== -1)) {
+                            combatLabel = "You underestimated your own power and died!"
+                        } else if (combatLabel.indexOf(" was slain ") !== -1) {
+                            combatLabel = `You were slain ${combatLabel.split(" was slain ")[1]}`
+                        }
+                        toastr.error(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
                     } else {
-                        toastr.warning(deathMessage)
+                        if ((uidFrom == uidTo) && (combatLabel.indexOf(" was slain by ") !== -1)) {
+                            combatLabel = `${combatLabel.split(" was slain by ")[0]} underestimated their own power and died!`
+                            toastr.warning(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
+                        } else {
+                            toastr.warning(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
+                        }
                     }
                 } else if (tickEvent.eventType == "death-enemy") {
-                    const deathMessage = tickEvent.label.charAt(0).toUpperCase() + tickEvent.label.substring(1)
-                    toastr.success(deathMessage)
+                    try {
+                        if ((uidSource == uidPlayer) && (combatLabel.indexOf(" defeated ") !== -1)) {
+                            combatLabel = `You defeated ${combatLabel.split(" defeated ")[1]}`
+                        } else if ((uidSource == uidTo) && (combatLabel.indexOf(" defeated ") !== -1)) {
+                            combatLabel = `${combatLabel.split(" defeated ")[0]} has been defeated`
+                        }
+                    } catch (err) {}
+                    toastr.success(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
                 } else {
                     const offset = $(`#${tickEvent.to}`).offset()
                     if (offset) {
@@ -275,7 +292,7 @@ const startBattle = (currentBattle, self) => {
                             data-count=1
                             style='top: ${offset.top}px; left: ${offset.left}px; font-size: ${fontSize}; opacity: 1.0; color: ${color}'>
                             ${elementIconHTML}
-                            ${tickEvent.label}
+                            ${combatLabel}
                             </p>
                         `)
 

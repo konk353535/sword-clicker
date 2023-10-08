@@ -33,6 +33,9 @@
     },
     "root": true
   },
+  "notes": {
+    "discord.js": "Cannot be updated to newer than 12.5.3 because meteor runs node version 14 and newer discord.js releases are incompatible"
+  },
   "dependencies": {
     "@babel/runtime": "^7.20.7",
     "@fancyapps/fancybox": "^3.5.7",
@@ -57,6 +60,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "bufferutil": "^4.0.7",
     "core-js": "^2.5.7",
+    "discord.js": "^12.5.3",
     "envalid": "^7.3.1",
     "faker": "^4.1.0",
     "jquery": "^3.7.1",

@@ -12,6 +12,8 @@ import { activateGlobalBuff, getActiveGlobalBuff, getGlobalBuff } from "/imports
 import { updateUserActivity } from "/imports/api/users/users.js"
 import { addItem, addRealGems, consumeGems, consumeOnlyRealGems, hasGems } from "/server/api/items/items.js"
 
+import { sendGlobalBuffWebhookMessage } from "/server/webhook.js"
+
 import lodash from "lodash"
 import _ from "underscore"
 
@@ -67,6 +69,8 @@ Meteor.methods({
         const activateMessage = `${userDoc.username} has ${newBuff ? "activated" : "extended"} the ${
             friendlyNames[type]
         } buff for all players (${remaining} remaining)!`
+
+        sendGlobalBuffWebhookMessage(activateMessage, true)
 
         Chats.insert({
             message: activateMessage,

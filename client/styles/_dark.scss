@@ -38,6 +38,10 @@ html.dark {
     background-color: $dark-bg-color;
     color: #fff;
 
+    img.discord {
+        filter: invert(38%) sepia(61%) saturate(4153%) hue-rotate(224deg) brightness(99%) contrast(92%)
+    }
+
     &.deploy_meteor,
     &.deploy_battle,
     &.deploy_all {

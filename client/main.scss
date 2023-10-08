@@ -38,7 +38,7 @@ html {
     &.deploy_battle,
     &.deploy_all {
         .deploy-announcement {
-            background-color: #FAA0A0 !important;
+            background-color: #faa0a0 !important;
         }
     }
 }
@@ -468,4 +468,8 @@ body {
 .element-hider {
     display: none;
     visibility: hidden;
+}
+
+img.discord {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(321deg) brightness(103%) contrast(104%);
 }

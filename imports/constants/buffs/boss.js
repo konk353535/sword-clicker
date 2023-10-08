@@ -445,7 +445,9 @@ export const BOSS_BUFFS = {
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
 
             onDidDamage({ buff, defender, attacker, actualBattle }) {
-                attacker.target = _.sample(actualBattle.units).id
+                if (actualBattle?.units && actualBattle.units?.length > 0) {
+                    attacker.target = _.sample(actualBattle.units).id
+                }
             },
 
             onRemove({ buff, target }) {}

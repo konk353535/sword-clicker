@@ -11,12 +11,12 @@ export const TOWER_FLOOR_9 = {
     },
     2: {
         name: "Jungle",
-        enemies: ["lizard"],
+        enemies: ["lizard", "goblin"],
         rewards: LEVEL_NINE_LOOT_TABLE
     },
     3: {
         name: "Savannah",
-        enemies: ["elephant"],
+        enemies: ["elephant", "blue_mage", "brown_mage"],
         rewards: orderLootTable(
             LEVEL_NINE_LOOT_TABLE.concat([
                 {
@@ -64,7 +64,7 @@ export const TOWER_FLOOR_9 = {
     },
     5: {
         name: "Carrot Patch",
-        enemies: ["rabbit"],
+        enemies: ["rabbit", "rabbit", "rabbit"],
         rewards: orderLootTable(
             LEVEL_NINE_LOOT_TABLE.concat([
                 {
@@ -96,7 +96,7 @@ export const TOWER_FLOOR_9 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["angry_miner", "gelatinous_cube"],
         rewards: orderLootTable(
             LEVEL_NINE_LOOT_TABLE.concat([
                 {

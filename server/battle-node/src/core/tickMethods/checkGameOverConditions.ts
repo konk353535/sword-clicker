@@ -12,12 +12,9 @@ export function checkGameOverConditions(this: Battle) {
     if (this.enemies.length === 0 || this.units.length === 0) {
         // Before we end the battle, make sure it shouldn't continue
         if (this.isExplorationRun && this.units.length > 0) {
-            this.roomTickCount = 0 // reset the room tick count
-
             if (this.room !== "boss" && this.room < 7) {
-                //this.tickCount = 3 // give us back a delay
-
                 this.room += 1
+                this.roomTickCount = 0 // reset the room tick count
 
                 this.deltaEvents.push({
                     path: "room",
@@ -84,6 +81,18 @@ export function checkGameOverConditions(this: Battle) {
                     }
 
                     addBuff({ buff: newBuff, target: enemy, caster: enemy, actualBattle: this })
+                })
+
+                this.units.forEach((unit) => {
+                    // Call NextFloorRoom event for this defender
+                    if (unit.buffs) {
+                        unit.buffs.forEach((buff) => {
+                            buff.constants = BUFFS[buff.id]
+                            if (buff.constants.events.onNextFloorRoom) {
+                                buff.constants.events.onNextFloorRoom({ buff, unit, actualBattle: this, newRoom: this.room })
+                            }
+                        })
+                    }
                 })
 
                 return

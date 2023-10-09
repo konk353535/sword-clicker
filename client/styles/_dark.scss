@@ -571,9 +571,14 @@ html.dark {
         }
     }
 
-    .player-skills-container {
+    .player-skills-container, .floor-progression-container {
         .progress {
+            color: white;
             background-color: #444;
+        }
+
+        .progress-overlay {
+            color: white;
         }
     }
     

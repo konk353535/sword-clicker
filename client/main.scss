@@ -473,3 +473,13 @@ body {
 img.discord {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(321deg) brightness(103%) contrast(104%);
 }
+
+.player-skills-container, .floor-progression-container {
+    .progress {
+        color: black;
+        background-color: #eceeef;
+    }
+    .progress-overlay {
+        color: black;
+    }
+}

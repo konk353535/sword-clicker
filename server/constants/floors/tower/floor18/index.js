@@ -88,9 +88,9 @@ export const TOWER_FLOOR_18 = {
                 {
                     chance: 1 / 32,
                     rewards: [
-                        { type: "item", itemId: "azure_wizard_hat", amount: 1 },
-                        { type: "item", itemId: "azure_wizard_shirt", amount: 1 },
-                        { type: "item", itemId: "azure_wizard_shorts", amount: 1 }
+                        { type: "item", itemId: "charcoal_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "charcoal_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "charcoal_wizard_shorts", amount: 1 }
                     ]
                 },
                 {
@@ -100,6 +100,10 @@ export const TOWER_FLOOR_18 = {
                 {
                     chance: 1 / 48,
                     rewards: [{ type: "item", itemId: "volley_level_4_tome", amount: 1 }]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "charcoal_trident", amount: 1 }]
                 }
             ])
         )

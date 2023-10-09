@@ -1968,29 +1968,29 @@ export const STAFF_ITEMS = {
     },
 
     brown_trident: {
-        id: "brown_trident",
-        icon: "brownTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "brown trident",
-        sellPrice: 200,
-        description: "A sharp trident, beaming with magical energy.",
+        id: 'brown_trident',
+        icon: 'trident_t02.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'brown trident',
+        sellPrice: 2500,
+        description: 'A sharp, brown-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 6,
-            attackMax: 12,
+            attack: 3,
+            attackMax: 5,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 14,
+            accuracy: 11,
             magicPower: 8
         },
         extraStats: {
-            attack: 3,
-            attackMax: 3,
-            accuracy: 7,
+            attack: 2,
+            attackMax: 1,
+            accuracy: 6,
             magicPower: 1
         },
         enchantments: ["magic_blade"],
@@ -2003,79 +2003,32 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 5
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 5
+        }]
     },
 
     blue_trident: {
-        id: "blue_trident",
-        icon: "blueTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "blue trident",
-        sellPrice: 400,
-        description: "What seems like a normal walnut staff",
+        id: 'blue_trident',
+        icon: 'trident_t03.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'blue trident',
+        sellPrice: 3750,
+        description: 'A sharp, blue-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 8,
+            attack: 9,
             attackMax: 15,
             attackSpeed: MEDIUM_SPEED,
             accuracy: 19,
             magicPower: 12
-        },
-        enchantments: ["magic_blade"],
-        extraStats: {
-            attack: 3,
-            attackMax: 3,
-            accuracy: 7,
-            magicPower: 1
-        },
-        upgradeRarity: [
-            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
-            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
-            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
-            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
-            { chance: 12, rarityId: "rare" }, //  7.2%    chance
-            { chance: 30, rarityId: "fine" } // 18%      chance
-            // 70%      chance (for uncommon)
-        ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 10
-            }
-        ]
-    },
-
-    purple_trident: {
-        id: "purple_trident",
-        icon: "purpleTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "purple trident",
-        sellPrice: 1000,
-        description: "A sharp trident, beaming with magical energy",
-        isWeapon: true,
-        isEquippable: true,
-        isMagic: true,
-        isTwoHanded: true,
-        stats: {
-            attack: 15,
-            attackMax: 25,
-            attackSpeed: MEDIUM_SPEED,
-            accuracy: 39,
-            magicPower: 28
         },
         extraStats: {
             attack: 3,
@@ -2093,129 +2046,82 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 20
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 10
+        }]
     },
 
-    orange_trident: {
-        id: "orange_trident",
-        icon: "orangeTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "orange trident",
-        sellPrice: 2000,
-        description: "A sharp trident, beaming with magical energy",
+    druid_trident: {
+        id: 'druid_trident',
+        icon: 'trident_t04.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'druidic trident',
+        sellPrice: 5000,
+        description: 'A sharp trident used by druids, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 20,
-            attackMax: 30,
+            attack: 15,
+            attackMax: 25,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 44,
-            magicPower: 31
+            accuracy: 27,
+            magicPower: 16,
+            healingPower: 8
+        },
+        extraStats: {
+            attack: 4,
+            attackMax: 4,
+            accuracy: 9,
+            magicPower: 4,
+            healingPower: 7
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 15
+        }]
+    },
+
+    purple_trident: {
+        id: 'purple_trident',
+        icon: 'trident_t05.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'purple trident',
+        sellPrice: 6250,
+        description: 'A sharp, purple-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 21,
+            attackMax: 35,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 36,
+            magicPower: 20
         },
         extraStats: {
             attack: 5,
-            attackMax: 5,
-            accuracy: 8,
-            magicPower: 3
-        },
-        enchantments: ["magic_blade"],
-        upgradeRarity: [
-            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
-            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
-            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
-            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
-            { chance: 12, rarityId: "rare" }, //  7.2%    chance
-            { chance: 30, rarityId: "fine" } // 18%      chance
-            // 70%      chance (for uncommon)
-        ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 30
-            }
-        ]
-    },
-
-    amber_trident: {
-        id: "amber_trident",
-        icon: "amberTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "amber trident",
-        sellPrice: 3250,
-        description: "A sharp trident, beaming with magical energy",
-        isWeapon: true,
-        isEquippable: true,
-        isMagic: true,
-        isTwoHanded: true,
-        stats: {
-            attack: 27,
-            attackMax: 40,
-            attackSpeed: MEDIUM_SPEED,
-            accuracy: 50,
-            magicPower: 34
-        },
-        extraStats: {
-            attack: 6,
             attackMax: 6,
-            accuracy: 8,
-            magicPower: 4
-        },
-        enchantments: ["magic_blade"],
-        upgradeRarity: [
-            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
-            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
-            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
-            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
-            { chance: 12, rarityId: "rare" }, //  7.2%    chance
-            { chance: 30, rarityId: "fine" } // 18%      chance
-            // 70%      chance (for uncommon)
-        ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 40
-            }
-        ]
-    },
-
-    violet_trident: {
-        id: "violet_trident",
-        icon: "violetTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "violet trident",
-        sellPrice: 5000,
-        description: "A sharp trident, beaming with magical energy",
-        isWeapon: true,
-        isEquippable: true,
-        isMagic: true,
-        isTwoHanded: true,
-        stats: {
-            attack: 34,
-            attackMax: 50,
-            attackSpeed: MEDIUM_SPEED,
-            accuracy: 58,
-            magicPower: 37
-        },
-        extraStats: {
-            attack: 7,
-            attackMax: 7,
-            accuracy: 8,
+            accuracy: 10,
             magicPower: 5
         },
         enchantments: ["magic_blade"],
@@ -2228,84 +2134,37 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 45
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 20
+        }]
     },
 
-    crimson_trident: {
-        id: "crimson_trident",
-        icon: "crimsonTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "crimson trident",
+    orange_trident: {
+        id: 'orange_trident',
+        icon: 'trident_t06.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'orange trident',
         sellPrice: 7500,
-        description: "A sharp trident, beaming with magical energy",
+        description: 'A sharp, orange-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 41,
-            attackMax: 60,
+            attack: 27,
+            attackMax: 45,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 64,
-            magicPower: 40
+            accuracy: 44,
+            magicPower: 24
         },
         extraStats: {
-            attack: 8,
+            attack: 6,
             attackMax: 8,
-            accuracy: 10,
-            magicPower: 6
-        },
-        enchantments: ["magic_blade"],
-        upgradeRarity: [
-            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
-            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
-            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
-            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
-            { chance: 12, rarityId: "rare" }, //  7.2%    chance
-            { chance: 30, rarityId: "fine" } // 18%      chance
-            // 70%      chance (for uncommon)
-        ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 48
-            }
-        ]
-    },
-
-    azure_trident: {
-        id: "azure_trident",
-        icon: "azureTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "azure trident",
-        sellPrice: 10000,
-        description: "A sharp trident, beaming with magical energy",
-        isWeapon: true,
-        isEquippable: true,
-        isMagic: true,
-        isTwoHanded: true,
-        stats: {
-            attack: 48,
-            attackMax: 70,
-            attackSpeed: MEDIUM_SPEED,
-            accuracy: 72,
-            magicPower: 43
-        },
-        extraStats: {
-            attack: 9,
-            attackMax: 9,
-            accuracy: 10,
+            accuracy: 11,
             magicPower: 7
         },
         enchantments: ["magic_blade"],
@@ -2318,39 +2177,37 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 51
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 25
+        }]
     },
 
-    verdant_trident: {
-        id: "verdant_trident",
-        icon: "verdantTridant.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "verdant trident",
-        sellPrice: 15000,
-        description: "A sharp trident, beaming with magical energy",
+    grey_trident: {
+        id: 'grey_trident',
+        icon: 'trident_t07.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'grey trident',
+        sellPrice: 8750,
+        description: 'A sharp, grey-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 55,
-            attackMax: 80,
+            attack: 33,
+            attackMax: 55,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 80,
-            magicPower: 46
+            accuracy: 52,
+            magicPower: 28
         },
         extraStats: {
-            attack: 10,
-            attackMax: 10,
-            accuracy: 10,
+            attack: 7,
+            attackMax: 9,
+            accuracy: 13,
             magicPower: 8
         },
         enchantments: ["magic_blade"],
@@ -2363,40 +2220,38 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 54
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 30
+        }]
     },
 
-    serpent_trident: {
-        id: "serpent_trident",
-        icon: "serpentTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "serpent trident",
-        sellPrice: 20000,
-        description: "A sharp trident, beaming with magical energy",
+    red_trident: {
+        id: 'red_trident',
+        icon: 'trident_t08.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'red trident',
+        sellPrice: 10000,
+        description: 'A sharp, red-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 65,
-            attackMax: 95,
+            attack: 39,
+            attackMax: 65,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 92,
-            magicPower: 50
+            accuracy: 61,
+            magicPower: 32
         },
         extraStats: {
-            attack: 12,
-            attackMax: 12,
-            accuracy: 15,
-            magicPower: 10
+            attack: 8,
+            attackMax: 11,
+            accuracy: 14,
+            magicPower: 9
         },
         enchantments: ["magic_blade"],
         upgradeRarity: [
@@ -2408,39 +2263,80 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 57
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 35
+        }]
     },
 
-    inferno_trident: {
-        id: "inferno_trident",
-        icon: "infernoTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "inferno trident",
-        sellPrice: 20000,
-        description: "A sharp trident, beaming with magical energy",
+    black_trident: {
+        id: 'black_trident',
+        icon: 'trident_t09.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'black trident',
+        sellPrice: 11250,
+        description: 'A sharp, black-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 75,
-            attackMax: 120,
+            attack: 45,
+            attackMax: 75,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 108,
-            magicPower: 56
+            accuracy: 69,
+            magicPower: 36
         },
         extraStats: {
-            attack: 14,
-            attackMax: 14,
+            attack: 9,
+            attackMax: 13,
             accuracy: 15,
+            magicPower: 11
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 40
+        }]
+    },
+
+    yellow_trident: {
+        id: 'yellow_trident',
+        icon: 'trident_t10.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'yellow trident',
+        sellPrice: 12500,
+        description: 'A sharp, yellow-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 51,
+            attackMax: 85,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 77,
+            magicPower: 40
+        },
+        extraStats: {
+            attack: 10,
+            attackMax: 14,
+            accuracy: 17,
             magicPower: 12
         },
         enchantments: ["magic_blade"],
@@ -2453,40 +2349,38 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 67
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 45
+        }]
     },
 
-    exalted_trident: {
-        id: "exalted_trident",
-        icon: "exaltedTrident.png",
-        category: "combat",
-        weaponType: "trident",
-        slot: "mainHand",
-        name: "exalted trident",
-        sellPrice: 32500,
-        description: "A sharp trident, beaming with magical energy",
+    umber_trident: {
+        id: 'umber_trident',
+        icon: 'trident_t11.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'umber trident',
+        sellPrice: 13750,
+        description: 'A sharp, umber-colored trident, beaming with magical energy.',
         isWeapon: true,
         isEquippable: true,
         isMagic: true,
         isTwoHanded: true,
         stats: {
-            attack: 90,
-            attackMax: 150,
+            attack: 57,
+            attackMax: 95,
             attackSpeed: MEDIUM_SPEED,
-            accuracy: 130,
-            magicPower: 65
+            accuracy: 86,
+            magicPower: 44
         },
         extraStats: {
-            attack: 17,
-            attackMax: 25,
-            accuracy: 25,
-            magicPower: 20
+            attack: 11,
+            attackMax: 16,
+            accuracy: 18,
+            magicPower: 14
         },
         enchantments: ["magic_blade"],
         upgradeRarity: [
@@ -2498,14 +2392,614 @@ export const STAFF_ITEMS = {
             { chance: 30, rarityId: "fine" } // 18%      chance
             // 70%      chance (for uncommon)
         ],
-        requiredEquip: [
-            {
-                type: "skill",
-                name: "magic",
-                level: 77
-            }
-        ]
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 50
+        }]
     },
+
+    azure_trident: {
+        id: 'azure_trident',
+        icon: 'trident_t12.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'azure trident',
+        sellPrice: 15000,
+        description: 'A sharp, azure-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 63,
+            attackMax: 105,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 94,
+            magicPower: 48
+        },
+        extraStats: {
+            attack: 12,
+            attackMax: 18,
+            accuracy: 19,
+            magicPower: 15
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 55
+        }]
+    },
+
+    verdant_trident: {
+        id: 'verdant_trident',
+        icon: 'trident_t13.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'verdant trident',
+        sellPrice: 16250,
+        description: 'A sharp, verdant-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 69,
+            attackMax: 115,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 102,
+            magicPower: 52
+        },
+        extraStats: {
+            attack: 13,
+            attackMax: 19,
+            accuracy: 21,
+            magicPower: 17
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 60
+        }]
+    },
+
+    violet_trident: {
+        id: 'violet_trident',
+        icon: 'trident_t14.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'violet trident',
+        sellPrice: 17500,
+        description: 'A sharp, violet-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 75,
+            attackMax: 125,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 110,
+            magicPower: 56
+        },
+        extraStats: {
+            attack: 14,
+            attackMax: 21,
+            accuracy: 22,
+            magicPower: 18
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 65
+        }]
+    },
+
+    tawny_trident: {
+        id: 'tawny_trident',
+        icon: 'trident_t15.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'tawny trident',
+        sellPrice: 18750,
+        description: 'A sharp, tawny-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 81,
+            attackMax: 135,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 119,
+            magicPower: 60
+        },
+        extraStats: {
+            attack: 15,
+            attackMax: 22,
+            accuracy: 23,
+            magicPower: 19
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 70
+        }]
+    },
+
+    ash_trident: {
+        id: 'ash_trident',
+        icon: 'trident_t16.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'ash trident',
+        sellPrice: 20000,
+        description: 'A sharp, ash-coated trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 87,
+            attackMax: 145,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 127,
+            magicPower: 64
+        },
+        extraStats: {
+            attack: 16,
+            attackMax: 24,
+            accuracy: 25,
+            magicPower: 21
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 75
+        }]
+    },
+
+    crimson_trident: {
+        id: 'crimson_trident',
+        icon: 'trident_t17.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'crimson trident',
+        sellPrice: 21250,
+        description: 'A sharp, crimson-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 93,
+            attackMax: 155,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 135,
+            magicPower: 68
+        },
+        extraStats: {
+            attack: 17,
+            attackMax: 26,
+            accuracy: 26,
+            magicPower: 22
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 80
+        }]
+    },
+
+    charcoal_trident: {
+        id: 'charcoal_trident',
+        icon: 'trident_t18.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'charcoal trident',
+        sellPrice: 22500,
+        description: 'A sharp, charcoal-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 99,
+            attackMax: 165,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 144,
+            magicPower: 72
+        },
+        extraStats: {
+            attack: 18,
+            attackMax: 27,
+            accuracy: 27,
+            magicPower: 24
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 85
+        }]
+    },
+
+    amber_trident: {
+        id: 'amber_trident',
+        icon: 'trident_t19.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'amber trident',
+        sellPrice: 23750,
+        description: 'A sharp, amber-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 105,
+            attackMax: 175,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 152,
+            magicPower: 76
+        },
+        extraStats: {
+            attack: 19,
+            attackMax: 29,
+            accuracy: 29,
+            magicPower: 25
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 90
+        }]
+    },
+
+    leather_trident: {
+        id: 'leather_trident',
+        icon: 'trident_t20.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'leather trident',
+        sellPrice: 25000,
+        description: 'A sharp, leather-bound trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 111,
+            attackMax: 185,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 160,
+            magicPower: 80
+        },
+        extraStats: {
+            attack: 20,
+            attackMax: 31,
+            accuracy: 30,
+            magicPower: 26
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 95
+        }]
+    },
+
+    cerulean_trident: {
+        id: 'cerulean_trident',
+        icon: 'trident_t21.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'cerulean trident',
+        sellPrice: 26250,
+        description: 'A sharp, cerulean-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 117,
+            attackMax: 195,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 169,
+            magicPower: 84
+        },
+        extraStats: {
+            attack: 21,
+            attackMax: 32,
+            accuracy: 31,
+            magicPower: 28
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 100
+        }]
+    },
+
+    serpent_trident: {
+        id: 'serpent_trident',
+        icon: 'trident_t22.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'serpent trident',
+        sellPrice: 27500,
+        description: 'A scaly, serpent trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 123,
+            attackMax: 205,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 177,
+            magicPower: 88
+        },
+        extraStats: {
+            attack: 22,
+            attackMax: 34,
+            accuracy: 33,
+            magicPower: 29
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 105
+        }]
+    },
+
+    indigo_trident: {
+        id: 'indigo_trident',
+        icon: 'trident_t23.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'indigo trident',
+        sellPrice: 28750,
+        description: 'A sharp, indigo-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 129,
+            attackMax: 215,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 185,
+            magicPower: 92
+        },
+        extraStats: {
+            attack: 23,
+            attackMax: 36,
+            accuracy: 34,
+            magicPower: 31
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 110
+        }]
+    },
+
+    ochre_trident: {
+        id: 'ochre_trident',
+        icon: 'trident_t24.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'ochre trident',
+        sellPrice: 30000,
+        description: 'A sharp, ochre-colored trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 135,
+            attackMax: 225,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 193,
+            magicPower: 96
+        },
+        extraStats: {
+            attack: 25,
+            attackMax: 37,
+            accuracy: 35,
+            magicPower: 32
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 115
+        }]
+    },
+
+    exalted_trident: {
+        id: 'exalted_trident',
+        icon: 'trident_t25.png',
+        category: 'combat',
+        weaponType: 'trident',
+        slot: 'mainHand',
+        name: 'exalted trident',
+        sellPrice: 31250,
+        description: 'A sharp, exalted trident, beaming with magical energy.',
+        isWeapon: true,
+        isEquippable: true,
+        isMagic: true,
+        isTwoHanded: true,
+        stats: {
+            attack: 141,
+            attackMax: 235,
+            attackSpeed: MEDIUM_SPEED,
+            accuracy: 202,
+            magicPower: 100
+        },
+        extraStats: {
+            attack: 26,
+            attackMax: 39,
+            accuracy: 37,
+            magicPower: 34
+        },
+        enchantments: ["magic_blade"],
+        upgradeRarity: [
+            { chance: 0.2072, rarityId: "divine" }, //  0.2072% chance
+            { chance: 0.768, rarityId: "epic" }, //  0.5608% chance
+            { chance: 1.92, rarityId: "phenomenal" }, //  1.152%  chance
+            { chance: 4.8, rarityId: "extraordinary" }, //  2.88%   chance
+            { chance: 12, rarityId: "rare" }, //  7.2%    chance
+            { chance: 30, rarityId: "fine" } // 18%      chance
+            // 70%      chance (for uncommon)
+        ],
+        requiredEquip: [{
+            type: 'skill',
+            name: 'magic',
+            level: 120
+        }]
+    },      
 
     // hybrid between a cursed scimitar, a cursed wand, and a trident
     farplane_resonator: {

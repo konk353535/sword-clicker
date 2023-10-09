@@ -71,8 +71,16 @@ export const TOWER_FLOOR_17 = {
                     rewards: [{ type: "item", itemId: "meteorite_buckler", amount: 1 }]
                 },
                 {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "crimson_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "crimson_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "crimson_wizard_shorts", amount: 1 }
+                    ]
+                },
+                {
                     chance: 1 / 128,
-                    rewards: [{ type: "item", itemId: "azure_trident", amount: 1 }]
+                    rewards: [{ type: "item", itemId: "crimson_trident", amount: 1 }]
                 },
                 {
                     chance: 1 / 96,

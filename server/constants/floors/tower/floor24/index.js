@@ -102,14 +102,18 @@ export const TOWER_FLOOR_24 = {
                 {
                     chance: 1 / 128,
                     rewards: [
-                        { type: "item", itemId: "inferno_wizard_hat", amount: 1 },
-                        { type: "item", itemId: "inferno_wizard_shirt", amount: 1 },
-                        { type: "item", itemId: "inferno_wizard_shorts", amount: 1 }
+                        { type: "item", itemId: "ochre_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "ochre_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "ochre_wizard_shorts", amount: 1 }
                     ]
                 },
                 {
                     chance: 1 / 48,
                     rewards: [{ type: "item", itemId: "scream_level_5_tome", amount: 1 }]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "ochre_trident", amount: 1 }]
                 }
             ])
         )

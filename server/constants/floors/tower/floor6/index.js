@@ -111,6 +111,18 @@ export const TOWER_FLOOR_6 = {
                 {
                     chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "phoenix_t1_color" }]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "orange_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "orange_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "orange_wizard_shorts", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "orange_trident", amount: 1 }]
                 }
             ])
         )

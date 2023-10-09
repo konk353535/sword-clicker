@@ -100,8 +100,16 @@ export const TOWER_FLOOR_23 = {
                     ]
                 },
                 {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "indigo_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "indigo_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "indigo_wizard_shorts", amount: 1 }
+                    ]
+                },
+                {
                     chance: 1 / 128,
-                    rewards: [{ type: "item", itemId: "inferno_trident", amount: 1 }]
+                    rewards: [{ type: "item", itemId: "indigo_trident", amount: 1 }]
                 },
                 {
                     chance: 1 / 48,

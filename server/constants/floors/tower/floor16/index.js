@@ -77,9 +77,9 @@ export const TOWER_FLOOR_16 = {
                 {
                     chance: 1 / 48,
                     rewards: [
-                        { type: "item", itemId: "crimson_wizard_hat", amount: 1 },
-                        { type: "item", itemId: "crimson_wizard_shirt", amount: 1 },
-                        { type: "item", itemId: "crimson_wizard_shorts", amount: 1 }
+                        { type: "item", itemId: "ash_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "ash_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "ash_wizard_shorts", amount: 1 }
                     ]
                 },
                 {
@@ -97,6 +97,10 @@ export const TOWER_FLOOR_16 = {
                 {
                     chance: 1 / 256,
                     rewards: [{ type: "icon", iconId: "phoenix_t2_color" }]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "ash_trident", amount: 1 }]
                 }
             ])
         )

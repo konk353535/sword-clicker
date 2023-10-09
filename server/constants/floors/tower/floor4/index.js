@@ -60,7 +60,8 @@ export const TOWER_FLOOR_4 = {
                     chance: 1 / 32,
                     rewards: [
                         { type: "item", itemId: "druids_shirt", amount: 1 },
-                        { type: "item", itemId: "druids_pants", amount: 1 }
+                        { type: "item", itemId: "druids_pants", amount: 1 },
+                        { type: "item", itemId: "druid_trident", amount: 1 }
                     ]
                 },
                 {

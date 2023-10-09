@@ -149,17 +149,17 @@ export const MAGIC_ACHIEVEMENTS = {
         rewards: [
             {
                 type: "item",
-                itemId: "orange_wizard_hat",
+                itemId: "druid_trident",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "orange_wizard_shirt",
+                itemId: "druids_shirt",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "orange_wizard_shorts",
+                itemId: "druids_pants",
                 amount: 1
             },
             {
@@ -250,17 +250,17 @@ export const MAGIC_ACHIEVEMENTS = {
         rewards: [
             {
                 type: "item",
-                itemId: "amber_wizard_hat",
+                itemId: "orange_wizard_hat",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "amber_wizard_shirt",
+                itemId: "orange_wizard_shirt",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "amber_wizard_shorts",
+                itemId: "orange_wizard_shorts",
                 amount: 1
             },
             {
@@ -351,17 +351,17 @@ export const MAGIC_ACHIEVEMENTS = {
         rewards: [
             {
                 type: "item",
-                itemId: "violet_wizard_hat",
+                itemId: "grey_wizard_hat",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "violet_wizard_shirt",
+                itemId: "grey_wizard_shirt",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "violet_wizard_shorts",
+                itemId: "grey_wizard_shorts",
                 amount: 1
             },
             {
@@ -489,17 +489,17 @@ export const MAGIC_ACHIEVEMENTS = {
         rewards: [
             {
                 type: "item",
-                itemId: "crimson_wizard_hat",
+                itemId: "red_wizard_hat",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "crimson_wizard_shirt",
+                itemId: "red_wizard_shirt",
                 amount: 1
             },
             {
                 type: "item",
-                itemId: "crimson_wizard_shorts",
+                itemId: "red_wizard_shorts",
                 amount: 1
             },
             {

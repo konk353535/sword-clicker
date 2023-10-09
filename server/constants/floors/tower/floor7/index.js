@@ -77,6 +77,18 @@ export const TOWER_FLOOR_7 = {
                 {
                     chance: 1 / 32,
                     rewards: [{ type: "item", itemId: "frost_armor_1_tome", amount: 1 }]
+                },
+                {
+                    chance: 1 / 32,
+                    rewards: [
+                        { type: "item", itemId: "grey_wizard_hat", amount: 1 },
+                        { type: "item", itemId: "grey_wizard_shirt", amount: 1 },
+                        { type: "item", itemId: "grey_wizard_shorts", amount: 1 }
+                    ]
+                },
+                {
+                    chance: 1 / 128,
+                    rewards: [{ type: "item", itemId: "grey_trident", amount: 1 }]
                 }
             ])
         )

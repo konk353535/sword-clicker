@@ -283,118 +283,217 @@ export const CLASSES = {
         },
         reforge: {
             druids_shirt: {
-                requiresCrafting: 16
+                requiresCrafting: 20
             },
             druids_pants: {
-                requiresCrafting: 16
-            },
-            brown_wizard_hat: {
-                requiresCrafting: 8
-            },
-            blue_wizard_hat: {
-                requiresCrafting: 24
-            },
-            purple_wizard_hat: {
-                requiresCrafting: 41
-            },
-            orange_wizard_hat: {
-                requiresCrafting: 57
-            },
-            amber_wizard_hat: {
-                requiresCrafting: 73
-            },
-            violet_wizard_hat: {
-                requiresCrafting: 78
-            },
-            crimson_wizard_hat: {
-                requiresCrafting: 83
-            },
-            azure_wizard_hat: {
-                requiresCrafting: 86
-            },
-            verdant_wizard_hat: {
-                requiresCrafting: 89
-            },
-            serpent_wizard_hat: {
-                requiresCrafting: 98
-            },
-            inferno_wizard_hat: {
-                requiresCrafting: 114
-            },
-            exalted_wizard_hat: {
-                requiresCrafting: 130
+                requiresCrafting: 20
             },
             brown_wizard_shirt: {
-                requiresCrafting: 8
+                requiresCrafting: 10
             },
             blue_wizard_shirt: {
-                requiresCrafting: 24
+                requiresCrafting: 15
             },
             purple_wizard_shirt: {
-                requiresCrafting: 41
+                requiresCrafting: 25
             },
             orange_wizard_shirt: {
-                requiresCrafting: 57
+                requiresCrafting: 30
             },
-            amber_wizard_shirt: {
-                requiresCrafting: 73
+            grey_wizard_shirt: {
+                requiresCrafting: 35
             },
-            violet_wizard_shirt: {
-                requiresCrafting: 78
+            red_wizard_shirt: {
+                requiresCrafting: 40
             },
-            crimson_wizard_shirt: {
-                requiresCrafting: 83
+            black_wizard_shirt: {
+                requiresCrafting: 45
+            },
+            yellow_wizard_shirt: {
+                requiresCrafting: 50
+            },
+            umber_wizard_shirt: {
+                requiresCrafting: 55
             },
             azure_wizard_shirt: {
-                requiresCrafting: 86
+                requiresCrafting: 60
             },
             verdant_wizard_shirt: {
-                requiresCrafting: 89
+                requiresCrafting: 65
+            },
+            violet_wizard_shirt: {
+                requiresCrafting: 70
+            },
+            tawny_wizard_shirt: {
+                requiresCrafting: 75
+            },
+            ash_wizard_shirt: {
+                requiresCrafting: 80
+            },
+            crimson_wizard_shirt: {
+                requiresCrafting: 85
+            },
+            charcoal_wizard_shirt: {
+                requiresCrafting: 90
+            },
+            amber_wizard_shirt: {
+                requiresCrafting: 95
+            },
+            leather_wizard_shirt: {
+                requiresCrafting: 100
+            },
+            cerulean_wizard_shirt: {
+                requiresCrafting: 105
             },
             serpent_wizard_shirt: {
-                requiresCrafting: 98
+                requiresCrafting: 110
             },
-            inferno_wizard_shirt: {
-                requiresCrafting: 114
+            indigo_wizard_shirt: {
+                requiresCrafting: 115
+            },
+            ochre_wizard_shirt: {
+                requiresCrafting: 120
             },
             exalted_wizard_shirt: {
-                requiresCrafting: 130
+                requiresCrafting: 125
             },
             brown_wizard_shorts: {
-                requiresCrafting: 8
+                requiresCrafting: 10
             },
             blue_wizard_shorts: {
-                requiresCrafting: 24
+                requiresCrafting: 15
             },
             purple_wizard_shorts: {
-                requiresCrafting: 41
+                requiresCrafting: 25
             },
             orange_wizard_shorts: {
-                requiresCrafting: 57
+                requiresCrafting: 30
             },
-            amber_wizard_shorts: {
-                requiresCrafting: 73
+            grey_wizard_shorts: {
+                requiresCrafting: 35
             },
-            violet_wizard_shorts: {
-                requiresCrafting: 78
+            red_wizard_shorts: {
+                requiresCrafting: 40
             },
-            crimson_wizard_shorts: {
-                requiresCrafting: 83
+            black_wizard_shorts: {
+                requiresCrafting: 45
+            },
+            yellow_wizard_shorts: {
+                requiresCrafting: 50
+            },
+            umber_wizard_shorts: {
+                requiresCrafting: 55
             },
             azure_wizard_shorts: {
-                requiresCrafting: 86
+                requiresCrafting: 60
             },
             verdant_wizard_shorts: {
-                requiresCrafting: 89
+                requiresCrafting: 65
+            },
+            violet_wizard_shorts: {
+                requiresCrafting: 70
+            },
+            tawny_wizard_shorts: {
+                requiresCrafting: 75
+            },
+            ash_wizard_shorts: {
+                requiresCrafting: 80
+            },
+            crimson_wizard_shorts: {
+                requiresCrafting: 85
+            },
+            charcoal_wizard_shorts: {
+                requiresCrafting: 90
+            },
+            amber_wizard_shorts: {
+                requiresCrafting: 95
+            },
+            leather_wizard_shorts: {
+                requiresCrafting: 100
+            },
+            cerulean_wizard_shorts: {
+                requiresCrafting: 105
             },
             serpent_wizard_shorts: {
-                requiresCrafting: 98
+                requiresCrafting: 110
             },
-            inferno_wizard_shorts: {
-                requiresCrafting: 114
+            indigo_wizard_shorts: {
+                requiresCrafting: 115
+            },
+            ochre_wizard_shorts: {
+                requiresCrafting: 120
             },
             exalted_wizard_shorts: {
-                requiresCrafting: 130
+                requiresCrafting: 125
+            },
+            brown_wizard_hat: {
+                requiresCrafting: 10
+            },
+            blue_wizard_hat: {
+                requiresCrafting: 15
+            },
+            purple_wizard_hat: {
+                requiresCrafting: 25
+            },
+            orange_wizard_hat: {
+                requiresCrafting: 30
+            },
+            grey_wizard_hat: {
+                requiresCrafting: 35
+            },
+            red_wizard_hat: {
+                requiresCrafting: 40
+            },
+            black_wizard_hat: {
+                requiresCrafting: 45
+            },
+            yellow_wizard_hat: {
+                requiresCrafting: 50
+            },
+            umber_wizard_hat: {
+                requiresCrafting: 55
+            },
+            azure_wizard_hat: {
+                requiresCrafting: 60
+            },
+            verdant_wizard_hat: {
+                requiresCrafting: 65
+            },
+            violet_wizard_hat: {
+                requiresCrafting: 70
+            },
+            tawny_wizard_hat: {
+                requiresCrafting: 75
+            },
+            ash_wizard_hat: {
+                requiresCrafting: 80
+            },
+            crimson_wizard_hat: {
+                requiresCrafting: 85
+            },
+            charcoal_wizard_hat: {
+                requiresCrafting: 90
+            },
+            amber_wizard_hat: {
+                requiresCrafting: 95
+            },
+            leather_wizard_hat: {
+                requiresCrafting: 100
+            },
+            cerulean_wizard_hat: {
+                requiresCrafting: 105
+            },
+            serpent_wizard_hat: {
+                requiresCrafting: 110
+            },
+            indigo_wizard_hat: {
+                requiresCrafting: 115
+            },
+            ochre_wizard_hat: {
+                requiresCrafting: 120
+            },
+            exalted_wizard_hat: {
+                requiresCrafting: 125
             }
         }
     },
@@ -475,42 +574,77 @@ export const CLASSES = {
         },
         reforge: {
             brown_trident: {
-                requiresCrafting: 8
+                requiresCrafting: 10
             },
             blue_trident: {
-                requiresCrafting: 24
+                requiresCrafting: 15
+            },
+            druid_trident: {
+                requiresCrafting: 20
             },
             purple_trident: {
-                requiresCrafting: 41
+                requiresCrafting: 25
             },
             orange_trident: {
-                requiresCrafting: 57
+                requiresCrafting: 30
             },
-            amber_trident: {
-                requiresCrafting: 73
+            grey_trident: {
+                requiresCrafting: 35
             },
-            violet_trident: {
-                requiresCrafting: 78
+            red_trident: {
+                requiresCrafting: 40
             },
-            crimson_trident: {
-                requiresCrafting: 83
+            black_trident: {
+                requiresCrafting: 45
+            },
+            yellow_trident: {
+                requiresCrafting: 50
+            },
+            umber_trident: {
+                requiresCrafting: 55
             },
             azure_trident: {
-                requiresCrafting: 86
+                requiresCrafting: 60
             },
             verdant_trident: {
-                requiresCrafting: 89
+                requiresCrafting: 65
+            },
+            violet_trident: {
+                requiresCrafting: 70
+            },
+            tawny_trident: {
+                requiresCrafting: 75
+            },
+            ash_trident: {
+                requiresCrafting: 80
+            },
+            crimson_trident: {
+                requiresCrafting: 85
+            },
+            charcoal_trident: {
+                requiresCrafting: 90
+            },
+            amber_trident: {
+                requiresCrafting: 95
+            },
+            leather_trident: {
+                requiresCrafting: 100
+            },
+            cerulean_trident: {
+                requiresCrafting: 105
             },
             serpent_trident: {
-                requiresCrafting: 98
+                requiresCrafting: 110
             },
-            inferno_trident: {
-                requiresCrafting: 114
+            indigo_trident: {
+                requiresCrafting: 115
+            },
+            ochre_trident: {
+                requiresCrafting: 120
             },
             exalted_trident: {
-                requiresCrafting: 130
-            }
-            
+                requiresCrafting: 125
+            }            
         },
         abilityPatch: {
             blizzard: {

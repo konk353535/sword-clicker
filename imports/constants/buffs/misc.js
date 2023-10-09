@@ -336,7 +336,7 @@ export const MISC_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 // remove any temporary armor-boosting effects
-                ;["armor_up", "mud_armor", "healing_shield", "volcanic_shield"].forEach((buffIdToRemove) => {
+                ["armor_up", "mud_armor", "healing_shield", "volcanic_shield"].forEach((buffIdToRemove) => {
                     if (target.hasBuff(buffIdToRemove)) {
                         target.removeBuff(target.findBuff(buffIdToRemove))
                     }

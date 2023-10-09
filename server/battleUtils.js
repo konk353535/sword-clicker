@@ -128,13 +128,16 @@ export const fixupBuffText = function fixupBuffText(buff, caster) {
         const buffConstData = lookupBuff(buff.id)
 
         if (buffConstData) {
-            // if .onApply() did not set a name for this buff, set one here
-            if (!buff.data.name || buff.data.name.toString().trim().length === 0) {
+            if (!buff.data) {
+                // probably going to have a bad day
+                buff.data = Object.assign({}, buffConstData.data)
+            }
+            
+            if (!buff.data.name || buff.data.name?.toString()?.trim()?.length === 0) {
                 buff.data.name = buffConstData?.name || undefined
             }
 
-            // if .onApply() did not set a description for this buff, set one here
-            if (!buff.data.description || buff.data.description.toString().trim().length === 0) {
+            if (!buff.data.description || buff.data.description?.toString()?.trim()?.length === 0) {
                 if (_.isFunction(buffConstData?.description)) {
                     buff.data.description = buffConstData?.description({
                         buff: buffConstData,

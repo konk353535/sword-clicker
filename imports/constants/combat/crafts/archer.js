@@ -863,6 +863,110 @@ export const ARCHER_CRAFTS = {
             }
         ]
     },
+    
+    tali_bow: {
+        produces: "tali_bow",
+        name: "tali bow",
+        recipeFor: "crafting",
+        category: "combat",
+        id: "tali_bow",
+        timeToCraft: 7200,
+        xp: 750000,
+        maxToCraft: 1,
+        tags: ["weapon"],
+        requiredCraftingLevel: 85,
+        required: [
+            {
+                type: "item",
+                itemId: "meteorite_furnace",
+                icon: ITEMS["meteorite_furnace"].icon,
+                name: ITEMS["meteorite_furnace"].name,
+                amount: 1,
+                consumes: false
+            },
+            {
+                type: "item",
+                itemId: "fairy_steel_essence",
+                icon: ITEMS["fairy_steel_essence"].icon,
+                name: ITEMS["fairy_steel_essence"].name,
+                amount: 4,
+                consumes: true
+            },
+            {
+                type: "item",
+                itemId: "tali_log",
+                icon: ITEMS["tali_log"].icon,
+                name: ITEMS["tali_log"].name,
+                amount: 50,
+                consumes: true
+            },
+            {
+                type: "item",
+                itemId: "fairy_steel_bar",
+                icon: ITEMS["fairy_steel_bar"].icon,
+                name: ITEMS["fairy_steel_bar"].name,
+                amount: 5,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "crafting",
+                level: 85
+            }
+        ]
+    },
+
+    willow_bow: {
+        produces: "willow_bow",
+        name: "willow bow",
+        recipeFor: "crafting",
+        category: "combat",
+        id: "willow_bow",
+        timeToCraft: 7200,
+        xp: 1250000,
+        maxToCraft: 1,
+        tags: ["weapon"],
+        requiredCraftingLevel: 90,
+        required: [
+            {
+                type: "item",
+                itemId: "fairy_steel_furnace",
+                icon: ITEMS["fairy_steel_furnace"].icon,
+                name: ITEMS["fairy_steel_furnace"].name,
+                amount: 1,
+                consumes: false
+            },
+            {
+                type: "item",
+                itemId: "elven_steel_essence",
+                icon: ITEMS["elven_steel_essence"].icon,
+                name: ITEMS["elven_steel_essence"].name,
+                amount: 4,
+                consumes: true
+            },
+            {
+                type: "item",
+                itemId: "willow_log",
+                icon: ITEMS["willow_log"].icon,
+                name: ITEMS["willow_log"].name,
+                amount: 50,
+                consumes: true
+            },
+            {
+                type: "item",
+                itemId: "elven_steel_bar",
+                icon: ITEMS["elven_steel_bar"].icon,
+                name: ITEMS["elven_steel_bar"].name,
+                amount: 5,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "crafting",
+                level: 90
+            }
+        ]
+    },
 
     teak_bow: {
         produces: "teak_bow",

@@ -33,7 +33,7 @@ export const TOWER_FLOOR_20 = {
                 {
                     chance: 1 / 128,
                     rewards: [{ type: "item", itemId: "cursed_knife", amount: 1 }]
-                },
+                } /*,
                 {
                     chance: 1 / 32,
                     rewards: [{ type: "item", itemId: "teak_bow_scroll", amount: 1 }]
@@ -41,7 +41,7 @@ export const TOWER_FLOOR_20 = {
                 {
                     chance: 1 / 32,
                     rewards: [{ type: "item", itemId: "cursed_quiver_scroll", amount: 1 }]
-                }
+                } */
             ])
         )
     },

@@ -9,7 +9,7 @@ import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
 export const CLASS_BUFFS = {
     class_trait_barbarian: {
         duplicateTag: "class_trait_barbarian",
-        icon: "classBarbarian.png",
+        icon: "classBarbarianSmall.png",
         name: "Class Trait: Barbarian",
         description() {
             return `
@@ -146,7 +146,7 @@ export const CLASS_BUFFS = {
 
     class_trait_duelist: {
         duplicateTag: "class_trait_duelist",
-        icon: "classDuelist.png",
+        icon: "classDuelistSmall.png",
         name: "Class Trait: Duelist",
         description() {
             return `
@@ -218,7 +218,7 @@ export const CLASS_BUFFS = {
 
     class_trait_paladin: {
         duplicateTag: "class_trait_paladin",
-        icon: "classPaladin.png",
+        icon: "classPaladinSmall.png",
         name: "Class Trait: Paladin",
         description() {
             return `
@@ -584,7 +584,7 @@ export const CLASS_BUFFS = {
 
     class_trait_ranger: {
         duplicateTag: "class_trait_ranger",
-        icon: "classRanger.png",
+        icon: "classRangerSmall.png",
         name: "Class Trait: Ranger",
         description() {
             return `
@@ -947,7 +947,7 @@ export const CLASS_BUFFS = {
 
     class_trait_sage: {
         duplicateTag: "class_trait_sage",
-        icon: "classSage.png",
+        icon: "classSageSmall.png",
         name: "Class Trait: Sage",
         description() {
             return `
@@ -1090,7 +1090,7 @@ export const CLASS_BUFFS = {
 
     class_trait_tactician: {
         duplicateTag: "class_trait_tactician",
-        icon: "classTactician.png",
+        icon: "classTacticianSmall.png",
         name: "Class Trait: Tactician",
         description() {
             return `
@@ -1192,7 +1192,7 @@ export const CLASS_BUFFS = {
 
     class_trait_warmage: {
         duplicateTag: "class_trait_warmage",
-        icon: "classWarMage.png",
+        icon: "classWarMageSmall.png",
         name: "Class Trait: War Mage",
         description() {
             return `
@@ -1276,7 +1276,7 @@ export const CLASS_BUFFS = {
 
     class_trait_wizard: {
         duplicateTag: "class_trait_wizard",
-        icon: "classWizard.png",
+        icon: "classWizardSmall.png",
         name: "Class Trait: Wizard",
         description() {
             return `

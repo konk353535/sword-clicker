@@ -36,7 +36,7 @@ Template.rankingsPage.onCreated(function bodyOnCreated() {
             Meteor.call("skills.highscores", skillName, showAll200, (err, res) => {
                 res.forEach((thisPlayer, index) => {
                     thisPlayer.rank = index + 1
-                    thisPlayer.icon = thisPlayer.icon || CLASSES.lookup(thisPlayer?.classData?.currentClass).icon || "invis.gif"
+                    thisPlayer.icon = thisPlayer.icon ||  "invis.gif"
                 })
                 this.state.set("highscores", res)
             })

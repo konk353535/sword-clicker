@@ -867,7 +867,13 @@ Template.lobbyPage.helpers({
             } else {
                 userCombat.isLeader = false
             }
-            userCombat.classIcon = userCurrentClass(userCombat.owner).icon
+            const userClassData = userCurrentClass(userCombat.owner)
+            userCombat.classUnlocked = userClassData.unlocked
+            userCombat.classEligible = userClassData.eligible
+            userCombat.classId = userClassData.equipped
+            userCombat.classData = userClassData.data
+            userCombat.classIcon = userClassData.icon
+            userCombat.classCooldown = userClassData.cooldown
 
             return userCombat
         })

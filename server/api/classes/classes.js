@@ -38,10 +38,12 @@ const setClass = function(uid, newClass) {
         uid = Meteor.userId()
     }
 
-    let newCooldown = (newClass == CLASSES.default().id)
+    // set the user's cooldown
+    const newCooldown = (newClass == CLASSES.default().id)
         ? moment().add(-1, "seconds").toDate()
         : moment().add(12, "hours").toDate()
 
+    // update user record with new class details
     Users.update(
         {
             _id: uid
@@ -56,6 +58,7 @@ const setClass = function(uid, newClass) {
         }
     )
 
+    // update leaderboard class icons
     Skills.update(
         {
             owner: uid
@@ -197,6 +200,28 @@ Meteor.methods({
 
                 const userAbilities = Abilities.findOne({ owner: uid })
 
+                // overkill, but unlearn all abilities from all classes (in case a dev changed someone's class prior?)
+                CLASSES.list().forEach((classId) => {
+                    try {
+                        const classVal = CLASSES.lookup(classId)
+
+                        console.log(classVal)
+
+                        if (classVal && classVal.exclusiveAbilities) {
+                            classVal.exclusiveAbilities.forEach((thisAbility) => {
+                                Abilities.update(userAbilities._id, {
+                                    $pull: {
+                                        learntAbilities: {
+                                            abilityId: thisAbility
+                                        }
+                                    }
+                                })
+                            })
+                        }
+                    } catch (err) {}
+                })
+
+                // unlearn all abilities from former class
                 userCurrentClassEquipped.exclusiveAbilities.forEach((thisAbility) => {
                     Abilities.update(userAbilities._id, {
                         $pull: {
@@ -207,6 +232,7 @@ Meteor.methods({
                     })
                 })
 
+                // learn new abilities from new class
                 userNewClassToEquip.exclusiveAbilities.forEach((thisAbility) => {
                     const abilityConstants = ABILITIES[thisAbility]
 

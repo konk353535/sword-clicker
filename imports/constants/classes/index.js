@@ -6,7 +6,7 @@ export const CLASSES = {
     wanderer: {
         id: "wanderer",
         name: "Wanderer",
-        icon: "classWanderer.png",
+        icon: "classWandererSmall.png",
         eligible: function (uid) {
             return classFeatureUnlocked(uid)
         },
@@ -17,7 +17,7 @@ export const CLASSES = {
     barbarian: {
         id: "barbarian",
         name: "Barbarian",
-        icon: "classBarbarian.png",
+        icon: "classBarbarianSmall.png",
         eligible: function () {
             return true
         },
@@ -54,7 +54,7 @@ export const CLASSES = {
     duelist: {
         id: "duelist",
         name: "Duelist",
-        icon: "classDuelist.png",
+        icon: "classDuelistSmall.png",
         eligible: function () {
             return true
         },
@@ -87,7 +87,7 @@ export const CLASSES = {
     paladin: {
         id: "paladin",
         name: "Paladin",
-        icon: "classPaladin.png",
+        icon: "classPaladinSmall.png",
         eligible: function () {
             return true
         },
@@ -138,7 +138,7 @@ export const CLASSES = {
     ranger: {
         id: "ranger",
         name: "Ranger",
-        icon: "classRanger.png",
+        icon: "classRangerSmall.png",
         eligible: function () {
             return true
         },
@@ -268,7 +268,7 @@ export const CLASSES = {
     sage: {
         id: "sage",
         name: "Sage",
-        icon: "classSage.png",
+        icon: "classSageSmall.png",
         eligible: function () {
             return true
         },
@@ -402,7 +402,7 @@ export const CLASSES = {
     tactician: {
         id: "tactician",
         name: "Tactician",
-        icon: "classTactician.png",
+        icon: "classTacticianSmall.png",
         eligible: function () {
             return true
         },
@@ -413,7 +413,7 @@ export const CLASSES = {
     warmage: {
         id: "warmage",
         name: "War Mage",
-        icon: "classWarMage.png",
+        icon: "classWarMageSmall.png",
         eligible: function () {
             return true
         },
@@ -539,7 +539,7 @@ export const CLASSES = {
     wizard: {
         id: "wizard",
         name: "Wizard",
-        icon: "classWizard.png",
+        icon: "classWizardSmall.png",
         eligible: function () {
             return true
         },
@@ -813,5 +813,9 @@ export const CLASSES = {
 
     default: function () {
         return CLASSES["wanderer"]
+    },
+
+    list: function() {
+        return ["wanderer", "barbarian", "duelist", "paladin", "ranger", "sage", "tactician", "war mage", "wizard"]
     }
 }

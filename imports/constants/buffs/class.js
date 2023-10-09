@@ -487,7 +487,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Grants all allies a stacks of <i>Bulwark</i> protection at the beginning of battle that 
+        Grants all allies a stack of <i>Bulwark</i> protection at the beginning of battle that 
         prevents all damage.  An additional stack is granted per each room the group advances to
         up to a maximum of 3 stacks.  Each time the ally would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.<br />
@@ -538,7 +538,7 @@ export const CLASS_BUFFS = {
         name: "Bulwark",
         description({ buff, level }) {
             return `
-        A Paladin has granted you a stacks of <i>Bulwark</i> protection that prevents all damage.
+        A Paladin has granted you a stack of <i>Bulwark</i> protection that prevents all damage.
         Each time you would take damage, a stack is deducted. When all stacks are gone, this
         protection ends.`
         },

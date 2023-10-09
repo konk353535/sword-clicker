@@ -136,7 +136,8 @@ export const ENEMIES = Object.assign(
                     data: {
                         totalDuration: Infinity,
                         icon: "monk.svg",
-                        name: "monk"
+                        name: "monk",
+                        description: "He studies your every move, able to inflict greater damage each time he is struck."
                     }
                 }
             ],

@@ -1899,7 +1899,7 @@ export const MONSTER_BUFFS = {
 
     monk: {
         duplicateTag: "monk", // Used to stop duplicate buffs
-        icon: "",
+        icon: "monk.svg",
         name: "Insight",
         description({ buff, level }) {
             `He studies your every move, able to inflict greater damage each time he is struck.`

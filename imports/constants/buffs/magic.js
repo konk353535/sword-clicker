@@ -2101,7 +2101,8 @@ export const MAGIC_BUFFS = {
                             allowDuplicates: true,
                             icon: "ignite.svg",
                             name: "ignite",
-                            duplicateTag: "ignite_proper"
+                            duplicateTag: "ignite_proper",
+                            description: "Burning in intense, searing heat!", 
                         }
                     }
 
@@ -2127,9 +2128,9 @@ export const MAGIC_BUFFS = {
     ignite_proper: {
         duplicateTag: "ignite_proper", // Used to stop duplicate buffs
         icon: "ignite.svg",
-        name: "ignite",
+        name: "Burning",
         description({ buff, level }) {
-            return ``
+            return `Burning in intense, searing heat!`
         },
         constants: {},
         data: {

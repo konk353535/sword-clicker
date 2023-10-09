@@ -111,6 +111,9 @@ if (!BIM.init) {
     BIM.init = true
     BIM.buffs = []
     BIM.checkExpiredBuffs = function() {
+        if (!BIM.buffs) {
+            return
+        }
         BIM.buffs.forEach(function(thisBuff) {
             const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
             const selectorA = `#${selectorA_id}`
@@ -134,6 +137,9 @@ if (!BIM.init) {
         })
     }
     BIM.checkBuffsWithNoTooltip = (function() {
+        if (!BIM.buffs) {
+            return
+        }
         BIM.buffs.forEach(function(thisBuff) {
             if (!thisBuff?.addedTooltip && thisBuff?.size == "small") {
                 const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
@@ -279,7 +285,9 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
         const buffName = localData.buff.data?.name || localData.buff?.id || "Combat Effect"
         const buffDesc = localData.buff.data?.description || "You aren't sure what this effect does."
 
-        BIM.buffs.push({ uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc })
+        if (BIM && BIM.buffs) {
+            BIM.buffs.push({ uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc })
+        }
 
         self.state.set("selectorA", selectorA)
         self.state.set("selectorB", selectorB)

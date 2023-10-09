@@ -816,6 +816,6 @@ export const CLASSES = {
     },
 
     list: function() {
-        return ["wanderer", "barbarian", "duelist", "paladin", "ranger", "sage", "tactician", "war mage", "wizard"]
+        return ["wanderer", "barbarian", "duelist", "paladin", "ranger", "sage", "tactician", "warmage", "wizard"]
     }
 }

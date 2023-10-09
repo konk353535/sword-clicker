@@ -726,7 +726,7 @@ Template.currentBattleUi.helpers({
         const instance = Template.instance()
 
         if (instance && instance.state.get("myUnit")) {
-            return (instance.state.get("myUnit")?.amulet?.energyStorage > 0) ? instance.state.get("myUnit")?.amulet > 0 : false
+            return (instance.state.get("myUnit")?.amulet?.energyStorage > 0) ? instance.state.get("myUnit")?.amulet : false
         }
     }
 })

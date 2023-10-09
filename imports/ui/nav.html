@@ -143,32 +143,18 @@
                 </a>
               </span>
             </div>
+            
             <div class="dropdown ml-2">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{currentUser.username}}
               </button>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+
+                
+
                 {{#if currentUser.tutorial}}
                   <a class="dropdown-item skip-tutorial" style="cursor: pointer">
                     Skip Tutorial
-                  </a>
-                {{/if}}
-                {{#if floatingTextDisabled}}
-                  <a class="dropdown-item enable-floating-text" style="cursor: pointer">
-                    Enable floating text
-                  </a>
-                {{else}}
-                  <a class="dropdown-item disable-floating-text" style="cursor: pointer">
-                    Disable floating text
-                  </a>
-                {{/if}}
-                {{#if wantCondensedChat}}
-                  <a class="dropdown-item disable-condensed-chat" style="cursor: pointer">
-                    Disable condensed chat
-                  </a>
-                {{else}}
-                  <a class="dropdown-item enable-condensed-chat" style="cursor: pointer">
-                    Enable condensed chat
                   </a>
                 {{/if}}
                 {{#if summaryListDisabled}}
@@ -207,28 +193,14 @@
                     Need/Greed: auto-pass
                   </a>
                 {{/if}}
-                {{#if $eq darkModeEnabled true}}
-                  <a class="dropdown-item disable-dark-mode" style="cursor: pointer">
-                    Disable dark mode
-                  </a>
-                {{else}}
-                  <a class="dropdown-item enable-dark-mode" style="cursor: pointer">
-                    Enable dark mode
-                  </a>
-                {{/if}}
-                {{#if $eq largeChatEnabled true}}
-                  <a class="dropdown-item disable-large-chat hide-on-mobile" style="cursor: pointer">
-                    Reduce chat
-                  </a>
-                {{else}}
-                  <a class="dropdown-item enable-large-chat hide-on-mobile" style="cursor: pointer">
-                    Enlarge chat
-                  </a>
-                {{/if}}
 
-                <a class="dropdown-item">
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" style="cursor: not-allowed">
                   Server: {{ serverName }}
                 </a>
+
+                <div class="dropdown-divider"></div>
 
                 {{#if currentUser.isGuest}}
                   <label class="text-danger">Danger, you're a guest</label>
@@ -241,6 +213,61 @@
                   </a>
                 {{else}}
                   {{> atNavButton}}
+                {{/if}}
+              </div>
+            </div>
+            <div class="dropdown ml-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Appearance
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                {{#if $eq darkModeEnabled true}}
+                <a class="dropdown-item disable-dark-mode" style="cursor: pointer">
+                  Disable dark mode
+                </a>
+                {{else}}
+                  <a class="dropdown-item enable-dark-mode" style="cursor: pointer">
+                    Enable dark mode
+                  </a>
+                {{/if}}
+                {{#if wantCondensedChat}}
+                  <a class="dropdown-item disable-condensed-chat" style="cursor: pointer">
+                    Disable condensed chat
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-condensed-chat" style="cursor: pointer">
+                    Enable condensed chat
+                  </a>
+                {{/if}}
+                {{#if $eq largeChatEnabled true}}
+                  <a class="dropdown-item disable-large-chat hide-on-mobile" style="cursor: pointer">
+                    Reduce chat
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-large-chat hide-on-mobile" style="cursor: pointer">
+                    Enlarge chat
+                  </a>
+                {{/if}}
+                
+                <div class="dropdown-divider"></div>
+
+                {{#if floatingTextDisabled}}
+                  <a class="dropdown-item enable-floating-text" style="cursor: pointer">
+                    Enable floating text
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-floating-text" style="cursor: pointer">
+                    Disable floating text
+                  </a>
+                {{/if}}
+                {{#if combatDeathsDisabled}}
+                  <a class="dropdown-item enable-combat-deaths" style="cursor: pointer">
+                    Enable combat deaths
+                  </a>
+                {{else}}
+                  <a class="dropdown-item disable-combat-deaths" style="cursor: pointer">
+                    Disable combat deaths
+                  </a>
                 {{/if}}
               </div>
             </div>

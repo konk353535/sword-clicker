@@ -109,6 +109,14 @@ Template.nav.events({
         Session.set("floatingTextDisabled", false)
     },
 
+    "click .disable-combat-deaths"(event, instance) {
+        Session.set("combatDeathsDisabled", true)
+    },
+
+    "click .enable-combat-deaths"(event, instance) {
+        Session.set("combatDeathsDisabled", false)
+    },
+
     "click .disable-summary-list"(event, instance) {
         Session.set("summaryListDisabled", true)
         Meteor.call("users.setUiState", "showSummaryList", false)
@@ -320,6 +328,10 @@ Template.nav.helpers({
 
     floatingTextDisabled() {
         return Session.get("floatingTextDisabled")
+    },
+
+    combatDeathsDisabled() {
+        return Session.get("combatDeathsDisabled")
     },
 
     summaryListDisabled() {

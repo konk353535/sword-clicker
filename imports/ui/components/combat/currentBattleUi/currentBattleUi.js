@@ -97,14 +97,14 @@ const startBattle = (currentBattle, self) => {
             })
         }
 
-        if (!Session.get("floatingTextDisabled")) {
-            currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
+        currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
 
-                let combatLabel = (tickEvent?.label || "").trim()
-                const uidTo = (tickEvent?.to || "").trim()
-                const uidSource = (tickEvent?.from || "").trim()
+            let combatLabel = (tickEvent?.label || "").trim()
+            const uidTo = (tickEvent?.to || "").trim()
+            const uidSource = (tickEvent?.from || "").trim()
 
-                if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
+            if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
+                if (!Session.get("combatDeathsDisabled")) {
                     if (uidTo == uidPlayer) {
                         if ((uidSource == uidTo) && (combatLabel.indexOf(" slain by ") !== -1)) {
                             combatLabel = "You underestimated your own power and died!"
@@ -120,7 +120,9 @@ const startBattle = (currentBattle, self) => {
                             toastr.warning(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
                         }
                     }
-                } else if (tickEvent.eventType == "death-enemy") {
+                }
+            } else if (tickEvent.eventType == "death-enemy") {
+                if (!Session.get("combatDeathsDisabled")) {
                     try {
                         if ((uidSource == uidPlayer) && (combatLabel.indexOf(" defeated ") !== -1)) {
                             combatLabel = `You defeated ${combatLabel.split(" defeated ")[1]}`
@@ -129,7 +131,9 @@ const startBattle = (currentBattle, self) => {
                         }
                     } catch (err) {}
                     toastr.success(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
-                } else {
+                }
+            } else {
+                if (!Session.get("floatingTextDisabled")) {
                     const offset = $(`#${tickEvent.to}`).offset()
                     if (offset) {
                         let color = "red"
@@ -304,8 +308,8 @@ const startBattle = (currentBattle, self) => {
                         $(element).animateCss("fadeOutUp")
                     }
                 }
-            })
-        }
+            }
+        })
     }
 }
 

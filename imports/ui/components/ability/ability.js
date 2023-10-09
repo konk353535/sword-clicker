@@ -31,7 +31,7 @@ const castAbility = function (instance) {
     if (targetType === "autoEnemy" && icons && icons.length > 0) {
         let targetId 
         try {
-            targetId = typeof icons[0].getAttribute.attr !== 'undefined' ? icons[0].getAttribute.attr(data-unit-id) : icons[0].getAttribute("data-unit-id")
+            targetId = typeof icons[0].attr !== 'undefined' ? icons[0].attr(data-unit-id) : icons[0].getAttribute("data-unit-id")
         } catch (err) { }
 
         if (!targetId || typeof targetId === 'undefined') {

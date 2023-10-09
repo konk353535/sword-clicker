@@ -29,7 +29,16 @@ const castAbility = function (instance) {
 
     // if we have an automatic target mode and a valid target, then use the ability automatically with no further user interaction required
     if (targetType === "autoEnemy" && icons && icons.length > 0) {
-        const targetId = icons[0].attr("data-unit-id")
+        let targetId 
+        try {
+            targetId = typeof icons[0].getAttribute.attr !== 'undefined' ? icons[0].getAttribute.attr(data-unit-id) : icons[0].getAttribute("data-unit-id")
+        } catch (err) { }
+
+        if (!targetId || typeof targetId === 'undefined') {
+            // give up, I guess?
+            return 
+        }
+
         const battleId = currentBattleId
         const abilityId = instance.data.ability.id
 

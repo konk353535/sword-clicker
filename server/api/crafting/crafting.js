@@ -411,6 +411,9 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
         reforgeResult = getActiveGlobalBuff("paid_crafting") ? 3 : 2
     }
 
+    const rolledPretty = Math.max(((1 - userRoll - 0.0005) * 100), 0).toFixed(1)
+    const neededPretty = Math.min(((1 - reforgeData.chance) * 100), 100).toFixed(0)
+
     if (reforgeResult == 1) {
         // success
         txSuccess = Items.insert(
@@ -427,7 +430,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             { tx: { instant: true } }
         )
 
-        //console.log(`Reforge actual roll ${userRoll}, telling user it was ${((1 - userRoll - 0.0005) * 100).toFixed(1)} to avoid rounding issues`)
+        //console.log(`Reforge actual roll ${userRoll}, telling user it was ${rolledPretty} to avoid rounding issues`)
 
         console.log(`txSuccess: ${txSuccess}`)
 
@@ -435,10 +438,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
             {
                 message: `You were successful at reforging your ${
                     itemConstants.name
-                }, improving its structure (rarity increased)!  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(1)}, needed ${(
-                    (1 - reforgeData.chance) *
-                    100
-                ).toFixed(0)})`,
+                }, improving its structure (rarity increased)!  (rolled ${rolledPretty}, needed ${neededPretty})`,
                 username: "Game",
                 name: "Game",
                 date: new Date(),
@@ -458,10 +458,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `While attempting to reforge your ${
                         itemConstants.name
-                    }, the item cracked and fell to pieces.  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(1)}, needed ${(
-                        (1 - reforgeData.chance) *
-                        100
-                    ).toFixed(0)})`,
+                    }, the item cracked and fell to pieces.  (rolled ${rolledPretty}, needed ${neededPretty})`,
                     username: "Game",
                     name: "Game",
                     date: new Date(),
@@ -549,9 +546,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `You were not successful at reforging your ${
                         itemConstants.name
-                    }, worsening its structure (rarity decreased).  (rolled ${((1 - userRoll - 0.0005) * 100).toFixed(
-                        1
-                    )}, needed ${((1 - reforgeData.chance) * 100).toFixed(0)})`,
+                    }, worsening its structure (rarity decreased).  (rolled ${rolledPretty}, needed ${neededPretty})`,
                     username: "Game",
                     name: "Game",
                     date: new Date(),
@@ -598,9 +593,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 {
                     message: `You were not successful at reforging your ${
                         itemConstants.name
-                    }.  The active crafting buff prevents it from worsening.  (rolled ${((1 - userRoll - 0.005) * 100).toFixed(
-                        1
-                    )}, needed ${((1 - reforgeData.chance) * 100).toFixed(0)})`,
+                    }.  The active crafting buff prevents it from worsening.  (rolled ${rolledPretty}, needed ${neededPretty})`,
                     username: "Game",
                     name: "Game",
                     date: new Date(),
@@ -739,7 +732,8 @@ Meteor.methods({
         if (crafting.currentlyReforging && crafting.currentlyReforging.length >= maxConcurrentReforges) {
             throw new Meteor.Error(
                 "cant-reforge",
-                `<span style="background-color: black; color: white;">You are already reforging as many items as you can ${crafting.currentlyReforging.length} vs ${maxConcurrentReforges} for crafting level ${crafting.craftingLevel}.</span>`
+                //`You are already reforging as many items as you can ${crafting.currentlyReforging.length} vs ${maxConcurrentReforges} for crafting level ${crafting.craftingLevel}.`
+                "You are already reforging as many items as you can!"
             )
         }
 

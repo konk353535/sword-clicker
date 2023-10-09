@@ -220,6 +220,7 @@ const startBattle = (currentBattle, self) => {
                             "shieldBash",
                             "bladeSpin",
                             "powerShot",
+                            "paladinBulwark",
                             "paladinSquireInterception",
                             "paladinInspiration",
                             "rapier", 

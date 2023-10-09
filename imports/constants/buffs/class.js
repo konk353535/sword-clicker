@@ -303,7 +303,7 @@ export const CLASS_BUFFS = {
                                     totalDuration: Infinity,
                                     name: "Bulwark",
                                     icon: "paladinBulwark.svg",
-                                    stacks: 3,
+                                    stacks: 1,
                                 }
                             }
                         )
@@ -487,39 +487,48 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle that 
-        prevents all damage.  Each time the ally would take damage, a stack is deducted.
+        Grants all allies a stacks of <i>Bulwark</i> protection at the beginning of battle that 
+        prevents all damage.  An additional stack is granted per each room the group advances to
+        up to a maximum of 3 stacks.  Each time the ally would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.<br />
         While equipped when you are a Paladin this is <b>always active</b>`
         },
         constants: {},
         data: {
             duration: Infinity,
-            totalDuration: Infinity,
-            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
-            hideBuff: true
+            totalDuration: Infinity
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onNextFloorRoom({ buff, unit, actualBattle, newRoom }) {
                 // apply it to all the friendly units
                 actualBattle.units.forEach((friendlyUnit) => {
-                    if (friendlyUnit.id !== caster.id) {
-                        caster.applyBuffTo({
-                            buff: caster.generateBuff({
-                                buffId: "class_passive_paladin__bulwark_effect",
-                                buffData: {
-                                    stacks: 3
-                                }
-                            }),
-                            target: friendlyUnit
-                        })
+                    if (friendlyUnit.id !== unit.id) {
+                        let stacks = 1
+
+                        const ally_existing_bulwark_buff = friendlyUnit.findBuff("class_passive_paladin__bulwark_effect")
+                        if (ally_existing_bulwark_buff) {
+                            ally_existing_bulwark_buff.stacks = Math.min(3, stacks + ally_existing_bulwark_buff.stacks)
+                            ally_existing_bulwark_buff.data.hitsRequired = ally_existing_bulwark_buff.stacks
+                        } else {
+                            unit.applyBuffTo({
+                                buff: unit.generateBuff({
+                                    buffId: "class_passive_paladin__bulwark_effect",
+                                    buffData: {
+                                        stacks: stacks
+                                    }
+                                }),
+                                target: friendlyUnit
+                            })
+                        }
+
+                        friendlyUnit.tickMessage("Bulwark", "#445599", "paladinBulwark", friendlyUnit)
                     }
                 })
             },
 
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                removeBuff({ buff, target, caster, actualBattle })
-            },
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
         }
     },
 
@@ -529,20 +538,20 @@ export const CLASS_BUFFS = {
         name: "Bulwark",
         description({ buff, level }) {
             return `
-        A Paladin has granted you 3 stacks of <i>Bulwark</i> protection at the beginning of this
-        battle that prevents all damage.  Each time you would take damage, a stack is deducted.
-        When all stacks are gone, this protection ends.`
+        A Paladin has granted you a stacks of <i>Bulwark</i> protection that prevents all damage.
+        Each time you would take damage, a stack is deducted. When all stacks are gone, this
+        protection ends.`
         },
         constants: {},
         data: {
             duration: Infinity,
             totalDuration: Infinity,
-            stacks: 3
+            stacks: 1
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
-                    buff.stacks = buff.data.hitsRequired = 3
+                    buff.stacks = buff.data.hitsRequired = 1
                     target.stats.armor += 100000
                     target.stats.magicArmor += 100000
                 }

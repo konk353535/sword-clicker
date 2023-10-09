@@ -16,6 +16,7 @@ import { updateUserActivity } from "/imports/api/users/users.js"
 import { sendUserChatMessage } from "/imports/chatUtils.js"
 import { CInt } from "/imports/utils.js"
 import { env } from "/server/validateEnv.js"
+import { sendGlobalBuffWebhookMessage } from "/server/webhook.js"
 
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { SKILLS } from "/server/constants/skills/index.js"
@@ -362,6 +363,8 @@ SimpleChat.configure({
                     },
                     { multi: true }
                 )
+
+                sendGlobalBuffWebhookMessage("There are new updates available in the game!", false)
 
                 sendUserChatMessage({ userId: userDoc._id, message: `New updates! flagged for all players.` })
                 return

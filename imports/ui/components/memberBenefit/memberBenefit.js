@@ -22,7 +22,7 @@ Template.memberBenefit.helpers({
             const bonusAmount = DONATORS_BENEFITS.miningBonus
             if (bonusAmount) {
                 const value = instance.data.value
-                return (value * (bonusAmount / 100)).toFixed(1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')
+                return (value * (bonusAmount / 100)).toFixed(1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1')
             }
         }
 

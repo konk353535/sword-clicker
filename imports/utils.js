@@ -134,7 +134,7 @@ export const autoPrecisionValue = function autoPrecisionValue(origVal) {
                 )
             }
 
-            return parseFloat(origValMeasured.toFixed(0).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1'))
+            return parseFloat(origValMeasured.toFixed(0))
         }
     } catch (err) {
         console.log(err)
@@ -165,7 +165,7 @@ export const autoPrecisionValueTight = function autoPrecisionValueTight(origVal)
                 )
             }
 
-            return parseFloat(origValMeasured.toFixed(0).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1'))
+            return parseFloat(origValMeasured.toFixed(0))
         }
     } catch (err) {
         console.log(err)

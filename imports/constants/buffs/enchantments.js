@@ -525,9 +525,7 @@ export const ENCHANTMENT_BUFFS = {
                         buff: attacker.generateBuff({
                             buffId: "bleed_proper",
                             buffData: {
-                                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(
-                                    2
-                                )} damage`,
+                                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')} damage`,
                                 realDuration: 3,
                                 duration: 3,
                                 allowDuplicates: true,
@@ -1944,9 +1942,7 @@ export const ENCHANTMENT_BUFFS = {
                             buff: attacker.generateBuff({
                                 buffId: "bleed_proper",
                                 buffData: {
-                                    description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(
-                                        2
-                                    )} damage`,
+                                    description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')} damage`,
                                     realDuration: 3,
                                     duration: 3,
                                     allowDuplicates: true,
@@ -2002,9 +1998,7 @@ export const ENCHANTMENT_BUFFS = {
                             buff: attacker.generateBuff({
                                 buffId: "bleed_proper",
                                 buffData: {
-                                    description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(
-                                        2
-                                    )} damage`,
+                                    description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')} damage`,
                                     realDuration: 3,
                                     duration: 3,
                                     allowDuplicates: true,

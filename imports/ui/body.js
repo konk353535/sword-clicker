@@ -182,7 +182,7 @@ Template.body.onCreated(function () {
                         let xpGained = skill.xp - skillCache.xp
                         if (xpGained > 0) {
                             if (xpGained < 1) {
-                                xpGained = xpGained.toFixed(2)
+                                xpGained = xpGained.toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')
                             } else {
                                 xpGained = Math.round(xpGained)
                             }

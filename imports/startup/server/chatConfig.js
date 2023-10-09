@@ -520,9 +520,26 @@ SimpleChat.configure({
             } else if (/\/debugAllItems/.test(message) && userDoc.isSuperMod && env.NODE_ENV === "development") {
                 // give the caller one of every item
                 // only allow this command if in dev mode
-                Object.keys(ITEMS).forEach((itemId) => {
-                    addItem(itemId, 1, userDoc._id)
-                })
+
+                const splitMessage = message.trim()?.split("/debugAllItems")?.[1]?.trim()?.split(" ")
+
+                if (splitMessage.length !== 1) {
+                    sendUserChatMessage({ userId: userDoc._id, message: "Usage: /debugAllItems [EVERYTHING | partial item ID]" })
+                    return
+                }
+
+                if (splitMessage[0].trim().toLowerCase() == 'everything') {
+                    Object.keys(ITEMS).forEach((itemId) => {
+                        console.log("skip item", itemId)
+                        //addItem(itemId, 1, userDoc._id)
+                    })
+                } else {
+                    Object.keys(ITEMS).forEach((itemId) => {
+                        if (itemId.trim().toLowerCase().indexOf(splitMessage[0].trim().toLowerCase()) !== -1) {
+                            addItem(itemId, 1, userDoc._id)
+                        }
+                    })
+                }
                 return
             } else if (/\/changeName/i.test(message) && userDoc.isSuperMod) {
                 const userPortion = message.split("/changeName")[1]?.trim()?.split(" ")

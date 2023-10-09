@@ -86,10 +86,14 @@ const startBattle = (currentBattle, self) => {
     if (currentBattle) {
         const uidPlayer = Meteor.userId()
 
-        if (currentBattle.tickEvents.length > 3) {
-            // Only show user owned ticks
+        // if ticke are getting backlogged
+        if (currentBattle.tickEvents.length > 8) {
+            // then only show user owned ticks or tickEvents with death
             currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
-                return tickEvent.from === uidPlayer || tickEvent.to === uidPlayer
+                return 
+                    tickEvent.from === uidPlayer ||
+                    tickEvent.to === uidPlayer ||
+                    tickEvent.eventType.indexOf("death") === 0
             })
         }
 
@@ -102,14 +106,14 @@ const startBattle = (currentBattle, self) => {
 
                 if (tickEvent.eventType == "death-ally" || tickEvent.eventType == "death") {
                     if (uidTo == uidPlayer) {
-                        if ((uidFrom == uidTo) && (combatLabel.indexOf(" slain by ") !== -1)) {
+                        if ((uidSource == uidTo) && (combatLabel.indexOf(" slain by ") !== -1)) {
                             combatLabel = "You underestimated your own power and died!"
                         } else if (combatLabel.indexOf(" was slain ") !== -1) {
                             combatLabel = `You were slain ${combatLabel.split(" was slain ")[1]}`
                         }
                         toastr.error(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
                     } else {
-                        if ((uidFrom == uidTo) && (combatLabel.indexOf(" was slain by ") !== -1)) {
+                        if ((uidSource == uidTo) && (combatLabel.indexOf(" was slain by ") !== -1)) {
                             combatLabel = `${combatLabel.split(" was slain by ")[0]} underestimated their own power and died!`
                             toastr.warning(combatLabel.charAt(0).toUpperCase() + combatLabel.substring(1))
                         } else {
@@ -426,7 +430,7 @@ window.reconnectionTrigger = function (this_template) {
                             if (unit.buffs) {
                                 unit.buffsMap = {}
                                 unit.buffs.forEach((buff) => {
-                                    unit.buffsMap[buff.id] = buff
+                                    unit.buffsMap[buff.id] = buff // what are we even doing with buffsMap ?
                                 })
                             }
                         }

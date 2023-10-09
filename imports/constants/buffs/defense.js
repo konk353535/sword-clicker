@@ -970,6 +970,9 @@ export const DEFENSE_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                buff.data.name = buff.data.name || "Dodging"
+                buff.data.description = buff.data.description || "The enemy is completely immune to all damage."
+
                 const constants =
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants

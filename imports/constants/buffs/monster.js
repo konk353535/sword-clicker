@@ -517,10 +517,10 @@ export const MONSTER_BUFFS = {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5)
                         }
                     }
-                } else if (target.name === "monk ninja") {
+                } else if (target.name === "sullen warrior") {
                     if (rand < 0.1) {
                         // 10% chance to upgrade to wise monk
-                        target.name = "wise monk"
+                        target.name = "glowering warrior"
                         target.icon = "monkWise.svg"
                         target.stats.attack *= 1.1
                         target.stats.attackMax *= 1.1
@@ -986,10 +986,10 @@ export const MONSTER_BUFFS = {
     stolen_stats: {
         duplicateTag: "stolen_stats", // Used to stop duplicate buffs
         icon: "goblin.svg",
-        name: "stolen stats",
+        name: "Stolen Stats",
         description({ buff, level }) {
             const c = buff.constants
-            return `Reduces one of your stats by 10%`
+            return `A goblin stole some of your stats, reducing it by 20%.`
         },
         constants: {},
         data: {},
@@ -997,8 +997,22 @@ export const MONSTER_BUFFS = {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
                 Object.keys(buff.data.stats).forEach((buffKey) => {
+                    buff.data.statToSteal = buffKey
                     target.stats[buffKey] -= buff.data.stats[buffKey]
                 })
+
+                let friendlyStatName = "one of your stats"
+                if (buff.data.statToSteal == "health") {
+                    friendlyStatName = "current health"
+                } else if (buff.data.statToSteal == "healthMax") {
+                    friendlyStatName = "maximum health"
+                } else if (buff.data.statToSteal == "armor") {
+                    friendlyStatName = "physical armor"
+                } else if (buff.data.statToSteal == "attack") {
+                    friendlyStatName = "minimum damage"
+                }
+
+                buff.data.description = buff.data.description || `A goblin stole some of your ${friendlyStatName}, reducing it by 20%.`
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1020,9 +1034,9 @@ export const MONSTER_BUFFS = {
     goblin_stat_stealer: {
         duplicateTag: "goblin_stat_stealer", // Used to stop duplicate buffs
         icon: "goblin.svg",
-        name: "stat stealer",
+        name: "Stat Stealer",
         description({ buff, level }) {
-            return `Every 15s the goblin steals a random players stats. Gaining 50% of the stolen stat permanently`
+            return "Every 15s the goblin steals a random stat from a random ally, permanently gaining half of the stolen stat."
         },
         constants: {},
         data: {
@@ -1058,8 +1072,20 @@ export const MONSTER_BUFFS = {
                     if (amount < 0) {
                         amount = 0
                     }
+
+                    let friendlyStatName = "one of your stats"
+                    if (statToSteal == "health") {
+                        friendlyStatName = "current health"
+                    } else if (statToSteal == "healthMax") {
+                        friendlyStatName = "maximum health"
+                    } else if (statToSteal == "armor") {
+                        friendlyStatName = "physical armor"
+                    } else if (statToSteal == "attack") {
+                        friendlyStatName = "minimum damage"
+                    }
+
                     newBuff.data.stats[statToSteal] = amount
-                    newBuff.data.description = `Stole ${Math.round(amount)} of your ${statToSteal}`
+                    newBuff.data.description = `Stole ${Math.round(amount)} of your ${friendlyStatName}!`
                     target.stats[statToSteal] += amount * 0.5
 
                     addBuff({ buff: newBuff, target: targetToSteal, caster: target })
@@ -1174,10 +1200,12 @@ export const MONSTER_BUFFS = {
     },
 
     dwarfs_rage: {
-        duplicateTag: "berserk", // Used to stop duplicate buffs
+        duplicateTag: "dwarfs_rage", // Used to stop duplicate buffs
         icon: "berserk.svg",
-        name: "dwarfs rage",
-        description({ buff, level }) {},
+        name: "Dwarven Rage",
+        description({ buff, level }) {
+            return  "The dwarf has let his defenses down but is significantly stronger, faster, and deadly accurate!"
+        },
         constants: {},
         data: {},
         events: {
@@ -1200,8 +1228,10 @@ export const MONSTER_BUFFS = {
     dwarfs_pre_rage: {
         duplicateTag: "dwarfs_pre_rage", // Used to stop duplicate buffs
         icon: "",
-        name: "dwarfs rage",
-        description({ buff, level }) {},
+        name: "Dwarven Disposition",
+        description({ buff, level }) {
+            return "Dwarves are known to be surprisingly deadly when threatened."
+        },
         constants: {},
         data: {
             duration: Infinity,
@@ -1216,7 +1246,7 @@ export const MONSTER_BUFFS = {
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
-                if (defender.stats.health <= defender.stats.healthMax * 0.2) {
+                if (defender.stats.health <= defender.stats.healthMax * 0.333) {
                     const newBuff = {
                         id: "dwarfs_rage",
                         data: {
@@ -1244,7 +1274,9 @@ export const MONSTER_BUFFS = {
         duplicateTag: "rabbit_monster", // Used to stop duplicate buffs
         icon: "",
         name: "rabbit monster",
-        description({ buff, level }) {},
+        description({ buff, level }) {
+            return "This rabbit will multiply when this effect ends, creating a copy with all of the existing effects and health that it currently has."
+        },
         constants: {},
         data: {
             duration: Infinity,
@@ -1252,7 +1284,9 @@ export const MONSTER_BUFFS = {
         },
         events: {
             // This can be rebuilt from the buff id
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.name = "Fertile"
+            },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 if (!buff.data.timeTillRabbit) {
@@ -1282,10 +1316,10 @@ export const MONSTER_BUFFS = {
     healing_reduction: {
         duplicateTag: "healing_reduction", // Used to stop duplicate buffs
         icon: "healingReduction.svg",
-        name: "healing reduction",
+        name: "Healing Reduced",
         description({ buff, level }) {
             const c = buff.constants
-            return `Reduces healing received`
+            return `You receive less healing.`
         },
         constants: {},
         data: {
@@ -1295,6 +1329,8 @@ export const MONSTER_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                buff.data.description = `You receive ${((1-buff.data.healingReduction)*100.0).toFixed(0)}% less healing.`
+
                 if (target.stats.healingReduction != null) {
                     target.stats.healingReduction *= buff.data.healingReduction
                 } else {
@@ -1321,8 +1357,10 @@ export const MONSTER_BUFFS = {
     earth_mage_monster: {
         duplicateTag: "earth_mage_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "earth mage",
-        description({ buff, level }) {},
+        name: "Earth Magic",
+        description({ buff, level }) {
+            return "Knows how to cast Mud Armor and Earth Dart."
+        },
         constants: {},
         data: {},
         events: {
@@ -1368,8 +1406,10 @@ export const MONSTER_BUFFS = {
     water_mage_monster: {
         duplicateTag: "water_mage_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "water mage",
-        description({ buff, level }) {},
+        name: "Water Magic",
+        description({ buff, level }) {
+            return "Knows how to cast Frosted Attacks and Water Dart."
+        },
         constants: {},
         data: {},
         events: {
@@ -1422,8 +1462,10 @@ export const MONSTER_BUFFS = {
     fire_mage_monster: {
         duplicateTag: "fire_mage_monster", // Used to stop duplicate buffs
         icon: "phoenixHat.svg",
-        name: "fire mage",
-        description({ buff, level }) {},
+        name: "Fire Magic",
+        description({ buff, level }) {
+            return "Knows how to cast Ignite and Fire Dart."
+        },
         constants: {},
         data: {
             icon: "phoenixHat.svg"
@@ -1489,10 +1531,10 @@ export const MONSTER_BUFFS = {
     attack_reduction: {
         duplicateTag: "attack_reduction", // Used to stop duplicate buffs
         icon: "attackReduction.svg",
-        name: "attack reduction",
+        name: "Damage Reduced",
         description({ buff, level }) {
             const c = buff.constants
-            return `Reduces your attack`
+            return `You deal less damage.`
         },
         constants: {},
         data: {
@@ -1514,6 +1556,8 @@ export const MONSTER_BUFFS = {
 
                 target.stats.attack -= buff.data.attack
                 target.stats.attackMax -= buff.data.attack
+
+                buff.data.description = `You deal ${buff.data.attack.toFixed(0)} less damage.`
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1534,10 +1578,10 @@ export const MONSTER_BUFFS = {
     armor_reduction: {
         duplicateTag: "armor_reduction", // Used to stop duplicate buffs
         icon: "armorReduction.svg",
-        name: "armor reduction",
+        name: "Armor Reduced",
         description({ buff, level }) {
             const c = buff.constants
-            return `Reduces your armor`
+            return `Your physical armor is reduced.`
         },
         constants: {},
         data: {
@@ -1555,6 +1599,8 @@ export const MONSTER_BUFFS = {
                 const flatArmorReduction = target.stats.armor * (1 - buff.data.armorReduction)
                 buff.data.flatArmorReduction = flatArmorReduction
                 target.stats.armor -= buff.data.flatArmorReduction
+
+                buff.data.description = `Your physical armor is reduced by ${buff.data.flatArmorReduction.toFixed(0)}.`
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1574,10 +1620,10 @@ export const MONSTER_BUFFS = {
     magic_armor_reduction: {
         duplicateTag: "magic_armor_reduction", // Used to stop duplicate buffs
         icon: "magicArmorReduction.svg",
-        name: "magic armor reduction",
+        name: "Magic Armor Reduced",
         description({ buff, level }) {
             const c = buff.constants
-            return `Reduces your magic armor`
+            return `Your magical armor is reduced.`
         },
         constants: {},
         data: {
@@ -1595,6 +1641,8 @@ export const MONSTER_BUFFS = {
                 const flatArmorReduction = buff.data.armorReduction
                 buff.data.flatArmorReduction = flatArmorReduction
                 target.stats.magicArmor -= buff.data.flatArmorReduction
+
+                buff.data.description = `Your magical armor is reduced by ${buff.data.flatArmorReduction.toFixed(0)}.`
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1614,8 +1662,10 @@ export const MONSTER_BUFFS = {
     demon_monster: {
         duplicateTag: "demon_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "demon monster",
-        description({ buff, level }) {},
+        name: "Demonic",
+        description({ buff, level }) {
+            return `Taking damage from this foul creature will prevent any healing effect.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1653,8 +1703,10 @@ export const MONSTER_BUFFS = {
     rat_monster: {
         duplicateTag: "rat_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "rat monster",
-        description({ buff, level }) {},
+        name: "Sharp Teeth",
+        description({ buff, level }) {
+            return `While not particularly dangerous, their bites should be avoided and can cause nasty cuts.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1680,7 +1732,7 @@ export const MONSTER_BUFFS = {
                             allowDuplicates: true,
                             icon: "bleeding.svg",
                             name: "bleed",
-                            description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage`
+                            description: `Bleed every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage.`
                         }
                     }
 
@@ -1725,9 +1777,7 @@ export const MONSTER_BUFFS = {
                             allowDuplicates: true,
                             icon: buff.data.bleedIcon || "bleeding.svg",
                             name: buff.data.bleedName || "bleed",
-                            description: `${buff.data.bleedDesc || "bleed"} every second for ${(
-                                attacker.stats.attackMax / 15
-                            ).toFixed(2)} damage`
+                            description: `${buff.data.bleedDesc || "bleed"} every second for ${(attacker.stats.attackMax / 15).toFixed(2)} damage.`
                         }
                     }
 
@@ -1745,8 +1795,10 @@ export const MONSTER_BUFFS = {
     vampire_monster: {
         duplicateTag: "vampire_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "vampire monster",
-        description({ buff, level }) {},
+        name: "Vampiric",
+        description({ buff, level }) {
+            return `This monster wants to make a meal out of you and can leave deep cuts that embolden it, making its attacks more accurate.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1799,8 +1851,10 @@ export const MONSTER_BUFFS = {
     lizard_monster: {
         duplicateTag: "lizard_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "lizard monster",
-        description({ buff, level }) {},
+        name: "Venomous",
+        description({ buff, level }) {
+            return `With a venomous bite, this dangerous beast will regenerate lost health when attacking a poisoned target.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1846,8 +1900,10 @@ export const MONSTER_BUFFS = {
     monk: {
         duplicateTag: "monk", // Used to stop duplicate buffs
         icon: "",
-        name: "monk",
-        description({ buff, level }) {},
+        name: "Insight",
+        description({ buff, level }) {
+            `He studies your every move, able to inflict greater damage each time he is struck.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1869,8 +1925,10 @@ export const MONSTER_BUFFS = {
     crab_monster: {
         duplicateTag: "crab_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "crab monster",
-        description({ buff, level }) {},
+        name: "Crab Armor",
+        description({ buff, level }) {
+            return `You can chip away at it slowly with each attack until you reach the vulnerable beast within.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1884,8 +1942,8 @@ export const MONSTER_BUFFS = {
                 buff.stacks = buff.data.hitsRequired
 
                 if (buff.data.hitsRequired <= 0) {
-                    defender.stats.armor -= 2000
-                    defender.stats.magicArmor -= 2000
+                    defender.stats.armor -= 20000
+                    defender.stats.magicArmor -= 20000
                     if (defender.stats.armor <= 1) {
                         defender.stats.armor = 1
                     }
@@ -1899,8 +1957,8 @@ export const MONSTER_BUFFS = {
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
                     buff.data.hitsRequired = 45
-                    target.stats.armor += 2000
-                    target.stats.magicArmor += 2000
+                    target.stats.armor += 20000
+                    target.stats.magicArmor += 20000
                 }
             },
 
@@ -1911,8 +1969,10 @@ export const MONSTER_BUFFS = {
     angry_miner_monster: {
         duplicateTag: "angry_miner_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "angry monster",
-        description({ buff, level }) {},
+        name: "Miner's Ire",
+        description({ buff, level }) {
+            return `Weak until he's not, the miner is deadlier the lower in health he bcomes.`
+        },
         constants: {},
         data: {},
         events: {
@@ -1946,8 +2006,10 @@ export const MONSTER_BUFFS = {
     beaver_teeth: {
         duplicateTag: "beaver_teeth", // Used to stop duplicate buffs
         icon: "",
-        name: "beaver teeth",
-        description({ buff, level }) {},
+        name: "Strong Teeth",
+        description({ buff, level }) {
+            return `Bites from this creature chew through armor, leaving you weaker to defend yourself.`
+        },
         constants: {},
         data: {},
         events: {
@@ -2087,8 +2149,10 @@ export const MONSTER_BUFFS = {
     abstract_monster: {
         duplicateTag: "abstract_monster",
         icon: "",
-        name: "abstract monster",
-        description({ buff, level }) {},
+        name: "Abstract Threat",
+        description({ buff, level }) {
+            return `When this creature gets a grip on you, it leaves gashes and open wounds.`
+        },
         constants: {},
         data: {},
         events: {
@@ -2130,8 +2194,10 @@ export const MONSTER_BUFFS = {
     devourer_monster: {
         duplicateTag: "devourer_monster",
         icon: "",
-        name: "devourer monster",
-        description({ buff, level }) {},
+        name: "Hungers",
+        description({ buff, level }) {
+            return `Phasing in and out of material existence with deadly bites that leave deep cuts, this creature mutates and heals when feasting upon bleeding targets.`
+        },
         constants: {},
         data: {
             hideBuff: true,
@@ -2248,8 +2314,10 @@ export const MONSTER_BUFFS = {
     grotesque_monster: {
         duplicateTag: "grotesque_monster",
         icon: "",
-        name: "grotesque armor",
-        description({ buff, level }) {},
+        name: "Grotesque Armor",
+        description({ buff, level }) {
+            return `It's armor is tough, but can be pried away from its body.`
+        },
         constants: {},
         data: {},
         events: {
@@ -2301,8 +2369,10 @@ export const MONSTER_BUFFS = {
     wither_monster: {
         duplicateTag: "wither_monster", // Used to stop duplicate buffs
         icon: "",
-        name: "wither monster",
-        description({ buff, level }) {},
+        name: "Withering Touch",
+        description({ buff, level }) {
+            return `Its presence chills you to your bone.  You feel it wise not to let it touch you.`
+        },
         constants: {},
         data: {},
         events: {
@@ -2316,7 +2386,7 @@ export const MONSTER_BUFFS = {
                         buffId: "healing_reduction",
                         buffData: {
                             name: "Wither-Touched",
-                            description: `Being touched by a wither harms your soul,preventing you from receiving ${Math.round(
+                            description: `Being touched by a wither harms your soul, preventing you from receiving ${Math.round(
                                 (1 - healingReduction) * 100
                             )}% of incoming healing.`,
                             icon: "healingReduction.svg",
@@ -2340,10 +2410,10 @@ export const MONSTER_BUFFS = {
     horrible_eye_monster: {
         duplicateTag: "horrible_eye_monster", // Used to stop duplicate buffs
         icon: "spiritBlink.svg",
-        name: "horrible eye",
+        name: "Eye Gaze",
         description({ buff, level }) {
             const c = buff.constants
-            return ``
+            return  `The eye has its gaze upon you, distorting reality and preventing any attempts to damage it.`
         },
         constants: {},
         data: {},
@@ -2372,9 +2442,9 @@ export const MONSTER_BUFFS = {
     seething_hatred_monster: {
         duplicateTag: "seething_hatred_monster",
         icon: "seethingHatred.svg",
-        name: "seething hatred",
+        name: "Fiery Smile",
         description({ buff, level }) {
-            return ``
+            return `This foe has no manifest form except a sinister and fiery smile.  Its terrifying breath could spew flames upon your entire group at any moment!`
         },
         constants: {},
         data: {},
@@ -2440,8 +2510,10 @@ export const MONSTER_BUFFS = {
     imp_monster: {
         duplicateTag: "imp_monster",
         icon: "",
-        name: "imp monster",
-        description({ buff, level }) {},
+        name: "Impish Delight",
+        description({ buff, level }) {
+            return `A tricky and devilish creature that has several tricks up its sleeve, for sure.`
+        },
         constants: {},
         data: {},
         events: {
@@ -2529,11 +2601,11 @@ export const MONSTER_BUFFS = {
 
     troglodyte_monster: {
         duplicateTag: "troglodyte_monster",
-        icon: "",
-        name: "troglodyte",
+        icon: "troglodyte.svg",
+        name: "Combustible",
         description({ buff, level }) {
             const c = buff.constants
-            return ``
+            return `When slain, the bodies of these digusting creatures erupt, dealing massive amounts of damage back to their killer!`
         },
         constants: {},
         data: {},
@@ -2550,7 +2622,7 @@ export const MONSTER_BUFFS = {
                     if (defender.stats.health <= 0) {
                         buff.data.popped = true
 
-                        actualBattle.dealDamage(attacker.stats.healthMax / 3 + damageDealt, {
+                        actualBattle.dealDamage((attacker.stats.healthMax / 3) + damageDealt, {
                             attacker: defender,
                             defender: attacker,
                             tickEvents: actualBattle.tickEvents,
@@ -2570,7 +2642,7 @@ export const MONSTER_BUFFS = {
                     if (!targetUnit) {
                         targetUnit = _.sample(target.opposition)
                     }
-                    actualBattle.dealDamage(target.stats.healthMax / 3, {
+                    actualBattle.dealDamage(target.stats.healthMax / 2, {
                         attacker: target.targetUnit,
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
@@ -2587,10 +2659,10 @@ export const MONSTER_BUFFS = {
     hydra_monster: {
         duplicateTag: "hydra_monster",
         icon: "hydra.svg",
-        name: "hydra",
+        name: "Hydra Heads",
         description({ buff, level }) {
             const c = buff.constants
-            return ``
+            return `Lop a head off and it just gets stronger!`
         },
         constants: {
             allowTicks: true

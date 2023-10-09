@@ -1,6 +1,7 @@
 import uuid from "node-uuid"
 
 import { BUFFS } from "../../../../../imports/constants/buffs/index.js"
+import { fixupBuffText } from "../../../../battleUtils"
 import { buff } from "../../types/buff.js"
 import Battle from "../index.js"
 import Unit from "./index.js"
@@ -135,6 +136,10 @@ export default class Buff {
             }
             this.data = buff.data
             this.data.didApply = buff.data.didApply ? true : false
+            
+            const fixedBuff = fixupBuffText(this, undefined)
+            this.data.name = fixedBuff.data.name
+            this.data.description = fixedBuff.data.description
 
             this._uid = uuid.v4()
             this.delta("uid")
@@ -152,6 +157,9 @@ export default class Buff {
             if (this.events.onApply) {
                 this.events.onApply(options)
                 this.data.didApply = true
+                const fixedBuff = fixupBuffText(this, options?.caster)
+                this.data.name = fixedBuff.data.name
+                this.data.description = fixedBuff.data.description
             }
         }
     }

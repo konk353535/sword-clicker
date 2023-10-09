@@ -1,5 +1,6 @@
 import type Battle from "../"
 import { BUFFS } from "../../../../../imports/constants/buffs"
+import { fixupBuffText } from "../../../../battleUtils"
 import { secondsElapsed } from "./../autoAttack"
 
 export function tickUnitsAndBuffs(this: Battle) {
@@ -40,6 +41,9 @@ export function tickUnitsAndBuffs(this: Battle) {
                         if (!buff.data.didApply) {
                             buff.onApply({ buff, caster: caster, target: aliveUnit, actualBattle: this })
                             buff.data.didApply = true
+                            const fixedBuff = fixupBuffText(buff, caster)
+                            buff.data.name = fixedBuff.data.name
+                            buff.data.description = fixedBuff.data.description
                         }
                     }
                 } catch (err) {

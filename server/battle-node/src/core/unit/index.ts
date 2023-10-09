@@ -7,6 +7,7 @@ import Stats from "./stats"
 import { BUFFS } from "../../../../../imports/constants/buffs/index.js"
 
 import Battle from ".."
+import { fixupBuffText } from "../../../../battleUtils"
 import { addBuff, removeBuff } from "../../../../../imports/battleUtils"
 import { buff } from "../../types/buff"
 import { enemy } from "../../types/enemy"
@@ -352,15 +353,7 @@ export default class Unit {
         this._isAbleToUseAbilities = true // can use abilities in combat (distinct from spells)
         this._isAbleToCastSpells = true // can cast spells in combat (distinct from abilities)
 
-        //if (this.name === 'psouza4dev') {
-        //  console.log("new Unit() buffs/before:");
-        //  console.log(unit.buffs);
-        //}
         this.buffs = unit.buffs.map((buff) => new Buff(buff, this, this.battleRef))
-        //if (this.name === 'psouza4dev') {
-        //  console.log("new Unit() buffs/after:");
-        //  console.log(unit.buffs);
-        //}
         this.stats = new Stats(unit.stats, unit.id, battleRef)
 
         this._icon = unit.icon
@@ -483,6 +476,11 @@ export default class Unit {
                 }),
                 constants: newBuffConstants
             }
+
+            const fixedBuff = fixupBuffText(newBuff, undefined)
+            newBuff.data.name = fixedBuff.data.name
+            newBuff.data.description = fixedBuff.data.description
+
             return newBuff
         } catch (err) {
             //console.log("Couldn't generate buff!");

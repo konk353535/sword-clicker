@@ -1,3 +1,4 @@
+import _ from "underscore"
 import { BUFFS } from "./constants/buffs/index"
 
 // why is this a duplicate of /server/battleUtils.js ?
@@ -67,6 +68,10 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
         newBuff.data.didApply = true
     }
 
+    const fixedBuff = fixupBuffText(newBuff, caster)
+    newBuff.data.name = fixedBuff.data.name
+    newBuff.data.description = fixedBuff.data.description
+
     return newBuff
 }
 
@@ -116,4 +121,32 @@ export const lookupBuff = function lookupBuff(buffId) {
     } catch (err) {}
 
     return undefined
+}
+
+export const fixupBuffText = function fixupBuffText(buff, caster) {
+    try {
+        const buffConstData = lookupBuff(buff.id)
+
+        if (buffConstData) {
+            // if .onApply() did not set a name for this buff, set one here
+            if (!buff.data.name || buff.data.name.toString().trim().length === 0) {
+                buff.data.name = buffConstData?.name || undefined
+            }
+
+            // if .onApply() did not set a description for this buff, set one here
+            if (!buff.data.description || buff.data.description.toString().trim().length === 0) {
+                if (_.isFunction(buffConstData?.description)) {
+                    buff.data.description = buffConstData?.description({
+                        buff: buffConstData,
+                        level: buff.level || 1,
+                        characterClass: (caster && caster.currentClass) ? caster.currentClass : { id: '', equipped: '' },
+                    })
+                } else {
+                    buff.data.description = buffConstData?.description || undefined
+                }
+            }
+        }
+    } catch (err) {}
+
+    return buff
 }

@@ -5,7 +5,11 @@
         {{#if buffIcon}}
           <img src="/icons/{{buffIcon}}" class="small-icon" />
         {{/if}}
-        {{#if buffCustom}}
+        {{#if debugMode}}
+          <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px; line-height: 10px; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+            {{buffShortUid}}
+          </span>
+        {{else if buffCustom}}
           <span style="position: absolute; bottom: 1px; right: 1px; font-size: 10px;
             line-height: 10px;">
             {{buff.customText}}

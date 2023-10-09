@@ -20,6 +20,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { Users, classFeatureUnlocked } from "/imports/api/users/users"
 
 import { env } from "/server/validateEnv"
+import { fixupBuffText } from "/server/battleUtils"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
@@ -502,6 +503,11 @@ export const startBattle = function ({
                     newBuff.data.totalDuration = durationToUse
                     newBuff.duration = durationToUse
                     newBuff.totalDuration = durationToUse
+
+                    const fixedBuff = fixupBuffText(newBuff, userCombat)
+                    newBuff.data.name = fixedBuff.data.name
+                    newBuff.data.description = fixedBuff.data.description
+
                     newUnit.buffs.push(newBuff)
                 }
             })

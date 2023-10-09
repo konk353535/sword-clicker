@@ -127,7 +127,7 @@ export const ENEMIES = Object.assign(
         monk: {
             id: "monk",
             icon: "monk.svg",
-            name: "monk ninja",
+            name: "sullen warrior",
             buffs: [
                 {
                     id: "monk",
@@ -1527,7 +1527,7 @@ export const ENEMIES = Object.assign(
                     data: {
                         totalDuration: Infinity,
                         icon: "seethingHatred.svg",
-                        name: "Hatred Attacks"
+                        name: "Fiery Smile"
                     }
                 }
             ]
@@ -1674,7 +1674,7 @@ export const ENEMIES = Object.assign(
                     duration: Infinity,
                     data: {
                         totalDuration: Infinity,
-                        hideBuff: true
+                        icon: "troglodyte.svg"
                     }
                 }
             ],

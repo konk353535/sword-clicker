@@ -210,7 +210,11 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   height: 32px;
   font-size: 32px;
   line-height: 32px;
-  pointer-events: none;
+  // Using 'pointer-events: none' prevents hover events, which breaks the ability for players to hover over effect icons
+  // under enemies during combat.  I assume this was intentional so as to not have to write buff descriptions for every
+  // effect in the game, but we no longer need it (that I can tell).  If disabling this style breaks something, blame
+  // this line.
+  /* pointer-events: none; */
 }
 
 .small-icon img {

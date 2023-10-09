@@ -1,6 +1,7 @@
 import _ from "underscore"
 import type Battle from "."
 import { BUFFS } from "../../../../imports/constants/buffs"
+import { fixupBuffText } from "../../../battleUtils"
 import { castAbilityOpts } from "../types/tickOpts"
 import Ability from "./unit/ability"
 
@@ -246,6 +247,10 @@ export function castAbility(this: Battle, { ability, caster, targets }: castAbil
                     try {
                         buff.constants.events.onApply({ buff, target, caster, actualBattle: this })
                         buff.data.didApply = true
+                        const fixedBuff = fixupBuffText(buff, caster)
+                        buff.data.name = fixedBuff.data.name
+                        buff.data.description = fixedBuff.data.description
+                    
                     } catch (err) {
                         console.log("Couldn't buff.onApply()")
                         console.trace(err)

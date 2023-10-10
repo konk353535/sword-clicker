@@ -389,7 +389,7 @@ Meteor.methods({
                 }
                 const abilityData = {
                     description: abilityConstant.description(abilityLevel, townArmoryBuffLevel),
-                    name: `${abilityConstant.name} (${abilityLevel})`,
+                    name: (abilityLevel > 1) ? `${abilityConstant.name} (level ${abilityLevel})` : abilityConstant.name,
                     icon: abilityConstant.icon,
                     isHidden: abilityConstant.isHidden,
                     cooldown: abilityConstant.cooldown,
@@ -462,7 +462,7 @@ Meteor.methods({
                     : abilityConstant.description(abilityLevel, townArmoryBuffLevel)
                 const abilityData = {
                     description: descToUse,
-                    name: `${abilityConstant.name} (${abilityLevel})`,
+                    name: (abilityLevel > 1) ? `${abilityConstant.name} (level ${abilityLevel})` : abilityConstant.name,
                     icon: abilityConstant.icon,
                     isHidden: abilityConstant.isHidden,
                     cooldown: abilityConstant.cooldown,
@@ -518,7 +518,11 @@ Meteor.publish("abilities", function () {
             const abilityConstant = ABILITIES[ability.abilityId]
 
             ability.description = ABILITIES[ability.abilityId].description(ability.level, getBuffLevel("town_armory"))
-            ability.name = `${abilityConstant.name} (${ability.level})`
+            if (ability.level > 1) {
+                ability.name = `${abilityConstant.name} (level ${ability.level})`
+            } else {
+                ability.name = abilityConstant.name
+            }
             ability.icon = abilityConstant.icon
             ability.cooldown = abilityConstant.cooldown
             ability.level = ability.level

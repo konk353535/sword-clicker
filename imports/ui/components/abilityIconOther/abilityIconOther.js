@@ -18,7 +18,10 @@ Template.abilityIconOther.helpers({
     name() {
         const instance = Template.instance()
 
-        return `${instance.data.ability.name} (${instance.data.ability.level})`
+        if (instance.data.ability.level > 1) {
+            return `${instance.data.ability.name} (level ${instance.data.ability.level})`
+        }
+        return instance.data.ability.name
     },
 
     description() {

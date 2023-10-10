@@ -2645,7 +2645,7 @@ export const MONSTER_BUFFS = {
                         targetUnit = _.sample(target.opposition)
                     }
                     actualBattle.dealDamage(target.stats.healthMax / 2, {
-                        attacker: target.targetUnit,
+                        attacker: targetUnit,
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,

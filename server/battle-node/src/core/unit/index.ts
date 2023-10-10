@@ -150,7 +150,7 @@ export default class Unit {
         try {
             const currentUnit = this
             const oppositionList = currentUnit.opposition
-            const oppositionDefault = oppositionList[0]
+            const oppositionDefault = _.sample(oppositionList)
             if (oppositionDefault != null) {
                 let targetUnitFound = oppositionList.findLast((potentialTarget) => {
                     return potentialTarget.id === currentUnit.target
@@ -383,14 +383,14 @@ export default class Unit {
         this.battleRef.allAliveUnits.forEach((unit) => {
             if (unit.target === this.id) {
                 if (unit.isEnemy) {
-                    const firstUnit = this.battleRef.units[0]
-                    if (firstUnit != null) {
-                        unit.target = firstUnit.id
+                    const differentUnit = _.sample(this.battleRef.units)
+                    if (differentUnit != null) {
+                        unit.target = differentUnit.id
                     }
                 } else {
-                    const firstEnemy = this.battleRef.enemies[0]
-                    if (firstEnemy != null) {
-                        unit.target = firstEnemy.id
+                    const differentUnit =  _.sample(this.battleRef.enemies)
+                    if (differentUnit != null) {
+                        unit.target = differentUnit.id
                     }
                 }
             }

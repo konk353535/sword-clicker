@@ -226,6 +226,8 @@ const startBattle = (currentBattle, self) => {
                             "rapier", 
                             "chatBubble",
                             "skull",
+                            "duelistParry",
+                            "wizardTimeWarpActive",
                             "noicon"
                         ]
 

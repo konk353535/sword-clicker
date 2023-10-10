@@ -1127,6 +1127,8 @@ export const MONSTER_BUFFS = {
                     const newBuff = {
                         id: "evasive_maneuvers",
                         data: {
+                            name: "Spirit Blink",
+                            description: `The ${target.name} is completely immune to all damage.`,
                             duration: 4,
                             totalDuration: 4,
                             level: 1,

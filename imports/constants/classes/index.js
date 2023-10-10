@@ -21,7 +21,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_barbarian__brawn"],
+        exclusiveAbilities: ["class_active_barbarian__charge", "class_passive_barbarian__brawn"],
         autoBuffs: ["class_trait_barbarian"],
         equipmentBonuses: {
             chest: {
@@ -58,7 +58,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_duelist__driven"],
+        exclusiveAbilities: ["class_active_duelist__parry", "class_passive_duelist__driven"],
         autoBuffs: ["class_trait_duelist"],
         equipmentBonuses: {
             buckler: {
@@ -91,7 +91,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_paladin__bulwark"],
+        exclusiveAbilities: ["class_active_paladin__wrath", "class_passive_paladin__bulwark"],
         autoBuffs: ["class_trait_paladin"],
         equipmentBonuses: {
             hammer: {
@@ -142,7 +142,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_active_ranger__blaze_arrows", "class_active_ranger__sleet_arrows", "class_active_ranger__storm_arrows" ],
+        exclusiveAbilities: ["class_active_ranger__blaze_arrows", "class_active_ranger__sleet_arrows", "class_active_ranger__storm_arrows", "class_passive_ranger__thicket" ],
         autoBuffs: ["class_trait_ranger"],
         equipmentBonuses: {
             bow: {
@@ -272,7 +272,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_sage__ward"],
+        exclusiveAbilities: ["class_active_sage__mystic_bond", "class_passive_sage__ward"],
         autoBuffs: ["class_trait_sage"],
         equipmentBonuses: {
             staff: {
@@ -505,7 +505,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_tactician__grit"],
+        exclusiveAbilities: ["class_active_tactician_rally", "class_passive_tactician__grit"],
         autoBuffs: ['class_trait_tactician']
     },
 
@@ -516,7 +516,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_warmage__glorious_destiny"],
+        exclusiveAbilities: ["class_active_warmage__weaken", "class_passive_warmage__glorious_destiny"],
         autoBuffs: ["class_trait_warmage"],
         equipmentBonuses: {
             trident: {
@@ -677,7 +677,7 @@ export const CLASSES = {
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_passive_wizard__summon_familiar"],
+        exclusiveAbilities: ["class_active_wizard__time_warp", "class_passive_wizard__summon_familiar"],
         autoBuffs: ["class_trait_wizard"],
         equipmentBonuses: {
             tome: {

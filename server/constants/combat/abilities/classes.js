@@ -1,6 +1,21 @@
 import { BUFFS } from "../../../../imports/constants/buffs/index"
 
 export const CLASS_ABILITIES = {
+    class_active_barbarian__charge: {
+        icon: "barbarianCharge.svg",
+        name: "Charge",
+        id: "class_active_barbarian__charge",
+        buffs: ["class_active_barbarian__charge"],
+        cooldown: 12,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_barbarian__charge
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
     class_passive_barbarian__brawn: {
         icon: "barbarianBrawn.svg",
         name: "Brawn",
@@ -18,6 +33,21 @@ export const CLASS_ABILITIES = {
         }
     },
 
+    class_active_duelist__parry: {
+        icon: "duelistParry.svg",
+        name: "Parry",
+        id: "class_active_duelist__parry",
+        buffs: ["class_active_duelist__parry"],
+        cooldown: 20,
+        slot: "any",
+        target: "self",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_duelist__parry
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
     class_passive_duelist__driven: {
         icon: "duelistDriven.svg",
         name: "Driven",
@@ -31,6 +61,21 @@ export const CLASS_ABILITIES = {
         isHidden: true,
         description(level) {
             const BUFF = BUFFS.class_passive_duelist__driven
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_paladin__wrath: {
+        icon: "paladinWrath.svg",
+        name: "Wrath",
+        id: "class_active_paladin__wrath",
+        buffs: ["class_active_paladin__wrath"],
+        cooldown: 12,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_paladin__wrath
             return BUFF.description({ buff: BUFF, level })
         }
     },
@@ -115,6 +160,38 @@ export const CLASS_ABILITIES = {
         }
     },
 
+    class_passive_ranger__thicket: {
+        icon: "rangerThicket.svg",
+        name: "Thicket",
+        id: "class_passive_ranger__thicket",
+        buffs: ["class_passive_ranger__thicket"],
+        cooldown: 0,
+        isPassive: true,
+        slot: "any",
+        target: "self",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_passive_ranger__thicket
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_sage__mystic_bond: {
+        icon: "sageMysticBond.svg",
+        name: "Bond",
+        id: "class_active_sage__mystic_bond",
+        buffs: ["class_active_sage__mystic_bond"],
+        cooldown: 5,
+        slot: "any",
+        target: "singleAlly",
+        isPacifist: true,
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_sage__mystic_bond
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
     class_passive_sage__ward: {
         icon: "sageWard.svg",
         name: "Ward",
@@ -128,6 +205,21 @@ export const CLASS_ABILITIES = {
         isHidden: true,
         description(level) {
             const BUFF = BUFFS.class_passive_sage__ward
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_tactician_rally: {
+        icon: "tacticianRally.svg",
+        name: "Rally",
+        id: "class_active_tactician_rally",
+        buffs: ["class_active_tactician_rally"],
+        cooldown: 25,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_tactician_rally
             return BUFF.description({ buff: BUFF, level })
         }
     },
@@ -149,6 +241,21 @@ export const CLASS_ABILITIES = {
         }
     },
     
+    class_active_warmage__weaken: {
+        icon: "warmageWeaken.svg",
+        name: "Weaken",
+        id: "class_active_warmage__weaken",
+        buffs: ["class_active_warmage__weaken"],
+        cooldown: 15,
+        slot: "any",
+        target: "currentEnemy",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_warmage__weaken
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+    
     class_passive_warmage__glorious_destiny: {
         icon: "warmageGloriousDestiny.svg",
         name: "Glorious Destiny",
@@ -161,6 +268,27 @@ export const CLASS_ABILITIES = {
         isHidden: true,
         description(level) {
             const BUFF = BUFFS.class_passive_warmage__glorious_destiny
+            return BUFF.description({ buff: BUFF, level })
+        }
+    },
+
+    class_active_wizard__time_warp: {
+        icon: "wizardTimeWarp.svg",
+        name: "Time Warp",
+        id: "class_active_wizard__time_warp",
+        buffs: ["class_active_wizard__time_warp"],
+        requires: [
+            {
+                type: "weaponType",
+                weaponTypes: ["staff", "wand"]
+            }
+        ], 
+        cooldown: 0,
+        slot: "any",
+        target: "self",
+        isHidden: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_wizard__time_warp
             return BUFF.description({ buff: BUFF, level })
         }
     },

@@ -85,6 +85,62 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_active_barbarian__charge: {
+        duplicateTag: "class_active_barbarian__charge",
+        icon: "barbarianCharge.svg",
+        name: "Charge",
+        description() {
+            return `
+        You charge into battle dealing <b>75%</b> damage and stunning your enemy
+        for <b>5</b> seconds.`
+        },
+        constants: {
+            abilityDamage: 0.75
+        },
+        data: {
+            duration: 0,
+            totalDuration: 0
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const abilityDamage = buffConstants.abilityDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+
+                actualBattle.dealDamage(abilityDamage, {
+                    attacker: caster,
+                    defender: target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats
+                })
+
+                const newBuff = {
+                    id: "stunned",
+                    data: {
+                        duration: 5,
+                        totalDuration: 5,
+                        icon: "stunned.svg",
+                        name: "Stunned",
+                        description: `You are stunned and can't take any actions or fight.`
+                    }
+                }
+
+                addBuff({ buff: newBuff, target, caster, actualBattle })
+
+                /*
+                setTimeout(function() {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 200 )
+                */
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
     class_passive_barbarian__brawn: {
         duplicateTag: "class_passive_barbarian__brawn",
         icon: "barbarianBrawn.svg",
@@ -187,6 +243,67 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_active_duelist__parry: {
+        duplicateTag: "class_active_duelist__parry", // Used to stop duplicate buffs
+        icon: "duelistParry.svg",
+        name: "Parry",
+        description({ buff, level }) {
+            const c = buff.constants
+            return `
+        Parry physical attacks, negating the damage and counter attacking for 75% attack damage.<br />
+        Lasts for 6 seconds.`
+        },
+        constants: {
+            damageDecimal: 0.75
+        },
+        data: {
+            duration: 6,
+            totalDuration: 6
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (buff.duration !== Infinity) {
+                    buff.duration -= secondsElapsed
+                    if (buff.duration <= 0) {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }
+                }
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                defender.tickMessage("Parried!", "#558855", "chatBubble", defender)
+                defender.stats.health += damageDealt // causes the damage to be nullified
+
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+                const defenderAttack = defender.stats.attack
+                const defenderAttackMax = defender.stats.attackMax
+                const actualDamage = (defenderAttack + (defenderAttackMax - defenderAttack) * Math.random()) * constants.damageDecimal
+
+                actualBattle.dealDamage(actualDamage, {
+                    defender: attacker,
+                    attacker: defender,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats,
+                    customIcon: "duelistParry.svg",
+                    customColor: "#f7750f"
+                })
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {}
         }
     },
 
@@ -311,6 +428,9 @@ export const CLASS_BUFFS = {
 
                     let allFriendlyCombatUnits = []
                     _.forEach(actualBattle.units, function (thisFriendlyUnit) {
+                        if (paladinSquire.id == thisFriendlyUnit.id) {
+                            thisFriendlyUnit.isPacifist = true
+                        }
                         allFriendlyCombatUnits.push(thisFriendlyUnit)
                     })
 
@@ -458,7 +578,7 @@ export const CLASS_BUFFS = {
                     if (!lodash.isUndefined(paladinAlly)) {
                         // penalize the paladin for losing his squire!
 
-                        paladinAlly.tickMessage("Squire Died", "#CC0000", "noicon", paladinAlly)
+                        paladinAlly.tickMessage("Squire Died", "#CC0000", "skull", paladinAlly)
 
                         const newBuff = {
                             id: "stunned",
@@ -474,6 +594,44 @@ export const CLASS_BUFFS = {
                         addBuff({ buff: newBuff, target: paladinAlly, caster: target, actualBattle })
                     }
                 }
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+    
+    class_active_paladin__wrath: {
+        duplicateTag: "class_active_paladin__wrath",
+        icon: "paladinWrath.svg",
+        name: "Wrath",
+        description() {
+            return `
+        You unleash righteous vengeance upon your enemy, dealing <b>100%</b> weapon damage
+        multiplied by how low your health is, from 1x damage at full health to 4x damage at
+        10% health.`
+        },
+        constants: {},
+        data: {
+            duration: 0,
+            totalDuration: 0
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                const abilityBaseDamage = (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                // this will produce a number from 1 to 4 when health is full vs. 10% (or lower)
+                const healthAdjustment = (Math.min(1 - ((caster.stats.health - (caster.stats.origStats.healthMax * 0.1)) / Math.max(caster.stats.origStats.healthMax - (caster.stats.origStats.healthMax * 0.1), 1)), 1) + 0.333333) * 3
+                const abilityDamage = abilityBaseDamage * healthAdjustment
+
+                actualBattle.dealDamage(abilityDamage, {
+                    attacker: caster,
+                    defender: target,
+                    tickEvents: actualBattle.tickEvents,
+                    historyStats: actualBattle.historyStats
+                })
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                removeBuff({ buff, target, caster, actualBattle })
             },
 
             onRemove({ buff, target, caster }) {}
@@ -712,6 +870,170 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {}
+        }
+    },
+    
+    class_passive_ranger__thicket: {
+        duplicateTag: "class_passive_ranger__thicket",
+        icon: "rangerThicket.svg",
+        name: "Thicket",
+        description() {
+            return `
+        Passive class ability<br />
+        You summon a growth of briars from nearby thickets to endanger your enemies! Briars do not
+        attack but will confuse and frustrate your enemies into injuring themselves on them.<br />
+        While equipped when you are a Ranger this is <b>always active</b>`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            // we erase this buff in the first tick anyway, so don't even show it to reduce flickering
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                caster.isStunned = true
+                caster.isPacifist = true
+                caster.isCharmed = true
+            },
+            
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.summonedThicketYet) {
+                    buff.data.summonedThicketYet = true
+
+                    // unit quantity adjustment based on party size (36% at group size 10, 56% at group size 5, 100% at group size 1)
+                    const partySizeAdjustment = 1 - ((actualBattle.units.length - 1)/((actualBattle.units.length - 1) + 5))
+                    const iHowManyBriars = Math.round(partySizeAdjustment * 6)
+
+                    for (let i = 0; i < iHowManyBriars; i++) {
+                        const rangerBriar = {
+                            owner: target.id + "_briar",
+                            id: uuid.v4(),
+                            tickOffset: 0,
+                            isNPC: true,
+                            isCompanion: true,
+                            isSoloCompanion: false
+                        }
+
+                        const randomBriarHealth = (target.stats.healthMax * 0.035 * Math.random()) + 3
+
+                        rangerBriar.icon = "rangerThicketBriar.svg"
+                        rangerBriar.name = target.name + "'s briar",
+                        rangerBriar.stats = {
+                            attack: 0.001,
+                            attackMax: 0.001,
+                            attackSpeed: 0.001,
+                            accuracy: 0.001,
+                            health: randomBriarHealth,
+                            healthMax: randomBriarHealth,
+                            defense: 1,
+                            armor: 1,
+                            magicArmor: 1,
+                            magicPower: 0,
+                            healingPower: 0,
+                            damageTaken: 1,
+                            damageOutput: 1
+                        }
+                        rangerBriar.buffs = [{
+                            id: "class_ranger_briar_effect",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                allowDuplicates: false,
+                                sourceId: caster.id,
+                                caster: caster.id,
+                                icon: rangerBriar.icon,
+                                name: rangerBriar.name,
+                                description: ``,
+                                duplicateTag: "class_ranger_briar_effect",
+                                hideBuff: false
+                            }
+                        }]
+
+                        // add the briar unit to combat
+                        actualBattle.addUnit(rangerBriar)
+                    }
+                    
+                    let allFriendlyCombatUnits = []
+                    _.forEach(actualBattle.units, function (thisFriendlyUnit) {
+                        if (thisFriendlyUnit.icon == "rangerThicketBriar.svg") {
+                            thisFriendlyUnit.isStunned = true
+                        }
+                        allFriendlyCombatUnits.push(thisFriendlyUnit)
+                    })
+
+                    // cheezy hack: now that this briar exists, randomize every enemy to target random friendly units
+                    //              otherwise the briar will never be targeted in PQ or the first floor of a multi-room tower
+                    _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
+                        thisEnemyUnit.target = _.sample(allFriendlyCombatUnits).id
+                    })
+
+                    // end this buff
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+            
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_ranger_briar_effect: {
+        duplicateTag: "class_ranger_briar_effect",
+        icon: "rangerThicketBriar.svg",
+        name: "Painful",
+        description({ buff, level }) {
+            const c = buff.constants
+            return `When destroyed, the briar causes damage to the enemy that destroyed it!`
+        },
+        constants: {},
+        data: {},
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.popped = false
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+
+            onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+                try {
+                    // if the briar dies, deal damage back to the unit who landed the finishing blow
+                    if (defender.stats.health <= 0) {
+                        buff.data.popped = true
+
+                        actualBattle.dealDamage((attacker.stats.healthMax / 6) + damageDealt, {
+                            attacker: defender,
+                            defender: attacker,
+                            tickEvents: actualBattle.tickEvents,
+                            historyStats: actualBattle.historyStats,
+                            customIcon: buff.data.icon
+                        })
+                    }
+                } catch (err) {}
+            },
+
+            onBeforeDeath({ buff, target, actualBattle }) {
+                if (!buff.data.popped) {
+                    buff.data.popped = true
+
+                    // if the briar dies without onTookDamage (from an ability, spell, or effect), deal damage back to the current target unit (or at random if we can't find a target)
+                    let targetUnit = target.targetUnit
+                    if (!targetUnit) {
+                        targetUnit = _.sample(target.opposition)
+                    }
+
+                    actualBattle.dealDamage(target.stats.healthMax / 6, {
+                        attacker: targetUnit,
+                        defender: target,
+                        tickEvents: actualBattle.tickEvents,
+                        historyStats: actualBattle.historyStats,
+                        customIcon: buff.data.icon
+                    })
+                }
+            },
+
+            onRemove({ buff, target }) {}
         }
     },
 
@@ -996,20 +1318,123 @@ export const CLASS_BUFFS = {
                 if (healSourceConsts.reducesCooldowns && caster.abilities) {
                     caster.abilities.forEach((ability) => {
                         // healing spells reduce the cooldown of ALL abilities by 2 seconds
-                        if (ability._currentCooldown > 0.0) {
-                            ability._currentCooldown -= 2.0
-                            
-                            // don't reduce below 0
-                            if (ability._currentCooldown <= 0.0) {
-                                // will be cleared by the combat server on the next tick
-                                ability._currentCooldown = 0.01
-                            }
+                        if (ability.currentCooldown > 0.0) {
+                            ability.currentCooldown -= 2.0
                         }
                     })
                 }
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_active_sage__mystic_bond: {
+        duplicateTag: "class_active_sage__mystic_bond",
+        icon: "sageMysticBond.svg",
+        name: "Bond",
+        description() {
+            return `
+        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain 1% of
+        your lost Maximum Health.  This effect can only occur once every 5 seconds.  You may reuse this
+        ability at any time to place it on a different target.  You my not use this on yourself directly.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            preventUse: function({ buff, target, caster, actualBattle }) {
+                setTimeout(function() {
+                    caster.abilities.forEach((ability) => {
+                        if (ability.id == "class_active_sage__mystic_bond") {
+                            ability.currentCooldown = 0
+                        }
+                    })
+
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 1)
+                return
+            }
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                if (caster.id == target.id) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+
+                let alreadyCastOnThisTarget = false
+
+                actualBattle.units.forEach((friendlyUnit) => {
+                    let buffsToRemove = []
+                    friendlyUnit.buffs.forEach((thisBuff) => {
+                        if (thisBuff.id == "class_active_sage__mystic_bond" && thisBuff.data?.caster == caster.id) {
+                            if (friendlyUnit.id == target.id) {
+                                alreadyCastOnThisTarget = true
+                            } else {
+                                buffsToRemove.push(thisBuff)
+                            }
+                        }
+                    })
+                    buffsToRemove.forEach((thisBuff) => {
+                        setTimeout(function() {
+                            removeBuff({ buff: thisBuff, target: friendlyUnit, caster, actualBattle })
+                        }, 1)
+                    })
+                })
+
+                if (alreadyCastOnThisTarget) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+
+                buff.data.description = "Whenever you are struck in combat, the Sage who placed this bond upon you regains 1% of their lost Maximum Health.  This effect can only occur once every 5 seconds."
+                buff.data.caster = caster.id
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                if (damageDealt <= 0 || !buff.data.caster || buff.data.casterUnit?.stats?.health <= 0) {
+                    return
+                }
+
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.caster) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    return
+                }
+
+                if (!buff.stacksTimer || buff.stacksTimer === 0) {
+                    const amountToIncreaseHealthBy = 0.01 * casterUnit.stats.healthMaxOrig
+
+                    casterUnit.stats.healthMax += amountToIncreaseHealthBy
+                    if (casterUnit.stats.healthMax > casterUnit.stats.healthMaxOrig) {
+                        casterUnit.stats.healthMax = casterUnit.stats.healthMaxOrig
+                    }
+
+                    buff.stacksTimer = 5.0
+                    buff.stacks = Math.ceil(buff.stacksTimer)
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                if (buff.stacksTimer > 0) {
+                    buff.stacksTimer -= secondsElapsed
+                }
+                if (buff.stacksTimer <= 0) {
+                    buff.stacksTimer = undefined
+                    buff.stacks = undefined
+                } else {
+                    buff.stacks = Math.ceil(buff.stacksTimer)
+                }
+            },
 
             onRemove({ buff, target, caster }) {}
         }
@@ -1143,6 +1568,51 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_active_tactician_rally: {
+        duplicateTag: "class_active_tactician_rally",
+        icon: "tacticianRally.svg",
+        name: "Rally",
+        description() {
+            return `
+        Cause all of your allies to target your target, even if they would otherwise be
+        unable to change targets on their own.  All damage dealt to your target is increased
+        by <b>50%</b>.<br />
+        Lasts for 5 seconds.`
+        },
+        constants: {},
+        data: {
+            duration: 5,
+            totalDuration: 5
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.description = "All damage dealt to this enemy is increased by 50%."
+
+                if (!caster.targetUnit) {
+                    caster.target = _.sample(target.opposition)
+                }
+
+                target.stats.damageTaken += 0.5
+
+                actualBattle.units.forEach((friendlyUnit) => {
+                    friendlyUnit.target = caster.target
+                })
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                buff.duration -= secondsElapsed
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                target.stats.damageTaken -= 0.5
+            }
+        }
+    },
+
     class_passive_tactician__grit: {
         duplicateTag: "class_passive_tactician__grit",
         icon: "tacticianGrit.svg",
@@ -1238,6 +1708,40 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_active_warmage__weaken: {
+        duplicateTag: "class_active_warmage__weaken",
+        icon: "warmageWeaken.svg",
+        name: "Weaken",
+        description() {
+            return `
+        Your target enemy deals 50% less damage.<br />
+        Lasts for 6 seconds.
+        `
+        },
+        constants: {},
+        data: {
+            duration: 6,
+            totalDuration: 6
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                target.stats.damageOutput -= 0.5
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                buff.duration -= secondsElapsed
+
+                if (buff.duration < 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                target.stats.damageOutput += 0.5
+            }
+        }
+    },
+
     class_passive_warmage__glorious_destiny: {
         duplicateTag: "class_passive_warmage__glorious_destiny",
         icon: "warmageGloriousDestiny.svg",
@@ -1302,6 +1806,191 @@ export const CLASS_BUFFS = {
         }
     },
 
+    class_active_wizard__time_warp: {
+        duplicateTag: "class_active_wizard__time_warp",
+        icon: "wizardTimeWarp.svg",
+        name: "Time Warp",
+        description() {
+            return `
+        Speeds up time for you and your allies, lowering ability cooldowns for as long as
+        you channel this spell.  Does not modify effects that last over time such as Mending
+        Waters or Poison.  As long as you channel this spell, will lose 3% of your Health
+        and 1% of your Maximum Health per second.<br />
+        This is a <b>channeled</b> spell and will last for as long as you maintain it.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            hideBuff: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+
+                const existingTimeWarp = caster.findBuff("class_active_wizard__time_warp_caster")
+
+                if (existingTimeWarp) {
+                    // Time Warp is already active, stop channelling it
+
+                    removeBuff({ buff: existingTimeWarp, target: caster, caster, actualBattle })
+                } else {
+                    // Time Warp is not active, start channeling it
+
+                    if (caster.stats.health <= 100 || caster.stats.healthMax <= 100) {
+                        return
+                    }
+
+                    let otherTimeWarpCasterExists = false
+                    actualBattle.units.forEach((friendlyUnit) => {
+                        if (friendlyUnit.id !== caster.id) {
+                            const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_caster")
+                            if (ally_existing_time_warp_buff) {
+                                otherTimeWarpCasterExists = true
+                            }
+                        }
+                    })
+
+                    if (otherTimeWarpCasterExists) {
+                        return
+                    }
+
+                    caster.applyBuffTo({
+                        buff: caster.generateBuff({
+                            buffId: "class_active_wizard__time_warp_caster"
+                        }),
+                        target: caster
+                    })
+                }
+            },
+            
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},            
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_active_wizard__time_warp_caster: {
+        duplicateTag: "class_active_wizard__time_warp_caster",
+        icon: "wizardTimeWarp.svg",
+        name: "Time Warp",
+        description() {
+            return `
+        You are warping time...<br />
+        You are losing health maintaining this channeled spell.<br />
+        This is a <b>channeled</b> spell and will last for as long as you maintain it.`
+            /*return `
+        You are warping time...<br />
+        Halves your attack speed.  Your ability cooldowns flow in the opposite direction.
+        You are losing health maintaining this channeled spell.<br />
+        This is a <b>channeled</b> spell and will last for as long as you maintain it.` */
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                //buff.data.attackSpeedOriginal = target.stats.origStats.attackSpeed
+                //target.stats.attackSpeed -= buff.data.attackSpeedOriginal / 2
+
+                caster.tickMessage("Warping Time", "#445599", "chatBubble", caster)
+            },  
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (caster.stats.health <= 100 || caster.stats.healthMax <= 100) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
+                }
+
+                actualBattle.units.forEach((friendlyUnit) => {
+                    //if (friendlyUnit.id !== caster.id) {
+                        const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_target")
+                        if (!ally_existing_time_warp_buff) {
+                            caster.applyBuffTo({
+                                buff: caster.generateBuff({
+                                    buffId: "class_active_wizard__time_warp_target"
+                                }),
+                                target: friendlyUnit
+                            })
+
+                            if (friendlyUnit.id !== caster.id) {
+                                friendlyUnit.tickMessage("Time Warp!", "#445599", "wizardTimeWarpActive", friendlyUnit)
+                            }
+                        }
+                    //}
+                })
+                
+                //if (caster.abilities) {
+                //    caster.abilities.forEach((ability) => {
+                //        if (ability.constants && ability.constants.buffs && ability.constants.buffs.length == 1 && ability.constants.cooldown > 0) {
+                //            ability.currentCooldown += secondsElapsed * 2.0
+                //        }
+                //    })
+                //}
+
+                caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.03
+                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.01
+                if (caster.stats.health > caster.stats.healthMax) {
+                    caster.stats.health = caster.stats.healthMax
+                }
+                if (caster.stats.health <= 100 || caster.stats.healthMax <= 100) {
+                    caster.stats.health = caster.stats.healthMax = 100
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {
+                target.stats.attackSpeed += buff.data.attackSpeedOriginal * 2
+                
+                actualBattle.units.forEach((friendlyUnit) => {
+                    const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_target")
+                    if (ally_existing_time_warp_buff) {
+                        removeBuff({ buff: ally_existing_time_warp_buff, target: friendlyUnit, caster, actualBattle })
+                    }
+                })
+
+                caster.tickMessage("Exhausted!", "#885599", "chatBubble", caster)
+            }
+        }
+    },
+
+    class_active_wizard__time_warp_target: {
+        duplicateTag: "class_active_wizard__time_warp_target",
+        icon: "wizardTimeWarpActive.svg",
+        name: "Time Warp",
+        description() {
+            return `
+        Time is being warped around you, reducing your ability cooldown time.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                //buff.data.attackSpeedOriginal = target.stats.origStats.attackSpeed
+                //target.stats.attackSpeed += buff.data.attackSpeedOriginal
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (target.abilities) {
+                    target.abilities.forEach((ability) => {
+                        if (ability.currentCooldown && ability.currentCooldown > 0) {
+                            ability.currentCooldown -= secondsElapsed
+                        }
+                    })
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                //target.stats.attackSpeed -= buff.data.attackSpeedOriginal
+            }
+        }
+    },
+    
     class_passive_wizard__summon_familiar: {
         duplicateTag: "class_passive_wizard__summon_familiar",
         icon: "wizardSummonFamiliar.svg",

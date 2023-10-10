@@ -476,10 +476,12 @@ img.discord {
 
 .player-skills-container, .floor-progression-container {
     .progress {
-        color: black;
-        background-color: #eceeef;
+        color: white;
+        background-color: #dcdedf;
     }
     .progress-overlay {
-        color: black;
+        font-size: 11pt !important;
+        color: white;
+        text-shadow: 0px 0px 4px #777, 0px 0px 8px black;
     }
 }

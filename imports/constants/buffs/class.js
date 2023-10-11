@@ -50,7 +50,7 @@ export const CLASS_BUFFS = {
 
                 // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
                 if (originalAutoAttack) {
-                    if (attacker.mainHandWeapon?.indexOf('_long_sword') !== -1 || attacker.mainHandWeapon?.indexOf('_battle_axe') !== -1) {
+                    if (attacker.mainHandWeapon?.indexOf('_broad_sword') !== -1 || attacker.mainHandWeapon?.indexOf('_battle_axe') !== -1) {
                         if (Math.random() <= 0.25) {
                             if (attacker) {
                                 // Get the defender

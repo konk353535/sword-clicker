@@ -613,6 +613,24 @@ Template.currentBattleUi.helpers({
         return Template.instance().state.get("battleEndsAt")
     },
 
+    battleLevelDesc() {
+        const currentBattle = Template.instance().state.get("currentBattle")
+
+        if (currentBattle) {
+            if (currentBattle.level && currentBattle.wave) {
+                return `L${currentBattle.level} W${currentBattle.wave}`
+            }
+            else if (currentBattle.floor && currentBattle.room) {
+                if (currentBattle.room == "boss") {
+                    return `F${currentBattle.floor} Boss`
+                } else {
+                    return `F${currentBattle.floor} R${currentBattle.room}`
+                }
+            }
+        }
+        return false
+    },
+
     unitClicked() {
         const instance = Template.instance()
         return function (unitId) {

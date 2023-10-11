@@ -21,13 +21,13 @@ export const lookupWoodTier = (tier: number) => {
         return "mahogany"
     }
     if (tier === 9) {
-        return "elk"
+        return "elm"
     }
     if (tier === 10) {
         return "black"
     }
     if (tier === 11) {
-        return "blue gum"
+        return "blue_gum"
     }
     if (tier === 12) {
         return "cedar"
@@ -53,7 +53,31 @@ export const lookupWoodTier = (tier: number) => {
     if (tier === 19) {
         return "willow"
     }
-    if (tier >= 20) {
+    if (tier === 20) {
+        return "teak"
+    }
+    if (tier === 21) {
+        return "ebony"
+    }
+    if (tier === 22) {
+        return "fiery"
+    }
+    if (tier === 23) {
+        return "tamarind"
+    }
+    if (tier === 24) {
+        return "sagewood"
+    }
+    if (tier === 25) {
+        return "petrified"
+    }
+    if (tier === 26) {
+        return "ancient"
+    }
+    if (tier === 27) {
+        return "spiritroot"
+    }
+    if (tier > 20) {
         return "teak"
     }
     return "pine"

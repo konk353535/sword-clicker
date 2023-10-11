@@ -77,5 +77,8 @@ export const lookupMetalTier = (tier: number) => {
     if (tier === 27) {
         return "prismatic"
     }
+    if (tier > 20) {
+        return "cursed"
+    }
     return "copper"
 }

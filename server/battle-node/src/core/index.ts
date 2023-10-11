@@ -11,6 +11,7 @@ import { unit } from "../types/unit.js"
 import { lookupMetalTier } from "../utils/lookupMetalTier.js"
 import { lookupOreTier } from "../utils/lookupOreTier.js"
 import { lookupWoodTier } from "../utils/lookupWoodTier.js"
+import { lookupMagicColorTier, lookupMagicTomeTier, lookupMagicOrbTier } from "../utils/lookupMagicColorTier.js"
 import { env } from "../validateEnv"
 import { TICK_DURATION, autoAttack } from "./autoAttack.js"
 import { castAbility } from "./castAbility.js"
@@ -250,6 +251,9 @@ export default class Battle {
     public lookupOreTier = lookupOreTier
     public lookupMetalTier = lookupMetalTier
     public lookupWoodTier = lookupWoodTier
+    public lookupMagicColorTier = lookupMagicColorTier
+    public lookupMagicTomeTier = lookupMagicTomeTier
+    public lookupMagicOrbTier = lookupMagicOrbTier
 
     // not the same as 'reward level' exactly (reward level - 1)
     pqTowerEquivalence() {

@@ -521,7 +521,7 @@ export const CLASSES = {
         equipmentBonuses: {
             trident: {
                 attackSpeed: {
-                    valueAdd: 1
+                    valueAdd: 0.5
                 }
             },
             neck: {

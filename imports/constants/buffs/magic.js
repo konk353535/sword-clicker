@@ -2056,7 +2056,8 @@ export const MAGIC_BUFFS = {
             damageBase: 1,
             damageMPRatio: 0.4,
             healthCost: 5,
-            healthCostMPRatio: 0.1
+            healthCostMPRatio: 0.1,
+            allowTicks: true // allow this to tick even when stunned
         },
         data: {
             allowDuplicates: true,
@@ -2132,7 +2133,9 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             return `Burning in intense, searing heat!`
         },
-        constants: {},
+        constants: {
+            allowTicks: true // allow this to tick even when stunned
+        },
         data: {
             duration: 25,
             totalDuration: 25

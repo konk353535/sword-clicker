@@ -71,7 +71,8 @@ export const ATTACK_BUFFS = {
             return "Deals poison damage over time"
         },
         constants: {
-            timeTillDamage: 5
+            timeTillDamage: 5,
+            allowTicks: true // allow this to tick even when stunned
         },
         events: {
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1384,7 +1385,8 @@ export const ATTACK_BUFFS = {
         },
         constants: {
             damagePerSecondBase: 0.07,
-            damagePerSecondPerLevel: 0.03
+            damagePerSecondPerLevel: 0.03,
+            allowTicks: true // allow this to tick even when stunned
         },
         data: {
             duration: 12,
@@ -1455,7 +1457,8 @@ export const ATTACK_BUFFS = {
         },
         constants: {
             damagePerSecondBase: 0.07,
-            damagePerSecondPerLevel: 0.03
+            damagePerSecondPerLevel: 0.03,
+            allowTicks: true // allow this to tick even when stunned
         },
         data: {
             duration: 12,

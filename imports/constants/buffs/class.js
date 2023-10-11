@@ -13,10 +13,9 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Barbarian",
         description() {
             return `
-        Your critical hits will inflict bleeding for 3 seconds.
-        Broad swords and battle axes have a 25% chance to strike enemies adjacent to your target.
-        You may not wear magical head, chest, or leg equipment.
-        Your Magic Power in combat is always 0, even if another effect would say otherwise.<br />
+        Your critical hits will inflict bleeding for 3 seconds.  Broad swords and battle axes have a 25% chance to
+        strike enemies adjacent to your target.  You may not wear magical head, chest, or leg equipment. Your Magic
+        Power in combat is always 0, even if another effect would say otherwise.<br />
         While you are a Barbarian this is <b>always active</b>`
         },
         constants: {
@@ -49,28 +48,21 @@ export const CLASS_BUFFS = {
                 }
 
                 // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
-                if (originalAutoAttack) {
+                if (originalAutoAttack && attacker && attacker.targetUnit) {
                     if (attacker.mainHandWeapon?.indexOf('_broad_sword') !== -1 || attacker.mainHandWeapon?.indexOf('_battle_axe') !== -1) {
                         if (Math.random() <= 0.25) {
-                            if (attacker) {
-                                // Get the defender
-                                const ourTargetUnit = attacker.targetUnit
-                                if (ourTargetUnit) {
-                                    // Get enemies both side of him
-                                    const ourTargetsAllies = ourTargetUnit.adjacentAllies
-                                    if (ourTargetsAllies && ourTargetsAllies.length > 0) {
-                                        ourTargetUnit.adjacentAllies.forEach((newTarget) => {
-                                            // Call auto attack on them as well
-                                            actualBattle.autoAttack({
-                                                attacker,
-                                                defender: newTarget,
-                                                tickEvents: actualBattle.tickEvents,
-                                                historyStats: actualBattle.historyStats,
-                                                originalAutoAttack: false
-                                            })
-                                        })
-                                    }
-                                }
+                            // Check enemies both side of the defender
+                            if (attacker.targetUnit.adjacentAllies && attacker.targetUnit.adjacentAllies.length > 0) {
+                                attacker.targetUnit.adjacentAllies.forEach((adjacentTarget) => {
+                                    // Perform auto attack on them as well
+                                    actualBattle.autoAttack({
+                                        attacker,
+                                        defender: adjacentTarget,
+                                        tickEvents: actualBattle.tickEvents,
+                                        historyStats: actualBattle.historyStats,
+                                        originalAutoAttack: false
+                                    })
+                                })
                             }
                         }
                     }
@@ -91,11 +83,12 @@ export const CLASS_BUFFS = {
         name: "Charge",
         description() {
             return `
-        You charge into battle dealing <b>75%</b> damage and stunning your enemy
-        for <b>5</b> seconds.`
+        You charge into battle dealing <b>75%</b> damage and stunning your enemy for <b>5</b> seconds.  An enemy can't
+        be stunned by another Charge again for 20 seconds.`
         },
         constants: {
-            abilityDamage: 0.75
+            abilityDamage: 0.75,
+            allowTicks: true
         },
         data: {
             duration: 0,
@@ -113,24 +106,34 @@ export const CLASS_BUFFS = {
                     historyStats: actualBattle.historyStats
                 })
 
+                let isResilient = false
+                target.buffs.forEach((thisBuff) => {
+                    if (thisBuff.data?.stunResilience) {
+                        isResilient = true
+                    }
+                })
+
+                if (isResilient) {
+                    return
+                }
+
                 const newBuff = {
                     id: "stunned",
-                    data: {
+                    data: { 
                         duration: 5,
                         totalDuration: 5,
                         icon: "stunned.svg",
                         name: "Stunned",
-                        description: `You are stunned and can't take any actions or fight.`
+                        description: `You are stunned and can't take any actions or fight.`,
+                        swapId: "stunned_barbarian_resilience",
+                        swapName: "Resilient",
+                        swapDuration: 20, // base duration + resilience duration
+                        swapIcon: "barbarianCharge.svg",
+                        swapDescription: "Resilient to Barbarian Charge stuns."
                     }
                 }
 
                 addBuff({ buff: newBuff, target, caster, actualBattle })
-
-                /*
-                setTimeout(function() {
-                    removeBuff({ buff, target, caster, actualBattle })
-                }, 200 )
-                */
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -141,6 +144,39 @@ export const CLASS_BUFFS = {
         }
     },
 
+    stunned_barbarian_resilience: {
+        duplicateTag: "stunned_barbarian_resilience",
+        icon: "barbarianCharge.svg",
+        name: "resilient",
+        description() {
+            return `
+        Resilient to Barbarian Charge stuns.`
+        },
+        constants: {
+            allowTicks: true
+        },
+        data: {
+            duration: 15,
+            totalDuration: 15,
+            allowDuplicates: true,
+            stunResilience: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {},
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+                buff.data.duration = buff.duration
+
+                if (buff.duration <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) { }
+        }
+    },
+
     class_passive_barbarian__brawn: {
         duplicateTag: "class_passive_barbarian__brawn",
         icon: "barbarianBrawn.svg",
@@ -148,9 +184,9 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your
-        damage by +10% per stack (to a maximum of +200%).  Stacks are reduced by 3 when you successfully
-        hit with an auto-attack to a minimum of 0 stacks.<br />
+        Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your damage by
+        +10% per stack (to a maximum of +200%).  Stacks are reduced by 3 when you successfully hit with an auto-attack
+        to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
         },
         constants: {},
@@ -206,11 +242,11 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Duelist",
         description() {
             return `
-        <i>Twin Blades</i> and other dagger/rapier-only abilities can also be used with short swords,
-        scimitars, and longswords.  Physical damage dealt to an enemy you aren't directly targeting
-        is increased by 50%.  Rapiers and bucklers may be equipped together.  Double accuracy benefit
-        from rapiers.  Rapiers no longer reduce Defense.  When striking an enemy with an auto-attack,
-        you reduce their physical armor and defense by 1% of their original maximum.<br />
+        <i>Twin Blades</i> and other dagger/rapier-only abilities can also be used with short swords, scimitars,
+        and longswords.  Physical damage dealt to an enemy you aren't directly targeting is increased by 50%.
+        Rapiers and bucklers may be equipped together.  Double accuracy benefit from rapiers.  Rapiers no longer
+        reduce Defense.  When striking an enemy with an auto-attack, you reduce their physical armor and defense by
+        1% of their original maximum.<br />
         While you are a Duelist this is <b>always active</b>`
         },
         constants: {

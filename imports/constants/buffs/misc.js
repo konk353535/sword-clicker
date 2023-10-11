@@ -1,4 +1,7 @@
-import { lookupBuff, removeBuff } from "../../battleUtils"
+import lodash from "lodash"
+import uuid from "node-uuid"
+
+import { lookupBuff, addBuff, removeBuff } from "../../battleUtils"
 
 export const MISC_BUFFS = {
     idle_player: {
@@ -77,20 +80,57 @@ export const MISC_BUFFS = {
         },
         data: {
             duration: 5,
-            totalDuration: 5
+            totalDuration: 5,
+            swapDuration: 5,
+            allowDuplicates: true
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
+                let isResilient = false
+                target.buffs.forEach((thisBuff) => {
+                    if (thisBuff.data?.stunResilience) {
+                        isResilient = true
+                    }
+                })
+
+                if (isResilient) {
+                    setTimeout(function() {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }, 1)
+                    return
+                }
+
                 buff.data.wasAlreadyStunned = target.isStunned
                 target.isStunned = true
-                buff.data.timeCount = 0.0
+                buff.data.stunResilience = false
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 buff.duration -= secondsElapsed
-                buff.data.timeCount += secondsElapsed
-                if (buff.duration <= 0 || buff.data.timeCount >= buff.data.totalDuration) {
-                    removeBuff({ buff, target, caster, actualBattle })
+                buff.data.duration = buff.duration
+                buff.data.swapDuration -= secondsElapsed
+
+                if (buff.duration <= 0) {
+                    if (buff.data.swapDuration <= 0 || !buff.data.swapName) {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    } else {
+                        const newBuff = {
+                            id: buff.data.swapId || "stunned_barbarian_resilience",
+                            data: { 
+                                duration: buff.data.swapDuration || 15,
+                                totalDuration: buff.data.swapDuration || 15,
+                                icon: buff.data.swapIcon || buff.data.icon || buff.icon,
+                                name: buff.data.swapName || buff.data.name || buff.name,
+                                description: buff.data.swapDescription || buff.data.description,
+                                stunResilience: true
+                            }
+                        }
+
+                        addBuff({ buff: newBuff, target, caster, actualBattle })
+
+                        buff.data.swapDuration = 0
+                        buff.data.swapName = undefined
+                    }
                 }
             },
 

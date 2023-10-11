@@ -525,9 +525,22 @@ html.dark {
         color: #fff !important;
     }
 
-    .lobby-container .health-bar {
-        color: $dark-bg-color;
+    .progress.health-bar .progress-bar .health-bar {
+        // light more is: #D9534F
+        background-color: #B9331A;
     }
+
+    .progress.energy-bar .progress-bar .energy-bar {
+        // light mode is #F0AD4E
+        background-color: #D08D2E;
+    }
+
+    /*
+    .lobby-container .health-bar, .lobby-container .energy-bar {
+        color: $dark-bg-color;
+        text-shadow: 2px 2px 2px #fff, 2px -2px 2px #fff, -2px 2px 2px #fff, -2px -2px 2px #fff;
+    }
+    */
 
     /* battle abilities in combat */
     #content > div.d-sm-flex.flex-grow > div > div:nth-child(1) > div:nth-child(3) {
@@ -571,7 +584,7 @@ html.dark {
         }
     }
 
-    .player-skills-container, .floor-progression-container {
+    .player-skills-container, .floor-progression-container, .battle-unit-container {
         .progress {
             color: white;
             background-color: #444;

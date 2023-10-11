@@ -375,16 +375,16 @@ body {
     z-index: 1050;
 }
 
-.health-bar {
+.health-bar, .energy-bar {
     width: 96px;
 }
 
-.health-bar-tiny {
+.health-bar-tiny, .energy-bar-tiny {
     width: 32px;
 }
 
-.energy-bar-tiny {
-    width: 32px;
+.lobby-container .health-bar, .lobby-container .energy-bar {
+    text-shadow: 1px 1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, -1px -1px 1px #444;
 }
 
 @media screen and (max-width: 768px) {
@@ -474,7 +474,7 @@ img.discord {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(321deg) brightness(103%) contrast(104%);
 }
 
-.player-skills-container, .floor-progression-container {
+.player-skills-container, .floor-progression-container, .battle-unit-container {
     .progress {
         color: white;
         background-color: #dcdedf;

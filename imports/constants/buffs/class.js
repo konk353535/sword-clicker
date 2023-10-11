@@ -1339,7 +1339,7 @@ export const CLASS_BUFFS = {
             return `
         Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain 1% of
         your lost Maximum Health.  This effect can only occur once every 5 seconds.  You may reuse this
-        ability at any time to place it on a different target.  You my not use this on yourself directly.`
+        ability at any time to place it on a different target.  You may not use this on yourself directly.`
         },
         constants: {
         },

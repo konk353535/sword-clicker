@@ -437,16 +437,17 @@ window.reconnectionTrigger = function (this_template) {
                             if (unit.buffs) {
                                 unit.buffsMap = {}
                                 unit.buffs.forEach((buff) => {
-                                    unit.buffsMap[buff.id] = buff // what are we even doing with buffsMap ?
+                                    unit.buffsMap[buff.id] = buff
                                 })
                             }
                         }
                     })
 
                 deltaEvents.forEach(({ type, path, value }) => {
-                    /* if (path.indexOf('.uid') !== -1) {
-          console.log('received deltaEvent', path, value);
-        } */
+                    //if (path.indexOf('_brawn.') !== -1) {
+                    //    console.log('received deltaEvent', type, path, value);
+                    //    console.log(currentBattle)
+                    //}
 
                     if (type === "abs") {
                         lodash.set(currentBattle, path, value)

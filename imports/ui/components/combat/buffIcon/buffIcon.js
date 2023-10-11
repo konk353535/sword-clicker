@@ -25,9 +25,13 @@ Template.buffIcon.helpers({
                 return false
             }
 
-            if (localData.buff.data.icon && localData.buff.data.icon.length > 0) return localData.buff.data.icon
+            if (localData.buff.data.icon) {
+                return localData.buff.data.icon
+            }
 
-            if (localData.buff.icon && localData.buff.icon.length > 0) return localData.buff.icon
+            if (localData.buff.icon) {
+                return localData.buff.icon
+            }
         } catch (err) {}
 
         return false
@@ -110,6 +114,55 @@ const BIM = document.buffIconManager;
 if (!BIM.init) {
     BIM.init = true
     BIM.buffs = []
+    BIM.updateBuff = function(buffSize, buffUid, newBuffData) {
+        if (!BIM.buffs) {
+            return
+        }
+
+        BIM.buffs.forEach(function(thisBuff, idx, arr) {
+            if (thisBuff.size == buffSize && thisBuff.uid == buffUid) {
+                //const didIconChange = newBuffData?.icon != BIM.buffs[idx].icon
+                const didNameChange = newBuffData?.name != BIM.buffs[idx].name
+                const didDescChange = newBuffData?.description != BIM.buffs[idx].description
+
+                //BIM.buffs[idx].icon = newBuffData?.icon || BIM.buffs[idx].icon
+                BIM.buffs[idx].name = newBuffData?.name || BIM.buffs[idx].name
+                BIM.buffs[idx].description = newBuffData?.description || BIM.buffs[idx].description
+
+                /*
+                if (didIconChange) {
+                    const selectorMain = `.buff-icon-container.${thisBuff.size}#buff-${thisBuff.size}-${thisBuff.uid}`
+
+                    if ($(selectorMain).length === 1) {
+                        $(selectorMain).find("img").prop("src", `/icons/${BIM.buffs[idx].icon}`)
+                    }
+                }
+                */
+               
+                if (didNameChange || didDescChange) {
+                    const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
+                    const selectorA = `#${selectorA_id}`
+                    const selectorB_id = `buff-tooltip-content-${thisBuff.size}-${thisBuff.uid}`
+                    const selectorB = `#${selectorB_id}`
+
+                    if ($(selectorA).length === 1) {
+                        if ($(selectorB).length === 1) {
+                            $(selectorB).html(
+                                `<h3 class='popover-title text-capitalize'>
+                                    ${BIM.buffs[idx].name}
+                                </h3>
+                                <div class='popover-content'>
+                                    <div style='max-width: 350px;'>
+                                    ${BIM.buffs[idx].description}
+                                    </div>
+                                </div>`
+                            )
+                        }
+                    }
+                }
+            }
+        })
+    }
     BIM.checkExpiredBuffs = function() {
         if (!BIM.buffs) {
             return
@@ -155,7 +208,7 @@ if (!BIM.init) {
                             <!-- Icon Tooltip -->
                             <div class="buff-tooltip-content my-tooltip-inner combat-buff-tooltip-data" owner="${selectorA_id}" id="${selectorB_id}">
                                 <h3 class='popover-title text-capitalize'>
-                                ${thisBuff?.name}
+                                    ${thisBuff?.name}
                                 </h3>
                                 <div class='popover-content'>
                                     <div style='max-width: 350px;'>
@@ -247,7 +300,17 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
         if (self.state.get("didThisBuff")) {
             //todo: check if buff name changed?
             //console.log('Monitoring changes to buff:', tooltipMethod, localSize, localData);
-            Meteor.clearInterval(self.intervalTimer)
+            //Meteor.clearInterval(self.intervalTimer)
+
+            if (BIM && BIM.buffs && localData?.buff?.uid) {
+                const buffName = localData.buff.data?.name || localData.buff?.id || "Combat Effect"
+                const buffDesc = localData.buff.data?.description || "You aren't sure what this effect does."
+        
+                BIM.updateBuff(localSize, localData.buff.uid,
+                    { uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc /*, icon: localData.data?.icon || localData.icon */}
+                )
+            }
+
             return
         }
 
@@ -286,7 +349,9 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
         const buffDesc = localData.buff.data?.description || "You aren't sure what this effect does."
 
         if (BIM && BIM.buffs) {
-            BIM.buffs.push({ uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc })
+            BIM.buffs.push(
+                { uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc /*, icon: localData.data?.icon || localData.icon */ }
+            )
         }
 
         self.state.set("selectorA", selectorA)

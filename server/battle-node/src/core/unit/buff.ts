@@ -139,6 +139,9 @@ export default class Buff {
     }
     set icon(value) {
         this._icon = value
+        if (this.data) {
+            this.data.icon = value
+        }
         this.delta("icon")
     }
 
@@ -172,6 +175,16 @@ export default class Buff {
         }
 
         this.battleRef.deltaEvents.push(event)
+
+        if (key === "name" || key === "description" || key === "icon") {
+            const subEvent = {
+                type: "abs",
+                path: `unitsMap.${this.unit.id}.buffsMap.${this.id}.data.${key}`,
+                value: this[key]
+            }
+
+            this.battleRef.deltaEvents.push(subEvent)
+        }
     }
 
     constructor(buff: buff, unit: Unit, battleRef: Battle) {

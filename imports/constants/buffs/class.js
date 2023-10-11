@@ -465,7 +465,7 @@ export const CLASS_BUFFS = {
                     let allFriendlyCombatUnits = []
                     _.forEach(actualBattle.units, function (thisFriendlyUnit) {
                         if (paladinSquire.id == thisFriendlyUnit.id) {
-                            thisFriendlyUnit.isPacifist = true
+                            thisFriendlyUnit.isPacifist = true // must be set after adding to actualBattle battle ref
                         }
                         allFriendlyCombatUnits.push(thisFriendlyUnit)
                     })
@@ -739,8 +739,7 @@ export const CLASS_BUFFS = {
         constants: {},
         data: {
             duration: Infinity,
-            totalDuration: Infinity,
-            stacks: 1
+            totalDuration: Infinity
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
@@ -991,7 +990,7 @@ export const CLASS_BUFFS = {
                     let allFriendlyCombatUnits = []
                     _.forEach(actualBattle.units, function (thisFriendlyUnit) {
                         if (thisFriendlyUnit.icon == "rangerThicketBriar.svg") {
-                            thisFriendlyUnit.isStunned = true
+                            thisFriendlyUnit.isStunned = true // must be set after adding to actualBattle battle ref
                         }
                         allFriendlyCombatUnits.push(thisFriendlyUnit)
                     })

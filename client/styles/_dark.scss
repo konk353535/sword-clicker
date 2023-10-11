@@ -525,12 +525,12 @@ html.dark {
         color: #fff !important;
     }
 
-    .progress.health-bar .progress-bar .health-bar {
+    .progress.health-bar .progress-bar .health-bar div {
         // light more is: #D9534F
         background-color: #B9331A;
     }
 
-    .progress.energy-bar .progress-bar .energy-bar {
+    .progress.energy-bar .progress-bar .energy-bar div {
         // light mode is #F0AD4E
         background-color: #D08D2E;
     }

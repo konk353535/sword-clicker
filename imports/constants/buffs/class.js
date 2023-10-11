@@ -893,11 +893,7 @@ export const CLASS_BUFFS = {
             hideBuff: true
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) {
-                caster.isStunned = true
-                caster.isPacifist = true
-                caster.isCharmed = true
-            },
+            onApply({ buff, target, caster, actualBattle }) {},
             
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 if (!buff.data.summonedThicketYet) {

@@ -28,7 +28,7 @@ export const getCompanionOwner = function getCompanionOwner(companion) {
     return owner_id
 }
 
-export const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({ unit, property, actualBattle }) {
+const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({ unit, property, actualBattle }) {
     try {
         const event = {
             type: "abs",

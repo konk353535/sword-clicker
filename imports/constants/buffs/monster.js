@@ -3,7 +3,7 @@ import _ from "underscore"
 
 import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
 
-export const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({ unit, property, actualBattle }) {
+const notifyChangeForUnitProperty = function notifyChangeForUnitProperty({ unit, property, actualBattle }) {
     try {
         const event = {
             type: "abs",
@@ -37,9 +37,17 @@ export const MONSTER_BUFFS = {
                         : actualBattle.pqTowerEquivalence()
                 const curRoom = actualBattle.room && actualBattle.room > 0 ? actualBattle.room : 4 // '4' is the average level between 1-7 if we're in PQ or fighting boss
                 const thisOre = actualBattle.lookupOreTier(curFloor)
+                const thisOreCapped20 = actualBattle.lookupOreTier(curFloor > 20 ? 20 : curFloor)
                 const thisMetal = actualBattle.lookupMetalTier(curFloor)
                 const thisMetalCapped20 = actualBattle.lookupMetalTier(curFloor > 20 ? 20 : curFloor)
                 const thisWood = actualBattle.lookupWoodTier(curFloor)
+                const thisWoodCapped20 = actualBattle.lookupWoodTier(curFloor > 20 ? 20 : curFloor)
+                const thisMagicColor = actualBattle.lookupMagicColorTier(curFloor)
+                const thisMagicColorCapped20 = actualBattle.lookupMagicColorTier(curFloor > 20 ? 20 : curFloor)
+                const thisMagicTome = actualBattle.lookupMagicTomeTier(curFloor)
+                const thisMagicTomeCapped20 = actualBattle.lookupMagicTomeTier(curFloor > 20 ? 20 : curFloor)
+                const thisMagicOrb = actualBattle.lookupMagicOrbTier(curFloor)
+                const thisMagicOrbCapped20 = actualBattle.lookupMagicOrbTier(curFloor > 20 ? 20 : curFloor)
                 const allowBonuses = curRoom > 3
 
                 // debug
@@ -320,13 +328,32 @@ export const MONSTER_BUFFS = {
                         addBuff({ buff: newBuff, target: target, caster: target, actualBattle })
                     }
                 } else if (target.name === "farmer") {
-                    if (rand < 0.2) {
+                    if (rand < 0.05) {
+                        target.name = "swordsman"
+                        target.stats.health *= 1.25
+                        target.stats.healthMax *= 1.25
+                        target.stats.attack *= 1.7
+                        target.stats.attackMax *= 2.5
+                        notifyChangeForUnitProperty({ unit: target, property: "name", actualBattle })
+                        if (allowBonuses) {
+                            target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.3)
+                            target.extraLootTable =
+                            [
+                                { id: `${thisMetalCapped20}_rapiers`, chance: 0.25 },
+                                { id: `${thisMetalCapped20}_buckler`, chance: 0.25 }
+                            ]
+                        }
+                    } else if (rand < 0.2) {
                         target.name = "townsfolk"
                         target.stats.health *= 1.15
                         target.stats.healthMax *= 1.15
                         notifyChangeForUnitProperty({ unit: target, property: "name", actualBattle })
                         if (allowBonuses) {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.1)
+                            target.extraLootTable =
+                            [
+                                { id: `${thisMetalCapped20}_rapiers`, chance: 0.075 }
+                            ]
                         }
                     } else if (rand < 0.4) {
                         target.name = "pauper"
@@ -440,7 +467,7 @@ export const MONSTER_BUFFS = {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5)
                             target.extraLootTable = [
                                 { id: `${thisMetalCapped20}_scimitar`, chance: 0.25 },
-                                { id: `${thisMetal}_shield`, chance: 0.25 }
+                                { id: `${thisMetalCapped20}_shield`, chance: 0.25 }
                             ]
                         }
                     } else if (rand < 0.2) {
@@ -483,7 +510,7 @@ export const MONSTER_BUFFS = {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 4)
                             target.extraLootTable = [
                                 { id: `${thisMetalCapped20}_broad_sword`, chance: 0.25 },
-                                { id: `${thisMetal}_kite_shield`, chance: 0.25 }
+                                { id: `${thisMetalCapped20}_kite_shield`, chance: 0.25 }
                             ]
                         }
                     }
@@ -637,7 +664,7 @@ export const MONSTER_BUFFS = {
                         if (allowBonuses) {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 1.5)
                             target.extraLootTable = [
-                                { id: `${thisMetal}_knife`, chance: 0.25 },
+                                { id: `${thisMetalCapped20}_knife`, chance: 0.25 },
                                 { type: "gold", chance: 0.25, quantity: 1000 * curFloor }
                             ]
                         }
@@ -667,7 +694,7 @@ export const MONSTER_BUFFS = {
                         if (allowBonuses) {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2.5)
                             target.extraLootTable = [
-                                { id: `${thisMetal}_horned_helmet`, chance: 0.25 },
+                                { id: `${thisMetalCapped20}_horned_helmet`, chance: 0.25 },
                                 { type: "gold", chance: 0.25, quantity: 1000 * curFloor },
                                 { id: "jade", chance: 0.05 },
                                 { id: "emerald", chance: 0.05 },
@@ -695,7 +722,7 @@ export const MONSTER_BUFFS = {
                         notifyChangeForUnitProperty({ unit: target, property: "icon", actualBattle })
                         if (allowBonuses) {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 3.5)
-                            target.extraLootTable = [{ id: `${thisWood}_log`, quantity: 5 * curFloor, chance: 0.5 }]
+                            target.extraLootTable = [{ id: `${thisWoodCapped20}_log`, quantity: 5 * curFloor, chance: 0.5 }]
                         }
                     }
                 } else if (target.name === "snake") {
@@ -787,11 +814,15 @@ export const MONSTER_BUFFS = {
                         notifyChangeForUnitProperty({ unit: target, property: "icon", actualBattle })
                         if (allowBonuses) {
                             target.bonusLoot += Math.ceil(Math.random() * actualBattle.room * 2)
-                            target.extraLootTable = [{ id: `ore_${thisOre}`, quantity: 5 * curFloor, chance: 0.5 }]
+                            target.extraLootTable =
+                            [
+                                { id: `${thisMetalCapped20}_hammer`, chance: 0.25 },,
+                                { id: `ore_${thisOreCapped20}`, quantity: 5 * curFloor, chance: 0.5 }
+                            ]
                         }
                     }
                 } else if (target.name.indexOf(" mage") !== -1) {
-                    if (rand < 0.15) {
+                    if (rand < 0.125) {
                         let newBuff
 
                         const whichMage = Math.ceil(Math.random() * 3)
@@ -917,7 +948,19 @@ export const MONSTER_BUFFS = {
                             constants: lookupBuff("sixth_sense")
                         }
                         addBuff({ buff: newBuff, target: target, caster: target, actualBattle })
-                        target.extraLootTable = [{ id: `${thisMetalCapped20}_wand`, chance: 0.25 }]
+                        
+                        if (allowBonuses) {
+                            target.extraLootTable =
+                            [
+                                { id: `${thisMagicColorCapped20}_wand`, chance: 0.05 },
+                                { id: `${thisMagicColorCapped20}_wizard_hat`, chance: 0.02 },
+                                { id: `${thisMagicColorCapped20}_wizard_shirt`, chance: 0.02 },
+                                { id: `${thisMagicColorCapped20}_wizard_shorts`, chance: 0.02 },
+                                { id: `${thisMagicColorCapped20}_trident`, chance: 0.035 },
+                                { id: `${thisMagicTomeCapped20}_tome`, chance: 0.02 },
+                                { id: `${thisMagicOrbCapped20}_orb`, chance: 0.01 }
+                            ]
+                        }
                     }
                 } else if (target.name === "spider") {
                     if (rand < 0.05) {

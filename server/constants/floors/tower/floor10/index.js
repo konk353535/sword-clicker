@@ -6,17 +6,17 @@ import { LEVEL_TEN_LOOT_TABLE } from "../../levels/level10"
 export const TOWER_FLOOR_10 = {
     1: {
         name: "Abandoned Lighthouse",
-        enemies: ["demon", "crab"],
+        enemies: ["worm", "demon", "crab"],
         rewards: []
     },
     2: {
         name: "Bush",
-        enemies: ["wombat", "fly"],
+        enemies: ["wombat", "echidna", "fly"],
         rewards: LEVEL_TEN_LOOT_TABLE
     },
     3: {
         name: "Turquoise Lake",
-        enemies: ["jellyFish", "fish"],
+        enemies: ["jellyFish", "fish", "crab", "jellyFish", "fish"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {
@@ -43,7 +43,7 @@ export const TOWER_FLOOR_10 = {
     },
     4: {
         name: "Place of Titanium",
-        enemies: ["titanium_spirit"],
+        enemies: ["titanium_spirit", "titanium_spirit", "titanium_spirit"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {
@@ -63,7 +63,7 @@ export const TOWER_FLOOR_10 = {
     },
     5: {
         name: "Bandit Camp",
-        enemies: ["water_mage", "cut_purse"],
+        enemies: ["cut_purse", "earth_mage", "water_mage", "cut_purse"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {
@@ -95,7 +95,7 @@ export const TOWER_FLOOR_10 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner"],
+        enemies: ["angry_miner", "angry_miner", "angry_miner"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {
@@ -133,7 +133,7 @@ export const TOWER_FLOOR_10 = {
     // To do, some kind of herb garden drops
     7: {
         name: "Overgrown Grass",
-        enemies: ["grasshopper", "spider"],
+        enemies: ["grasshopper", "spider", "seething_hatred"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {

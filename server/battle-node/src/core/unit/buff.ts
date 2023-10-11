@@ -1,3 +1,4 @@
+import _ from "underscore"
 import uuid from "node-uuid"
 
 import { BUFFS } from "../../../../../imports/constants/buffs/index.js"
@@ -29,6 +30,70 @@ export default class Buff {
     battleRef!: Battle
     _isBuffClass!: boolean
     allowDuplicates?: boolean
+
+    get name() {
+        try {
+            return this?.data?.name || BUFFS[this.id].name
+        } catch (err) {
+            console.log("No buff (.name)!", this.id)
+            console.log(err)
+        }
+    }
+    set name(value) {
+        if (this.data) {
+            this.data.name = value
+            this.delta("name")
+        }
+    }
+
+    get description() {
+        try {
+            let desc = this?.data?.description || BUFFS[this.id].description
+
+            let caster = this.unit
+
+            // Find original caster for .onApply() and .onTick()
+            try {
+                if (this._isBuffClass && this.data.casterUnit) {
+                    try {
+                        this.battleRef.units.forEach((localUnit) => {
+                            if (localUnit.id === this.data.casterUnit) {
+                                caster = localUnit
+                            }
+                        })
+                        this.battleRef.enemies.forEach((localEnemy) => {
+                            if (localEnemy.id === this.data.casterUnit) {
+                                caster = localEnemy
+                            }
+                        })
+                    } catch (err) {}
+                }
+            } catch (err) {}
+
+            if (!desc) {
+                if (_.isFunction(BUFFS[this.id]?.description)) {
+                    this.data.description = BUFFS[this.id]?.description({
+                        buff: BUFFS[this.id],
+                        level: this.data?.level || 1,
+                        characterClass: (caster && caster.currentClass) ? caster.currentClass : { id: '', equipped: '' },
+                    })
+                } else {
+                    this.data.description = BUFFS[this.id]?.description
+                }
+            }
+
+            return desc
+        } catch (err) {
+            console.log("No buff (.name)!", this.id)
+            console.log(err)
+        }
+    }
+    set description(value) {
+        if (this.data) {
+            this.data.description = value
+            this.delta("description")
+        }
+    }
 
     get events() {
         try {
@@ -99,7 +164,7 @@ export default class Buff {
         this.delta("customText")
     }
 
-    delta(key: "custom" | "customText" | "uid" | "icon" | "duration" | "stacks") {
+    delta(key: "custom" | "customText" | "uid" | "icon" | "duration" | "stacks" | "name" | "description") {
         const event = {
             type: "abs",
             path: `unitsMap.${this.unit.id}.buffsMap.${this.id}.${key}`,

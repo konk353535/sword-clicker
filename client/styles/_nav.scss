@@ -26,3 +26,18 @@
     display: none;
   }
 }
+
+.navbar-toggleable-md .navbar-nav .nav-link.active {
+  //background-color: #2699fc !important;
+  text-shadow:
+    0 0 11px white,
+    0 0 22px white,
+    0 0 42px white;
+}
+
+.navbar-toggleable-md .navbar-nav .nav-link:not(.active):hover {
+  color: white;
+  text-shadow:
+    0 0 22px black,
+    0 0 42px black;
+}

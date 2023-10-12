@@ -69,14 +69,14 @@ html.dark {
         margin-bottom: 0;
     }
     nav {
-        background-color: #212121 !important;
+        background-color: #151515 !important;
     }
     .nav-link,
     .side-link-item {
         color: #fff !important;
     }
     .side-link-item:hover {
-        background-color: #212121 !important;
+        background-color: #151515 !important;
     }
     .nav-tabs .nav-link.active,
     .nav-tabs .nav-item.show .nav-link {
@@ -90,11 +90,25 @@ html.dark {
     .adventure-item-container,
     .icon-box-new,
     .icon-box-new > div {
-        border-color: #212121 !important;
+        border-color: #151515 !important;
     }
+    
     .navbar-toggleable-md .navbar-nav .nav-link.active {
-        background-color: #2699fc !important;
+        //background-color: #2699fc !important;
+        text-shadow:
+		    0 0 5px #0275d8,
+		    0 0 11px #0275d8,
+		    0 0 22px #0275d8,
+		    0 0 42px #0275d8;
     }
+
+    .navbar-toggleable-md .navbar-nav .nav-link:not(.active):hover {
+        color: #2093ff !important;
+        text-shadow:
+          0 0 22px #0275d8,
+          0 0 42px #0275d8;
+    }
+
     .my-tooltip-inner {
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
@@ -157,7 +171,7 @@ html.dark {
     }
     body .direct-chat-msg > .direct-chat-text.chat-LFG,
     .chat-LFG {
-        color: #5bc0de !important;
+        color: #47c2e4 !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-General,
     .chat-General {
@@ -165,24 +179,24 @@ html.dark {
     }
     body .direct-chat-msg > .direct-chat-text.chat-Game,
     .chat-Game {
-        color: #d9534f !important;
+        color: #f04737 !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-Party,
     .chat-Party {
-        color: #347fbf !important;
+        color: #2072f7 !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-Announcements,
     .chat-Announcements,
     .chat-Dev {
-        color: #06a956 !important;
+        color: #9767e0 !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-Server,
     .chat-Server {
-        color: rgba(128, 128, 128, 1) !important;
+        color: #5bb95b !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-Help,
     .chat-Help {
-        color: #ec407a !important;
+        color: #ff9267 !important;
     }
     .chat-container .box-footer {
         background-color: #212121 !important;
@@ -521,7 +535,7 @@ html.dark {
         color: #fff !important;
     }
 
-    .dropdown-item {
+    .dropdown-item:not(.change-chat) {
         color: #fff !important;
     }
 
@@ -612,6 +626,21 @@ html.dark {
     
     button.close {
         color: white !important;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.5em;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #111;
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0275D8;
+        outline: 1px solid black;
+        border-radius: 3px;
     }
 
     #PETQS_UI {

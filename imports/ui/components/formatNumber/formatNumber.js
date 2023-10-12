@@ -85,7 +85,7 @@ Template.formatNumber.helpers({
             if (options.wantTrimDecimal) {
                 return trimTrailingDecimal(number.toFixed(options.decimalPrecision))
             }
-            return number.toFixed(options.decimalPrecision) + options.wantTrimDecimal.toString()
+            return number.toFixed(options.decimalPrecision)
         }
 
         // NOTE: for numbers >= 1,000, 'specifiedDecimalPrecision' is ignored and all decimal precision will be displayed which

@@ -110,35 +110,55 @@ Template.buffIcon.helpers({
 if (!document.buffIconManager) {
     document.buffIconManager = Object.assign({}, document?.buffIconManager)
 }
-const BIM = document.buffIconManager;
+const BIM = document.buffIconManager
 if (!BIM.init) {
-    BIM.init = true
     BIM.buffs = []
+    BIM.debug = false
+    BIM.init = true
+    BIM.addBuff = function(oData) {
+        if (!BIM.buffs) {
+            return
+        }
+        
+        if (oData && oData.uid) {
+            let foundBuff = false
+            BIM.buffs.forEach(function(thisBuff) {
+                if (!foundBuff) {
+                    if (thisBuff.uid == oData.uid) {
+                        foundBuff = true
+                    }
+                }
+            })
+
+            if (foundBuff) {
+                return
+            }
+            
+            if (BIM.debug) {
+                console.log("*** BIMM::add ***", oData?.size, oData?.uid, oData?.id, oData?.name)
+            }
+
+            BIM.buffs.push(oData)
+            return
+        }
+    }
     BIM.updateBuff = function(buffSize, buffUid, newBuffData) {
         if (!BIM.buffs) {
             return
         }
 
+        let foundBuff = false
+
         BIM.buffs.forEach(function(thisBuff, idx, arr) {
             if (thisBuff.size == buffSize && thisBuff.uid == buffUid) {
-                //const didIconChange = newBuffData?.icon != BIM.buffs[idx].icon
+                foundBuff = true
+
                 const didNameChange = newBuffData?.name != BIM.buffs[idx].name
                 const didDescChange = newBuffData?.description != BIM.buffs[idx].description
 
-                //BIM.buffs[idx].icon = newBuffData?.icon || BIM.buffs[idx].icon
                 BIM.buffs[idx].name = newBuffData?.name || BIM.buffs[idx].name
                 BIM.buffs[idx].description = newBuffData?.description || BIM.buffs[idx].description
 
-                /*
-                if (didIconChange) {
-                    const selectorMain = `.buff-icon-container.${thisBuff.size}#buff-${thisBuff.size}-${thisBuff.uid}`
-
-                    if ($(selectorMain).length === 1) {
-                        $(selectorMain).find("img").prop("src", `/icons/${BIM.buffs[idx].icon}`)
-                    }
-                }
-                */
-               
                 if (didNameChange || didDescChange) {
                     const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
                     const selectorA = `#${selectorA_id}`
@@ -162,6 +182,10 @@ if (!BIM.init) {
                 }
             }
         })
+
+        if (!foundBuff) {
+            BIM.addBuff(newBuffData)
+        }
     }
     BIM.checkExpiredBuffs = function() {
         if (!BIM.buffs) {
@@ -174,39 +198,43 @@ if (!BIM.init) {
             const selectorB = `#${selectorB_id}`
 
             if ($(selectorA).length === 0) {
-                //console.log("Buff Icon Manager destroyed tooltip info for:", thisBuff?.name, thisBuff?.id, thisBuff?.uid, thisBuff?.size)
+                if (BIM.debug) {
+                    console.log("Buff Icon Manager destroyed tooltip info for:", thisBuff?.name, thisBuff?.id, thisBuff?.uid, thisBuff?.size)
+                }
 
                 $(selectorB).remove()
+                $(selectorB + "-fixed").remove()
 
                 let idx = BIM.buffs.length - 1
                 while (idx >= 0) {
                     if (BIM.buffs[idx].uid === thisBuff.uid && BIM.buffs[idx].size === thisBuff.size) {
-                        BIM.buffs.splice(idx, 1);
+                        BIM.buffs.splice(idx, 1)
                     }
                   
-                    idx -= 1;
+                    idx -= 1
                 }
             }
         })
     }
     BIM.checkBuffsWithNoTooltip = (function() {
-        if (!BIM.buffs) {
-            return
-        }
         BIM.buffs.forEach(function(thisBuff) {
             if (!thisBuff?.addedTooltip && thisBuff?.size == "small") {
                 const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
                 const selectorA = `#${selectorA_id}`
                 const selectorB_id = `buff-tooltip-content-${thisBuff.size}-${thisBuff.uid}`
                 const selectorB = `#${selectorB_id}`
+                const selectorB_id_fixed = `${selectorB_id}-fixed`
+                const selectorB_fixed = `#${selectorB_id_fixed}`
 
                 if ($(selectorA).length === 1) {
-                    if ($(selectorB).length === 0) {
-                        //console.log("Buff Icon Manager detected no tooltip info for:", thisBuff?.name, thisBuff?.id, thisBuff?.uid, thisBuff?.size)
+                    if ($(selectorB).length === 0 && $(selectorB + "-fixed").length === 0) {
+                        if (BIM.debug) {
+                            console.log("Buff Icon Manager detected no tooltip info for:", thisBuff?.name, thisBuff?.id, thisBuff?.uid, thisBuff?.size)
+                        }
 
                         $(".body-content").append(`
                             <!-- Icon Tooltip -->
-                            <div class="buff-tooltip-content my-tooltip-inner combat-buff-tooltip-data" owner="${selectorA_id}" id="${selectorB_id}">
+                            <div class="buff-tooltip-content my-tooltip-inner combat-buff-tooltip-data" owner="${selectorA_id}" id="${selectorB_id_fixed}">
                                 <h3 class='popover-title text-capitalize'>
                                     ${thisBuff?.name}
                                 </h3>
@@ -219,7 +247,7 @@ if (!BIM.init) {
 
                         const dropInst = new Drop({
                             target: $(selectorA)[0],
-                            content: $(selectorB)[0],
+                            content: $(selectorB_fixed)[0],
                             openOn: "hover",
                             position: "bottom left",
                             remove: false,
@@ -231,40 +259,116 @@ if (!BIM.init) {
                         })
         
                         $(selectorA).on('mouseenter', function() {
+                            console.log("opened fixed buff for", thisBuff?.id, thisBuff?.uid)
                             // yes, really do it immediately and 1ms later
                             window.setTimeout(function() {
                                 //dropInst.open() // don't need this
-                                $(selectorB).show()
+                                $(selectorB_fixed).show()
                             }, 1)
                             //dropInst.open() // don't need this
-                            $(selectorB).show()
+                            $(selectorB_fixed).show()
                         })
                         
                         $(selectorA).on('mouseleave', function() {
+                            console.log("closed fixed buff for", thisBuff?.id, thisBuff?.uid)
                             dropInst.close() // isn't closing on its own and this doesn't seem to close it manually, so we n
                             // yes, really do it immediately and 1ms later
                             window.setTimeout(function() {
                                 dropInst.close()
-                                $(selectorB).hide()
+                                $(selectorB_fixed).hide()
                             }, 1)
-                            $(selectorB).hide()
+                            $(selectorB_fixed).hide()
                         })
 
                         let idx = BIM.buffs.length - 1
                         while (idx >= 0) {
                             if (BIM.buffs[idx].uid === thisBuff.uid && BIM.buffs[idx].size === thisBuff.size) {
-                                BIM.buffs[idx].addedTooltip = true;
+                                BIM.buffs[idx].addedTooltip = true
                             }
                         
-                            idx -= 1;
+                            idx -= 1
                         }
                     }
                 }
             }
+
+            $(".buff-icon-container.icon-box.small-icon").each(function() {
+                const iconId = this.id
+
+                let foundBuff = false
+                BIM.buffs.forEach(function(thisBuff) {
+                    if (!foundBuff) {
+                        const selectorA_id = `buff-${thisBuff.size}-${thisBuff.uid}` // match the .html element ID
+                        if (iconId == selectorA_id) {
+                            foundBuff = true
+                        }
+                    }
+                })
+
+                if (!foundBuff) {
+                    if (BIM.debug) {
+                        console.log("Buff Icon Manager detected tooltip with no data:", iconId)
+                    }
+
+                    try {
+                        const local_uid = iconId.substring(11)
+                        const local_size = "small"
+                        const local_imgsrc = $(this).find("img").prop("src")
+                        const local_id = local_imgsrc.substring(7, local_imgsrc.length - 4) // not correct, but it's all we have
+
+                        const selectorA_id = iconId // match the .html element ID
+                        const selectorA = `#${selectorA_id}`
+                        const selectorB_id = `buff-tooltip-content-${local_size}-${local_uid}`
+                        const selectorB = `#${selectorB_id}`
+
+                        if ($(selectorB_id).length == 1) {
+                            const local_name = $(selectorB_id).find(".popover-title").text()
+                            const local_desc = $(selectorB_id).find(".popover-content div").html()
+                            
+                            const dropInst = new Drop({
+                                target: $(selectorA)[0],
+                                content: $(selectorB_fixed)[0],
+                                openOn: "hover",
+                                position: "bottom left",
+                                remove: false,
+                                constrainToWindow: false,
+                                constrainToScrollParent: false,
+                                tetherOptions: {
+                                    appendTo: document.querySelector(".body-content")
+                                }
+                            })
+            
+                            $(selectorA).on('mouseenter', function() {
+                                // yes, really do it immediately and 1ms later
+                                window.setTimeout(function() {
+                                    //dropInst.open() // don't need this
+                                    $(selectorB_fixed).show()
+                                }, 1)
+                                //dropInst.open() // don't need this
+                                $(selectorB_fixed).show()
+                            })
+                            
+                            $(selectorA).on('mouseleave', function() {
+                                dropInst.close() // isn't closing on its own and this doesn't seem to close it manually, so we n
+                                // yes, really do it immediately and 1ms later
+                                window.setTimeout(function() {
+                                    dropInst.close()
+                                    $(selectorB_fixed).hide()
+                                }, 1)
+                                $(selectorB_fixed).hide()
+                            })
+
+                            BIM.addBuff(
+                                { uid: local_uid, size: local_size,  id: local_id, name: local_name, description: local_desc, addedTooltip: true }
+                            )
+                        }
+                    } catch (err) {}
+                }
+            })
         })
     })
     window.setInterval(BIM.checkExpiredBuffs, 500)
-    //window.setInterval(BIM.checkBuffsWithNoTooltip, 500)
+    window.setInterval(BIM.checkBuffsWithNoTooltip, 500)
 }
 
 Template.buffIcon.onCreated(function bodyOnCreated() {
@@ -298,8 +402,7 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
         const localSize = localData.small ? "small" : "medium"
 
         if (self.state.get("didThisBuff")) {
-            //todo: check if buff name changed?
-            //console.log('Monitoring changes to buff:', tooltipMethod, localSize, localData);
+            // We need to let this run in a loop, so don't cancel the interval
             //Meteor.clearInterval(self.intervalTimer)
 
             if (BIM && BIM.buffs && localData?.buff?.uid) {
@@ -349,7 +452,7 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
         const buffDesc = localData.buff.data?.description || "You aren't sure what this effect does."
 
         if (BIM && BIM.buffs) {
-            BIM.buffs.push(
+            BIM.addBuff(
                 { uid: localData.buff.uid, size: localSize ? "small" : "medium", id: localData.buff?.id, name: buffName, description: buffDesc /*, icon: localData.data?.icon || localData.icon */ }
             )
         }
@@ -399,7 +502,7 @@ Template.buffIcon.onCreated(function bodyOnCreated() {
                     content: $(selectorB)[0],
                     openOn: "hover",
                     position: "bottom left",
-                    remove: false,
+                    remove: true,
                     constrainToWindow: false,
                     constrainToScrollParent: false,
                     tetherOptions: {

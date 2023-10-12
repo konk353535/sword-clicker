@@ -638,10 +638,6 @@ html.dark {
         border-radius: 3px;
     }
 
-    #PETQS_UI {
-        background-color: transparent !important;
-    }
-
     div.adventure-item-container {
         div[style*="color: #a00"] {
             color: #e43 !important;
@@ -650,5 +646,9 @@ html.dark {
         div[style*="color: #00f"] {
             color: #56f !important;
         }
+    }
+
+    #PETQS_UI {
+        background-color: transparent !important;
     }
 }

@@ -39,6 +39,8 @@ export const startBattle = function ({
     energyUse,
     currentCommunityFloor
 }) {
+    const wantDebug = false
+
     console.log("method - startBattle - start", moment().format("LLL hh:mm:ss SSS"))
     const ticksPerSecond = 1000 / BATTLES.tickDuration
 
@@ -254,7 +256,9 @@ export const startBattle = function ({
                 } else {
                     abilityCount++
 
-                    console.log(`Ability '${ability.abilityId}' for '${targetUser.username}', count ${abilityCount}`)
+                    if (wantDebug) {
+                        console.log(`Ability '${ability.abilityId}' for '${targetUser.username}', count ${abilityCount}`)
+                    }
 
                     // non-companion ability loadout limit is 5, or 8 if they've unlocked the Classes feature
                     if (abilityCount > 5 && !classFeatureUnlocked(targetUser._id)) {
@@ -461,12 +465,18 @@ export const startBattle = function ({
         userCombat.enchantments = ((userCombat.enchantments) ? userCombat.enchantments : []).concat(newUnit.currentClass.autoBuffs)
 
         if (userCombat.enchantments) {
-            //console.log("START :: startbattle player enchantments");
-            //console.log(userCombat.enchantments);
+            if (wantDebug) {
+                console.log("START :: startbattle player enchantments");
+                console.log(userCombat.enchantments);
+            }
+
             userCombat.enchantments.forEach((buffId) => {
                 const enchantConstants = BUFFS[buffId]
                 if (enchantConstants) {
-                    //console.log("now adding enchantment: " + buffId);
+                    if (wantDebug) {
+                        console.log("now adding enchantment: " + buffId);
+                    }
+
                     const clonedConstants = enchantConstants
 
                     let durationToUse = Infinity
@@ -478,7 +488,9 @@ export const startBattle = function ({
                         durationToUse = clonedConstants.data.duration
                     }
 
-                    //console.log("duration to use:", durationToUse);
+                    if (wantDebug) {
+                        console.log("duration to use:", durationToUse);
+                    }
 
                     let newBuff = {
                         id: buffId,
@@ -512,11 +524,17 @@ export const startBattle = function ({
                     newUnit.buffs.push(newBuff)
                 }
             })
-            //console.log("END :: startbattle player enchantments");
+
+            if (wantDebug) {
+                console.log("END :: startbattle player enchantments");
+            }
         }
 
         newUnit.enchantmentsList = Object.assign({}, newUnit.enchantmentsList, userCombat.enchantments)
-        //console.log("startbattle, all enchants", newUnit.enchantmentsList);
+
+        if (wantDebug) {
+            console.log("startbattle, all enchants", newUnit.enchantmentsList);
+        }
 
         newBattle.units.push(newUnit)
         newBattle.historyStats[newUnit.id] = {
@@ -545,7 +563,9 @@ export const startBattle = function ({
         adjustedFloorLevel = Math.min(averageCombatFloor, floor + 4)
     }
 
-    console.log("overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
+    if (wantDebug && adjustedFloorLevel) {
+        console.log("overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
+    }
 
     if (level) {
         // Is personalQuest (To Do)
@@ -622,47 +642,75 @@ export const startBattle = function ({
             avgDefense /= newBattle.units.length
             avgPArmor /= newBattle.units.length
             avgMArmor /= newBattle.units.length
-
-            console.log(`Average combat stats: dmg ${avgDamage.toFixed(0)}, acc ${avgAccuracy.toFixed(0)}, def ${avgDefense.toFixed(0)}, Par ${avgPArmor.toFixed(0)}, Mar ${avgMArmor.toFixed(0)}`)
         } else {
             console.log("!! WARNING !!  this battle contains no player units")
         }
 
         // This is the current active boss battle (and it's still alive)
         if (enemyConstants.isBoss && health) {
-            console.log("Battle is a BOSS and is being given some basic damage resistance")
+            console.log("***  Battle is a _BOSS_ and is being given some basic damage resistance  ***")
+
+            if (wantDebug) {
+                console.log(`Average combat stats: dmg ${avgDamage.toFixed(0)}, acc ${avgAccuracy.toFixed(0)}, def ${avgDefense.toFixed(0)}, Par ${avgPArmor.toFixed(0)}, Mar ${avgMArmor.toFixed(0)}`)
+            }
 
             const floorPercent = 1 - (env.MAX_FLOOR - floor) / env.MAX_FLOOR
             enemyStats.health = health
             enemyStats.healthMax = health
             enemyStats.damageTaken = 0.3
+            enemyStats.attackSpeed = enemyStats.attackSpeed || 0.7
             enemyStats.force = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, defense formula
             enemyStats.shred = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, armor formula
             enemyStats.focus = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, magic armor formula
 
             if (!isOldBoss && hasPlayers) {
-                console.log("Battle is a CURRENT FLOOR BOSS and is being given some *extreme* stat boosts")
-                // boss gets a bonus to damage = the average of all player units' average damage
-                enemyStats.attack += avgDamage
+                console.log("***  Battle is a _CURRENT_FLOOR_BOSS_ and is being given some *extreme* stat boosts  ***")
+                
+                if (wantDebug) {
+                    console.log("Before:")
+                    console.log(enemyStats)
+                }
 
-                // boss gets a bonus to defense = the average of all player units' accuracy
-                enemyStats.defense += avgAccuracy * 0.75
+                // boss gets a bonus to damage = 150% the average of all player units' average damage
+                enemyStats.attack += avgDamage * 1.5
+                enemyStats.attack = Math.ceil(enemyStats.attack)
+
+                // boss gets a bonus to defense = 100% the average of all player units' accuracy
+                enemyStats.defense += avgAccuracy
+                enemyStats.defense = Math.ceil(enemyStats.defense)
 
                 // boss gets a bonus to accuracy = 75% the average of all player units' defense
                 enemyStats.accuracy += avgDefense * 0.75
+                enemyStats.accuracy = Math.ceil(enemyStats.accuracy)
 
-                // boss gets a bonus to armor = 33% the average of all player units' armor
-                enemyStats.armor += avgPArmor / 3
+                // boss gets a bonus to armor = 125% the average of all player units' armor
+                enemyStats.armor += avgPArmor * 1.25
+                enemyStats.armor = Math.ceil(enemyStats.armor)
                 
-                // boss gets a bonus to magic armor = 33% the average of all player units' magic armor
-                enemyStats.magicArmor += avgMArmor / 3
+                // boss gets a bonus to magic armor = 75% the average of all player units' magic armor
+                enemyStats.magicArmor += avgMArmor * 0.75
+                enemyStats.magicArmor = Math.ceil(enemyStats.magicArmor)
 
-                // boss gets a bonus to force = 25% the average of all player units' defense
-                // boss gets a bonus to shred = 25% the average of all player units' armor
-                // boss gets a bonus to focus = 25% the average of all player units' magic armor
-                enemyStats.force += avgDefense * 0.25
-                enemyStats.shred += avgDefense * 0.25
-                enemyStats.focus += avgMArmor * 0.25
+                // boss gets a bonus to force = 100% the average of all player units' defense
+                // boss gets a bonus to shred = 75% the average of all player units' armor
+                // boss gets a bonus to focus = 75% the average of all player units' magic armor
+                enemyStats.force += avgDefense
+                enemyStats.shred += avgDefense * 0.75
+                enemyStats.focus += avgMArmor * 0.75
+                enemyStats.force = Math.ceil(enemyStats.force)
+                enemyStats.shred = Math.ceil(enemyStats.shred)
+                enemyStats.focus = Math.ceil(enemyStats.focus)
+
+                // instead of usual attack speed, raise it by +50%
+                enemyStats.attackSpeed *= 1.5
+
+                // instead of 70% damage soak, raise to 80%
+                enemyStats.damageTaken = 0.2
+
+                if (wantDebug) {
+                    console.log("After:")
+                    console.log(enemyStats)
+                }
             }
         }
 

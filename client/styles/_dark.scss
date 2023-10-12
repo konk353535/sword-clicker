@@ -95,7 +95,7 @@ html.dark {
 
     .navbar-toggleable-md .navbar-nav .nav-link.active {
         //background-color: #2699fc !important;
-        text-shadow: 0 0 5px #0275d8, 0 0 11px #0275d8, 0 0 22px #0275d8, 0 0 42px #0275d8;
+        text-shadow: 0 0 5px #2982ff, 0 0 11px #2982ff, 0 0 22px #2982ff, 0 0 33px #2982ff, 0 0 44px #2982ff;
     }
 
     .navbar-toggleable-md .navbar-nav .nav-link:not(.active):hover {
@@ -177,7 +177,7 @@ html.dark {
     }
     body .direct-chat-msg > .direct-chat-text.chat-Party,
     .chat-Party {
-        color: #2072f7 !important;
+        color: #3082ff !important;
     }
     body .direct-chat-msg > .direct-chat-text.chat-Announcements,
     .chat-Announcements,
@@ -638,14 +638,57 @@ html.dark {
         border-radius: 3px;
     }
 
-    div.adventure-item-container {
-        div[style*="color: #a00"] {
-            color: #e43 !important;
-        }
+    .red-text {
+        color: #e43 !important;
+    }
 
-        div[style*="color: #00f"] {
-            color: #56f !important;
-        }
+    .blue-text {
+        color: #56f !important;
+    }
+
+    .green-text {
+        color: #4f4 !important;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    ::placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    ::-webkit-input-placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    ::-moz-placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    :-moz-placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    :-ms-input-placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    // DO NOT GROUP THESE!  https://stackoverflow.com/questions/44913155/
+    ::-ms-input-placeholder { 
+        color: #ddd;
+        opacity: 1;
+    }
+
+    input[type="text"], input.sell-amount-input {
+        color: white !important;
+        background-color: #555 !important;
     }
 
     #PETQS_UI {

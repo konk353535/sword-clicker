@@ -80,8 +80,8 @@
           </div>
         {{/if}}
       </div>
-      <div class="d-flex flex-wrap">
-        {{#if classFeatureUnlocked}}
+      {{#if classFeatureUnlocked}}
+        <div class="d-flex flex-wrap">
           <!-- Main Hand -->
           {{#if equippedAbilitiesMap.mainHand}}
             {{> abilityIconOther ability=equippedAbilitiesMap.mainHand}}
@@ -122,6 +122,8 @@
               5
             </div>
           {{/if}}
+        </div>
+        <div class="d-flex flex-wrap">
           <!-- classAbil1 -->
           {{#if equippedAbilitiesMap.classAbil1}}
             {{> abilityIconOther ability=equippedAbilitiesMap.classAbil1}}
@@ -146,6 +148,9 @@
               8
             </div>
           {{/if}}
+          <div class="icon-box hide-on-mobile" style="border: none; background-color: transparent !important;">
+            <br />
+          </div>
           <!-- Companion -->
           {{#if equippedAbilitiesMap.companion}}
             {{> abilityIconOther ability=equippedAbilitiesMap.companion}}
@@ -154,7 +159,9 @@
               Companion
             </div>
           {{/if}}
-        {{else}}
+        </div>
+      {{else}}
+        <div class="d-flex flex-wrap">
           <div class="icon-box hide-on-mobile" style="border: none">
             <br />
           </div>
@@ -206,8 +213,8 @@
               Companion
             </div>
           {{/if}}
-        {{/if}}
-      </div>
+        </div>
+      {{/if}}
     </div>
   </div>
 

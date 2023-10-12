@@ -394,7 +394,8 @@ body {
 }
 
 .lobby-container .health-bar,
-.lobby-container .energy-bar {
+.lobby-container .energy-bar,
+.text-nice-outline {
     @include stroke(1, #111);
     font-size: 13px;
 }
@@ -515,4 +516,16 @@ img.discord {
     background-color: #0275d8;
     outline: 1px solid black;
     border-radius: 3px;
+}
+
+.red-text {
+    color: #c00;
+}
+
+.blue-text {
+    color: #00e;
+}
+
+.green-text {
+    color: #090;
 }

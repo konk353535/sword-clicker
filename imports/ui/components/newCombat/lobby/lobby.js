@@ -545,9 +545,13 @@ Template.lobbyPage.helpers({
       </p>
       <p>
         <b>How</b><br />
-        Groups of 1-5 players. Further you make it, more points you get.<br /><br />
+        Groups of 1-5 players. Further you make it, more points you get.<br />
+        <br />
         Players can attempt the floor as many times as they wish per day.
-        Top 3 runs will get full point credit, subsequent attempts will award 10% points.
+        Top 3 runs will get full point credit, subsequent attempts will award 10% points.<br />
+        <br />
+        Earn massive amounts of XP in random skills for your top attempts per day.  These are your
+        "official" attempts.
       </p>`
     },
 
@@ -842,6 +846,34 @@ Template.lobbyPage.helpers({
         return Combat.findOne({
             owner: Meteor.userId()
         })
+    },
+
+    combatTowerContributions() {
+        const combatDoc = Combat.findOne({
+            owner: Meteor.userId()
+        })
+
+        if (combatDoc && combatDoc.towerContributions && combatDoc.towerContributions.length > 0) {
+            return combatDoc.towerContributions
+        }
+
+        return []
+    },
+
+    combatTowerContributionsTotalScore() {
+        const combatDoc = Combat.findOne({
+            owner: Meteor.userId()
+        })
+
+        let totalScore = 0
+
+        if (combatDoc && combatDoc.towerContributions && combatDoc.towerContributions.length > 0) {
+            combatDoc.towerContributions.forEach(function(thisContribution) {
+                totalScore += (thisContribution && thisContribution != null && typeof thisContribution !== 'undefined') ? thisContribution : 0
+            })
+        }
+
+        return totalScore
     },
 
     currentGroupMembers() {

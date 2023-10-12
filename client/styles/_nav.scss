@@ -15,15 +15,15 @@
 
 @media (min-width: 768px) {
   .hide-on-desktop {
-    visibility: hidden;
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 
 @media (max-width: 768px) {
   .hide-on-mobile {
-    visibility: hidden;
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 

@@ -1,9 +1,25 @@
 <template name="lobbyPage">
     <div class="container lobby-container mt-2">
-        <!-- Select Type / Floor / Room / Level -->
+
         <div class="d-flex align-items-center flex-wrap">
             <div class="d-flex align-items-center flex-wrap">
 
+                {{#if $eq typeKey 'afk'}}
+                {{else if $eq typeKey 'solo'}}
+                    {{#if $neq usersCurrentLevel maxLevel}}
+                        {{> helpIcon title='Energy Use' content=energyUseHelpContent}}
+                        &nbsp;&nbsp;&nbsp;
+                    {{/if}}
+                {{else if $eq typeKey 'group'}}
+                    {{#if floorDetails.isUnlocked}}
+                        {{> helpIcon title='Energy Use' content=energyUseHelpContent}}
+                    {{else}}
+                        {{> helpIcon title='The Tower' content=theTowerHelpContent}}
+                    {{/if}}
+                    &nbsp;&nbsp;&nbsp;
+                {{/if}}
+
+                <!-- Select Type / Floor / Room / Level -->
                 <div class="mr-2 hidden-sm-down">Type</div>
                 <div class="dropdown">
                     <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
@@ -70,7 +86,6 @@
                                         data-energyUse="40" href="#">40</a>{{/if}}
                             </div>
                         </div>
-                        {{> helpIcon title='Energy Use' content=energyUseHelpContent}}
                     {{/if}}
                 {{else if $eq typeKey 'group'}}
                     <div class="mr-2 hidden-sm-down">Floor</div>
@@ -127,9 +142,6 @@
                                         data-energyUse="40" href="#">40</a>{{/if}}
                             </div>
                         </div>
-                        {{> helpIcon title='Energy Use' content=energyUseHelpContent}}
-                    {{else}}
-                        {{> helpIcon title='The Tower' content=theTowerHelpContent}}
                     {{/if}}
                 {{/if}}
             </div>
@@ -187,15 +199,27 @@
                     {{/if}}
 
                     <div class="d-flex align-items-center flex-wrap py-1">
-                        <p style="margin: 0; padding-right: 1rem">Your Top (Official) Contributions:</p>
-                        {{#if combat.towerContributions}}
-                            {{#each combat.towerContributions}}
-                                <div class="mx-1 badge badge-warning" style="text-shadow: 1px 1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, -1px -1px 1px #444;">{{> formatNumber number=this decimal=1}}</div>
-                            {{/each}}
-                        {{else}}
-                            <p style="margin: 0;">No contributions today. Go fight the top floor!</p>
+                        <p style="margin: 0; padding-right: 1rem">Your Top <span class="hide-on-mobile">(Official)</span> Contributions:</p>
+                        {{#each combatTowerContributions}}
+                            <div class="mx-1 badge badge-warning text-nice-outline" style="line-height: 14px;">{{> formatNumber number=this decimal=1 trimDecimal=true}}%</div>
+                        {{/each}}
+                        {{#if $lte combatTowerContributions.length 2}}
+                            <div class="mx-1 badge badge-warning text-nice-outline" style="line-height: 14px;">N/A</div>
+                        {{/if}}
+                        {{#if $lte combatTowerContributions.length 1}}
+                            <div class="mx-1 badge badge-warning text-nice-outline" style="line-height: 14px;">N/A</div>
+                        {{/if}}
+                        {{#if $lte combatTowerContributions.length 0}}
+                            <div class="mx-1 badge badge-warning text-nice-outline" style="line-height: 14px;">N/A</div>
                         {{/if}}
                     </div>
+                    {{#if $lte combatTowerContributionsTotalScore 0.0}}
+                        <p style="margin: 0;"><span class="red-text">No contributions today</span>; go fight the top floor! Resets in {{>readableDuration endDate=floorResetDate}}.</p>
+                    {{else if $lte combatTowerContributionsTotalScore 300.0}}
+                        <p style="margin: 0;"><span class="red-text">Partial contributions today</span>; go fight the top floor! Resets in {{>readableDuration endDate=floorResetDate}}.</p>
+                    {{else}}
+                        <p style="margin: 0;"><span class="green-text">Contributions complete!</span> Return for more in {{>readableDuration endDate=floorResetDate}}.</p>
+                    {{/if}}
 
                     {{#if $gt waveDetails.points waveDetails.pointsMax}}
                         <div class="d-flex align-items-center mt-2">
@@ -208,7 +232,7 @@
                                             aria-valuenow="{{bossHealthProgress}}" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
-                                    <div class="progress-overlay" style="min-width: 200px; text-align: center; line-height: 38px; height: 38px; position: absolute; left: 0px; top: 0px; font-size: 1.20rem; color: white; text-shadow: 1px 1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, -1px -1px 1px #444;">
+                                    <div class="progress-overlay text-nice-outline" style="min-width: 200px; text-align: center; line-height: 38px; height: 38px; position: absolute; left: 0px; top: 0px; font-size: 1.20rem; color: white;">
                                         {{> formatNumber number=waveDetails.health}}
                                     </div>
                                     <button class="btn btn-danger battle-boss-btn mr-2" style="position: absolute; left: 210px; top: 0px;">Fight Boss</button>
@@ -219,12 +243,12 @@
                 </div>
                 <div style="margin-top: 0.5rem">
                     {{#if $lte waveDetails.points waveDetails.pointsMax}}
-                        <p>Boss is locked. Floor timer resets in {{>readableDuration endDate=floorResetDate}}.</p>
+                        <p>Boss is locked. Contribute to the floor progress to unlock.</p>
                     {{else}}
                         {{#if $gt waveDetails.health 0}}
-                            <p>Boss will heal in {{>readableDuration endDate=bossResetAt}}.</p>
+                            <p>Boss will heal in {{>readableDuration endDate=bossResetAt}}!</p>
                         {{else}}
-                            <p>Boss defeated. Next floor opens in {{>readableDuration endDate=bossResetAt}}.</p>
+                            <p>Boss defeated. Next floor opens in {{>readableDuration endDate=bossResetAt}}!</p>
                         {{/if}}
                     {{/if}}
                 </div>
@@ -471,27 +495,30 @@
             {{#unless floorDetails.isUnlocked}}
                 <div class="flex-grow" style="max-width: 50%; margin-top: 50px;">
                     <div class="text-muted">Furthest Community Floor</div>
-                    <div>Progress {{waveDetails.points}} / {{waveDetails.pointsMax}} pts</div>
+                    <div>Progress {{> formatNumber number=waveDetails.points}} / {{> formatNumber number=waveDetails.pointsMax}} pts</div>
                     <div class="mt-2 text-muted">Your contributions</div>
                     <div>
                         {{#if myFloorContributions.points}}
-                            {{myFloorContributions.points}}pts
+                            {{> formatNumber number=myFloorContributions.points}}pts
                             (top {{myFloorContributions.rankingPercentage}} %)
                         {{else}}
-                            No contributions
+                            None!
                         {{/if}}
                     </div>
                     <div class="d-flex align-items-center">
-                        <p class="mt-2 text-muted mr-2 mb-0">Floor Rewards</p>
                         {{> helpIcon title='Floor Rewards' content=floorRewardsHelpContent}}
+                        &nbsp;&nbsp;&nbsp;<p class="mt-2 text-muted mr-2 mb-0">Floor Rewards</p>
                     </div>
                     <div class="d-flex flex-wrap align-items-center">
                         <img src="/icons/treasureChest.svg" class="large-icon mr-3">
                         {{#each estimatedRewards}}
+                            {{#if $eq this.type 'gold'}}
+                                <div><img src="/icons/goldCoin.svg" class="small-icon"> {{> formatNumber number=this.amount}}</div>
+                            {{/if}}
+                        {{/each}}
+                        {{#each estimatedRewards}}
                             {{#if $eq this.type 'item'}}
                                 {{ > itemIcon item=this classes="small" readOnly=true }}
-                            {{else}}
-                                <img src="/icons/goldCoin.svg" class="small-icon"> {{this.amount}}
                             {{/if}}
                         {{/each}}
                     </div>
@@ -499,10 +526,5 @@
             {{/unless}}
         {{/if}}
 
-        <!--
-    <div class="select-battle-container">
-      <button class="btn btn-secondary loadout-btn mr-3" style="width: 150px">Loadout</button>
-      <button class="btn btn-primary battle-btn" style="width: 150px">Battle</button>
-    </div>-->
     </div>
 </template>

@@ -24,6 +24,21 @@ Template.formatNumber.onCreated(function bodyOnCreated() {
     })
 })
 
+const trimTrailingDecimal = function(val) {
+    if (val && typeof val === "string") {
+        const lastChar = val.substring(val.length - 1)
+        if (lastChar >= '0' && lastChar <= '9') {
+            return val.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1')
+        }
+
+        // this assumes that the notation only has one letter to symbolize shorthand length
+
+        return val.substring(0, val.length - 1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1') + lastChar
+    }
+
+    return val
+}
+
 Template.formatNumber.helpers({
     formattedNumber() {
         const instance = Template.instance()
@@ -42,6 +57,8 @@ Template.formatNumber.helpers({
         options.haveDecimalPrecision = !options.forcedNoDecimal && options.decimalPrecision > 0 // true by default (unless '.decimal' or '.noDecimal' is explicitly set)
         options.wantForcedDecimal = options.haveDecimalPrecision && options.specifiedDecimalPrecision // false by default (unless '.decimal', '.noDecimal', or '.decimal' is explicitly set)
         options.wantAutoPrecision = True(templateData.autoPrecision) // true by default
+
+        options.wantTrimDecimal = False(templateData.trimDecimal)
 
         //console.log('Formatting number', number);
 
@@ -65,7 +82,10 @@ Template.formatNumber.helpers({
         // NOTE: for numbers < 1,000, if we're forcing precision to a specific decimal place, use a simple number formatter
 
         if (options.wantForcedDecimal && number < 1000) {
-            return number.toFixed(options.decimalPrecision)
+            if (options.wantTrimDecimal) {
+                return trimTrailingDecimal(number.toFixed(options.decimalPrecision))
+            }
+            return number.toFixed(options.decimalPrecision) + options.wantTrimDecimal.toString()
         }
 
         // NOTE: for numbers >= 1,000, 'specifiedDecimalPrecision' is ignored and all decimal precision will be displayed which
@@ -73,23 +93,32 @@ Template.formatNumber.helpers({
 
         // If we want shorthand numbers...
         if (options.wantShorthand) {
-            // ... and are forcing decimal precision -- or -- the number >= 1,000 (required so 1,200 will appear as 1.2k in shorthand, etc.)
-            if (options.wantForcedDecimal || number >= 1000) {
+            // ... and are forcing decimal precision -- and -- the number >= 1,000 (required so 1,200 will appear as 1.2k in shorthand, etc.)
+            if (options.wantForcedDecimal && number >= 1000) {
                 // ...... display  as shorthand (including any decimals in the number)
+                if (options.wantTrimDecimal) {
+                    return trimTrailingDecimal(Numeral(number).format("0.0a"))
+                }
                 return Numeral(number).format("0.0a")
             }
 
+            // ... the number >= 1,000 (required so 1,200 will appear as 1.2k in shorthand, etc.)
+            if (number >= 1000) {
+                // ...... display as shorthand (including any decimals in the number)
+                return trimTrailingDecimal(Numeral(number).format("0.0a"))
+            }
+
             // ... otherwise, display as shorthand (but don't display decimals)
-            return Numeral(number).format("0a")
+            return trimTrailingDecimal(Numeral(number).format("0a"))
         }
 
         // If we are forcing decimal precision -- or -- we have not specified to disable decimals and we have decimal precision in the number
         if (options.showDecimal) {
             // ... display as formatted xx,xxx,xxx.yyy (including any decimals in the number)
-            return Numeral(number).format("0,0.0")
+            return trimTrailingDecimal(Numeral(number).format("0,0.0"))
         }
 
         // Otherwise, display as formatted xx,xxx,xxx (but don't display decimals)
-        return Numeral(number).format("0,0")
+        return trimTrailingDecimal(Numeral(number).format("0,0"))
     }
 })

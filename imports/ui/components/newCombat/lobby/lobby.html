@@ -213,9 +213,9 @@
                             <div class="mx-1 badge badge-warning text-nice-outline" style="line-height: 14px;">N/A</div>
                         {{/if}}
                     </div>
-                    {{#if $lte combatTowerContributionsTotalScore 0.0}}
+                    {{#if $lte combatTowerContributionsTotalScore 0}}
                         <p style="margin: 0;"><span class="red-text">No contributions today</span>; go fight the top floor! Resets in {{>readableDuration endDate=floorResetDate}}.</p>
-                    {{else if $lte combatTowerContributionsTotalScore 300.0}}
+                    {{else if $lt combatTowerContributionsTotalScore 300}}
                         <p style="margin: 0;"><span class="red-text">Partial contributions today</span>; go fight the top floor! Resets in {{>readableDuration endDate=floorResetDate}}.</p>
                     {{else}}
                         <p style="margin: 0;"><span class="green-text">Contributions complete!</span> Return for more in {{>readableDuration endDate=floorResetDate}}.</p>

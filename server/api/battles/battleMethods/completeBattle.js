@@ -1205,7 +1205,7 @@ export const completeBattle = function (actualBattle) {
                                 }
 
                                 if (!autoFail && rewardTable.chance * extraChance >= diceRoll) {
-                                    let reward = _.sample(rewardTable.rewards)
+                                    let reward = _.cloneDeep(_.sample(rewardTable.rewards))
                                     if (reward.type === "gold") {
                                         reward.amount *= 12
                                     }
@@ -1216,7 +1216,7 @@ export const completeBattle = function (actualBattle) {
                                     //  break;
                                     //}
                                 } else if (hasCombatGlobalBuff && rewardTable.chance * extraChance * 1.5 >= diceRoll) {
-                                    let reward = _.sample(rewardTable.rewards)
+                                    let reward = _.cloneDeep(_.sample(rewardTable.rewards))
                                     if (reward.type === "gold") {
                                         reward.amount *= 15
                                     }

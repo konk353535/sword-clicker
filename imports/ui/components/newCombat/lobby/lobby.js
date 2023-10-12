@@ -612,6 +612,26 @@ Template.lobbyPage.helpers({
         return Template.instance().state.get("floorDetails")
     },
 
+    bossAdjustedHealthMax() {
+        const waveDetails = Template.instance().state.get("waveDetails")
+
+        return (waveDetails?.health > waveDetails?.healthMax) ? waveDetails?.health : (waveDetails?.healthMax || false)
+    },
+
+    bossHealthProgress() {
+        try {
+            const waveDetails = Template.instance().state.get("waveDetails")
+
+            const bossHealth = waveDetails?.health || 0
+            const bossHealthMax = (waveDetails?.health > waveDetails?.healthMax) ? waveDetails?.health : (waveDetails?.healthMax || 1)
+
+            return (bossHealth / bossHealthMax) * 100.0
+        }
+        catch (err) { }
+        
+        return false
+    },
+
     waveDetails() {
         return Template.instance().state.get("waveDetails")
     },

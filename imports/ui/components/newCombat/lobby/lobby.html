@@ -167,28 +167,30 @@
         {{#if $eq typeKey 'group'}}
             {{#unless floorDetails.isUnlocked}}
                 <div>
-                    <div class="floor-progression-container d-flex align-items-center flex-wrap py-2">
-                        <p style="margin: 0; padding-right: 1rem">Floor progression</p>
-                        <div style="position: relative; min-height: 30px; min-width: 30px;">
-                            <div class="progress" style="min-width: 200px; height: 30px; position: absolute; left: 0px; top: 0px;">
-                                <div class="progress-bar bg-danger justify-content-center align-items-center d-flex"
-                                    role="progressbar"
-                                    style="width: {{wavePointsProgress}}%; height: 30px;"
-                                    aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
+                    {{#if $lte waveDetails.points waveDetails.pointsMax}}
+                        <div class="floor-progression-container d-flex align-items-center flex-wrap py-2">
+                            <p style="margin: 0; padding-right: 1rem">Floor progression</p>
+                            <div style="position: relative; min-height: 30px; min-width: 30px;">
+                                <div class="progress" style="min-width: 200px; height: 30px; position: absolute; left: 0px; top: 0px;">
+                                    <div class="progress-bar bg-danger justify-content-center align-items-center d-flex"
+                                        role="progressbar"
+                                        style="width: {{wavePointsProgress}}%; height: 30px;"
+                                        aria-valuenow="{{wavePointsProgress}}" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div class="progress-overlay" style="min-width: 200px; line-height: 30px; height: 30px; position: absolute; left: 5px; top: 0px; font-size: .80rem;">
+                                    {{> formatNumber number=waveDetails.points}} /
+                                    {{> formatNumber number=waveDetails.pointsMax}}
                                 </div>
                             </div>
-                            <div class="progress-overlay" style="min-width: 200px; line-height: 30px; height: 30px; position: absolute; left: 5px; top: 0px; font-size: .80rem;">
-                                {{> formatNumber number=waveDetails.points}} /
-                                {{> formatNumber number=waveDetails.pointsMax}}
-                            </div>
                         </div>
-                    </div>
+                    {{/if}}
 
                     <div class="d-flex align-items-center flex-wrap py-1">
                         <p style="margin: 0; padding-right: 1rem">Your Top (Official) Contributions:</p>
                         {{#if combat.towerContributions}}
                             {{#each combat.towerContributions}}
-                                <div class="mx-1 badge badge-warning">{{> formatNumber number=this decimal=1}}</div>
+                                <div class="mx-1 badge badge-warning" style="text-shadow: 1px 1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, -1px -1px 1px #444;">{{> formatNumber number=this decimal=1}}</div>
                             {{/each}}
                         {{else}}
                             <p style="margin: 0;">No contributions today. Go fight the top floor!</p>
@@ -197,12 +199,25 @@
 
                     {{#if $gt waveDetails.points waveDetails.pointsMax}}
                         <div class="d-flex align-items-center mt-2">
-                            <button class="btn btn-danger battle-boss-btn mr-2">Boss</button>
-                            <p style="margin: 0;">{{waveDetails.health}} / {{waveDetails.healthMax}} HP</p>
+                            <p style="margin: 0">
+                                <div style="position: relative; min-height: 38px; min-width: 38px;">
+                                    <div class="progress" style="min-width: 200px; height: 38px; position: absolute; left: 0px; top: 0px;">
+                                        <div class="progress-bar bg-danger justify-content-center align-items-center d-flex"
+                                            role="progressbar"
+                                            style="width: {{bossHealthProgress}}%; height: 38px;"
+                                            aria-valuenow="{{bossHealthProgress}}" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <div class="progress-overlay" style="min-width: 200px; text-align: center; line-height: 38px; height: 38px; position: absolute; left: 0px; top: 0px; font-size: 1.20rem; color: white; text-shadow: 1px 1px 1px #444, 1px -1px 1px #444, -1px 1px 1px #444, -1px -1px 1px #444;">
+                                        {{> formatNumber number=waveDetails.health}}
+                                    </div>
+                                    <button class="btn btn-danger battle-boss-btn mr-2" style="position: absolute; left: 210px; top: 0px;">Fight Boss</button>
+                                </div>
+                            </p>
                         </div>
                     {{/if}}
                 </div>
-                <div>
+                <div style="margin-top: 0.5rem">
                     {{#if $lte waveDetails.points waveDetails.pointsMax}}
                         <p>Boss is locked. Floor timer resets in {{>readableDuration endDate=floorResetDate}}.</p>
                     {{else}}

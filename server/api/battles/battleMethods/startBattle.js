@@ -24,6 +24,7 @@ import { fixupBuffText } from "/server/battleUtils"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
+import { Console } from "node:console"
 
 export const startBattle = function ({
     floor,
@@ -605,10 +606,10 @@ export const startBattle = function ({
         let avgMArmor = 0
         let avgDamage = 0
 
-        if (battleData.units && battleData.units.length > 0) {
+        if (newBattle.units && newBattle.units.length > 0) {
             hasPlayers = true
 
-            battleData.units.forEach((unit) => {
+            newBattle.units.forEach((unit) => {
                 avgDamage += unit.stats.attack + (unit.stats.attackMax / 2)
                 avgDefense += unit.stats.defense
                 avgAccuracy += unit.stats.accuracy
@@ -616,15 +617,21 @@ export const startBattle = function ({
                 avgMArmor += unit.stats.magicArmor
             })
 
-            avgDamage /= battleData.units.length
-            avgAccuracy /= battleData.units.length
-            avgDefense /= battleData.units.length
-            avgPArmor /= battleData.units.length
-            avgMArmor /= battleData.units.length
+            avgDamage /= newBattle.units.length
+            avgAccuracy /= newBattle.units.length
+            avgDefense /= newBattle.units.length
+            avgPArmor /= newBattle.units.length
+            avgMArmor /= newBattle.units.length
+
+            console.log(`Average combat stats: dmg ${avgDamage.toFixed(0)}, acc ${avgAccuracy.toFixed(0)}, def ${avgDefense.toFixed(0)}, Par ${avgPArmor.toFixed(0)}, Mar ${avgMArmor.toFixed(0)}`)
+        } else {
+            console.log("!! WARNING !!  this battle contains no player units")
         }
 
         // This is the current active boss battle (and it's still alive)
         if (enemyConstants.isBoss && health) {
+            console.log("Battle is a BOSS and is being given some basic damage resistance")
+
             const floorPercent = 1 - (env.MAX_FLOOR - floor) / env.MAX_FLOOR
             enemyStats.health = health
             enemyStats.healthMax = health
@@ -634,6 +641,7 @@ export const startBattle = function ({
             enemyStats.focus = floorPercent * 8 + 3 // scaling from 3% - 11% based on floor number, magic armor formula
 
             if (!isOldBoss && hasPlayers) {
+                console.log("Battle is a CURRENT FLOOR BOSS and is being given some *extreme* stat boosts")
                 // boss gets a bonus to damage = the average of all player units' average damage
                 enemyStats.attack += avgDamage
 

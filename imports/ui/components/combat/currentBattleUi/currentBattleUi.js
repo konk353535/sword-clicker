@@ -163,6 +163,7 @@ const startBattle = (currentBattle, self) => {
                             "criticalChance",
                             "criticalDamage",
                             "damage",
+                            "heal",
                             "health",
                             "magic",
                             "criticalStrike",

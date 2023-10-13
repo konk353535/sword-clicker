@@ -106,8 +106,8 @@ export function healTarget(
             to: target ? target.id : "",
             eventType: "heal",
             label: healAmount.toFixed(1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1'),
-            customColor: customColor || "#f5528b",
-            customIcon: customIcon || "health"
+            customColor: customColor || "#cc2266",
+            customIcon: customIcon || "heal"
         })
     }
 }

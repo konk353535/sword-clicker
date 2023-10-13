@@ -1476,6 +1476,7 @@ export const CLASS_BUFFS = {
     
                     buff.stacksTimer = 5.0
                     buff.stacks = Math.ceil(buff.stacksTimer)
+                    buff.icon = "sageMysticBondActive.svg"
                 }
             },
 
@@ -1498,6 +1499,7 @@ export const CLASS_BUFFS = {
                 if (buff.stacksTimer <= 0) {
                     buff.stacksTimer = undefined
                     buff.stacks = undefined
+                    buff.icon = "sageMysticBond.svg"
                 } else {
                     buff.stacks = Math.ceil(buff.stacksTimer)
                 }

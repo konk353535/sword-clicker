@@ -215,12 +215,12 @@ Template.selectAbilitiesPage.helpers({
 
                 //ability.isMagic
                 ability.isCompanion = ability.slot == "companion"
-                ability.isPassive = ability.isPassive && !ability.isCompanion
+                ability.isClass = ability.isClass || ability.id.indexOf("class_") === 0
                 if (BUFFS && BUFFS[ability.id]) {
                     console.log(BUFFS[ability.id])
                     ability.isCompanion = ability.isCompanion || BUFFS[ability.id].isCompanion
                 }
-                ability.isClass = ability.isClass || ability.id.indexOf("class_") === 0
+                ability.isPassive = ability.isPassive && !ability.isMagic && !ability.isCompanion && !ability.isClass
                 ability.isActive = !ability.isPassive && !ability.isMagic && !ability.isCompanion && !ability.isClass
             } else {
                 ability.notLearnt = true

@@ -448,6 +448,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "skeletal_warrior",
         icon: "boneWarrior.svg",
         name: "skeletal warrior",
+        isCompanion: true,
         description({ buff, level, playerSkills, floor, townBuffLevel }) {
             let descText = ""
 
@@ -710,6 +711,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "spd_leprechaun",
         icon: "eventSPDleprechaun.png",
         name: "tricky leprechaun",
+        isCompanion: true,
         description({ buff, level, playerSkills, floor, townBuffLevel }) {
             let descText = ""
 
@@ -982,6 +984,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "cute_pig",
         icon: "cutePig.svg",
         name: "cute pig",
+        isCompanion: true,
         description({ buff, level, playerSkills, floor, townBuffLevel }) {
             let descText = ""
 
@@ -1260,6 +1263,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "lny_pig",
         icon: "eventLNYPig.png",
         name: "year of the pig",
+        isCompanion: true,
         description({ buff, level, playerSkills, floor, townBuffLevel }) {
             let descText = ""
 
@@ -1530,6 +1534,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "mystic_fairy",
         icon: "fairy2.svg",
         name: "mystic fairy",
+        isCompanion: true,
         description({ buff, level, floor, playerSkills, townBuffLevel }) {
             let descText = ""
 
@@ -1766,6 +1771,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "vd_cupid",
         icon: "eventVDcupid.svg",
         name: "cupid",
+        isCompanion: true,
         description({ buff, level, playerSkills, floor, townBuffLevel }) {
             let descText = ""
 
@@ -2013,6 +2019,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "companion_skeletal_warrior",
         icon: "boneWarrior.svg",
         name: "companion skeletal warrior",
+        isCompanion: true,
         description() {
             return `Companion will use combat abilities to deal damage.`
         },
@@ -2203,6 +2210,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "spd_leprechaun_logic",
         icon: "eventSPDleprechaun.png",
         name: "companion leprechaun",
+        isCompanion: true,
         description() {
             return `Companion will use combat abilities to deal damage.`
         },
@@ -2515,6 +2523,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "companion_pig_logic_lny",
         icon: "eventLNYPig.png",
         name: "piggy oink oink",
+        isCompanion: true,
         description() {
             return `Companion will do pig things.`
         },
@@ -2677,6 +2686,7 @@ export const COMPANION_BUFFS = {
         duplicateTag: "companion_healer",
         icon: "fairyMagic.svg",
         name: "companion healer",
+        isCompanion: true,
         description() {
             return `Companion will use magic to heal and serve.`
         },

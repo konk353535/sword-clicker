@@ -212,6 +212,16 @@ Template.selectAbilitiesPage.helpers({
                         })
                     }
                 }
+
+                //ability.isMagic
+                //ability.isPassive
+                ability.isCompanion = ability.slot == "companion"
+                if (BUFFS && BUFFS[ability.id]) {
+                    console.log(BUFFS[ability.id])
+                    ability.isCompanion = ability.isCompanion || BUFFS[ability.id].isCompanion
+                }
+                ability.isClass = ability.isClass || ability.id.indexOf("class_") === 0
+                ability.isActive = !ability.isPassive && !ability.isMagic && !ability.isCompanion && !ability.isClass
             } else {
                 ability.notLearnt = true
 
@@ -243,6 +253,11 @@ Template.selectAbilitiesPage.helpers({
 
         return {
             learnt: tempList.filter((list) => !list.notLearnt),
+            learntActive: tempList.filter((list) => !list.notLearnt && list.isActive),
+            learntPassive: tempList.filter((list) => !list.notLearnt && list.isPassive),
+            learntClass: tempList.filter((list) => !list.notLearnt && list.isClass),
+            learntSpells: tempList.filter((list) => !list.notLearnt && list.isMagic),
+            learntCompanions: tempList.filter((list) => !list.notLearnt && list.isCompanion),
             notLearnt: tempList.filter((list) => list.notLearnt)
         }
     },

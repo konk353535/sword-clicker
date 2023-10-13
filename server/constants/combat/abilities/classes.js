@@ -10,6 +10,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_barbarian__charge
             return BUFF.description({ buff: BUFF, level })
@@ -27,6 +28,7 @@ export const CLASS_ABILITIES = {
         target: "self",
         isPacifist: true,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_barbarian__brawn
             return BUFF.description({ buff: BUFF, level })
@@ -42,6 +44,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "self",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_duelist__parry
             return BUFF.description({ buff: BUFF, level })
@@ -59,6 +62,7 @@ export const CLASS_ABILITIES = {
         target: "self",
         isPacifist: false,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_duelist__driven
             return BUFF.description({ buff: BUFF, level })
@@ -74,6 +78,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_paladin__wrath
             return BUFF.description({ buff: BUFF, level })
@@ -91,6 +96,7 @@ export const CLASS_ABILITIES = {
         target: "self",
         isPacifist: true,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_paladin__bulwark
             return BUFF.description({ buff: BUFF, level })
@@ -112,6 +118,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_ranger__blaze_arrows
             return BUFF.description({ buff: BUFF, level })
@@ -133,6 +140,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_ranger__sleet_arrows
             return BUFF.description({ buff: BUFF, level })
@@ -154,6 +162,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_ranger__storm_arrows
             return BUFF.description({ buff: BUFF, level })
@@ -170,6 +179,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "self",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_ranger__thicket
             return BUFF.description({ buff: BUFF, level })
@@ -187,6 +197,7 @@ export const CLASS_ABILITIES = {
         isPacifist: true,
         targettable: true,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_sage__mystic_bond
             return BUFF.description({ buff: BUFF, level })
@@ -204,6 +215,7 @@ export const CLASS_ABILITIES = {
         target: "self",
         isPacifist: true,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_sage__ward
             return BUFF.description({ buff: BUFF, level })
@@ -219,6 +231,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_tactician_rally
             return BUFF.description({ buff: BUFF, level })
@@ -236,6 +249,7 @@ export const CLASS_ABILITIES = {
         target: "self",
         isPacifist: true,
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_tactician__grit
             return BUFF.description({ buff: BUFF, level })
@@ -251,6 +265,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "currentEnemy",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_warmage__weaken
             return BUFF.description({ buff: BUFF, level })
@@ -267,6 +282,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "self",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_warmage__glorious_destiny
             return BUFF.description({ buff: BUFF, level })
@@ -288,6 +304,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "self",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_active_wizard__time_warp
             return BUFF.description({ buff: BUFF, level })
@@ -304,6 +321,7 @@ export const CLASS_ABILITIES = {
         slot: "any",
         target: "self",
         isHidden: true,
+        isClass: true,
         description(level) {
             const BUFF = BUFFS.class_passive_wizard__summon_familiar
             return BUFF.description({ buff: BUFF, level })

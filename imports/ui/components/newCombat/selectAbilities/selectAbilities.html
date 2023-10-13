@@ -163,17 +163,75 @@
             <p>
                 You can learn abilities by crafting tomes in inscription, then come back to this page and read it. Abilities are sorted by companions, passives, actives, passive magic, and active spells.
             </p>
-            <p>Learned</p>
-            <div class="d-flex flex-wrap">
-                {{#each abilityLibrary.learnt}}
-                    {{> abilityLibraryIcon item=this}}
-                {{/each}}
+            <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                Learned: Active Use
             </div>
-            <p class="mt-2">Unlearned</p>
-            <div class="d-flex flex-wrap">
-                {{#each abilityLibrary.notLearnt}}
-                    {{> abilityLibraryIcon item=this}}
-                {{/each}}
+            <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                {{#if abilityLibrary.learntActive}}
+                    {{#each abilityLibrary.learntActive}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                {{else}}
+                    <i>None</i>
+                {{/if}}
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                Learned: Passive Effect
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                {{#if abilityLibrary.learntPassive}}
+                    {{#each abilityLibrary.learntPassive}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                {{else}}
+                    <i>None</i>
+                {{/if}}
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                Learned: Spells
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                {{#if abilityLibrary.learntSpells}}
+                    {{#each abilityLibrary.learntSpells}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                {{else}}
+                    <i>None</i>
+                {{/if}}
+            </div>
+            {{#if abilityLibrary.learntClass}}
+                <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                    Class Exclusive
+                </div>
+                <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                    {{#each abilityLibrary.learntClass}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                Companions
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                {{#if abilityLibrary.learntCompanions}}
+                    {{#each abilityLibrary.learntCompanions}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                {{else}}
+                    <i>None</i>
+                {{/if}}
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: 6px;">
+                Unlearned
+            </div>
+            <div class="d-flex flex-wrap" style="margin-top: -2px; margin-bottom: 18px;">
+                {{#if abilityLibrary.notLearnt}}
+                    {{#each abilityLibrary.notLearnt}}
+                        {{> abilityLibraryIcon item=this}}
+                    {{/each}}
+                {{else}}
+                    <i>None</i>
+                {{/if}}
             </div>
         </div>
 

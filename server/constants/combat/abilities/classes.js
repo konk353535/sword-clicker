@@ -183,8 +183,9 @@ export const CLASS_ABILITIES = {
         buffs: ["class_active_sage__mystic_bond"],
         cooldown: 5,
         slot: "any",
-        target: "singleAlly",
+        target: "singleFriendly",
         isPacifist: true,
+        targettable: true,
         isHidden: true,
         description(level) {
             const BUFF = BUFFS.class_active_sage__mystic_bond

@@ -1526,7 +1526,7 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                target.stats.damageTaken -= 0.15
+                target.stats.damageTaken -= 0.25
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1539,7 +1539,7 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {
-                target.stats.damageTaken += 0.15
+                target.stats.damageTaken += 0.25
             }
         }
     },

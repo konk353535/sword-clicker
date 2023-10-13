@@ -267,23 +267,25 @@ const getReforgeData = function getReforgeData(_id) {
     let recipeData = undefined
     recipesArray.forEach((thisRecipe) => {
         if (thisRecipe.produces === currentItem.itemId) {
-            recipeData = thisRecipe
+            recipeData = lodash.cloneDeep(thisRecipe)
         }
     })
 
-    if (!recipeData || !recipeData.requiredCraftingLevel) {
-        const classReforgeData = userCurrentClass()?.data?.reforge
-        let itemConstants = lodash.clone(ITEMS[currentItem.itemId])
+    const classReforgeData = userCurrentClass(Meteor.userId())?.data?.reforge
+    if (classReforgeData && classReforgeData[currentItem.itemId] && classReforgeData[currentItem.itemId].requiresCrafting) {
+        const recipeItemConstants = lodash.cloneDeep(ITEMS[currentItem.itemId])
+        recipeData = {
+            requiredCraftingLevel: classReforgeData[currentItem.itemId].requiresCrafting,
+            isLooted: true // there's nothing in class reforge data that isn't a looted item
+        }
+    }
 
-        if (itemConstants.reforgeRecipe && itemConstants.reforgeRecipe.requiresCrafting) {
+    if (!recipeData || !recipeData.requiredCraftingLevel) {
+        const recipeItemConstants = lodash.cloneDeep(ITEMS[currentItem.itemId])
+        if (recipeItemConstants.reforgeRecipe && recipeItemConstants.reforgeRecipe.requiresCrafting) {
             recipeData = {
-                requiredCraftingLevel: itemConstants.reforgeRecipe.requiresCrafting,
-                isLooted: true
-            }
-        } else if (classReforgeData && classReforgeData[currentItem.itemId] && classReforgeData[currentItem.itemId].requiresCrafting) {
-            recipeData = {
-                requiredCraftingLevel: classReforgeData[currentItem.itemId].requiresCrafting,
-                isLooted: true
+                requiredCraftingLevel: recipeItemConstants.reforgeRecipe.requiresCrafting,
+                isLooted: true // means the item isn't natively crafted and thus dropped (and not patched by class)
             }
         }
     }
@@ -693,11 +695,7 @@ Meteor.methods({
             return false
         }
 
-        if (currentItem.category !== "combat") {
-            throw new Meteor.Error("cant-reforge", "That item can't be reforged.")
-        }
-
-        if (currentItem.slot === "neck") {
+        if (currentItem.category !== "combat" || currentItem.slot === "neck") {
             throw new Meteor.Error("cant-reforge", "That item can't be reforged.")
         }
 

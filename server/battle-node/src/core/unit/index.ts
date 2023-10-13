@@ -413,7 +413,7 @@ export default class Unit {
     }
 
     removeBuff(buffToRemove: Buff) {
-        if (!buffToRemove.data.allowDuplicates) {
+        if (!buffToRemove.allowDuplicates) {
             this.battleRef.deltaEvents.push({
                 type: "pop",
                 path: `unitsMap.${this.id}.buffs`,

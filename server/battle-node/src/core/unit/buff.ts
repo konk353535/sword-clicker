@@ -29,7 +29,7 @@ export default class Buff {
     unit!: Unit
     battleRef!: Battle
     _isBuffClass!: boolean
-    allowDuplicates?: boolean
+    _allowDuplicates?: boolean
 
     get name() {
         try {
@@ -43,6 +43,18 @@ export default class Buff {
         if (this.data) {
             this.data.name = value
             this.delta("name")
+        }
+    }
+
+    get allowDuplicates() {
+        try {
+            return this.data.allowDuplicates || BUFFS[this.id].data && BUFFS[this.id].data.allowDuplicates
+        } catch (err) {}
+        return false
+    }
+    set allowDuplicates(value) {
+        if (this.data) {
+            this.data.allowDuplicates = value
         }
     }
 
@@ -218,6 +230,8 @@ export default class Buff {
             const fixedBuff = fixupBuffText(this, undefined)
             this.data.name = fixedBuff.data.name
             this.data.description = fixedBuff.data.description
+
+            this.allowDuplicates = buff && buff.data ? buff.data.allowDuplicates : false
 
             this._uid = uuid.v4()
             this.delta("uid")

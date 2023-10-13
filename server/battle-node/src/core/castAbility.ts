@@ -227,7 +227,7 @@ export function castAbility(this: Battle, { ability, caster, targets }: castAbil
                 // Remove existing buffs that match
                 if (target.buffs && target.buffs.length > 0) {
                     let existingBuff = _.findWhere(target.buffs, { id: buff.id })
-                    if (existingBuff && !existingBuff.allowDuplicates && !buff.data.allowDuplicates) {
+                    if (existingBuff && !existingBuff.allowDuplicates && !buff.allowDuplicates) {
                         existingBuff.duration = -1
                         try {
                             buff.constants.events.onTick({

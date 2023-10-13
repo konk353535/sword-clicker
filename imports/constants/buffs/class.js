@@ -1305,8 +1305,9 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Healing a target reduces all of your active ability cooldowns by 2 seconds and places a protective blessing
-        upon them for 2 seconds that reduces the damage they take by 35%.  Double Healing Power benefit from staves
-        Can reforge most magical clothing.  Cannot auto-attack when in combat with allies.<br />
+        upon them for 2 seconds that reduces the damage they take by 35%.  You cannot receive your own blessing.
+        Double Healing Power benefit from staves Can reforge most magical clothing.  Cannot auto-attack when in combat
+        with allies.<br />
         While you are a Sage this is <b>always active</b>`
         },
         constants: {
@@ -1324,13 +1325,17 @@ export const CLASS_BUFFS = {
                     return
                 }
 
+                if (caster.id === target.id) {
+                    return
+                }
+
                 const newBuff = {
                     id: "class_trait_sage__sages_blessing",
                     data: {
                         duration: 2.2,
                         totalDuration: 2.2,
                         caster: caster.id,
-                        allowDuplicates: true,
+                        allowDuplicates: false,
                         icon: "sagesBlessing.svg",
                         name: "Sage's Blessing",
                         description: "A Sage's blessing is preventing 35% of the damage you would ordinarily take."

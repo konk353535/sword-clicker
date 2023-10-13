@@ -456,7 +456,7 @@ export const CLASS_BUFFS = {
                                     totalDuration: Infinity,
                                     name: "Bulwark",
                                     icon: "paladinBulwark.svg",
-                                    stacks: 1,
+                                    stacks: 3,
                                 }
                             }
                         )
@@ -681,7 +681,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Grants all allies a stack of <i>Bulwark</i> protection at the beginning of battle that 
+        Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle that 
         prevents all damage.  An additional stack is granted per each room the group advances to
         up to a maximum of 3 stacks.  Each time the ally would take damage, a stack is deducted.
         When all stacks are gone, this protection ends.<br />
@@ -699,7 +699,7 @@ export const CLASS_BUFFS = {
                 // apply it to all the friendly units
                 actualBattle.units.forEach((friendlyUnit) => {
                     if (friendlyUnit.id !== unit.id) {
-                        let stacks = 1
+                        let stacks = 3
 
                         const ally_existing_bulwark_buff = friendlyUnit.findBuff("class_passive_paladin__bulwark_effect")
                         if (ally_existing_bulwark_buff) {
@@ -744,7 +744,7 @@ export const CLASS_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 if (buff.data.hitsRequired == null) {
-                    buff.stacks = buff.data.hitsRequired = 1
+                    buff.stacks = buff.data.hitsRequired = 3
                     target.stats.armor += 100000
                     target.stats.magicArmor += 100000
                 }
@@ -1474,7 +1474,7 @@ export const CLASS_BUFFS = {
                         })
                     }
     
-                    buff.stacksTimer = 5.0
+                    buff.stacksTimer = 3.0
                     buff.stacks = Math.ceil(buff.stacksTimer)
                     buff.icon = "sageMysticBondActive.svg"
                 }

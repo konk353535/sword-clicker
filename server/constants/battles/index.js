@@ -11,9 +11,9 @@ export const BATTLES = {
 
             spear: {
                 attack: 0,
-                defense: 0.5,
+                defense: 0.7,
                 magic: 0,
-                health: 0.5
+                health: 0.3
             },
 
             staff: {
@@ -25,9 +25,9 @@ export const BATTLES = {
 
             wand: {
                 attack: 0,
-                defense: 0.17,
+                defense: 0.25,
                 magic: 0,
-                health: 0.5
+                health: 0.75
             },
 
             trident: {
@@ -52,10 +52,10 @@ export const BATTLES = {
             },
 
             rapier: {
-                attack: 0.66,
-                defense: 0.0,
+                attack: 0.50,
+                defense: 0.15,
                 magic: 0,
-                health: 0.5
+                health: 0.35
             },
 
             battleAxe: {

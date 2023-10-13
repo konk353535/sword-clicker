@@ -184,8 +184,8 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Any time you miss with an auto-attack, you add a stack of <i>Brawn</i> that increases all of your damage by
-        +10% per stack (to a maximum of +200%).  Stacks are reduced by 3 when you successfully hit with an auto-attack
+        Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that increases all of your damage by
+        +10% per stack (to a maximum of +200%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
         to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
         },
@@ -206,14 +206,14 @@ export const CLASS_BUFFS = {
             onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
                 if (source == "autoattack") {
                     if (buff.stacks < 20) {
-                        buff.stacks++
+                        buff.stacks += 2
                     }
                 }
             },
 
             onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
                 if (source == "autoattack") {
-                    buff.stacks -= 3
+                    buff.stacks -= 1
                     if (buff.stacks < 0) {
                         buff.stacks = 0
                     }
@@ -350,7 +350,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Your damage is reduced by half, but you auto-attack twice as fast.<br />
+        Your damage is reduced by 40%, but you auto-attack 75% faster.<br />
         While equipped when you are a Duelist this is <b>always active</b>`
         },
         constants: {},
@@ -360,9 +360,9 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                target.stats.attackSpeed *= 2.0
-                target.stats.attack /= 2.0
-                target.stats.attackMax /= 2.0
+                target.stats.attackSpeed *= 1.75
+                target.stats.attack *= 0.6
+                target.stats.attackMax *= 0.6
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},

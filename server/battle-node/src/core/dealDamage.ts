@@ -15,6 +15,7 @@ export function dealDamage(
         customIcon,
         isMagic,
         isTrueDamage,
+        bypassArmor,
         source
     }: dealDamageOpts
 ) {
@@ -54,6 +55,10 @@ export function dealDamage(
         isMagic = isMagic ? false : true
     }
 
+    // NOTE:
+    // 'isTrueDamage'  cannot be reduced by (a) armor, (b) magic armor, or (c) damage absorption
+    // 'bypassArmor' cannot be reduced by (a) armor or (b) magic armor, but can be reduced by damage absorption
+
     let damage = rawDamage
     if (damage && damage > 0) {
         // true damage penetrates armor and all abilities that allow damage reduction (or fake-dodging like evasive manuevers)
@@ -73,9 +78,15 @@ export function dealDamage(
                 ? defender.stats.damageReduction
                 : 0
 
+            // armor does not protect against some DoT effects:  bleed, poison, ignite, etc.
+            if (bypassArmor) {
+                dmgReduction = 0
+            }
+
             defender.stats.armor = origPhyscArmor // triggers a calculation of 'defender.stats.damageReduction'
             defender.stats.magicArmor = origMagicArmor // triggers a calculation of 'defender.stats.magicDamageReduction'
 
+            // NOTE: damage absorption DOES against some DoT effects:  bleed, poison, ignite, etc. (no adjustment for 'bypassArmor')
             damage = rawDamage * (1 - dmgReduction) * (defender.stats.damageTaken ? defender.stats.damageTaken : 1.0)
         }
 
@@ -201,7 +212,7 @@ export function dealDamage(
             to: defender ? defender.id : "",
             eventType: "damage",
             label: damageValue,
-            customColor: customColor ? customColor : isMagicOrig ? "blue" : "red",
+            customColor: customColor ? customColor : isMagicOrig ? "#3322ff" : "#880011",
             customIcon: customIcon ? customIcon : isMagicOrig ? "basicDamageMagic" : "basicDamage"
         })
     }

@@ -25,6 +25,7 @@ export type dealDamageOpts = {
     customIcon?: string | undefined
     isMagic?: boolean
     isTrueDamage?: boolean
+    bypassArmor: boolean
     source?: string
 }
 

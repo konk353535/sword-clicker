@@ -575,7 +575,7 @@ export const ATTACK_BUFFS = {
 
             return `
         Passive ability<br />
-        Auto-attacks hit enemies adjacent to your target (applies on-hit effects). Consumes one stack when triggered. Stacks generate every second, maximum of 20.<br />
+        Auto-attacks hit enemies adjacent to your target (applies on-hit effects). Consumes one stack when triggered. Stacks generate once every 2 seconds, maximum of 20.<br />
         While equipped this is <b>always active</b>.`
         },
         constants: {},
@@ -586,7 +586,7 @@ export const ATTACK_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 buff.stacks = 1
-                buff.data.timeTillStack = 1
+                buff.data.timeTillStack = 2
             },
 
             onDidDamage({ buff, defender, attacker, actualBattle, originalAutoAttack }) {
@@ -628,7 +628,7 @@ export const ATTACK_BUFFS = {
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 buff.data.timeTillStack -= secondsElapsed
                 if (buff.data.timeTillStack <= 0) {
-                    buff.data.timeTillStack = 1
+                    buff.data.timeTillStack = 2
                     buff.stacks++
                     if (buff.stacks > 20) {
                         buff.stacks = 20

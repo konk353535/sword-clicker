@@ -2758,7 +2758,10 @@ export const BOSS_BUFFS = {
         },
         data: {},
         events: {
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                target.stats.health = target.stats.healthMax
+                target.stats.damageTaken = 0
+            },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
                 target.stats.health = target.stats.healthMax
@@ -2766,6 +2769,8 @@ export const BOSS_BUFFS = {
             },
 
             onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source }) {
+                target.stats.health = target.stats.healthMax
+                target.stats.damageTaken = 0
                 defender.tickMessage("Can\t Be Harmed!", "#aa8888", "noicon", attacker) // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
             },
 

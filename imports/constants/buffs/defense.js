@@ -949,7 +949,7 @@ export const DEFENSE_BUFFS = {
     },
 
     evasive_maneuvers: {
-        duplicateTag: "evasiveManeuvers", // Used to stop duplicate buffs
+        duplicateTag: "evasive_maneuvers", // Used to stop duplicate buffs
         icon: "evasiveManeuvers.svg",
         name: "evasive maneuvers",
         description({ buff, level }) {
@@ -971,7 +971,7 @@ export const DEFENSE_BUFFS = {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
                 buff.data.name = buff.data.name || "Dodging"
-                buff.data.description = buff.data.description || "The enemy is completely immune to all damage."
+                buff.data.description = buff.data.description || "The enemy is dodging all atacks!"
 
                 const constants =
                     buff.constants && buff.constants.constants
@@ -983,6 +983,50 @@ export const DEFENSE_BUFFS = {
                     buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 }
                 
+                buff.data.defenseAddition = 1000000
+                target.stats.defense += buff.data.defenseAddition
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                buff.duration -= secondsElapsed
+                if (buff.duration <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                }
+            },
+
+            onRemove({ buff, target, caster }) {
+                if (buff.data.defenseAddition) {
+                    target.stats.defense -= buff.data.defenseAddition
+                }
+            }
+        }
+    },
+
+    full_damage_immunity: {
+        duplicateTag: "full_damage_immunity", // Used to stop duplicate buffs
+        icon: "evasiveManeuvers.svg",
+        name: "immune",
+        description({ buff, level }) {
+            const durationPerLevel = buff.constants.durationPerLevel
+            return `
+        Immune to all damage.`
+        },
+        constants: {
+            allowTicks: true
+        },
+        data: {
+            duration: 3,
+            totalDuration: 3
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.name = buff.data.name || "Dodging"
+                buff.data.description = buff.data.description || "The enemy is completely immune to all damage."
+                buff.duration = buff.data.duration
+                buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
+
+                // make target absorb all damage (reducing all incoming damage by 99.9999%)
                 buff.data.damageReduction = target.stats.damageTaken * (99.9999 / 100)
                 target.stats.damageTaken -= buff.data.damageReduction
             },
@@ -996,6 +1040,7 @@ export const DEFENSE_BUFFS = {
 
             onRemove({ buff, target, caster }) {
                 if (buff.data.damageReduction) {
+                    // remove damage absorption
                     target.stats.damageTaken += buff.data.damageReduction
                 }
             }

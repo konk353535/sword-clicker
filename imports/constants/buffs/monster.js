@@ -1168,7 +1168,7 @@ export const MONSTER_BUFFS = {
                 // Blink on average, every 5 seconds
                 if (buff.data.timeTillBlink <= 0) {
                     const newBuff = {
-                        id: "evasive_maneuvers",
+                        id: "full_damage_immunity",
                         data: {
                             name: "Spirit Blink",
                             description: `The ${target.name} is completely immune to all damage.`,
@@ -2323,9 +2323,9 @@ export const MONSTER_BUFFS = {
                     if (buff.data.dodgeTimer <= 0) {
                         attacker.applyBuff({
                             buff: attacker.generateBuff({
-                                buffId: "evasive_maneuvers",
+                                buffId: "full_damage_immunity",
                                 buffData: {
-                                    name: "Impossible to Hit",
+                                    name: "Impossible to injure",
                                     icon: "nullify.svg",
                                     duration: 3,
                                     level: 0 // since it will automatically add duration if we set it higher

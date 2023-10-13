@@ -214,8 +214,8 @@ Template.selectAbilitiesPage.helpers({
                 }
 
                 //ability.isMagic
-                //ability.isPassive
                 ability.isCompanion = ability.slot == "companion"
+                ability.isPassive = ability.isPassive && !ability.isCompanion
                 if (BUFFS && BUFFS[ability.id]) {
                     console.log(BUFFS[ability.id])
                     ability.isCompanion = ability.isCompanion || BUFFS[ability.id].isCompanion

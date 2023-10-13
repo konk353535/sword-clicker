@@ -17,7 +17,7 @@
           <div class="d-flex align-items-center text-danger mb-3">
             You are currently in a battle
             <div class="d-flex flex-grow justify-content-end">
-              <a href="/newCombat" class="btn btn-secondary">View</a>
+              <a href="/battle" class="btn btn-secondary">View</a>
             </div>
           </div>
         {{/if}}
@@ -45,7 +45,7 @@
         {{#if $gte currentGroupMembers.length 2}}
           <div class="mb-3 d-flex flex-column">
             <div class="d-flex align-items-center">
-              <a class="text-muted" href="/newCombat">Your Party</a>
+              <a class="text-muted" href="/battle">Your Party</a>
             </div>
             <div class="d-flex justify-content-center flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF; margin-bottom: 20px">
               {{#each currentGroupMembers}}
@@ -60,7 +60,7 @@
         <!-- Adventures -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/newCombat" class="text-muted adventures-nav-link">Adventures</a>
+            <a href="/battle" class="text-muted adventures-nav-link">Adventures</a>
             <div class="d-flex justify-content-end flex-grow">
               <div class="text-muted ml-3">
                 {{> readableDuration endDate=lastAdventure.endDate}}

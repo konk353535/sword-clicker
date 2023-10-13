@@ -43,7 +43,7 @@ export const TOWER_FLOOR_10 = {
     },
     4: {
         name: "Place of Titanium",
-        enemies: ["titanium_spirit", "titanium_spirit", "titanium_spirit"],
+        enemies: ["titanium_spirit", "titanium_spirit"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {
@@ -133,7 +133,7 @@ export const TOWER_FLOOR_10 = {
     // To do, some kind of herb garden drops
     7: {
         name: "Overgrown Grass",
-        enemies: ["spider", "grasshopper", "spider"],
+        enemies: ["grasshopper", "spider"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {

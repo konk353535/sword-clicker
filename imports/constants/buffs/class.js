@@ -1705,7 +1705,7 @@ export const CLASS_BUFFS = {
             return `
         Passive class ability<br />
         For every 5% Health you are missing from your original Maximum Health,
-        your Defense and Magic Armor increases by +4%.<br />
+        your Defense and Magic Armor increases by +3%.<br />
         While equipped when you are a Tactician this is <b>always active</b>`
         },
         constants: {},
@@ -1727,7 +1727,7 @@ export const CLASS_BUFFS = {
                 target.stats.magicArmor -= buff.data.statsBoosted.magicArmor
 
                 // calculate new bonuses
-                const missingHealthIncrements = CInt((1.0 - (target.stats.health / target.stats.origStats.healthMax)) / 0.05)
+                const missingHealthIncrements = CInt((1.0 - (target.stats.health / target.stats.healthMax)) / 0.05)
                 buff.data.statsBoosted.defense = missingHealthIncrements * 0.03 * target.stats.origStats.defense
                 buff.data.statsBoosted.magicArmor = missingHealthIncrements * 0.03 * target.stats.origStats.magicArmor
 

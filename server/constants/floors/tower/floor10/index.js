@@ -133,7 +133,7 @@ export const TOWER_FLOOR_10 = {
     // To do, some kind of herb garden drops
     7: {
         name: "Overgrown Grass",
-        enemies: ["grasshopper", "spider", "seething_hatred"],
+        enemies: ["spider", "grasshopper", "spider"],
         rewards: orderLootTable(
             LEVEL_TEN_LOOT_TABLE.concat([
                 {

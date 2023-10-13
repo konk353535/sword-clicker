@@ -96,7 +96,8 @@ export const ATTACK_BUFFS = {
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
                         customIcon: "poison.svg",
-                        customColor: "#229b00"
+                        customColor: "#229b00",
+                        bypassArmor: true
                     })
                 }
 
@@ -1513,7 +1514,8 @@ export const ATTACK_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "bleeding.svg"
+                        customIcon: "bleeding.svg",
+                        bypassArmor: true
                     })
                 }
 

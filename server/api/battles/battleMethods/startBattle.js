@@ -567,6 +567,33 @@ export const startBattle = function ({
         console.log("overallAverageCombat", overallAverageCombat, "adjustedFloorLevel", adjustedFloorLevel)
     }
 
+    let hasPlayers = false
+    let avgDefenseStat = 0
+    let avgAccuracy = 0
+    let avgPArmor = 0
+    let avgMArmor = 0
+    let avgDamage = 0
+
+    if (newBattle.units && newBattle.units.length > 0) {
+        hasPlayers = true
+
+        newBattle.units.forEach((unit) => {
+            avgDamage += unit.stats.attack + (unit.stats.attackMax / 2)
+            avgDefenseStat += unit.stats.defense
+            avgAccuracy += unit.stats.accuracy
+            avgPArmor += unit.stats.armor
+            avgMArmor += unit.stats.magicArmor
+        })
+
+        avgDamage /= newBattle.units.length
+        avgAccuracy /= newBattle.units.length
+        avgDefenseStat /= newBattle.units.length
+        avgPArmor /= newBattle.units.length
+        avgMArmor /= newBattle.units.length
+    } else {
+        console.log("!! WARNING !!  this battle contains no player units")
+    }
+
     if (level) {
         // Is personalQuest (To Do)
         battleData.enemies = FLOORS.personalQuestMonsterGenerator(level, wave)
@@ -580,7 +607,7 @@ export const startBattle = function ({
         // Is tower room specific
         if (floor != null && currentCommunityFloor != null && floor === currentCommunityFloor) {
             console.log("doing top floor adjustment")
-            battleData.enemies = FLOORS.topFloorTowerMonsterGenerator(floor, room, adjustedFloorLevel)
+            battleData.enemies = FLOORS.topFloorTowerMonsterGenerator(floor, room, adjustedFloorLevel, { hasPlayers, playerCount: (hasPlayers ? newBattle.units.length : 0), avgDamage, avgAccuracy, avgDefenseStat, avgPArmor, avgMArmor })
         } else {
             console.log("doing normal floor generator")
             battleData.enemies = FLOORS.genericTowerMonsterGenerator(floor, room)
@@ -619,39 +646,12 @@ export const startBattle = function ({
             hasBoss = true
         }
 
-        let hasPlayers = false
-        let avgDefense = 0
-        let avgAccuracy = 0
-        let avgPArmor = 0
-        let avgMArmor = 0
-        let avgDamage = 0
-
-        if (newBattle.units && newBattle.units.length > 0) {
-            hasPlayers = true
-
-            newBattle.units.forEach((unit) => {
-                avgDamage += unit.stats.attack + (unit.stats.attackMax / 2)
-                avgDefense += unit.stats.defense
-                avgAccuracy += unit.stats.accuracy
-                avgPArmor += unit.stats.armor
-                avgMArmor += unit.stats.magicArmor
-            })
-
-            avgDamage /= newBattle.units.length
-            avgAccuracy /= newBattle.units.length
-            avgDefense /= newBattle.units.length
-            avgPArmor /= newBattle.units.length
-            avgMArmor /= newBattle.units.length
-        } else {
-            console.log("!! WARNING !!  this battle contains no player units")
-        }
-
         // This is the current active boss battle (and it's still alive)
         if (enemyConstants.isBoss && health) {
             console.log("***  Battle is a _BOSS_ and is being given some basic damage resistance  ***")
 
             if (wantDebug) {
-                console.log(`Average combat stats: dmg ${avgDamage.toFixed(0)}, acc ${avgAccuracy.toFixed(0)}, def ${avgDefense.toFixed(0)}, Par ${avgPArmor.toFixed(0)}, Mar ${avgMArmor.toFixed(0)}`)
+                console.log(`Average combat stats: dmg ${avgDamage.toFixed(0)}, acc ${avgAccuracy.toFixed(0)}, def ${avgDefenseStat.toFixed(0)}, Par ${avgPArmor.toFixed(0)}, Mar ${avgMArmor.toFixed(0)}`)
             }
 
             const floorPercent = 1 - (env.MAX_FLOOR - floor) / env.MAX_FLOOR
@@ -680,7 +680,7 @@ export const startBattle = function ({
                 enemyStats.defense = Math.ceil(enemyStats.defense)
 
                 // boss gets a bonus to accuracy = 75% the average of all player units' defense
-                enemyStats.accuracy += avgDefense * 0.75
+                enemyStats.accuracy += avgDefenseStat * 0.75
                 enemyStats.accuracy = Math.ceil(enemyStats.accuracy)
 
                 // boss gets a bonus to armor = 125% the average of all player units' armor
@@ -694,8 +694,8 @@ export const startBattle = function ({
                 // boss gets a bonus to force = 100% the average of all player units' defense
                 // boss gets a bonus to shred = 75% the average of all player units' armor
                 // boss gets a bonus to focus = 75% the average of all player units' magic armor
-                enemyStats.force += avgDefense
-                enemyStats.shred += avgDefense * 0.75
+                enemyStats.force += avgDefenseStat
+                enemyStats.shred += avgDefenseStat * 0.75
                 enemyStats.focus += avgMArmor * 0.75
                 enemyStats.force = Math.ceil(enemyStats.force)
                 enemyStats.shred = Math.ceil(enemyStats.shred)

@@ -33,7 +33,32 @@ export function checkGameOverConditions(this: Battle) {
                     this.currentCommunityFloor != null &&
                     this.floor === this.currentCommunityFloor
                 ) {
-                    newMonsters = FLOORS.topFloorTowerMonsterGenerator(this.floor, this.room, this.adjustedFloorLevel)
+                    let hasPlayers = false
+                    let avgDefenseStat = 0
+                    let avgAccuracy = 0
+                    let avgPArmor = 0
+                    let avgMArmor = 0
+                    let avgDamage = 0
+
+                    if (this.units && this.units.length > 0) {
+                        hasPlayers = true
+
+                        this.units.forEach((unit) => {
+                            avgDamage += unit.stats.attack + (unit.stats.attackMax / 2)
+                            avgDefenseStat += unit.stats.defense
+                            avgAccuracy += unit.stats.accuracy
+                            avgPArmor += unit.stats.armor
+                            avgMArmor += unit.stats.magicArmor
+                        })
+
+                        avgDamage /= this.units.length
+                        avgAccuracy /= this.units.length
+                        avgDefenseStat /= this.units.length
+                        avgPArmor /= this.units.length
+                        avgMArmor /= this.units.length
+                    }
+
+                    newMonsters = FLOORS.topFloorTowerMonsterGenerator(this.floor, this.room, this.adjustedFloorLevel, { hasPlayers, playerCount: (hasPlayers ? this.units.length : 0), avgDamage, avgAccuracy, avgDefenseStat, avgPArmor, avgMArmor })
                 } else {
                     newMonsters = FLOORS.genericTowerMonsterGenerator(this.floor, this.room)
                 }

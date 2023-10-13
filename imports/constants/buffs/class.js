@@ -84,7 +84,7 @@ export const CLASS_BUFFS = {
         description() {
             return `
         You charge into battle dealing <b>75%</b> damage and stunning your enemy for <b>5</b> seconds.  An enemy can't
-        be stunned by another Charge again for 20 seconds.`
+        be stunned by another Charge again for 30 seconds.`
         },
         constants: {
             abilityDamage: 0.75,
@@ -127,7 +127,7 @@ export const CLASS_BUFFS = {
                         description: `You are stunned and can't take any actions or fight.`,
                         swapId: "stunned_barbarian_resilience",
                         swapName: "Resilient",
-                        swapDuration: 20, // base duration + resilience duration
+                        swapDuration: 35, // base duration + resilience duration
                         swapIcon: "barbarianCharge.svg",
                         swapDescription: "Resilient to Barbarian Charge stuns."
                     }
@@ -156,8 +156,8 @@ export const CLASS_BUFFS = {
             allowTicks: true
         },
         data: {
-            duration: 15,
-            totalDuration: 15,
+            duration: 30,
+            totalDuration: 30,
             allowDuplicates: true,
             stunResilience: true
         },
@@ -185,7 +185,7 @@ export const CLASS_BUFFS = {
             return `
         Passive class ability<br />
         Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that increases all of your damage by
-        +10% per stack (to a maximum of +200%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
+        +10% per stack (to a maximum of +150%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
         to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
         },
@@ -205,7 +205,7 @@ export const CLASS_BUFFS = {
 
             onTargetDodgedDamage({buff, defender, attacker, actualBattle, source}) {
                 if (source == "autoattack") {
-                    if (buff.stacks < 20) {
+                    if (buff.stacks < 15) {
                         buff.stacks += 2
                     }
                 }
@@ -642,7 +642,7 @@ export const CLASS_BUFFS = {
         name: "Wrath",
         description() {
             return `
-        You unleash righteous vengeance upon your enemy, dealing <b>100%</b> weapon damage
+        You unleash righteous vengeance upon your enemy, dealing <b>250%</b> weapon damage
         multiplied by how low your health is, from 1x damage at full health to 4x damage at
         10% health.`
         },
@@ -653,7 +653,7 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const abilityBaseDamage = (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const abilityBaseDamage = 2.5 * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
                 // this will produce a number from 1 to 4 when health is full vs. 10% (or lower)
                 const healthAdjustment = (Math.min(1 - ((caster.stats.health - (caster.stats.origStats.healthMax * 0.1)) / Math.max(caster.stats.origStats.healthMax - (caster.stats.origStats.healthMax * 0.1), 1)), 1) + 0.333333) * 3
                 const abilityDamage = abilityBaseDamage * healthAdjustment
@@ -1051,12 +1051,12 @@ export const CLASS_BUFFS = {
                     // if the briar dies without onTookDamage (from an ability, spell, or effect), deal damage back to the current target unit (or at random if we can't find a target)
                     let targetUnit = target.targetUnit
                     if (!targetUnit) {
-                        targetUnit = _.sample(target.opposition)
+                        targetUnit = _.sample(target.enemies)
                     }
 
                     actualBattle.dealDamage(target.stats.healthMax / 6, {
-                        attacker: targetUnit,
-                        defender: target,
+                        attacker: target,
+                        defender: targetUnit,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
                         customIcon: buff.data.icon
@@ -1304,12 +1304,9 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Sage",
         description() {
             return `
-        Healing a target reduces all of your active ability cooldowns by 2 seconds and places
-        a protective blessing upon them for 2 seconds that reduces the damage they take by
-        25%.
-        Double Healing Power benefit from staves
-        Can reforge most magical clothing.
-        Cannot auto-attack when in combat with allies.<br />
+        Healing a target reduces all of your active ability cooldowns by 2 seconds and places a protective blessing
+        upon them for 2 seconds that reduces the damage they take by 35%.  Double Healing Power benefit from staves
+        Can reforge most magical clothing.  Cannot auto-attack when in combat with allies.<br />
         While you are a Sage this is <b>always active</b>`
         },
         constants: {
@@ -1336,7 +1333,7 @@ export const CLASS_BUFFS = {
                         allowDuplicates: true,
                         icon: "sagesBlessing.svg",
                         name: "Sage's Blessing",
-                        description: "A Sage's blessing is preventing 15% of the damage you would ordinarily take."
+                        description: "A Sage's blessing is preventing 35% of the damage you would ordinarily take."
                     }
                 }
 
@@ -1368,9 +1365,11 @@ export const CLASS_BUFFS = {
         name: "Bond",
         description() {
             return `
-        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain 1% of
-        your lost Maximum Health.  This effect can only occur once every 5 seconds.  You may reuse this
-        ability at any time to place it on a different target.  You may not use this on yourself directly.`
+        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain <b>1%</b> of your lost
+        Maximum Health.  If the bonded ally is under 50% health, you will lose 10% of your original maximum health as
+        Health to automatically heal the struck ally for 10% of their original Maximum Health.  These effects can only
+        occur once every <b>3</b> seconds.  You may reuse this ability at any time to place it on a different target.
+        You may not use this on yourself and the bond cannot be broken without transferring it to another ally.`
         },
         constants: {
         },
@@ -1439,23 +1438,60 @@ export const CLASS_BUFFS = {
                 })
 
                 if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
                     return
                 }
 
                 if (!buff.stacksTimer || buff.stacksTimer === 0) {
-                    const amountToIncreaseHealthBy = 0.01 * casterUnit.stats.healthMaxOrig
+                    const amountToIncreaseMaxHealthBy = 0.01 * casterUnit.stats.healthMaxOrig
 
-                    casterUnit.stats.healthMax += amountToIncreaseHealthBy
+                    casterUnit.stats.healthMax += amountToIncreaseMaxHealthBy
                     if (casterUnit.stats.healthMax > casterUnit.stats.healthMaxOrig) {
                         casterUnit.stats.healthMax = casterUnit.stats.healthMaxOrig
                     }
 
+                    if ((defender.stats.health+1) / (defender.stats.healthMax+1) <= 0.5) {
+
+                        const totalHeal = defender.stats.origStats.healthMax * 0.1
+                        const damageToTake = casterUnit.stats.healthMax * 0.1
+
+                        actualBattle.dealDamage(damageToTake, {
+                            attacker: defender,
+                            defender: casterUnit,
+                            tickEvents: actualBattle.tickEvents,
+                            historyStats: actualBattle.historyStats,
+                            isMagic: true,
+                            isTrueDamage: true,
+                            customIcon: "sageMysticBond.svg"
+                        })
+
+                        actualBattle.healTarget(totalHeal, {
+                            casterUnit,
+                            defender,
+                            tickEvents: actualBattle.tickEvents,
+                            historyStats: actualBattle.historyStats,
+                            healSource: buff
+                        })
+                    }
+    
                     buff.stacksTimer = 5.0
                     buff.stacks = Math.ceil(buff.stacksTimer)
                 }
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.caster) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
+                }
+                
                 if (buff.stacksTimer > 0) {
                     buff.stacksTimer -= secondsElapsed
                 }
@@ -1478,7 +1514,7 @@ export const CLASS_BUFFS = {
         description({ buff, level }) {
             return `
         Passive class ability<br />
-        Prevents you from being directly targeted unless there are no other allies remaining in battle.
+        Prevents you from being directly targeted unless there are no other targetable allies remaining in battle.
         While equipped when you are a Sage this is <b>always active</b>`
         },
         constants: {},
@@ -1520,13 +1556,13 @@ export const CLASS_BUFFS = {
         },
         constants: {},
         data: {
-            duration: 2.2,
-            totalDuration: 2.2,
-            allowDuplicates: true
+            duration: 2.2, // intentionally 0.2 over
+            totalDuration: 2.2, // intentionally 0.2 over
+            allowDuplicates: false
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                target.stats.damageTaken -= 0.25
+                target.stats.damageTaken -= 0.35
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1539,7 +1575,7 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {
-                target.stats.damageTaken += 0.25
+                target.stats.damageTaken += 0.35
             }
         }
     },
@@ -1550,7 +1586,7 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Tactician",
         description() {
             return `
-        You gain +20% damage and +15% accuracy, except:<br />
+        You gain +15% damage and +10% accuracy, except:<br />
         You lose 5% damage and 4% accuracy for every active ability slotted in your loadout beyond 3 active abilities.<br />
         You lose 5% damage and 4% accuracy for every passive passive slotted in your loadout beyond 3 passive abilities.<br />
         You have a 10% chance to negate damage, which cannot be reduced, prevented, or nullified.<br />
@@ -1575,8 +1611,8 @@ export const CLASS_BUFFS = {
                         }
                     })
 
-                    const damageBuff = 0.20 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.05)
-                    const accuracyBuff = 0.15 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.04)
+                    const damageBuff = 0.15 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.05)
+                    const accuracyBuff = 0.10 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.04)
                     
                     buff.custom = true
                     buff.data.custom = true
@@ -1608,12 +1644,12 @@ export const CLASS_BUFFS = {
         Cause all of your allies to target your target, even if they would otherwise be
         unable to change targets on their own.  All damage dealt to your target is increased
         by <b>50%</b>.<br />
-        Lasts for 5 seconds.`
+        Lasts for 4 seconds.`
         },
         constants: {},
         data: {
-            duration: 5,
-            totalDuration: 5
+            duration: 4,
+            totalDuration: 4
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
@@ -1623,11 +1659,26 @@ export const CLASS_BUFFS = {
                     caster.target = _.sample(target.opposition)
                 }
 
-                target.stats.damageTaken += 0.5
+                // deal 50% more damage
+                buff.data.amountAdded = 0.5
+                if (target.stats.damageTaken == 0) {
+                    // unless they're immune to damage
+                    target.stats.damageTaken = 0
+                } else if (target.stats.damageTaken < 1.0) {
+                    // or unless they have damage absorption, then mutate it to 50% of their absorption
+                    // this way, a boss that normally takes 30% damage will take 45% during the buff (and not 80%)
+                    target.stats.damageTaken = target.stats.damageTaken * buff.data.amountAdded
+                }
+                target.stats.damageTaken += buff.data.amountAdded
 
                 actualBattle.units.forEach((friendlyUnit) => {
-                    friendlyUnit.target = caster.target
+                    if (!friendlyUnit.isStunned && !friendlyUnit.isPacifist) {
+                        friendlyUnit.target = caster.target
+                        friendlyUnit.tickMessage("Rallied!", "#448877", "tacticianRally", friendlyUnit)
+                    }
                 })
+
+                target.tickMessage("Rally!", "#448877", "tacticianRally", target)
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1639,7 +1690,7 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {
-                target.stats.damageTaken -= 0.5
+                target.stats.damageTaken -= buff.data.amountAdded
             }
         }
     },
@@ -1675,12 +1726,12 @@ export const CLASS_BUFFS = {
 
                 // calculate new bonuses
                 const missingHealthIncrements = CInt((1.0 - (target.stats.health / target.stats.origStats.healthMax)) / 0.05)
-                buff.data.statsBoosted.defense = missingHealthIncrements * 0.04 * target.stats.origStats.defense
-                buff.data.statsBoosted.magicArmor = missingHealthIncrements * 0.04 * target.stats.origStats.magicArmor
+                buff.data.statsBoosted.defense = missingHealthIncrements * 0.03 * target.stats.origStats.defense
+                buff.data.statsBoosted.magicArmor = missingHealthIncrements * 0.03 * target.stats.origStats.magicArmor
 
                 buff.custom = true
                 buff.data.custom = true
-                buff.customText = `+${missingHealthIncrements*4}%`
+                buff.customText = `+${missingHealthIncrements*3}%`
 
                 // apply new bonuses
                 target.stats.defense += buff.data.statsBoosted.defense
@@ -1845,8 +1896,8 @@ export const CLASS_BUFFS = {
             return `
         Speeds up time for you and your allies, lowering ability cooldowns for as long as
         you channel this spell.  Does not modify effects that last over time such as Mending
-        Waters or Poison.  As long as you channel this spell, will lose 3% of your Health
-        and 1% of your Maximum Health per second.<br />
+        Waters or Poison.  As long as you channel this spell, will lose 2% of your Health
+        and 0.75% of your Maximum Health per second.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.`
         },
         constants: {
@@ -1961,8 +2012,8 @@ export const CLASS_BUFFS = {
                 //    })
                 //}
 
-                caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.03
-                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.01
+                caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.02
+                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.0075
                 if (caster.stats.health > caster.stats.healthMax) {
                     caster.stats.health = caster.stats.healthMax
                 }

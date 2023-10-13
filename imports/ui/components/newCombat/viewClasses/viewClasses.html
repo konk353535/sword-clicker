@@ -156,7 +156,7 @@
                                     You charge into battle dealing <b>75%</b> damage and <b>Stunning</b>
                                     <img src="/icons/stunned.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
                                     your enemy for <b>5</b> seconds.  An enemy can't be stunned by another Charge again
-                                    for 20 seconds.  Cooldown: <b>12</b> seconds.
+                                    for 30 seconds.  Cooldown: <b>12</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -170,7 +170,7 @@
                                 </td>
                                 <td valign="top">
                                     Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that increases
-                                    all of your damage by <b>+10%</b> per stack (to a maximum of +200%). Stacks are reduced
+                                    all of your damage by <b>+10%</b> per stack (to a maximum of +150%). Stacks are reduced
                                     by 1 when you successfully hit with an auto-attack to a minimum of 0 stacks.
                                 </td>
                             </tr>
@@ -253,7 +253,7 @@
                                 </td>
                                 <td valign="top">
                                     Parry physical attacks, negating the damage and counter attacking for <b>75% Damage</b>
-                                    for <b>6 seconds</b>.  Cooldown: <b>20</b> seconds.
+                                    for <b>6 seconds</b>.  Cooldown: <b>25</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -351,7 +351,7 @@
                                     <img src="/icons/classPaladinSmall.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    You unleash righteous vengeance upon your enemy, dealing <b>100% Damage</b>
+                                    You unleash righteous vengeance upon your enemy, dealing <b>250% Damage</b>
                                     multiplied by how low your health is, from <b>1x</b> damage at full health to
                                     <b>4x</b> damage at 10% health.  Cooldown: <b>12</b> seconds.
                                 </td>
@@ -600,9 +600,13 @@
                                 </td>
                                 <td valign="top">
                                     Use on an ally to form a mystical bond.  Whenever they are struck in combat, you
-                                    regain <b>1%</b> of your lost Maximum Health.  This effect can only occur once every
-                                    <b>5</b> seconds.  You may reuse this ability at any time to place it on a different
-                                    target.  You may not use this on yourself directly.  Cooldown: <b>5</b> seconds.
+                                    regain <b>1%</b> of your lost Maximum Health.  If the bonded ally is under 50%
+                                    health, you will lose 10% of your original maximum health as Health to
+                                    automatically heal the struck ally for 10% of their original Maximum Health.  These
+                                    effects can only occur once every <b>3</b> seconds.  You may reuse this ability at
+                                    any time to place it on a different target.  You may not use this on yourself and
+                                    the bond cannot be broken without transferring it to another ally.  Cooldown:
+                                    <b>5</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -615,7 +619,7 @@
                                     <img src="/icons/classSageSmall.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Prevents you from being directly targeted unless there are no other allies
+                                    Prevents you from being directly targeted unless there are no other targetable allies
                                     remaining in battle.
                                 </td>
                             </tr>
@@ -631,10 +635,10 @@
                                     and places a protective <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
                                     upon the healed target for <b>2</b> seconds that reduces the damage they take by
-                                    <b>25%</b>.
+                                    <b>35%</b>.
                                     <b>Sage's Blessing</b>
-                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
-                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can't
+                                    stack, but is refreshed by healing-over-time effects such as <b>Mending
                                     Waters</b>
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     and <b>Mending Spring</b>
@@ -707,7 +711,7 @@
                                 <td valign="top">
                                     Cause all of your allies to target your target, even if they would otherwise be
                                     unable to change targets on their own.  All damage dealt to your target is
-                                    increased by <b>50%</b> for <b>5</b> seconds.  Cooldown: <b>25</b> seconds.
+                                    increased by <b>50%</b> for <b>4</b> seconds.  Cooldown: <b>25</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -721,7 +725,7 @@
                                 </td>
                                 <td valign="top">
                                     For every 5% Health you are missing from your original Maximum Health, your Defense
-                                    and Magic Armor increases by <b>+4%</b>.
+                                    and Magic Armor increases by <b>+3%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -734,7 +738,7 @@
                                 <td valign="top">
                                     You have no restrictions on what combination of active or passive abilities may be
                                     slotted in your 8-ability loadout (no dedicated slots).<br />
-                                    You gain <b>+20%</b> damage and <b>+15%</b> accuracy, <i>except</i>:<br />
+                                    You gain <b>+15%</b> damage and <b>+10%</b> accuracy, <i>except</i>:<br />
                                     You <i>lose</i> 5% damage and 4% accuracy for every active ability slotted in your loadout
                                     beyond 3 active abilities.<br />
                                     You <i>lose</i> 5% damage and 4% accuracy for every passive passive slotted in your loadout
@@ -912,7 +916,7 @@
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     or <b>Poison</b>
                                     <img src="/icons/poison.svg" style="width: 16px; height: 16px;" />.  As long as you
-                                    channel this spell, will lose <b>3%</b> of your Health and <b>1%</b> of your
+                                    channel this spell, will lose <b>2%</b> of your Health and <b>0.75%</b> of your
                                     Maximum Health per second.
                                 </td>
                             </tr>
@@ -1099,7 +1103,7 @@
                                     You charge into battle dealing <b>75%</b> damage and <b>Stunning</b>
                                     <img src="/icons/stunned.svg" style="width: 20px; height: 20px; margin-top: -2px; margin-left: 4px;" />
                                     your enemy for <b>5</b> seconds.  An enemy can't be stunned by another Charge again
-                                    for 20 seconds.  Cooldown: <b>12</b> seconds.
+                                    for 30 seconds.  Cooldown: <b>12</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -1113,7 +1117,7 @@
                                 </td>
                                 <td valign="top">
                                     Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that
-                                    increases all of your damage by <b>+10%</b> per stack (to a maximum of +200%).
+                                    increases all of your damage by <b>+10%</b> per stack (to a maximum of +150%).
                                     Stacks are reduced by 1 when you successfully hit with an auto-attack to a minimum
                                     of 0 stacks.
                                 </td>
@@ -1195,7 +1199,7 @@
                                 </td>
                                 <td valign="top">
                                     Parry physical attacks, negating the damage and counter attacking for <b>75% Damage</b>
-                                    for <b>6 seconds</b>.  Cooldown: <b>20</b> seconds.
+                                    for <b>6 seconds</b>.  Cooldown: <b>25</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -1289,7 +1293,7 @@
                                     <img src="/icons/classPaladinSmall.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    You unleash righteous vengeance upon your enemy, dealing <b>100% Damage</b>
+                                    You unleash righteous vengeance upon your enemy, dealing <b>250% Damage</b>
                                     multiplied by how low your health is, from <b>1x</b> damage at full health to
                                     <b>4x</b> damage at 10% health.  Cooldown: <b>12</b> seconds.
                                 </td>
@@ -1528,9 +1532,13 @@
                                 </td>
                                 <td valign="top">
                                     Use on an ally to form a mystical bond.  Whenever they are struck in combat, you
-                                    regain <b>1%</b> of your lost Maximum Health.  This effect can only occur once every
-                                    <b>5</b> seconds.  You may reuse this ability at any time to place it on a different
-                                    target.  You may not use this on yourself directly.  Cooldown: <b>5</b> seconds.
+                                    regain <b>1%</b> of your lost Maximum Health.  If the bonded ally is under 50%
+                                    health, you will lose 10% of your original maximum health as Health to
+                                    automatically heal the struck ally for 10% of their original Maximum Health.  These
+                                    effects can only occur once every <b>3</b> seconds.  You may reuse this ability at
+                                    any time to place it on a different target.  You may not use this on yourself and
+                                    the bond cannot be broken without transferring it to another ally.  Cooldown:
+                                    <b>5</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -1543,7 +1551,7 @@
                                     <img src="/icons/classSageSmall.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    Prevents you from being directly targeted unless there are no other allies
+                                    Prevents you from being directly targeted unless there are no other targetable allies
                                     remaining in battle.
                                 </td>
                             </tr>
@@ -1559,10 +1567,10 @@
                                     and places a protective <b>Sage's Blessing</b>
                                     <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" />
                                     upon the healed target for <b>2</b> seconds that reduces the damage they take by
-                                    <b>25%</b>.
+                                    <b>35%</b>.
                                     <b>Sage's Blessing</b>
-                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can stack
-                                    limitlessly and is refreshed by healing-over-time effects such as <b>Mending
+                                    <img src="/icons/sagesBlessing.svg" style="width: 16px; height: 16px;" /> can't
+                                    stack, but is refreshed by healing-over-time effects such as <b>Mending
                                     Waters</b>
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     and <b>Mending Spring</b>
@@ -1633,7 +1641,7 @@
                                 <td valign="top">
                                     Cause all of your allies to target your target, even if they would otherwise be
                                     unable to change targets on their own.  All damage dealt to your target is
-                                    increased by <b>50%</b> for <b>5</b> seconds.  Cooldown: <b>25</b> seconds.
+                                    increased by <b>50%</b> for <b>4</b> seconds.  Cooldown: <b>25</b> seconds.
                                 </td>
                             </tr>
                             <tr>
@@ -1646,8 +1654,8 @@
                                     <img src="/icons/classTacticianSmall.png" style="width: 16px; height: 16px;" />
                                 </td>
                                 <td valign="top">
-                                    For every 5% Health you are missing from your original Maximum Health, your Defense and
-                                    Magic Armor increases by <b>+4%</b>.
+                                    For every 5% Health you are missing from your original Maximum Health, your Defense
+                                    and Magic Armor increases by <b>+3%</b>.
                                 </td>
                             </tr>
                             <tr>
@@ -1660,7 +1668,7 @@
                                 <td valign="top">
                                     You have no restrictions on what combination of active or passive abilities may be
                                     slotted in your 8-ability loadout (no dedicated slots).<br />
-                                    You gain <b>+20%</b> damage and <b>+15%</b> accuracy, <i>except</i>:<br />
+                                    You gain <b>+15%</b> damage and <b>+10%</b> accuracy, <i>except</i>:<br />
                                     You <i>lose</i> 5% damage and 4% accuracy for every active ability slotted in your loadout
                                     beyond 3 active abilities.<br />
                                     You <i>lose</i> 5% damage and 4% accuracy for every passive passive slotted in your loadout
@@ -1830,7 +1838,7 @@
                                     <img src="/icons/mendingWater.svg" style="width: 16px; height: 16px;" />
                                     or <b>Poison</b>
                                     <img src="/icons/poison.svg" style="width: 16px; height: 16px;" />.  As long as you
-                                    channel this spell, will lose <b>3%</b> of your Health and <b>1%</b> of your
+                                    channel this spell, will lose <b>2%</b> of your Health and <b>0.75%</b> of your
                                     Maximum Health per second.
                                 </td>
                             </tr>

@@ -228,6 +228,8 @@ const startBattle = (currentBattle, self) => {
                             "skull",
                             "duelistParry",
                             "wizardTimeWarpActive",
+                            "sageMysticBond",
+                            "tacticianRally",
                             "noicon"
                         ]
 

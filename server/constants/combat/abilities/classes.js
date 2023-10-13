@@ -40,7 +40,7 @@ export const CLASS_ABILITIES = {
         name: "Parry",
         id: "class_active_duelist__parry",
         buffs: ["class_active_duelist__parry"],
-        cooldown: 20,
+        cooldown: 25,
         slot: "any",
         target: "self",
         isHidden: true,

@@ -434,7 +434,7 @@ export const ATTACK_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onDidDamage({ buff, defender, attacker, actualBattle }) {
-                if (target.hasBuff("crab_monster")) {
+                if (defender.hasBuff("crab_monster")) {
                     return
                 }
 

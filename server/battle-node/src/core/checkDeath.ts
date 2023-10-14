@@ -77,7 +77,7 @@ export function checkDeath(this: Battle, defender: Unit, attacker: Unit) {
             })
         }
 
-        // Only kill defender if it is still dead
+        // Only kill defender if it is still dead -- 'onBeforeDeath' can heal the defender
         if (defender.stats.health <= 0) {
             if (defender.onDeath) {
                 defender.onDeath()

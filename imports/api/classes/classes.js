@@ -13,45 +13,51 @@ export const userEligibleForClass = function (uid, classData) {
 }
 
 export const userCurrentClass = function (uid) {
+    let impliedUser = false
+
     if (uid == null || !uid || typeof uid === "undefined") {
+        impliedUser = true
         uid = Meteor.userId()
     }
 
+    const noClass = CLASSES.none()
     const defaultClass = CLASSES.default()
-    const thisUser = Users.findOne({ _id: uid })
+    let thisUser = Users.findOne({ _id: uid })
 
-    if (thisUser) {
-        if (thisUser.classData && thisUser.classData.currentClass) {
-            const equippedClass = CLASSES.lookup(thisUser.classData.currentClass)
+    if (!thisUser && impliedUser) {
+        thisUser = Meteor.user()
+    }
 
-            if (userEligibleForClass(uid, equippedClass)) {
-                return {
-                    unlocked: classFeatureUnlocked(uid),
-                    eligible: userEligibleForClass(uid, equippedClass),
-                    equipped: equippedClass.id,
-                    data: equippedClass,
-                    icon: equippedClass.icon,
-                    cooldown: thisUser.classData.changeCooldown || undefined
-                }
+    if (thisUser && thisUser.classData && thisUser.classData.currentClass) {
+        const equippedClass = CLASSES.lookup(thisUser.classData.currentClass)
+
+        if (equippedClass) {
+            return {
+                unlocked: classFeatureUnlocked(uid),
+                eligible: userEligibleForClass(uid, equippedClass),
+                equipped: equippedClass.id,
+                data: equippedClass,
+                icon: equippedClass.icon,
+                cooldown: thisUser.classData.changeCooldown || undefined
             }
         }
 
         return {
             unlocked: classFeatureUnlocked(uid),
-            eligible: classFeatureUnlocked(uid),
+            eligible: userEligibleForClass(uid, defaultClass),
             equipped: defaultClass.id,
             data: defaultClass,
-            icon: "classNone.png",
-            cooldown: undefined
+            icon: defaultClass.icon,
+            cooldown: thisUser.classData.changeCooldown || undefined
         }
     }
 
     return {
-        unlocked: false,
+        unlocked: classFeatureUnlocked(uid),
         eligible: false,
-        equipped: defaultClass.id,
-        data: defaultClass,
-        icon: "classNone.png",
+        equipped: noClass.id,
+        data: noClass,
+        icon: noClass.icon,
         cooldown: undefined
     }
 }

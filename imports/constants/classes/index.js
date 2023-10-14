@@ -3,6 +3,17 @@ import { classFeatureUnlocked } from "/imports/api/users/users.js"
 console.log("exporting classes/index.js CLASSES")
 
 export const CLASSES = {
+    none: {
+        id: "",
+        name: "",
+        icon: "classNone.png",
+        eligible: function (uid) {
+            return classFeatureUnlocked(uid)
+        },
+        exclusiveAbilities: [],
+        autoBuffs: []
+    },
+
     wanderer: {
         id: "wanderer",
         name: "Wanderer",
@@ -947,6 +958,10 @@ export const CLASSES = {
 
     default: function () {
         return CLASSES["wanderer"]
+    },
+
+    none: function () {
+        return CLASSES["none"]
     },
 
     list: function() {

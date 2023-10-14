@@ -5,6 +5,7 @@ import _ from "underscore"
 
 import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
 import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
+import { measureMemory } from "vm"
 
 export const CLASS_BUFFS = {
     class_trait_barbarian: {
@@ -912,7 +913,8 @@ export const CLASS_BUFFS = {
             return `
         Passive class ability<br />
         You summon a growth of briars from nearby thickets to endanger your enemies! Briars do not
-        attack but will confuse and frustrate your enemies into injuring themselves on them.<br />
+        attack but will confuse and frustrate your enemies into injuring themselves on them.  Briars
+        will periodically regrow.<br />
         While equipped when you are a Ranger this is <b>always active</b>`
         },
         constants: {
@@ -996,9 +998,56 @@ export const CLASS_BUFFS = {
                     _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
                         thisEnemyUnit.target = _.sample(allFriendlyCombatUnits).id
                     })
+                } else if (Math.random() <= 0.004444) {
+                    // On average, every 45 seconds
+                    // NOTE: random value x time to target (in seconds) should = 0.2 (seconds per tick)
 
-                    // end this buff
-                    removeBuff({ buff, target, caster, actualBattle })
+                    const rangerBriar = {
+                        owner: target.id + "_briar",
+                        id: uuid.v4(),
+                        tickOffset: 0,
+                        isNPC: true,
+                        isCompanion: true,
+                        isSoloCompanion: false
+                    }
+
+                    const randomBriarHealth = (target.stats.healthMax * 0.035 * Math.random()) + 3
+
+                    rangerBriar.icon = "rangerThicketBriar.svg"
+                    rangerBriar.name = target.name + "'s briar",
+                    rangerBriar.stats = {
+                        attack: 0.001,
+                        attackMax: 0.001,
+                        attackSpeed: 0.001,
+                        accuracy: 0.001,
+                        health: randomBriarHealth,
+                        healthMax: randomBriarHealth,
+                        defense: 1,
+                        armor: 1,
+                        magicArmor: 1,
+                        magicPower: 0,
+                        healingPower: 0,
+                        damageTaken: 1,
+                        damageOutput: 1
+                    }
+                    rangerBriar.buffs = [{
+                        id: "class_ranger_briar_effect",
+                        data: {
+                            duration: Infinity,
+                            totalDuration: Infinity,
+                            allowDuplicates: false,
+                            sourceId: caster.id,
+                            caster: caster.id,
+                            icon: rangerBriar.icon,
+                            name: rangerBriar.name,
+                            description: ``,
+                            duplicateTag: "class_ranger_briar_effect",
+                            hideBuff: false
+                        }
+                    }]
+
+                    // add the briar unit to combat
+                    actualBattle.addUnit(rangerBriar)
                 }
             },
 
@@ -1903,13 +1952,22 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_trait_wizard",
         icon: "classWizardSmall.png",
         name: "Class Trait: Wizard",
-        description() {
+        description({ active, casterStats }) {
+            if (active) {
+                return `
+                Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
+                codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is
+                increased by half of your Magic Power (your Focus is now <b>${casterStats.focus}</b>).  Maximum Health
+                is reduced by half.  The Maximum Health cost of all spells is reduced by half.<br />
+                While you are a Wizard this is <b>always active</b>`
+            }
+            
             return `
-        Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from
-        spellcasting and reading codexes.  Double Magic Power benefit from tomes and
-        orbs.  Maximum Health is reduced by half.  The Maximum Health cost of all
-        spells is reduced by half.<br />
-        While you are a Wizard this is <b>always active</b>`
+                Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
+                codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is set to
+                half of your Magic Power.  Maximum Health is reduced by half.  The Maximum Health cost of all spells is
+                reduced by half.<br />
+                While you are a Wizard this is <b>always active</b>`
         },
         constants: {
         },
@@ -1919,7 +1977,14 @@ export const CLASS_BUFFS = {
             isEnchantment: true
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                target.stats.focus += target.stats.magicPower * 0.5
+                
+                buff.custom = buff.data.custom = true
+                buff.customText = `${target.stats.focus}`
+                buff.description = buffConstants.description({ active: true, casterStats: caster.stats })
+            },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 

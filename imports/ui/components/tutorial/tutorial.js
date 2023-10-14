@@ -413,7 +413,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: `Pick ${required} lettuce`,
+                    text: `Harvest ${required} lettuce`,
                     current,
                     required,
                     tip: "Visit the Farm page > Plots tab",
@@ -471,7 +471,7 @@ Template.tutorial.helpers({
                 }
 
                 return {
-                    text: `Pick ${required} rubia flowers`,
+                    text: `Harvest ${required} rubia flowers`,
                     current,
                     required,
                     tip: "Visit the Farm page > Plots tab",

@@ -14,10 +14,10 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Barbarian",
         description() {
             return `
-        Your critical hits will inflict bleeding for 3 seconds.  Broad swords and battle axes have a 25% chance to
+        Your critical hits will inflict bleeding for 3 seconds.  Broad swords and battle axes have a 40% chance to
         strike enemies adjacent to your target.  The duration of Berserk is extended by double, deals double damage,
-        and the amount of self-damage is reduced by half.  You may not wear magical head, chest, or leg equipment.
-        Your Magic Power in combat is always 0, even if another effect would say otherwise.<br />
+        and the amount of self-damage is reduced by half.  You may not wear magical equipment and your Magic Power
+        in combat is always 0, even if another effect would say otherwise.<br />
         While you are a Barbarian this is <b>always active</b>`
         },
         constants: {
@@ -52,7 +52,7 @@ export const CLASS_BUFFS = {
                 // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
                 if (originalAutoAttack && attacker && attacker.targetUnit) {
                     if (attacker.mainHandWeapon?.indexOf("_broad_sword") !== -1 || attacker.mainHandWeapon?.indexOf("_battle_axe") !== -1) {
-                        if (Math.random() <= 0.25) {
+                        if (Math.random() <= 0.4) {
                             // Check enemies both side of the defender
                             if (attacker.targetUnit.adjacentAllies && attacker.targetUnit.adjacentAllies.length > 0) {
                                 attacker.targetUnit.adjacentAllies.forEach((adjacentTarget) => {
@@ -935,7 +935,7 @@ export const CLASS_BUFFS = {
         Passive class ability<br />
         You summon a growth of briars from nearby thickets to endanger your enemies! Briars do not
         attack but will confuse and frustrate your enemies into injuring themselves on them.  Briars
-        will periodically regrow.<br />
+        will periodically regrow (about every 45 seconds).<br />
         While equipped when you are a Ranger this is <b>always active</b>`
         },
         constants: {
@@ -1719,7 +1719,7 @@ export const CLASS_BUFFS = {
             return `
         Cause all of your allies to target your target, even if they would otherwise be
         unable to change targets on their own.  All damage dealt to your target is increased
-        by <b>50%</b>.<br />
+        by <b>25%</b> to <b>75%</b> depending on how many allies are in battle with you.<br />
         Lasts for 4 seconds.`
         },
         constants: {},
@@ -1729,20 +1729,27 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                buff.data.description = "All damage dealt to this enemy is increased by 50%."
+
+                const damageBonus = Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
+                    return
+                        thisFriendlyUnit.id !== caster.id &&
+                        !thisFriendlyUnit.isPacifist
+                }).length * 0.05))
+
+                // deal 25-75% more damage
+                buff.data.amountAdded = 0.25 + damageBonus
+                buff.data.description = `All damage dealt to this enemy is increased by ${buff.data.amountAdded * 100}%.`
 
                 if (!caster.targetUnit) {
                     caster.target = _.sample(target.opposition)
                 }
 
-                // deal 50% more damage
-                buff.data.amountAdded = 0.5
                 if (target.stats.damageTaken == 0) {
                     // unless they're immune to damage
                     target.stats.damageTaken = 0
                 } else if (target.stats.damageTaken < 1.0) {
-                    // or unless they have damage absorption, then mutate it to 50% of their absorption
-                    // this way, a boss that normally takes 30% damage will take 45% during the buff (and not 80%)
+                    // or unless they have damage absorption, then mutate it to X% of their absorption
+                    // this way, a boss that normally takes 30% damage will take 45% during the buff (and not 80%) if the buff amount would be 50%
                     target.stats.damageTaken = target.stats.damageTaken * buff.data.amountAdded
                 }
                 target.stats.damageTaken += buff.data.amountAdded

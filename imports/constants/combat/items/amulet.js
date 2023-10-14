@@ -784,6 +784,7 @@ export const AMULET_ITEMS = {
         description: "A magic amulet. Click monsters to damage in combat.",
         isEquippable: true,
         isAttackAmulet: true,
+        isMagic: true,
         stats: {
             magicPower: 20,
             damage: 18,
@@ -863,6 +864,7 @@ export const AMULET_ITEMS = {
         description: "A magic amulet. Click monsters to damage in combat.",
         isEquippable: true,
         isAttackAmulet: true,
+        isMagic: true,
         stats: {
             attack: 10,
             attackMax: 10,
@@ -944,6 +946,7 @@ export const AMULET_ITEMS = {
         sellPrice: 1,
         description: "Glowing with an abundance of healing power.",
         isEquippable: true,
+        isMagic: true,
         stats: {
             healingPower: 40,
             defense: 30,

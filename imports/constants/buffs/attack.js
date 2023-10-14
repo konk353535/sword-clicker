@@ -1398,6 +1398,14 @@ export const ATTACK_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (target.hasBuff("crab_monster")) {
+                    buff.duration = 0
+                    setTimeout(function() {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }, 1)
+                    return
+                }
+
                 buff.data.endDate = moment().toDate()
 
                 const constants =
@@ -1470,6 +1478,14 @@ export const ATTACK_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (target.hasBuff("crab_monster")) {
+                    buff.duration = 0
+                    setTimeout(function() {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }, 1)
+                    return
+                }
+
                 if (CInt(buff.data.realDuration) > 0) {
                     buff.duration = CInt(buff.data.realDuration)
                     buff.totalDuration = CInt(buff.data.realDuration)

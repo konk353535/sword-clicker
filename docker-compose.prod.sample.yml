@@ -1,5 +1,6 @@
 services:
   node:
+    command: npm run prod
     build:
       context: ./
       dockerfile: battleNode.dockerfile
@@ -20,6 +21,7 @@ services:
         - app
 
   proxy:
+    command: npm run prod
     build:
       context: ./
       dockerfile: battleProxy.dockerfile

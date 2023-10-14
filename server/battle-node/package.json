@@ -5,8 +5,7 @@
     "author": "",
     "license": "ISC",
     "scripts": {
-        "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
-        "prod": "cross-env NODE_ENV=production node --loader tsx build/server/battle-node/src/index.js",
+        "prod": "cross-env NODE_ENV=production tsx src/index.ts",
         "devTracing": "cross-env NODE_ENV=development tsx watch --clear-screen=false -r ./src/tracing.ts src/index.ts",
         "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"

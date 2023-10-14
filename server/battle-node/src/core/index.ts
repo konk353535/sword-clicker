@@ -8,10 +8,10 @@ import { addBuff } from "../../../battleUtils.js"
 import { battleAction } from "../types/battleAction.js"
 import { HistoryStats } from "../types/historyStats.js"
 import { unit } from "../types/unit.js"
+import { lookupMagicColorTier, lookupMagicOrbTier, lookupMagicTomeTier } from "../utils/lookupMagicColorTier.js"
 import { lookupMetalTier } from "../utils/lookupMetalTier.js"
 import { lookupOreTier } from "../utils/lookupOreTier.js"
 import { lookupWoodTier } from "../utils/lookupWoodTier.js"
-import { lookupMagicColorTier, lookupMagicTomeTier, lookupMagicOrbTier } from "../utils/lookupMagicColorTier.js"
 import { env } from "../validateEnv"
 import { TICK_DURATION, autoAttack } from "./autoAttack.js"
 import { castAbility } from "./castAbility.js"
@@ -401,31 +401,49 @@ export default class Battle {
     }
 
     tick() {
-        if (this.tickCount === 0) {
-            this.initPassives()
+        try {
+            if (this.tickCount === 0) {
+                this.initPassives()
+            }
+
+            // First 4 ticks (~800ms) of every new combat and 2 ticks (~400ms) of new room transitions for full-floor explorations
+            // will deny auto-attacks and losses, giving players a chance to assess the combat and use taunts and heals.
+
+            this.inactivePlayers()
+
+            this.tickUnitsAndBuffs()
+
+            if (this.roomTickCount >= 4) {
+                this.unitAutoAttacks(this.enemies)
+                this.unitAutoAttacks(this.units)
+            }
+
+            this.applyBattleActions()
+
+            this.updateAbilityCooldowns()
+
+            if (this.tickCount >= 4) this.checkGameOverConditions()
+
+            this.tickCount++
+            this.roomTickCount++
+            this.postTick()
+        } catch (err) {
+            console.log(`!!! Battle#tick error, forfeiting: ${err}`)
+            if (err.stack) {
+                console.log(err.stack)
+            }
+
+            this.totalXpGain = 0
+            this.units.forEach((unit) => {
+                // Remove all buffs to avoid on death mechanics triggering
+                unit.buffs = []
+                // Set health to -1
+                unit.stats.health = -1
+                // Ensure the unit is picked up as dead
+                this.checkDeath(unit, unit)
+            })
+            this.end()
         }
-
-        // First 4 ticks (~800ms) of every new combat and 2 ticks (~400ms) of new room transitions for full-floor explorations
-        // will deny auto-attacks and losses, giving players a chance to assess the combat and use taunts and heals.
-
-        this.inactivePlayers()
-
-        this.tickUnitsAndBuffs()
-
-        if (this.roomTickCount >= 4) {
-            this.unitAutoAttacks(this.enemies)
-            this.unitAutoAttacks(this.units)
-        }
-
-        this.applyBattleActions()
-
-        this.updateAbilityCooldowns()
-
-        if (this.tickCount >= 4) this.checkGameOverConditions()
-
-        this.tickCount++
-        this.roomTickCount++
-        this.postTick()
     }
 
     addUnit(unit: unit | Unit) {
@@ -635,14 +653,7 @@ export default class Battle {
             }
         }
 
-        const startTime = process.hrtime()
-
-        request(req, () => {
-            const elapsed = process.hrtime(startTime)[1] / 1000000
-            console.log(
-                `[${this.id}] - battle end post duration: ${process.hrtime(startTime)[0]}s, ${elapsed.toFixed(3)}ms`
-            )
-        })
+        request(req)
         const balancer = balancers[this.balancer]
         if (balancer != null) {
             balancer.remove()

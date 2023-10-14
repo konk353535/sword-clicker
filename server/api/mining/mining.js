@@ -53,7 +53,7 @@ export const updateMiningStats = function (userId, slot = "pickaxe", isNewUser =
         pickaxe = undefined
     }
 
-    ;[pickaxe, offhand].forEach((equipment) => {
+    [pickaxe, offhand].forEach((equipment) => {
         if (equipment) {
             // Apply equipment stats
             equipment.constants = ITEMS[equipment.itemId]
@@ -364,8 +364,8 @@ Meteor.methods({
         const minutesElapsed = secondsElapsed / 60
 
         if (mining.stats.energy < mining.stats.energyStorage) {
-            mining.stats.energy +=
-                minutesElapsed * mining.stats.energyRegen * (getActiveGlobalBuff("paid_gathering") ? 2 : 1)
+            mining.stats.energy += minutesElapsed * mining.stats.energyRegen * (getActiveGlobalBuff("paid_gathering") ? 2 : 1)
+            
             if (mining.stats.energy > mining.stats.energyStorage) {
                 mining.stats.energy = mining.stats.energyStorage
             }

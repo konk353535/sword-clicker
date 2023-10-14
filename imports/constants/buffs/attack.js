@@ -434,6 +434,10 @@ export const ATTACK_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onDidDamage({ buff, defender, attacker, actualBattle }) {
+                if (target.hasBuff("crab_monster")) {
+                    return
+                }
+
                 const constants =
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants

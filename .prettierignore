@@ -5,3 +5,6 @@ public
 
 // for some reason the client breaks when client/main.js is auto-formatted
 client/main.js
+
+// Pete's (wraith) style preferences:
+imports/constants/buffs/class.js

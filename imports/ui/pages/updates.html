@@ -1,37 +1,71 @@
 <template name="updatesPage">
 
+    <h2 class="my-3">Saturday 14th October 2023</h2>
+    <ul>
+        <li><b>Class Balance Changes</b></li>
+        <ul>
+            <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 33%.</li>
+            <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically.</li>
+            <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
+            <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shiftthat stuns all enemies and restores 20% of your health.</li>
+            <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
+        </ul>
+        <li><b>General Balance Changes</b></li>
+        <ul>
+            <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
+        </ul>
+        <li><b>Feature Updates</b></li>
+        <ul>
+            <li>Locked items may be reforged instead of giving an error about it being locked.  Keep in mind when an item enters and exits your reforge queue, it will lose any locked status and will thus no longer be locked.</li>
+        </ul>
+        <li><b>Bugfixes</b></li>
+        <ul>
+            <li>A battle server crash involving the Sage's Bond being removed from the target if the Sage dies has been fixed.</li>
+            <li>The battle server should handle internal errors more gracefully and will simply forfeit any battle that would otherwise have caused a crash instead.</li>
+            <li>Fixed a bug allowing Sage's Blessing to be granted to the Sage (applied to self).</li>
+            <li>Fixed a bug allowing Sage's Blessing to be applied multiple times to the same target.</li>
+            <li>Automatic chat scroll should generally be fixed on desktop, but may still have issues on mobile.</li>
+            <li>A typo describing Duelists receiving double accuracy benefits from rapiers has been corrected to bucklers.</li>
+        </ul>
+        <li><b>UI Changes</b></li>
+        <ul>
+            <li>The Overview page has had a moderate overhaul, showing idle text next to features that are idle, adding mining energy and a timer until energy is full, adding a section for global buffs, and some minor cleanup.</li>
+            <li>The chat window should show a banner indicating new chat messages on PC.  It may not do this on mobile devices.</li>
+        </ul>
+    </ul>
+
     <h2 class="my-3">Friday 13th October 2023</h2>
     <ul>
-        <li><b>Balance Changes</b></li>
+        <li><b>General Balance Changes</b></li>
         <ul>
             <li>The top floor enemies and bosses have gained strength again, challenging you from progressing further . . .</li>
-            <li>Barbarian Brawn is raised to 2 stacks every time they miss with an auto-attack and stack loss when hitting is reduced to 1.  Damage cap is lowered to 150%.</li>
-            <li>Barbarian Charge stun resilience for their target is increased to 30 seconds and begins when the stun expires.</li>
-            <li>Duelist Driven damage reduction is lowered to 40% and attack speed increase is lowered to 75%.</li>
-            <li>Paladin Wrath damage is increased to 250%.  It still scales higher depending on how much health the Paladin has when using it.</li>
-            <li>Paladin Bulwark initial ally stacks is increased to 3.  It still has a cap of 3 stacks.</li>
-            <li>Sage Bond effect cooldown is lowered to 3 seconds and gains a new effect: if the target ally is under 50% health, the Sage will automatically sacrifice 10% of their original maximum health as health to heal the target for 10% of their maximum health.</li>
-            <li>Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
-            <li>Tactician Rally bonus to damage now scales with the target's actual damage absorption instead of applying its bonus additively.  This will not effect most monsters, but it will effect some bosses and monster effects.</li>
-            <li>Tactician Grit bonus to defense and magic armor is lowered to 3% per stack.</li>
-            <li>Tactician Trait intrinsic initial bonus to damage is lowered to 15% and accuracy is lowered to 10%.</li>
-            <li>Wizard Time Warp health cost is lowered to 2% health and 0.75% maximum health loss per second channelled.</li>
             <li>Rapier weapons experience ratio has been modified to be 50% attack/15% defense/35% health.</li>
             <li>Spear weapons experience ratio has been modified to be 70% defense/30% health.</li>
             <li>Wand weapons experience ratio has been modified to be 25% defense/75% health.</li>
-            <ul>
-                <li>NOTE: you will need to unequip and re-equip a weapon to get its new experience ratio.</li>
-            </ul>
             <li>Class reforging overrides should no longer require the browser to be refreshed after every attempt.</li>
             <li>Bleed and poison are no longer reduced by the target's armor.</li>
             <li>Enemies that dodge now use their defense stat to do so, which means they can no longer dodge ticks of bleeding, poison, ignite, or most magic spells.</li>
             <li>Spirits and other various enemies no longer dodge but use true immunity when they phase out of reality.  They will still be immune to ticks from bleeding, poison, ignite, etc. while immune.</li>
             <li>Twin Blades has been updated to gain a stack every 2 seconds instead of every 1.</li>
         </ul>
+        <li><b>Class Balance Changes</b></li>
+        <ul>
+            <li>{{> updatesBuff}} Barbarian Brawn is raised to 2 stacks every time they miss with an auto-attack and stack loss when hitting is reduced to 1.  Damage cap is lowered to 150%.</li>
+            <li>{{> updatesNerf}} Barbarian Charge stun resilience for their target is increased to 30 seconds and begins when the stun expires.</li>
+            <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 40% and attack speed increase is lowered to 75%.</li>
+            <li>{{> updatesBuff}} Paladin Wrath damage is increased to 250%.  It still scales higher depending on how much health the Paladin has when using it.</li>
+            <li>{{> updatesBuff}} Paladin Bulwark initial ally stacks is increased to 3.  It still has a cap of 3 stacks.</li>
+            <li>{{> updatesBuff}} Sage Bond effect cooldown is lowered to 3 seconds and gains a new effect: if the target ally is under 50% health, the Sage will automatically sacrifice 10% of their original maximum health as health to heal the target for 10% of their maximum health.</li>
+            <li>{{> updatesNerf}} Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
+            <li>{{> updatesNerf}} Tactician Grit bonus to defense and magic armor is lowered to 3% per stack.</li>
+            <li>{{> updatesNerf}} Tactician Trait intrinsic initial bonus to damage is lowered to 15% and accuracy is lowered to 10%.</li>
+            <li>{{> updatesBuff}} Wizard Time Warp health cost is lowered to 2% health and 0.75% maximum health loss per second channelled.</li>
+        </ul>
         <li><b>Bugfixes</b></li>
         <ul>
             <li>Defeating tower enemies should no longer wildly inflate the amount of gold in the floor tower rewards.</li>
             <li>Ranger Thicket briars should no longer damage ally units.</li>
+            <li>Tactician Rally bonus to damage now scales with the target's actual damage absorption instead of applying its bonus additively.  This will not effect most monsters, but it will effect some bosses and monster effects.</li>
             <li>Tactician Grit no longer incorrectly debuffs Tacticians who are wearing opal armor or using Health Up.</li>
         </ul>
         <li><b>UI Changes</b></li>
@@ -54,10 +88,10 @@
         <ul>
             <li>Hammers, rapiers, bucklers, wizard hats, wizard shirts, wizard shorts, tridents, magic orbs, and magic tomes will all drop from various elite enemies that can spawn in the tower and in your personal quest.  Like other equipment items that can drop, they are limited to tier 20.</li>
         </ul>
-        <li><b>Balance Changes</b></li>
+        <li><b>Class Balance Changes</b></li>
         <ul>
-            <li>Enemies stunned by a Barbarian's <i>Charge</i> will now be resilient to stuns caused by <i>Charge</i> for 15 seconds after the stun expires  <i>Charge</i> may still be used during this time to inflict its damage.</li>
-            <li>War Mages have had their bonus to tridents' attack speed lowered from triple to double since we how have many more tridents in the game.</li>
+            <li>{{> updatesNerf}} Enemies stunned by a Barbarian's <i>Charge</i> will now be resilient to stuns caused by <i>Charge</i> for 15 seconds after the stun expires  <i>Charge</i> may still be used during this time to inflict its damage.</li>
+            <li>{{> updatesNerf}} War Mages have had their bonus to tridents' attack speed lowered from triple to double since we how have many more tridents in the game.</li>
         </ul>
         <li><b>UI Changes</b></li>
         <ul>
@@ -92,9 +126,9 @@
             <li>Magical gear including wizard hats, wizard shirts, wizard shorts, and tridents have been rebalanced, new tiers added, and spread out in the tower starting on floor 2.  A druid trident has been added for tier 4 and does have some healing power attached to it.  As part of the rebalancing of wizard items, some items will have been remapped... you may find you previously had purple tridents and wizard gear that are now druid gear.  Or you may have had violet wizard stuff that's now grey.  All of the items have been mapped to their new ranges so their overall stats should not have changed much.  As an exception: druid shirts can have much stronger stats now, so be sure to farm a new one if you need to!</li>
             <li>Added crafting recipes for tali and willow bows for tiers 18 and 19.</li>
         </ul>
-        <li><b>Balance Changes</b></li>
+        <li><b>Class Balance Changes</b></li>
         <ul>
-            <li>Paladin's <i>Bulwark</i> no longer grants 3 stacks of protection at the beginning of battle.  Instead, it provides 1 stack of protection per every new room in the tower (or simply 1 stack for single-room fights) which can stack up to 3 max.</li>
+            <li>{{> updatesMixed}} Paladin's <i>Bulwark</i> no longer grants 3 stacks of protection at the beginning of battle.  Instead, it provides 1 stack of protection per every new room in the tower (or simply 1 stack for single-room fights) which can stack up to 3 max.</li>
         </ul>
         <li><b>UI Changes</b></li>
         <ul>
@@ -449,4 +483,16 @@
         }, 1)
     </script>
 
+</template>
+
+<template name="updatesNerf">
+    <span class="text-muted" style="margin-right: 12px;">[<span class="red-text" style="font-family: Lucida Console; font-weight: bold;">NERF</span>]</span> 
+</template>
+
+<template name="updatesBuff">
+    <span class="text-muted" style="margin-right: 12px;">[<span class="green-text" style="font-family: Lucida Console; font-weight: bold;">BUFF</span>]</span> 
+</template>
+    
+<template name="updatesMixed">
+    <span class="text-muted" style="margin-right: 12px;">[<span class="blue-text" style="font-family: Lucida Console; font-weight: bold;">MIX!</span>]</span> 
 </template>

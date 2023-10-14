@@ -22,6 +22,21 @@
           </div>
         {{/if}}
 
+        {{#if allGlobalBuffs}}
+          <div class="d-flex flex-column mb-3">
+            <div class="d-flex align-items-center">
+              <a href="/shop" class="text-muted shop-nav-link">Global Buffs</a><span class="text-muted">&nbsp;and&nbsp;</span><a href="/town" class="text-muted town-nav-link">Town Buffs</a>
+            </div>
+            <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF;">
+              {{#each allGlobalBuffs}}
+                <div class="flex-column d-flex justify-content-center" style="margin-top: 4px">
+                  {{> globalBuffIcon type=this.name date=this.value.activeTo level=this.value.level}}
+                </div>
+              {{/each}}
+              </div>
+          </div>
+        {{/if}}
+
         {{#if firstRecievedFriendRequest}}
           <div class="d-flex align-items-center mb-3">
             Friend request from {{firstRecievedFriendRequest.senderName}}
@@ -61,21 +76,45 @@
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             <a href="/battle" class="text-muted adventures-nav-link">Adventures</a>
-            <div class="d-flex justify-content-end flex-grow">
-              <div class="text-muted ml-3">
-                {{> readableDuration endDate=lastAdventure.endDate}}
-              </div>
-            </div>
+              {{#if $gte (moDiff lastAdventure.endDate moNow 'seconds') 0}}
+                <div class="d-flex justify-content-end flex-grow">
+                  <div class="text-muted ml-3">
+                      {{> readableDuration endDate=lastAdventure.endDate}}
+                  </div>
+                </div>
+              {{else}}
+                <div class="d-flex justify-content-end flex-grow">
+                  <div class="text-muted ml-3">
+                      <span class="red-text">idle</span>
+                  </div>
+                </div>
+            {{/if}}
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
-            {{> adventuresList adventures=activeAdventures}}
+            {{#if lastAdventure}}
+              {{> adventuresList adventures=activeAdventures}}
+            {{else}}
+              <div class="text-muted">Empty</div>
+            {{/if}}
           </div>
         </div>
       
         <!-- Mining -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/mining" class="text-muted">Mining Summary</a>
+            <a href="/mining" class="text-muted">Mining</a>
+            <div class="d-flex justify-content-end flex-grow">
+              <div class="text-muted ml-3">
+                {{#if miningEnergyMax}}
+                  {{> formatNumber number=miningEnergy}} / {{> formatNumber number=miningEnergyMax}}<i class="lilIcon-energyStorage mx-1"></i>
+                  {{#if miningTimeUntilFullEnergy}}
+                    &nbsp; &nbsp; &nbsp;{{> readableDuration endDate=miningTimeUntilFullEnergy}}
+                  {{else}}
+                    &nbsp; &nbsp; &nbsp;<span class="red-text">idle</span>
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
           </div>
           <div class="d-flex flex-column mb-3" style="border-top: 1px solid #DFDFDF;">
             <div class="d-flex flex-row flex-wrap mine-pit-container" style="max-width: 160px; margin-top: 4px;">
@@ -89,14 +128,16 @@
         <!-- Crafting -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/crafting" class="text-muted">Crafting Workbench</a>
-            {{#if firstCrafting}}
-              <div class="d-flex flex-grow justify-content-end">
-                <div class="text-muted ml-3">
+            <a href="/crafting" class="text-muted">Crafting</a>
+            <div class="d-flex flex-grow justify-content-end">
+              <div class="text-muted ml-3">
+                {{#if firstCrafting}}
                   {{> readableDuration endDate=lastCrafting.endDate}}
-                </div>
+                {{else}}
+                  <span class="red-text">idle</span>
+                {{/if}}
               </div>
-            {{/if}}
+            </div>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{#if firstCrafting}}
@@ -122,13 +163,15 @@
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
             <a href="/crafting" class="text-muted">Reforging</a>
-            {{#if firstReforging}}
-              <div class="d-flex flex-grow justify-content-end">
-                <div class="text-muted ml-3">
+            <div class="d-flex flex-grow justify-content-end">
+              <div class="text-muted ml-3">
+                {{#if firstReforging}}
                   {{> readableDuration endDate=lastReforging.endDate}}
-                </div>
+                {{else}}
+                  <span class="red-text">idle</span>
+                {{/if}}
               </div>
-            {{/if}}
+            </div>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{#if firstReforging}}
@@ -152,14 +195,16 @@
         <!-- Inscription -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/inscription" class="text-muted">Inscription Workbench</a>
-            {{#if firstInscription}}
-              <div class="d-flex flex-grow justify-content-end">
-                <div class="text-muted ml-3">
+            <a href="/inscription" class="text-muted">Inscription</a>
+            <div class="d-flex flex-grow justify-content-end">
+              <div class="text-muted ml-3">
+                {{#if firstInscription}}
                   {{> readableDuration endDate=lastInscription.endDate}}
-                </div>
+                {{else}}
+                  <span class="red-text">idle</span>
+                {{/if}}
               </div>
-            {{/if}}
+            </div>
           </div>
           <div class="d-flex flex-column mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{#if firstInscription}}
@@ -184,23 +229,25 @@
         <!-- Farming -->
         <div class="d-flex flex-column mb-3">
           <div class="d-flex align-items-center">
-            <a href="/farming" class="text-muted">Farm Plots</a>
-            <div class="d-flex flex-grow justify-content-end">
-              {{#if lastGrownThing}}
+            <a href="/farming" class="text-muted">Farming</a>
+              <div class="d-flex flex-grow justify-content-end">
                 <div class="text-muted ml-3">
-                  {{> readableDuration endDate=lastGrownThing.maturityDate}}
+                  {{#if $gte (moDiff lastGrownThing.maturityDate moNow 'seconds') 0}}
+                    {{> readableDuration endDate=lastGrownThing.maturityDate}}
+                  {{else}}
+                    <span class="red-text">idle</span>
+                  {{/if}}
                 </div>
-              {{/if}}
+              </div>
             </div>
-          </div>
           <div class="d-flex flex-wrap mt-2 pt-1" style="border-top: 1px solid #DFDFDF">
             {{#each farmingSpaces}}
               {{> farmSpace farmSpace=this classes="medium-icon" styles="height: 66px;"}}
             {{/each}}
-            {{#if showPickAll}}
+            {{#if showHarvestAll}}
               <div class="d-flex align-items-center mt-1 ml-1">
                 <button class="btn btn-primary collect-plants">
-                  Pick All
+                  Harvest All
                 </button>
               </div>
             {{/if}}

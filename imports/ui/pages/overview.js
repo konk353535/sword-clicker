@@ -8,15 +8,18 @@ import { Combat } from "/imports/api/combat/combat"
 import { Crafting } from "/imports/api/crafting/crafting"
 import { FarmingSpace } from "/imports/api/farming/farming"
 import { FriendRequests, Friends } from "/imports/api/friends/friends.js"
+import { getActiveGlobalBuff, getGlobalBuffs, getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { Groups } from "/imports/api/groups/groups"
 import { Inscription } from "/imports/api/inscription/inscription.js"
 import { Mining, MiningSpace } from "/imports/api/mining/mining.js"
+import { State } from "/imports/api/state/state"
 import { Woodcutting } from "/imports/api/woodcutting/woodcutting.js"
 
 import "../components/mining/mineSpace.js"
 import "./overview.html"
 
 import { ITEMS } from "/imports/constants/items/index.js"
+import moment from "moment"
 
 let updatingAdventures = false
 let miningPageTimer
@@ -27,7 +30,7 @@ let intervalFriendsList
 
 Template.overviewPage.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
-    this.state.set("showPickAll", false)
+    this.state.set("showHarvestAll", false)
     this.state.set("showAddFriends", false)
     this.state.set("userSuggestions", [])
     this.state.set("updatingWoodcutting", false)
@@ -112,7 +115,7 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
         const nowTimeStamp = TimeSync.serverTime()
         const now = moment(nowTimeStamp)
 
-        const showPickAll = FarmingSpace.find()
+        const showHarvestAll = FarmingSpace.find()
             .fetch()
             .find((space) => {
                 return now.isAfter(space.maturityDate) && space.plantId
@@ -144,7 +147,7 @@ Template.overviewPage.onCreated(function bodyOnCreated() {
             })
         }
 
-        this.state.set("showPickAll", !!showPickAll)
+        this.state.set("showHarvestAll", !!showHarvestAll)
 
         if (Adventures && Adventures.findOne()) {
             this.state.set("rawAdventures", Adventures.findOne().adventures)
@@ -357,11 +360,16 @@ Template.overviewPage.helpers({
             return false
         }
 
-        return growingThings.pop()
+        const lastGrownPlot = growingThings.pop()
+        if (moment().isAfter(lastGrownPlot.maturityDate)) {
+            return false
+        }
+
+        return lastGrownPlot
     },
 
-    showPickAll() {
-        return Template.instance().state.get("showPickAll")
+    showHarvestAll() {
+        return Template.instance().state.get("showHarvestAll")
     },
 
     creatingGuest() {
@@ -491,8 +499,48 @@ Template.overviewPage.helpers({
         })
     },
 
+    miningTimeUntilFullEnergy() {
+        const mining = Mining.findOne({})
+
+        try {
+            if (mining?.stats?.energy && mining?.stats?.energyStorage && mining?.stats?.energyRegen) {
+                const missingEnergy = mining?.stats?.energyStorage - mining?.stats?.energy
+                if (missingEnergy > 0) {
+                    const regenTicksRequiredToFill = missingEnergy / (mining?.stats?.energyRegen * (getActiveGlobalBuff("paid_gathering") ? 2 : 1))
+                    return moment().add(regenTicksRequiredToFill, "minutes").toDate()
+                }
+            }
+        } catch (err) {}
+
+        return false
+    },
+
+    miningEnergy() {
+        const mining = Mining.findOne({})
+
+        if (mining?.stats?.energy) {
+            return mining?.stats?.energy
+        }
+
+        return false
+    },
+
+    miningEnergyMax() {
+        const mining = Mining.findOne({})
+
+        if (mining?.stats?.energyStorage) {
+            return mining?.stats?.energyStorage
+        }
+
+        return false
+    },
+
     miningSpaces() {
         return MiningSpace.find()
+    },
+
+    allGlobalBuffs() {
+        return getGlobalBuffs()
     }
 })
 
@@ -532,7 +580,7 @@ Template.overviewPage.events({
     },
 
     "click .collect-plants"(event, instance) {
-        Meteor.call("farming.pickAll")
+        Meteor.call("farming.harvestAll")
     },
 
     "click .accept-party-invite"(event, instance) {

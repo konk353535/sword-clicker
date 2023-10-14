@@ -268,3 +268,18 @@ body .minimize-icon {
     cursor: pointer;
     pointer-events: all;
 }
+
+body .chat-new-messages-scroll {
+    position: absolute;
+    top: 0;
+    right: 34px;
+    width: calc(100% - 36px);
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #0275D8;
+    padding: 2px;
+    z-index: 50;
+    cursor: pointer;
+    pointer-events: all;
+}

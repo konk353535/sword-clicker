@@ -12,6 +12,12 @@
     {{/if}}
     mx-2">
 
+    {{#if chatScrollForMessages}}
+      <div class="chat-new-messages-scroll hidden-sm-down">
+        NEW CHAT MESSAGES
+      </div>
+    {{/if}}
+
     {{#unless minimized}}
       <img src="/icons/minimize.svg" class="minimize-icon minimize-btn extra-small-icon hidden-sm-down">
     {{/unless}}

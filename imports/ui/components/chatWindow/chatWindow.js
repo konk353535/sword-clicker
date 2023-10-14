@@ -16,7 +16,18 @@ import { Combat } from "/imports/api/combat/combat.js"
 import "./chatWindow.html"
 
 SimpleChat.scrollToEnd = function () {
+    // This is 'wrong' -- it checks the width of the chat window to determine if it's the full chat page
+    /*
     if ($(window).width() > 500) {
+        Template.chatWindow.endScroll = true
+        const messages = $(".direct-chat-messages")
+        messages.animate({ scrollTop: 100000 }, { duration: 300, queue: false })
+        messages.trigger("scroll")
+    }
+    */
+
+    // This is how it should be done
+    if ($(".chat-container:not(.is-chat-page)").length > 0) {
         Template.chatWindow.endScroll = true
         const messages = $(".direct-chat-messages")
         messages.animate({ scrollTop: 100000 }, { duration: 300, queue: false })
@@ -97,6 +108,7 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
         //}
 
         this.state.set("minimized", minimized)
+        this.state.set("chatScrollForMessages", false)
     })
 
     this.autorun(() => {
@@ -154,8 +166,12 @@ Template.chatWindow.rendered = function () {
     SimpleChat.scrollToEnd()
 
     this.$(".direct-chat-messages").scroll(function (event) {
-        Template.chatWindow.endScroll =
-            event.currentTarget.scrollHeight - event.currentTarget.scrollTop <= $(".scroll-height").height()
+        // multiply the the chat window height by 2.. if the top of the user's scroll area is at least twice the height
+        // of the scrollable area, then they are scrolled back by 1 (or more) 'pages'
+        Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop <= $(".scroll-height").height() * 2
+
+        // Debug
+        //console.log("Heights", Template.chatWindow.endScroll, event.currentTarget.scrollHeight, event.currentTarget.scrollTop, $(".scroll-height").height())
     })
 
     this.autorun(() => {
@@ -186,9 +202,10 @@ Template.chatWindow.rendered = function () {
     $(window).on("SimpleChat.newMessage", (e, id, doc) => {
         if (Template.chatWindow.endScroll) {
             SimpleChat.scrollToEnd(this)
+            Template.instance().state.set("chatScrollForMessages", false)
+        } else {
+            Template.instance().state.set("chatScrollForMessages", true)
         }
-
-        // To do: add some kind of notification logic for Tab Heading?
     })
 }
 
@@ -203,6 +220,11 @@ Template.chatWindow.onDestroyed(function templateDestroyedFromDom() {
 })
 
 Template.chatWindow.events({
+    "click .chat-new-messages-scroll"(event, instance) {
+        SimpleChat.scrollToEnd()
+        instance.state.set("chatScrollForMessages", false)
+    },
+
     "click .maximize-icon"(event, instance) {
         instance.state.set("minimized", false) // Do instantly in UI to avoid delay
         Meteor.call("users.setUiState", "showChat", true)
@@ -369,6 +391,10 @@ Template.chatWindow.events({
 Template.chatWindow.helpers({
     minimized() {
         return Template.instance().state.get("minimized")
+    },
+
+    chatScrollForMessages() {
+        return Template.instance().state.get("chatScrollForMessages")
     },
 
     wantCondensedChat() {

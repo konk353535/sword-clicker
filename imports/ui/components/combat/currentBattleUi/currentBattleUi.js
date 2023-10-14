@@ -231,6 +231,7 @@ const startBattle = (currentBattle, self) => {
                             "wizardTimeWarpActive",
                             "sageMysticBond",
                             "tacticianRally",
+                            "warMageSpacialShift",
                             "noicon"
                         ]
 

@@ -361,8 +361,8 @@ export const CLASS_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 target.stats.attackSpeed *= 1.75
-                target.stats.attack *= 0.6
-                target.stats.attackMax *= 0.6
+                target.stats.attack *= 0.6667
+                target.stats.attackMax *= 0.6667
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {}
@@ -1754,11 +1754,11 @@ export const CLASS_BUFFS = {
         name: "Class Trait: War Mage",
         description() {
             return `
-        Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.
-        May cast hostile spells while wielding any style of weapon.
-        Can reforge tridents.
-        Triple Attack Speed for tridents and tridents now deal 100% of your auto-attack damage as additional magic damage.
-        Double all stat benefits from amulets.<br />
+        Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.  May cast hostile
+        spells while wielding any style of weapon. Once per battle when you would otherwise die, you unleash a powerful
+        blast through a Special Shift that stuns you and all enemies for 5 seconds and restores 20% of your health.
+        Can reforge tridents.  Triple Attack Speed for tridents and tridents now deal 100% of your auto-attack damage
+        as additional magic damage.  Double all stat benefits from amulets.<br />
         While you are a War Mage this is <b>always active</b>`
         },
         constants: {
@@ -1769,7 +1769,9 @@ export const CLASS_BUFFS = {
             isEnchantment: true
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.data.deathPrevent = 1
+            },
 
             onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
                 if (damageDealt > 0) {
@@ -1787,6 +1789,37 @@ export const CLASS_BUFFS = {
                     if (defender.stats.health > defender.stats.healthMax) {
                         defender.stats.health = defender.stats.healthMax
                     }
+                }
+            },
+
+            onBeforeDeath({ buff, target, actualBattle }) {
+                if (buff?.data?.deathPrevent === 1) {
+                    // pop "Spacial Shift" death prevent
+                    buff.data.deathPrevent = 0
+
+                    const newBuff = {
+                        id: "stunned",
+                        data: {
+                            duration: 5,
+                            totalDuration: 5,
+                            icon: "warMageSpacialShift.svg",
+                            name: "Stunned",
+                            description: `You are stunned and can't take any actions or fight.`
+                        }
+                    }
+
+                    // regain 20% health
+                    target.stats.health = target.stats.healthMax * 0.2
+
+                    // stun self
+                    addBuff({ buff: newBuff, target, caster: target, actualBattle })
+                    target.tickMessage("Disoriented!", "black", "warMageSpacialShift", target)
+
+                    // stun all enemies
+                    actualBattle.enemies.forEach((enemy) => {
+                        addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle })
+                        enemy.tickMessage("Disoriented!", "black", "warMageSpacialShift", enemy)
+                    })
                 }
             },
 

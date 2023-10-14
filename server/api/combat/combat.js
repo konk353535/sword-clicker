@@ -264,6 +264,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 }
 
 Meteor.methods({
+    "combat.syncCombatStats"() {
+        // Called when the user refreshes the page.  Targeting new game builds where item consts
+        // change but user combat stats don't unless they unequip/re-equip gear.
+        updateCombatStats(Meteor.userId(), Meteor.user().username)
+    },
+    
     "combat.updateIsTowerContribution"(newValue) {
         Combat.update(
             {

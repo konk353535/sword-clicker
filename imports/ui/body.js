@@ -326,6 +326,16 @@ Template.body.onCreated(function () {
     // Achievement (needed for classes to work)
     Meteor.subscribe("achievements")
 
+    const syncCombatStats = function() {
+        if (Meteor.user()) {
+            Meteor.call("combat.syncCombatStats")
+        } else {
+            Meteor.setTimeout(syncCombatStats, 5000)
+        }
+    }
+
+    syncCombatStats()
+
     // Only use these if summary list is showing & not mobile
 })
 

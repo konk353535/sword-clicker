@@ -33,6 +33,7 @@ export const userCurrentClass = function (uid) {
 
         if (equippedClass) {
             return {
+                player: uid,
                 unlocked: classFeatureUnlocked(uid),
                 eligible: userEligibleForClass(uid, equippedClass),
                 equipped: equippedClass.id,
@@ -43,6 +44,7 @@ export const userCurrentClass = function (uid) {
         }
 
         return {
+            player: uid,
             unlocked: classFeatureUnlocked(uid),
             eligible: userEligibleForClass(uid, defaultClass),
             equipped: defaultClass.id,
@@ -53,6 +55,7 @@ export const userCurrentClass = function (uid) {
     }
 
     return {
+        player: uid,
         unlocked: classFeatureUnlocked(uid),
         eligible: false,
         equipped: noClass.id,

@@ -244,8 +244,8 @@ export const CLASS_BUFFS = {
             return `
         <i>Twin Blades</i> and other dagger/rapier-only abilities can also be used with short swords, scimitars,
         and longswords.  Physical damage dealt to an enemy you aren't directly targeting is increased by 50%.
-        Rapiers and bucklers may be equipped together.  Double accuracy benefit from rapiers.  Rapiers no longer
-        reduce Defense.  When striking an enemy with an auto-attack, you reduce their physical armor and defense by
+        Rapiers and bucklers may be equipped together.  Rapiers no longer reduce Defense.  Double accuracy benefit
+        from bucklers.  When striking an enemy with an auto-attack, you reduce their physical armor and defense by
         1% of their original maximum.<br />
         While you are a Duelist this is <b>always active</b>`
         },

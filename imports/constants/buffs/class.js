@@ -1,9 +1,10 @@
 import lodash from "lodash"
 import uuid from "node-uuid"
+import moment from "moment"
 import _ from "underscore"
 
 import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
-import { CDbl, CInt } from "../../utils.js"
+import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
 
 export const CLASS_BUFFS = {
     class_trait_barbarian: {
@@ -17,7 +18,8 @@ export const CLASS_BUFFS = {
         Power in combat is always 0, even if another effect would say otherwise.<br />
         While you are a Barbarian this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -26,25 +28,14 @@ export const CLASS_BUFFS = {
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
 
-            onDidDamage: function ({
-                buff,
-                defender,
-                attacker,
-                actualBattle,
-                damageDealt,
-                source,
-                customIcon,
-                originalAutoAttack
-            }) {
+            onDidDamage: function ({ buff, defender, attacker, actualBattle, damageDealt, source, customIcon, originalAutoAttack }) {
                 if (customIcon === "basicDamageCrit") {
                     // Add bleed debuff
                     attacker.applyBuffTo({
                         buff: attacker.generateBuff({
                             buffId: "bleed_proper",
                             buffData: {
-                                description: `Bleed every second for ${(attacker.stats.attackMax / 10)
-                                    .toFixed(2)
-                                    .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/, "$1")} damage`,
+                                description: `Bleed every second for ${(attacker.stats.attackMax / 10).toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1')} damage`,
                                 realDuration: 3,
                                 duration: 3,
                                 allowDuplicates: true,
@@ -58,10 +49,7 @@ export const CLASS_BUFFS = {
 
                 // 25% chance that autoattacks strike adjacent targets when using a broadsword or battle axe
                 if (originalAutoAttack && attacker && attacker.targetUnit) {
-                    if (
-                        attacker.mainHandWeapon?.indexOf("_broad_sword") !== -1 ||
-                        attacker.mainHandWeapon?.indexOf("_battle_axe") !== -1
-                    ) {
+                    if (attacker.mainHandWeapon?.indexOf("_broad_sword") !== -1 || attacker.mainHandWeapon?.indexOf("_battle_axe") !== -1) {
                         if (Math.random() <= 0.25) {
                             // Check enemies both side of the defender
                             if (attacker.targetUnit.adjacentAllies && attacker.targetUnit.adjacentAllies.length > 0) {
@@ -108,13 +96,8 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const buffConstants =
-                    buff.constants && buff.constants.constants
-                        ? buff.constants.constants
-                        : lookupBuff(buff.id).constants
-                const abilityDamage =
-                    buffConstants.abilityDamage *
-                    (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const abilityDamage = buffConstants.abilityDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
 
                 actualBattle.dealDamage(abilityDamage, {
                     attacker: caster,
@@ -228,17 +211,7 @@ export const CLASS_BUFFS = {
                 }
             },
 
-            onDidDamage({
-                originalAutoAttack,
-                buff,
-                defender,
-                attacker,
-                actualBattle,
-                damageDealt,
-                rawDamage,
-                source,
-                customIcon
-            }) {
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
                 if (source == "autoattack") {
                     buff.stacks -= 1
                     if (buff.stacks < 0) {
@@ -276,7 +249,8 @@ export const CLASS_BUFFS = {
         1% of their original maximum.<br />
         While you are a Duelist this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -286,17 +260,7 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 
-            onDidDamage({
-                originalAutoAttack,
-                buff,
-                defender,
-                attacker,
-                actualBattle,
-                damageDealt,
-                rawDamage,
-                source,
-                customIcon
-            }) {
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
                 if (source == "autoattack") {
                     defender.stats.armor -= defender.stats.origStats.armor * 0.01
@@ -310,12 +274,7 @@ export const CLASS_BUFFS = {
                         defender.stats.defense = 1
                     }
 
-                    defender.tickMessage(
-                        lodash.sample(["Shred", "Tear", "Rip", "Pierce"]),
-                        "#994444",
-                        "rapier",
-                        defender
-                    )
+                    defender.tickMessage(lodash.sample(["Shred", "Tear", "Rip", "Pierce"]), "#994444", "rapier", defender)
                 }
             },
 
@@ -368,8 +327,7 @@ export const CLASS_BUFFS = {
                         : lookupBuff(buff.id).constants
                 const defenderAttack = defender.stats.attack
                 const defenderAttackMax = defender.stats.attackMax
-                const actualDamage =
-                    (defenderAttack + (defenderAttackMax - defenderAttack) * Math.random()) * constants.damageDecimal
+                const actualDamage = (defenderAttack + (defenderAttackMax - defenderAttack) * Math.random()) * constants.damageDecimal
 
                 actualBattle.dealDamage(actualDamage, {
                     defender: attacker,
@@ -426,7 +384,8 @@ export const CLASS_BUFFS = {
         60 seconds.<br />
         While you are a Paladin this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -449,22 +408,22 @@ export const CLASS_BUFFS = {
                     }
 
                     paladinSquire.icon = "guyT1.png"
-                    ;(paladinSquire.name = target.name + "'s squire"),
-                        (paladinSquire.stats = {
-                            attack: 0.001,
-                            attackMax: 0.001,
-                            attackSpeed: 0.001,
-                            accuracy: 0.001,
-                            health: target.stats.healthMax * 0.5,
-                            healthMax: target.stats.healthMax * 0.5,
-                            defense: target.stats.defense * 0.5,
-                            armor: target.stats.armor * 0.33,
-                            magicArmor: target.stats.magicArmor * 0.33,
-                            magicPower: 0.001,
-                            healingPower: 0.001,
-                            damageTaken: 1,
-                            damageOutput: 0
-                        })
+                    paladinSquire.name = target.name + "'s squire",
+                    paladinSquire.stats = {
+                        attack: 0.001,
+                        attackMax: 0.001,
+                        attackSpeed: 0.001,
+                        accuracy: 0.001,
+                        health: target.stats.healthMax * 0.5,
+                        healthMax: target.stats.healthMax * 0.5,
+                        defense: target.stats.defense * 0.5,
+                        armor: target.stats.armor * 0.33,
+                        magicArmor: target.stats.magicArmor * 0.33,
+                        magicPower: 0.001,
+                        healingPower: 0.001,
+                        damageTaken: 1,
+                        damageOutput: 0
+                    }
                     paladinSquire.buffs = []
 
                     paladinSquire.buffs.push({
@@ -625,38 +584,18 @@ export const CLASS_BUFFS = {
                         const healthPercentage = defender.stats.health / defender.stats.healthMax
 
                         if (healthPercentage <= 0.3) {
-                            defender.tickMessage(
-                                lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]),
-                                "#aa0000",
-                                "chatBubble",
-                                defender
-                            )
+                            defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "chatBubble", defender)
                         } else if (healthPercentage <= 0.6) {
-                            defender.tickMessage(
-                                lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]),
-                                "#e27600",
-                                "chatBubble",
-                                defender
-                            )
+                            defender.tickMessage(lodash.sample(["Ouch", `${paladinAlly.name}?`, "Oof", "Owie"]), "#e27600", "chatBubble", defender)
                         }
                     } else {
                         // paladin is dead already -_-
                         const healthPercentage = defender.stats.health / defender.stats.healthMax
 
                         if (healthPercentage <= 0.3) {
-                            defender.tickMessage(
-                                lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]),
-                                "#aa0000",
-                                "chatBubble",
-                                defender
-                            )
+                            defender.tickMessage(lodash.sample(["I'm Dying", "Death Awaits", "Farewell"]), "#aa0000", "chatBubble", defender)
                         } else if (healthPercentage <= 0.6) {
-                            defender.tickMessage(
-                                lodash.sample(["Ouch", "Oof", "Owie"]),
-                                "#e27600",
-                                "chatBubble",
-                                defender
-                            )
+                            defender.tickMessage(lodash.sample(["Ouch", "Oof", "Owie"]), "#e27600", "chatBubble", defender)
                         }
                     }
                 }
@@ -710,18 +649,9 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const abilityBaseDamage =
-                    2.5 * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const abilityBaseDamage = 2.5 * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
                 // this will produce a number from 1 to 4 when health is full vs. 10% (or lower)
-                const healthAdjustment =
-                    (Math.min(
-                        1 -
-                            (caster.stats.health - caster.stats.origStats.healthMax * 0.1) /
-                                Math.max(caster.stats.origStats.healthMax - caster.stats.origStats.healthMax * 0.1, 1),
-                        1
-                    ) +
-                        0.333333) *
-                    3
+                const healthAdjustment = (Math.min(1 - ((caster.stats.health - (caster.stats.origStats.healthMax * 0.1)) / Math.max(caster.stats.origStats.healthMax - (caster.stats.origStats.healthMax * 0.1), 1)), 1) + 0.333333) * 3
                 const abilityDamage = abilityBaseDamage * healthAdjustment
 
                 actualBattle.dealDamage(abilityDamage, {
@@ -767,9 +697,7 @@ export const CLASS_BUFFS = {
                     if (friendlyUnit.id !== unit.id) {
                         let stacks = 3
 
-                        const ally_existing_bulwark_buff = friendlyUnit.findBuff(
-                            "class_passive_paladin__bulwark_effect"
-                        )
+                        const ally_existing_bulwark_buff = friendlyUnit.findBuff("class_passive_paladin__bulwark_effect")
                         if (ally_existing_bulwark_buff) {
                             ally_existing_bulwark_buff.stacks = Math.min(3, stacks + ally_existing_bulwark_buff.stacks)
                             ally_existing_bulwark_buff.data.hitsRequired = ally_existing_bulwark_buff.stacks
@@ -857,7 +785,8 @@ export const CLASS_BUFFS = {
         Non-Bow Damage lowered by -20%.<br />
         While you are a Ranger this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -886,17 +815,7 @@ export const CLASS_BUFFS = {
                 }
             },
 
-            onDidDamage({
-                originalAutoAttack,
-                buff,
-                defender,
-                attacker,
-                actualBattle,
-                damageDealt,
-                rawDamage,
-                source,
-                customIcon
-            }) {
+            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
                 // hitting with an autoattack increases stacks by 1
                 if (source == "autoattack") {
                     if (buff.stacks < 5) {
@@ -929,7 +848,7 @@ export const CLASS_BUFFS = {
                 }
 
                 // calculate new bonus
-                buff.data.damageBoosted.attackSpeed = target.stats.attack + buff.stacks * 0.1
+                buff.data.damageBoosted.attackSpeed = target.stats.attack + (buff.stacks * 0.1)
 
                 // apply new bonus
                 target.stats.attackSpeed += buff.data.damageBoosted.attackSpeed
@@ -950,7 +869,8 @@ export const CLASS_BUFFS = {
         number of arrows.<br />
         While you are a Ranger this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -995,7 +915,8 @@ export const CLASS_BUFFS = {
         attack but will confuse and frustrate your enemies into injuring themselves on them.<br />
         While equipped when you are a Ranger this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -1010,8 +931,7 @@ export const CLASS_BUFFS = {
                     buff.data.summonedThicketYet = true
 
                     // unit quantity adjustment based on party size (36% at group size 10, 56% at group size 5, 100% at group size 1)
-                    const partySizeAdjustment =
-                        1 - (actualBattle.units.length - 1) / (actualBattle.units.length - 1 + 5)
+                    const partySizeAdjustment = 1 - ((actualBattle.units.length - 1)/((actualBattle.units.length - 1) + 5))
                     const iHowManyBriars = Math.round(partySizeAdjustment * 6)
 
                     for (let i = 0; i < iHowManyBriars; i++) {
@@ -1024,42 +944,40 @@ export const CLASS_BUFFS = {
                             isSoloCompanion: false
                         }
 
-                        const randomBriarHealth = target.stats.healthMax * 0.035 * Math.random() + 3
+                        const randomBriarHealth = (target.stats.healthMax * 0.035 * Math.random()) + 3
 
                         rangerBriar.icon = "rangerThicketBriar.svg"
-                        ;(rangerBriar.name = target.name + "'s briar"),
-                            (rangerBriar.stats = {
-                                attack: 0.001,
-                                attackMax: 0.001,
-                                attackSpeed: 0.001,
-                                accuracy: 0.001,
-                                health: randomBriarHealth,
-                                healthMax: randomBriarHealth,
-                                defense: 1,
-                                armor: 1,
-                                magicArmor: 1,
-                                magicPower: 0,
-                                healingPower: 0,
-                                damageTaken: 1,
-                                damageOutput: 1
-                            })
-                        rangerBriar.buffs = [
-                            {
-                                id: "class_ranger_briar_effect",
-                                data: {
-                                    duration: Infinity,
-                                    totalDuration: Infinity,
-                                    allowDuplicates: false,
-                                    sourceId: caster.id,
-                                    caster: caster.id,
-                                    icon: rangerBriar.icon,
-                                    name: rangerBriar.name,
-                                    description: ``,
-                                    duplicateTag: "class_ranger_briar_effect",
-                                    hideBuff: false
-                                }
+                        rangerBriar.name = target.name + "'s briar",
+                        rangerBriar.stats = {
+                            attack: 0.001,
+                            attackMax: 0.001,
+                            attackSpeed: 0.001,
+                            accuracy: 0.001,
+                            health: randomBriarHealth,
+                            healthMax: randomBriarHealth,
+                            defense: 1,
+                            armor: 1,
+                            magicArmor: 1,
+                            magicPower: 0,
+                            healingPower: 0,
+                            damageTaken: 1,
+                            damageOutput: 1
+                        }
+                        rangerBriar.buffs = [{
+                            id: "class_ranger_briar_effect",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                allowDuplicates: false,
+                                sourceId: caster.id,
+                                caster: caster.id,
+                                icon: rangerBriar.icon,
+                                name: rangerBriar.name,
+                                description: ``,
+                                duplicateTag: "class_ranger_briar_effect",
+                                hideBuff: false
                             }
-                        ]
+                        }]
 
                         // add the briar unit to combat
                         actualBattle.addUnit(rangerBriar)
@@ -1111,7 +1029,7 @@ export const CLASS_BUFFS = {
                     if (defender.stats.health <= 0) {
                         buff.data.popped = true
 
-                        actualBattle.dealDamage(attacker.stats.healthMax / 6 + damageDealt, {
+                        actualBattle.dealDamage((attacker.stats.healthMax / 6) + damageDealt, {
                             attacker: defender,
                             defender: attacker,
                             tickEvents: actualBattle.tickEvents,
@@ -1163,16 +1081,9 @@ export const CLASS_BUFFS = {
         data: {},
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const buffConstants =
-                    buff.constants && buff.constants.constants
-                        ? buff.constants.constants
-                        : lookupBuff(buff.id).constants
-                const initialDamage =
-                    buffConstants.initialDamage *
-                    (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
-                const fireDamage =
-                    buffConstants.fireDamage *
-                    (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const fireDamage = buffConstants.fireDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
 
                 actualBattle.dealDamage(initialDamage, {
                     attacker: caster,
@@ -1262,13 +1173,8 @@ export const CLASS_BUFFS = {
         data: {},
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const buffConstants =
-                    buff.constants && buff.constants.constants
-                        ? buff.constants.constants
-                        : lookupBuff(buff.id).constants
-                const initialDamage =
-                    buffConstants.initialDamage *
-                    (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
 
                 actualBattle.dealDamage(initialDamage, {
                     attacker: caster,
@@ -1318,13 +1224,8 @@ export const CLASS_BUFFS = {
         data: {},
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const buffConstants =
-                    buff.constants && buff.constants.constants
-                        ? buff.constants.constants
-                        : lookupBuff(buff.id).constants
-                const initialDamage =
-                    buffConstants.initialDamage *
-                    (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
+                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
+                const initialDamage = buffConstants.initialDamage * (caster.stats.attack + (caster.stats.attackMax - caster.stats.attack) * Math.random())
 
                 actualBattle.dealDamage(initialDamage, {
                     attacker: caster,
@@ -1405,7 +1306,8 @@ export const CLASS_BUFFS = {
         with allies.<br />
         While you are a Sage this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -1470,7 +1372,8 @@ export const CLASS_BUFFS = {
         occur once every <b>3</b> seconds.  You may reuse this ability at any time to place it on a different target.
         You may not use this on yourself and the bond cannot be broken without transferring it to another ally.`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -1519,8 +1422,7 @@ export const CLASS_BUFFS = {
                     return
                 }
 
-                buff.data.description =
-                    "Whenever you are struck in combat, the Sage who placed this bond upon you regains 1% of their lost Maximum Health.  This effect can only occur once every 5 seconds."
+                buff.data.description = "Whenever you are struck in combat, the Sage who placed this bond upon you regains 1% of their lost Maximum Health.  This effect can only occur once every 5 seconds."
                 buff.data.caster = caster.id
             },
 
@@ -1697,7 +1599,8 @@ export const CLASS_BUFFS = {
         You have a 10% chance to negate damage, which cannot be reduced, prevented, or nullified.<br />
         While you are a Tactician this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -1710,25 +1613,19 @@ export const CLASS_BUFFS = {
                     let activeAbilityCount = 0
                     target.abilities.forEach((ability) => {
                         if (ability.slot != "companion") {
-                            passiveAbilityCount += ability.isPassive ? 1 : 0
-                            activeAbilityCount += ability.isPassive ? 0 : 1
+                            passiveAbilityCount += (ability.isPassive) ? 1 : 0
+                            activeAbilityCount  += (ability.isPassive) ? 0 : 1
                         }
                     })
 
-                    const damageBuff =
-                        0.15 - (Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.05
-                    const accuracyBuff =
-                        0.1 - (Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.04
-
+                    const damageBuff   = 0.15 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.05)
+                    const accuracyBuff = 0.10 - ((Math.max(0, passiveAbilityCount - 3) + Math.max(0, activeAbilityCount - 3)) * 0.04)
+                    
                     buff.custom = true
                     buff.data.custom = true
 
-                    const damageBuffText =
-                        damageBuff >= 0 ? `+${(damageBuff * 100.0).toFixed(0)}` : `${(damageBuff * 100.0).toFixed(0)}`
-                    const accuracyBuffText =
-                        accuracyBuff >= 0
-                            ? `+${(accuracyBuff * 100.0).toFixed(0)}`
-                            : `${(accuracyBuff * 100.0).toFixed(0)}`
+                    const damageBuffText   = (damageBuff   >= 0) ? `+${(damageBuff   * 100.0).toFixed(0)}` : `${(damageBuff   * 100.0).toFixed(0)}`
+                    const accuracyBuffText = (accuracyBuff >= 0) ? `+${(accuracyBuff * 100.0).toFixed(0)}` : `${(accuracyBuff * 100.0).toFixed(0)}`
 
                     buff.customText = `${damageBuffText} / ${accuracyBuffText}`
 
@@ -1834,7 +1731,7 @@ export const CLASS_BUFFS = {
                 target.stats.magicArmor -= buff.data.statsBoosted.magicArmor
 
                 // calculate new bonuses
-                const missingHealthIncrements = CInt((1.0 - target.stats.health / target.stats.healthMax) / 0.05)
+                const missingHealthIncrements = CInt((1.0 - (target.stats.health / target.stats.healthMax)) / 0.05)
                 buff.data.statsBoosted.defense = missingHealthIncrements * 0.03 * target.stats.origStats.defense
                 buff.data.statsBoosted.magicArmor = missingHealthIncrements * 0.03 * target.stats.origStats.magicArmor
 
@@ -1864,7 +1761,8 @@ export const CLASS_BUFFS = {
         Double all stat benefits from amulets.<br />
         While you are a War Mage this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -1980,7 +1878,8 @@ export const CLASS_BUFFS = {
         spells is reduced by half.<br />
         While you are a Wizard this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -2007,7 +1906,8 @@ export const CLASS_BUFFS = {
         and 0.75% of your Maximum Health per second.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -2031,9 +1931,7 @@ export const CLASS_BUFFS = {
                     let otherTimeWarpCasterExists = false
                     actualBattle.units.forEach((friendlyUnit) => {
                         if (friendlyUnit.id !== caster.id) {
-                            const ally_existing_time_warp_buff = friendlyUnit.findBuff(
-                                "class_active_wizard__time_warp_caster"
-                            )
+                            const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_caster")
                             if (ally_existing_time_warp_buff) {
                                 otherTimeWarpCasterExists = true
                             }
@@ -2073,7 +1971,8 @@ export const CLASS_BUFFS = {
         You are losing health maintaining this channeled spell.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.` */
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity
@@ -2094,19 +1993,19 @@ export const CLASS_BUFFS = {
 
                 actualBattle.units.forEach((friendlyUnit) => {
                     //if (friendlyUnit.id !== caster.id) {
-                    const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_target")
-                    if (!ally_existing_time_warp_buff) {
-                        caster.applyBuffTo({
-                            buff: caster.generateBuff({
-                                buffId: "class_active_wizard__time_warp_target"
-                            }),
-                            target: friendlyUnit
-                        })
+                        const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_target")
+                        if (!ally_existing_time_warp_buff) {
+                            caster.applyBuffTo({
+                                buff: caster.generateBuff({
+                                    buffId: "class_active_wizard__time_warp_target"
+                                }),
+                                target: friendlyUnit
+                            })
 
-                        if (friendlyUnit.id !== caster.id) {
-                            friendlyUnit.tickMessage("Time Warp!", "#445599", "wizardTimeWarpActive", friendlyUnit)
+                            if (friendlyUnit.id !== caster.id) {
+                                friendlyUnit.tickMessage("Time Warp!", "#445599", "wizardTimeWarpActive", friendlyUnit)
+                            }
                         }
-                    }
                     //}
                 })
 
@@ -2151,7 +2050,8 @@ export const CLASS_BUFFS = {
             return `
         Time is being warped around you, reducing your ability cooldown time.`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity
@@ -2188,7 +2088,8 @@ export const CLASS_BUFFS = {
         You summon a familiar to battle based on whatever you have equipped in your offhand.<br />
         While equipped when you are a Wizard this is <b>always active</b>`
         },
-        constants: {},
+        constants: {
+        },
         data: {
             duration: Infinity,
             totalDuration: Infinity,
@@ -2224,22 +2125,22 @@ export const CLASS_BUFFS = {
                     }
 
                     wizardFamiliar.icon = `wizardSummonFamiliar${summonType}.svg`
-                    ;(wizardFamiliar.name = target.name + "'s " + summonType.toLowerCase()),
-                        (wizardFamiliar.stats = {
-                            attack: 0.001,
-                            attackMax: 0.001,
-                            attackSpeed: 0.001,
-                            accuracy: 0.001,
-                            health: target.stats.healthMax * 1.35,
-                            healthMax: target.stats.healthMax * 1.35,
-                            defense: target.stats.defense * 0.65,
-                            armor: target.stats.armor * 0.65,
-                            magicArmor: target.stats.magicArmor * 0.65,
-                            magicPower: target.stats.magicPower * 0.5,
-                            healingPower: target.stats.healingPower * 0.75,
-                            damageTaken: 1,
-                            damageOutput: 1
-                        })
+                    wizardFamiliar.name = target.name + "'s " + summonType.toLowerCase(),
+                    wizardFamiliar.stats = {
+                        attack: 0.001,
+                        attackMax: 0.001,
+                        attackSpeed: 0.001,
+                        accuracy: 0.001,
+                        health: target.stats.healthMax * 1.35,
+                        healthMax: target.stats.healthMax * 1.35,
+                        defense: target.stats.defense * 0.65,
+                        armor: target.stats.armor * 0.65,
+                        magicArmor: target.stats.magicArmor * 0.65,
+                        magicPower: target.stats.magicPower * 0.5,
+                        healingPower: target.stats.healingPower * 0.75,
+                        damageTaken: 1,
+                        damageOutput: 1
+                    }
                     wizardFamiliar.buffs = []
 
                     if (summonType == "Orb") {
@@ -2331,8 +2232,7 @@ export const CLASS_BUFFS = {
                     }
 
                     // stat adjuster based on party size (36% at group size 10, 56% at group size 5, 100% at group size 1)
-                    const partySizeAdjustment =
-                        1 - (actualBattle.units.length - 1) / (actualBattle.units.length - 1 + 5)
+                    const partySizeAdjustment = 1 - ((actualBattle.units.length - 1)/((actualBattle.units.length - 1) + 5))
 
                     wizardFamiliar.stats.attack *= partySizeAdjustment
                     wizardFamiliar.stats.attackMax *= partySizeAdjustment

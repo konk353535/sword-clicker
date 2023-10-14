@@ -15,9 +15,9 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Your critical hits will inflict bleeding for 3 seconds.  Broad swords and battle axes have a 25% chance to
-        strike enemies adjacent to your target.  The duration of Berserk is extended by double and the amount of
-        self-damage is reduced by half.  You may not wear magical head, chest, or leg equipment. Your Magic
-        Power in combat is always 0, even if another effect would say otherwise.<br />
+        strike enemies adjacent to your target.  The duration of Berserk is extended by double, deals double damage,
+        and the amount of self-damage is reduced by half.  You may not wear magical head, chest, or leg equipment.
+        Your Magic Power in combat is always 0, even if another effect would say otherwise.<br />
         While you are a Barbarian this is <b>always active</b>`
         },
         constants: {

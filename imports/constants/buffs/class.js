@@ -15,7 +15,8 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Your critical hits will inflict bleeding for 3 seconds.  Broad swords and battle axes have a 25% chance to
-        strike enemies adjacent to your target.  You may not wear magical head, chest, or leg equipment. Your Magic
+        strike enemies adjacent to your target.  The duration of Berserk is extended by double and the amount of
+        self-damage is reduced by half.  You may not wear magical head, chest, or leg equipment. Your Magic
         Power in combat is always 0, even if another effect would say otherwise.<br />
         While you are a Barbarian this is <b>always active</b>`
         },
@@ -378,7 +379,7 @@ export const CLASS_BUFFS = {
             return `
         A successful taunt triggers a heal for the ally the enemy was targeting.  15% faster
         cooldowns for taunt abilities.  Longswords and shields may be equipped together.  Scream
-        may be used with a longsword.  Double Max Attack from hammers and spears.  Triple health
+        may be used with a longsword.  Triple Max Attack from hammers and spears.  Quadruple health
         benefit from non-magical head, chest, and leg equipment.  Your squire always follows you
         into battle; he does not fight, but can take some damage.  You automatically intercept
         half of the damage your squire receives.  If your squire dies, you will be stunned for

@@ -714,7 +714,7 @@ Meteor.methods({
 
             console.log("**************************************")
             console.log("REFORGE ERROR")
-            console.log(userCurrentClass(Meteor.userId())?.data?.reforge)
+            console.log(userCurrentClass(Meteor.userId()))
             console.log(reforgeData)
             console.log("**************************************")
 

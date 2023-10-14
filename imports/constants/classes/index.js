@@ -43,7 +43,7 @@ export const CLASSES = {
                     valueMultiply: 0
                 }
             },
-            leg: {
+            legs: {
                 magicPower: {
                     valueMultiply: 0
                 },
@@ -107,12 +107,12 @@ export const CLASSES = {
         equipmentBonuses: {
             hammer: {
                 attackMax: {
-                    valueMultiply: 2
+                    valueMultiply: 3
                 }
             },
             spear: {
                 attackMax: {
-                    valueMultiply: 2
+                    valueMultiply: 3
                 }
             },
             chest: {
@@ -121,7 +121,7 @@ export const CLASSES = {
                     unlessMagic: true
                 }
             },
-            leg: {
+            legs: {
                 healthMax: {
                     valueMultiply: 3,
                     unlessMagic: true

@@ -711,6 +711,13 @@ Meteor.methods({
         const reforgeData = getReforgeData(_id)
 
         if (reforgeData.isError) {
+
+            console.log("**************************************")
+            console.log("REFORGE ERROR")
+            console.log(userCurrentClass(Meteor.userId())?.data?.reforge)
+            console.log(reforgeData)
+            console.log("**************************************")
+
             if (reforgeData.chance === -3 || reforgeData.chance === -5) {
                 throw new Meteor.Error("cant-reforge", "That item can't be reforged.")
             }

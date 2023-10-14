@@ -383,7 +383,8 @@ export const CLASS_BUFFS = {
         benefit from non-magical head, chest, and leg equipment.  Your squire always follows you
         into battle; he does not fight, but can take some damage.  You automatically intercept
         half of the damage your squire receives.  If your squire dies, you will be stunned for
-        60 seconds.<br />
+        60 seconds.  Entering battle with fewer than 4 player allies will reduce your damage by
+        12.5% per missing ally.<br />
         While you are a Paladin this is <b>always active</b>`
         },
         constants: {
@@ -394,7 +395,26 @@ export const CLASS_BUFFS = {
             isEnchantment: true
         },
         events: {
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                // lose 12.5% damage for each missing ally, up to 50% reduction when alone
+                // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
+                const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
+                    return
+                        thisFriendlyUnit.id !== target.id &&
+                        !thisFriendlyUnit.isNPC &&
+                        !thisFriendlyUnit.isCompanion &&
+                        !thisFriendlyUnit.isSoloCompanion
+                }).length * 0.125))
+
+                if (damageReduction < 1.0) {
+                    target.stats.attack *= damageReduction
+                    target.stats.attackMax *= damageReduction
+
+                    buff.custom = true
+                    buff.data.custom = true
+                    buff.customText = `-${100-(100*damageReduction)}%`
+                }
+            },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 if (!buff.data.summonedSquireYet) {

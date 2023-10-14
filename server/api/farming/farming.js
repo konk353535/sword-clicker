@@ -140,20 +140,20 @@ Meteor.methods({
     }
   },*/
 
-    "farming.pick"(index) {
-        // Pick whatever is in the specified index
-        const targetToPick = FarmingSpace.findOne({
+    "farming.harvest"(index) {
+        // Harvest whatever is in the specified index
+        const targetToHarvest = FarmingSpace.findOne({
             owner: Meteor.userId(),
             index
         })
-        if (moment().isAfter(targetToPick.maturityDate)) {
-            // Good to pick
-            const plantConstants = FARMING.plants[targetToPick.plantId]
+        if (moment().isAfter(targetToHarvest.maturityDate)) {
+            // Good to harvest
+            const plantConstants = FARMING.plants[targetToHarvest.plantId]
 
             // Update patch
             FarmingSpace.update(
                 {
-                    _id: targetToPick._id
+                    _id: targetToHarvest._id
                 },
                 {
                     $set: {
@@ -171,21 +171,21 @@ Meteor.methods({
             // Add Xp
             addXp("farming", plantConstants.xp)
         } else {
-            // Not ready to pick
-            throw new Meteor.Error("cant-pick", "That is not ready to pick yet")
+            // Not ready to harvest
+            throw new Meteor.Error("cant-harvest", "That is not ready to harvest yet")
         }
 
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "farming.pickAll"() {
+    "farming.harvestAll"() {
         FarmingSpace.find({
             owner: Meteor.userId()
         })
             .fetch()
             .forEach((target) => {
                 if (moment().isAfter(target.maturityDate)) {
-                    // Good to pick
+                    // Good to harvest
                     const plantConstants = FARMING.plants[target.plantId]
 
                     // Update patch
@@ -215,7 +215,7 @@ Meteor.methods({
     },
 
     "farming.killPlant"(index) {
-        // Pick whatever is in the specified index
+        // Choose whatever is in the specified index
         FarmingSpace.update(
             {
                 owner: Meteor.userId(),
@@ -536,7 +536,7 @@ const userId = function userId(userId) {
 
 DDPRateLimiter.addRule({ type: "method", name: "farming.gameUpdate", userId }, 5, 15000)
 DDPRateLimiter.addRule({ type: "method", name: "farming.water", userId }, 20, 10000)
-DDPRateLimiter.addRule({ type: "method", name: "farming.pick", userId }, 20, 10000)
+DDPRateLimiter.addRule({ type: "method", name: "farming.harvest", userId }, 20, 10000)
 DDPRateLimiter.addRule({ type: "method", name: "farming.plant", userId }, 20, 10000)
 DDPRateLimiter.addRule({ type: "method", name: "farming.buyShopItem", userId }, 100, 1 * MINUTE)
 DDPRateLimiter.addRule({ type: "method", name: "farming.fetchSeedShopSells", userId }, 10, 1 * MINUTE)

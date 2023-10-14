@@ -163,12 +163,19 @@ Template.chatWindow.onCreated(function bodyOnCreated() {
 
 // This could probably be better :|
 Template.chatWindow.rendered = function () {
+    const instance = Template.instance()
     SimpleChat.scrollToEnd()
 
     this.$(".direct-chat-messages").scroll(function (event) {
-        // multiply the the chat window height by 2.. if the top of the user's scroll area is at least twice the height
-        // of the scrollable area, then they are scrolled back by 1 (or more) 'pages'
-        Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop <= $(".scroll-height").height() * 2
+        // multiply the the chat window height by 1.5.. if the top of the user's scroll area is at least 50% more
+        //  than the height of the scrollable area, then they are scrolled back by 0.5 (or more) 'pages'
+        Template.chatWindow.endScroll = event.currentTarget.scrollHeight - event.currentTarget.scrollTop <= $(".scroll-height").height() * 1.5
+
+        if (Template.chatWindow.endScroll) {
+            if (instance) {
+                instance.state.set("chatScrollForMessages", false)
+            }
+        }
 
         // Debug
         //console.log("Heights", Template.chatWindow.endScroll, event.currentTarget.scrollHeight, event.currentTarget.scrollTop, $(".scroll-height").height())
@@ -202,9 +209,13 @@ Template.chatWindow.rendered = function () {
     $(window).on("SimpleChat.newMessage", (e, id, doc) => {
         if (Template.chatWindow.endScroll) {
             SimpleChat.scrollToEnd(this)
-            Template.instance().state.set("chatScrollForMessages", false)
+            if (instance) {
+                instance.state.set("chatScrollForMessages", false)
+            }
         } else {
-            Template.instance().state.set("chatScrollForMessages", true)
+            if (instance) {
+                instance.state.set("chatScrollForMessages", true)
+            }
         }
     })
 }

@@ -1,47 +1,76 @@
 <template name="updatesPage">
 
-    <h2 class="my-3">Saturday 14th October 2023</h2>
+    <style type="text/css">
+        ul li:has(ul) {
+            list-style: none;
+            list-style-type: none;
+        }
+    </style>
+
+<h2 class="my-3">Sunday 15th October 2023</h2>
+<ul>
+    <li><b>Bugfixes</b></li>
+    <li>
+        <ul>
+            <li>Damge reduction from kite shield absorption is no longer additive with armor damage reductions.  Instead, damage is individually reduced in steps.</li>
+            <li>Healing Shield armor buff duration is fixed and should no longer instantly drop its armor bonus to allied targets.</li>
+            <li>Thirsty Fangs now actually heals for 20% of the damage you dealt, not 20% of your damge potential.</li>
+        </ul>
+    </li>
+</ul>
+
+<h2 class="my-3">Saturday 14th October 2023</h2>
     <ul>
         <li><b>Class Balance Changes</b></li>
-        <ul>
-            <li>{{> updatesBuff}} Barbarian Trait intrinsic chance to strike adjacent targets when using broad swords and battle axes raised to 40%.</li>
-            <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 33%.</li>
-            <li>{{> updatesBuff}} Paladin Trait intrinsic double bonus to spear and hammer maximum damage has been increased to triple.</li>
-            <li>{{> updatesBuff}} Paladin Trait intrinsic triple bonus to non-magic armor maximum health has been increased to quadruple.</li>
-            <li>{{> updatesNerf}} Paladin Trait intrinsic gains a new effect: entering battle with fewer than 4 player allies will reduce your damage by 12.5% per missing ally.</li>
-            <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically (very randomly, but about every 45 seconds).</li>
-            <li>{{> updatesNerf}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
-            <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
-            <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shiftthat stuns all enemies and restores 20% of your health.</li>
-            <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
-        </ul>
+        <li>
+            <ul>
+                <li>{{> updatesBuff}} Barbarian Trait intrinsic chance to strike adjacent targets when using broad swords and battle axes raised to 40%.</li>
+                <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 33%.</li>
+                <li>{{> updatesBuff}} Paladin Trait intrinsic double bonus to spear and hammer maximum damage has been increased to triple.</li>
+                <li>{{> updatesBuff}} Paladin Trait intrinsic triple bonus to non-magic armor maximum health has been increased to quadruple.</li>
+                <li>{{> updatesNerf}} Paladin Trait intrinsic gains a new effect: entering battle with fewer than 4 player allies will reduce your damage by 12.5% per missing ally.</li>
+                <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically (very randomly, but about every 45 seconds).</li>
+                <li>{{> updatesNerf}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
+                <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
+                <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shiftthat stuns all enemies and restores 20% of your health.</li>
+                <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
+            </ul>
+        </li>
         <li><b>General Balance Changes</b></li>
-        <ul>
-            <li>Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
-            <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
-        </ul>
+        <li>
+            <ul>
+                <li>Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
+                <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
+            </ul>
+        </li>
         <li><b>Feature Updates</b></li>
-        <ul>
-            <li>Locked items may be reforged instead of giving an error about it being locked.  Keep in mind when an item enters and exits your reforge queue, it will lose any locked status and will thus no longer be locked.</li>
-        </ul>
+        <li>
+            <ul>
+                <li>Locked items may be reforged instead of giving an error about it being locked.  Keep in mind when an item enters and exits your reforge queue, it will lose any locked status and will thus no longer be locked.</li>
+            </ul>
+        </li>
         <li><b>Bugfixes</b></li>
-        <ul>
-            <li>A battle server crash involving the Sage's Bond being removed from the target if the Sage dies has been fixed.</li>
-            <li>The battle server should handle internal errors more gracefully and will simply forfeit any battle that would otherwise have caused a crash instead.</li>
-            <li>Fixed a bug allowing Sage's Blessing to be granted to the Sage (applied to self).</li>
-            <li>Fixed a bug allowing Sage's Blessing to be applied multiple times to the same target.</li>
-            <li>Automatic chat scroll should generally be fixed on desktop, but may still have issues on mobile.</li>
-            <li>A typo describing Duelists receiving double accuracy benefits from rapiers has been corrected to bucklers.</li>
-            <li>Missing information about Barbarian's interaction with Charge has been included in <a href="#" class="view-class-details-link">the class view page</a>.</li>
-            <li>Paladins should benefit from their class trait benefit to maximum health from their leg gear again.</li>
-            <li>Wizard trait displaying unusual numbers and causing lag is fixed.</li>
-            <li>Barbarians are no longer permitted to wear magical leg armor (wizard shorts or druidic pants).</li>
-        </ul>
+        <li>
+            <ul>
+                <li>A battle server crash involving the Sage's Bond being removed from the target if the Sage dies has been fixed.</li>
+                <li>The battle server should handle internal errors more gracefully and will simply forfeit any battle that would otherwise have caused a crash instead.</li>
+                <li>Fixed a bug allowing Sage's Blessing to be granted to the Sage (applied to self).</li>
+                <li>Fixed a bug allowing Sage's Blessing to be applied multiple times to the same target.</li>
+                <li>Automatic chat scroll should generally be fixed on desktop, but may still have issues on mobile.</li>
+                <li>A typo describing Duelists receiving double accuracy benefits from rapiers has been corrected to bucklers.</li>
+                <li>Missing information about Barbarian's interaction with Charge has been included in <a href="#" class="view-class-details-link">the class view page</a>.</li>
+                <li>Paladins should benefit from their class trait benefit to maximum health from their leg gear again.</li>
+                <li>Wizard trait displaying unusual numbers and causing lag is fixed.</li>
+                <li>Barbarians are no longer permitted to wear magical leg armor (wizard shorts or druidic pants).</li>
+            </ul>
+        </li>
         <li><b>UI Changes</b></li>
-        <ul>
-            <li>The Overview page has had a moderate overhaul, showing idle text next to features that are idle, adding mining energy and a timer until energy is full, adding a section for global buffs, and some minor cleanup.</li>
-            <li>The chat window should show a banner indicating new chat messages on PC.  It may not do this on mobile devices.</li>
-        </ul>
+        <li>
+            <ul>
+                <li>The Overview page has had a moderate overhaul, showing idle text next to features that are idle, adding mining energy and a timer until energy is full, adding a section for global buffs, and some minor cleanup.</li>
+                <li>The chat window should show a banner indicating new chat messages on PC.  It may not do this on mobile devices.</li>
+            </ul>
+        </li>
     </ul>
 
     <h2 class="my-3">Friday 13th October 2023</h2>
@@ -264,18 +293,6 @@
 
     <h2 class="my-3">Sunday 1st October 2023</h2>
     <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>The town multi-donate will no longer be active when switching away from the town tab.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>The town goods will now only update when you first go to the page. For now, this means that you will need to navigate to a different tab then back to see the new donations. Your karma values will update immediately however.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Sunday 1st October 2023</h2>
-    <ul>
         <li><b>Balance Changes</b></li>
         <ul>
             <li>The winds shift and stir, and you feel a change in the air. Sweat begins to drip down your neck, and a menacing aura creeps in around you as you survey the tower floor.</li>
@@ -284,8 +301,13 @@
             <li>This means, for example, a very skilled group battling Floor 7 will experience combat at the equivalent of a Floor 11 level.</li>
             <li>This does not affect other floors, the scaling will only affect players fighting on the current top tower floor.</li>
         </ul>
+        <li><b>Bugfixes</b></li>
+        <ul>
+            <li>The town multi-donate will no longer be active when switching away from the town tab.</li>
+        </ul>
         <li><b>UI Changes</b></li>
         <ul>
+            <li>The town goods will now only update when you first go to the page. For now, this means that you will need to navigate to a different tab then back to see the new donations. Your karma values will update immediately however.</li>
             <li>Various improvements have been made to the dark mode theme for compatibility with dark and black graphics and item rarity tiers.</li>
             <li>The chat popup and full-page chat window should both be better behaved about not cutting off chat text and the input bar across various devices.</li>
             <li>Updated the tower lobby battle page to always show your daily official attempts, even when the boss is unlocked now.</li>
@@ -488,6 +510,7 @@
     </p>
 
     <script language="javascript" type="text/javascript">
+        // When this page is rendered, automatically scroll to the top.
         window.setTimeout(function() {
             window.scrollTo(0, 0);
         }, 1)
@@ -502,7 +525,7 @@
 <template name="updatesBuff">
     <span class="text-muted" style="margin-right: 12px;">[<span class="green-text" style="font-family: Lucida Console; font-weight: bold;">BUFF</span>]</span> 
 </template>
-    
+
 <template name="updatesMixed">
     <span class="text-muted" style="margin-right: 12px;">[<span class="blue-text" style="font-family: Lucida Console; font-weight: bold;">MIX!</span>]</span> 
 </template>

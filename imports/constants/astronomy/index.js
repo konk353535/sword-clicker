@@ -2,10 +2,10 @@ console.log("importing astronomy/index.js ASTRONOMY_ITEMS")
 import { ASTRONOMY_ITEMS as astronomyItems } from "./items"
 
 console.log("exporting astronomy/index.js ASTRONOMY_ITEMS")
-export const ASTRONOMY_ITEMS = astronomyItems
+export const ASTRONOMY_ITEMS = Object.freeze(astronomyItems)
 
 console.log("exporting astronomy/index.js ASTRONOMY")
-export const ASTRONOMY = {
+export const ASTRONOMY = Object.freeze({
     baseMaxMages: 7,
 
     mageHireCost(mainMage) {
@@ -75,4 +75,4 @@ export const ASTRONOMY = {
             ]
         }
     }
-}
+})

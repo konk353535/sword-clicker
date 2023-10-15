@@ -954,7 +954,7 @@ const FetchSomeHiddenItems = function (highestFurnaceTier) {
                             }
                         } else {
                             if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
-                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                                itemConstants.reforgeRecipe = Object.assign({}, itemConstants.reforgeRecipe, classReforgeData[item.itemId])
                             }
                         }
 
@@ -1103,7 +1103,7 @@ const FetchSomeVisibleItems = function (highestFurnaceTier) {
                             }
                         } else {
                             if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
-                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                                itemConstants.reforgeRecipe = Object.assign({}, itemConstants.reforgeRecipe, classReforgeData[item.itemId])
                             }
                         }
 
@@ -1250,7 +1250,7 @@ const FetchAllHiddenItems = function (highestFurnaceTier) {
                             }
                         } else {
                             if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
-                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                                itemConstants.reforgeRecipe = Object.assign({}, itemConstants.reforgeRecipe, classReforgeData[item.itemId])
                             }
                         }
 
@@ -1397,7 +1397,7 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
                             }
                         } else {
                             if (classReforgeData && classReforgeData[item.itemId] && classReforgeData[item.itemId].requiresCrafting) {
-                                itemConstants.reforgeRecipe = Object.assign(itemConstants.reforgeRecipe, classReforgeData[item.itemId])
+                                itemConstants.reforgeRecipe = Object.assign({}, itemConstants.reforgeRecipe, classReforgeData[item.itemId])
                             }
                         }
                         

@@ -4,7 +4,8 @@ import { TOWER_FLOORS } from "./tower/index"
 console.log("importing floors/index.js GENERATORS")
 
 console.log("exporting floors/index.js FLOORS")
-export const FLOORS = Object.assign(
+export const FLOORS = Object.freeze(Object.assign(
+    {}, 
     { floorRewardRange: 2 },
     {
         getNewPointCount(floor, activeTowerUsers) {
@@ -50,4 +51,4 @@ export const FLOORS = Object.assign(
     },
     TOWER_FLOORS,
     GENERATORS
-)
+))

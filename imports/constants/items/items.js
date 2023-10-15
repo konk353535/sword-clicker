@@ -1,5 +1,5 @@
 console.log("exporting items/items.js MISC_ITEMS")
-export const MISC_ITEMS = {
+export const MISC_ITEMS = Object.freeze({
     rat_head: {
         id: "rat_head",
         icon: "ratHead.svg",
@@ -197,4 +197,4 @@ export const MISC_ITEMS = {
         sellPrice: 0,
         description: "This is from the Farplane; it's impossible to tell what this is used for."
     }
-}
+})

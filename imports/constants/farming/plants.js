@@ -2,7 +2,7 @@ console.log("importing farming/plants.js ITEMS")
 import { ITEMS } from "/imports/constants/items/index.js"
 
 console.log("exporting farming/plants.js PLANTS")
-export const PLANTS = {
+export const PLANTS = Object.freeze({
     lettice: {
         produces: "lettice",
         name: "lettuce",
@@ -1855,4 +1855,4 @@ export const PLANTS = {
             }
         ]
     }
-}
+})

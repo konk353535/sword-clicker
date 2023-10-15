@@ -7,7 +7,8 @@ import { MINING_ITEMS } from "../mining/items"
 import { WOODCUTTING_ITEMS } from "../woodcutting/items"
 import { MISC_ITEMS } from "./items"
 
-export const ITEMS = Object.assign(
+console.log("exporting items/index.js ITEMS")
+export const ITEMS = Object.freeze(Object.assign({}, 
     MISC_ITEMS,
     COMBAT_ITEMS,
     CRAFTING_ITEMS,
@@ -16,9 +17,10 @@ export const ITEMS = Object.assign(
     FARMING_ITEMS,
     INSCRIPTION_ITEMS,
     ASTRONOMY_ITEMS
-)
+))
 
-export const ITEM_RARITIES = {
+console.log("exporting items/index.js ITEM_RARITIES")
+export const ITEM_RARITIES = Object.freeze({
     // Crafting T-1 (next - 30)
     crude: {
         rarityId: "crude",
@@ -304,4 +306,4 @@ export const ITEM_RARITIES = {
         color: "44cc44",
         statBonuses: 0.0
     }
-}
+})

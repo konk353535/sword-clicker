@@ -6,7 +6,7 @@ import { SCROLL_ITEMS } from "./items/scrolls"
 import { XP_ITEMS } from "./items/xp"
 
 console.log("exporting crafting/items.js CRAFTING_ITEMS")
-export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
+export const CRAFTING_ITEMS = Object.freeze(Object.assign({}, SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITEMS, GOLD_ITEMS, XP_ITEMS, MISC_ITEMS, {
     composite_wall: {
         id: "composite_wall",
         icon: "compositeWall.svg",
@@ -33,4 +33,4 @@ export const CRAFTING_ITEMS = Object.assign(SCROLL_ITEMS, BAR_ITEMS, FURNACE_ITE
         sellPrice: 600,
         description: "Can be sold for a tidy sum"
     }
-})
+}))

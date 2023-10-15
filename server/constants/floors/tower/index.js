@@ -28,7 +28,7 @@ import { TOWER_FLOOR_9 } from "./floor9/index"
 
 console.log("exporting tower/index.js TOWER_FLOORS")
 
-export const TOWER_FLOORS = {
+export const TOWER_FLOORS = Object.freeze({
     1: TOWER_FLOOR_1,
     2: TOWER_FLOOR_2,
     3: TOWER_FLOOR_3,
@@ -56,4 +56,4 @@ export const TOWER_FLOORS = {
     25: TOWER_FLOOR_25,
     26: TOWER_FLOOR_26,
     27: TOWER_FLOOR_27
-}
+})

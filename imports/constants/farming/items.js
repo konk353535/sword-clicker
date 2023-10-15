@@ -2,7 +2,7 @@ console.log("importing farming/items.js BUFFS")
 import { FOOD_BUFFS as BUFFS } from "../buffs/food"
 
 console.log("exporting farming/items.js FARMING_ITEMS")
-export const FARMING_ITEMS = {
+export const FARMING_ITEMS = Object.freeze({
     lettice_seed: {
         id: "lettice_seed",
         icon: "letticeSeed.svg",
@@ -1409,4 +1409,4 @@ export const FARMING_ITEMS = {
         name: "Rubia Flower",
         sellPrice: 10
     }
-}
+})

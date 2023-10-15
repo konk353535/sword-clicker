@@ -1,5 +1,5 @@
 console.log("exporting achievement/tower.js TOWER_ACHIEVEMENTS")
-export const TOWER_ACHIEVEMENTS = {
+export const TOWER_ACHIEVEMENTS = Object.freeze({
     tower_1: {
         kind: "tower",
         name: "Floor 1",
@@ -507,4 +507,4 @@ export const TOWER_ACHIEVEMENTS = {
             }
         ]
     }
-}
+})

@@ -33,7 +33,8 @@ import { STAFF_ITEMS } from "./items/staff"
 import { WIZARD_ITEMS } from "./items/wizard"
 
 console.log("exporting combat/items.js COMBAT_ITEMS")
-export const COMBAT_ITEMS = Object.assign(
+export const COMBAT_ITEMS = Object.freeze(Object.assign(
+    {}, 
     COPPER_ITEMS,
     TIN_ITEMS,
     BRONZE_ITEMS,
@@ -66,4 +67,4 @@ export const COMBAT_ITEMS = Object.assign(
     STAFF_ITEMS,
     WIZARD_ITEMS,
     ARCHER_ITEMS
-)
+))

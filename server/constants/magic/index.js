@@ -2,7 +2,7 @@ console.log("importing magic/index.js ITEMS")
 import { ITEMS } from "/imports/constants/items/index"
 
 console.log("exporting magic/index.js MAGIC")
-export const MAGIC = {
+export const MAGIC = Object.freeze({
     spells: {
         earth_dart: {
             id: "earth_dart",
@@ -1063,4 +1063,4 @@ export const MAGIC = {
             ]
         }
     }
-}
+})

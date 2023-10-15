@@ -2,10 +2,10 @@ console.log("importing inscription/index.js INSCRIPTION_ITEMS")
 import { INSCRIPTION_ITEMS as inscriptionItems } from "./items"
 
 console.log("exporting inscription/index.js INSCRIPTION_ITEMS")
-export const INSCRIPTION_ITEMS = inscriptionItems
+export const INSCRIPTION_ITEMS = Object.freeze(inscriptionItems)
 
 console.log("exporting inscription/index.js INSCRIPTION")
-export const INSCRIPTION = {
+export const INSCRIPTION = Object.freeze({
     getMaxCrafts(inscriptionLevel) {
         let maxCrafts = 2
 
@@ -51,4 +51,4 @@ export const INSCRIPTION = {
 
         return maxCrafts
     }
-}
+})

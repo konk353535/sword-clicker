@@ -1,5 +1,5 @@
 console.log("exporting woodcutting/items.js WOODCUTTING_ITEMS")
-export const WOODCUTTING_ITEMS = {
+export const WOODCUTTING_ITEMS = Object.freeze({
     primitive_axe: {
         id: "primitive_axe",
         icon: "wcaxe_t0.png",
@@ -801,4 +801,4 @@ export const WOODCUTTING_ITEMS = {
         description: "A neatly-trimmed root from a magnificent spirit tree, suitable for crafting.",
         sellPrice: 240
     }
-}
+})

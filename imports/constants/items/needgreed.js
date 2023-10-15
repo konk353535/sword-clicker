@@ -1,7 +1,7 @@
 // keywords for searching: needgreed need greed need/greed need+greed
 // need / greed matchers can be added here
 // keys are used for friendly identification, values are a function that returns true / false given a string input
-export const NEED_GREED_ITEMS = {
+export const NEED_GREED_ITEMS = Object.freeze({
     pickaxe: (str) => {
         return RegExp("pickaxe", "g").test(str)
     },
@@ -98,4 +98,4 @@ export const NEED_GREED_ITEMS = {
     special_items: (str) => {
         return RegExp("enhancer_key|lemonade", "g").test(str)
     }
-}
+})

@@ -3,7 +3,7 @@ import { ITEMS } from "/imports/constants/items/index.js"
 const MINUTE = 60
 
 console.log("exporting mining/crafts.js MINING_CRAFTS")
-export const MINING_CRAFTS = {
+export const MINING_CRAFTS = Object.freeze({
     primitive_pickaxe: {
         produces: "primitive_pickaxe",
         recipeFor: "crafting",
@@ -3388,4 +3388,4 @@ export const MINING_CRAFTS = {
             }
         ]
     }
-}
+})

@@ -1,5 +1,5 @@
 console.log("exporting inscription/items.js INSCRIPTION_ITEMS")
-export const INSCRIPTION_ITEMS = {
+export const INSCRIPTION_ITEMS = Object.freeze({
     pigment_red_255: {
         id: "pigment_red_255",
         icon: "pigmentMagenta.png",
@@ -4093,4 +4093,4 @@ export const INSCRIPTION_ITEMS = {
             target: "item"
         }
     }
-}
+})

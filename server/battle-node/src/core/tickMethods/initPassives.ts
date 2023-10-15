@@ -41,7 +41,7 @@ export function initPassives(this: Battle) {
     
     unit.stats.revertToOriginal();
     
-    enchantment_buffs_ids = Object.assign(enchantment_buffs_ids, unit.enchantmentsList);
+    enchantment_buffs_ids = Object.assign({}, enchantment_buffs_ids, unit.enchantmentsList);
     */
 
         /*
@@ -81,7 +81,7 @@ export function initPassives(this: Battle) {
       } else if (ability_or_enchantment.kind === 'enchantment') {
         const newBuff = {
           id: ability_or_enchantment.which,
-          data: Object.assign(ability_or_enchantment.constants.data, {
+          data: Object.assign({}, ability_or_enchantment.constants.data, {
             name: ability_or_enchantment.constants.name,
             description: ability_or_enchantment.constants.description({buff: ability_or_enchantment.constants, level: 1}), // enchantments don't have levels
             icon: ability_or_enchantment.constants.icon,
@@ -111,7 +111,7 @@ export function initPassives(this: Battle) {
         
         const newBuff = {
           id: enchantment_buff_id,
-          data: Object.assign(buffConstants.data, {
+          data: Object.assign({}, buffConstants.data, {
             name: buffConstants.name,
             description: buffConstants.description({buff: buffConstants, level: 1}), // enchantments don't have levels
             icon: buffConstants.icon,

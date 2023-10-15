@@ -1,5 +1,5 @@
 console.log("exporting achievement/magic.js MAGIC_ACHIEVEMENTS")
-export const MAGIC_ACHIEVEMENTS = {
+export const MAGIC_ACHIEVEMENTS = Object.freeze({
     magic_50: {
         kind: "magic",
         name: "50 Spellcasts",
@@ -588,4 +588,4 @@ export const MAGIC_ACHIEVEMENTS = {
             }
         ]
     }
-}
+})

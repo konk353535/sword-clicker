@@ -1,5 +1,5 @@
 console.log("exporting astronomy/items.js ASTRONOMY_ITEMS")
-export const ASTRONOMY_ITEMS = {
+export const ASTRONOMY_ITEMS = Object.freeze({
     poison_shard_fragment: {
         id: "poison_shard_fragment",
         icon: "poisonShardFragment.png",
@@ -116,4 +116,4 @@ export const ASTRONOMY_ITEMS = {
         sellPrice: 750,
         description: "A magic air shard, a relic from ancient times"
     }
-}
+})

@@ -950,6 +950,7 @@ Meteor.methods({
 
             // Save things we actually want to store in the data property
             buff.data = Object.assign(
+                {}, 
                 {
                     name: buff.constants.name,
                     icon: buff.constants.icon,

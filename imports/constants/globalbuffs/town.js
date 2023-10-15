@@ -1,4 +1,4 @@
-export const TOWN_GLOBALBUFFS = {
+export const TOWN_GLOBALBUFFS = Object.freeze({
     town_dwelling: {
         globalBuffId: "town_dwelling",
         name: function (level = 1) {
@@ -99,4 +99,4 @@ export const TOWN_GLOBALBUFFS = {
         isServerBuff: true,
         hasLevels: true
     }
-}
+})

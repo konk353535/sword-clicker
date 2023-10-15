@@ -6,7 +6,8 @@ import { MISC_CRAFTS } from "./crafts/misc"
 import { XP_CRAFTS } from "./crafts/xp"
 import { ITEMS } from "/imports/constants/items/index.js"
 
-export const CRAFTING_CRAFTS = Object.assign(
+export const CRAFTING_CRAFTS = Object.freeze(Object.assign(
+    {}, 
     ESSENCE_CRAFTS,
     FURNACE_CRAFTS,
     MISC_CRAFTS,
@@ -143,4 +144,4 @@ export const CRAFTING_CRAFTS = Object.assign(
             maxToCraft: 1
         }
     }
-)
+))

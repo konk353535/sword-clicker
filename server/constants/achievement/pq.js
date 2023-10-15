@@ -1,5 +1,5 @@
 console.log("exporting achievement/pq.js PQ_ACHIEVEMENTS")
-export const PQ_ACHIEVEMENTS = {
+export const PQ_ACHIEVEMENTS = Object.freeze({
     pq_3: {
         kind: "pq",
         name: "PQ 3",
@@ -650,4 +650,4 @@ export const PQ_ACHIEVEMENTS = {
             }
         ]
     }
-}
+})

@@ -4,10 +4,10 @@ import { ITEMS } from "/imports/constants/items/index"
 console.log("importing mining/index.js ITEMS")
 
 console.log("exporting mining/index.js MINING_ITEMS")
-export const MINING_ITEMS = miningItems
+export const MINING_ITEMS = Object.freeze(miningItems)
 
 console.log("exporting mining/index.js MINING")
-export const MINING = {
+export const MINING = Object.freeze({
     prospecting: {
         chance: 1 / 6 // 1 spawn every 6 seconds ( 10 / min )
     },
@@ -2051,4 +2051,4 @@ export const MINING = {
             chance: 0.0000008
         }
     }
-}
+})

@@ -1,5 +1,5 @@
 console.log("exporting achievement/combat.js COMBAT_ACHIEVEMENTS")
-export const COMBAT_ACHIEVEMENTS = {
+export const COMBAT_ACHIEVEMENTS = Object.freeze({
     combat_dd_50: {
         kind: "combat",
         name: "Deal 50 Damage",
@@ -567,4 +567,4 @@ export const COMBAT_ACHIEVEMENTS = {
             }
         ]
     }
-}
+})

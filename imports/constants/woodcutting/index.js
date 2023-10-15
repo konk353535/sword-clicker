@@ -4,10 +4,10 @@ import { ITEMS } from "/imports/constants/items/index"
 console.log("importing woodcutting/index.js ITEMS")
 
 console.log("exporting woodcutting/index.js WOODCUTTING_ITEMS")
-export const WOODCUTTING_ITEMS = woodcuttingItems
+export const WOODCUTTING_ITEMS = Object.freeze(woodcuttingItems)
 
 console.log("exporting woodcutting/index.js WOODCUTTING")
-export const WOODCUTTING = {
+export const WOODCUTTING = Object.freeze({
     suicidalFury: {
         duration: 60, // In seconds
         attackSpeedIncrease: 1250 // Percentage
@@ -1100,4 +1100,4 @@ export const WOODCUTTING = {
             chance: 0.01 / 7
         }
     }
-}
+})

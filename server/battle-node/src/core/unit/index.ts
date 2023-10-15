@@ -459,7 +459,7 @@ export default class Unit {
             const newBuffConstants = BUFFS[buffId]
             const newBuff = {
                 id: buffId,
-                data: Object.assign(/*newBuffConstants.data, */ buffData || {}, {
+                data: Object.assign({}, /*newBuffConstants.data, */ buffData || {}, {
                     name: buffData && buffData.name ? buffData.name : newBuffConstants.name,
                     description:
                         buffData && _.isFunction(buffData.description)

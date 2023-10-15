@@ -14,11 +14,11 @@ console.log("importing crafting/index.js WOODCUTTING_CRAFTS")
 console.log("importing crafting/index.js INSCRIPTION_CRAFTS")
 
 console.log("exporting crafting/index.js CRAFTING_ITEMS")
-export const CRAFTING_ITEMS = craftingItems
+export const CRAFTING_ITEMS = Object.freeze(craftingItems)
 
 console.log("exporting crafting/index.js CRAFTING")
-export const CRAFTING = {
-    recipes: Object.assign(CRAFTING_CRAFTS, COMBAT_CRAFTS, MINING_CRAFTS, WOODCUTTING_CRAFTS, INSCRIPTION_CRAFTS),
+export const CRAFTING = Object.freeze({
+    recipes: Object.assign({}, CRAFTING_CRAFTS, COMBAT_CRAFTS, MINING_CRAFTS, WOODCUTTING_CRAFTS, INSCRIPTION_CRAFTS),
 
     getMaxCrafts(craftingLevel) {
         let maxCrafts = 2
@@ -202,4 +202,4 @@ export const CRAFTING = {
             color: "red-1"
         }
     }
-}
+})

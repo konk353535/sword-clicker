@@ -9,10 +9,11 @@ console.log("importing achievement/magic.js MAGIC_ACHIEVEMENTS")
 console.log("importing achievement/pq.js PQ_ACHIEVEMENTS")
 console.log("importing achievement/tower.js TOWER_ACHIEVEMENTS")
 
-export const ACHIEVEMENTS = Object.assign(
+export const ACHIEVEMENTS = Object.freeze(Object.assign(
+    {}, 
     COMBAT_ACHIEVEMENTS,
     CRAFTING_ACHIEVEMENTS,
     MAGIC_ACHIEVEMENTS,
     PQ_ACHIEVEMENTS,
     TOWER_ACHIEVEMENTS
-)
+))

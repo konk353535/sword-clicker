@@ -10,7 +10,8 @@ import { MAGIC_BUFFS } from "./magic"
 import { MISC_BUFFS } from "./misc"
 import { MONSTER_BUFFS } from "./monster"
 
-export const BUFFS = Object.assign(
+export const BUFFS = Object.freeze(Object.assign(
+    {}, 
     FOOD_BUFFS,
     ATTACK_BUFFS,
     DEFENSE_BUFFS,
@@ -22,4 +23,4 @@ export const BUFFS = Object.assign(
     COMPANION_BUFFS,
     MISC_BUFFS,
     CLASS_BUFFS
-)
+))

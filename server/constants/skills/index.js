@@ -2,7 +2,7 @@ console.log("importing skills/index.js ITEMS")
 import { ITEMS } from "/imports/constants/items/index"
 
 console.log("exporting skills/index.js SKILLS")
-export const SKILLS = {
+export const SKILLS = Object.freeze({
     mining: {
         xpToLevel(level) {
             let extra = 0
@@ -173,4 +173,4 @@ export const SKILLS = {
             healthMax: 10
         }
     }
-}
+})

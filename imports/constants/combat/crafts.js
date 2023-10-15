@@ -31,7 +31,8 @@ import { ARCHER_CRAFTS } from "./crafts/archer"
 import { STAFF_CRAFTS } from "./crafts/staff"
 
 // prettier-ignore
-export const COMBAT_CRAFTS = Object.assign(
+export const COMBAT_CRAFTS = Object.freeze(Object.assign(
+    {}, 
 //  STONE_CRAFTS,      // tier 0 (T0) -- just here for documentation/reference, 'STONE_CRAFTS' does not exist
     COPPER_CRAFTS,     // tier 1 (T1)
     TIN_CRAFTS,        // tier 2 (T2)
@@ -63,4 +64,4 @@ export const COMBAT_CRAFTS = Object.assign(
     AMULET_CRAFTS,
     STAFF_CRAFTS,
     ARCHER_CRAFTS
-)
+))

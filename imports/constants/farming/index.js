@@ -3,7 +3,7 @@ console.log("importing farming/index.js PLANTS")
 import { PLANTS } from "./plants"
 
 console.log("exporting farming/index.js FARMING")
-export const FARMING = {
+export const FARMING = Object.freeze({
     plants: PLANTS,
 
     shopItems: {
@@ -1171,4 +1171,4 @@ export const FARMING = {
             ]
         }
     }
-}
+})

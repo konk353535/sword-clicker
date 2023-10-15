@@ -5,7 +5,13 @@ import { Users, classFeatureUnlocked } from "/imports/api/users/users.js"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 export const userEligibleForClass = function (uid, classData) {
-    if (uid == null || !uid || typeof uid === "undefined" || typeof classData === "undefined" || typeof classData?.id === "undefined") {
+    if (
+        uid == null ||
+        !uid ||
+        typeof uid === "undefined" ||
+        typeof classData === "undefined" ||
+        typeof classData?.id === "undefined"
+    ) {
         return false
     }
 

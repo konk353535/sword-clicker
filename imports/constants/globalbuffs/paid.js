@@ -1,4 +1,4 @@
-export const PAID_GLOBALBUFFS = {
+export const PAID_GLOBALBUFFS = Object.freeze({
     paid_crafting: {
         globalBuffId: "paid_crafting",
         dataBuffId: "buffCrafting", // legacy ID for this buff
@@ -95,4 +95,4 @@ export const PAID_GLOBALBUFFS = {
         isServerBuff: false,
         hasLevels: false
     }
-}
+})

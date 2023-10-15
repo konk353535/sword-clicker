@@ -201,6 +201,7 @@ export function castAbility(this: Battle, { ability, caster, targets }: castAbil
 
             // Save things we actually want to store in the data property
             buffObj.data = Object.assign(
+                {}, 
                 {
                     description: buffObj.constants.description({
                         buff: buffObj.constants,

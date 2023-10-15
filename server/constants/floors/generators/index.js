@@ -9,7 +9,7 @@ console.log("importing floors/index.js hardTowerMonsterGenerator")
 console.log("importing floors/index.js veryHardTowerMonsterGenerator")
 console.log("importing floors/index.js genericTowerMonsterGenerator")
 
-export const GENERATORS = Object.assign({
+export const GENERATORS = Object.freeze(Object.assign({}, {
     // Given a level, create a monster for personal quest
     personalQuestMonsterGenerator,
 
@@ -19,4 +19,4 @@ export const GENERATORS = Object.assign({
     veryHardTowerMonsterGenerator,
     genericTowerMonsterGenerator,
     topFloorTowerMonsterGenerator
-})
+}))

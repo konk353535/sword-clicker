@@ -3,7 +3,7 @@ import { CLASS_ABILITIES } from "./abilities/classes"
 import { DEFENSE_ABILITIES } from "./abilities/defense"
 import { MAGIC_ABILITIES } from "./abilities/magic"
 
-export const ABILITY = {
+export const ABILITY = Object.freeze({
     slots: ["mainHand", "offHand", "head", "chest", "legs", "classAbil1", "classAbil2", "classAbil3", "companion"],
     activeSlots: ["mainHand", "offHand", "head", "chest", "legs"],
     passiveSlots: ["classAbil1", "classAbil2", "classAbil3"],
@@ -45,6 +45,6 @@ export const ABILITY = {
             allowedType: "companion"
         }
     }
-}
+})
 
-export const ABILITIES = Object.assign(ATTACK_ABILITIES, CLASS_ABILITIES, DEFENSE_ABILITIES, MAGIC_ABILITIES)
+export const ABILITIES = Object.freeze(Object.assign({}, ATTACK_ABILITIES, CLASS_ABILITIES, DEFENSE_ABILITIES, MAGIC_ABILITIES))

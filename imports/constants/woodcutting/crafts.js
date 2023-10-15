@@ -2,7 +2,7 @@ console.log("importing woodcutting/crafts.js ITEMS")
 import { ITEMS } from "/imports/constants/items/index.js"
 
 console.log("exporting woodcutting/crafts.js WOODCUTTING_CRAFTS")
-export const WOODCUTTING_CRAFTS = {
+export const WOODCUTTING_CRAFTS = Object.freeze({
     primitive_axe: {
         produces: "primitive_axe",
         recipeFor: "crafting",
@@ -1357,4 +1357,4 @@ export const WOODCUTTING_CRAFTS = {
             }
         ]
     }
-}
+})

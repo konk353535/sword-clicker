@@ -1,6 +1,7 @@
 import { BOSS_ENEMIES } from "./bosses/index.js"
 
 export const ENEMIES = Object.assign(
+    {}, 
     {
         grasshopper: {
             id: "grasshopper",

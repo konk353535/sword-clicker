@@ -1,5 +1,5 @@
 console.log("exporting battles/index.js BATTLES")
-export const BATTLES = {
+export const BATTLES = Object.freeze({
     xpDistribution(weaponType) {
         const weaponDistributions = {
             dagger: {
@@ -128,4 +128,4 @@ export const BATTLES = {
     maxBossPartySize: 5,
 
     maxTowerPartySize: 5
-}
+})

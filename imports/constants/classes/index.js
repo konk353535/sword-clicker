@@ -2,7 +2,7 @@ import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 console.log("exporting classes/index.js CLASSES")
 
-export const CLASSES = {
+export const CLASSES = Object.freeze({
     none: {
         id: "",
         name: "",
@@ -967,4 +967,4 @@ export const CLASSES = {
     list: function() {
         return ["wanderer", "barbarian", "duelist", "paladin", "ranger", "sage", "tactician", "warmage", "wizard"]
     }
-}
+})

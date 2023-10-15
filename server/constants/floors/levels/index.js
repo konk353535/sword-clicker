@@ -28,7 +28,7 @@ import { LEVEL_NINE_LOOT_TABLE, LEVEL_NINE_MONSTERS } from "./level9"
 
 console.log("exporting level/index.js TABLE_LIST")
 
-export const TABLE_LIST = {
+export const TABLE_LIST = Object.freeze({
     1: LEVEL_ONE_LOOT_TABLE,
     2: LEVEL_TWO_LOOT_TABLE,
     3: LEVEL_THREE_LOOT_TABLE,
@@ -56,9 +56,9 @@ export const TABLE_LIST = {
     25: LEVEL_TWENTY_FIVE_LOOT_TABLE,
     26: LEVEL_TWENTY_SIX_LOOT_TABLE,
     27: LEVEL_TWENTY_SEVEN_LOOT_TABLE
-}
+})
 
-export const MONSTER_LIST = {
+export const MONSTER_LIST = Object.freeze({
     1: LEVEL_ONE_MONSTERS,
     2: LEVEL_TWO_MONSTERS,
     3: LEVEL_THREE_MONSTERS,
@@ -86,4 +86,4 @@ export const MONSTER_LIST = {
     25: LEVEL_TWENTY_FIVE_MONSTERS,
     26: LEVEL_TWENTY_SIX_MONSTERS,
     27: LEVEL_TWENTY_SEVEN_MONSTERS
-}
+})

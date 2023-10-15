@@ -18,7 +18,6 @@ Template.lobbyUnit.helpers({
 
     energyPercentage() {
         const stats = Template.instance().data.unit.stats
-        console.log(Template.instance().data.unit)
         const energyPercentage = (stats.energy / stats.energyMax) * 100
 
         return energyPercentage

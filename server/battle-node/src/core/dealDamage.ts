@@ -59,8 +59,31 @@ export function dealDamage(
     // 'isTrueDamage'  cannot be reduced by (a) armor, (b) magic armor, or (c) damage absorption
     // 'bypassArmor' cannot be reduced by (a) armor or (b) magic armor, but can be reduced by damage absorption
 
+    const wantDamageDebug = false
+
     let damage = rawDamage
+    if (wantDamageDebug) {
+        console.log("Raw damage:", damage)
+    }
     if (damage && damage > 0) {
+        
+        // damage weakening effects
+        if (attacker.stats.damageOutput) {
+            damage *= attacker.stats.damageOutput
+        }
+        if (wantDamageDebug) {
+            console.log("... damage after target weakening:", damage)
+        }
+
+        const defenderDamageTakenMultiplier = (defender.stats.damageTaken ? defender.stats.damageTaken : 1.0)
+        if (defenderDamageTakenMultiplier !== 1.0) {
+            damage *= defenderDamageTakenMultiplier
+            if (wantDamageDebug) {
+                console.log("... damage after vulnerable target factor:", damage)
+                console.log("...... vulnerable target factor:", defenderDamageTakenMultiplier)
+            }
+        }
+
         // true damage penetrates armor and all abilities that allow damage reduction (or fake-dodging like evasive manuevers)
         if (!isTrueDamage) {
             // original armor
@@ -70,7 +93,7 @@ export function dealDamage(
             defender.stats.armor = origPhyscArmor - attacker.stats.shred // triggers a calculation of 'defender.stats.damageReduction'
             defender.stats.magicArmor = origMagicArmor - attacker.stats.focus // triggers a calculation of 'defender.stats.magicDamageReduction'
 
-            let dmgReduction = isMagic
+            let damageReductionFromArmorPercent = isMagic
                 ? defender.stats.magicDamageReduction
                     ? defender.stats.magicDamageReduction
                     : 0
@@ -80,19 +103,24 @@ export function dealDamage(
 
             // armor does not protect against some DoT effects:  bleed, poison, ignite, etc.
             if (bypassArmor) {
-                dmgReduction = 0
+                damageReductionFromArmorPercent = 0
             }
 
             defender.stats.armor = origPhyscArmor // triggers a calculation of 'defender.stats.damageReduction'
             defender.stats.magicArmor = origMagicArmor // triggers a calculation of 'defender.stats.magicDamageReduction'
 
-            // NOTE: damage absorption DOES against some DoT effects:  bleed, poison, ignite, etc. (no adjustment for 'bypassArmor')
-            damage = rawDamage * (1 - (dmgReduction + defender.stats.absorption)) * (defender.stats.damageTaken ? defender.stats.damageTaken : 1.0)
-        }
+            damage = damage * (1 - (damageReductionFromArmorPercent))
+            if (wantDamageDebug) {
+                console.log("... damage after armor:", damage)
+                console.log("...... armor reduction amount:", damageReductionFromArmorPercent)
+            }
 
-        // damage weakening effects
-        if (attacker.stats.damageOutput) {
-            damage *= attacker.stats.damageOutput
+            // NOTE: damage absorption DOES apply against some DoT effects:  bleed, poison, ignite, etc. (no adjustment for 'bypassArmor')
+            damage = damage * (1 - (defender.stats.absorption))
+            if (wantDamageDebug) {
+                console.log("... damage after absorption:", damage)
+                console.log("...... absorption amount:", defender.stats.absorption)
+            }
         }
 
         // Negative damage can't heal the target
@@ -100,7 +128,13 @@ export function dealDamage(
             damage = 0
         }
 
-        defender.stats.health -= damage
+        if (wantDamageDebug) {
+            console.log("... FINAL DAMAGE IS:", damage)
+        }
+
+        if (damage > 0) {
+            defender.stats.health -= damage
+        }
 
         // Tick didRawDamage event on defender
         if (attacker.buffs) {

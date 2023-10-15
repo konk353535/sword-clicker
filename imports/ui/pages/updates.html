@@ -1,511 +1,542 @@
 <template name="updatesPage">
 
-    <h2 class="my-3">Sunday 15th October 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <li>
-            <ul>
-                <li>Damage reduction from kite shield absorption is no longer additive with armor damage reductions.  Instead, damage is individually reduced in steps.</li>
-                <li>Healing Shield armor buff duration is fixed and should no longer instantly drop its armor bonus to allied targets.</li>
-                <li>Thirsty Fangs now actually heals for 20% of the damage you dealt, not 20% of your damge potential.</li>
-            </ul>
-        </li>
-    </ul>
-
-    <h2 class="my-3">Saturday 14th October 2023</h2>
-    <ul>
-        <li><b>Class Balance Changes</b></li>
-        <li>
-            <ul>
-                <li>{{> updatesBuff}} Barbarian Trait intrinsic chance to strike adjacent targets when using broad swords and battle axes raised to 40%.</li>
-                <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 33%.</li>
-                <li>{{> updatesBuff}} Paladin Trait intrinsic double bonus to spear and hammer maximum damage has been increased to triple.</li>
-                <li>{{> updatesBuff}} Paladin Trait intrinsic triple bonus to non-magic armor maximum health has been increased to quadruple.</li>
-                <li>{{> updatesNerf}} Paladin Trait intrinsic gains a new effect: entering battle with fewer than 4 player allies will reduce your damage by 12.5% per missing ally.</li>
-                <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically (very randomly, but about every 45 seconds).</li>
-                <li>{{> updatesMixed}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
-                <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
-                <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shift that stuns all enemies and restores 20% of your health.</li>
-                <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
-            </ul>
-        </li>
-        <li><b>General Balance Changes</b></li>
-        <li>
-            <ul>
-                <li>Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
-                <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
-            </ul>
-        </li>
-        <li><b>Feature Updates</b></li>
-        <li>
-            <ul>
-                <li>Locked items may be reforged instead of giving an error about it being locked.  Keep in mind when an item enters and exits your reforge queue, it will lose any locked status and will thus no longer be locked.</li>
-            </ul>
-        </li>
-        <li><b>Bugfixes</b></li>
-        <li>
-            <ul>
-                <li>A battle server crash involving the Sage's Bond being removed from the target if the Sage dies has been fixed.</li>
-                <li>The battle server should handle internal errors more gracefully and will simply forfeit any battle that would otherwise have caused a crash instead.</li>
-                <li>Fixed a bug allowing Sage's Blessing to be granted to the Sage (applied to self).</li>
-                <li>Fixed a bug allowing Sage's Blessing to be applied multiple times to the same target.</li>
-                <li>Automatic chat scroll should generally be fixed on desktop, but may still have issues on mobile.</li>
-                <li>A typo describing Duelists receiving double accuracy benefits from rapiers has been corrected to bucklers.</li>
-                <li>Missing information about Barbarian's interaction with Charge has been included in <a href="#" class="view-class-details-link">the class view page</a>.</li>
-                <li>Paladins should benefit from their class trait benefit to maximum health from their leg gear again.</li>
-                <li>Wizard trait displaying unusual numbers and causing lag is fixed.</li>
-                <li>Barbarians are no longer permitted to wear magical leg armor (wizard shorts or druidic pants).</li>
-            </ul>
-        </li>
-        <li><b>UI Changes</b></li>
-        <li>
-            <ul>
-                <li>The Overview page has had a moderate overhaul, showing idle text next to features that are idle, adding mining energy and a timer until energy is full, adding a section for global buffs, and some minor cleanup.</li>
-                <li>The chat window should show a banner indicating new chat messages on PC.  It may not do this on mobile devices.</li>
-            </ul>
-        </li>
-    </ul>
-
-    <h2 class="my-3">Friday 13th October 2023</h2>
-    <ul>
-        <li><b>General Balance Changes</b></li>
+    <div class="updates-page">
+        <h2 class="my-3">Sunday 15th October 2023</h2>
         <ul>
-            <li>The top floor enemies and bosses have gained strength again, challenging you from progressing further . . .</li>
-            <li>Rapier weapons experience ratio has been modified to be 50% attack/15% defense/35% health.</li>
-            <li>Spear weapons experience ratio has been modified to be 70% defense/30% health.</li>
-            <li>Wand weapons experience ratio has been modified to be 25% defense/75% health.</li>
-            <li>Class reforging overrides should no longer require the browser to be refreshed after every attempt.</li>
-            <li>Bleed and poison are no longer reduced by the target's armor.</li>
-            <li>Enemies that dodge now use their defense stat to do so, which means they can no longer dodge ticks of bleeding, poison, ignite, or most magic spells.</li>
-            <li>Spirits and other various enemies no longer dodge but use true immunity when they phase out of reality.  They will still be immune to ticks from bleeding, poison, ignite, etc. while immune.</li>
-            <li>Twin Blades has been updated to gain a stack every 2 seconds instead of every 1.</li>
-        </ul>
-        <li><b>Class Balance Changes</b></li>
-        <ul>
-            <li>{{> updatesBuff}} Barbarian Brawn is raised to 2 stacks every time they miss with an auto-attack and stack loss when hitting is reduced to 1.  Damage cap is lowered to 150%.</li>
-            <li>{{> updatesNerf}} Barbarian Charge stun resilience for their target is increased to 30 seconds and begins when the stun expires.</li>
-            <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 40% and attack speed increase is lowered to 75%.</li>
-            <li>{{> updatesBuff}} Paladin Wrath damage is increased to 250%.  It still scales higher depending on how much health the Paladin has when using it.</li>
-            <li>{{> updatesBuff}} Paladin Bulwark initial ally stacks is increased to 3.  It still has a cap of 3 stacks.</li>
-            <li>{{> updatesBuff}} Sage Bond effect cooldown is lowered to 3 seconds and gains a new effect: if the target ally is under 50% health, the Sage will automatically sacrifice 10% of their original maximum health as health to heal the target for 10% of their maximum health.</li>
-            <li>{{> updatesMixed}} Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
-            <li>{{> updatesNerf}} Tactician Grit bonus to defense and magic armor is lowered to 3% per stack.</li>
-            <li>{{> updatesNerf}} Tactician Trait intrinsic initial bonus to damage is lowered to 15% and accuracy is lowered to 10%.</li>
-            <li>{{> updatesBuff}} Wizard Time Warp health cost is lowered to 2% health and 0.75% maximum health loss per second channelled.</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Defeating tower enemies should no longer wildly inflate the amount of gold in the floor tower rewards.</li>
-            <li>Ranger Thicket briars should no longer damage ally units.</li>
-            <li>Tactician Rally bonus to damage now scales with the target's actual damage absorption instead of applying its bonus additively.  This will not effect most monsters, but it will effect some bosses and monster effects.</li>
-            <li>Tactician Grit no longer incorrectly debuffs Tacticians who are wearing opal armor or using Health Up.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>The battle loadout space at the bottom of selecting gear or abilities has been given a margin so that the <b>Return to loadout</b> button does not clip over anything.</li>
-            <li>The battle loadout for abilities has been separated into Active, Passive, Spells, Class, Companions, and Unlearned abilities.</li>
-            <li>The battle Tower lobby has had some text and styling cleanup done.</li>
-            <li><span class="red-text">Red</span> and <span class="blue-text">blue</span> text in Dark Mode should be a bit easier to read.</li>
-            <li>A few ability and combat icons have changed graphics and color.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Wednesday 11th October 2023</h2>
-    <ul>
-        <li><b>Developer's Thoughts</b></li>
-        <ul>
-            <li>We realize there are balance issues with high-end items dropping from personal quest that trivializes challenge and many rewards from the tower.  This is something we'll be rebalancing for the next iteration of the tower (consider this more like season 5).  Given that we want all the classes to enjoy an even and balanced playing field and personal quest has already been dropping high end broad swords, kite shields, knives, and such, we'd prefer not to ruin anyone's day by taking those items away in the name of balance.  Instead, for this current server we'll continue to ramp up challenge in the tower and maintain our position that personal quest simply can't drop items above tier 20.  That means the tower will catch up, pose a challenge, and offer better rewards (even if it does take you high end grinders a while to get there).</li>
-        </ul>
-        <li><b>New Stuff</b></li>
-        <ul>
-            <li>Hammers, rapiers, bucklers, wizard hats, wizard shirts, wizard shorts, tridents, magic orbs, and magic tomes will all drop from various elite enemies that can spawn in the tower and in your personal quest.  Like other equipment items that can drop, they are limited to tier 20.</li>
-        </ul>
-        <li><b>Class Balance Changes</b></li>
-        <ul>
-            <li>{{> updatesNerf}} Enemies stunned by a Barbarian's <i>Charge</i> will now be resilient to stuns caused by <i>Charge</i> for 15 seconds after the stun expires  <i>Charge</i> may still be used during this time to inflict its damage.</li>
-            <li>{{> updatesNerf}} War Mages have had their bonus to tridents' attack speed lowered from triple to double since we how have many more tridents in the game.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>The current floor and room (or level and wave for personal quest) will now be shown next to your self-buffs at the top of every battle.</li>
-            <li>Health and energy is a little more visible in the battle lobby.</li>
-            <li>Several changes have been made to styles throughout the site, especially in the dark mode theme.</li>
-            <li>Some consistency issues with buff icons and their tooltips have been fixed; they are still quite buggy but it should be a bit better now.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Tuesday 10th October 2023</h2>
-    <ul>
-        <li><b>New Stuff</b></li>
-        <ul>
-            <li>Each class has been given a new ability, ensuring that they each have at least one unique active and passive ability.  <a href="#" class="view-class-details-link">View them here</a>.  Spoilers, obviously!</li>
-        </ul>
-        <li><b>Feature Changes</b></li>
-        <ul>
-            <li>When a unit has no target, one is picked <i>at random</i> now instead of picking the first enemy from left-to-right.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Ability levels are suppressed (hidden) if the ability is level 1.  Many abilities and spells do not have a level 2 or higher.</li>
-            <li>The floor progression points should be a little easier to read.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Monday 9th October 2023</h2>
-    <ul>
-        <li><b>New Stuff</b></li>
-        <ul>
-            <li>Magical gear including wizard hats, wizard shirts, wizard shorts, and tridents have been rebalanced, new tiers added, and spread out in the tower starting on floor 2.  A druid trident has been added for tier 4 and does have some healing power attached to it.  As part of the rebalancing of wizard items, some items will have been remapped... you may find you previously had purple tridents and wizard gear that are now druid gear.  Or you may have had violet wizard stuff that's now grey.  All of the items have been mapped to their new ranges so their overall stats should not have changed much.  As an exception: druid shirts can have much stronger stats now, so be sure to farm a new one if you need to!</li>
-            <li>Added crafting recipes for tali and willow bows for tiers 18 and 19.</li>
-        </ul>
-        <li><b>Class Balance Changes</b></li>
-        <ul>
-            <li>{{> updatesMixed}} Paladin's <i>Bulwark</i> no longer grants 3 stacks of protection at the beginning of battle.  Instead, it provides 1 stack of protection per every new room in the tower (or simply 1 stack for single-room fights) which can stack up to 3 max.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Art assets for the Wanderer base class have been added courtesy of the talented <a href="https://eternitytower.net/profile/chloette">Chloette</a>.</li>
-            <li>The rounding during reforge has been upgraded so you should no longer see negative reforge rolls.  You weren't actually reforging with negative numbers, it was just showing you that to prevent a rounding error, which is handled more gracefully now.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Sunday 8th October 2023</h2>
-    <ul>
-        <li><b>New Feature</b></li>
-        <ul>
-            <li>Global buffs will now ping the <b>@Global Buffs</b> role in the <b>#player-alerts</b> channel in Discord by mentioning all users with this role.  You can opt-into this ping notification alert by going to the <b>#roles</b> channel and selecting the <img src="/icons/gems.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /> reaction emoji.  Never miss a buff again!</li>
-        </ul>
-        <li><b>Balance Changes</b></li>
-        <ul>
-            <li>Crabs no longer let you penetrate their armor quite so easily.</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>The amulet icon is visible in combat again.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>You can now hover (or tap on mobile) on the smaller buff icons under under each unit frame in battle for a description of the effect.  There are some serious defects in the framework we're using to make this work and as a result, it's not perfect.  Especially when multiple buffs change at the same time.  We're aware and there's simply not a lot we can do about it, but it's a cosmetic creature-comfort feature and felt it was better to have mostly working fine than not available at all.</li>
-            <li>A new preference has been added to hide combat deaths without affecting floating text (damage numbers).</li>
-            <li>Some of the account settings and session preferences have been split off into separate menus to keep the formatting nice across all devices.  Keep in mind that two of the options (floating text and combat deaths) are session preferences and will be reset to their default whenever the website loads.</li>
-            <li>Added a Discord link to the navigational menu.</li>
-            <li>The progress bar that shows the points needed to unlock the next floor in the tower is now rendered at the correct proportionate width.  Previously it would not shrink below 37.5%.</li>
-            <li>Renamed "monk ninja" enemies to "sullen warrior".</li>
-            <li>Renamed "wise monk" elite enemies to "glowering warrior".</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Saturday 7th October 2023</h2>
-    <ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>The battle screen now better shows who each friendly and enemy unit is targeting.  Additionally, combat messages including friendly and enemy deaths are now shown.</li>
-            <li>The combat lobby now shows an hourglass icon above players with a pending invitation to the group.</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Equipping items should no longer heal you.</li>
-            <li>Removing or changing amulets should now correctly update your ability to use amulet charges for click damage in battle.</li>
-            <li>Targeting and amulet damage should work again in battle.</li>
-            <li>When you die in battle, the game should no longer freeze.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Friday 6th October 2023</h2>
-    <ul>
-        <li><b>New Feature: Classes</b></li>
-        <ul>
-            <li>Upon clearing the Tower floor 10 and claiming the associated achievement, you will unlock this new feature which lets you set your active character Class!</li>
-            <li>When you first unlock the feature, you will automatically become a <i>Wanderer</i>, the base class that does not have any specific benefits other than an additional 3 ability slots to use.</li>
-            <li>A new option in the Battle > Loadout page (visible in Solo and Group battle types) will appear with options to select and view all of the available classes, including a full description of every ability and trait that each class offers.</li>
-            <li>When changing to a new class, you will enter a 12-hour cooldown period where you may not change to any other class during the duration.  Tokens are available in the Shop to skip this cooldown limitation, but in general we want the selection of playing a class to be permanent enough for players to enjoy the strategic value while not too permanent that you can't change your mind later on.</li>
-            <li>If you would like to read the details available for all of the classes in advance, you may <a href="#" class="view-class-details-link">view them here</a>.  Spoilers, obviously!</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Your reforging "roll" has been tweaked to not round up numbers visually.  For example, previously rolling a 79.95 would round up to 80.0 and would be frustrating if the game said you needed an 80.0 but still failed.</li>
-            <li>Blue text links are now easier to see in dark mode.</li>
-            <li>The close "X" button for popup prompts is now themed properly in dark mode.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Thursday 5th October 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Evasive Maneuvers and Precise Shots should now properly extend their duration as the level of the ability is raised.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Buffs that extend their own duration will now show properly in the realtime battle interface.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Wednesday 4th October 2023</h2>
-    <ul>
-        <li><b>Balance Changes</b></li>
-        <ul>
-            <li>Each new room in the tower now has the same auto-attack tick delay as the first room.  This delay is 0.8 seconds and prevents either side from auto-attacking during this time to give players a more fair chance to load in and react to the battle.  Keep in mind that this delay only affects auto-attacks and both friendly and enemy units can still use abilities during this time and passive effects will still occur.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>When equipment slots are displayed, the display of neck items has been moved to show before head items in order to group the equipment items together.</li>
-            <li>Chat names and channels will now appear bold to increase readability.</li>
-            <li>The skill XP bar in dark mode under Rankings is now easier to read.</li>
-        </ul>
-        <li><b>Performance Changes</b></li>
-        <ul>
-            <li>Town donations have been further optimized to reduce network overhead.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Tuesday 3rd October 2023</h2>
-    <ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Wands are now named for the tier of wood they're looted from instead of the metal for that tier.</li>
-            <li>Renamed "magic wood" to "sagewood".</li>
-        </ul>
-        <li><b>Performance Changes</b></li>
-        <ul>
-            <li>Tower Floor loot has been highly optimized to reduce network overhead.</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Monday 2nd October 2023</h2>
-    <ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Black or very dark grey dark mode icons have been color-inverted to be white so they are visible under this theme.</li>
-            <li>Text in the Tower/group lobby page have been updated to better indicate if the boss is locked, how much health it has, floor progression, and official attempts/contribution status.</li>
-            <li>Passive combat abilities and companion abilities will no longer show their hotkey label during battle.</li>
-            <li>The hotkey label for changing targets has been uppercased from "t" to "T".</li>
-            <li>Renamed "chili" back to "chilli".</li>
-        </ul>
-    </ul>
-
-    <h2 class="my-3">Sunday 1st October 2023</h2>
-    <ul>
-        <li><b>Balance Changes</b></li>
-        <ul>
-            <li>The winds shift and stir, and you feel a change in the air. Sweat begins to drip down your neck, and a menacing aura creeps in around you as you survey the tower floor.</li>
-            <li>The difficulty of the top tower floor will now scale based on your group's average combat skill levels.</li>
-            <li>For the most highly skilled groups, the difficulty will scale up to 4 floors past the current top tower floor.</li>
-            <li>This means, for example, a very skilled group battling Floor 7 will experience combat at the equivalent of a Floor 11 level.</li>
-            <li>This does not affect other floors, the scaling will only affect players fighting on the current top tower floor.</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>The town multi-donate will no longer be active when switching away from the town tab.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>The town goods will now only update when you first go to the page. For now, this means that you will need to navigate to a different tab then back to see the new donations. Your karma values will update immediately however.</li>
-            <li>Various improvements have been made to the dark mode theme for compatibility with dark and black graphics and item rarity tiers.</li>
-            <li>The chat popup and full-page chat window should both be better behaved about not cutting off chat text and the input bar across various devices.</li>
-            <li>Updated the tower lobby battle page to always show your daily official attempts, even when the boss is unlocked now.</li>
-            <li>Updated the floor and boss timer resets to now show minutes, instead of rounding to hours.</li>
-            <li>Added a small text blurb when players have no tower contributions today.</li>
-            <li>More consistent styling for buttons in dark theme.</li>
-        </ul>
-    </ul>
- 
-    <h2 class="my-3">Saturday 30th September 2023</h2>
-    <ul>
-        <li><b>New Stuff</b></li>
-        <ul>
-            <li>A new ability Distract has been added to Inscription at level 22 that lets a player detaunt enemies, forcing them to find someone else to attack if possible.</li>
-        </ul>
-        <li><b>Balance Changes</b></li>
-        <ul>
-            <li>Many rare seeds are now available to purchase in the farming shop at very high Farming skill levels and gold costs to purchase.  The Farming skill cost to plant these seeds are still the same (and much lower) so if you loot them or get them from the Town buff, you can still plant them.  This will help players with bad RNG or who play the game less frequently still able to work towards unlocking all of the abilities and spells that require rarer inscription materials.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Low damage combat hits will now show as being absorbed by the enemy's armor instead of tiny fractional damage amount.</li>
-        </ul>
-    </ul>
- 
-    <h2 class="my-3">Friday 29th September 2023</h2>
-    <ul>
-        <li><b>Feature Update</b></li>
-        <ul>
-            <li>We have re-enabled the Town Donated Items view feature, so you can now see what other players have donated and see the upgrade progress for each town location.  Items are now consolidated into one stack, so you can no longer view the individual donors.  These updates resolve a number of large performance issues the system previously had.</li>
-        </ul>
-        <li><b>Graphics</b></li>
-        <ul>
-            <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for bucklers, silver essence walls, bamboo walls, bamboo huts, and gold crowns!</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Daily resets should correctly reset daily official attempts correctly now, including resets when the boss dies and a new floor opens.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>A new option has been added to enable a large chat mode (non-mobile).</li>
-            <li>The post-combat summary will now display damage mitigated (thanks to physical armor and magic armor) and attacks dodged.  There are no achievements for this, it's just stats to help understand how your armor and defense stats benefit you.</li>
-            <li>Some text describing the current floor has been cleaned up in the Tower.</li>
-        </ul>
-    </ul>
- 
-    <h2 class="my-3">Thursday 28th September 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Fixed an issue with XP bonuses not being applied correctly to any XP gains to any skills.</li>
-        </ul>
-        <li><b>UI Changes</b></li>
-        <ul>
-            <li>Bonus damage from non-weapon equipped items (such as horned helms, knives, etc.) will now display the total bonus damage added to your attacks and not the individual additions to your minimum and maxium damage, which was causing some confusion.</li>
-            <li>Quivers are now named for the tier of wood they're crafted from instead of the metal for that tier.</li>
-        </ul>
-    </ul>
-    
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Wednesday 27th September 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>The reforge queue should be behaving now.  No longer will it delete items or produce duplicate items.  We hope.  For realsies.</li>
-            <li>Hiring woodcutters will no longer delete locked axes.</li>
-        </ul>
-        <li><b>Balance Changes</b></li>
-        <ul>
-            <li>The tower mobs have eaten their Wheaties and should be more formidable now.</li>
-        </ul>
-        <li><b>Minor Changes</b></li>
-        <ul>
-            <li>Hiring woodcutters will now ignore locked axes.</li>
-        </ul>
-    </ul>
-
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Tuesday 26th September 2023</h2>
-    <ul>
-        <li><b>Graphics</b></li>
-        <ul>
-            <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for furnaces, quivers, and sculptures. Thanks!</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Updated the reforging logic to try and eliminate item loss from the queue</li>
-        </ul>
-    </ul>
-
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Monday 25th September 2023</h2>
-    <ul>
-        <li><b>Graphics</b></li>
-        <ul>
-            <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for bars, bows,
-                idols, mining anvils, woodcutting axes, mining hammers, pickaxes, pylons, and walls. Thank you!</li>
-        </ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Boss Health will no longer reset during the daily floor official run reset</li>
-            <li>Mammoths no longer take damage from their own version of Berserk</li>
-
-        </ul>
-        <li><b>Minor Changes</b></li>
-        <ul>
-            <li>Small updates to tutorial for clarity</li>
-            <li>Added another server-side tweak to help with town karma performance</li>
-            <li>Light theme chat no longer has a transparent background on mobile view</li>
-            <li>Fixed dark theme Achievement numbers being too dark to view</li>
-            <li>Fixed dark theme Rankings category icons being too dark to view</li>
-            <li>Fixed crafting one / many text being selectable in mobile view</li>
-        </ul>
-    </ul>
-
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Sunday 24th September 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Fix an issue where the Berserk ability was not correctly dealing damage to the player when active</li>
-        </ul>
-        <li><b>Minor Changes</b></li>
-        <ul>
-            <li>Due to performance issues, the "Town items donated today" has been disabled in the UI. Town buffs will
-                still calculate and apply correctly from the server. This mainly affects the "karma at this location"
-                counter in the UI only.</li>
-        </ul>
-    </ul>
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Saturday 23rd September 2023</h2>
-    <ul>
-        <li><b>Bugfixes</b></li>
-        <ul>
-            <li>Fix the Town data subscription happening twice, causing substantial lag</li>
-        </ul>
-        <li><b>Minor Changes</b></li>
-        <ul>
-            <li>Split ability page into "Learned" and "Unlearned" abilities</li>
-            <li>Re-labelled the 6th ability slot to make it clearer that it is for companions</li>
-            <li>Various small fixes for dark mode theme</li>
-            <li>Various changes to the battle-proxy to try and prevent it crashing</li>
-        </ul>
-    </ul>
-
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Friday 22nd September 2023</h2>
-    <ul>
-        <li><b>Minor Changes</b></li>
-        <ul>
-            <li>Add colon after player names in chat to make the distinction clearer</li>
-            <li>Various small fixes for dark mode theme</li>
-            <li>Disable guest announcement since it was making the announcement in triplicate</li>
-        </ul>
-    </ul>
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Monday 4th - Monday 19th September 2023</h2>
-    <ul>
-        <li><b>Major Changes</b></li>
-        <ul>
+            <li><b>Class Balance Changes</b></li>
             <li>
-                Integrated dark theme and added toggle, dark theme is now the default but can be switched back to the
-                light theme.
-            </li>
-            <li>
-                Added several new character icons (Thanks Chloette!).
                 <ul>
-                    <li>Many character icons have a few variants now: T1, T1 Rare (color), T2, T2 Rare (color)</li>
-                    <li>All character icons now drop from the Tower on various floors (usually one icon per floor).</li>
-                    <li>Some sets of character icons are available for purchase in the Gem shop.</li>
+                    <li>{{> updatesBuff}} Barbarian Brawn is raised to 4 stacks every time they miss with an auto-attack and stack loss when hitting is reduced to 1.</li>
+                    <li>{{> updatesMixed}} War Mage Trait intrinsic bonus to attack speed has been lowered from 75% to 50% and extra magical damage has been increased from 100% to 133%.</li>
+                    <li>{{> updatesBuff}} Wizard Time Warp health cost is lowered to 1.33% health and 0.4% maximum health loss per second channelled.</li>
                 </ul>
             </li>
-            <li>Slight rebalancing to lower early game crafting gold and xp.</li>
+            <li><b>Bugfixes</b></li>
             <li>
-                All new players start with 200 free gems, which is enough to get a month-long membership to a
-                skill of their choosing
+                <ul>
+                    <li>Damage reduction from kite shield absorption is no longer additive with armor damage reductions.  Instead, damage is individually reduced in steps.</li>
+                    <li>Healing Shield armor buff duration is fixed and should no longer instantly drop its armor bonus to allied targets.</li>
+                    <li>Thirsty Fangs now actually heals for 20% of the damage you dealt, not 20% of your damage potential.</li>
+                    <li>Missing "toast"-style messages have been restored/fixed.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>You can now see the class of other group members in the battle lobby.</li>
+                    <li>You can now see the current energy of pending invitees to a group.</li>
+                    <li>The rankings now show players' Class on mobile.</li>
+                    <li>Some text misalignment in the battle lobby when being invited to a group has been fixed.</li>
+                    <li>Some minor issues with viewing other players' profile have been resolved.</li>
+                </ul>
             </li>
         </ul>
-        <li><b>Minor Changes</b></li>
+
+        <h2 class="my-3">Saturday 14th October 2023</h2>
         <ul>
-            <li>Archer T1 is now unlocked as a default character portrait for players</li>
-            <li>Added tooltips to the Crafting inventory for the multi-* buttons</li>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Barbarian Trait intrinsic chance to strike adjacent targets when using broad swords and battle axes raised to 40%.</li>
+                    <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 33%.</li>
+                    <li>{{> updatesBuff}} Paladin Trait intrinsic double bonus to spear and hammer maximum damage has been increased to triple.</li>
+                    <li>{{> updatesBuff}} Paladin Trait intrinsic triple bonus to non-magic armor maximum health has been increased to quadruple.</li>
+                    <li>{{> updatesNerf}} Paladin Trait intrinsic gains a new effect: entering battle with fewer than 4 player allies will reduce your damage by 12.5% per missing ally.</li>
+                    <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically (very randomly, but about every 45 seconds).</li>
+                    <li>{{> updatesMixed}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
+                    <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
+                    <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shift that stuns all enemies and restores 20% of your health.</li>
+                    <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
+                </ul>
+            </li>
+            <li><b>General Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
+                    <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
+                </ul>
+            </li>
+            <li><b>Feature Updates</b></li>
+            <li>
+                <ul>
+                    <li>Locked items may be reforged instead of giving an error about it being locked.  Keep in mind when an item enters and exits your reforge queue, it will lose any locked status and will thus no longer be locked.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>A battle server crash involving the Sage's Bond being removed from the target if the Sage dies has been fixed.</li>
+                    <li>The battle server should handle internal errors more gracefully and will simply forfeit any battle that would otherwise have caused a crash instead.</li>
+                    <li>Fixed a bug allowing Sage's Blessing to be granted to the Sage (applied to self).</li>
+                    <li>Fixed a bug allowing Sage's Blessing to be applied multiple times to the same target.</li>
+                    <li>Automatic chat scroll should generally be fixed on desktop, but may still have issues on mobile.</li>
+                    <li>A typo describing Duelists receiving double accuracy benefits from rapiers has been corrected to bucklers.</li>
+                    <li>Missing information about Barbarian's interaction with Charge has been included in <a href="#" class="view-class-details-link">the class view page</a>.</li>
+                    <li>Paladins should benefit from their class trait benefit to maximum health from their leg gear again.</li>
+                    <li>Wizard trait displaying unusual numbers and causing lag is fixed.</li>
+                    <li>Barbarians are no longer permitted to wear magical leg armor (wizard shorts or druidic pants).</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>The Overview page has had a moderate overhaul, showing idle text next to features that are idle, adding mining energy and a timer until energy is full, adding a section for global buffs, and some minor cleanup.</li>
+                    <li>The chat window should show a banner indicating new chat messages on PC.  It may not do this on mobile devices.</li>
+                </ul>
+            </li>
         </ul>
-        <li><b>Backend Changes</b></li>
+
+        <h2 class="my-3">Friday 13th October 2023</h2>
         <ul>
-            <li>Updates to support newest released stable MeteorJS version</li>
-            <li>Required updates to JS / NPM libraries</li>
-            <li>Rewrote the Battle-Proxy and Battle-Node services in Typescript</li>
-            <li>Substantial refactor to the Battle-Proxy code to use more modern libraries</li>
-            <li>Added server-side metric instrumentation</li>
-            <li>Fixes for several API issues discovered during testing</li>
+            <li><b>General Balance Changes</b></li>
+            <ul>
+                <li>The top floor enemies and bosses have gained strength again, challenging you from progressing further . . .</li>
+                <li>Rapier weapons experience ratio has been modified to be 50% attack/15% defense/35% health.</li>
+                <li>Spear weapons experience ratio has been modified to be 70% defense/30% health.</li>
+                <li>Wand weapons experience ratio has been modified to be 25% defense/75% health.</li>
+                <li>Class reforging overrides should no longer require the browser to be refreshed after every attempt.</li>
+                <li>Bleed and poison are no longer reduced by the target's armor.</li>
+                <li>Enemies that dodge now use their defense stat to do so, which means they can no longer dodge ticks of bleeding, poison, ignite, or most magic spells.</li>
+                <li>Spirits and other various enemies no longer dodge but use true immunity when they phase out of reality.  They will still be immune to ticks from bleeding, poison, ignite, etc. while immune.</li>
+                <li>Twin Blades has been updated to gain a stack every 2 seconds instead of every 1.</li>
+            </ul>
+            <li><b>Class Balance Changes</b></li>
+            <ul>
+                <li>{{> updatesMixed}} Barbarian Brawn is raised to 2 stacks every time they miss with an auto-attack and stack loss when hitting is reduced to 1.  Damage cap is lowered to 150%.</li>
+                <li>{{> updatesNerf}} Barbarian Charge stun resilience for their target is increased to 30 seconds and begins when the stun expires.</li>
+                <li>{{> updatesBuff}} Duelist Driven damage reduction is lowered to 40% and attack speed increase is lowered to 75%.</li>
+                <li>{{> updatesBuff}} Paladin Wrath damage is increased to 250%.  It still scales higher depending on how much health the Paladin has when using it.</li>
+                <li>{{> updatesBuff}} Paladin Bulwark initial ally stacks is increased to 3.  It still has a cap of 3 stacks.</li>
+                <li>{{> updatesBuff}} Sage Bond effect cooldown is lowered to 3 seconds and gains a new effect: if the target ally is under 50% health, the Sage will automatically sacrifice 10% of their original maximum health as health to heal the target for 10% of their maximum health.</li>
+                <li>{{> updatesMixed}} Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
+                <li>{{> updatesNerf}} Tactician Grit bonus to defense and magic armor is lowered to 3% per stack.</li>
+                <li>{{> updatesNerf}} Tactician Trait intrinsic initial bonus to damage is lowered to 15% and accuracy is lowered to 10%.</li>
+                <li>{{> updatesBuff}} Wizard Time Warp health cost is lowered to 2% health and 0.75% maximum health loss per second channelled.</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Defeating tower enemies should no longer wildly inflate the amount of gold in the floor tower rewards.</li>
+                <li>Ranger Thicket briars should no longer damage ally units.</li>
+                <li>Tactician Rally bonus to damage now scales with the target's actual damage absorption instead of applying its bonus additively.  This will not effect most monsters, but it will effect some bosses and monster effects.</li>
+                <li>Tactician Grit no longer incorrectly debuffs Tacticians who are wearing opal armor or using Health Up.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>The battle loadout space at the bottom of selecting gear or abilities has been given a margin so that the <b>Return to loadout</b> button does not clip over anything.</li>
+                <li>The battle loadout for abilities has been separated into Active, Passive, Spells, Class, Companions, and Unlearned abilities.</li>
+                <li>The battle Tower lobby has had some text and styling cleanup done.</li>
+                <li><span class="red-text">Red</span> and <span class="blue-text">blue</span> text in Dark Mode should be a bit easier to read.</li>
+                <li>A few ability and combat icons have changed graphics and color.</li>
+            </ul>
         </ul>
-    </ul>
-    <div style="height: 10px; line-height: 10px"><br /></div>
-    <h2 class="my-3">Archived updates</h2>
-    <p>
-        Updates from previous game changes are now available at <a href="/oldUpdates">the old updates page</a>.
-	    Keep in mind they may be inaccurate or out of date due to age.
-    </p>
+
+        <h2 class="my-3">Wednesday 11th October 2023</h2>
+        <ul>
+            <li><b>Developer's Thoughts</b></li>
+            <ul>
+                <li>We realize there are balance issues with high-end items dropping from personal quest that trivializes challenge and many rewards from the tower.  This is something we'll be rebalancing for the next iteration of the tower (consider this more like season 5).  Given that we want all the classes to enjoy an even and balanced playing field and personal quest has already been dropping high end broad swords, kite shields, knives, and such, we'd prefer not to ruin anyone's day by taking those items away in the name of balance.  Instead, for this current server we'll continue to ramp up challenge in the tower and maintain our position that personal quest simply can't drop items above tier 20.  That means the tower will catch up, pose a challenge, and offer better rewards (even if it does take you high end grinders a while to get there).</li>
+            </ul>
+            <li><b>New Stuff</b></li>
+            <ul>
+                <li>Hammers, rapiers, bucklers, wizard hats, wizard shirts, wizard shorts, tridents, magic orbs, and magic tomes will all drop from various elite enemies that can spawn in the tower and in your personal quest.  Like other equipment items that can drop, they are limited to tier 20.</li>
+            </ul>
+            <li><b>Class Balance Changes</b></li>
+            <ul>
+                <li>{{> updatesNerf}} Enemies stunned by a Barbarian's <i>Charge</i> will now be resilient to stuns caused by <i>Charge</i> for 15 seconds after the stun expires  <i>Charge</i> may still be used during this time to inflict its damage.</li>
+                <li>{{> updatesNerf}} War Mages have had their bonus to tridents' attack speed lowered from triple to double since we how have many more tridents in the game.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>The current floor and room (or level and wave for personal quest) will now be shown next to your self-buffs at the top of every battle.</li>
+                <li>Health and energy is a little more visible in the battle lobby.</li>
+                <li>Several changes have been made to styles throughout the site, especially in the dark mode theme.</li>
+                <li>Some consistency issues with buff icons and their tooltips have been fixed; they are still quite buggy but it should be a bit better now.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Tuesday 10th October 2023</h2>
+        <ul>
+            <li><b>New Stuff</b></li>
+            <ul>
+                <li>Each class has been given a new ability, ensuring that they each have at least one unique active and passive ability.  <a href="#" class="view-class-details-link">View them here</a>.  Spoilers, obviously!</li>
+            </ul>
+            <li><b>Feature Changes</b></li>
+            <ul>
+                <li>When a unit has no target, one is picked <i>at random</i> now instead of picking the first enemy from left-to-right.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Ability levels are suppressed (hidden) if the ability is level 1.  Many abilities and spells do not have a level 2 or higher.</li>
+                <li>The floor progression points should be a little easier to read.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Monday 9th October 2023</h2>
+        <ul>
+            <li><b>New Stuff</b></li>
+            <ul>
+                <li>Magical gear including wizard hats, wizard shirts, wizard shorts, and tridents have been rebalanced, new tiers added, and spread out in the tower starting on floor 2.  A druid trident has been added for tier 4 and does have some healing power attached to it.  As part of the rebalancing of wizard items, some items will have been remapped... you may find you previously had purple tridents and wizard gear that are now druid gear.  Or you may have had violet wizard stuff that's now grey.  All of the items have been mapped to their new ranges so their overall stats should not have changed much.  As an exception: druid shirts can have much stronger stats now, so be sure to farm a new one if you need to!</li>
+                <li>Added crafting recipes for tali and willow bows for tiers 18 and 19.</li>
+            </ul>
+            <li><b>Class Balance Changes</b></li>
+            <ul>
+                <li>{{> updatesMixed}} Paladin's <i>Bulwark</i> no longer grants 3 stacks of protection at the beginning of battle.  Instead, it provides 1 stack of protection per every new room in the tower (or simply 1 stack for single-room fights) which can stack up to 3 max.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Art assets for the Wanderer base class have been added courtesy of the talented <a href="https://eternitytower.net/profile/chloette">Chloette</a>.</li>
+                <li>The rounding during reforge has been upgraded so you should no longer see negative reforge rolls.  You weren't actually reforging with negative numbers, it was just showing you that to prevent a rounding error, which is handled more gracefully now.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Sunday 8th October 2023</h2>
+        <ul>
+            <li><b>New Feature</b></li>
+            <ul>
+                <li>Global buffs will now ping the <b>@Global Buffs</b> role in the <b>#player-alerts</b> channel in Discord by mentioning all users with this role.  You can opt-into this ping notification alert by going to the <b>#roles</b> channel and selecting the <img src="/icons/gems.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /> reaction emoji.  Never miss a buff again!</li>
+            </ul>
+            <li><b>Balance Changes</b></li>
+            <ul>
+                <li>Crabs no longer let you penetrate their armor quite so easily.</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>The amulet icon is visible in combat again.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>You can now hover (or tap on mobile) on the smaller buff icons under under each unit frame in battle for a description of the effect.  There are some serious defects in the framework we're using to make this work and as a result, it's not perfect.  Especially when multiple buffs change at the same time.  We're aware and there's simply not a lot we can do about it, but it's a cosmetic creature-comfort feature and felt it was better to have mostly working fine than not available at all.</li>
+                <li>A new preference has been added to hide combat deaths without affecting floating text (damage numbers).</li>
+                <li>Some of the account settings and session preferences have been split off into separate menus to keep the formatting nice across all devices.  Keep in mind that two of the options (floating text and combat deaths) are session preferences and will be reset to their default whenever the website loads.</li>
+                <li>Added a Discord link to the navigational menu.</li>
+                <li>The progress bar that shows the points needed to unlock the next floor in the tower is now rendered at the correct proportionate width.  Previously it would not shrink below 37.5%.</li>
+                <li>Renamed "monk ninja" enemies to "sullen warrior".</li>
+                <li>Renamed "wise monk" elite enemies to "glowering warrior".</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Saturday 7th October 2023</h2>
+        <ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>The battle screen now better shows who each friendly and enemy unit is targeting.  Additionally, combat messages including friendly and enemy deaths are now shown.</li>
+                <li>The combat lobby now shows an hourglass icon above players with a pending invitation to the group.</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Equipping items should no longer heal you.</li>
+                <li>Removing or changing amulets should now correctly update your ability to use amulet charges for click damage in battle.</li>
+                <li>Targeting and amulet damage should work again in battle.</li>
+                <li>When you die in battle, the game should no longer freeze.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Friday 6th October 2023</h2>
+        <ul>
+            <li><b>New Feature: Classes</b></li>
+            <ul>
+                <li>Upon clearing the Tower floor 10 and claiming the associated achievement, you will unlock this new feature which lets you set your active character Class!</li>
+                <li>When you first unlock the feature, you will automatically become a <i>Wanderer</i>, the base class that does not have any specific benefits other than an additional 3 ability slots to use.</li>
+                <li>A new option in the Battle > Loadout page (visible in Solo and Group battle types) will appear with options to select and view all of the available classes, including a full description of every ability and trait that each class offers.</li>
+                <li>When changing to a new class, you will enter a 12-hour cooldown period where you may not change to any other class during the duration.  Tokens are available in the Shop to skip this cooldown limitation, but in general we want the selection of playing a class to be permanent enough for players to enjoy the strategic value while not too permanent that you can't change your mind later on.</li>
+                <li>If you would like to read the details available for all of the classes in advance, you may <a href="#" class="view-class-details-link">view them here</a>.  Spoilers, obviously!</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Your reforging "roll" has been tweaked to not round up numbers visually.  For example, previously rolling a 79.95 would round up to 80.0 and would be frustrating if the game said you needed an 80.0 but still failed.</li>
+                <li>Blue text links are now easier to see in dark mode.</li>
+                <li>The close "X" button for popup prompts is now themed properly in dark mode.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Thursday 5th October 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Evasive Maneuvers and Precise Shots should now properly extend their duration as the level of the ability is raised.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Buffs that extend their own duration will now show properly in the realtime battle interface.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Wednesday 4th October 2023</h2>
+        <ul>
+            <li><b>Balance Changes</b></li>
+            <ul>
+                <li>Each new room in the tower now has the same auto-attack tick delay as the first room.  This delay is 0.8 seconds and prevents either side from auto-attacking during this time to give players a more fair chance to load in and react to the battle.  Keep in mind that this delay only affects auto-attacks and both friendly and enemy units can still use abilities during this time and passive effects will still occur.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>When equipment slots are displayed, the display of neck items has been moved to show before head items in order to group the equipment items together.</li>
+                <li>Chat names and channels will now appear bold to increase readability.</li>
+                <li>The skill XP bar in dark mode under Rankings is now easier to read.</li>
+            </ul>
+            <li><b>Performance Changes</b></li>
+            <ul>
+                <li>Town donations have been further optimized to reduce network overhead.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Tuesday 3rd October 2023</h2>
+        <ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Wands are now named for the tier of wood they're looted from instead of the metal for that tier.</li>
+                <li>Renamed "magic wood" to "sagewood".</li>
+            </ul>
+            <li><b>Performance Changes</b></li>
+            <ul>
+                <li>Tower Floor loot has been highly optimized to reduce network overhead.</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Monday 2nd October 2023</h2>
+        <ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Black or very dark grey dark mode icons have been color-inverted to be white so they are visible under this theme.</li>
+                <li>Text in the Tower/group lobby page have been updated to better indicate if the boss is locked, how much health it has, floor progression, and official attempts/contribution status.</li>
+                <li>Passive combat abilities and companion abilities will no longer show their hotkey label during battle.</li>
+                <li>The hotkey label for changing targets has been uppercased from "t" to "T".</li>
+                <li>Renamed "chili" back to "chilli".</li>
+            </ul>
+        </ul>
+
+        <h2 class="my-3">Sunday 1st October 2023</h2>
+        <ul>
+            <li><b>Balance Changes</b></li>
+            <ul>
+                <li>The winds shift and stir, and you feel a change in the air. Sweat begins to drip down your neck, and a menacing aura creeps in around you as you survey the tower floor.</li>
+                <li>The difficulty of the top tower floor will now scale based on your group's average combat skill levels.</li>
+                <li>For the most highly skilled groups, the difficulty will scale up to 4 floors past the current top tower floor.</li>
+                <li>This means, for example, a very skilled group battling Floor 7 will experience combat at the equivalent of a Floor 11 level.</li>
+                <li>This does not affect other floors, the scaling will only affect players fighting on the current top tower floor.</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>The town multi-donate will no longer be active when switching away from the town tab.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>The town goods will now only update when you first go to the page. For now, this means that you will need to navigate to a different tab then back to see the new donations. Your karma values will update immediately however.</li>
+                <li>Various improvements have been made to the dark mode theme for compatibility with dark and black graphics and item rarity tiers.</li>
+                <li>The chat popup and full-page chat window should both be better behaved about not cutting off chat text and the input bar across various devices.</li>
+                <li>Updated the tower lobby battle page to always show your daily official attempts, even when the boss is unlocked now.</li>
+                <li>Updated the floor and boss timer resets to now show minutes, instead of rounding to hours.</li>
+                <li>Added a small text blurb when players have no tower contributions today.</li>
+                <li>More consistent styling for buttons in dark theme.</li>
+            </ul>
+        </ul>
+    
+        <h2 class="my-3">Saturday 30th September 2023</h2>
+        <ul>
+            <li><b>New Stuff</b></li>
+            <ul>
+                <li>A new ability Distract has been added to Inscription at level 22 that lets a player detaunt enemies, forcing them to find someone else to attack if possible.</li>
+            </ul>
+            <li><b>Balance Changes</b></li>
+            <ul>
+                <li>Many rare seeds are now available to purchase in the farming shop at very high Farming skill levels and gold costs to purchase.  The Farming skill cost to plant these seeds are still the same (and much lower) so if you loot them or get them from the Town buff, you can still plant them.  This will help players with bad RNG or who play the game less frequently still able to work towards unlocking all of the abilities and spells that require rarer inscription materials.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Low damage combat hits will now show as being absorbed by the enemy's armor instead of tiny fractional damage amount.</li>
+            </ul>
+        </ul>
+    
+        <h2 class="my-3">Friday 29th September 2023</h2>
+        <ul>
+            <li><b>Feature Update</b></li>
+            <ul>
+                <li>We have re-enabled the Town Donated Items view feature, so you can now see what other players have donated and see the upgrade progress for each town location.  Items are now consolidated into one stack, so you can no longer view the individual donors.  These updates resolve a number of large performance issues the system previously had.</li>
+            </ul>
+            <li><b>Graphics</b></li>
+            <ul>
+                <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for bucklers, silver essence walls, bamboo walls, bamboo huts, and gold crowns!</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Daily resets should correctly reset daily official attempts correctly now, including resets when the boss dies and a new floor opens.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>A new option has been added to enable a large chat mode (non-mobile).</li>
+                <li>The post-combat summary will now display damage mitigated (thanks to physical armor and magic armor) and attacks dodged.  There are no achievements for this, it's just stats to help understand how your armor and defense stats benefit you.</li>
+                <li>Some text describing the current floor has been cleaned up in the Tower.</li>
+            </ul>
+        </ul>
+    
+        <h2 class="my-3">Thursday 28th September 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Fixed an issue with XP bonuses not being applied correctly to any XP gains to any skills.</li>
+            </ul>
+            <li><b>UI Changes</b></li>
+            <ul>
+                <li>Bonus damage from non-weapon equipped items (such as horned helms, knives, etc.) will now display the total bonus damage added to your attacks and not the individual additions to your minimum and maxium damage, which was causing some confusion.</li>
+                <li>Quivers are now named for the tier of wood they're crafted from instead of the metal for that tier.</li>
+            </ul>
+        </ul>
+        
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Wednesday 27th September 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>The reforge queue should be behaving now.  No longer will it delete items or produce duplicate items.  We hope.  For realsies.</li>
+                <li>Hiring woodcutters will no longer delete locked axes.</li>
+            </ul>
+            <li><b>Balance Changes</b></li>
+            <ul>
+                <li>The tower mobs have eaten their Wheaties and should be more formidable now.</li>
+            </ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Hiring woodcutters will now ignore locked axes.</li>
+            </ul>
+        </ul>
+
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Tuesday 26th September 2023</h2>
+        <ul>
+            <li><b>Graphics</b></li>
+            <ul>
+                <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for furnaces, quivers, and sculptures. Thanks!</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Updated the reforging logic to try and eliminate item loss from the queue</li>
+            </ul>
+        </ul>
+
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Monday 25th September 2023</h2>
+        <ul>
+            <li><b>Graphics</b></li>
+            <ul>
+                <li>Added new sprites from <a href="https://eternitytower.net/profile/chloette">Chloette</a> for bars, bows,
+                    idols, mining anvils, woodcutting axes, mining hammers, pickaxes, pylons, and walls. Thank you!</li>
+            </ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Boss Health will no longer reset during the daily floor official run reset</li>
+                <li>Mammoths no longer take damage from their own version of Berserk</li>
+
+            </ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Small updates to tutorial for clarity</li>
+                <li>Added another server-side tweak to help with town karma performance</li>
+                <li>Light theme chat no longer has a transparent background on mobile view</li>
+                <li>Fixed dark theme Achievement numbers being too dark to view</li>
+                <li>Fixed dark theme Rankings category icons being too dark to view</li>
+                <li>Fixed crafting one / many text being selectable in mobile view</li>
+            </ul>
+        </ul>
+
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Sunday 24th September 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Fix an issue where the Berserk ability was not correctly dealing damage to the player when active</li>
+            </ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Due to performance issues, the "Town items donated today" has been disabled in the UI. Town buffs will
+                    still calculate and apply correctly from the server. This mainly affects the "karma at this location"
+                    counter in the UI only.</li>
+            </ul>
+        </ul>
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Saturday 23rd September 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <ul>
+                <li>Fix the Town data subscription happening twice, causing substantial lag</li>
+            </ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Split ability page into "Learned" and "Unlearned" abilities</li>
+                <li>Re-labelled the 6th ability slot to make it clearer that it is for companions</li>
+                <li>Various small fixes for dark mode theme</li>
+                <li>Various changes to the battle-proxy to try and prevent it crashing</li>
+            </ul>
+        </ul>
+
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Friday 22nd September 2023</h2>
+        <ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Add colon after player names in chat to make the distinction clearer</li>
+                <li>Various small fixes for dark mode theme</li>
+                <li>Disable guest announcement since it was making the announcement in triplicate</li>
+            </ul>
+        </ul>
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Monday 4th - Monday 19th September 2023</h2>
+        <ul>
+            <li><b>Major Changes</b></li>
+            <ul>
+                <li>
+                    Integrated dark theme and added toggle, dark theme is now the default but can be switched back to the
+                    light theme.
+                </li>
+                <li>
+                    Added several new character icons (Thanks Chloette!).
+                    <ul>
+                        <li>Many character icons have a few variants now: T1, T1 Rare (color), T2, T2 Rare (color)</li>
+                        <li>All character icons now drop from the Tower on various floors (usually one icon per floor).</li>
+                        <li>Some sets of character icons are available for purchase in the Gem shop.</li>
+                    </ul>
+                </li>
+                <li>Slight rebalancing to lower early game crafting gold and xp.</li>
+                <li>
+                    All new players start with 200 free gems, which is enough to get a month-long membership to a
+                    skill of their choosing
+                </li>
+            </ul>
+            <li><b>Minor Changes</b></li>
+            <ul>
+                <li>Archer T1 is now unlocked as a default character portrait for players</li>
+                <li>Added tooltips to the Crafting inventory for the multi-* buttons</li>
+            </ul>
+            <li><b>Backend Changes</b></li>
+            <ul>
+                <li>Updates to support newest released stable MeteorJS version</li>
+                <li>Required updates to JS / NPM libraries</li>
+                <li>Rewrote the Battle-Proxy and Battle-Node services in Typescript</li>
+                <li>Substantial refactor to the Battle-Proxy code to use more modern libraries</li>
+                <li>Added server-side metric instrumentation</li>
+                <li>Fixes for several API issues discovered during testing</li>
+            </ul>
+        </ul>
+        <div style="height: 10px; line-height: 10px"><br /></div>
+        <h2 class="my-3">Archived updates</h2>
+        <p>
+            Updates from previous game changes are now available at <a href="/oldUpdates">the old updates page</a>.
+            Keep in mind they may be inaccurate or out of date due to age.
+        </p>
+    </div>
 
     <style type="text/css">
-        ul li:has(ul) {
+        /* remove bubbles from top list items (categories in bold) */
+        div.updates-page > ul > li,
+        div.updates-page ul ul li:has(span.class-update-note),
+        div.updates-page ul li ul li:has(span.class-update-note)
+        {
             list-style: none;
-            list-style-type: none;
+        }
+
+        /* style bubbles otherwise */
+        div.updates-page ul ul li:not(:has(span.class-update-note)),
+        div.updates-page ul li ul li:not(:has(span.class-update-note)) {
+            list-style: disc;
+            list-style-position: inside;
         }
 
         span.class-update-note {

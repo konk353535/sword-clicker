@@ -1,25 +1,18 @@
 <template name="updatesPage">
 
-    <style type="text/css">
-        ul li:has(ul) {
-            list-style: none;
-            list-style-type: none;
-        }
-    </style>
+    <h2 class="my-3">Sunday 15th October 2023</h2>
+    <ul>
+        <li><b>Bugfixes</b></li>
+        <li>
+            <ul>
+                <li>Damage reduction from kite shield absorption is no longer additive with armor damage reductions.  Instead, damage is individually reduced in steps.</li>
+                <li>Healing Shield armor buff duration is fixed and should no longer instantly drop its armor bonus to allied targets.</li>
+                <li>Thirsty Fangs now actually heals for 20% of the damage you dealt, not 20% of your damge potential.</li>
+            </ul>
+        </li>
+    </ul>
 
-<h2 class="my-3">Sunday 15th October 2023</h2>
-<ul>
-    <li><b>Bugfixes</b></li>
-    <li>
-        <ul>
-            <li>Damge reduction from kite shield absorption is no longer additive with armor damage reductions.  Instead, damage is individually reduced in steps.</li>
-            <li>Healing Shield armor buff duration is fixed and should no longer instantly drop its armor bonus to allied targets.</li>
-            <li>Thirsty Fangs now actually heals for 20% of the damage you dealt, not 20% of your damge potential.</li>
-        </ul>
-    </li>
-</ul>
-
-<h2 class="my-3">Saturday 14th October 2023</h2>
+    <h2 class="my-3">Saturday 14th October 2023</h2>
     <ul>
         <li><b>Class Balance Changes</b></li>
         <li>
@@ -30,9 +23,9 @@
                 <li>{{> updatesBuff}} Paladin Trait intrinsic triple bonus to non-magic armor maximum health has been increased to quadruple.</li>
                 <li>{{> updatesNerf}} Paladin Trait intrinsic gains a new effect: entering battle with fewer than 4 player allies will reduce your damage by 12.5% per missing ally.</li>
                 <li>{{> updatesBuff}} Ranger Thicket briars regrow periodically (very randomly, but about every 45 seconds).</li>
-                <li>{{> updatesNerf}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
+                <li>{{> updatesMixed}} Tactician Rally bonus to damage is lowered to 25% base and increases by 5% for each combat ally in battle with the Tactician up to 75%.</li>
                 <li>{{> updatesNerf}} War Mage Trait intrinsic 100% bonus to attack speed has been lowered to 75%.</li>
-                <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shiftthat stuns all enemies and restores 20% of your health.</li>
+                <li>{{> updatesBuff}} War Mage Trait gains a new effect: once per battle when you would otherwise die, you unleash a powerful blast through a Spacial Shift that stuns all enemies and restores 20% of your health.</li>
                 <li>{{> updatesBuff}} Wizard Equipment Trait gains a new effect: when entering battle, your Focus is increased by half of your Magic Power.</li>
             </ul>
         </li>
@@ -95,7 +88,7 @@
             <li>{{> updatesBuff}} Paladin Wrath damage is increased to 250%.  It still scales higher depending on how much health the Paladin has when using it.</li>
             <li>{{> updatesBuff}} Paladin Bulwark initial ally stacks is increased to 3.  It still has a cap of 3 stacks.</li>
             <li>{{> updatesBuff}} Sage Bond effect cooldown is lowered to 3 seconds and gains a new effect: if the target ally is under 50% health, the Sage will automatically sacrifice 10% of their original maximum health as health to heal the target for 10% of their maximum health.</li>
-            <li>{{> updatesNerf}} Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
+            <li>{{> updatesMixed}} Sage Ward applies Sage Blessing only once now and its protective amount is increased to 35% damage absorption.</li>
             <li>{{> updatesNerf}} Tactician Grit bonus to defense and magic armor is lowered to 3% per stack.</li>
             <li>{{> updatesNerf}} Tactician Trait intrinsic initial bonus to damage is lowered to 15% and accuracy is lowered to 10%.</li>
             <li>{{> updatesBuff}} Wizard Time Warp health cost is lowered to 2% health and 0.75% maximum health loss per second channelled.</li>
@@ -509,6 +502,25 @@
 	    Keep in mind they may be inaccurate or out of date due to age.
     </p>
 
+    <style type="text/css">
+        ul li:has(ul) {
+            list-style: none;
+            list-style-type: none;
+        }
+
+        span.class-update-note {
+            margin-right: 12px;
+        }
+
+        span.class-update-note span {
+            display: inline-block;
+            font-family: Lucida Console;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+    </style>
+
     <script language="javascript" type="text/javascript">
         // When this page is rendered, automatically scroll to the top.
         window.setTimeout(function() {
@@ -519,13 +531,13 @@
 </template>
 
 <template name="updatesNerf">
-    <span class="text-muted" style="margin-right: 12px;">[<span class="red-text" style="font-family: Lucida Console; font-weight: bold;">NERF</span>]</span> 
+    <span class="text-muted class-update-note">[<span class="red-text">NERF</span>]</span> 
 </template>
 
 <template name="updatesBuff">
-    <span class="text-muted" style="margin-right: 12px;">[<span class="green-text" style="font-family: Lucida Console; font-weight: bold;">BUFF</span>]</span> 
+    <span class="text-muted class-update-note">[<span class="green-text">BUFF</span>]</span> 
 </template>
 
 <template name="updatesMixed">
-    <span class="text-muted" style="margin-right: 12px;">[<span class="blue-text" style="font-family: Lucida Console; font-weight: bold;">MIX!</span>]</span> 
+    <span class="text-muted class-update-note">[<span class="blue-text">MIXED</span>]</span> 
 </template>

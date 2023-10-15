@@ -73,7 +73,7 @@
           <thead>
             <tr>
               <th>Rank</th>
-              <th class="hide-on-mobile">Class</th>
+              <th>Class</th>
               <th>Player</th>
               <th>Level</th>
               <th>Wave</th>
@@ -83,7 +83,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td class="hide-on-mobile"><img src="/icons/{{this.icon}}" style="width: 20px; height: 20px; margin-top: -2px; border: none;" /></td>
+                <td><img src="/icons/{{this.icon}}" style="width: 20px; height: 20px; margin-top: -2px; border: none;" /></td>
                 <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 <td>{{this.personalQuest.level}}</td>
                 <td>{{this.personalQuest.wave}}</td>
@@ -134,7 +134,7 @@
           <thead>
             <tr>
               <th>Rank</th>
-              <th class="hide-on-mobile">Class</th>
+              <th>Class</th>
               <th>Player</th>
               <th>Total XP</th>
               <th>Level</th>
@@ -144,7 +144,7 @@
             {{#each highscores}}
               <tr>
                 <td>{{this.rank}}</td>
-                <td class="hide-on-mobile"><img src="/icons/{{this.icon}}" style="width: 20px; height: 20px; margin-top: -2px; border: none;" /></td>
+                <td><img src="/icons/{{this.icon}}" style="width: 20px; height: 20px; margin-top: -2px; border: none;" /></td>
                 <td><a href="/profile/{{this.username}}" class="text-muted">{{this.username}}</a></td>
                 <td>{{> formatNumber number=this.totalXp}}</td>
                 <td>{{> formatNumber number=this.level}}</td>

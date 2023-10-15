@@ -29,9 +29,9 @@
     {{/if}}
     <div class="d-flex flex-grow" style="margin-top: 8px;">
       {{#if classFeatureUnlocked}}
-        <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+        <button type="button" class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
       {{else}}
-        <button class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
+        <button type="button" class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
       {{/if}}
     </div>
     <div class="hide-on-mobile">
@@ -1931,13 +1931,14 @@
     </div>
     <div class="d-flex flex-grow justify-content-center" style="margin: 16px;">
       {{#if classFeatureUnlocked}}
-        <button class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
+        <button type="button" class="btn btn-primary back-to-loadout-btn" style="width: 150px">Back to loadout</button>
       {{else}}
-        <button class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
+        <button type="button" class="btn btn-primary back-to-updates-btn" style="width: 150px">Back to updates</button>
       {{/if}}
     </div>
 
     <script language="javascript" type="text/javascript">
+        // When this page is rendered, automatically scroll to the top.
         window.setTimeout(function() {
             window.scrollTo(0, 0);
         }, 1)

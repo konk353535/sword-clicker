@@ -305,5 +305,13 @@ export const ITEM_RARITIES = Object.freeze({
         label: "Artifact",
         color: "44cc44",
         statBonuses: 0.0
+    },
+
+    // Special (non-tiered): for developer items
+    developer: {
+        rarityId: "developer",
+        label: "Developer",
+        color: "22dd55",
+        statBonuses: 0.0
     }
 })

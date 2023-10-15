@@ -248,6 +248,7 @@ export const MISC_ITEMS = {
             absorption: 1
         },
         extraStats: {},
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
     },
 
     /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */

@@ -529,3 +529,8 @@ img.discord {
 .green-text {
     color: #090;
 }
+
+.grayscale-filter {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}

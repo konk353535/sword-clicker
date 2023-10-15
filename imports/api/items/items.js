@@ -81,8 +81,8 @@ export const applyRarities = function applyRarities(statsObj, rarityId) {
             const rarityIdConsts = ITEM_RARITIES[rarityId]
             if (rarityIdConsts && rarityIdConsts.statBonuses) {
                 Object.keys(localStatsObj).forEach((statName) => {
-                    // disallow % bonuses to attack speed
-                    if (statName !== "attackSpeed") {
+                    // disallow % bonuses to attack speed and absorption
+                    if (statName !== "attackSpeed" && statName !== "absorption") {
                         // ensure that property refers to a stat that is a number and valued more than 0 (non-numeric/non-positive/non-zero all disallowed)
                         if (CDbl(localStatsObj[statName]) > 0.0) {
                             localStatsObj[statName] =

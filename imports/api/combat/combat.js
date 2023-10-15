@@ -91,6 +91,7 @@ CombatSchema = new SimpleSchema({
     "stats.force": { type: Number, decimal: true, defaultValue: 0, optional: true },
     "stats.shred": { type: Number, decimal: true, defaultValue: 0, optional: true },
     "stats.focus": { type: Number, decimal: true, defaultValue: 0, optional: true },
+    "stats.absorption": { type: Number, decimal: true, defaultValue: 0, optional: true },
     amulet: { type: Object, optional: true },
     "amulet.energy": { type: Number, decimal: true },
     "amulet.energyStorage": { type: Number, optional: true },

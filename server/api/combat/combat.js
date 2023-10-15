@@ -52,7 +52,8 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
             magicArmor: 0,
             force: 0,
             shred: 0,
-            focus: 0
+            focus: 0,
+            absorption: 0
         },
         enchantments: [],
         mainHandWeapon: "",

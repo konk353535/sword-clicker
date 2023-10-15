@@ -32,7 +32,8 @@ function descriptors(str) {
         damage: "click damage",
         force: "force",
         shred: "shred",
-        focus: "focus"
+        focus: "focus",
+        absorption: "damage absorption"
     }
     if (terms.hasOwnProperty(str)) {
         return terms[str]
@@ -178,9 +179,9 @@ Template.displayCombatStats.helpers({
                 return
             }
 
-            if (key === "criticalDamage" || key === "criticalChance" || key === "healingPower") {
+            if (key === "criticalDamage" || key === "criticalChance" || key === "healingPower" || key === "absorption") {
                 let val = CDbl(statsMap[key])
-                if (key === "criticalDamage") {
+                if (key === "criticalDamage" || key === "absorption") {
                     val *= 100.0
                 }
 

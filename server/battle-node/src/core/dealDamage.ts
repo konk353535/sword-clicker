@@ -87,12 +87,17 @@ export function dealDamage(
             defender.stats.magicArmor = origMagicArmor // triggers a calculation of 'defender.stats.magicDamageReduction'
 
             // NOTE: damage absorption DOES against some DoT effects:  bleed, poison, ignite, etc. (no adjustment for 'bypassArmor')
-            damage = rawDamage * (1 - dmgReduction) * (defender.stats.damageTaken ? defender.stats.damageTaken : 1.0)
+            damage = rawDamage * (1 - (dmgReduction + defender.stats.absorption)) * (defender.stats.damageTaken ? defender.stats.damageTaken : 1.0)
         }
 
         // damage weakening effects
         if (attacker.stats.damageOutput) {
             damage *= attacker.stats.damageOutput
+        }
+
+        // Negative damage can't heal the target
+        if (damage < 0) {
+            damage = 0
         }
 
         defender.stats.health -= damage

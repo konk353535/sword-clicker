@@ -18,4 +18,5 @@ export type stats = {
     force?: number
     shred?: number
     focus?: number
+    absorption?: number
 }

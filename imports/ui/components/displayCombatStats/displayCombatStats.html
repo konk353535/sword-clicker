@@ -9,11 +9,16 @@
   {{else}}
     {{#each stats}}
       <div class="d-flex align-items-center">
-        <i class="lilIcon-{{this.key}} extra-small-icon mr-1"></i>
-        {{#if this.requiresFormatting}}
-          {{> formatNumber number=this.rawValue}} {{this.label}}
-        {{else}}
+        {{#if $eq this.key 'absorption'}}
+          <img src="/icons/absorption.svg" width="23" height="20" style="border: none; width: 23px; height: 20px; margin-right: 4px;" />
           {{this.label}}
+        {{else}}
+          <i class="lilIcon-{{this.key}} extra-small-icon mr-1"></i>
+          {{#if this.requiresFormatting}}
+            {{> formatNumber number=this.rawValue}} {{this.label}}
+          {{else}}
+            {{this.label}}
+          {{/if}}
         {{/if}}
       </div>
     {{/each}}

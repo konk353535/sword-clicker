@@ -41,6 +41,7 @@ export const COMBAT = {
         "magicArmor",
         "force",
         "shred",
-        "focus"
+        "focus",
+        "absorption"
     ]
 }

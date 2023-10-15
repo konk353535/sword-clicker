@@ -19,6 +19,7 @@ export default class Stats {
     force: number
     shred: number
     focus: number
+    absorption: number
     _attackSpeed: number
     attackSpeedTicks: number
     _armor: number
@@ -82,6 +83,7 @@ export default class Stats {
         this.force = this.origStats.force || 0
         this.shred = this.origStats.shred || 0
         this.focus = this.origStats.focus || 0
+        this.absorption = this.origStats.absorption || 0
     }
 
     get attackSpeed() {
@@ -165,6 +167,7 @@ export default class Stats {
         this.force = stats.force || 0
         this.shred = stats.shred || 0
         this.focus = stats.focus || 0
+        this.absorption = stats.absorption || 0
         this.damageOutput = 1.0
 
         // initialize other bits
@@ -201,7 +204,8 @@ export default class Stats {
             attackSpeedTicks: this.attackSpeedTicks,
             force: this.force,
             shred: this.shred,
-            focus: this.focus
+            focus: this.focus,
+            absorption: this.absorption
         }
     }
 }

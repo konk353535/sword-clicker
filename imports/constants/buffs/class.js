@@ -396,6 +396,8 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
+                console.log(target.stats.absorption)
+                
                 // lose 12.5% damage for each missing ally, up to 50% reduction when alone
                 // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
                 const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
@@ -2006,12 +2008,15 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                const buffConstants = buff.constants && buff.constants.constants ? buff.constants.constants : lookupBuff(buff.id).constants
-                target.stats.focus += target.stats.magicPower * 0.5
+                console.log("ON APPLY: wizard trait")
+                const buffBase = buff.constants && buff.constants.constants ? buff.constants : lookupBuff(buff.id)
+                target.stats.focus += Math.ceil(target.stats.magicPower * 0.5)
                 
                 buff.custom = buff.data.custom = true
-                buff.customText = `${target.stats.focus}`
-                buff.description = buffConstants.description({ active: true, casterStats: caster.stats })
+                buff.customText = `+${target.stats.focus}`
+                if (buffBase) {
+                    buff.description = buffBase.description({ active: true, casterStats: caster.stats })
+                }
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},

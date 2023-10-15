@@ -234,6 +234,22 @@ export const MISC_ITEMS = {
         enchantments: ["oversized_club"]
     },
 
+    dev_shield: {
+        id: "dev_shield",
+        icon: "prismaticKiteShield.png",
+        category: "combat",
+        weaponType: "shield",
+        slot: "offHand",
+        name: "invulnerability shield",
+        sellPrice: 0,
+        description: "For developer use only.",
+        isEquippable: true,
+        stats: {
+            absorption: 1
+        },
+        extraStats: {},
+    },
+
     /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
     copper_kite_shield: {
         id: "copper_kite_shield",
@@ -250,7 +266,8 @@ export const MISC_ITEMS = {
             defense: 3.5,
             armor: 17,
             attackSpeed: -0.15,
-            accuracy: -2.8
+            accuracy: -2.8,
+            absorption: 0.01
         },
         extraStats: {
             healthMax: 1,
@@ -286,7 +303,8 @@ export const MISC_ITEMS = {
             defense: 4.2 * 1.15,
             armor: 14 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -4.2 * 1.15 * 0.5
+            accuracy: -4.2 * 1.15 * 0.5,
+            absorption: 0.02
         },
         extraStats: {
             healthMax: 0.8,
@@ -329,7 +347,8 @@ export const MISC_ITEMS = {
             defense: 6.3,
             armor: 30.9,
             attackSpeed: -0.15,
-            accuracy: -4.1
+            accuracy: -4.1,
+            absorption: 0.03
         },
         extraStats: {
             healthMax: 1.1,
@@ -372,7 +391,8 @@ export const MISC_ITEMS = {
             defense: 6.9 * 1.15,
             armor: 22.8 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -3.5 * 1.15
+            accuracy: -3.5 * 1.15,
+            absorption: 0.04
         },
         extraStats: {
             healthMax: 1.3,
@@ -415,7 +435,8 @@ export const MISC_ITEMS = {
             defense: 8.3 * 1.15,
             armor: 27.4 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -4.2 * 1.15
+            accuracy: -4.2 * 1.15,
+            absorption: 0.05
         },
         extraStats: {
             healthMax: 1.6,
@@ -458,7 +479,8 @@ export const MISC_ITEMS = {
             defense: 10 * 1.15,
             armor: 32.9 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -5 * 1.15
+            accuracy: -5 * 1.15,
+            absorption: 0.06
         },
         extraStats: {
             healthMax: 2,
@@ -501,7 +523,8 @@ export const MISC_ITEMS = {
             defense: 11.7 * 1.15,
             armor: 38.5 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -5.9 * 1.15
+            accuracy: -5.9 * 1.15,
+            absorption: 0.07
         },
         extraStats: {
             healthMax: 2.3,
@@ -544,7 +567,8 @@ export const MISC_ITEMS = {
             defense: 13.2 * 1.15,
             armor: 43.5 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -6.6 * 1.15
+            accuracy: -6.6 * 1.15,
+            absorption: 0.08
         },
         extraStats: {
             healthMax: 2.6,
@@ -587,7 +611,8 @@ export const MISC_ITEMS = {
             defense: 7.9 * 1.15,
             armor: 51.8 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -15.7 * 1.15
+            accuracy: -15.7 * 1.15,
+            absorption: 0.09
         },
         extraStats: {
             healthMax: 3.1,
@@ -630,7 +655,8 @@ export const MISC_ITEMS = {
             defense: 18.1 * 1.15,
             armor: 59.6 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -9.1 * 1.15
+            accuracy: -9.1 * 1.15,
+            absorption: 0.10
         },
         extraStats: {
             healthMax: 3.5,
@@ -673,7 +699,8 @@ export const MISC_ITEMS = {
             defense: 20.5 * 1.15,
             armor: 67.3 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -10.3 * 1.15
+            accuracy: -10.3 * 1.15,
+            absorption: 0.11
         },
         extraStats: {
             healthMax: 4,
@@ -716,7 +743,8 @@ export const MISC_ITEMS = {
             defense: 23 * 1.15,
             armor: 75.4 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -11.5 * 1.15
+            accuracy: -11.5 * 1.15,
+            absorption: 0.12
         },
         extraStats: {
             healthMax: 4.4,
@@ -759,7 +787,8 @@ export const MISC_ITEMS = {
             defense: 25.8 * 1.15,
             armor: 84.4 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -12.9 * 1.15
+            accuracy: -12.9 * 1.15,
+            absorption: 0.13
         },
         extraStats: {
             healthMax: 5,
@@ -802,7 +831,8 @@ export const MISC_ITEMS = {
             defense: 28.6 * 1.15,
             armor: 93.7 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -14.3 * 1.15
+            accuracy: -14.3 * 1.15,
+            absorption: 0.14
         },
         extraStats: {
             healthMax: 5.5,
@@ -845,7 +875,8 @@ export const MISC_ITEMS = {
             defense: 31.5 * 1.15,
             armor: 103.1 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -15.8 * 1.15
+            accuracy: -15.8 * 1.15,
+            absorption: 0.15
         },
         extraStats: {
             healthMax: 6.1,
@@ -888,7 +919,8 @@ export const MISC_ITEMS = {
             defense: 34.3 * 1.15,
             armor: 112.4 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -17.2 * 1.15
+            accuracy: -17.2 * 1.15,
+            absorption: 0.16
         },
         extraStats: {
             healthMax: 6.6,
@@ -931,7 +963,8 @@ export const MISC_ITEMS = {
             defense: 38.1 * 1.15,
             armor: 124.8 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -19.1 * 1.15
+            accuracy: -19.1 * 1.15,
+            absorption: 0.17
         },
         extraStats: {
             healthMax: 7.3,
@@ -974,7 +1007,8 @@ export const MISC_ITEMS = {
             defense: 41.9 * 1.15,
             armor: 137.3 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -21.0 * 1.15
+            accuracy: -21.0 * 1.15,
+            absorption: 0.18
         },
         extraStats: {
             healthMax: 8,
@@ -1017,7 +1051,8 @@ export const MISC_ITEMS = {
             defense: 46.9 * 1.15,
             armor: 153.8 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -23.5 * 1.15
+            accuracy: -23.5 * 1.15,
+            absorption: 0.19
         },
         extraStats: {
             healthMax: 9,
@@ -1060,7 +1095,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15,
             armor: 167.6 * 1.7,
             attackSpeed: -0.15,
-            accuracy: -25.6 * 1.15
+            accuracy: -25.6 * 1.15,
+            absorption: 0.20
         },
         extraStats: {
             healthMax: 9.8,
@@ -1103,7 +1139,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.1,
             armor: 167.6 * 1.7 * 1.1,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.1
+            accuracy: -51.1 * 1.15 * 0.5 * 1.1,
+            absorption: 0.21
         },
         extraStats: {
             healthMax: 9.8 * 1.1,
@@ -1147,7 +1184,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.2,
             armor: 167.6 * 1.7 * 1.2,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.2
+            accuracy: -51.1 * 1.15 * 0.5 * 1.2,
+            absorption: 0.22
         },
         extraStats: {
             healthMax: 9.8 * 1.2,
@@ -1191,7 +1229,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.3,
             armor: 167.6 * 1.7 * 1.3,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.3
+            accuracy: -51.1 * 1.15 * 0.5 * 1.3,
+            absorption: 0.23
         },
         extraStats: {
             healthMax: 9.8 * 1.3,
@@ -1236,7 +1275,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.4,
             armor: 167.6 * 1.7 * 1.4,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.4
+            accuracy: -51.1 * 1.15 * 0.5 * 1.4,
+            absorption: 0.24
         },
         extraStats: {
             healthMax: 9.8 * 1.4,
@@ -1281,7 +1321,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.5,
             armor: 167.6 * 1.7 * 1.5,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.5
+            accuracy: -51.1 * 1.15 * 0.5 * 1.5,
+            absorption: 0.25
         },
         extraStats: {
             healthMax: 9.8 * 1.5,
@@ -1326,7 +1367,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.6,
             armor: 167.6 * 1.7 * 1.6,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.6
+            accuracy: -51.1 * 1.15 * 0.5 * 1.6,
+            absorption: 0.26
         },
         extraStats: {
             healthMax: 9.8 * 1.6,
@@ -1371,7 +1413,8 @@ export const MISC_ITEMS = {
             defense: 51.1 * 1.15 * 1.75,
             armor: 167.6 * 1.7 * 1.75,
             attackSpeed: -0.15,
-            accuracy: -51.1 * 1.15 * 0.5 * 1.75
+            accuracy: -51.1 * 1.15 * 0.5 * 1.75,
+            absorption: 0.27
         },
         extraStats: {
             healthMax: 9.8 * 1.75,

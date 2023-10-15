@@ -673,6 +673,15 @@ Meteor.publish("groups", function () {
                 energy: originalStats.energy,
                 energyMax: originalStats.energyMax
             }
+
+            // Find specified username id
+            const memberUserDoc = Users.findOne({
+                username: member.username
+            })
+            if (memberUserDoc) {
+                member.classData = userCurrentClass(memberUserDoc._id)
+            }
+
             return member
         }
 

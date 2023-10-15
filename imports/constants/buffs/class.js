@@ -190,7 +190,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_barbarian__brawn",
         icon: "barbarianBrawn.svg",
         name: "Brawn",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that increases all of your damage by
@@ -295,8 +295,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_duelist__parry", // Used to stop duplicate buffs
         icon: "duelistParry.svg",
         name: "Parry",
-        description({ buff, level }) {
-            const c = buff.constants
+        description() {
             return `
         Parry physical attacks, negating the damage and counter attacking for 75% attack damage.<br />
         Lasts for 6 seconds.`
@@ -350,7 +349,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_duelist__driven",
         icon: "duelistDriven.svg",
         name: "Driven",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         Your damage is reduced by 40%, but you auto-attack 75% faster.<br />
@@ -509,7 +508,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_paladin_inspiration", // Used to stop duplicate buffs
         icon: "paladinInspiration.svg",
         name: "Paladin's Inspiration",
-        description({ buff, level }) {
+        description({ buff }) {
             const c = buff.constants
             return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP).`
@@ -559,7 +558,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "paladin_trait_squire_damage_interception",
         icon: "paladinSquireInterception.svg",
         name: "Squire Interception",
-        description({ buff, level }) {
+        description() {
             return `
         Redirects 50% damage from the squire back to the paladin.`
         },
@@ -693,7 +692,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_paladin__bulwark",
         icon: "paladinBulwark.svg",
         name: "Bulwark",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         Grants all allies 3 stacks of <i>Bulwark</i> protection at the beginning of battle that 
@@ -745,7 +744,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_paladin__bulwark_effect",
         icon: "paladinBulwark.svg",
         name: "Bulwark",
-        description({ buff, level }) {
+        description() {
             return `
         A Paladin has granted you a stack of <i>Bulwark</i> protection that prevents all damage.
         Each time you would take damage, a stack is deducted. When all stacks are gone, this
@@ -1077,8 +1076,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_ranger_briar_effect",
         icon: "rangerThicketBriar.svg",
         name: "Painful",
-        description({ buff, level }) {
-            const c = buff.constants
+        description() {
             return `When destroyed, the briar causes damage to the enemy that destroyed it!`
         },
         constants: {},
@@ -1135,7 +1133,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_ranger__blaze_arrows",
         icon: "rangerBlazeArrows.svg",
         name: "Blaze Arrows",
-        description({ buff, level }) {
+        description({ buff }) {
             return `
         A fiery attack that deals <b>${(buff.constants.initialDamage * 100).toFixed(0)}%</b> damage immediately and sets
         the target on fire, burning for <b>${(buff.constants.fireDamage * 100).toFixed(0)}%</b> damage every second for
@@ -1189,7 +1187,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_ranger__blaze_arrows__burning_effect",
         icon: "rangerBlazeArrows.svg",
         name: "Blaze Arrow",
-        description({ buff, level }) {
+        description() {
             return ``
         },
         constants: {},
@@ -1229,7 +1227,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_ranger__sleet_arrows",
         icon: "rangerSleetArrows.svg",
         name: "Sleet Arrows",
-        description({ buff, level }) {
+        description({ buff }) {
             return `
         An icy attack that deals <b>${(buff.constants.initialDamage * 100).toFixed(0)}%</b> damage
         and chills the target, lowering its attack speed by <b>50%</b> for 4 seconds.`
@@ -1279,7 +1277,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_ranger__storm_arrows",
         icon: "rangerStormArrows.svg",
         name: "Storm Arrows",
-        description({ buff, level }) {
+        description({ buff }) {
             return `
         An electrified attack that deals <b>${(buff.constants.initialDamage * 100).toFixed(0)}%</b>
         damage and shocks the target, lowering its armor by half of your accuracy for 4 seconds.`
@@ -1330,7 +1328,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_active_ranger__storm_arrows__armor_reduction_effect",
         icon: "rangerStormArrowEffect.svg",
         name: "Storm Arrow",
-        description({ buff, level }) {
+        description() {
             return ``
         },
         constants: {},
@@ -1583,7 +1581,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_sage__ward",
         icon: "sageWard.svg",
         name: "Ward",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         Prevents you from being directly targeted unless there are no other targetable allies remaining in battle.
@@ -1624,7 +1622,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_trait_sage__sages_blessing",
         icon: "sagesBlessing.svg",
         name: "Sage's Blessing",
-        description({ buff, level }) {
+        description() {
             return `
         A Sage's blessing is preventing 15% of the damage you would ordinarily take.`
         },
@@ -1777,7 +1775,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_tactician__grit",
         icon: "tacticianGrit.svg",
         name: "Grit",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         For every 5% Health you are missing from your original Maximum Health,
@@ -1939,7 +1937,7 @@ export const CLASS_BUFFS = {
         duplicateTag: "class_passive_warmage__glorious_destiny",
         icon: "warmageGloriousDestiny.svg",
         name: "Glorious Destiny",
-        description({ buff, level }) {
+        description() {
             return `
         Passive class ability<br />
         Dealing magic damage restores 0.5% of your maximum health.<br />
@@ -2001,7 +1999,6 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                console.log("ON APPLY: wizard trait")
                 const buffBase = buff.constants && buff.constants.constants ? buff.constants : lookupBuff(buff.id)
                 target.stats.focus += Math.ceil(target.stats.magicPower * 0.5)
                 

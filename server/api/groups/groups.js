@@ -4,6 +4,7 @@ import lodash from "lodash"
 import _ from "underscore"
 import moment from "moment"
 
+import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { Combat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
 import { Users } from "/imports/api/users/users"
@@ -286,7 +287,8 @@ Meteor.methods({
         targetGroup.membersObject.push({
             averageCombat: userDoc.averageCombat,
             name: userDoc.username,
-            id: userDoc._id
+            id: userDoc._id,
+            classData: userCurrentClass(userDoc._id)
         })
         Groups.update(targetGroup._id, {
             $set: {
@@ -340,7 +342,8 @@ Meteor.methods({
             targetGroup.membersObject.push({
                 name: userDoc.username,
                 id: userDoc._id,
-                averageCombat: userDoc.averageCombat
+                averageCombat: userDoc.averageCombat,
+                classData: userCurrentClass(userDoc._id)
             })
         }
 
@@ -430,8 +433,9 @@ Meteor.methods({
                 membersObject: [
                     {
                         name: Meteor.user().username,
+                        id: this.userId,
                         averageCombat: Meteor.user().averageCombat,
-                        id: this.userId
+                        classData: userCurrentClass(this.userId)
                     }
                 ],
                 invites: [targetUser._id]
@@ -509,8 +513,9 @@ Meteor.methods({
                 membersObject: [
                     {
                         name: Meteor.user().username,
+                        id: this.userId,
                         averageCombat: Meteor.user().averageCombat,
-                        id: this.userId
+                        classData: userCurrentClass(this.userId)
                     }
                 ],
                 invites: [targetUser._id]
@@ -547,8 +552,9 @@ Meteor.methods({
             membersObject: [
                 {
                     name: Meteor.user().username,
+                    id: this.userId,
                     averageCombat: Meteor.user().averageCombat,
-                    id: this.userId
+                    classData: userCurrentClass(this.userId)
                 }
             ],
             invites: []
@@ -663,7 +669,9 @@ Meteor.publish("groups", function () {
             member.icon = member.characterIcon || "character.svg"
             member.stats = {
                 health: originalStats.health,
-                healthMax: originalStats.healthMax
+                healthMax: originalStats.healthMax,
+                energy: originalStats.energy,
+                energyMax: originalStats.energyMax
             }
             return member
         }

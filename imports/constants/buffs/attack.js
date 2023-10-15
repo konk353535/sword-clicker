@@ -679,16 +679,14 @@ export const ATTACK_BUFFS = {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {},
 
-            onDidDamage({ buff, defender, attacker, actualBattle }) {
+            onDidDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
                 const constants =
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
-                const baseDamage = attacker.stats.attack
-                const extraDamage = Math.round(Math.random() * (attacker.stats.attackMax - attacker.stats.attack))
-                const damageBoost = constants.damageDecimal + constants.extraAttackDamagePerLevel * buff.data.level
-                const totalHealing = (baseDamage + extraDamage) * constants.healingDecimal
-                const totalDamage = (baseDamage + extraDamage) * damageBoost
+                const damageBoost = constants.damageDecimal + (constants.extraAttackDamagePerLevel * buff.data.level)
+                const totalHealing = (damageDealt) * constants.healingDecimal
+                const totalDamage = (damageDealt) * damageBoost
 
                 const hasBleed = defender.buffs.find((buff) => buff.id === "bleed" || buff.id === "bleed_proper")
 

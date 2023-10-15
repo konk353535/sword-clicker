@@ -150,12 +150,12 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             monster.stats.accuracy += extraData.avgDefenseStat * 0.25 * room/8
             monster.stats.accuracy = Math.ceil(monster.stats.accuracy)
 
-            // enemies gets a bonus to armor = 40% the average of all player units' armor
-            monster.stats.armor += extraData.avgPArmor * 0.4 * room/8
+            // enemies gets a bonus to armor = 5% the average of all player units' armor
+            monster.stats.armor += extraData.avgPArmor * 0.05 * room/8
             monster.stats.armor = Math.ceil(monster.stats.armor)
             
-            // enemies gets a bonus to magic armor = 25% the average of all player units' magic armor
-            monster.stats.magicArmor += extraData.avgMArmor * 0.25 * room/8
+            // enemies gets a bonus to magic armor = 1% the average of all player units' magic armor
+            monster.stats.magicArmor += extraData.avgMArmor * 0.01 * room/8
             monster.stats.magicArmor = Math.ceil(monster.stats.magicArmor)
 
             // enemies gets a bonus to force = 50% the average of all player units' defense
@@ -171,10 +171,10 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             // instead of usual attack speed, raise it by +20%
             monster.stats.attackSpeed *= 1.2
 
-            // instead of 0% damage soak, raise to 30%
-            monster.stats.damageTaken -= 0.3 * room/7
-            if (monster.stats.damageTaken < 0.3) {
-                monster.stats.damageTaken = 0.3
+            // instead of 0% damage soak, raise to 20%
+            monster.stats.damageTaken -= 0.2 * room/7
+            if (monster.stats.damageTaken < 0.2) {
+                monster.stats.damageTaken = 0.2
             }
         }
 

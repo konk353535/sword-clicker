@@ -5,6 +5,8 @@
         "void-style": "off",
         "no-inline-style": "off",
         "no-trailing-whitespace": "off",
+        "prefer-tbody": "off",
+        "wcag/h37": "off",
         "no-deprecated-attr": "warn",
         "script-type": "warn"
     }

@@ -828,7 +828,7 @@ export const ENCHANTMENT_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const totalDamage =
-                    rawDamage * ((attacker?.currentClass?.id === "warmage") ? 1 : buffConsts.damageDecimal) + attacker.stats.magicPower * buffConsts.bonusMPMultiplier
+                    rawDamage * ((attacker?.currentClass?.id === "warmage") ? 1.3333 : buffConsts.damageDecimal) + attacker.stats.magicPower * buffConsts.bonusMPMultiplier
                     
                 actualBattle.dealDamage(totalDamage, {
                     attacker,

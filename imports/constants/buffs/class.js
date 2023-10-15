@@ -186,7 +186,7 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Passive class ability<br />
-        Any time you miss with an auto-attack, you add 2 stacks of <i>Brawn</i> that increases all of your damage by
+        Any time you miss with an auto-attack, you add 4 stacks of <i>Brawn</i> that increases all of your damage by
         +10% per stack (to a maximum of +150%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
         to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
@@ -208,7 +208,7 @@ export const CLASS_BUFFS = {
             onTargetDodgedDamage({ buff, defender, attacker, actualBattle, source }) {
                 if (source == "autoattack") {
                     if (buff.stacks < 15) {
-                        buff.stacks += 2
+                        buff.stacks += 4
                     }
                 }
             },
@@ -1818,8 +1818,8 @@ export const CLASS_BUFFS = {
         Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.  May cast hostile
         spells while wielding any style of weapon. Once per battle when you would otherwise die, you unleash a powerful
         blast through a Special Shift that stuns you and all enemies for 5 seconds and restores 20% of your health.
-        Can reforge tridents.  Triple Attack Speed for tridents and tridents now deal 100% of your auto-attack damage
-        as additional magic damage.  Double all stat benefits from amulets.<br />
+        Can reforge tridents.  You attack with tridents 50% quicker and deal <b>133%</b> of your auto-attack damage as
+        additional magic damage instead of the usual 25%.  Double all stat benefits from amulets.<br />
         While you are a War Mage this is <b>always active</b>`
         },
         constants: {
@@ -2014,8 +2014,8 @@ export const CLASS_BUFFS = {
             return `
         Speeds up time for you and your allies, lowering ability cooldowns for as long as
         you channel this spell.  Does not modify effects that last over time such as Mending
-        Waters or Poison.  As long as you channel this spell, will lose 2% of your Health
-        and 0.75% of your Maximum Health per second.<br />
+        Waters or Poison.  As long as you channel this spell, will lose 1.33% of your Health
+        and 0.4% of your Maximum Health per second.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.`
         },
         constants: {
@@ -2129,8 +2129,8 @@ export const CLASS_BUFFS = {
                 //    })
                 //}
 
-                caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.02
-                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.0075
+                caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.01333
+                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.004
                 if (caster.stats.health > caster.stats.healthMax) {
                     caster.stats.health = caster.stats.healthMax
                 }
@@ -2140,7 +2140,7 @@ export const CLASS_BUFFS = {
             },
 
             onRemove({ buff, target, caster, actualBattle }) {
-                target.stats.attackSpeed += buff.data.attackSpeedOriginal * 2
+                //target.stats.attackSpeed += buff.data.attackSpeedOriginal * 2
 
                 actualBattle.units.forEach((friendlyUnit) => {
                     const ally_existing_time_warp_buff = friendlyUnit.findBuff("class_active_wizard__time_warp_target")

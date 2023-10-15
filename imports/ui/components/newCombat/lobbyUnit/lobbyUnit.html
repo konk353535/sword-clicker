@@ -33,7 +33,7 @@
     </div>
   {{else}}
     <div class="d-flex flex-column">
-      <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2 {{#if unit.isInvitee}}invitee-unit{{/if}}">
+      <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
         <div class="d-flex justify-content-center" style="height: 24px">
           {{#if unit.isLeader}}
             <img src="/icons/leaderCrownYellow.svg" class="mr-1" width="24" height="24" />
@@ -56,30 +56,32 @@
           <div style="position: relative;">
             <img
                 src="/icons/{{unit.icon}}"
-                id={{unit.id}}
-                data-unit-id={{unit.id}}
+                id="{{unit.id}}"
+                data-unit-id="{{unit.id}}"
                 class="icon-box battle-unit
                   {{#if unit.leader}}leader-icon{{/if}}
                   {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
-                  {{#if small}}item-icon-container small{{/if}}"
+                  {{#if small}}item-icon-container small{{/if}}                  
+                  {{#if unit.isInvitee}}grayscale-filter{{/if}}"
             >
-            {{#if unit.classUnlocked}}
+            {{#if classIcon}}
               <img
-                  src="/icons/{{unit.classIcon}}"
+                  src="/icons/{{classIcon}}"
+                  class="{{#if unit.isInvitee}}grayscale-filter{{/if}}"
                   style="border: none; position: absolute; left: -12px; top: -12px; z-index: 14; width: 48px; height: 48px;"
               >
             {{/if}}
           </div>
         </a>
         <div class="progress health-bar">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-danger {{#if unit.isInvitee}}grayscale-filter{{/if}}" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100">
             <div class="health-bar d-flex justify-content-center">
               {{> formatNumber number=unit.stats.health}}
             </div>
           </div>
         </div>
         <div class="progress energy-bar mt-1">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: {{energyPercentage}}%" aria-valuenow="{{energyPercentage}}" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-warning {{#if unit.isInvitee}}grayscale-filter{{/if}}" role="progressbar" style="width: {{energyPercentage}}%" aria-valuenow="{{energyPercentage}}" aria-valuemin="0" aria-valuemax="100">
             <div class="energy-bar d-flex justify-content-center">
               {{> formatNumber number=unit.stats.energy}}
             </div>

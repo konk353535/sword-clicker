@@ -3,7 +3,6 @@ import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
 import moment from "moment"
@@ -928,25 +927,31 @@ Template.lobbyPage.helpers({
             } else {
                 userCombat.isLeader = false
             }
-            let userClassData
-            if (currentGroup && currentGroup.membersObject) {
-                currentGroup.membersObject.forEach((groupMember) => {
-                    if (userCombat.owner === groupMember.id) {
-                        userClassData = groupMember.classData
+            if (!userCombat.isInvitee) {
+                let userClassData
+                if (!userCombat.classData) {
+                    if (currentGroup && currentGroup.membersObject) {
+                        currentGroup.membersObject.forEach((groupMember) => {
+                            if (userCombat.owner === groupMember.id) {
+                                userClassData = groupMember.classData
+                            }
+                        })
+                    } else {
+                        if (Meteor.userId() == userCombat.owner) {
+                            userClassData = userCurrentClass(userCombat.owner)
+                        }
                     }
-                })
-            } else {
-                userClassData = userCurrentClass(userCombat.owner)
-            }
-            if (!userClassData) {
-                userClassData = CLASSES.none()
-            }
-            userCombat.classUnlocked = userClassData.unlocked
-            userCombat.classEligible = userClassData.eligible
-            userCombat.classId = userClassData.equipped
-            userCombat.classData = userClassData.data
-            userCombat.classIcon = userClassData.icon
-            userCombat.classCooldown = userClassData.cooldown
+                }
+                if (!userClassData) {
+                    userClassData = CLASSES.none()
+                }
+                userCombat.classUnlocked = userClassData.unlocked
+                userCombat.classEligible = userClassData.eligible
+                userCombat.classId = userClassData.equipped
+                userCombat.classData = userClassData.data
+                userCombat.classIcon = userClassData.icon
+                userCombat.classCooldown = userClassData.cooldown
+                }
 
             return userCombat
         })

@@ -27,6 +27,9 @@ import { Items } from "/imports/api/items/items.js"
 import { Skills } from "/imports/api/skills/skills.js"
 import { Users } from "/imports/api/users/users.js"
 
+import { CLASSES } from "/imports/constants/classes/index.js"
+import { ConsoleSpanExporter } from "@opentelemetry/sdk-trace-base"
+
 window.reconnectQueue = []
 window.isReconnecting = false
 function reconnectBattleSocket(localBalancer, currentBattleList, user) {
@@ -925,7 +928,19 @@ Template.lobbyPage.helpers({
             } else {
                 userCombat.isLeader = false
             }
-            const userClassData = userCurrentClass(userCombat.owner)
+            let userClassData
+            if (currentGroup && currentGroup.membersObject) {
+                currentGroup.membersObject.forEach((groupMember) => {
+                    if (userCombat.owner === groupMember.id) {
+                        userClassData = groupMember.classData
+                    }
+                })
+            } else {
+                userClassData = userCurrentClass(userCombat.owner)
+            }
+            if (!userClassData) {
+                userClassData = CLASSES.none()
+            }
             userCombat.classUnlocked = userClassData.unlocked
             userCombat.classEligible = userClassData.eligible
             userCombat.classId = userClassData.equipped

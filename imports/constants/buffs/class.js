@@ -396,8 +396,6 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                console.log(target.stats.absorption)
-                
                 // lose 12.5% damage for each missing ally, up to 50% reduction when alone
                 // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
                 const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {

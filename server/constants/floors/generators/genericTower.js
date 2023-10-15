@@ -123,7 +123,8 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
                 damageTaken: 1,
                 force: 0,
                 shred: 0,
-                focus: 0
+                focus: 0,
+                absorption: 0
             },
             rewards: []
         }
@@ -138,31 +139,31 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
         // more buffing from Pete
         if (extraData && extraData.hasPlayers) {
             // enemies gets a bonus to damage = 50% the average of all player units' average damage
-            monster.stats.attack += extraData.avgDamage * 0.5
+            monster.stats.attack += extraData.avgDamage * 0.5 * room/8
             monster.stats.attack = Math.ceil(monster.stats.attack)
 
             // enemies gets a bonus to defense = 33% the average of all player units' accuracy
-            monster.stats.defense += extraData.avgAccuracy * 0.3333
+            monster.stats.defense += extraData.avgAccuracy * 0.3333 * room/8
             monster.stats.defense = Math.ceil(monster.stats.defense)
 
             // enemies gets a bonus to accuracy = 25% the average of all player units' defense
-            monster.stats.accuracy += extraData.avgDefenseStat * 0.25
+            monster.stats.accuracy += extraData.avgDefenseStat * 0.25 * room/8
             monster.stats.accuracy = Math.ceil(monster.stats.accuracy)
 
             // enemies gets a bonus to armor = 40% the average of all player units' armor
-            monster.stats.armor += extraData.avgPArmor * 0.4
+            monster.stats.armor += extraData.avgPArmor * 0.4 * room/8
             monster.stats.armor = Math.ceil(monster.stats.armor)
             
             // enemies gets a bonus to magic armor = 25% the average of all player units' magic armor
-            monster.stats.magicArmor += extraData.avgMArmor * 0.25
+            monster.stats.magicArmor += extraData.avgMArmor * 0.25 * room/8
             monster.stats.magicArmor = Math.ceil(monster.stats.magicArmor)
 
             // enemies gets a bonus to force = 50% the average of all player units' defense
             // enemies gets a bonus to shred = 35% the average of all player units' armor
             // enemies gets a bonus to focus = 35% the average of all player units' magic armor
-            monster.stats.force += extraData.avgDefenseStat * 0.50
-            monster.stats.shred += extraData.avgDefenseStat * 0.35
-            monster.stats.focus += extraData.avgMArmor * 0.35
+            monster.stats.force += extraData.avgDefenseStat * 0.50 * room/7
+            monster.stats.shred += extraData.avgDefenseStat * 0.35 * room/7
+            monster.stats.focus += extraData.avgMArmor * 0.35 * room/7
             monster.stats.force = Math.ceil(monster.stats.force)
             monster.stats.shred = Math.ceil(monster.stats.shred)
             monster.stats.focus = Math.ceil(monster.stats.focus)
@@ -171,7 +172,7 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             monster.stats.attackSpeed *= 1.2
 
             // instead of 0% damage soak, raise to 30%
-            monster.stats.damageTaken -= 0.3
+            monster.stats.damageTaken -= 0.3 * room/7
             if (monster.stats.damageTaken < 0.3) {
                 monster.stats.damageTaken = 0.3
             }

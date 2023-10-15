@@ -205,8 +205,6 @@ Meteor.methods({
                     try {
                         const classVal = CLASSES.lookup(classId)
 
-                        console.log(classVal)
-
                         if (classVal && classVal.exclusiveAbilities) {
                             classVal.exclusiveAbilities.forEach((thisAbility) => {
                                 Abilities.update(userAbilities._id, {

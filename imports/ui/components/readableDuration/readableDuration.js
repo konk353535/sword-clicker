@@ -1,5 +1,8 @@
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { TimeSync } from "meteor/mizzao:timesync"
+
+import moment from "moment"
 
 import "./readableDuration.html"
 

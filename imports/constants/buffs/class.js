@@ -1,17 +1,10 @@
-// @ts-check
-
-// @ts-expect-error
 import lodash from "lodash"
-// @ts-expect-error
 import uuid from "node-uuid"
 //import moment from "moment"
-// @ts-expect-error
 import _ from "underscore"
 
 import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
-// @ts-ignore
 import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
-// @ts-ignore
 import { measureMemory } from "vm"
 
 export const CLASS_BUFFS = {

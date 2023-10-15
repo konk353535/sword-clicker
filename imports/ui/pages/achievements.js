@@ -1,9 +1,13 @@
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Meteor } from "meteor/meteor"
+import { Tracker } from "meteor/tracker"
 import { Template } from "meteor/templating"
-
-import { Users } from "/imports/api/users/users.js"
+import { Router } from "meteor/iron:router"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
+
+import { Users } from "/imports/api/users/users.js"
 
 // Component used in the template
 import "/imports/ui/components/achievements/combatAchieveTab/combatAchieveTab.js"

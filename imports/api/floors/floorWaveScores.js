@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const FloorWaveScores = new Mongo.Collection("floorWaveScores")
 
-FloorWaveScoresSchema = new SimpleSchema({
+const FloorWaveScoresSchema = new SimpleSchema({
     floor: { type: Number },
     server: { type: String },
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },

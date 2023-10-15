@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
+import { Router } from "meteor/iron:router"
+import { ReactiveDict } from "meteor/reactive-dict"
 
 import lodash from "lodash"
 
@@ -280,7 +281,7 @@ Template.astronomyTab.helpers({
     },
 
     items() {
-        return (itemList = Items.find({ category: "astronomy" })
+        return Items.find({ category: "astronomy" })
             .map((item) => {
                 return item
             })
@@ -293,6 +294,6 @@ Template.astronomyTab.helpers({
                 }
 
                 return itemConsts1.name < itemConsts2.name ? -1 : 1
-            }))
+            })
     }
 })

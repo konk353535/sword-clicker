@@ -2426,6 +2426,7 @@ export const MONSTER_BUFFS = {
             onDidDamage({ buff, defender, attacker, actualBattle }) {
                 const healingReduction = 0.25
 
+                // Add healing reduction buff
                 attacker.applyBuffTo({
                     buff: attacker.generateBuff({
                         buffId: "healing_reduction",
@@ -2441,9 +2442,6 @@ export const MONSTER_BUFFS = {
                     }),
                     target: defender
                 })
-
-                // Add healing reduction buff
-                addBuff({ buff: newBuff, target: defender, caster: attacker })
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {},

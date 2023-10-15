@@ -20,9 +20,9 @@ import { addXp } from "/server/api/skills/skills.js"
 import { flattenObjectForMongo } from "/server/utils"
 
 import Numeral from "numeral"
-
 import lodash from "lodash"
 import _ from "underscore"
+import moment from "moment"
 
 const math = require("mathjs")
 
@@ -840,7 +840,7 @@ Meteor.methods({
                     )
                 }
 
-                clonedTargetItem = lodash.cloneDeep(targetItem)
+                let clonedTargetItem = lodash.cloneDeep(targetItem)
 
                 Object.keys(baseItem.extraStats).forEach((key) => {
                     if (clonedTargetItem.extraStats[key] === undefined) {

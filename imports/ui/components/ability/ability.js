@@ -31,7 +31,7 @@ const castAbility = function (instance) {
     if (targetType === "autoEnemy" && icons && icons.length > 0) {
         let targetId 
         try {
-            targetId = typeof icons[0].attr !== 'undefined' ? icons[0].attr(data-unit-id) : icons[0].getAttribute("data-unit-id")
+            targetId = typeof icons[0].attr !== 'undefined' ? icons[0].attr("data-unit-id") : icons[0].getAttribute("data-unit-id")
         } catch (err) { }
 
         if (!targetId || typeof targetId === 'undefined') {
@@ -42,9 +42,9 @@ const castAbility = function (instance) {
         const battleId = currentBattleId
         const abilityId = instance.data.ability.id
 
-        if (battleSocket && battleSocket.connected && battleSocket.emit) {
+        if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
             // Gonna require the socket here
-            battleSocket.emit("action", {
+            window.battleSocket.emit("action", {
                 battleSecret: Meteor.user().battleSecret,
                 abilityId,
                 targets: [targetId],
@@ -59,9 +59,9 @@ const castAbility = function (instance) {
         const targetId = Meteor.userId()
         const casterId = Meteor.userId()
 
-        if (battleSocket && battleSocket.connected && battleSocket.emit) {
+        if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
             // Gonna require the socket here
-            battleSocket.emit("action", {
+            window.battleSocket.emit("action", {
                 battleSecret: Meteor.user().battleSecret,
                 abilityId,
                 targets: [targetId],
@@ -86,9 +86,9 @@ const castAbility = function (instance) {
                             const battleId = currentBattleId
                             const abilityId = instance.data.ability.id
 
-                            if (battleSocket && battleSocket.connected && battleSocket.emit) {
+                            if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
                                 // Gonna require the socket here
-                                battleSocket.emit("action", {
+                                window.battleSocket.emit("action", {
                                     battleSecret: Meteor.user().battleSecret,
                                     abilityId,
                                     targets: [targetId],
@@ -114,9 +114,9 @@ const castAbility = function (instance) {
                             const battleId = currentBattleId
                             const abilityId = instance.data.ability.id
 
-                            if (battleSocket && battleSocket.connected && battleSocket.emit) {
+                            if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
                                 // Gonna require the socket here
-                                battleSocket.emit("action", {
+                                window.battleSocket.emit("action", {
                                     battleSecret: Meteor.user().battleSecret,
                                     abilityId,
                                     targets: [targetId],
@@ -138,9 +138,9 @@ const castAbility = function (instance) {
         const targetId = Meteor.userId()
         const casterId = Meteor.userId()
 
-        if (battleSocket && battleSocket.connected && battleSocket.emit) {
+        if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
             // Gonna require the socket here
-            battleSocket.emit("action", {
+            window.battleSocket.emit("action", {
                 battleSecret: Meteor.user().battleSecret,
                 abilityId,
                 targets: [targetId],

@@ -1,5 +1,9 @@
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
+import { Router } from "meteor/iron:router"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { SHA256 } from "meteor/sha"
+
 import { Servers } from "/imports/api/servers/servers"
 
 import "./guestSettings.html"

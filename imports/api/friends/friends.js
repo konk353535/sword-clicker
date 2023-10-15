@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Friends = new Mongo.Collection("friend")
 
-FriendsSchema = new SimpleSchema({
+const FriendsSchema = new SimpleSchema({
     friends: { type: [String] },
     owner: { type: String, regEx: SimpleSchema.RegEx.Id }
 })

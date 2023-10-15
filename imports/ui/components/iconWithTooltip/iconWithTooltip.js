@@ -1,5 +1,6 @@
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
 
 import "./iconWithTooltip.html"
 

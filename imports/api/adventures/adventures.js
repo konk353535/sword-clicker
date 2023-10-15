@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Adventures = new Mongo.Collection("adventures")
 
-AdventuresSchema = new SimpleSchema({
+const AdventuresSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     lastGameUpdated: { type: Date, defaultValue: new Date() },
     timeTillUpdate: { type: Number, decimal: true },

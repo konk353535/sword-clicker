@@ -4,7 +4,7 @@ import { Mongo } from "meteor/mongo"
 export const Mining = new Mongo.Collection("mining")
 export const MiningSpace = new Mongo.Collection("miningSpace")
 
-MiningSpaceSchema = new SimpleSchema({
+const MiningSpaceSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     oreId: { type: String, optional: true },
     index: { type: Number },
@@ -14,7 +14,7 @@ MiningSpaceSchema = new SimpleSchema({
 
 MiningSpace.attachSchema(MiningSpaceSchema)
 
-MiningSchema = new SimpleSchema({
+const MiningSchema = new SimpleSchema({
     miners: { type: [Object] },
     "miners.$.id": { type: String },
     "miners.$.amount": { type: Number, decimal: true },

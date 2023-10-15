@@ -9,7 +9,7 @@ import { CDbl } from "/imports/utils.js"
 
 export const Items = new Mongo.Collection("items")
 
-ItemsSchema = new SimpleSchema({
+const ItemsSchema = new SimpleSchema({
     itemId: { type: String },
     category: { type: String, optional: true },
     amount: { type: Number, defaultValue: 1 },

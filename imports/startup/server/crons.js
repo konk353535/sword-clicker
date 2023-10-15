@@ -1,9 +1,15 @@
-import faker from "faker"
-import { SimpleSchema } from "meteor/aldeed:simple-schema"
 import { Meteor } from "meteor/meteor"
+import { Accounts } from "meteor/accounts-base"
+import { Mongo } from "meteor/mongo"
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { SyncedCron } from "meteor/littledata:synced-cron"
+import { HTTP } from "meteor/http"
+
+import _ from "underscore"
 import moment from "moment/moment"
 import uuid from "node-uuid"
-import _ from "underscore"
+import faker from "faker"
+
 import { env } from "/server/validateEnv"
 
 import { Chats } from "meteor/cesarve:simple-chat/collections"
@@ -637,7 +643,7 @@ Meteor.setTimeout(
 
         export const SC = Mongo.Collection.get("cronHistory")
 
-        SynchedCronSchema = new SimpleSchema(
+        const SynchedCronSchema = new SimpleSchema(
             {
                 intendedAt: { type: Date, optional: true },
                 startedAt: { type: Date, optional: true },

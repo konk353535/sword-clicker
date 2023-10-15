@@ -1,5 +1,6 @@
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
 
 import { DEFAULT_SERVER, Servers } from "/imports/api/servers/servers.js"
 

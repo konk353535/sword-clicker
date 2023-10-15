@@ -327,7 +327,7 @@ if (!BIM.init) {
                             
                             const dropInst = new Drop({
                                 target: $(selectorA)[0],
-                                content: $(selectorB_fixed)[0],
+                                content: $(selectorB)[0],
                                 openOn: "hover",
                                 position: "bottom left",
                                 remove: false,
@@ -342,10 +342,10 @@ if (!BIM.init) {
                                 // yes, really do it immediately and 1ms later
                                 window.setTimeout(function() {
                                     //dropInst.open() // don't need this
-                                    $(selectorB_fixed).show()
+                                    $(selectorB).show()
                                 }, 1)
                                 //dropInst.open() // don't need this
-                                $(selectorB_fixed).show()
+                                $(selectorB).show()
                             })
                             
                             $(selectorA).on('mouseleave', function() {
@@ -353,9 +353,9 @@ if (!BIM.init) {
                                 // yes, really do it immediately and 1ms later
                                 window.setTimeout(function() {
                                     dropInst.close()
-                                    $(selectorB_fixed).hide()
+                                    $(selectorB).hide()
                                 }, 1)
-                                $(selectorB_fixed).hide()
+                                $(selectorB).hide()
                             })
 
                             BIM.addBuff(

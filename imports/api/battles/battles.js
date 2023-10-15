@@ -4,7 +4,7 @@ import { Mongo } from "meteor/mongo"
 export const Battles = new Mongo.Collection("battles")
 export const BattlesList = new Mongo.Collection("battlesList")
 
-BattlesListSchema = new SimpleSchema({
+const BattlesListSchema = new SimpleSchema({
     owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
 
     floor: { type: Number, optional: true },
@@ -22,7 +22,7 @@ BattlesListSchema = new SimpleSchema({
     isBigBoss: { type: Boolean, optional: true }
 })
 
-BattlesSchema = new SimpleSchema({
+const BattlesSchema = new SimpleSchema({
     owners: { type: [String], regEx: SimpleSchema.RegEx.Id },
     createdAt: { type: Date },
     updatedAt: { type: Date },

@@ -1,6 +1,11 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { ReactiveMethod } from "meteor/simple:reactive-method"
+import { toastr } from "meteor/chrismbeckett:toastr"
+
+import _ from "underscore"
+import moment from "moment"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
 import { userCurrentClass } from "/imports/api/classes/classes.js"
@@ -14,7 +19,6 @@ import { BUFFS } from "/imports/constants/buffs/index.js"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 import "./loadout.html"
-import moment from "moment"
 
 let isFetchingLibrary = false
 

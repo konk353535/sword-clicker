@@ -1,3 +1,6 @@
+import { Meteor } from "meteor/meteor"
+import { HTTP } from "meteor/http"
+
 import { BUFFS } from "/imports/constants/buffs/index"
 import { BATTLES } from "/server/constants/battles/index.js" // List of encounters
 import { ABILITIES, COMBAT } from "/server/constants/combat/index.js" // List of available combat stats

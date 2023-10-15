@@ -1039,7 +1039,7 @@ export const createNewFloor = function createNewFloor(
     return false
 }
 
-FloorsSchema = new SimpleSchema({
+const FloorsSchema = new SimpleSchema({
     floor: { type: Number },
     server: { type: String },
     createdAt: { type: Date },

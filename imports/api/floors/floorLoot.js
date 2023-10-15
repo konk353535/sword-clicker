@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const FloorLoot = new Mongo.Collection("floorLoot")
 
-FloorLootSchema = new SimpleSchema({
+const FloorLootSchema = new SimpleSchema({
     floor: { type: Number },
     server: { type: String },
     type: { type: String },

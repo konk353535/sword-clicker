@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
 

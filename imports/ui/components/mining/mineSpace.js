@@ -1,6 +1,10 @@
 import { Meteor } from "meteor/meteor"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { Template } from "meteor/templating"
+import { toastr } from "meteor/chrismbeckett:toastr"
+
+import moment from "moment"
+
 import { MINING } from "/imports/constants/mining/index.js"
 import { DONATORS_BENEFITS } from "/imports/constants/shop/index.js"
 

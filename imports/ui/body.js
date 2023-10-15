@@ -1,6 +1,10 @@
 import { Meteor } from "meteor/meteor"
+import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { Router } from "meteor/iron:router"
+
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import moment from "moment"
 
@@ -347,11 +351,18 @@ Template.body.rendered = function () {
         onclick: null
     }
 
-    if ($(window).width() < 768) {
-        baseOptions.positionClass = "toast-bottom-center"
-        toastr.options = baseOptions
-    } else {
-        toastr.options = baseOptions
+    const waitForToastr = function() {
+        if (!toastr) {
+            setTimeout(waitForToastr, 250)
+            return
+        }
+        
+        if ($(window).width() < 768) {
+            baseOptions.positionClass = "toast-bottom-center"
+            toastr.options = baseOptions
+        } else {
+            toastr.options = baseOptions
+        }
     }
 
     $(document).on("click", ".navbar-collapse.show", function (e) {

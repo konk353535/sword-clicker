@@ -1,3 +1,5 @@
+import _ from "underscore"
+
 import { MONSTER_LIST, TABLE_LIST } from "../levels/index.js"
 
 export const veryHardTowerMonsterGenerator = function (floor) {

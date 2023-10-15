@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Events = new Mongo.Collection("events")
 
-EventsSchema = new SimpleSchema({
+const EventsSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     event: { type: String },
     data: { type: Object, blackbox: true, optional: true },

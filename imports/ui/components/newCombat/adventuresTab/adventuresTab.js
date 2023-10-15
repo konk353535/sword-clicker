@@ -1,5 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
+import { toastr } from "meteor/chrismbeckett:toastr"
+
 import moment from "moment"
 
 import { ReactiveDict } from "meteor/reactive-dict"

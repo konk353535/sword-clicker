@@ -137,7 +137,7 @@ export const setServerStatus = function setServerStatus({ serverId, name, enable
     return updatedFields
 }
 
-ServersSchema = new SimpleSchema({
+const ServersSchema = new SimpleSchema({
     iteration: { type: Number },
     name: { type: String },
     createdAt: { type: Date },

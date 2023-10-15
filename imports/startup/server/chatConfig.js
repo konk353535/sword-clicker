@@ -1,5 +1,10 @@
+import { Meteor } from "meteor/meteor"
 import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { SimpleChat } from "meteor/cesarve:simple-chat/config"
+
+import _ from "underscore"
+import moment from "moment"
+
 import { BlackList } from "/imports/api/blacklist/blacklist"
 import { Combat } from "/imports/api/combat/combat"
 import { Events } from "/imports/api/events/events"
@@ -20,9 +25,6 @@ import { sendGlobalBuffWebhookMessage } from "/server/webhook.js"
 
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { SKILLS } from "/server/constants/skills/index.js"
-
-import moment from "moment"
-import _ from "underscore"
 
 //const PUBLIC_ROOMS = ['Server', 'General', 'LFG', 'Help', 'Announcements'] // literally not used for anything
 
@@ -339,6 +341,8 @@ SimpleChat.configure({
                 })
                 return
             } else if (/\/mute/.test(message)) {
+                const targetUser = Users.findOne({ username: message.split("/hardmute")[1].trim() })
+
                 // Set isMuted + Expiry
                 Users.update(
                     {

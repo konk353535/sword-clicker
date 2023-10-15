@@ -2638,7 +2638,7 @@ export const BOSS_BUFFS = {
                                 const redirectBuffOnVictim = redirectingToUnit.findBuff("boss_lich__redirect")
                                 if (redirectBuffOnVictim) {
                                     redirectBuffOnVictim.duration = buff.data.redirectingTimer // fix duration
-                                    redirectingToUnit.tickMessage("Lich Redirection!", "#aa0000", "confused", defender)
+                                    redirectingToUnit.tickMessage("Lich Redirection!", "#aa0000", "confused", redirectingToUnit)
                                 } else {
                                     buff.data.redirectingTo = ""
                                     buff.data.redirectingTimer = -10.0
@@ -2769,8 +2769,8 @@ export const BOSS_BUFFS = {
             },
 
             onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source }) {
-                target.stats.health = target.stats.healthMax
-                target.stats.damageTaken = 0
+                defender.stats.health = defender.stats.healthMax
+                defender.stats.damageTaken = 0
                 defender.tickMessage("Can\t Be Harmed!", "#aa8888", "noicon", attacker) // appear over the 'defender' head, a tick message that only displays on the 'attacker's' screen
             },
 

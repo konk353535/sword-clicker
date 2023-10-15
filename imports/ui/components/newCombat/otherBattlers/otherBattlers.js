@@ -1,7 +1,9 @@
 import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
-
 import { ReactiveDict } from "meteor/reactive-dict"
+
+import moment from "moment"
+
 import { Groups } from "/imports/api/groups/groups.js"
 
 import "./otherBattlers.html"

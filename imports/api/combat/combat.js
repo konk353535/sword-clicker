@@ -1,5 +1,6 @@
-import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { Meteor } from "meteor/meteor"
 import { Mongo } from "meteor/mongo"
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
 
 import { Users } from "/imports/api/users/users.js"
 
@@ -53,7 +54,7 @@ export const changeClass = function changeClass(classId) {
     Meteor.call("combat.changeClass", classId)
 }
 
-CombatSchema = new SimpleSchema({
+const CombatSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     server: { type: String },
     username: { type: String, optional: true },

@@ -1,7 +1,10 @@
-import lodash from "lodash"
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+
+import lodash from "lodash"
+import moment from "moment"
 
 import { Battles, BattlesList } from "/imports/api/battles/battles.js"
 import { Combat } from "/imports/api/combat/combat.js"

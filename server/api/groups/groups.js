@@ -1,5 +1,7 @@
-import lodash from "lodash"
 import { Meteor } from "meteor/meteor"
+
+import lodash from "lodash"
+import _ from "underscore"
 import moment from "moment"
 
 import { Combat } from "/imports/api/combat/combat"

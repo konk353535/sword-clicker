@@ -1,8 +1,9 @@
 import { Meteor } from "meteor/meteor"
+import { tx } from "meteor/babrahams:transactions"
 
 import lodash from "lodash"
-import moment from "moment"
 import _ from "underscore"
+import moment from "moment"
 
 import { Abilities } from "/imports/api/abilities/abilities"
 import { BattlesList } from "/imports/api/battles/battles"

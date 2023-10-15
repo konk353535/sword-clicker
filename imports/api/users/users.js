@@ -151,7 +151,7 @@ export const classFeatureUnlocked = function (userId__in = false) {
     return false
 }
 
-UserSchema = new SimpleSchema({
+const UserSchema = new SimpleSchema({
     _id: { type: String },
     createdAt: { type: Date },
     services: { type: Object, blackbox: true },

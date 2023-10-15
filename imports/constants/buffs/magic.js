@@ -696,8 +696,8 @@ export const MAGIC_BUFFS = {
             reducesCooldowns: true
         },
         data: {
-            duration: 0,
-            totalDuration: 0
+            duration: 15,
+            totalDuration: 15
         },
         events: {
             // This can be rebuilt from the buff id
@@ -730,8 +730,10 @@ export const MAGIC_BUFFS = {
                     const totalArmor = constants.armorBase + constants.armorMPRatio * caster.stats.magicPower
                     target.stats.armor += totalArmor
                     buff.data.totalArmor = totalArmor
-                    buff.duration = constants.duration + 0
-                    buff.data.totalDuration = constants.duration + 0
+                    buff.duration = constants.duration
+                    buff.data.totalDuration = constants.duration
+                } else {
+                    buff.duration = buff.data.duration = buff.data.totalDuration = 0
                 }
             },
 

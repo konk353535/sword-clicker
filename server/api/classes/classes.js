@@ -1,4 +1,7 @@
 import { Meteor } from "meteor/meteor"
+import { DDPRateLimiter } from "meteor/ddp-rate-limiter"
+
+import moment from "moment"
 
 import { Abilities } from "/imports/api/abilities/abilities"
 import { userCurrentClass, userEligibleForClass } from "/imports/api/classes/classes"
@@ -9,9 +12,7 @@ import { Skills } from "/imports/api/skills/skills"
 import { CLASSES } from "/imports/constants/classes/index.js"
 
 import { ABILITIES } from "/server/constants/combat/index"
-
 import { updateCombatStats } from "/server/api/combat/combat.js"
-import moment from "moment"
 
 export const userUnequipAllItems = function (uid) {
     if (uid == null || !uid || typeof uid === 'undefined') {
@@ -118,19 +119,14 @@ const classMayChange = function(uid, newClass) {
 
 Meteor.methods({
     "classes.clearCooldown"(targetUid) {
-        const userIsAdmin = userDoc && userDoc.isSuperMod
-
-        if (!userIsAdmin) {
-            return false
-        }
-
         if (targetUid == null || !targetUid || typeof targetUid === 'undefined') {
             return false
         }
 
         const userDoc = Users.findOne({ _id: targetUid })
+        const userIsAdmin = userDoc && userDoc.isSuperMod
 
-        if (!userDoc) {
+        if (!userIsAdmin || !userDoc) {
             return false
         }
 
@@ -310,5 +306,6 @@ const userId = function userId(userId) {
     return userId
 }
 
+ // eslint-disable-next-line
 DDPRateLimiter.addRule({ type: "method", name: "classes.equipClass", userId }, 10, 3 * SECOND)
 DDPRateLimiter.addRule({ type: "method", name: "classes.getCurrentClass", userId }, 1 * SECOND)

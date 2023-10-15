@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const BlackList = new Mongo.Collection("blackList")
 
-BlackListSchema = new SimpleSchema({
+const BlackListSchema = new SimpleSchema({
     clientIp: { type: String }
 })
 

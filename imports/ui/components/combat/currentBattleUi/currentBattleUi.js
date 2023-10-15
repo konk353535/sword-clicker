@@ -1,10 +1,14 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
+import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
-import io from "socket.io-client"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import lodash from "lodash"
 import _ from "underscore"
+import moment from "moment"
+import io from "socket.io-client"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
 import { BattlesList } from "/imports/api/battles/battles.js"
@@ -90,8 +94,7 @@ const startBattle = (currentBattle, self) => {
         if (currentBattle.tickEvents.length > 8) {
             // then only show user owned ticks or tickEvents with death
             currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
-                return 
-                    tickEvent.from === uidPlayer ||
+                return tickEvent.from === uidPlayer ||
                     tickEvent.to === uidPlayer ||
                     tickEvent.eventType.indexOf("death") === 0
             })

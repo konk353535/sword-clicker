@@ -427,7 +427,7 @@ export default class Battle {
             this.tickCount++
             this.roomTickCount++
             this.postTick()
-        } catch (err) {
+        } catch (err: any) {
             console.log(`!!! Battle#tick error, forfeiting: ${err}`)
             if (err.stack) {
                 console.log(err.stack)

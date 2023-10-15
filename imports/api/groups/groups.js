@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Groups = new Mongo.Collection("groups")
 
-GroupsSchema = new SimpleSchema({
+const GroupsSchema = new SimpleSchema({
     leader: { type: String, regEx: SimpleSchema.RegEx.Id },
     leaderName: { type: String, optional: true },
     members: { type: [String] },

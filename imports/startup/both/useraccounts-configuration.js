@@ -1,3 +1,5 @@
+import { Meteor } from "meteor/meteor"
+import { Router } from "meteor/iron:router"
 import { AccountsTemplates } from "meteor/useraccounts:core"
 
 import { Users } from "/imports/api/users/users"

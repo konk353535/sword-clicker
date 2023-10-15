@@ -1,7 +1,12 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { ReactiveMethod } from "meteor/simple:reactive-method"
+import { Random } from "meteor/random"
+
+import _ from "underscore"
 import moment from "moment"
 
 import { ITEMS } from "/imports/constants/items/index.js"
@@ -48,14 +53,14 @@ const itemModifier = function (item) {
                             })
                         }, 1)
                     }
-                } else {
+                } /* else {
                     Meteor.call("items.use", { baseItemId: this.item._id }, (err, res) => {
                         if (/essence_scroll/.test(this.item.itemId)) {
                             // If this was an essence scroll, reload recipes
                             recipeCache = undefined
                         }
                     })
-                }
+                } */
             }
         }
     }

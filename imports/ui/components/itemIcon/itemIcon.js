@@ -1,10 +1,10 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
-//import Numeral from 'numeral';
 
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"

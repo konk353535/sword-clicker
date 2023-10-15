@@ -1,4 +1,5 @@
 import { Meteor } from "meteor/meteor"
+import { HTTP } from "meteor/http"
 import moment from "moment"
 import _ from "underscore"
 import { env } from "/server/validateEnv"
@@ -141,6 +142,7 @@ Meteor.methods({
             throw new Meteor.Error("only-alone", "You can only do personal quests alone")
         }
 
+        let wave = 1
         if (level === maxLevel) {
             wave = maxWave
         } else {

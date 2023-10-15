@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Skills = new Mongo.Collection("skills")
 
-SkillsSchema = new SimpleSchema({
+const SkillsSchema = new SimpleSchema({
     type: { type: String },
     createdAt: { type: Date },
     xp: { type: Number, defaultValue: 0, decimal: true },

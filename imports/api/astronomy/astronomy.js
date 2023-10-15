@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Astronomy = new Mongo.Collection("astronomy")
 
-AstronomySchema = new SimpleSchema({
+const AstronomySchema = new SimpleSchema({
     mages: { type: [Object] },
     "mages.$.type": { type: String, optional: true }, // Fire, Water, Air, Earth, or Empty (All)
     "mages.$.stats": { type: Object, blackbox: true },

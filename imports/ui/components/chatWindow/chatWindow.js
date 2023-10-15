@@ -1,9 +1,12 @@
-import { Chats } from "meteor/cesarve:simple-chat/collections"
-import { SimpleChat } from "meteor/cesarve:simple-chat/config"
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { ReactiveVar } from "meteor/reactive-var"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { Chats } from "meteor/cesarve:simple-chat/collections"
+import { SimpleChat } from "meteor/cesarve:simple-chat/config"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import moment from "moment"
 

@@ -1,7 +1,11 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { ReactiveMethod } from "meteor/simple:reactive-method"
+import { toastr } from "meteor/chrismbeckett:toastr"
+
 import lodash from "lodash"
 import moment from "moment"
 
@@ -57,7 +61,9 @@ const itemModifier = function (item) {
                                             "items.use",
                                             { baseItemId: this.item._id, targetItemId: targetId },
                                             (err, res) => {
-                                                if (err) toastr.warning(err.reason)
+                                                if (err) {
+                                                    toastr.warning(err.reason)
+                                                }
                                             }
                                         )
                                     }
@@ -470,6 +476,14 @@ const GetMetaWord = function (word, item, data) {
                 gearRequiredEquip = CInt(data.requiredEquip[0].level)
             }
         }
+        
+        const pad = function(sText, iWidth, sChar)
+        {
+            sChar = ((sChar !== undefined) ? sChar : ('0'));
+            sText = sText.toString();
+            return ((sText.length >= iWidth) ? (sText) : (new Array(iWidth - sText.length + 1).join(sChar) + sText));
+        };
+        
         gearRequiredEquip = pad(gearRequiredEquip, 3)
 
         if (word === "fragment") return "magic"
@@ -758,7 +772,7 @@ const MatchRecipe = function (recipe_name, recipes) {
     let RecipeResult = undefined
 
     try {
-        RecipeSearch = recipe_name.trim().toLowerCase()
+        let RecipeSearch = recipe_name.trim().toLowerCase()
 
         if (RecipeSearch == "lost silver scroll") RecipeSearch = "silver essence"
         if (RecipeSearch == "lost gold scroll") RecipeSearch = "gold essence"

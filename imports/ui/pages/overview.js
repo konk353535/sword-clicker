@@ -1,5 +1,9 @@
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Meteor } from "meteor/meteor"
+import { Tracker } from "meteor/tracker"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+import { TimeSync } from "meteor/mizzao:timesync"
+import { toastr } from "meteor/chrismbeckett:toastr"
 
 import { Adventures } from "/imports/api/adventures/adventures.js"
 import { BattlesList } from "/imports/api/battles/battles"
@@ -231,6 +235,7 @@ Template.overviewPage.helpers({
         return false
     },
 
+    /*
     firstClanInvite() {
         if (ClanInvites) {
             return ClanInvites.findOne({
@@ -239,6 +244,7 @@ Template.overviewPage.helpers({
         }
         return false
     },
+    */
 
     firstRecievedFriendRequest() {
         if (FriendRequests) {

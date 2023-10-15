@@ -1,4 +1,5 @@
 import lodash from "lodash"
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
 import { Mongo } from "meteor/mongo"
 
 import { FARMING } from "/imports/constants/farming/index.js"
@@ -7,7 +8,7 @@ import { CInt } from "/imports/utils"
 
 export const Town = new Mongo.Collection("town")
 
-TownSchema = new SimpleSchema({
+const TownSchema = new SimpleSchema({
     server: { type: String },
     townBuilding: { type: String },
     itemId: { type: String },

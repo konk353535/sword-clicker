@@ -1,7 +1,10 @@
 import { Meteor } from "meteor/meteor"
-import { ReactiveDict } from "meteor/reactive-dict"
+import { Tracker } from "meteor/tracker"
 import { Template } from "meteor/templating"
+import { ReactiveDict } from "meteor/reactive-dict"
+
 import _ from "underscore"
+import moment from "moment"
 
 import "./battleLogRow.html"
 

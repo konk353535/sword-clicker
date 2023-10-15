@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const BossHealthScores = new Mongo.Collection("bossHealthScores")
 
-BossHealthScoresSchema = new SimpleSchema({
+const BossHealthScoresSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     username: { type: String },
     server: { type: String },

@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
+import { Router } from "meteor/iron:router"
 
 import { userCurrentClass } from "/imports/api/classes/classes.js"
 import { classFeatureUnlocked } from "/imports/api/users/users.js"

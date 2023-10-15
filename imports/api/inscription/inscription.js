@@ -3,7 +3,7 @@ import { Mongo } from "meteor/mongo"
 
 export const Inscription = new Mongo.Collection("inscription")
 
-InscriptionSchema = new SimpleSchema({
+const InscriptionSchema = new SimpleSchema({
     owner: { type: String, regEx: SimpleSchema.RegEx.Id },
     inscriptionLevel: { type: Number, optional: true },
     currentlyCrafting: { type: [Object], optional: true },

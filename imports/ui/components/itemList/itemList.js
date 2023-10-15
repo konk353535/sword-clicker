@@ -2,7 +2,6 @@ import { Meteor } from "meteor/meteor"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import "./itemList.html"
 

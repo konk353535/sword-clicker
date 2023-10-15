@@ -1,7 +1,6 @@
 import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import { Combat } from "/imports/api/combat/combat.js"
 import { Items } from "/imports/api/items/items.js"

@@ -4,8 +4,6 @@ import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { Router } from "meteor/iron:router"
 
-import { toastr } from "meteor/chrismbeckett:toastr"
-
 import moment from "moment"
 
 import { Adventures } from "/imports/api/adventures/adventures.js"

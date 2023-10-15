@@ -2,7 +2,6 @@ import { Meteor } from "meteor/meteor"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
 

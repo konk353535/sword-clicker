@@ -3,7 +3,6 @@ import { Tracker } from "meteor/tracker"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import lodash from "lodash"
 import _ from "underscore"

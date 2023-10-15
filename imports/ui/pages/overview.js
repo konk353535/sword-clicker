@@ -3,7 +3,6 @@ import { Tracker } from "meteor/tracker"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { TimeSync } from "meteor/mizzao:timesync"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import { Adventures } from "/imports/api/adventures/adventures.js"
 import { BattlesList } from "/imports/api/battles/battles"

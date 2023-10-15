@@ -2,7 +2,6 @@ import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { ReactiveMethod } from "meteor/simple:reactive-method"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import _ from "underscore"
 import moment from "moment"

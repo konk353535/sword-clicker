@@ -4,7 +4,6 @@ import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { ReactiveMethod } from "meteor/simple:reactive-method"
-import { toastr } from "meteor/chrismbeckett:toastr"
 
 import lodash from "lodash"
 import moment from "moment"

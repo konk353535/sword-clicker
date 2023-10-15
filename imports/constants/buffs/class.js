@@ -1,10 +1,17 @@
+// @ts-check
+
+// @ts-expect-error
 import lodash from "lodash"
+// @ts-expect-error
 import uuid from "node-uuid"
-import moment from "moment"
+//import moment from "moment"
+// @ts-expect-error
 import _ from "underscore"
 
 import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
+// @ts-ignore
 import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
+// @ts-ignore
 import { measureMemory } from "vm"
 
 export const CLASS_BUFFS = {
@@ -302,13 +309,7 @@ export const CLASS_BUFFS = {
             totalDuration: 6
         },
         events: {
-            // This can be rebuilt from the buff id
-            onApply({ buff, target, caster, actualBattle }) {
-                const constants =
-                    buff.constants && buff.constants.constants
-                        ? buff.constants.constants
-                        : lookupBuff(buff.id).constants
-            },
+            onApply({ buff, target, caster, actualBattle }) {},
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 if (buff.duration !== Infinity) {
@@ -401,11 +402,7 @@ export const CLASS_BUFFS = {
                 // lose 12.5% damage for each missing ally, up to 50% reduction when alone
                 // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
                 const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
-                    return
-                        thisFriendlyUnit.id !== target.id &&
-                        !thisFriendlyUnit.isNPC &&
-                        !thisFriendlyUnit.isCompanion &&
-                        !thisFriendlyUnit.isSoloCompanion
+                    return thisFriendlyUnit.id !== target.id && !thisFriendlyUnit.isNPC && !thisFriendlyUnit.isCompanion && !thisFriendlyUnit.isSoloCompanion
                 }).length * 0.125))
 
                 if (damageReduction < 1.0) {
@@ -528,7 +525,6 @@ export const CLASS_BUFFS = {
             totalDuration: 1.5
         },
         events: {
-            // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
                 const constants =
                     buff.constants && buff.constants.constants
@@ -574,7 +570,6 @@ export const CLASS_BUFFS = {
             isEnchantment: true
         },
         events: {
-            // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {},
 
             onTick({ buff, target, caster, actualBattle }) {},
@@ -1733,9 +1728,7 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
 
                 const damageBonus = Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
-                    return
-                        thisFriendlyUnit.id !== caster.id &&
-                        !thisFriendlyUnit.isPacifist
+                    return thisFriendlyUnit.id !== caster.id && !thisFriendlyUnit.isPacifist
                 }).length * 0.05))
 
                 // deal 25-75% more damage

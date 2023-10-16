@@ -26,6 +26,7 @@ export type dealDamageOpts = {
     isMagic?: boolean
     isTrueDamage?: boolean
     bypassArmor?: boolean
+    sourceId?: string
     source?: string
 }
 
@@ -36,5 +37,6 @@ export type healTargetOpts = {
     customColor?: string
     customIcon?: string
     historyStats: any
+    sourceId?: string
     healSource: any
 }

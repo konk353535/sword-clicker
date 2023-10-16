@@ -6,7 +6,7 @@ import { healTargetOpts } from "../types/tickOpts"
 export function healTarget(
     this: Battle,
     healAmount: number,
-    { target, caster, tickEvents, customColor, customIcon, historyStats, healSource }: healTargetOpts
+    { target, caster, tickEvents, customColor, customIcon, historyStats, sourceId, healSource }: healTargetOpts
 ) {
     if (!caster || !caster.stats) {
         return // error
@@ -14,6 +14,13 @@ export function healTarget(
 
     if (!target || !target.stats) {
         return // error
+    }
+
+    let sourceFinal: string = ""
+    if (!healSource || !healSource.id || !healSource.name || healSource.id?.trim().length === 0) {
+        sourceFinal = "unknown"
+    } else {
+        sourceFinal = healSource?.name
     }
 
     // Useful debug, please don't remove
@@ -83,6 +90,9 @@ export function healTarget(
     target.stats.health += healAmount
 
     let caster__id_to_use = caster.id
+    if (sourceId && sourceId.length > 0) {
+        caster__id_to_use = sourceId
+    }
     if (caster.isCompanion) {
         try {
             if (caster?.owner?.endsWith("_companion")) {
@@ -91,9 +101,34 @@ export function healTarget(
         } catch (err) {}
     }
 
+    let target__id_to_use = target.id
+    if (target.isCompanion) {
+        try {
+            if (target?.owner?.endsWith("_companion")) {
+                target__id_to_use = target.owner.substring(0, target.owner.length - 10)
+            }
+        } catch (err) {}
+    }
+
     if (historyStats && historyStats[caster__id_to_use]) {
         if (!caster.isCompanion) {
             historyStats[caster__id_to_use].healingDone += healAmount
+
+            const sourceHealing = {
+                source: sourceFinal,
+                healing: healAmount
+            }
+
+            if (!historyStats[caster__id_to_use].breakdown) {
+                historyStats[caster__id_to_use].breakdown = []
+            }
+            
+            const idxExistingSource = historyStats[caster__id_to_use].breakdown.findIndex((e: any) => e.source == sourceFinal)
+            if (idxExistingSource === -1) {
+                historyStats[caster__id_to_use].breakdown.push(sourceHealing)
+            } else {
+                historyStats[caster__id_to_use].breakdown[idxExistingSource].healing += sourceHealing.healing
+            }
         } else {
             historyStats[caster__id_to_use].companionName = caster.name
             historyStats[caster__id_to_use].healingDoneCompanion += healAmount

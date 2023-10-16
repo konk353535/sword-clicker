@@ -16,6 +16,7 @@ export function dealDamage(
         isMagic,
         isTrueDamage,
         bypassArmor,
+        sourceId,
         source
     }: dealDamageOpts
 ) {
@@ -180,7 +181,12 @@ export function dealDamage(
     }
 
     let attacker__id_to_use = attacker.id
-    if (attacker.isCompanion) {
+    let redirectedSourceToPlayer = false
+    if (sourceId && sourceId.length > 0) {
+        attacker__id_to_use = sourceId
+        redirectedSourceToPlayer = true
+    }
+    else if (attacker.isCompanion) {
         try {
             if (attacker?.owner?.endsWith("_companion")) {
                 attacker__id_to_use = attacker.owner.substring(0, attacker.owner.length - 10)
@@ -198,7 +204,7 @@ export function dealDamage(
     }
 
     if (historyStats && historyStats[attacker__id_to_use]) {
-        if (!attacker.isCompanion) {
+        if (redirectedSourceToPlayer || !attacker.isCompanion) {
             if (attacker__id_to_use != defender__id_to_use) {
                 // only show 'damage dealt' stats for damage not inflicted upon themselves
                 historyStats[attacker__id_to_use].damageDone += damage

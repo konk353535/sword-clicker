@@ -9,6 +9,13 @@ export function autoAttack(
     this: Battle,
     { attacker, defender, originalAutoAttack = true, damageModifier = 0, source }: autoAttackOpts
 ) {
+    let sourceFinal: string = ""
+    if (!source || source?.trim().length === 0) {
+        sourceFinal = "autoattack"
+    } else {
+        sourceFinal = source
+    }
+
     // new 'force' stat has a flat % to ignore all target defense (but not armor)
     let defenderDefense = defender.stats.defense
     if (attacker.stats.force && attacker.stats.force > 0) {
@@ -48,9 +55,10 @@ export function autoAttack(
         let customIcon: string | undefined = undefined
 
         // Adjust icon per source
-        if ((source === "phantom_strikes") || (source === "Phantom Strikes")) {
+        if ((sourceFinal === "phantom_strikes") || (sourceFinal === "Phantom Strikes")) {
             customIcon = "phantomStrikes"
         }
+
 
         // Is this a crit?
         if (attacker.stats.criticalChance) {
@@ -77,7 +85,7 @@ export function autoAttack(
             tickEvents: this.tickEvents,
             customIcon,
             historyStats: this.historyStats,
-            source: "autoattack"
+            source: sourceFinal
         })
 
         // Tick didDamage event on attacker
@@ -94,7 +102,7 @@ export function autoAttack(
                         actualBattle: this,
                         damageDealt,
                         rawDamage,
-                        source: "autoattack",
+                        source: sourceFinal,
                         customIcon
                     })
                 }
@@ -113,7 +121,7 @@ export function autoAttack(
                         attacker,
                         actualBattle: this,
                         damageDealt,
-                        source: "autoattack"
+                        source: sourceFinal
                     })
                 }
             })
@@ -126,7 +134,7 @@ export function autoAttack(
             customIcon: "dodge",
             customColor: "#888888",
             historyStats: this.historyStats,
-            source: "autoattack"
+            source: sourceFinal
         })
 
         // Tick targetDodgedDamage event on attacker
@@ -140,7 +148,7 @@ export function autoAttack(
                         defender,
                         attacker,
                         actualBattle: this,
-                        source: "autoattack"
+                        source: sourceFinal
                     })
                 }
             })
@@ -157,7 +165,7 @@ export function autoAttack(
                         defender,
                         attacker,
                         actualBattle: this,
-                        source: "autoattack"
+                        source: sourceFinal
                     })
                 }
             })

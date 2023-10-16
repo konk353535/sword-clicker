@@ -9,6 +9,8 @@ import _ from "underscore"
 import moment from "moment"
 import io from "socket.io-client"
 
+import { CDbl } from "/imports/utils.js"
+
 import "../lobbyUnit/lobbyUnit.js"
 import "./lobby.html"
 
@@ -811,7 +813,13 @@ Template.lobbyPage.helpers({
             
             recentBattleDataMutated.forEach((unitsHistoryStat) => {
                 unitsHistoryStat.breakdown.sort(function(breakdownDataA, breakdownDataB) {
-                    return breakdownDataB.damage - breakdownDataA.damage
+                    return CDbl(breakdownDataB?.healing) - CDbl(breakdownDataA?.healing)
+                })
+            })
+            
+            recentBattleDataMutated.forEach((unitsHistoryStat) => {
+                unitsHistoryStat.breakdown.sort(function(breakdownDataA, breakdownDataB) {
+                    return CDbl(breakdownDataB?.damage) - CDbl(breakdownDataA?.damage)
                 })
             })
 
@@ -953,29 +961,32 @@ Template.lobbyPage.helpers({
             }
             if (!userCombat.isInvitee) {
                 let userClassData
-                if (!userCombat.classData) {
-                    if (currentGroup && currentGroup.membersObject) {
-                        currentGroup.membersObject.forEach((groupMember) => {
-                            if (userCombat.owner === groupMember.id) {
-                                userClassData = groupMember.classData
-                            }
-                        })
-                    } else {
-                        if (Meteor.userId() == userCombat.owner) {
-                            userClassData = userCurrentClass(userCombat.owner)
-                        }
-                    }
+
+                if (Meteor.userId() == userCombat.owner) {
+                    userClassData = userCurrentClass(userCombat.owner)
                 }
+
+                //todo: class data is set in the Combat collection when a user is invited or joins a group and does not
+                //      refresh if they change classes while still grouped (Combat collection data is not updated)
+                else if (!userCombat.classData && currentGroup && currentGroup.membersObject) {
+                    currentGroup.membersObject.forEach((groupMember) => {
+                        if (userCombat.owner === groupMember.id) {
+                            userClassData = groupMember.classData
+                        }
+                    })
+                }
+
                 if (!userClassData) {
                     userClassData = CLASSES.none()
                 }
+
                 userCombat.classUnlocked = userClassData.unlocked
                 userCombat.classEligible = userClassData.eligible
                 userCombat.classId = userClassData.equipped
                 userCombat.classData = userClassData.data
                 userCombat.classIcon = userClassData.icon
                 userCombat.classCooldown = userClassData.cooldown
-                }
+            }
 
             return userCombat
         })

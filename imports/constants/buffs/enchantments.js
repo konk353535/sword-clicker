@@ -112,7 +112,8 @@ export const ENCHANTMENT_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source: "Fire Fox"
                     })
                 }
 
@@ -265,7 +266,7 @@ export const ENCHANTMENT_BUFFS = {
         icon: "bisonAxe.svg",
         name: "bison axe",
         description() {
-            return `Every 5 seconds an auto attacks becomes charged. Dealing its damage to all enemies.`
+            return `Every 5 seconds an auto-attacks becomes charged. Dealing its damage to all enemies.`
         },
         constants: {},
         data: {
@@ -297,7 +298,8 @@ export const ENCHANTMENT_BUFFS = {
                                 isTrueDamage: true,
                                 tickEvents: actualBattle.tickEvents,
                                 historyStats: actualBattle.historyStats,
-                                customIcon: buff.data.icon
+                                customIcon: buff.data.icon,
+                                source: "Bison Axe Burst"
                             })
                         }
                     })
@@ -313,7 +315,7 @@ export const ENCHANTMENT_BUFFS = {
         icon: "tentacle.svg",
         name: "kraken's tentacle",
         description() {
-            return `Each auto attack gives 1 charge.  At 20 charges increases attack speed by 50% for 3 seconds.`
+            return `Each auto-attack gives 1 charge.  At 20 charges increases attack speed by 50% for 3 seconds.`
         },
         constants: {},
         data: {
@@ -601,7 +603,7 @@ export const ENCHANTMENT_BUFFS = {
         icon: "shadowKnife.svg",
         name: "shadow knife",
         description() {
-            return `Reduce cooldown of blade spin by 0.5s for each successful auto attack.`
+            return `Reduce cooldown of blade spin by 0.5s for each successful auto-attack.`
         },
         constants: {
             accuracyDecimal: 0.85
@@ -731,7 +733,8 @@ export const ENCHANTMENT_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source: "Bone King Axe Cleave"
                     })
                 }
             },
@@ -782,7 +785,8 @@ export const ENCHANTMENT_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "battleAxe.svg"
+                        customIcon: "battleAxe.svg",
+                        source: "Prismatic Axe Cleave"
                     })
                 }
             },
@@ -796,7 +800,7 @@ export const ENCHANTMENT_BUFFS = {
     magic_blade: {
         duplicateTag: "magic_blade", // Used to stop duplicate buffs
         icon: "magicBlade.svg",
-        name: "magic blade",
+        name: "enchanted weapon",
         description() {
             return `Deals 25% auto-attack damage as additional magic damage.  This amount is increased by your magic power.`
         },
@@ -836,7 +840,8 @@ export const ENCHANTMENT_BUFFS = {
                     isMagic: true,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: buff.data.icon
+                    customIcon: buff.data.icon,
+                    source: "Enchanted Weapon"
                 })
             },
 
@@ -1436,7 +1441,8 @@ export const ENCHANTMENT_BUFFS = {
                             defender: friendly_unit,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
-                            customIcon: buff.data.icon
+                            customIcon: buff.data.icon,
+                            source: "Demon's Heart"
                         })
                         damageDealt += localDamageDealt
                         if (friendly_unit.buffs) {
@@ -1700,7 +1706,8 @@ export const ENCHANTMENT_BUFFS = {
                             attacker: defender,
                             defender: sourceAlly,
                             tickEvents: actualBattle.tickEvents,
-                            customIcon: buff.data.icon
+                            customIcon: buff.data.icon,
+                            source: "Warden's Interception"
                         })
                     }
                 }
@@ -2355,7 +2362,8 @@ export const ENCHANTMENT_BUFFS = {
                 damageDealt,
                 rawDamage,
                 originalAutoAttack,
-                secondsElapsed
+                secondsElapsed,
+                source
             }) {
                 if (defender.hasBuff("charm")) {
                     actualBattle.dealDamage(rawDamage * 3, {
@@ -2364,7 +2372,8 @@ export const ENCHANTMENT_BUFFS = {
                         isMagic: false,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source // mirror source
                     })
                 }
             },
@@ -2576,7 +2585,7 @@ export const ENCHANTMENT_BUFFS = {
     damage_reflect: {
         duplicateTag: "damage_reflect", // Used to stop duplicate buffs
         icon: "redirectDamage.svg",
-        name: "damage reflect",
+        name: "damage reflection",
         description() {
             return "Reflect (25% of received damage) + 50 as magic damage."
         },
@@ -2601,7 +2610,7 @@ export const ENCHANTMENT_BUFFS = {
                     isMagic: true,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    source: "damage_reflect",
+                    source: "Damage Reflection",
                     customIcon: buff.data.icon
                 })
             },
@@ -2651,7 +2660,7 @@ export const ENCHANTMENT_BUFFS = {
                     isMagic: true,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    source: "prismatic_plate_legs",
+                    source: "Prismatic Damage Reflection",
                     customIcon: "obsidianPlateLegs.svg"
                 })
             },

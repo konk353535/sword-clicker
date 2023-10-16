@@ -138,7 +138,64 @@ Template.battleLogRow.helpers({
         return battle
     },
 
+    totalDamage() {
+        if (this && this?.breakdown) {
+            let total = 0
+            this.breakdown.forEach((breakdownLine) => {
+                total += breakdownLine.damage
+            })
+            return total
+        }
+
+        return 0
+    },
+
+    maxHit() {
+        if (this && this?.breakdown) {
+            let maxHit = 0
+            this.breakdown.forEach((breakdownLine) => {
+                if (breakdownLine.damage > maxHit) {
+                    maxHit = breakdownLine.damage
+                }
+            })
+            return maxHit
+        }
+
+        return 0
+    },
+
     showMore() {
         return Template.instance().state.get("showMore")
+    }
+})
+
+Template.damageBreakdownLine.helpers({
+    formattedDamageSource() {
+        const damageLineData = Template.instance()?.data.breakdownData
+        if (typeof damageLineData === "undefined") {
+            return false
+        }
+
+        let damageSource = damageLineData?.source?.toString()?.trim() || "unknown"
+        if (damageSource.length === 0) {
+            damageSource = "unknown"
+        }
+        if (damageSource === "autoattack") {
+            damageSource = "Auto-Attack"
+        }
+
+        return damageSource
+    },
+
+    damageBarScaled() {
+        const instData = Template.instance()?.data
+        const damageLineData = instData?.breakdownData
+        const totalDamage = instData?.totalDamage || 0
+        const maxHit = instData?.maxHit || 0
+        if (totalDamage > 0 && maxHit > 0 && typeof damageLineData === "undefined" || typeof damageLineData === "undefined") {
+            return 0
+        }
+
+        return Math.round(damageLineData.damage / maxHit * 100, 1)
     }
 })

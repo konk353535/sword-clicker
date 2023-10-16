@@ -287,7 +287,7 @@ export const DEFENSE_ABILITIES = {
         cooldown: 90,
         slot: "any",
         isHidden: false,
-        target: "self", // The current enemy who we are auto attacking
+        target: "self", // The current enemy who we are auto-attacking
         isPacifist: true,
         description(level) {
             const BUFF = BUFFS.armor_up
@@ -337,7 +337,7 @@ export const DEFENSE_ABILITIES = {
         cooldown: 90,
         slot: "any",
         isHidden: false,
-        target: "self", // The current enemy who we are auto attacking
+        target: "self", // The current enemy who we are auto-attacking
         isPacifist: true,
         description(level) {
             const BUFF = BUFFS.iron_will

@@ -86,35 +86,49 @@
           <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Player</th>
+              <th align="center" style="vertical-align: middle !important; text-align: center !important;" colspan="2">Player</th>
               <th>Damage Done</th>
               <th>Healing Done</th>
               <th>Damage Taken</th>
               <th>Damage Mitigated</th>
               <th>Attacks Dodged</th>
-              <th>Loot</th>
             </tr>
             </thead>
             <tbody>
             {{#each computedBattle.detailedStats}}
               <tr>
-                <td><b>{{this.name}}</b></td>
+                <td rowspan="3" align="center" style="vertical-align: middle !important;"><b>{{this.name}}</b></td>
+                <td><span class="hide-on-mobile">Stats</span><span class="hide-on-desktop"><img src="/icons/total.svg" class="embed-icon" /></span></td>
                 <td>{{> ceilNumber this.damageDone}}</td>
                 <td>{{> ceilNumber this.healingDone}}</td>
                 <td>{{> ceilNumber this.damageTaken}}</td>
                 <td>{{> ceilNumber this.damageMitigated}}</td>
                 <td>{{> ceilNumber this.attacksDodged}}</td>
-                <td>
+              </tr>
+              <tr>
+                <td><span class="hide-on-mobile">Damage</span><span class="hide-on-desktop"><img src="/icons/attack.svg" class="embed-icon" /></span></td>
+                <td colspan="5">
+                  <table class="table-thin" style="border: none; width: 100%;" cellpadding="0" cellspacing="0">
+                    {{#let totalDamageCalculated=totalDamage thisMaxHit=maxHit}}
+                      {{#each this.breakdown}}
+                        {{> damageBreakdownLine breakdownData=this totalDamage=totalDamageCalculated maxHit=thisMaxHit}}
+                      {{/each}}
+                    {{/let}}
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="hide-on-mobile">Loot</span><span class="hide-on-desktop"><img src="/icons/treasureChest.svg" class="embed-icon" /></span></td>
+                <td colspan="5">
                   <div class="d-flex">
                     {{#each this.tickEvents}}
                       {{#if $eq this.type 'item'}}
                         <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
                           +{{this.amount}}
-                          <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" title="{{this.itemId}}">
+                          <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" data-item-id="{{this.itemId}}">
                           {{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}
                         </div>
                       {{/if}}
-
                       {{#if $eq this.type 'gold'}}
                         <div class="ml-1 d-flex align-items-center">
                           +{{this.amount}}
@@ -133,4 +147,44 @@
     {{/if}}
     </div>
   </div>
+
+  <style type="text/css">
+    table.table-thin {
+      margin: 0px;
+      padding: 0px;
+      border: none;
+    }
+
+    table.table-thin tr td {
+      margin: 0px;
+      padding: 0px;
+      border: none;
+      vertical-align: top;
+    }
+
+    img.embed-icon {
+      width: 22px;
+      height: 22px;
+      margin-top: -2px;
+      border: none;
+    }
+  </style>
+</template>
+
+<template name="damageBreakdownLine">
+  <tr>
+    <td style="min-width: 100px;">
+      {{formattedDamageSource}}
+    </td>
+    <td width="10" style="min-width: 6px; width: 10px"></td>
+    <td>
+      {{> formatNumber number=this.breakdownData.damage decimal=0 noDecimal=0 autoPrecision=false}}
+    </td>
+    <td width="10" style="min-width: 6px; width: 10px"></td>
+    <td width="70%" style="width: 70%">
+      <div class="progress" style="height: 5px; width: 100%; margin-top: 8px;">
+        <div class="progress-bar bg-primary" role="progressbar" style="width: {{damageBarScaled}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </td>
+  </tr>
 </template>

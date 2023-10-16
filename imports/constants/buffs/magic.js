@@ -117,7 +117,7 @@ export const MAGIC_BUFFS = {
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(
                 c.attackSpeedMPRatio * 100
             )}% of MP). <br />
-        For ${c.attacksCount} auto attacks. <br />
+        For ${c.attacksCount} auto-attacks. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `
         },
         constants: {
@@ -1215,7 +1215,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "poison.svg"
+                        customIcon: "poison.svg",
+                        source: "Poison"
                     })
                 }
             }
@@ -1280,7 +1281,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "affliction.svg"
+                        customIcon: "affliction.svg",
+                        source: "Affliction"                        
                     })
                 } else {
                     buff.data.totalMagicArmorReduction = 0
@@ -1304,7 +1306,8 @@ export const MAGIC_BUFFS = {
                         defender: target,
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
-                        historyStats: actualBattle.historyStats
+                        historyStats: actualBattle.historyStats,
+                        source: "Affliction"
                     })
                 }
             }
@@ -1432,7 +1435,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "lightningDart.svg"
+                        customIcon: "lightningDart.svg",
+                        source: "Lightning Dart"
                     })
 
                     buff.data.totalArmorReduction = totalArmorReduction
@@ -1512,7 +1516,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "lightningStorm.svg"
+                        customIcon: "lightningStorm.svg",
+                        source: "Lightning Storm"
                     })
 
                     buff.data.totalArmorReduction = totalArmorReduction
@@ -1655,7 +1660,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "blizzard.svg"
+                        customIcon: "blizzard.svg",
+                        source: "Blizzard"
                     })
 
                     const attackSpeedDecrease = constants.attackSpeedDecrease * 100
@@ -1739,7 +1745,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "iceDart.svg"
+                        customIcon: "iceDart.svg",
+                        source: "Ice Dart"
                     })
 
                     const attackSpeedDecrease = constants.attackSpeedDecrease * 100
@@ -1821,7 +1828,8 @@ export const MAGIC_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "earthDart.svg"
+                        customIcon: "earthDart.svg",
+                        source: "Earth Dart"
                     })
                 }
             },
@@ -1878,7 +1886,8 @@ export const MAGIC_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "earthBall.svg"
+                        customIcon: "earthBall.svg",
+                        source: "Earth Ball"
                     })
                 }
             },
@@ -1937,7 +1946,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "earthenFist.svg"
+                        customIcon: "earthenFist.svg",
+                        source: "Earthen Fist"
                     })
 
                     buff.data.attackSpeedDecrease = 99
@@ -2159,7 +2169,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "ignite.svg"
+                        customIcon: "ignite.svg",
+                        source: "Ignite"
                     })
                     buff.data.timeTillDamage = 1
                 }
@@ -2281,7 +2292,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "ignite.svg"
+                        customIcon: "ignite.svg",
+                        source: "Phoenix Hat Ignite"
                     })
                     buff.data.timeTillDamage = 1
                 }
@@ -2343,7 +2355,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "inferno.svg"
+                        customIcon: "inferno.svg",
+                        source: "Inferno"
                     })
                     buff.data.timeTillDamage = 0.5
                 }
@@ -2360,7 +2373,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "inferno.svg"
+                        customIcon: "inferno.svg",
+                        source: "Inferno"
                     })
                     buff.data.timeTillDamage = 0.5
                 }
@@ -2419,7 +2433,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "fireWave.svg"
+                        customIcon: "fireWave.svg",
+                        source: "Fire Wave"
                     })
                 }
             },
@@ -2477,7 +2492,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "fireDart.svg"
+                        customIcon: "fireDart.svg",
+                        source: "Fire Dart"
                     })
                 }
             },
@@ -2535,7 +2551,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "fireBall.svg"
+                        customIcon: "fireBall.svg",
+                        source: "Fire Ball"
                     })
                 }
             },
@@ -2593,7 +2610,8 @@ export const MAGIC_BUFFS = {
                         isMagic: true,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "meteorStrike.svg"
+                        customIcon: "meteorStrike.svg",
+                        source: "Meteor Strike"
                     })
                 }
             },

@@ -48,7 +48,7 @@ export function autoAttack(
         let customIcon: string | undefined = undefined
 
         // Adjust icon per source
-        if (source === "phantom_strikes") {
+        if ((source === "phantom_strikes") || (source === "Phantom Strikes")) {
             customIcon = "phantomStrikes"
         }
 

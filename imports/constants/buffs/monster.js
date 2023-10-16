@@ -2670,7 +2670,8 @@ export const MONSTER_BUFFS = {
                             defender: attacker,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
-                            customIcon: buff.data.icon
+                            customIcon: buff.data.icon,
+                            source: "Troglodyte Eruption"
                         })
                     }
                 } catch (err) {}
@@ -2690,7 +2691,8 @@ export const MONSTER_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source: "Troglodyte Eruption"
                     })
                 }
             },

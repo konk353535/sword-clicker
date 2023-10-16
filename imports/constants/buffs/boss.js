@@ -51,7 +51,8 @@ export const BOSS_BUFFS = {
                     defender,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: buff.data.icon
+                    customIcon: buff.data.icon,
+                    source: "Deep Wounds"
                 })
             },
 
@@ -752,7 +753,7 @@ export const BOSS_BUFFS = {
                 }
             },
 
-            onTookDamage({ buff, defender, attacker, actualBattle, damageDealt }) {
+            onTookDamage({ buff, defender, attacker, actualBattle, damageDealt, source }) {
                 const constants =
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
@@ -764,7 +765,8 @@ export const BOSS_BUFFS = {
                     attacker,
                     defender,
                     tickEvents: actualBattle.tickEvents,
-                    historyStats: actualBattle.historyStats
+                    historyStats: actualBattle.historyStats,
+                    source // mirror
                 })
             },
 
@@ -1413,7 +1415,8 @@ export const BOSS_BUFFS = {
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
                         isMagic: buff.data.magic,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source: "Bison Charge"
                     })
 
                     buff.data.timeTillCharge = 100
@@ -1776,7 +1779,8 @@ export const BOSS_BUFFS = {
                             defender: unit,
                             isMagic: true,
                             tickEvents: actualBattle.tickEvents,
-                            historyStats: actualBattle.historyStats
+                            historyStats: actualBattle.historyStats,
+                            source: "Fire Blast"
                         })
 
                         // Next Phase!
@@ -2676,7 +2680,7 @@ export const BOSS_BUFFS = {
                             defender: redirectedToUnit,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
-                            source
+                            source // mirror
                         })
 
                         // tick event to inform the attacker
@@ -2699,7 +2703,7 @@ export const BOSS_BUFFS = {
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
                             originalAutoAttack: false,
-                            source: "vulnerableDamage"
+                            source: "Lich Vulnerability"
                         })
                     }
                 } else if (attacker.mainHandWeapon === "scepter_of_power") {

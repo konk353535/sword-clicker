@@ -88,7 +88,8 @@ export function applyBattleActions(this: Battle) {
                     attacker: casterUnit,
                     defender: targetUnit,
                     tickEvents: this.tickEvents,
-                    historyStats: this.historyStats
+                    historyStats: this.historyStats,
+                    source: "Amulet"
                 })
             }
         } else {

@@ -199,7 +199,26 @@ export function dealDamage(
 
     if (historyStats && historyStats[attacker__id_to_use]) {
         if (!attacker.isCompanion) {
-            historyStats[attacker__id_to_use].damageDone += damage
+            if (attacker__id_to_use != defender__id_to_use) {
+                // only show 'damage dealt' stats for damage not inflicted upon themselves
+                historyStats[attacker__id_to_use].damageDone += damage
+
+                const sourceDamage = {
+                    source,
+                    damage
+                }
+
+                if (!historyStats[attacker__id_to_use].breakdown) {
+                    historyStats[attacker__id_to_use].breakdown = []
+                }
+                
+                const idxExistingSource = historyStats[attacker__id_to_use].breakdown.findIndex((e: any) => e.source == source)
+                if (idxExistingSource === -1) {
+                    historyStats[attacker__id_to_use].breakdown.push(sourceDamage)
+                } else {
+                    historyStats[attacker__id_to_use].breakdown[idxExistingSource].damage += sourceDamage.damage
+                }
+            }
         } else {
             historyStats[attacker__id_to_use].companionName = attacker.name
             historyStats[attacker__id_to_use].damageDoneCompanion += damage
@@ -216,7 +235,7 @@ export function dealDamage(
     }
 
     let damageValue = autoPrecisionValueTight(damage).toString()
-    if (damageValue === "0" || CDbl(damage) <= 0.1) {
+    if (damageValue === "0" || CDbl(damage) <= 0.05) {
         damageValue = ""
         if (customIcon === "dodge") {
             damageValue = "Dodged"
@@ -226,12 +245,23 @@ export function dealDamage(
             damageValue = "Absorbed"
         }
 
-        if (historyStats && historyStats[defender__id_to_use]) {
-            if (!defender.isCompanion) {
-                historyStats[defender__id_to_use].attacksDodged++
-            } else {
-                historyStats[defender__id_to_use].companionName = defender.name
-                historyStats[defender__id_to_use].attacksDodged++
+        if (damageValue === "Dodged") {
+            if (historyStats && historyStats[defender__id_to_use]) {
+                if (!defender.isCompanion) {
+                    historyStats[defender__id_to_use].attacksDodged++
+                } else {
+                    historyStats[defender__id_to_use].companionName = defender.name
+                    historyStats[defender__id_to_use].attacksDodged++
+                }
+            }
+        } else {
+            if (historyStats && historyStats[defender__id_to_use]) {
+                if (!defender.isCompanion) {
+                    historyStats[defender__id_to_use].damageMitigated += rawDamage - damage
+                } else {
+                    historyStats[defender__id_to_use].companionName = defender.name
+                    historyStats[defender__id_to_use].damageMitigated += rawDamage - damage
+                }
             }
         }
     } else {

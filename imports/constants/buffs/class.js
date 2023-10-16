@@ -56,7 +56,7 @@ export const CLASS_BUFFS = {
                             // Check enemies both side of the defender
                             if (attacker.targetUnit.adjacentAllies && attacker.targetUnit.adjacentAllies.length > 0) {
                                 attacker.targetUnit.adjacentAllies.forEach((adjacentTarget) => {
-                                    // Perform auto attack on them as well
+                                    // Perform auto-attack on them as well
                                     actualBattle.autoAttack({
                                         attacker,
                                         defender: adjacentTarget,
@@ -105,7 +105,8 @@ export const CLASS_BUFFS = {
                     attacker: caster,
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
-                    historyStats: actualBattle.historyStats
+                    historyStats: actualBattle.historyStats,
+                    source: "Charge"
                 })
 
                 let isResilient = false
@@ -330,7 +331,8 @@ export const CLASS_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     customIcon: "duelistParry.svg",
-                    customColor: "#f7750f"
+                    customColor: "#f7750f",
+                    source: "Parry"
                 })
             },
 
@@ -586,7 +588,8 @@ export const CLASS_BUFFS = {
                                 attacker: defender,
                                 defender: paladinAlly,
                                 tickEvents: actualBattle.tickEvents,
-                                customIcon: buff.data.icon
+                                customIcon: buff.data.icon,
+                                source: "Squire Interception"
                             })
                         }
 
@@ -667,7 +670,8 @@ export const CLASS_BUFFS = {
                     attacker: caster,
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
-                    historyStats: actualBattle.historyStats
+                    historyStats: actualBattle.historyStats,
+                    source: "Wrath"
                 })
             },
 
@@ -1090,7 +1094,8 @@ export const CLASS_BUFFS = {
                             defender: attacker,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
-                            customIcon: buff.data.icon
+                            customIcon: buff.data.icon,
+                            source: "Thicket Briars"
                         })
                     }
                 } catch (err) {}
@@ -1111,7 +1116,8 @@ export const CLASS_BUFFS = {
                         defender: targetUnit,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: buff.data.icon
+                        customIcon: buff.data.icon,
+                        source: "Thicket Briars"
                     })
                 }
             },
@@ -1146,7 +1152,8 @@ export const CLASS_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "rangerBlazeArrows.svg"
+                    customIcon: "rangerBlazeArrows.svg",
+                    source: "Blaze Arrows"
                 })
 
                 const newBuff = {
@@ -1200,7 +1207,8 @@ export const CLASS_BUFFS = {
                         defender: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "rangerBlazeArrows.svg"
+                        customIcon: "rangerBlazeArrows.svg",
+                        source: "Blaze Arrows: Burn"
                     })
                     buff.data.timeTillDamage = 1
                 }
@@ -1237,7 +1245,8 @@ export const CLASS_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "rangerSleetArrows.svg"
+                    customIcon: "rangerSleetArrows.svg",
+                    source: "Sleet Arrows"
                 })
 
                 const newBuff = {
@@ -1288,7 +1297,8 @@ export const CLASS_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "rangerStormArrows.svg"
+                    customIcon: "rangerStormArrows.svg",
+                    source: "Storm Arrows"
                 })
 
                 const newBuff = {
@@ -1521,7 +1531,8 @@ export const CLASS_BUFFS = {
                             historyStats: actualBattle.historyStats,
                             isMagic: true,
                             isTrueDamage: true,
-                            customIcon: "sageMysticBond.svg"
+                            customIcon: "sageMysticBond.svg",
+                            source: "Mystic Bond Transfusion"
                         })
 
                         actualBattle.healTarget(totalHeal, {

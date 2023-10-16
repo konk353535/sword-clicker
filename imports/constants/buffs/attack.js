@@ -55,7 +55,8 @@ export const ATTACK_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     customIcon: "counterAttack.svg",
-                    customColor: "#f7750f"
+                    customColor: "#f7750f",
+                    source: "Furied Defense"
                 })
             },
 
@@ -97,7 +98,8 @@ export const ATTACK_BUFFS = {
                         historyStats: actualBattle.historyStats,
                         customIcon: "poison.svg",
                         customColor: "#229b00",
-                        bypassArmor: true
+                        bypassArmor: true,
+                        source: "Poison"
                     })
                 }
 
@@ -346,7 +348,7 @@ export const ATTACK_BUFFS = {
             const lifestealPerLevel = buff.constants.lifestealPerLevel * 100
 
             const lifestealTotal = lifestealBase + lifestealPerLevel * level
-            return `Heal for ${lifestealTotal.toFixed(0)}% of auto attack damage. (+${lifestealPerLevel.toFixed(
+            return `Heal for ${lifestealTotal.toFixed(0)}% of auto-attack damage. (+${lifestealPerLevel.toFixed(
                 0
             )}% damage per lvl)<br />
         Lasts 2 minutes.`
@@ -614,7 +616,7 @@ export const ATTACK_BUFFS = {
                         if (ourTargetsAllies && ourTargetsAllies.length > 0) {
                             buff.stacks -= 1
                             ourTargetUnit.adjacentAllies.forEach((newTarget) => {
-                                // Call auto attack on them as well
+                                // Call auto-attack on them as well
                                 actualBattle.autoAttack({
                                     attacker,
                                     defender: newTarget,
@@ -710,7 +712,8 @@ export const ATTACK_BUFFS = {
                         defender,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "thirstyFangs.svg"
+                        customIcon: "thirstyFangs.svg",
+                        source: "Thirsty Fangs"
                     })
                 }
             },
@@ -880,7 +883,8 @@ export const ATTACK_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     isTrueDamage: true,
-                    customIcon: "berserk.svg"
+                    customIcon: "berserk.svg",
+                    source: "Berserk"
                 })
 
                 if (buff.duration !== Infinity) {
@@ -1029,7 +1033,8 @@ export const ATTACK_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "doubleEdgedSword.svg"
+                    customIcon: "doubleEdgedSword.svg",
+                    source: "Double Edged Sword"
                 })
 
                 actualBattle.dealDamage(totalDamage / 10, {
@@ -1038,7 +1043,8 @@ export const ATTACK_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     isTrueDamage: true,
-                    customIcon: "doubleEdgedSword.svg"
+                    customIcon: "doubleEdgedSword.svg",
+                    source: "Double Edged Sword"
                 })
             },
 
@@ -1100,7 +1106,8 @@ export const ATTACK_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "execute.svg"
+                    customIcon: "execute.svg",
+                    source: "Execute"
                 })
             },
 
@@ -1150,7 +1157,8 @@ export const ATTACK_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "slash.svg"
+                    customIcon: "slash.svg",
+                    source: "Slash"
                 })
             },
 
@@ -1206,7 +1214,8 @@ export const ATTACK_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "penetratingSlash.svg"
+                    customIcon: "penetratingSlash.svg",
+                    source: "Penetrating Slash"
                 })
                 target.stats.armor /= 1 - constants.armorPenetration
             },
@@ -1254,7 +1263,8 @@ export const ATTACK_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     actualBattle,
-                    customIcon: "shieldBash.svg"
+                    customIcon: "shieldBash.svg",
+                    source: "Shield Bash"
                 })
             },
 
@@ -1316,7 +1326,8 @@ export const ATTACK_BUFFS = {
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     isMagic: buff.data.hasOwnProperty("isMagic") ? buff.data.isMagic : false,
-                    customIcon: "bladeSpin.svg"
+                    customIcon: "bladeSpin.svg",
+                    source: "Blade Spin"
                 })
             },
 
@@ -1533,7 +1544,8 @@ export const ATTACK_BUFFS = {
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
                         customIcon: "bleeding.svg",
-                        bypassArmor: true
+                        bypassArmor: true,
+                        source: "Bleed"
                     })
                 }
 
@@ -1643,7 +1655,8 @@ export const ATTACK_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "powerShot.svg"
+                    customIcon: "powerShot.svg",
+                    source: "Power Shot"
                 })
 
                 // Restore target armor

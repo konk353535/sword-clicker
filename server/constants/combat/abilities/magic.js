@@ -554,7 +554,7 @@ export const MAGIC_ABILITIES = {
         slot: "any",
         isHidden: true,
         isMagic: true,
-        target: "allAllies", // The current enemy who we are auto attacking
+        target: "allAllies", // The current enemy who we are auto-attacking
         isPacifist: true,
         description(level) {
             const BUFF = BUFFS.feeding_frenzy

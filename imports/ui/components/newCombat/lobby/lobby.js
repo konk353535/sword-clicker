@@ -4,6 +4,7 @@ import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 
+import lodash from "lodash"
 import _ from "underscore"
 import moment from "moment"
 import io from "socket.io-client"
@@ -786,7 +787,7 @@ Template.lobbyPage.helpers({
     },
 
     recentBattles() {
-        return Battles.find(
+        const recentBattlesData = Battles.find(
             {},
             {
                 limit: 1,
@@ -795,6 +796,29 @@ Template.lobbyPage.helpers({
                 }
             }
         )
+
+        // I'm sure there's a better way to do this... but... we're creating a copy of the historyStats for
+        // every battle, and for each one of them we're sorting each players' list of data by damage in
+        // descending order.
+        let recentBattlesDataFixed = []
+        recentBattlesData.forEach((recentBattleData) => {
+            const recentBattleDataMutated = Object.entries(recentBattleData.historyStats).map((key => {
+                return Object.assign({}, recentBattleData, {
+                    key: key[0],
+                    breakdown: recentBattleData.historyStats[key[0]].breakdown
+                }
+            )}))
+            
+            recentBattleDataMutated.forEach((unitsHistoryStat) => {
+                unitsHistoryStat.breakdown.sort(function(breakdownDataA, breakdownDataB) {
+                    return breakdownDataB.damage - breakdownDataA.damage
+                })
+            })
+
+            recentBattlesDataFixed.push(Object.assign({}, recentBattleDataMutated[0]))
+        })
+
+        return recentBattlesDataFixed
     },
 
     foodItems() {

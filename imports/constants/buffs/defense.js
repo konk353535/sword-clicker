@@ -81,7 +81,8 @@ export const DEFENSE_BUFFS = {
                         defender: enemy,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "volcanicShield.svg"
+                        customIcon: "volcanicShield.svg",
+                        source: "Volcanic Shield"
                     })
                 })
             }
@@ -487,7 +488,8 @@ export const DEFENSE_BUFFS = {
                     isMagic: true,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "spikedArmor.svg"
+                    customIcon: "spikedArmor.svg",
+                    source: "Spiked Armor"
                 })
             },
 
@@ -543,7 +545,8 @@ export const DEFENSE_BUFFS = {
                         attacker: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "intimidate.svg"
+                        customIcon: "intimidate.svg",
+                        source: "Intimidate"
                     })
                 }
             },
@@ -563,7 +566,8 @@ export const DEFENSE_BUFFS = {
                     isMagic: true,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "eelTaunt.svg"
+                    customIcon: "eelTaunt.svg",
+                    source: "Eel Taunt"
                 })
             }
         }
@@ -610,7 +614,8 @@ export const DEFENSE_BUFFS = {
                         attacker: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "intimidate.svg"
+                        customIcon: "intimidate.svg",
+                        source: "Intimidate"
                     })
                 }
             },
@@ -629,7 +634,8 @@ export const DEFENSE_BUFFS = {
                     attacker: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
-                    customIcon: "lionTaunt.svg"
+                    customIcon: "lionTaunt.svg",
+                    source: "Lion Taunt"
                 })
             }
         }
@@ -678,7 +684,8 @@ export const DEFENSE_BUFFS = {
                         attacker: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "intimidate.svg"
+                        customIcon: "intimidate.svg",
+                        source: "Intimidate"
                     })
                 }
             },
@@ -760,7 +767,8 @@ export const DEFENSE_BUFFS = {
                             attacker: target,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
-                            customIcon: "intimidate.svg"
+                            customIcon: "intimidate.svg",
+                            source: "Intimidate"
                         })
                     }
                 }
@@ -819,7 +827,8 @@ export const DEFENSE_BUFFS = {
                         attacker: target,
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
-                        customIcon: "intimidate.svg"
+                        customIcon: "intimidate.svg",
+                        source: "Intimidate"
                     })
                 }
             },

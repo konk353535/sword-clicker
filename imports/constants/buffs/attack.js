@@ -1011,9 +1011,11 @@ export const ATTACK_BUFFS = {
             damageBase: 1.25, // 200, 275, 350, 425, 500
             damagePerLevel: 0.75
         },
-        duration: 0,
+        duration: 0.4,
         data: {
-            totalDuration: 0
+            duration: 0.4,
+            totalDuration: 0.4,
+            custom: true
         },
         events: {
             // This can be rebuilt from the buff id
@@ -1022,6 +1024,10 @@ export const ATTACK_BUFFS = {
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
+
+                buff.custom = buff.data.custom = true
+                buff.customText = ""
+
                 const damageIncreasePerPercentage = constants.damageBase + constants.damagePerLevel * buff.data.level
                 // Targets missing health %
                 const baseDamage = caster.stats.attackMax
@@ -1036,20 +1042,29 @@ export const ATTACK_BUFFS = {
                     customIcon: "doubleEdgedSword.svg",
                     source: "Double Edged Sword"
                 })
+            },
 
-                actualBattle.dealDamage(totalDamage / 10, {
-                    attacker: caster,
-                    defender: caster,
+            onDidDamage ({ buff, defender, attacker, actualBattle, damageDealt}) {
+                actualBattle.dealDamage(damageDealt / 10, {
+                    attacker,
+                    defender: attacker,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
                     isTrueDamage: true,
                     customIcon: "doubleEdgedSword.svg",
                     source: "Double Edged Sword"
                 })
+
+                removeBuff({ buff, target: defender, caster: attacker, actualBattle })
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                removeBuff({ buff, target, caster, actualBattle })
+                if (buff.duration !== Infinity) {
+                    buff.duration -= secondsElapsed
+                    if (buff.duration <= 0) {
+                        removeBuff({ buff, target, caster, actualBattle })
+                    }
+                }
             }
         }
     },

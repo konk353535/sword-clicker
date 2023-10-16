@@ -97,7 +97,7 @@
             <tbody>
             {{#each computedBattle.detailedStats}}
               <tr>
-                <td rowspan="3" align="center" style="vertical-align: middle !important;"><b>{{this.name}}</b></td>
+                <td rowspan="{{#if this.isCompanion}}1{{else}}4{{/if}}" align="center" style="vertical-align: middle !important;"><b>{{this.name}}</b></td>
                 <td><span class="hide-on-mobile">Stats</span><span class="hide-on-desktop"><img src="/icons/total.svg" class="embed-icon" /></span></td>
                 <td>{{> ceilNumber this.damageDone}}</td>
                 <td>{{> ceilNumber this.healingDone}}</td>
@@ -105,40 +105,54 @@
                 <td>{{> ceilNumber this.damageMitigated}}</td>
                 <td>{{> ceilNumber this.attacksDodged}}</td>
               </tr>
-              <tr>
-                <td><span class="hide-on-mobile">Damage</span><span class="hide-on-desktop"><img src="/icons/attack.svg" class="embed-icon" /></span></td>
-                <td colspan="5">
-                  <table class="table-thin" style="border: none; width: 100%;" cellpadding="0" cellspacing="0">
-                    {{#let totalDamageCalculated=totalDamage thisMaxHit=maxHit}}
-                      {{#each this.breakdown}}
-                        {{> damageBreakdownLine breakdownData=this totalDamage=totalDamageCalculated maxHit=thisMaxHit}}
+              {{#unless this.isCompanion}}
+                <tr>
+                  <td><span class="hide-on-mobile">Damage</span><span class="hide-on-desktop"><img src="/icons/attack.svg" class="embed-icon" /></span></td>
+                  <td colspan="5">
+                    <table class="table-thin" style="border: none; width: 100%;" cellpadding="0" cellspacing="0">
+                      {{#let totalDamageCalculated=totalDamage thisMaxHit=maxHit}}
+                        {{#each this.breakdown}}
+                          {{> damageBreakdownLine breakdownData=this totalDamage=totalDamageCalculated maxHit=thisMaxHit}}
+                        {{/each}}
+                      {{/let}}
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="hide-on-mobile">Heal</span><span class="hide-on-desktop"><img src="/icons/heal.svg" class="embed-icon" /></span></td>
+                  <td colspan="5">
+                    <table class="table-thin" style="border: none; width: 100%;" cellpadding="0" cellspacing="0">
+                      {{#let totalHealedCalculated=totalHealed thisMaxHeal=maxHeal}}
+                        {{#each this.breakdown}}
+                          {{> healBreakdownLine breakdownData=this totalHealed=totalHealedCalculated maxHeal=thisMaxHeal}}
+                        {{/each}}
+                      {{/let}}
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="hide-on-mobile">Loot</span><span class="hide-on-desktop"><img src="/icons/treasureChest.svg" class="embed-icon" /></span></td>
+                  <td colspan="5" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
+                    <div class="d-flex flex-row flex-wrap">
+                      {{#each this.tickEvents}}
+                        {{#if $eq this.type 'item'}}
+                          <div class="mr-3 {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
+                            +{{this.amount}}
+                            <img style="margin-left: -3px; margin-right: -2px;" src="/icons/{{this.icon}}" class="extra-small-icon" data-item-id="{{this.itemId}}">
+                            <span class="hide-on-mobile">{{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}</span>
+                          </div>
+                        {{/if}}
+                        {{#if $eq this.type 'gold'}}
+                          <div class="mr-3">
+                            +{{this.amount}}
+                            <img style="margin-left: -3px; margin-right: -2px;" src="/icons/goldCoin.svg" class="extra-small-icon">
+                          </div>
+                        {{/if}}
                       {{/each}}
-                    {{/let}}
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td><span class="hide-on-mobile">Loot</span><span class="hide-on-desktop"><img src="/icons/treasureChest.svg" class="embed-icon" /></span></td>
-                <td colspan="5" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
-                  <div class="d-flex flex-row flex-wrap">
-                    {{#each this.tickEvents}}
-                      {{#if $eq this.type 'item'}}
-                        <div class="mr-3 {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
-                          +{{this.amount}}
-                          <img style="margin-left: -3px; margin-right: -2px;" src="/icons/{{this.icon}}" class="extra-small-icon" data-item-id="{{this.itemId}}">
-                          <span class="hide-on-mobile">{{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}</span>
-                        </div>
-                      {{/if}}
-                      {{#if $eq this.type 'gold'}}
-                        <div class="mr-3">
-                          +{{this.amount}}
-                          <img style="margin-left: -3px; margin-right: -2px;" src="/icons/goldCoin.svg" class="extra-small-icon">
-                        </div>
-                      {{/if}}
-                    {{/each}}
-                  </div>
-                </td>
-              </tr>
+                    </div>
+                  </td>
+                </tr>
+              {{/unless}}
             {{/each}}
             </tbody>
           </table>
@@ -172,19 +186,41 @@
 </template>
 
 <template name="damageBreakdownLine">
-  <tr>
-    <td style="min-width: 100px;">
-      {{formattedDamageSource}}
-    </td>
-    <td width="10" style="min-width: 6px; width: 10px"></td>
-    <td>
-      {{> formatNumber number=this.breakdownData.damage decimal=0 noDecimal=0 autoPrecision=false}}
-    </td>
-    <td width="10" style="min-width: 6px; width: 10px"></td>
-    <td width="70%" style="width: 70%">
-      <div class="progress" style="height: 5px; width: 100%; margin-top: 8px;">
-        <div class="progress-bar bg-primary" role="progressbar" style="width: {{damageBarScaled}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </td>
-  </tr>
+  {{#if this.breakdownData.damage}}
+    <tr>
+      <td class="text-capitalize" style="min-width: 100px;">
+        {{formattedDamageSource}}
+      </td>
+      <td width="10" style="min-width: 6px; width: 10px"></td>
+      <td>
+        {{> formatNumber number=this.breakdownData.damage decimal=0 noDecimal=0 autoPrecision=false}}
+      </td>
+      <td width="10" style="min-width: 6px; width: 10px"></td>
+      <td width="70%" style="width: 70%">
+        <div class="progress" style="height: 5px; width: 100%; margin-top: 8px;">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: {{damageBarScaled}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </td>
+    </tr>
+  {{/if}}
+</template>
+
+<template name="healBreakdownLine">
+  {{#if this.breakdownData.healing}}
+    <tr>
+      <td class="text-capitalize" style="min-width: 100px;">
+        {{formattedHealSource}}
+      </td>
+      <td width="10" style="min-width: 6px; width: 10px"></td>
+      <td>
+        {{> formatNumber number=this.breakdownData.healing decimal=0 noDecimal=0 autoPrecision=false}}
+      </td>
+      <td width="10" style="min-width: 6px; width: 10px"></td>
+      <td width="70%" style="width: 70%">
+        <div class="progress" style="height: 5px; width: 100%; margin-top: 8px;">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: {{healBarScaled}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </td>
+    </tr>
+  {{/if}}
 </template>

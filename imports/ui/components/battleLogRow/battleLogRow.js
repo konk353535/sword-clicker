@@ -65,6 +65,7 @@ Template.battleLogRow.helpers({
                             historyStatsWithCompanions[battleStatId].damageTakenCompanion > 0
                         ) {
                             historyStatsWithCompanions[battleStatId + "_companion"] = {
+                                isCompanion: true,
                                 name: historyStatsWithCompanions[battleStatId].companionName
                                     ? historyStatsWithCompanions[battleStatId].companionName
                                     : historyStatsWithCompanions[battleStatId].name + "'s companion",
@@ -142,7 +143,9 @@ Template.battleLogRow.helpers({
         if (this && this?.breakdown) {
             let total = 0
             this.breakdown.forEach((breakdownLine) => {
-                total += breakdownLine.damage
+                if (breakdownLine.damage) {
+                    total += breakdownLine.damage
+                }
             })
             return total
         }
@@ -159,6 +162,34 @@ Template.battleLogRow.helpers({
                 }
             })
             return maxHit
+        }
+
+        return 0
+    },
+
+    totalHealed() {
+        if (this && this?.breakdown) {
+            let total = 0
+            this.breakdown.forEach((breakdownLine) => {
+                if (breakdownLine.healing) {
+                    total += breakdownLine.healing
+                }
+            })
+            return total
+        }
+
+        return 0
+    },
+
+    maxHeal() {
+        if (this && this?.breakdown) {
+            let maxHeal = 0
+            this.breakdown.forEach((breakdownLine) => {
+                if (breakdownLine.healing > maxHeal) {
+                    maxHeal = breakdownLine.healing
+                }
+            })
+            return maxHeal
         }
 
         return 0
@@ -192,10 +223,38 @@ Template.damageBreakdownLine.helpers({
         const damageLineData = instData?.breakdownData
         const totalDamage = instData?.totalDamage || 0
         const maxHit = instData?.maxHit || 0
-        if (totalDamage > 0 && maxHit > 0 && typeof damageLineData === "undefined" || typeof damageLineData === "undefined") {
+        if (totalDamage <= 0 || maxHit <= 0 || typeof damageLineData === "undefined") {
             return 0
         }
 
         return Math.round(damageLineData.damage / maxHit * 100, 1)
+    }
+})
+
+Template.healBreakdownLine.helpers({
+    formattedHealSource() {
+        const healLineData = Template.instance()?.data.breakdownData
+        if (typeof healLineData === "undefined") {
+            return false
+        }
+
+        let healSource = healLineData?.source?.toString()?.trim() || "unknown"
+        if (healSource.length === 0) {
+            healSource = "unknown"
+        }
+
+        return healSource
+    },
+
+    healBarScaled() {
+        const instData = Template.instance()?.data
+        const healLineData = instData?.breakdownData
+        const totalHealed = instData?.totalHealed || 0
+        const maxHeal = instData?.maxHeal || 0
+        if (totalHealed <= 0 || maxHeal <= 0 || typeof healLineData === "undefined") {
+            return 0
+        }
+
+        return Math.round(healLineData.healing / maxHeal * 100, 1)
     }
 })

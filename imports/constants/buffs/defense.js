@@ -1,7 +1,7 @@
 import moment from "moment"
 import _ from "underscore"
 
-import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
+import { addBuff, lookupBuff, removeBuff, getTargetableFriendlyUnits, getTargetableFriendlyUnitsBesidesMe, forceEnemiesToTargetRandomFromList } from "../../battleUtils"
 import { CInt } from "../../utils.js"
 
 export const DEFENSE_BUFFS = {
@@ -852,29 +852,12 @@ export const DEFENSE_BUFFS = {
             totalDuration: 0
         },
         events: {
-            // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
-                buff.data.endDate = moment().add(0, "seconds").toDate()
-
-                let allFriendlyCombatUnitsExcludingSelf = []
-                _.forEach(actualBattle.units, function (thisFriendlyUnit) {
-                    if (thisFriendlyUnit.id != caster.id) {
-                        allFriendlyCombatUnitsExcludingSelf.push(thisFriendlyUnit)
-                    }
-                })
-
-                // If the casting player is the only living friendly unit, then distract has nothing to do!
-                if (allFriendlyCombatUnitsExcludingSelf.length == 0) {
-                    return
-                }
-
-                _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
-                    // If this enemy is targeting the casting player...
-                    if (thisEnemyUnit.target == caster.id) {
-                        // ... then find a new friendly unit (player or companion) that *isn't* the caster for the enemy to target instead
-                        thisEnemyUnit.target = _.sample(allFriendlyCombatUnitsExcludingSelf).id
-                    }
-                })
+                forceEnemiesToTargetRandomFromList(
+                    getTargetableFriendlyUnitsBesidesMe(caster, actualBattle),
+                    actualBattle,
+                    caster
+                )
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

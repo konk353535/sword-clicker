@@ -479,36 +479,39 @@ SimpleChat.configure({
                     const ITEMS_as_Array = Object.keys(ITEMS).map((key) => {
                         return Object.assign({}, ITEMS[key])
                     })
+
+                    // check for exact match on name or ID first
                     ITEMS_as_Array.forEach((itemConstant) => {
-                        if (itemConstant.name) {
-                            if (itemConstant.name.trim().toLowerCase() == targetItem.toLowerCase()) {
-                                itemConstants = itemConstant
-                                targetItem = itemConstants.id
-                            } else if (itemConstant.id.trim().toLowerCase() == targetItem.toLowerCase()) {
+                        if (!itemConstants && itemConstant.name && itemConstant.name.trim().toLowerCase() == targetItem.toLowerCase()) {
+                            itemConstants = itemConstant
+                            targetItem = itemConstants.id
+                        }
+                        
+                         if (!itemConstants && itemConstant.id && itemConstant.id.trim().toLowerCase() == targetItem.toLowerCase()) {
+                            itemConstants = itemConstant
+                            targetItem = itemConstants.id
+                        }
+                    })
+
+                    // check for partial match on name or ID
+                    if (!itemConstants) {
+                        ITEMS_as_Array.forEach((itemConstant) => {
+                            if (!itemConstants && itemConstant.name && itemConstant.name.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
                                 itemConstants = itemConstant
                                 targetItem = itemConstants.id
                             }
-                        }
-                    })
-                    if (!itemConstants) {
-                        ITEMS_as_Array.forEach((itemConstant) => {
-                            if (itemConstant.name) {
-                                if (itemConstant.name.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
-                                    itemConstants = itemConstant
-                                    targetItem = itemConstants.id
-                                }
-                            } else if (itemConstant.id) {
-                                if (itemConstant.id.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
-                                    itemConstants = itemConstant
-                                    targetItem = itemConstants.id
-                                }
+                            
+                            if (!itemConstants && itemConstant.id && itemConstant.id.trim().toLowerCase().indexOf(targetItem.toLowerCase()) !== -1) {
+                                itemConstants = itemConstant
+                                targetItem = itemConstants.id
                             }
                         })
                     }
-                    if (!itemConstants) {
-                        sendUserChatMessage({ userId: userDoc._id, message: `Invalid item name or ID '${targetItem}'.'` })
-                        return
-                    }
+                }
+                
+                if (!itemConstants) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Invalid item name or ID '${targetItem}'.'` })
+                    return
                 }
 
                 addItem(targetItem, targetAmount, targetUser._id, false, targetQuality, targetRarityTier)

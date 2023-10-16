@@ -1,6 +1,34 @@
 <template name="updatesPage">
 
     <div class="updates-page">
+        <h2 class="my-3">Monday 16th October 2023</h2>
+        <ul>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Rangers Thicket Briars will now automatically distract enemies targeting the Ranger when they periodically regrow.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>The Recent Battles detailed view showing loot should not break the HTML formatting anymore.</li>
+                    <li>Double Edged Sword self-damage is fixed and should ht yourself with 10% of the damage you actually dealt to your target as true damage, not 10% of your maximum damage potential.</li>
+                    <li>Bonus auto-attack hits that are caused by abilities and effects (such as Phantom Strikes, Volley, Barbarian's trait, Twin Blades, etc.) will now properly track their damage separately instead of being added to auto-attack damage.</li>
+                    <li>Damage caused by Ranger Briars will now be credited to the Ranger player.</li>
+                    <li>Distract will no longer force enemies to randomly pick Sages to target.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>Damage Dealt tracked in a battle for each unit now omits any stats for damage where the attacker and defender are the same unit.  You do not get credit for hitting yourself with Berserk damage, Double Edged Damage, etc.  It will still count as Damage Taken.</li>
+                    <li>The Recent Battles detailed view now shows a breakdown of damage and healing each unit did by damage source.  Stats are only recorded since this update.</li>
+                    <li>The appearance options to "Disable floating text" and "Disable combat deaths" are now persistent settings instead of session settings.  They will remember your preference whenever you refresh the page.</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Sunday 15th October 2023</h2>
         <ul>
             <li><b>Class Balance Changes</b></li>
@@ -23,7 +51,6 @@
             <li><b>UI Changes</b></li>
             <li>
                 <ul>
-                    <li>The Recent Battles detailed view now shows a breakdown of damage each unit did by damage source.  Stats are only recorded since this update.</li>
                     <li>You can now see the class of other group members in the battle lobby.</li>
                     <li>You can now see the current energy of pending invitees to a group.</li>
                     <li>The rankings now show players' Class on mobile.</li>

@@ -251,6 +251,22 @@ export const MISC_ITEMS = {
         upgradeRarity: [{ chance: 100, rarityId: "developer" }]
     },
 
+    dev_legs: {
+        id: "dev_legs",
+        icon: "prismaticPlatelegs.png",
+        category: "combat",
+        slot: "legs",
+        name: "invulnerability armor",
+        sellPrice: 0,
+        description: "For developer use only.",
+        isEquippable: true,
+        stats: {
+            absorption: 1
+        },
+        extraStats: {},
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
+    },
+
     /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
     copper_kite_shield: {
         id: "copper_kite_shield",

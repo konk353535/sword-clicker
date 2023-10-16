@@ -66,6 +66,7 @@ export const addBuff = function addBuff({ buff, target, caster, actualBattle }) 
     if (newBuff.onApply && !newBuff.data.didApply) {
         newBuff.onApply({ buff: newBuff, target, caster, actualBattle })
         newBuff.data.didApply = true
+        newBuff.data.duration = Math.max(newBuff.duration, newBuff.data.duration)
     }
 
     const fixedBuff = fixupBuffText(newBuff, caster)

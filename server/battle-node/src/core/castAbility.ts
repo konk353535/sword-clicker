@@ -248,6 +248,7 @@ export function castAbility(this: Battle, { ability, caster, targets }: castAbil
                     try {
                         buff.constants.events.onApply({ buff, target, caster, actualBattle: this })
                         buff.data.didApply = true
+                        buff.data.duration = Math.max(buff.duration, buff.data.duration)
                         const fixedBuff = fixupBuffText(buff, caster)
                         buff.data.name = fixedBuff.data.name
                         buff.data.description = fixedBuff.data.description

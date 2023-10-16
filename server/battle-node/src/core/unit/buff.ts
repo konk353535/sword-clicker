@@ -141,6 +141,9 @@ export default class Buff {
     }
     set duration(value) {
         this._duration = value
+        if (this.data) {
+            this.data.duration = value
+        }
         if (value !== Infinity) {
             this.delta("duration")
         }
@@ -208,9 +211,9 @@ export default class Buff {
             this.custom = buff.custom || buff.data.custom
             this._duration = Infinity
             if (IsValid(buff.data.duration)) {
-                this._duration = buff.data.duration
+                this.duration = buff.data.duration
             } else if (IsValid(buff.duration)) {
-                this._duration = buff.duration
+                this.duration = buff.duration
             }
             this._stacks = buff.stacks
             if (!buff.stacks && buff.data && buff.data.stacks) {
@@ -249,6 +252,7 @@ export default class Buff {
             if (this.events.onApply) {
                 this.events.onApply(options)
                 this.data.didApply = true
+                this.data.duration = Math.max(this.duration, this.data.duration)
                 const fixedBuff = fixupBuffText(this, options?.caster)
                 this.data.name = fixedBuff.data.name
                 this.data.description = fixedBuff.data.description

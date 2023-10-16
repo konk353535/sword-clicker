@@ -971,6 +971,7 @@ Meteor.methods({
                 if (!buff.data.didApply) {
                     buff.constants.events.onApply({ buff, caster: buffCaster, target: buffTarget })
                     buff.data.didApply = true
+                    buff.data.duration = Math.max(buff.duration, buff.data.duration)
                 }
 
                 // Remove existing buffs that match

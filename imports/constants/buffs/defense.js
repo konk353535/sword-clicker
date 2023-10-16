@@ -972,7 +972,6 @@ export const DEFENSE_BUFFS = {
 
                 if (constants) {
                     buff.duration += buff.data.level * constants.durationPerLevel
-                    buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 }
                 
                 buff.data.defenseAddition = 1000000

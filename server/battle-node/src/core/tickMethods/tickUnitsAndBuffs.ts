@@ -41,6 +41,7 @@ export function tickUnitsAndBuffs(this: Battle) {
                         if (!buff.data.didApply) {
                             buff.onApply({ buff, caster: caster, target: aliveUnit, actualBattle: this })
                             buff.data.didApply = true
+                            buff.data.duration = Math.max(buff.duration, buff.data.duration)
                             const fixedBuff = fixupBuffText(buff, caster)
                             buff.data.name = fixedBuff.data.name
                             buff.data.description = fixedBuff.data.description

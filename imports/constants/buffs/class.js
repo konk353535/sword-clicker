@@ -2296,8 +2296,7 @@ export const CLASS_BUFFS = {
                                 description: ``,
                                 duplicateTag: "companion_skeletal_warrior",
                                 level: 2,
-                                hideBuff: true,
-                                sourceId: caster.id
+                                hideBuff: true
                             }
                         })
                     }

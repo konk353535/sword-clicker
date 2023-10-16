@@ -119,20 +119,20 @@
               </tr>
               <tr>
                 <td><span class="hide-on-mobile">Loot</span><span class="hide-on-desktop"><img src="/icons/treasureChest.svg" class="embed-icon" /></span></td>
-                <td colspan="5">
-                  <div class="d-flex">
+                <td colspan="5" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
+                  <div class="d-flex flex-row flex-wrap">
                     {{#each this.tickEvents}}
                       {{#if $eq this.type 'item'}}
-                        <div class="ml-1 d-flex align-items-center {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
+                        <div class="mr-3 {{#if this.affectedNeedGreed}}text-success{{else if this.affectedGlobalBuff}}text-info{{/if}}">
                           +{{this.amount}}
-                          <img src="/icons/{{this.icon}}" class="ml-1 extra-small-icon" data-item-id="{{this.itemId}}">
-                          {{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}
+                          <img style="margin-left: -3px; margin-right: -2px;" src="/icons/{{this.icon}}" class="extra-small-icon" data-item-id="{{this.itemId}}">
+                          <span class="hide-on-mobile">{{#if this.name}}<span class="text-capitalize">({{this.name}})</span>{{/if}}</span>
                         </div>
                       {{/if}}
                       {{#if $eq this.type 'gold'}}
-                        <div class="ml-1 d-flex align-items-center">
+                        <div class="mr-3">
                           +{{this.amount}}
-                          <img src="/icons/goldCoin.svg" class="extra-small-icon">
+                          <img style="margin-left: -3px; margin-right: -2px;" src="/icons/goldCoin.svg" class="extra-small-icon">
                         </div>
                       {{/if}}
                     {{/each}}

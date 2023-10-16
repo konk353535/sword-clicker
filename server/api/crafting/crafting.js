@@ -277,7 +277,6 @@ const getReforgeData = function getReforgeData(_id) {
 
     const classReforgeData = userCurrentClass(Meteor.userId())?.data?.reforge
     if (classReforgeData && classReforgeData[currentItem.itemId] && classReforgeData[currentItem.itemId].requiresCrafting) {
-        const recipeItemConstants = lodash.cloneDeep(ITEMS[currentItem.itemId])
         recipeData = {
             requiredCraftingLevel: classReforgeData[currentItem.itemId].requiresCrafting,
             isLooted: true // there's nothing in class reforge data that isn't a looted item
@@ -285,7 +284,7 @@ const getReforgeData = function getReforgeData(_id) {
     }
 
     if (!recipeData || !recipeData.requiredCraftingLevel) {
-        const recipeItemConstants = lodash.cloneDeep(ITEMS[currentItem.itemId])
+        const recipeItemConstants = Object.freeze(lodash.cloneDeep(ITEMS[currentItem.itemId]))
         if (recipeItemConstants.reforgeRecipe && recipeItemConstants.reforgeRecipe.requiresCrafting) {
             recipeData = {
                 requiredCraftingLevel: recipeItemConstants.reforgeRecipe.requiresCrafting,

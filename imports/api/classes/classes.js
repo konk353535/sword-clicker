@@ -38,7 +38,7 @@ export const userCurrentClass = function (uid) {
         const equippedClass = CLASSES.lookup(thisUser.classData.currentClass)
 
         if (equippedClass) {
-            return {
+            return Object.freeze({
                 player: uid,
                 unlocked: classFeatureUnlocked(uid),
                 eligible: userEligibleForClass(uid, equippedClass),
@@ -46,10 +46,10 @@ export const userCurrentClass = function (uid) {
                 data: equippedClass,
                 icon: equippedClass.icon,
                 cooldown: thisUser.classData.changeCooldown || undefined
-            }
+            })
         }
 
-        return {
+        return Object.freeze({
             player: uid,
             unlocked: classFeatureUnlocked(uid),
             eligible: userEligibleForClass(uid, defaultClass),
@@ -57,10 +57,10 @@ export const userCurrentClass = function (uid) {
             data: defaultClass,
             icon: defaultClass.icon,
             cooldown: thisUser.classData.changeCooldown || undefined
-        }
+        })
     }
 
-    return {
+    return Object.freeze({
         player: uid,
         unlocked: classFeatureUnlocked(uid),
         eligible: false,
@@ -68,5 +68,5 @@ export const userCurrentClass = function (uid) {
         data: noClass,
         icon: noClass.icon,
         cooldown: undefined
-    }
+    })
 }

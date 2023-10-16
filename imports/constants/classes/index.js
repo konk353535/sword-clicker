@@ -1,3 +1,5 @@
+import lodash from "lodash"
+
 import { classFeatureUnlocked } from "/imports/api/users/users.js"
 
 console.log("exporting classes/index.js CLASSES")
@@ -950,18 +952,18 @@ export const CLASSES = Object.freeze({
             id = id.trim().toLowerCase().replace(" ", "")
 
             if (id in CLASSES) {
-                return CLASSES[id]
+                return Object.freeze(lodash.cloneDeep(CLASSES[id]))
             }
         }
-        return CLASSES.default()
+        return Object.freeze(lodash.cloneDeep(CLASSES.default()))
     },
 
     default: function () {
-        return CLASSES["wanderer"]
+        return Object.freeze(lodash.cloneDeep(CLASSES["wanderer"]))
     },
 
     none: function () {
-        return CLASSES["none"]
+        return Object.freeze(lodash.cloneDeep(CLASSES["none"]))
     },
 
     list: function() {

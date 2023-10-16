@@ -532,7 +532,7 @@ export const ATTACK_BUFFS = {
                         defender,
                         originalAutoAttack: false,
                         damageModifier: 0.2 * buff.data.level, // 20% bonus damage x level
-                        source: "phantom_strikes"
+                        source: "Phantom Strikes"
                     })
 
                     /*        
@@ -622,7 +622,8 @@ export const ATTACK_BUFFS = {
                                     defender: newTarget,
                                     tickEvents: actualBattle.tickEvents,
                                     historyStats: actualBattle.historyStats,
-                                    originalAutoAttack: false
+                                    originalAutoAttack: false,
+                                    source: "Twin Blades"
                                 })
 
                                 // Apply a cooldown to our ability
@@ -1740,7 +1741,8 @@ export const ATTACK_BUFFS = {
                         actualBattle.autoAttack({
                             attacker: target,
                             defender: randomTargetUnit,
-                            damageModifier: extraDamage
+                            damageModifier: extraDamage,
+                            source: "Volley"
                         })
                     }
                 }

@@ -153,3 +153,27 @@ export const fixupBuffText = function fixupBuffText(buff, caster) {
 
     return buff
 }
+
+export const getTargetableFriendlyUnits = function(actualBattle) {
+    const qualifiedUnitsList = actualBattle.units.filter((thisFriendlyUnit) => {
+        return thisFriendlyUnit?.currentClass?.id !== "sage"
+    })
+    return qualifiedUnitsList
+}
+
+export const getTargetableFriendlyUnitsBesidesMe = function(caster, actualBattle) {
+    const qualifiedUnitsList = actualBattle.units.filter((thisFriendlyUnit) => {
+        return thisFriendlyUnit.id !== caster?.id && thisFriendlyUnit?.currentClass?.id !== "sage"
+    })
+    return qualifiedUnitsList
+}
+
+export const forceEnemiesToTargetRandomFromList = function(qualifiedUnitsList, actualBattle, unitFilter) {
+    if (qualifiedUnitsList?.length > 0) {
+        _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
+            if (!unitFilter || !unitFilter.id || thisEnemyUnit?.target?.length <= 0 || thisEnemyUnit?.target == unitFilter?.id) {
+                thisEnemyUnit.target = _.sample(qualifiedUnitsList).id
+            }
+        })
+    }
+}

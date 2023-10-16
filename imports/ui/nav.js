@@ -74,6 +74,16 @@ Template.nav.onCreated(function bodyOnCreated() {
             } else {
                 Session.set("largeChatEnabled", false) // default
             }
+            if (myUser.uiState && myUser.uiState.floatingTextDisabled !== undefined) {
+                Session.set("floatingTextDisabled", myUser.uiState.floatingTextDisabled)
+            } else {
+                Session.set("floatingTextDisabled", false)
+            }
+            if (myUser.uiState && myUser.uiState.combatDeathsDisabled !== undefined) {
+                Session.set("combatDeathsDisabled", myUser.uiState.combatDeathsDisabled)
+            } else {
+                Session.set("combatDeathsDisabled", false)
+            }
         }
     })
 
@@ -109,18 +119,22 @@ Template.nav.events({
 
     "click .disable-floating-text"(event, instance) {
         Session.set("floatingTextDisabled", true)
+        Meteor.call("users.setUiState", "floatingTextDisabled", true)
     },
 
     "click .enable-floating-text"(event, instance) {
         Session.set("floatingTextDisabled", false)
+        Meteor.call("users.setUiState", "floatingTextDisabled", false)
     },
 
     "click .disable-combat-deaths"(event, instance) {
         Session.set("combatDeathsDisabled", true)
+        Meteor.call("users.setUiState", "combatDeathsDisabled", true)
     },
 
     "click .enable-combat-deaths"(event, instance) {
         Session.set("combatDeathsDisabled", false)
+        Meteor.call("users.setUiState", "combatDeathsDisabled", false)
     },
 
     "click .disable-summary-list"(event, instance) {

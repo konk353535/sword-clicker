@@ -3,7 +3,7 @@ import uuid from "node-uuid"
 //import moment from "moment"
 import _ from "underscore"
 
-import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
+import { addBuff, lookupBuff, removeBuff, getTargetableFriendlyUnits, getTargetableFriendlyUnitsBesidesMe, forceEnemiesToTargetRandomFromList } from "../../battleUtils"
 import { CDbl, CInt, autoPrecisionValue } from "../../utils.js"
 import { measureMemory } from "vm"
 
@@ -62,7 +62,8 @@ export const CLASS_BUFFS = {
                                         defender: adjacentTarget,
                                         tickEvents: actualBattle.tickEvents,
                                         historyStats: actualBattle.historyStats,
-                                        originalAutoAttack: false
+                                        originalAutoAttack: false,
+                                        source: "Barbarian Trait"
                                     })
                                 })
                             }
@@ -487,9 +488,10 @@ export const CLASS_BUFFS = {
 
                     // cheezy hack: now that this squire exists, randomize every enemy to target random friendly units
                     //              otherwise the squire will never be targeted in PQ or the first floor of a multi-room tower
-                    _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
-                        thisEnemyUnit.target = _.sample(allFriendlyCombatUnits).id
-                    })
+                    forceEnemiesToTargetRandomFromList(
+                        getTargetableFriendlyUnits(actualBattle),
+                        actualBattle
+                    )
                 }
             },
 
@@ -926,7 +928,7 @@ export const CLASS_BUFFS = {
         Passive class ability<br />
         You summon a growth of briars from nearby thickets to endanger your enemies! Briars do not
         attack but will confuse and frustrate your enemies into injuring themselves on them.  Briars
-        will periodically regrow (about every 45 seconds).<br />
+        will periodically regrow, distracting enemies targeting you (about every 45 seconds).<br />
         While equipped when you are a Ranger this is <b>always active</b>`
         },
         constants: {
@@ -1007,9 +1009,10 @@ export const CLASS_BUFFS = {
 
                     // cheezy hack: now that this briar exists, randomize every enemy to target random friendly units
                     //              otherwise the briar will never be targeted in PQ or the first floor of a multi-room tower
-                    _.forEach(actualBattle.enemies, function (thisEnemyUnit) {
-                        thisEnemyUnit.target = _.sample(allFriendlyCombatUnits).id
-                    })
+                    forceEnemiesToTargetRandomFromList(
+                        getTargetableFriendlyUnits(actualBattle),
+                        actualBattle
+                    )
                 } else if (Math.random() <= 0.004444) {
                     // On average, every 45 seconds
                     // NOTE: random value x time to target (in seconds) should = 0.2 (seconds per tick)
@@ -1060,6 +1063,13 @@ export const CLASS_BUFFS = {
 
                     // add the briar unit to combat
                     actualBattle.addUnit(rangerBriar)
+
+                    // force enemies to retarget off this Ranger
+                    forceEnemiesToTargetRandomFromList(
+                        getTargetableFriendlyUnitsBesidesMe(caster, actualBattle),
+                        actualBattle,
+                        caster
+                    )
                 }
             },
 
@@ -1070,7 +1080,7 @@ export const CLASS_BUFFS = {
     class_ranger_briar_effect: {
         duplicateTag: "class_ranger_briar_effect",
         icon: "rangerThicketBriar.svg",
-        name: "Painful",
+        name: "Thicket Briars",
         description() {
             return `When destroyed, the briar causes damage to the enemy that destroyed it!`
         },
@@ -1095,6 +1105,7 @@ export const CLASS_BUFFS = {
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
                             customIcon: buff.data.icon,
+                            sourceId: buff.data?.sourceId || undefined,
                             source: "Thicket Briars"
                         })
                     }
@@ -1117,6 +1128,7 @@ export const CLASS_BUFFS = {
                         tickEvents: actualBattle.tickEvents,
                         historyStats: actualBattle.historyStats,
                         customIcon: buff.data.icon,
+                        sourceId: buff.data?.sourceId || undefined,
                         source: "Thicket Briars"
                     })
                 }
@@ -1607,15 +1619,11 @@ export const CLASS_BUFFS = {
                 //      targets are originally assigned instead
 
                 // pick someone new (filtering us out)
-                for (let enemy of actualBattle.enemies) {
-                    if (enemy.target == target.id) {
-                        enemy.target = _.sample(
-                            actualBattle.units.filter((thisFriendlyUnit) => {
-                                return thisFriendlyUnit.id !== target.id
-                            })
-                        ).id
-                    }
-                }
+                forceEnemiesToTargetRandomFromList(
+                    getTargetableFriendlyUnitsBesidesMe(caster, actualBattle),
+                    actualBattle,
+                    caster
+                )
             }
         }
     },
@@ -2288,7 +2296,8 @@ export const CLASS_BUFFS = {
                                 description: ``,
                                 duplicateTag: "companion_skeletal_warrior",
                                 level: 2,
-                                hideBuff: true
+                                hideBuff: true,
+                                sourceId: caster.id
                             }
                         })
                     }

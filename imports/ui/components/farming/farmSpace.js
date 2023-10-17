@@ -54,11 +54,11 @@ Template.farmSpace.events({
 
         if (instance.state.get("finishedGrowing")) {
             if (shiftKey) {
-                Meteor.call("farming.pickAll", (err, res) => {
+                Meteor.call("farming.harvestAll", (err, res) => {
                     TimeSync.resync()
                 })
             } else {
-                Meteor.call("farming.pick", instance.data.farmSpace.index, (err, res) => {
+                Meteor.call("farming.harvest", instance.data.farmSpace.index, (err, res) => {
                     if (err) {
                         TimeSync.resync()
                     } else {

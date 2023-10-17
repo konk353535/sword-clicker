@@ -388,30 +388,30 @@ html.dark {
 
     // selectively turn some .svg images red
     img[src*="icons/thirstyFangs.svg"] {
-        filter: $svg-transform-white;
+        filter: $svg-transform-red;
     }
 
     // selectively turn some .svg images blue
     img[src*="icons/acaiBerry.svg"],
     img[src*="icons/acaiBerrySeed.svg"] {
-        filter: $svg-transform-white;
+        filter: $svg-transform-blue;
     }
 
     // selectively turn some .svg images brown
     img[src*="icons/emptyFarmSpace.svg"],
     img[src*="icons/farmer.svg"],
     img[src*="icons/farming.svg"] {
-        filter: $svg-transform-white;
+        filter: $svg-transform-brown;
     }
 
     // selectively turn some .svg images gold
     img[src*="icons/treasureChest.svg"] {
-        filter: $svg-transform-white;
+        filter: $svg-transform-gold;
     }
 
     // selectively turn some .svg images pink
     img[src*="icons/healingPower.svg"] {
-        filter: $svg-transform-white;
+        filter: $svg-transform-pink;
     }
 
     .modal-content {

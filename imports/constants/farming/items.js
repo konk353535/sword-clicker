@@ -793,7 +793,10 @@ export const FARMING_ITEMS = Object.freeze({
         category: "seed",
         seedType: "food",
         name: "red apple seed",
-        description: "Used to grow red apples. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_red_apple
+            return buff.description({ buff })
+        },
         sellPrice: 10,
         produces: "red_apple"
     },
@@ -820,7 +823,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "pineappleSeed.svg",
         category: "seed",
         name: "pineapple seed",
-        description: "Used to grow pine apples. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_pineapple
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "pineapple"
@@ -848,7 +854,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "potatoSeed.svg",
         category: "seed",
         name: "potato seed",
-        description: "Used to grow potatos. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_potato
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "potato"
@@ -876,7 +885,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "bananaSeed.svg",
         category: "seed",
         name: "banana seed",
-        description: "Used to grow bananas. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_banana
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "banana"
@@ -904,7 +916,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "sweetPotatoSeed.svg",
         category: "seed",
         name: "sweet potato seed",
-        description: "Used to grow sweet potatos. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_sweet_potato
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "sweet_potato"
@@ -932,7 +947,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "carrotSeed.svg",
         category: "seed",
         name: "carrot seed",
-        description: "Used to grow carrots. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_carrot
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "carrot"
@@ -960,7 +978,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "dragonfruitSeed.svg",
         category: "seed",
         name: "dragonfruit seed",
-        description: "Used to grow dragonfruits. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_dragonfruit
+            return buff.description({ buff })
+        },
         sellPrice: 20,
         seedType: "food",
         produces: "dragonfruit"
@@ -988,7 +1009,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "watermelonSeed.svg",
         category: "seed",
         name: "watermelon seed",
-        description: "Used to grow watermelons. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_watermelon
+            return buff.description({ buff })
+        },
         sellPrice: 30,
         seedType: "food",
         produces: "watermelon"
@@ -1016,7 +1040,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "orangeSeed.svg",
         category: "seed",
         name: "orange seed",
-        description: "Used to grow oranges. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_orange
+            return buff.description({ buff })
+        },
         sellPrice: 30,
         seedType: "food",
         produces: "orange"
@@ -1045,7 +1072,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "rockmelonSeed.svg",
         category: "seed",
         name: "rockmelon seed",
-        description: "Used to grow rockmelons. Useful for eating.",
+        description() {
+            const buff = BUFFS.food_rockmelon
+            return buff.description({ buff })
+        },
         sellPrice: 30,
         seedType: "food",
         produces: "rockmelon"
@@ -1507,7 +1537,10 @@ export const FARMING_ITEMS = Object.freeze({
         icon: "grapeFruitSeed.svg",
         category: "seed",
         name: "grapefruit seed",
-        description: "Used to grow grapefruit. Yum!",
+        description() {
+            const buff = BUFFS.food_grape_fruit
+            return buff.description({ buff })
+        },
         sellPrice: 3,
         seedType: "food",
         produces: "grape_fruit"

@@ -17,10 +17,10 @@ export function healTarget(
     }
 
     let sourceFinal: string = ""
-    if (!healSource || !healSource.id || !healSource.name || healSource.id?.trim().length === 0) {
+    if (!healSource || !healSource.name || healSource.name.trim().length === 0) {
         sourceFinal = "unknown"
     } else {
-        sourceFinal = healSource?.name
+        sourceFinal = healSource.name.trim()
     }
 
     // Useful debug, please don't remove

@@ -343,6 +343,78 @@ export const FARMING = Object.freeze({
             ]
         },
 
+        jute_seed: {
+            id: "jute_seed",
+            itemId: "jute_seed",
+            requiredFarmingLevel: 66,
+            required: [
+                {
+                    type: "gold",
+                    amount: 100,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 66
+                }
+            ]
+        },
+
+        flax_seed: {
+            id: "flax_seed",
+            itemId: "flax_seed",
+            requiredFarmingLevel: 76,
+            required: [
+                {
+                    type: "gold",
+                    amount: 125,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 76
+                }
+            ]
+        },
+
+        sisal_seed: {
+            id: "sisal_seed",
+            itemId: "sisal_seed",
+            requiredFarmingLevel: 86,
+            required: [
+                {
+                    type: "gold",
+                    amount: 150,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 86
+                }
+            ]
+        },
+
+        raffia_seed: {
+            id: "raffia_seed",
+            itemId: "raffia_seed",
+            requiredFarmingLevel: 96,
+            required: [
+                {
+                    type: "gold",
+                    amount: 500,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 96
+                }
+            ]
+        },
+
         pear_seed: {
             id: "pear_seed",
             itemId: "pear_seed",
@@ -879,6 +951,60 @@ export const FARMING = Object.freeze({
                     type: "skill",
                     name: "farming",
                     level: 30
+                }
+            ]
+        },
+
+        snowberry_seed: {
+            id: "snowberry_seed",
+            itemId: "snowberry_seed",
+            requiredFarmingLevel: 60,
+            required: [
+                {
+                    type: "gold",
+                    amount: 700,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 60
+                }
+            ]
+        },
+
+        grapes_seed: {
+            id: "grapes_seed",
+            itemId: "grapes_seed",
+            requiredFarmingLevel: 65,
+            required: [
+                {
+                    type: "gold",
+                    amount: 850,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 65
+                }
+            ]
+        },
+
+        strawberry_seed: {
+            id: "strawberry_seed",
+            itemId: "strawberry_seed",
+            requiredFarmingLevel: 70,
+            required: [
+                {
+                    type: "gold",
+                    amount: 1000,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 70
                 }
             ]
         },

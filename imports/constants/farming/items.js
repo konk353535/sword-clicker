@@ -299,7 +299,7 @@ export const FARMING_ITEMS = Object.freeze({
         description() {
             return "Valuable to sell"
         },
-        sellPrice: 5600
+        sellPrice: 12500
     },
 
     /*
@@ -352,6 +352,7 @@ export const FARMING_ITEMS = Object.freeze({
         sellPrice: 4000
     },
 
+    // Pure Farming XP seeds and products
     cactus_seed: {
         id: "cactus_seed",
         icon: "cactusSeed.svg",
@@ -448,6 +449,30 @@ export const FARMING_ITEMS = Object.freeze({
         sellPrice: 1
     },
 
+    palm: {
+        id: "palm",
+        icon: "palm.svg",
+        category: "xp",
+        name: "palm",
+        description() {
+            return "Looks useful"
+        },
+        sellPrice: 1
+    },
+
+    palm_seed: {
+        id: "palm_seed",
+        icon: "palmSeed.svg",
+        category: "seed",
+        name: "palm Seed",
+        seedType: "xp",
+        description() {
+            return "Good XP"
+        },
+        sellPrice: 1,
+        produces: "palm"
+    },
+
     kenaf: {
         id: "kenaf",
         icon: "kenaf.svg",
@@ -472,28 +497,100 @@ export const FARMING_ITEMS = Object.freeze({
         produces: "kenaf"
     },
 
-    palm: {
-        id: "palm",
-        icon: "palm.svg",
+    jute: {
+        id: "jute",
+        icon: "jute.svg",
         category: "xp",
-        name: "palm",
+        name: "jute",
         description() {
             return "Looks useful"
         },
         sellPrice: 1
     },
 
-    palm_seed: {
-        id: "palm_seed",
-        icon: "palmSeed.svg",
+    jute_seed: {
+        id: "jute_seed",
+        icon: "juteSeed.svg",
         category: "seed",
-        name: "palm Seed",
+        name: "Jute Seed",
         seedType: "xp",
         description() {
             return "Good XP"
         },
         sellPrice: 1,
-        produces: "palm"
+        produces: "jute"
+    },
+
+    flax: {
+        id: "flax",
+        icon: "flax.svg",
+        category: "xp",
+        name: "flax",
+        description() {
+            return "Looks useful"
+        },
+        sellPrice: 1
+    },
+
+    flax_seed: {
+        id: "flax_seed",
+        icon: "flaxSeed.svg",
+        category: "seed",
+        name: "Flax Seed",
+        seedType: "xp",
+        description() {
+            return "Good XP"
+        },
+        sellPrice: 1,
+        produces: "flax"
+    },
+
+    sisal: {
+        id: "sisal",
+        icon: "sisal.svg",
+        category: "xp",
+        name: "sisal",
+        description() {
+            return "Looks useful"
+        },
+        sellPrice: 1
+    },
+
+    sisal_seed: {
+        id: "sisal_seed",
+        icon: "sisalSeed.svg",
+        category: "seed",
+        name: "Sisal Seed",
+        seedType: "xp",
+        description() {
+            return "Good XP"
+        },
+        sellPrice: 1,
+        produces: "sisal"
+    },
+
+    raffia: {
+        id: "raffia",
+        icon: "raffia.svg",
+        category: "xp",
+        name: "raffia",
+        description() {
+            return "Looks useful"
+        },
+        sellPrice: 1
+    },
+
+    raffia_seed: {
+        id: "raffia_seed",
+        icon: "raffiaSeed.svg",
+        category: "seed",
+        name: "Raffia Seed",
+        seedType: "xp",
+        description() {
+            return "Good XP"
+        },
+        sellPrice: 1,
+        produces: "raffia"
     },
 
     pear_seed: {
@@ -556,6 +653,99 @@ export const FARMING_ITEMS = Object.freeze({
             }
         ],
         sellPrice: 100
+    },
+
+    snowberry_seed: {
+        id: "snowberry_seed",
+        icon: "snowberrySeed.svg",
+        category: "seed",
+        name: "snowberry Seed",
+        seedType: "food",
+        description() {
+            const buff = BUFFS.food_snowberry
+            return buff.description({ buff })
+        },
+        sellPrice: 15,
+        produces: "snowberry"
+    },
+
+    snowberry: {
+        id: "snowberry",
+        icon: "snowberry.svg",
+        category: "food",
+        name: "snowberry",
+        description() {
+            const buff = BUFFS.food_snowberry
+            return buff.description({ buff })
+        },
+        buffs: [
+            {
+                id: "food_snowberry"
+            }
+        ],
+        sellPrice: 150
+    },
+
+    grapes_seed: {
+        id: "grapes_seed",
+        icon: "grapesSeed.svg",
+        category: "seed",
+        name: "grapes Seed",
+        seedType: "food",
+        description() {
+            const buff = BUFFS.food_grapes
+            return buff.description({ buff })
+        },
+        sellPrice: 18,
+        produces: "grapes"
+    },
+
+    grapes: {
+        id: "grapes",
+        icon: "grapes.svg",
+        category: "food",
+        name: "grapes",
+        description() {
+            const buff = BUFFS.food_grapes
+            return buff.description({ buff })
+        },
+        buffs: [
+            {
+                id: "food_grapes"
+            }
+        ],
+        sellPrice: 175
+    },
+
+    strawberry_seed: {
+        id: "strawberry_seed",
+        icon: "strawberrySeed.svg",
+        category: "seed",
+        name: "strawberry Seed",
+        seedType: "food",
+        description() {
+            const buff = BUFFS.food_strawberry
+            return buff.description({ buff })
+        },
+        sellPrice: 20,
+        produces: "strawberry"
+    },
+
+    strawberry: {
+        id: "strawberry",
+        icon: "strawberry.svg",
+        category: "food",
+        name: "strawberry",
+        description() {
+            const buff = BUFFS.food_strawberry
+            return buff.description({ buff })
+        },
+        buffs: [
+            {
+                id: "food_strawberry"
+            }
+        ],
+        sellPrice: 200
     },
 
     garlic_seed: {

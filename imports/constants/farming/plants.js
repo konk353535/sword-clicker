@@ -567,6 +567,118 @@ export const PLANTS = Object.freeze({
         ]
     },
 
+    jute: {
+        produces: "jute",
+        name: "jute",
+        id: "jute",
+        category: "farming",
+        icon: ITEMS["jute"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 30,
+        xp: 1500,
+        required: [
+            {
+                type: "item",
+                itemId: "jute_seed",
+                icon: ITEMS["jute_seed"].icon,
+                name: ITEMS["jute_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 66
+            }
+        ]
+    },
+
+    flax: {
+        produces: "flax",
+        name: "flax",
+        id: "flax",
+        category: "farming",
+        icon: ITEMS["flax"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 30,
+        xp: 2000,
+        required: [
+            {
+                type: "item",
+                itemId: "flax_seed",
+                icon: ITEMS["flax_seed"].icon,
+                name: ITEMS["flax_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 76
+            }
+        ]
+    },
+
+    sisal: {
+        produces: "sisal",
+        name: "sisal",
+        id: "sisal",
+        category: "farming",
+        icon: ITEMS["sisal"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 30,
+        xp: 2500,
+        required: [
+            {
+                type: "item",
+                itemId: "sisal_seed",
+                icon: ITEMS["sisal_seed"].icon,
+                name: ITEMS["sisal_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 86
+            }
+        ]
+    },
+
+    raffia: {
+        produces: "raffia",
+        name: "raffia",
+        id: "raffia",
+        category: "farming",
+        icon: ITEMS["raffia"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 90 * 60,
+        xp: 9000,
+        required: [
+            {
+                type: "item",
+                itemId: "raffia_seed",
+                icon: ITEMS["raffia_seed"].icon,
+                name: ITEMS["raffia_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 96
+            }
+        ]
+    },
+
     lemon: {
         produces: "lemon",
         name: "lemon",
@@ -703,6 +815,90 @@ export const PLANTS = Object.freeze({
                 type: "skill",
                 name: "farming",
                 level: 24
+            }
+        ]
+    },
+
+    snowberry: {
+        produces: "snowberry",
+        name: "snowberry",
+        id: "snowberry",
+        category: "farming",
+        icon: ITEMS["snowberry"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 7.5,
+        xp: 250,
+        required: [
+            {
+                type: "item",
+                itemId: "snowberry_seed",
+                icon: ITEMS["snowberry_seed"].icon,
+                name: ITEMS["snowberry_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 59
+            }
+        ]
+    },
+
+    grapes: {
+        produces: "grapes",
+        name: "grapes",
+        id: "grapes",
+        category: "farming",
+        icon: ITEMS["grapes"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 15,
+        xp: 575,
+        required: [
+            {
+                type: "item",
+                itemId: "grapes_seed",
+                icon: ITEMS["grapes_seed"].icon,
+                name: ITEMS["grapes_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 64
+            }
+        ]
+    },
+
+    strawberry: {
+        produces: "strawberry",
+        name: "strawberry",
+        id: "strawberry",
+        category: "farming",
+        icon: ITEMS["strawberry"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 10,
+        xp: 450,
+        required: [
+            {
+                type: "item",
+                itemId: "strawberry_seed",
+                icon: ITEMS["strawberry_seed"].icon,
+                name: ITEMS["strawberry_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 69
             }
         ]
     },

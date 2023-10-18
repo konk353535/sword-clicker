@@ -66,14 +66,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
             energy: 0,
             energyRegen: 0,
             energyStorage: 0
-        },
+        }
     }
 
     if (username) {
         playerData.username = username
     }
 
-    if (!userId || userId == null || typeof userId === 'undefined') {
+    if (!userId || userId == null || typeof userId === "undefined") {
         return
     }
 
@@ -105,11 +105,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
         if (combatItem.constants.enchantments) {
             playerData.enchantments = playerData.enchantments.concat(combatItem.constants.enchantments)
-        } else if (
-            combatItem.enchantmentId &&
-            combatItem.enchantmentId !== "undefined" &&
-            combatItem.enchantmentId !== ""
-        ) {
+        } else if (combatItem.enchantmentId && combatItem.enchantmentId !== "undefined" && combatItem.enchantmentId !== "") {
             playerData.enchantments = playerData.enchantments.concat(combatItem.enchantmentId)
         }
 
@@ -206,8 +202,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
                 if (playerData.stats[percentStatName] === undefined) {
                     playerData.stats[percentStatName] = 0
                 }
-                playerData.stats[percentStatName] *=
-                    1.0 + combatItem.constants.percentTotalStats[percentStatName] / 100.0
+                playerData.stats[percentStatName] *= 1.0 + combatItem.constants.percentTotalStats[percentStatName] / 100.0
             })
         }
     }
@@ -228,15 +223,12 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
     } catch (err) {}
 
     // If health is above healthMax, reset health
-    if ((currentCombat.stats.health > playerData.stats.healthMax) || (playerData.stats.health > playerData.stats.healthMax)) {
+    if (currentCombat.stats.health > playerData.stats.healthMax || playerData.stats.health > playerData.stats.healthMax) {
         playerData.stats.health = playerData.stats.healthMax
-    }
-    
-    // If health is above our original health, don't increase it
-    if (playerData.stats.health > healthBeforeRecalc) {
+    } else {
         playerData.stats.health = healthBeforeRecalc
     }
-    
+
     // Health must be a minimum of 0.1 for sanity sake
     if (playerData.stats.health < 0.1) {
         playerData.stats.health = 0.1
@@ -270,7 +262,7 @@ Meteor.methods({
         // change but user combat stats don't unless they unequip/re-equip gear.
         updateCombatStats(Meteor.userId(), Meteor.user().username)
     },
-    
+
     "combat.updateIsTowerContribution"(newValue) {
         Combat.update(
             {
@@ -334,10 +326,7 @@ Meteor.methods({
 
         // unequip weapons, armor, amulets, and abilities
         Items.update({ owner: Meteor.userId(), category: "combat" }, { $set: { equipped: false } }, { multi: true })
-        Abilities.update(
-            { owner: Meteor.userId(), learntAbilities: { $elemMatch: { equipped: true } } },
-            { $set: { "learntAbilities.$.equipped": false } }
-        )
+        Abilities.update({ owner: Meteor.userId(), learntAbilities: { $elemMatch: { equipped: true } } }, { $set: { "learntAbilities.$.equipped": false } })
 
         // relcalculate all combat stats
         updateCombatStats(Meteor.userId(), Meteor.user().username, true)

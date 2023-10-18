@@ -389,9 +389,10 @@ const wasThisABossFight = function (actualBattle) {
 }
 
 const floorContributionScaler = function (actualBattle) {
-    const baseBonus = 0.02 //   2% base
-    const bonusPerDay = 0.01 //   1% per day
-    const maxBonusCap = 0.15 //  15% max/cap
+    // wraith, 2023-10-18:  this was originally 2%, 1%, 15%
+    const baseBonus   = 0.05 //   5% base
+    const bonusPerDay = 0.05 //   5% per day
+    const maxBonusCap =  0.3 //  30% max/cap
     let curBonus = baseBonus
 
     const floorDetails = currentFloorDetails(actualBattle)

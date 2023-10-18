@@ -2,6 +2,7 @@ import lodash from "lodash"
 import { SimpleSchema } from "meteor/aldeed:simple-schema"
 import { Mongo } from "meteor/mongo"
 
+import { CRAFTING } from "/imports/constants/crafting/index.js"
 import { FARMING } from "/imports/constants/farming/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items"
 import { CInt } from "/imports/utils"
@@ -79,8 +80,20 @@ export const calculateItemKarma = function calculateItemKarma(item__in) {
         if (item.id === "papyrus") return 30
         if (item.id === "bamboo") return 60
         if (item.id === "palm") return 120
-        if (item.id === "kenaf") return 250
-        if (item.id === "bamboo_shack") return 2500
+        if (item.id === "kenaf") return 200
+        if (item.id === "jute") return 300
+        if (item.id === "flax") return 450
+        if (item.id === "sisal") return 600
+        if (item.id === "raffia") return 850
+        if (item.id === "bamboo_shack") return 5000
+
+        if (item.id.indexOf("_pylon") !== -1 || item.id.indexOf("_wall") !== -1) {
+            // technically should be looping and checking all XP_CRAFTS[*].produces but it's the same ID in our project
+            const craftingRecipe = CRAFTING.recipes[item.id]
+            if (craftingRecipe && craftingRecipe.category == "crafting") {
+                return Math.max(1, craftingRecipe.xp / 10)
+            }
+        }
 
         if (item.category === "mining") {
             // pick axes, dwarven idols, crafted idols, mining hammers, and mining anvils

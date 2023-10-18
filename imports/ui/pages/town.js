@@ -87,6 +87,12 @@ const getDonatableItems = function getDonatableItems(instance) {
                 if (item.itemId === "bamboo") return true
                 if (item.itemId === "palm") return true
                 if (item.itemId === "kenaf") return true
+                if (item.itemId === "jute") return true
+                if (item.itemId === "flax") return true
+                if (item.itemId === "sisal") return true
+                if (item.itemId === "raffia") return true
+                if (item.itemId.indexOf("_pylon") !== -1) return true
+                if (item.itemId.indexOf("_wall") !== -1) return true
                 if (item.itemId === "bamboo_shack") return true
             } else if (townSection === "quarry") {
                 if (item.category === "mining") return true

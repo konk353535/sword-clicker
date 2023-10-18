@@ -308,6 +308,7 @@ html.dark {
     img[src*="icons/echidna.svg"],
     img[src*="icons/evasiveManeuvers.svg"],
     img[src*="icons/eventSPDheist.svg"],
+    img[src*="icons/farmer.svg"],
     img[src*="icons/farplaneTwistedVeins.svg"],
     img[src*="icons/fish.svg"],
     img[src*="icons/flamebreath.svg"],
@@ -399,7 +400,6 @@ html.dark {
 
     // selectively turn some .svg images brown
     img[src*="icons/emptyFarmSpace.svg"],
-    img[src*="icons/farmer.svg"],
     img[src*="icons/farming.svg"] {
         filter: $svg-transform-brown;
     }

@@ -70,18 +70,10 @@ export default class Stats {
     }
 
     get attackSpeed() {
-        // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
-        //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
-        //
-        // Caps attack speed at 5x (5/sec = 500% attack speed).
-        return Math.min(this._attackSpeed, ticksPerSecond)
+        return this._attackSpeed
     }
     set attackSpeed(value) {
-        // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
-        //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
-        //
-        // Caps attack speed at 5x (5/sec = 500% attack speed).
-        this._attackSpeed =  Math.min(value, ticksPerSecond)
+        this._attackSpeed = value
         this.attackSpeedTicks = this.getAttackSpeedTicks(this._attackSpeed)
     }
 

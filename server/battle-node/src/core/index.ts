@@ -58,11 +58,8 @@ export class Balancer {
                     if (data.abilityId) {
                         const abilityConsts = ABILITIES[data.abilityId as keyof typeof ABILITIES]
                         if (abilityConsts) {
-                            // @ts-expect-error
-                            if (abilityConsts.isPassive) {
-                                return // disallow passive abilities from being actively used
-                            } else if (abilityConsts.slot === "companion") {
-                                return // disallow companion abilities from being actively used
+                            if (abilityConsts.isPassive || abilityConsts.slot === "companion") {
+                                return // disallow passive and companion abilities from being actively used
                             }
                         }
                     }

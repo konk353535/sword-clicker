@@ -262,9 +262,8 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {},
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 
-            onDidRawDamage({originalAutoAttack, buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic}) {
+            onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic}) {
                 const formattedSource = (source || "autoattack").trim().toLowerCase()
 
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
@@ -302,6 +301,8 @@ export const CLASS_BUFFS = {
                     }
                 }
             },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 
             onRemove({ buff, target, caster }) {}
         }

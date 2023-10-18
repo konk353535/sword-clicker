@@ -56,7 +56,8 @@ export default class Stats {
                 attackSpeed = 0.001
             }
             // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
-            if (attackSpeed >= 8) {
+            // Cap attack speed at 7 (7/sec = 700% attack speed)
+            if (attackSpeed > 7) {
                 return 7
             }
             return Math.round(ticksPerSecond / attackSpeed)
@@ -87,7 +88,9 @@ export default class Stats {
     }
 
     get attackSpeed() {
-        return this._attackSpeed
+        // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
+        // Cap attack speed at 7 (7/sec = 700% attack speed)
+        return Math.min(this._attackSpeed, 7)
     }
     set attackSpeed(value) {
         this._attackSpeed = value

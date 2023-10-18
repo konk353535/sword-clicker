@@ -1211,7 +1211,7 @@ export const MONSTER_BUFFS = {
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
-                if (Math.random() <= 0.1) {
+                if (Math.random() <= 0.25) {
                     const hasEvasive = _.find(defender.buffs, (buff) => {
                         return buff.id === "evasive_maneuvers"
                     })

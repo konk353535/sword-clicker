@@ -16,11 +16,9 @@ export function healTarget(
         return // error
     }
 
-    let sourceFinal: string = ""
-    if (!healSource || !healSource.name || healSource.name.trim().length === 0) {
-        sourceFinal = "unknown"
-    } else {
-        sourceFinal = healSource.name.trim()
+    let sourceFinal: string = "unknown"
+    if (healSource) {
+        sourceFinal = healSource.name || healSource?.constants?.name || healSource?.constants?.duplicateTag || healSource?.data?.duplicateTag || healSource?.id || sourceFinal
     }
 
     // Useful debug, please don't remove
@@ -28,6 +26,7 @@ export function healTarget(
     //console.log(`Caster of heal: ${caster?._name || caster?.id || "<unknown>"}`)
     //console.log(`Target of heal: ${target?._name || target?.id || "<unknown>"}`)
     //console.log(`Heal source: ${healSource?.constants?.duplicateTag || healSource?.data?.duplicateTag || healSource?.id || "<unknown>"}`)
+    //console.log(`Tracking as: ${sourceFinal}`)
     //console.log(healSource) // this is usually an object ref to the buff that applied the effect
     //console.log("=== HEAL TRACKING :: END ===")
 

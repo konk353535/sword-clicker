@@ -1231,7 +1231,7 @@ export const FOOD_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
                 buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
 
-                target.stats.health += 1
+                target.stats.health += buff.data.instantHeal
                 if (target.stats.health > target.stats.healthMax) {
                     target.stats.health = target.stats.healthMax
                 }
@@ -1290,7 +1290,7 @@ export const FOOD_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
                 buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
 
-                target.stats.health += 1
+                target.stats.health += buff.data.instantHeal
                 if (target.stats.health > target.stats.healthMax) {
                     target.stats.health = target.stats.healthMax
                 }

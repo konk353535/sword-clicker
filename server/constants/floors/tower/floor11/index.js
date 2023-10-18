@@ -6,12 +6,12 @@ import { LEVEL_ELEVEN_LOOT_TABLE } from "../../levels/level11"
 export const TOWER_FLOOR_11 = {
     1: {
         name: "Deep Mine",
-        enemies: ["goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin"],
+        enemies: ["goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin"],
         rewards: []
     },
     2: {
         name: "Ninja Academy",
-        enemies: ["young_ninja", "monk", "monk", "young_ninja"],
+        enemies: ["young_ninja", "monk", "young_ninja"],
         rewards: LEVEL_ELEVEN_LOOT_TABLE
     },
     3: {
@@ -55,7 +55,7 @@ export const TOWER_FLOOR_11 = {
     },
     5: {
         name: "Warlock's Palace",
-        enemies: ["demon", "fire_mage", "demon", "fire_mage"],
+        enemies: ["demon", "fire_mage", "demon"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {
@@ -132,7 +132,7 @@ export const TOWER_FLOOR_11 = {
     },
     7: {
         name: "Mage's Guild",
-        enemies: ["warden", "water_mage", "fire_mage", "earth_mage", "blue_mage", "brown_mage"],
+        enemies: ["warden", "water_mage", "fire_mage", "earth_mage"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {

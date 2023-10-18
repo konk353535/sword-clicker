@@ -5,7 +5,7 @@ import { classFeatureUnlocked } from "/imports/api/users/users.js"
 console.log("exporting classes/index.js CLASSES")
 
 export const CLASSES = Object.freeze({
-    none: {
+    no_class: {
         id: "",
         name: "",
         icon: "classNone.png",
@@ -963,7 +963,7 @@ export const CLASSES = Object.freeze({
     },
 
     none: function () {
-        return Object.freeze(lodash.cloneDeep(CLASSES["none"]))
+        return Object.freeze(lodash.cloneDeep(CLASSES["no_class"]))
     },
 
     list: function() {

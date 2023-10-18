@@ -234,6 +234,27 @@ export const MISC_ITEMS = {
         enchantments: ["oversized_club"]
     },
 
+    dev_sword: {
+        id: "dev_sword",
+        icon: "prismaticLongsword.png",
+        category: "combat",
+        weaponType: "shortSword",
+        slot: "mainHand",
+        name: "ultimate sword",
+        sellPrice: 0,
+        description: "For developer use only.",
+        isWeapon: true,
+        isEquippable: true,
+        stats: {
+            attack: 1,
+            attackMax: 2,
+            attackSpeed: 4,
+            accuracy: 100000
+        },
+        extraStats: {},
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
+    },
+
     dev_shield: {
         id: "dev_shield",
         icon: "prismaticKiteShield.png",

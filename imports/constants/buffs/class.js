@@ -264,25 +264,66 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 
-            onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
+            onDidRawDamage({originalAutoAttack, buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic}) {
+                const formattedSource = (source || "autoattack").trim().toLowerCase()
+
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
-                if (source == "autoattack") {
-                    defender.stats.armor -= defender.stats.origStats.armor * 0.01
-                    defender.stats.defense -= defender.stats.origStats.defense * 0.01
+                if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes") {
+                    defender.stats.armor -= (defender.stats.origStats.armor ? defender.stats.origStats.armor : defender.stats.armor) * 0.01
+                    defender.stats.defense -= (defender.stats.origStats.defense ? defender.stats.origStats.defense : defender.stats.defense) * 0.01
 
-                    if (defender.stats.armor < 1) {
-                        defender.stats.armor = 1
-                    }
+                    // leave them their dignity
+                    defender.stats.armor = Math.max(defender.stats.armor, 1)
+                    defender.stats.defense = Math.max(defender.stats.defense, 1)
 
-                    if (defender.stats.defense < 1) {
-                        defender.stats.defense = 1
-                    }
-
+                    // flavor text
                     defender.tickMessage(lodash.sample(["Shred", "Tear", "Rip", "Pierce"]), "#994444", "rapier", defender)
+
+                    // add or modify a buff with a counter
+                    const shredCounterDebuff = defender.findBuff("class_duelist_shred_counter")
+
+                    if (!shredCounterDebuff) {
+                        const newBuff = {
+                            id: "class_duelist_shred_counter",
+                            data: {
+                                duration: Infinity,
+                                totalDuration: Infinity,
+                                enchantment: true,
+                                icon: "rangerTraitShred.svg",
+                                stacks: 1
+                            }
+                        }
+
+                        addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle })
+                    } else {
+                        if (shredCounterDebuff.stacks < 100) {
+                            shredCounterDebuff.stacks++
+                        }
+                    }
                 }
             },
 
             onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_duelist_shred_counter: {
+        duplicateTag: "class_duelist_shred_counter",
+        icon: "rangerTraitShred.svg",
+        name: "Shredded",
+        description() {
+            return `
+        Defenses shredded by a Duelist!`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            isEnchantment: true
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {}
         }
     },
 

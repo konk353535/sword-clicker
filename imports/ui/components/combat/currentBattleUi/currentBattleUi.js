@@ -89,7 +89,8 @@ const startBattle = (currentBattle, self) => {
     if (currentBattle) {
         const uidPlayer = Meteor.userId()
 
-        // if ticke are getting backlogged
+        // if ticks are getting backlogged
+        /*
         if (currentBattle.tickEvents.length > 8) {
             // then only show user owned ticks or tickEvents with death
             currentBattle.tickEvents = currentBattle.tickEvents.filter((tickEvent) => {
@@ -98,7 +99,8 @@ const startBattle = (currentBattle, self) => {
                     tickEvent.eventType.indexOf("death") === 0
             })
         }
-
+        */
+       
         currentBattle.tickEvents.forEach((tickEvent, tickEventIndex) => {
 
             let combatLabel = (tickEvent?.label || "").trim()

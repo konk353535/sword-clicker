@@ -563,7 +563,7 @@ export const startBattle = function ({
     const averageCombatFloor = overallAverageCombat / 5
     if (floor != null && averageCombatFloor > floor) {
         // clamp max adjustment to +4 floors for sanity
-        adjustedFloorLevel = Math.min(averageCombatFloor, floor + 4)
+        adjustedFloorLevel = Math.min(averageCombatFloor, floor + 3)
     }
 
     if (wantDebug && adjustedFloorLevel) {

@@ -978,6 +978,52 @@ export const DEFENSE_BUFFS = {
                 target.stats.defense += buff.data.defenseAddition
             },
 
+            onTookRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
+                const formattedSource = (source || "autoattack").trim().toLowerCase()
+
+                // magic hits dodging targets
+                if (magic) {
+                    // ... unless ... the source is trident damage
+                    if (formattedSource != "enchanted weapon") {
+                        return
+                    }
+
+                    // trident damage continues on: this infers the source is an auto-attack, which the target dodged
+                }
+
+                // if we're bleeding or poisoned, we take the damage
+                if (formattedSource == "bleed" || formattedSource == "poison") {
+                    return
+                }
+
+                // if the source is Volley and the attacker can't miss because of Precise Shots, we take the damage
+                if (formattedSource == "volley") {
+                    if (attacker.hasBuff("precise_shots")) {
+                        return
+                    }
+                }
+
+                // if the source is interception, we take the damage
+                if (formattedSource == "squire interception") {
+                    return
+                }
+
+                // at this point, the damage is physical (or a nullified trident hit) that we definitely should have dodged
+                // so let's heal back any damage dealt
+                defender.stats.health += damageDealt
+                if (defender.stats.health > defender.stats.healthMax) {
+                    defender.stats.health = defender.stats.healthMax
+                }
+
+                // tell the battle-node server handling dealDamage() that called this event that we're explicitly dodging
+                // it will use this to change the icon for the tickevent message during battle
+                //
+                // (it will automatically recalculate damage dealt for stats purposes)
+                buff.data.hasNotes = {
+                    customIcon: "dodge"
+                }
+            },
+
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
                 buff.duration -= secondsElapsed
                 if (buff.duration <= 0) {

@@ -60,7 +60,7 @@ export default class Stats {
             //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
             //
             // Caps attack speed at 5x (5/sec = 500% attack speed).
-            attackSpeedLocal = Math.max(attackSpeedLocal, ticksPerSecond)
+            attackSpeedLocal = Math.min(attackSpeedLocal, ticksPerSecond)
 
             return Math.round(ticksPerSecond / attackSpeedLocal)
         }

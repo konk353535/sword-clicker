@@ -49,52 +49,40 @@ export default class Stats {
         return damageReduction
     }
 
-    getAttackSpeedTicks(attackSpeed: number) {
+    getAttackSpeedTicks(attackSpeedLocal: number) {
         // Convert attack speed seconds to attack speed ticks
-        if (attackSpeed !== undefined) {
-            if (attackSpeed <= 0) {
-                attackSpeed = 0.001
+        if (attackSpeedLocal !== undefined) {
+            if (attackSpeedLocal <= 0) {
+                attackSpeedLocal = 0.001
             }
-            // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
-            // Cap attack speed at 7 (7/sec = 700% attack speed)
-            if (attackSpeed > 7) {
-                return 7
-            }
-            return Math.round(ticksPerSecond / attackSpeed)
+     
+            // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
+            //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
+            //
+            // Caps attack speed at 5x (5/sec = 500% attack speed).
+            attackSpeedLocal = Math.max(attackSpeedLocal, ticksPerSecond)
+
+            return Math.round(ticksPerSecond / attackSpeedLocal)
         }
+
+        console.log("[WARN] UNIT HAS NO ATTACK SPEED!", this.unitId)
         return 0.001
     }
 
-    revertToOriginal() {
-        this.attack = this.origStats.attack
-        this.attackMax = this.origStats.attackMax
-        this.attackSpeed = this.origStats.attackSpeed
-        this.criticalChance = this.origStats.criticalChance
-        this.healingPower = this.origStats.healingPower
-        this.criticalDamage = this.origStats.criticalDamage
-        this.accuracy = this.origStats.accuracy
-        this.defense = this.origStats.defense
-        this.health = this.origStats.health
-        this.healthMax = this.origStats.healthMax
-        this.healthMaxOrig = this.origStats.healthMax
-        this.magicPower = this.origStats.magicPower
-        this.armor = this.origStats.armor
-        this.magicArmor = this.origStats.magicArmor
-        this.healingReduction = this.origStats.healingReduction || 1
-        this.force = this.origStats.force || 0
-        this.shred = this.origStats.shred || 0
-        this.focus = this.origStats.focus || 0
-        this.absorption = this.origStats.absorption || 0
-    }
-
     get attackSpeed() {
-        // Fixes a bug where attack speeds beyond 8 yield an attack speed of 0
-        // Cap attack speed at 7 (7/sec = 700% attack speed)
-        return Math.min(this._attackSpeed, 7)
+        // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
+        //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
+        //
+        // Caps attack speed at 5x (5/sec = 500% attack speed).
+        return Math.min(this._attackSpeed, ticksPerSecond)
     }
     set attackSpeed(value) {
-        this._attackSpeed = value
-        this.attackSpeedTicks = this.getAttackSpeedTicks(value)
+        // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
+        //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
+        //
+        // Caps attack speed at 5x (5/sec = 500% attack speed).
+        this._attackSpeed =  Math.min(value, ticksPerSecond)
+        this.attackSpeedTicks = this.getAttackSpeedTicks(this._attackSpeed)
     }
 
     get armor() {
@@ -145,6 +133,28 @@ export default class Stats {
         }
 
         this.battleRef.deltaEvents.push(event)
+    }
+
+    revertToOriginal() {
+        this.attack = this.origStats.attack
+        this.attackMax = this.origStats.attackMax
+        this.attackSpeed = this.origStats.attackSpeed
+        this.criticalChance = this.origStats.criticalChance
+        this.healingPower = this.origStats.healingPower
+        this.criticalDamage = this.origStats.criticalDamage
+        this.accuracy = this.origStats.accuracy
+        this.defense = this.origStats.defense
+        this.health = this.origStats.health
+        this.healthMax = this.origStats.healthMax
+        this.healthMaxOrig = this.origStats.healthMax
+        this.magicPower = this.origStats.magicPower
+        this.armor = this.origStats.armor
+        this.magicArmor = this.origStats.magicArmor
+        this.healingReduction = this.origStats.healingReduction || 1
+        this.force = this.origStats.force || 0
+        this.shred = this.origStats.shred || 0
+        this.focus = this.origStats.focus || 0
+        this.absorption = this.origStats.absorption || 0
     }
 
     constructor(stats: stats, unitId: string, battleRef: Battle) {

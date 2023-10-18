@@ -6,17 +6,17 @@ import { LEVEL_ELEVEN_LOOT_TABLE } from "../../levels/level11"
 export const TOWER_FLOOR_11 = {
     1: {
         name: "Deep Mine",
-        enemies: ["goblin", "goblin"],
+        enemies: ["goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin", "goblin"],
         rewards: []
     },
     2: {
         name: "Ninja Academy",
-        enemies: ["young_ninja", "young_ninja"],
+        enemies: ["young_ninja", "monk", "monk", "young_ninja"],
         rewards: LEVEL_ELEVEN_LOOT_TABLE
     },
     3: {
         name: "Dwarven Fortress",
-        enemies: ["dwarf", "elephant"],
+        enemies: ["dwarf", "elephant", "blue_mage"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {
@@ -35,7 +35,7 @@ export const TOWER_FLOOR_11 = {
     },
     4: {
         name: "Place of Tungsten",
-        enemies: ["tungsten_spirit"],
+        enemies: ["tungsten_spirit", "tungsten_spirit", "tungsten_spirit"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {
@@ -55,7 +55,7 @@ export const TOWER_FLOOR_11 = {
     },
     5: {
         name: "Warlock's Palace",
-        enemies: ["demon", "fire_mage"],
+        enemies: ["demon", "fire_mage", "demon", "fire_mage"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {
@@ -91,7 +91,7 @@ export const TOWER_FLOOR_11 = {
     },
     6: {
         name: "Suspicious Mine",
-        enemies: ["angry_miner", "gorilla"],
+        enemies: ["angry_miner", "gorilla", "brown_mage", "spartan"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {
@@ -132,7 +132,7 @@ export const TOWER_FLOOR_11 = {
     },
     7: {
         name: "Mage's Guild",
-        enemies: ["water_mage", "fire_mage", "earth_mage"],
+        enemies: ["warden", "water_mage", "fire_mage", "earth_mage", "blue_mage", "brown_mage"],
         rewards: orderLootTable(
             LEVEL_ELEVEN_LOOT_TABLE.concat([
                 {

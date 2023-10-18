@@ -1,6 +1,23 @@
 <template name="updatesPage">
     <div class="updates-page">
 
+        <h2 class="my-3">Wednesday 18th October 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>A new method of capping attack speed in the combat engine has been implemented to recalculate attack speeds per tick without it causing the issue where very high attack speeds prevent any attacks at all.</li>
+                    <li>Mystic Bond transfusion should no longer count as damage from the heal recipient and the healing statistics should also be credited toward the casting sage.</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effect (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Tuesday 17th October 2023</h2>
         <ul>
             <li><b>New Stuff</b></li>
@@ -18,17 +35,18 @@
                     <li>Class-specific reforging bugs seem to be resolved.  Please continue reporting this issue if you have an issue reforging a class-specific item.</li>
                     <li>Grapes and strawberries should heal their instant amount correctly now.</li>
                     <li>Companion abilities should no longer count against Tactician's intrinsic trait that deducts stats based on ability loadout diversity.</li>
-                    <li>Evasive Maneuvers will truly dodge physical effects like it's supposed to, including players and enemies using it.  Bleed and poison will
-                        still land and tick, magic (except for trident auto-attack magic damage), and any  special circumstances such as when using Precise Shots.</li>
+                    <li>Evasive Maneuvers will truly dodge physical effects like it's supposed to, whether it's players or enemies using it.  Bleed and poison will
+                        still land and tick.  Magic (except for trident auto-attack magic damage) and any special circumstances such as when using Precise Shots
+                        will also still hit as expected.</li>
                 </ul>
             </li>
             <li><b>Balance Changes</b></li>
             <li>
                 <ul>
-                    <li>Zinnia now sells for considerably more than it used to.</li>
-                    <li>Young ninjas will now try to dodge a little more often than before.</li>
-                    <li>Slight nerf to the Floor 11 enemy list. Perhaps that was a little overboard.</li>
-                    <li>The maximum floor adjustment has been reduced to +3 for the top Tower floor.</li>
+                    <li>{{> updatesBuff}} Zinnia now sells for considerably more than it used to.</li>
+                    <li>{{> updatesMixed}} Young ninjas will now try to dodge a little more often than before.</li>
+                    <li>{{> updatesBuff}} Slight reduction to the Floor 11 enemy list. Perhaps that was a little overboard.</li>
+                    <li>{{> updatesBuff}} The maximum floor adjustment has been reduced to +3 for the top Tower floor.</li>
                 </ul>
             </li>
             <li><b>UI Changes</b></li>
@@ -121,8 +139,8 @@
             <li><b>General Balance Changes</b></li>
             <li>
                 <ul>
-                    <li>Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
-                    <li>While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
+                    <li>{{> updatesBuff}} Kite shields will provide damage absorption, scaling with tier.  This is not a reforgeable stat.</li>
+                    <li>{{> updatesNerf}} While armored, crabs can't be pierced and thus won't bleed or be poisoned by weapons (Poison Dart will still apply poison).</li>
                 </ul>
             </li>
             <li><b>Feature Updates</b></li>
@@ -159,15 +177,14 @@
         <ul>
             <li><b>General Balance Changes</b></li>
             <ul>
-                <li>The top floor enemies and bosses have gained strength again, challenging you from progressing further . . .</li>
-                <li>Rapier weapons experience ratio has been modified to be 50% attack/15% defense/35% health.</li>
-                <li>Spear weapons experience ratio has been modified to be 70% defense/30% health.</li>
-                <li>Wand weapons experience ratio has been modified to be 25% defense/75% health.</li>
-                <li>Class reforging overrides should no longer require the browser to be refreshed after every attempt.</li>
-                <li>Bleed and poison are no longer reduced by the target's armor.</li>
-                <li>Enemies that dodge now use their defense stat to do so, which means they can no longer dodge ticks of bleeding, poison, ignite, or most magic spells.</li>
-                <li>Spirits and other various enemies no longer dodge but use true immunity when they phase out of reality.  They will still be immune to ticks from bleeding, poison, ignite, etc. while immune.</li>
-                <li>Twin Blades has been updated to gain a stack every 2 seconds instead of every 1.</li>
+                <li>{{> updatesNerf}} The top floor enemies and bosses have gained strength again, challenging you from progressing further . . .</li>
+                <li>{{> updatesMixed}} Rapier weapons experience ratio has been modified to be 50% attack/15% defense/35% health.</li>
+                <li>{{> updatesMixed}} Spear weapons experience ratio has been modified to be 70% defense/30% health.</li>
+                <li>{{> updatesBuff}} Wand weapons experience ratio has been modified to be 25% defense/75% health.</li>
+                <li>{{> updatesNerf}} Bleed and poison are no longer reduced by the target's armor.</li>
+                <li>{{> updatesBuff}} Enemies that dodge now use their defense stat to do so, which means they can no longer dodge ticks of bleeding, poison, ignite, or most magic spells.</li>
+                <li>{{> updatesMixed}} Spirits and other various enemies no longer dodge but use true immunity when they phase out of reality.  They will still be immune to ticks from bleeding, poison, ignite, etc. while immune.</li>
+                <li>{{> updatesBuff}} Twin Blades has been updated to gain a stack every 2 seconds instead of every 1.</li>
             </ul>
             <li><b>Class Balance Changes</b></li>
             <ul>
@@ -188,6 +205,7 @@
                 <li>Ranger Thicket briars should no longer damage ally units.</li>
                 <li>Tactician Rally bonus to damage now scales with the target's actual damage absorption instead of applying its bonus additively.  This will not effect most monsters, but it will effect some bosses and monster effects.</li>
                 <li>Tactician Grit no longer incorrectly debuffs Tacticians who are wearing opal armor or using Health Up.</li>
+                <li>Class reforging overrides should no longer require the browser to be refreshed after every attempt.</li>
             </ul>
             <li><b>UI Changes</b></li>
             <ul>
@@ -266,7 +284,7 @@
             </ul>
             <li><b>Balance Changes</b></li>
             <ul>
-                <li>Crabs no longer let you penetrate their armor quite so easily.</li>
+                <li>{{> updatesNerf}} Crabs no longer let you penetrate their armor quite so easily.</li>
             </ul>
             <li><b>Bugfixes</b></li>
             <ul>
@@ -334,7 +352,7 @@
         <ul>
             <li><b>Balance Changes</b></li>
             <ul>
-                <li>Each new room in the tower now has the same auto-attack tick delay as the first room.  This delay is 0.8 seconds and prevents either side from auto-attacking during this time to give players a more fair chance to load in and react to the battle.  Keep in mind that this delay only affects auto-attacks and both friendly and enemy units can still use abilities during this time and passive effects will still occur.</li>
+                <li>{{> updatesBuff}} Each new room in the tower now has the same auto-attack tick delay as the first room.  This delay is 0.8 seconds and prevents either side from auto-attacking during this time to give players a more fair chance to load in and react to the battle.  Keep in mind that this delay only affects auto-attacks and both friendly and enemy units can still use abilities during this time and passive effects will still occur.</li>
             </ul>
             <li><b>UI Changes</b></li>
             <ul>
@@ -596,24 +614,24 @@
     <style type="text/css">
         /* remove bubbles from top list items (categories in bold) */
         div.updates-page > ul > li,
-        div.updates-page ul ul li:has(span.class-update-note),
-        div.updates-page ul li ul li:has(span.class-update-note)
+        div.updates-page ul ul li:has(span.balance-update-note),
+        div.updates-page ul li ul li:has(span.balance-update-note)
         {
             list-style: none;
         }
 
         /* style bubbles otherwise */
-        div.updates-page ul ul li:not(:has(span.class-update-note)),
-        div.updates-page ul li ul li:not(:has(span.class-update-note)) {
+        div.updates-page ul ul li:not(:has(span.balance-update-note)),
+        div.updates-page ul li ul li:not(:has(span.balance-update-note)) {
             list-style: disc;
             list-style-position: inside;
         }
 
-        span.class-update-note {
+        span.balance-update-note {
             margin-right: 12px;
         }
 
-        span.class-update-note span {
+        span.balance-update-note span {
             display: inline-block;
             font-family: Lucida Console;
             font-weight: bold;
@@ -632,13 +650,13 @@
 </template>
 
 <template name="updatesNerf">
-    <span class="text-muted class-update-note">[<span class="red-text">NERF</span>]</span> 
+    <span class="text-muted balance-update-note">[<span class="red-text">NERF</span>]</span> 
 </template>
 
 <template name="updatesBuff">
-    <span class="text-muted class-update-note">[<span class="green-text">BUFF</span>]</span> 
+    <span class="text-muted balance-update-note">[<span class="green-text">BUFF</span>]</span> 
 </template>
 
 <template name="updatesMixed">
-    <span class="text-muted class-update-note">[<span class="blue-text">MIXED</span>]</span> 
+    <span class="text-muted balance-update-note">[<span class="blue-text">MIXED</span>]</span> 
 </template>

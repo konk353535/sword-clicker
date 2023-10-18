@@ -465,7 +465,7 @@ export const startBattle = function ({
         // tried applying passives above first, but they wouldn't function correctly
 
         // class auto-buffs apply first and are guaranteed to be an array (not undefined)
-        userCombat.enchantments = Object.assign({ autoBuffs: [] }, newUnit.currentClass.autoBuffs).autoBuffs.concat((userCombat.enchantments) ? userCombat.enchantments : [])
+        userCombat.enchantments = Object.assign({ autoBuffs: [] }, newUnit.currentClass).autoBuffs.concat((userCombat.enchantments) ? userCombat.enchantments : [])
 
         if (userCombat.enchantments) {
             if (wantDebug) {

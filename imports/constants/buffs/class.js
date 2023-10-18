@@ -1687,7 +1687,8 @@ export const CLASS_BUFFS = {
                     let passiveAbilityCount = 0
                     let activeAbilityCount = 0
                     target.abilities.forEach((ability) => {
-                        if (ability.slot != "companion") {
+                        console.log(ability?.constants?.slot)
+                        if (ability?.constants?.slot != "companion") {
                             passiveAbilityCount += (ability.isPassive) ? 1 : 0
                             activeAbilityCount  += (ability.isPassive) ? 0 : 1
                         }

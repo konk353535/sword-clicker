@@ -952,7 +952,7 @@ export const MONSTER_BUFFS = {
                         if (allowBonuses) {
                             target.extraLootTable =
                             [
-                                { id: `${thisMagicColorCapped20}_wand`, chance: 0.05 },
+                                { id: `${thisMetalCapped20}_wand`, chance: 0.05 },
                                 { id: `${thisMagicColorCapped20}_wizard_hat`, chance: 0.02 },
                                 { id: `${thisMagicColorCapped20}_wizard_shirt`, chance: 0.02 },
                                 { id: `${thisMagicColorCapped20}_wizard_shorts`, chance: 0.02 },

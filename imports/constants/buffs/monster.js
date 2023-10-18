@@ -1374,13 +1374,31 @@ export const MONSTER_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
+                if (!buff.data.healingReduction) {
+                    // this means there was an error in the calling buff applification
+                    buff.duration = 0
+                    return
+                }
+
+                // note: 'buff.data.healingReduction' is how much healing they should be eligible for, not reduced by
+                //
+                //       if it's set to 0.25 from demons, for example, that meanst a 75% reduction and only 25% remains of healing effcts
+
+                // note: while 'target.stats.healingReduction' sounds like it is a modifier, it is a multiplier... if the value is set to
+                //       1.0, their healing received is 100% (amt x ratio) -- consider it to be healing absorption
+
                 buff.data.description = `You receive ${((1-buff.data.healingReduction)*100.0).toFixed(0)}% less healing.`
 
-                if (target.stats.healingReduction != null) {
-                    target.stats.healingReduction *= buff.data.healingReduction
+                let reducedBefore = 1
+
+                if (target.stats.healingReduction) {
+                    reducedBefore = target.stats.healingReduction
+                    target.stats.healingReduction *= buff.data.healingReducedAmount
                 } else {
-                    target.stats.healingReduction = buff.data.healingReduction
+                    target.stats.healingReduction = buff.data.healingReducedAmount
                 }
+
+                buff.data.amountChanged = reducedBefore - target.stats.healingReduction
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
@@ -1393,7 +1411,7 @@ export const MONSTER_BUFFS = {
 
             onRemove({ buff, target }) {
                 if (buff.data.healingReduction) {
-                    target.stats.healingReduction /= buff.data.healingReduction
+                    target.stats.healingReduction += buff.data.amountChanged
                 }
             }
         }
@@ -1722,7 +1740,7 @@ export const MONSTER_BUFFS = {
                     buff.constants && buff.constants.constants
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
-                const healingReduction = 0.25
+                const healingReduction = 0.25 // how much healing the target should still receive (25% means a 75% reduction)
                 const newBuff = {
                     id: "healing_reduction",
                     data: {
@@ -2424,7 +2442,7 @@ export const MONSTER_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onDidDamage({ buff, defender, attacker, actualBattle }) {
-                const healingReduction = 0.25
+                const healingReduction = 0.25 // how much healing the target should still receive (25% means a 75% reduction)
 
                 // Add healing reduction buff
                 attacker.applyBuffTo({
@@ -2437,6 +2455,7 @@ export const MONSTER_BUFFS = {
                             )}% of incoming healing.`,
                             icon: "healingReduction.svg",
                             duration: 10,
+                            totalDuration: 10,
                             healingReduction
                         }
                     }),

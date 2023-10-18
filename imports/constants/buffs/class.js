@@ -298,7 +298,7 @@ export const CLASS_BUFFS = {
                                 duration: Infinity,
                                 totalDuration: Infinity,
                                 enchantment: true,
-                                icon: "rangerTraitShred.svg",
+                                icon: "duelistTraitShred.svg",
                                 stacks: 1
                             }
                         }
@@ -326,7 +326,7 @@ export const CLASS_BUFFS = {
 
     class_duelist_shred_counter: {
         duplicateTag: "class_duelist_shred_counter",
-        icon: "rangerTraitShred.svg",
+        icon: "duelistTraitShred.svg",
         name: "Shredded",
         description() {
             return `

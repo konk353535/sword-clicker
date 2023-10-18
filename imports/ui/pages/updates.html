@@ -6,13 +6,21 @@
             <li><b>Bugfixes</b></li>
             <li>
                 <ul>
-                    <li>A new method of capping attack speed in the combat engine has been implemented to recalculate attack speeds per tick without it causing the issue where very high attack speeds prevent any attacks at all.</li>
+                    <li>A new method of capping attack speed in the combat engine has been implemented to recalculate attack speeds per tick without it causing the issue where very high attack speeds prevent any attacks at all.  The new effective maximum attack speed is capped at 500%.</li>
                     <li>Mystic Bond transfusion should no longer count as damage from the heal recipient and the healing statistics should also be credited toward the casting sage.</li>
+                    <li>Enemy <i>Force</i> stat was scaling far higher than intended and has been adjusted, which should result in appropriately dodging attacks from enemy auto-attacks in the top floor of the tower again.</li>
+                </ul>
+            </li>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Duelist Trait intrinsic effect to reduce armor and defense will now trigger from Phantom Strikes and Volley-based auto-attack sources.  A counter will also be tracked on the target.</li>
                 </ul>
             </li>
             <li><b>Balance Changes</b></li>
             <li>
                 <ul>
+                    <li>{{> updatesBuff}} Bonus contribution to unlocking the boss on the top floor has been significantly increased to encourage efforts to unlock the boss quicker.</li>
                     <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effect (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
                     <li>{{> updatesBuff}} Pylons and walls have a karmic value when donated to the town.  Additionally, snowberries, grapes, and strawberries have had their karmic value adjusted.</li>
                 </ul>

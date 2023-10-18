@@ -546,15 +546,15 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(
-                c.increaseMPRatio * 100
-            )}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP).  Maximum attack speed
+        and damage capped at 100%.  At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        This spell caps your effective MP at 400 for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
             increaseBase: 20,
             increaseMPRatio: 0.2,
+            benefitMPCap: 400,
             healthCost: 15,
             healthCostMPRatio: 0.1
         },
@@ -570,7 +570,7 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const increaseBase = constants.increaseBase
-                const increaseMP = constants.increaseMPRatio * caster.stats.magicPower
+                const increaseMP = constants.increaseMPRatio * Math.min(caster.stats.magicPower, constants.benefitMPCap)
                 const totalIncrease = increaseBase + increaseMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower

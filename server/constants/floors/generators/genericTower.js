@@ -158,15 +158,15 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             monster.stats.magicArmor += extraData.avgMArmor * 0.01 * room/8
             monster.stats.magicArmor = Math.ceil(monster.stats.magicArmor)
 
-            // enemies gets a bonus to force = 50% the average of all player units' defense
             // enemies gets a bonus to shred = 35% the average of all player units' armor
             // enemies gets a bonus to focus = 35% the average of all player units' magic armor
-            monster.stats.force += extraData.avgDefenseStat * 0.50 * room/7
             monster.stats.shred += extraData.avgDefenseStat * 0.35 * room/7
-            monster.stats.focus += extraData.avgMArmor * 0.35 * room/7
-            monster.stats.force = Math.ceil(monster.stats.force)
             monster.stats.shred = Math.ceil(monster.stats.shred)
+            monster.stats.focus += extraData.avgMArmor * 0.35 * room/7
             monster.stats.focus = Math.ceil(monster.stats.focus)
+
+            // instead of usual force, raise it by +15%
+            monster.stats.force += 15
 
             // instead of usual attack speed, raise it by +20%
             monster.stats.attackSpeed *= 1.2

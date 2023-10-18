@@ -695,15 +695,15 @@ export const startBattle = function ({
                 enemyStats.magicArmor += avgMArmor * 0.75
                 enemyStats.magicArmor = Math.ceil(enemyStats.magicArmor)
 
-                // boss gets a bonus to force = 100% the average of all player units' defense
                 // boss gets a bonus to shred = 75% the average of all player units' armor
                 // boss gets a bonus to focus = 75% the average of all player units' magic armor
-                enemyStats.force += avgDefenseStat
                 enemyStats.shred += avgDefenseStat * 0.75
-                enemyStats.focus += avgMArmor * 0.75
-                enemyStats.force = Math.ceil(enemyStats.force)
                 enemyStats.shred = Math.ceil(enemyStats.shred)
+                enemyStats.focus += avgMArmor * 0.75
                 enemyStats.focus = Math.ceil(enemyStats.focus)
+
+                // instead of usual force, raise it by +15%
+                enemyStats.force += 15
 
                 // instead of usual attack speed, raise it by +50%
                 enemyStats.attackSpeed *= 1.5

@@ -997,7 +997,7 @@ export const DEFENSE_BUFFS = {
                 }
 
                 // if the source is an autoattack and the attacker can't miss because of Precise Shots, we take the damage
-                if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes") {
+                if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes" || formattedSource == "twin blades") {
                     if (attacker.hasBuff("precise_shots")) {
                         return
                     }

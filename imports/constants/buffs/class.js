@@ -264,10 +264,20 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {},
 
             onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic}) {
+
+                // when debugging
+                //defender.stats.health = defender.stats.healthMax
+
                 const formattedSource = (source || "autoattack").trim().toLowerCase()
 
+                // when debugging
+                //console.log(actualBattle.tickCount, formattedSource, "- hit")
+
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
-                if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes") {
+                if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes" || formattedSource == "twin blades") {
+                    // when debugging
+                    //console.log(actualBattle.tickCount, formattedSource, "- SHREDDING!")
+
                     defender.stats.armor -= (defender.stats.origStats.armor ? defender.stats.origStats.armor : defender.stats.armor) * 0.01
                     defender.stats.defense -= (defender.stats.origStats.defense ? defender.stats.origStats.defense : defender.stats.defense) * 0.01
 
@@ -294,10 +304,16 @@ export const CLASS_BUFFS = {
                         }
 
                         addBuff({ buff: newBuff, target: defender, caster: attacker, actualBattle })
+
+                        // when debugging
+                        //console.log(actualBattle.tickCount, "... new buff, stacks = 1")
                     } else {
                         if (shredCounterDebuff.stacks < 100) {
                             shredCounterDebuff.stacks++
                         }
+
+                        // when debugging
+                        //console.log(actualBattle.tickCount, "... existing buff, stacks = ", shredCounterDebuff.stacks)
                     }
                 }
             },

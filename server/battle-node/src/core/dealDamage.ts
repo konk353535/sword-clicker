@@ -133,6 +133,9 @@ export function dealDamage(
             console.log("... FINAL DAMAGE IS:", damage)
         }
 
+        // check our current health
+        const healthBeforeAdjustments: number = defender.stats.health
+
         if (damage > 0) {
             defender.stats.health -= damage
         }
@@ -153,6 +156,16 @@ export function dealDamage(
                         source: source ? source : "other",
                         magic: isMagic
                     })
+
+                    if (buff?.data?.hasNotes) {
+                        if (buff.data.hasNotes.customIcon) {
+                            customIcon = buff.data.hasNotes.customIcon
+                        }
+                        if (buff.data.hasNotes.customColor) {
+                            customColor = buff.data.hasNotes.customColor
+                        }
+                        buff.data.hasNotes = {}
+                    }
                 }
             })
         }
@@ -173,9 +186,23 @@ export function dealDamage(
                         source: source ? source : "other",
                         magic: isMagic
                     })
+
+                    if (buff?.data?.hasNotes) {
+                        if (buff.data.hasNotes.customIcon) {
+                            customIcon = buff.data.hasNotes.customIcon
+                        }
+                        if (buff.data.hasNotes.customColor) {
+                            customColor = buff.data.hasNotes.customColor
+                        }
+                        buff.data.hasNotes = {}
+                    }
                 }
             })
         }
+
+        // recalculate damage based on our health before minus our health after
+        // this new damage is adjusted based on buff effects, such as dodging
+        damage = healthBeforeAdjustments - defender.stats.health
 
         this.checkDeath(defender, attacker)
     }

@@ -683,7 +683,7 @@ export const FARMING_ITEMS = Object.freeze({
                 id: "food_snowberry"
             }
         ],
-        sellPrice: 150
+        sellPrice: 300
     },
 
     grapes_seed: {
@@ -714,7 +714,7 @@ export const FARMING_ITEMS = Object.freeze({
                 id: "food_grapes"
             }
         ],
-        sellPrice: 175
+        sellPrice: 350
     },
 
     strawberry_seed: {
@@ -745,7 +745,7 @@ export const FARMING_ITEMS = Object.freeze({
                 id: "food_strawberry"
             }
         ],
-        sellPrice: 200
+        sellPrice: 400
     },
 
     garlic_seed: {

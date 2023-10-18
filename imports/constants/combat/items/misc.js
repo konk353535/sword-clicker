@@ -247,8 +247,8 @@ export const MISC_ITEMS = {
         isEquippable: true,
         stats: {
             attack: 1,
-            attackMax: 2,
-            attackSpeed: 4,
+            attackMax: 10,
+            attackSpeed: 1,
             accuracy: 100000
         },
         extraStats: {},

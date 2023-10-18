@@ -1505,7 +1505,7 @@ export const CLASS_BUFFS = {
             },
 
             onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-                if (damageDealt <= 0 || !buff.data.caster || buff.data.casterUnit?.stats?.health <= 0) {
+                if (damageDealt <= 0 || !buff.data.caster ) {
                     return
                 }
 
@@ -1537,7 +1537,7 @@ export const CLASS_BUFFS = {
                         const damageToTake = casterUnit.stats.healthMax * 0.1
 
                         actualBattle.dealDamage(damageToTake, {
-                            attacker: defender,
+                            attacker: casterUnit,
                             defender: casterUnit,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
@@ -1552,6 +1552,7 @@ export const CLASS_BUFFS = {
                             defender,
                             tickEvents: actualBattle.tickEvents,
                             historyStats: actualBattle.historyStats,
+                            sourceId: buff.data.caster,
                             healSource: buff
                         })
                     }

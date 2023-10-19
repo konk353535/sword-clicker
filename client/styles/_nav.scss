@@ -2,9 +2,8 @@
   position: relative;
   white-space: nowrap;
 
-  & > .red-dot {
+  & > .nav-dot {
     border-radius: 50%;
-    background-color: $brand-danger;
     width: 8px;
     height: 8px;
     position: absolute;
@@ -12,14 +11,16 @@
     right: 3px;
   }
 
+  & > .red-dot {
+    background-color: $brand-danger;
+  }
+
+  & > .yellow-dot {
+    background-color: #ead324;
+  }
+
   & > .aqua-dot {
-    border-radius: 50%;
     background-color: #1fadad;
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    top: 8px;
-    right: 3px;
   }
 }
 

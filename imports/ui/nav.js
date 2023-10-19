@@ -9,14 +9,18 @@ import { TimeSync } from "meteor/mizzao:timesync"
 import moment from "moment"
 
 import { Adventures } from "/imports/api/adventures/adventures.js"
+import { Astronomy } from "/imports/api/astronomy/astronomy.js"
 import { BattlesList } from "/imports/api/battles/battles.js"
 import { Combat } from "/imports/api/combat/combat.js"
+import { Crafting } from "/imports/api/crafting/crafting"
 import { FarmingSpace } from "/imports/api/farming/farming.js"
 import { Mining } from "/imports/api/mining/mining.js"
 import { Groups } from "/imports/api/groups/groups.js"
+import { Inscription } from "/imports/api/inscription/inscription.js"
 import { Items } from "/imports/api/items/items.js"
 import { Skills } from "/imports/api/skills/skills.js"
 import { Users } from "/imports/api/users/users.js"
+import { Woodcutting } from "/imports/api/woodcutting/woodcutting.js"
 
 import { CLASSIC_SERVER, DEFAULT_SERVER, Servers } from "/imports/api/servers/servers.js"
 
@@ -30,12 +34,16 @@ Template.nav.onCreated(function bodyOnCreated() {
     Meteor.subscribe("items")
 
     Meteor.subscribe("adventures")
+    Meteor.subscribe("astronomy")
+    Meteor.subscribe("crafting")
     Meteor.subscribe("combat")
     Meteor.subscribe("battlesList")
     Meteor.subscribe("farmingSpace")
     Meteor.subscribe("groups")
     Meteor.subscribe("mining")
+    Meteor.subscribe("inscription")
     Meteor.subscribe("users")
+    Meteor.subscribe("woodcutting")
 
     this.state = new ReactiveDict()
     this.state.set("currentMoment", moment().toDate())
@@ -368,20 +376,37 @@ Template.nav.helpers({
         return false
     },
 
-    showMiningDot() {
-        /* can only do 'aggregate' at the server
-        const fullMiningDoc = Mining.rawCollection().aggregate(
-            [
-                { "$redact": { 
-                    "$cond": [
-                        { "$and": [ { "$eq": [ "$owner", Meteor.userId() ] }, { "$eq": [ "$stats.energy", "$stats.energyStorage" ] } ] },
-                        "$$KEEP",
-                        "$$PRUNE"
-                    ]
-                }}
-            ]
-        ) */
+    showCraftingDotRed() {
+        const crafting = Crafting.findOne({})
 
+        if (crafting) {
+            return !crafting.currentlyCrafting || crafting.currentlyCrafting.length === 0
+        }
+
+        return false
+    },
+
+    showCraftingDotYellow() {
+        const crafting = Crafting.findOne({})
+
+        if (crafting) {
+            return !crafting.currentlyReforging || crafting.currentlyReforging.length === 0
+        }
+
+        return false
+    },
+
+    showInscriptionDot() {
+        const inscription = Inscription.findOne({})
+
+        if (inscription) {
+            return !inscription.currentlyCrafting || inscription.currentlyCrafting.length === 0
+        }
+
+        return false
+    },
+
+    showMiningDot() {
         const miningDoc = Mining.findOne({
             owner: Meteor.userId()
         })
@@ -405,10 +430,40 @@ Template.nav.helpers({
         return false
     },
 
+    showAstronomyDot() {
+        const astronomy = Astronomy.findOne({})
+
+        if (!astronomy) {
+            return false
+        }
+
+        let mageCount = 0
+        astronomy.mages.forEach((mage, mageIndex) => {
+            if (mage.id !== "donatorMage") {
+                mageCount++
+            }
+        })
+
+        return mageCount <= 6
+    },
+
+    showWoodcuttingDot() {
+        let currentMoment
+        try {
+            // leverage ReactiveDict since the data in Woodcutting isn't actually changing fast enough,
+            // so Blaze can't react to a change in the data of this collection and thus update our dot
+            currentMoment = moment(Template.instance().state.get("currentMoment"))
+        } catch (err) {
+            return false
+        }
+        const woodcutting = Woodcutting.findOne({})
+        return (woodcutting) ? woodcutting.woodcutters?.length !== 5 : false
+    },
+
     showFarmingDot() {
         let currentMoment
         try {
-            // leverage ReactiveDict since the data in Growing isn't actually changing, so Blaze can't
+            // leverage ReactiveDict since the data in FarmingSpace isn't actually changing, so Blaze can't
             // react to a change in the data of this collection and thus update our dot
             currentMoment = moment(Template.instance().state.get("currentMoment"))
         } catch (err) {

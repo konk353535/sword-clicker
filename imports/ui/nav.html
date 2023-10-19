@@ -17,7 +17,7 @@
       
       {{#if currentUser}}
         <a class="navbar-brand" href="/overview">
-          <img src="/icons/whiteTower.svg" class="extra-small-icon">
+          <img alt="Return to your Overview" src="/icons/whiteTower.svg" class="extra-small-icon">
         </a>
       {{else}}
         <a class="navbar-brand" href="/">
@@ -39,10 +39,10 @@
                 <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}} battle-nav-link" href="/battle">
                   Battle
                   {{#if showBattleAquaBlue}}
-                    <span class="aqua-dot"></span>
+                    <span class="nav-dot aqua-dot"></span>
                   {{else if idleFeatureDots}}
                     {{#if showBattleDotRed}}
-                      <span class="red-dot"></span>
+                      <span class="nav-dot red-dot"></span>
                     {{/if}}
                   {{/if}}
                   </a>
@@ -53,7 +53,7 @@
                   Mine
                   {{#if idleFeatureDots}}
                     {{#if showMiningDot}}
-                      <span class="red-dot"></span>
+                      <span class="nav-dot red-dot"></span>
                     {{/if}}
                   {{/if}}
                   </a>
@@ -62,6 +62,13 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'crafting'}}active{{/if}}" href="/crafting">
                   Craft
+                  {{#if idleFeatureDots}}
+                    {{#if showCraftingDotRed}}
+                      <span class="nav-dot red-dot"></span>
+                    {{else if showCraftingDotYellow}}
+                      <span class="nav-dot yellow-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{/if}}
@@ -71,7 +78,7 @@
                   Farm
                   {{#if idleFeatureDots}}
                     {{#if showFarmingDot}}
-                      <span class="red-dot"></span>
+                      <span class="nav-dot red-dot"></span>
                     {{/if}}
                   {{/if}}
                 </a>
@@ -81,6 +88,11 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'inscription'}}active{{/if}}" href="/inscription">
                   Inscribe
+                  {{#if idleFeatureDots}}
+                    {{#if showInscriptionDot}}
+                      <span class="nav-dot red-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{/if}}
@@ -88,6 +100,11 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'woodcutting'}}active{{/if}}" href="/woodcutting">
                   Woodcut
+                  {{#if idleFeatureDots}}
+                    {{#if showWoodcuttingDot}}
+                      <span class="nav-dot red-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{/if}}
@@ -95,6 +112,11 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'magic'}}active{{/if}}" href="/magic">
                   Magic
+                  {{#if idleFeatureDots}}
+                    {{#if showAstronomyDot}}
+                      <span class="nav-dot red-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{#if canSeeEntireGameMenu}}
@@ -103,7 +125,7 @@
                   Town
                   {{#if idleFeatureDots}}
                     {{#if showTownKarmaDot}}
-                      <span class="red-dot"></span>
+                      <span class="nav-dot red-dot"></span>
                     {{/if}}
                   {{/if}}
                 </a>
@@ -144,7 +166,7 @@
             <div class="p-2 d-flex align-items-center text-white">
               <span class="mr-2">
                 <a target="_blank" href="https://discord.gg/Zc9XUUrunK">
-                  <img src="/icons/discord-mark-blue.svg" class="extra-small-icon discord">
+                  <img alt="Join us on Discord!" src="/icons/discord-mark-blue.svg" class="extra-small-icon discord">
                 </a>
               </span>
               <span class="mr-2">

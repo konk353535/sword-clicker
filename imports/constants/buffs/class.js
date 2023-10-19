@@ -921,7 +921,7 @@ export const CLASS_BUFFS = {
                 }
 
                 // calculate new bonus
-                buff.data.damageBoosted.attackSpeed = target.stats.attack + (buff.stacks * 0.1)
+                buff.data.damageBoosted.attackSpeed = target.stats.attackSpeed + (buff.stacks * 0.1)
 
                 // apply new bonus
                 target.stats.attackSpeed += buff.data.damageBoosted.attackSpeed

@@ -351,33 +351,45 @@
           </button>
         </div>
         <div class="modal-body">
-          Reforging equipment gives you a chance to improve the rarity of something you can craft.  The chance 
-          of success to reforge is based on your crafting level and the required crafting level of the item you are 
-          reforging. Success will improve the rarity by one tier after some time and failure will reduce the 
-          rarity by a tier with a <b>5%</b> chance the item will break and be lost entirely.  The item quality will
-          not be affected at all whether you succeed or fail.<br />
-          <br />
-          You can only reforge one item at a time.  During a global crafting buff, failing to reforge will not reduce
-          the rarity level nor have any chance to break the item.<br />
+          <div style="max-height: 200px; overflow-y: auto">
+            Reforging equipment gives you a chance to improve the rarity of most equipment.  The chance of success to
+            reforge is based on your crafting level and the required crafting level of the item you are reforging.
+            Reforging costs materials and gold.  Success will improve the rarity by one tier after some time and failure
+            will simply use up the costs but with a <b>10%</b> critical failure chance that the item rarity tier will be
+            reduced.  The item quality will not be affected at all whether you succeed or fail.<br />
+            <br />
+            Every attempt, <u>whether successful or not</u> will <i>increase the costs</i> of your next attempt to
+            reforge this item. Costs are also increased by the tier of the item.<br />
+            <br />
+            You can only reforge one item at a time until Crafting level 30, when you gain your second reforging slot.
+            You gain a third reforging slot at Crafting level 60.  During a global crafting buff, your critical chance
+            to fail is reduced from <b>10%</b> to <b>5%</b> and all crafting resource costs (items and gold) are reduced
+            by <b>half</b>.  With the town armory buff, your chance to succeed is increased by <b>5%</b> <i>per buff
+            level</i>.<br />
+          </div>
           <br />
           {{#if reforgeChance}}
             Are you sure you want to reforge your <b> {{item.name}} </b> with a <b> {{reforgeChance}} </b> success chance?<br />
           {{else if unadjustedReforgeChance}}
             Your base crafting skill level isn't high enough to attempt to reforge your <b>{{item.name}}</b>.<br />
           {{/if}}
-        </div>
+          {{#if unadjustedReforgeChance}}
+            {{#if reforgeRecipe.required}}
+              <br />
+              {{ > requiredItemsList requiredItems=reforgeRecipe.required recipeName=reforgeRecipe.name duration=reforgeRecipe.timeToCraft isReforge=true}}
+            {{/if}}
+          {{/if}}
+          </div>
         <div class="modal-footer">
           <div class="row" style="width:100%">
             <div class="col-md-6">
-              {{#if reforgeChance}}
-                <button type="button" class="btn btn-success reforge-confirm-btn pull-left">Reforge</button>
-              {{else if unadjustedReforgeChance}}
-                <button type="button" class="btn btn-danger reforge-confirm-btn pull-left">Reforge Anyway</button>
-              {{/if}}
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
           </div>
           <div class="col-md-6">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            {{#if reforgeChance}}
+             <button type="button" class="btn btn-success reforge-confirm-btn pull-left">Reforge</button>
+            {{/if}}
           </div>
         </div>
       </div>

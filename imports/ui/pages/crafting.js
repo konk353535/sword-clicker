@@ -8,6 +8,7 @@ import { ReactiveMethod } from "meteor/simple:reactive-method"
 import lodash from "lodash"
 import moment from "moment"
 
+import { reforgeGenerateRecipe } from "/imports/constants/crafting/reforging.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS } from "/imports/constants/shop/index.js"
 
@@ -1060,6 +1061,8 @@ const FetchSomeHiddenItems = function (highestFurnaceTier) {
                         }
 
                         item.unadjustedReforgeChance = unadjustedSuccessChance
+
+                        item.reforgeRecipe = reforgeGenerateRecipe(item._id)
                     }
                 } catch (err) {}
             }
@@ -1209,6 +1212,8 @@ const FetchSomeVisibleItems = function (highestFurnaceTier) {
                         }
 
                         item.unadjustedReforgeChance = unadjustedSuccessChance
+
+                        item.reforgeRecipe = reforgeGenerateRecipe(item._id)
                     }
                 } catch (err) {}
             }
@@ -1356,6 +1361,8 @@ const FetchAllHiddenItems = function (highestFurnaceTier) {
                         }
 
                         item.unadjustedReforgeChance = unadjustedSuccessChance
+
+                        item.reforgeRecipe = reforgeGenerateRecipe(item._id)
                     }
                 } catch (err) {}
             }
@@ -1503,6 +1510,8 @@ const FetchAllVisibleItems = function (highestFurnaceTier) {
                         }
 
                         item.unadjustedReforgeChance = unadjustedSuccessChance
+
+                        item.reforgeRecipe = reforgeGenerateRecipe(item._id)
                     }
                 } catch (err) {}
             }

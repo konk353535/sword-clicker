@@ -285,6 +285,25 @@ Template.itemIcon.helpers({
         return { rare: false, label: "", color: "000" }
     },
 
+    reforgeRecipe() {
+        const instance = Template.instance()
+        const item = instance.data.item
+
+        if (item) {
+            if (
+                item.reforgeChance &&
+                item.unadjustedReforgeChance &&
+                item.reforgeChance !== "0%" &&
+                item.unadjustedReforgeChance >= 1 &&
+                item.reforgeRecipe
+            ) {
+                return item.reforgeRecipe
+            }
+        }
+
+        return false
+    },
+
     reforgeChance() {
         const instance = Template.instance()
         const item = instance.data.item

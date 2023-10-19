@@ -20,6 +20,7 @@ const ItemsSchema = new SimpleSchema({
     extraStats: { type: Object, blackbox: true, optional: true },
     quality: { type: Number, optional: true },
     rarityId: { type: String, optional: true },
+    reforgeAttempts: { type: Number, defaultValue: 0 },
     enchantmentId: { type: String, optional: true },
     enchantmentDescription: { type: String, optional: true },
     hidden: { type: Boolean, optional: true, defaultValue: false },

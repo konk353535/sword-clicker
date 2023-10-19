@@ -76,6 +76,10 @@ Template.requiredItemsList.helpers({
         return Template.instance().state.get("hasSkillRequirements")
     },
 
+    isReforge() {
+        return Template.instance()?.data?.isReforge
+    },
+
     betterDuration() {
         const inst = Template.instance()
         if (inst && inst.data && CInt(inst.data.duration) > 0) {

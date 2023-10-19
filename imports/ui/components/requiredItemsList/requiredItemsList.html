@@ -46,7 +46,7 @@
         {{/if}}
       {{/each}}
       {{#if duration}}
-        Craft Time {{#if betterDuration}}{{betterDuration}}{{else}}{{duration}}s{{/if}}
+        {{#if isReforge}}Reforge{{else}}Craft{{/if}} Time: {{#if betterDuration}}{{betterDuration}}{{else}}{{duration}}s{{/if}}
       {{/if}}
     </div>
   </div>

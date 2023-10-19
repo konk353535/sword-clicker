@@ -477,7 +477,8 @@ Meteor.methods({
             "largeChatEnabled",
             "autopage",
             "floatingTextDisabled",
-            "combatDeathsDisabled"
+            "combatDeathsDisabled",
+            "idleFeatureDots"
         ]
 
         if (_.contains(validIds, id)) {

@@ -4,9 +4,15 @@ import { ReactiveDict } from "meteor/reactive-dict"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 import { Router } from "meteor/iron:router"
+import { TimeSync } from "meteor/mizzao:timesync"
 
 import moment from "moment"
 
+import { Adventures } from "/imports/api/adventures/adventures.js"
+import { BattlesList } from "/imports/api/battles/battles.js"
+import { Combat } from "/imports/api/combat/combat.js"
+import { FarmingSpace } from "/imports/api/farming/farming.js"
+import { Mining } from "/imports/api/mining/mining.js"
 import { Groups } from "/imports/api/groups/groups.js"
 import { Items } from "/imports/api/items/items.js"
 import { Skills } from "/imports/api/skills/skills.js"
@@ -16,12 +22,23 @@ import { CLASSIC_SERVER, DEFAULT_SERVER, Servers } from "/imports/api/servers/se
 
 import "./nav.html"
 
+let singleNavInstance
+
 Template.nav.onCreated(function bodyOnCreated() {
     Meteor.subscribe("userData")
     Meteor.subscribe("servers")
     Meteor.subscribe("items")
 
+    Meteor.subscribe("adventures")
+    Meteor.subscribe("combat")
+    Meteor.subscribe("battlesList")
+    Meteor.subscribe("farmingSpace")
+    Meteor.subscribe("groups")
+    Meteor.subscribe("mining")
+    Meteor.subscribe("users")
+
     this.state = new ReactiveDict()
+    this.state.set("currentMoment", moment().toDate())
 
     Tracker.autorun(() => {
         const myUser = Users.findOne({ _id: Meteor.userId() })
@@ -84,6 +101,11 @@ Template.nav.onCreated(function bodyOnCreated() {
             } else {
                 Session.set("combatDeathsDisabled", false)
             }
+            if (myUser.uiState && myUser.uiState.idleFeatureDots !== undefined) {
+                Session.set("idleFeatureDots", myUser.uiState.idleFeatureDots)
+            } else {
+                Session.set("idleFeatureDots", true)
+            }
         }
     })
 
@@ -95,6 +117,11 @@ Template.nav.onCreated(function bodyOnCreated() {
             }
         }
     })
+
+    singleNavInstance = this
+    Meteor.setInterval(function () {
+        singleNavInstance.state.set("currentMoment", moment().toDate())
+    }, 1000)
 })
 
 Template.nav.events({
@@ -136,6 +163,17 @@ Template.nav.events({
         Session.set("combatDeathsDisabled", false)
         Meteor.call("users.setUiState", "combatDeathsDisabled", false)
     },
+
+    "click .disable-idle-feature-dots"(event, instance) {
+        Session.set("idleFeatureDots", false)
+        Meteor.call("users.setUiState", "idleFeatureDots", false)
+    },
+
+    "click .enable-idle-feature-dots"(event, instance) {
+        Session.set("idleFeatureDots", true)
+        Meteor.call("users.setUiState", "idleFeatureDots", true)
+    },
+    
 
     "click .disable-summary-list"(event, instance) {
         Session.set("summaryListDisabled", true)
@@ -290,7 +328,8 @@ Template.nav.helpers({
         return serverAnnounceText && serverAnnounceText.trim().length > 0 ? serverAnnounceText : false
     },
 
-    showPendingInvites() {
+    // show if the user has a pending group invite
+    showBattleAquaBlue() {
         const invitedToGroups = Groups.find({
             invites: Meteor.userId()
         }).fetch()
@@ -300,6 +339,115 @@ Template.nav.helpers({
         })
 
         return !currentGroup && invitedToGroups.length > 0
+    },
+
+    // show if the user isn't in a group, isn't in adventure, and has full energy
+    showBattleDotRed() {
+        const advDoc = Adventures.findOne({})
+
+        const currentGroup = Groups.findOne({
+            members: Meteor.userId()
+        })
+
+        const currentBattle = BattlesList.findOne({})
+        const combatDoc = Combat.findOne({
+            owner: Meteor.userId()
+        })
+
+        const inBattle = !!currentBattle
+        const isFullEnergy = (combatDoc) ? (combatDoc.stats.energy >= combatDoc.stats.energyMax) : false
+
+        if (inBattle || !isFullEnergy) {
+            return false
+        }
+
+        if (!currentGroup && advDoc && advDoc.adventures) {
+            return advDoc.adventures.filter((adventure) => { return adventure.startDate && adventure.win == null && moment().isBefore(adventure.endDate) }).length == 0
+        }
+
+        return false
+    },
+
+    showMiningDot() {
+        /* can only do 'aggregate' at the server
+        const fullMiningDoc = Mining.rawCollection().aggregate(
+            [
+                { "$redact": { 
+                    "$cond": [
+                        { "$and": [ { "$eq": [ "$owner", Meteor.userId() ] }, { "$eq": [ "$stats.energy", "$stats.energyStorage" ] } ] },
+                        "$$KEEP",
+                        "$$PRUNE"
+                    ]
+                }}
+            ]
+        ) */
+
+        const miningDoc = Mining.findOne({
+            owner: Meteor.userId()
+        })
+
+        if (miningDoc && miningDoc.stats) {
+            return miningDoc.stats?.energy >= miningDoc.stats?.energyStorage
+        }
+
+        return false
+    },
+
+    showTownKarmaDot() {
+        const userDoc = Users.findOne({
+            _id: Meteor.userId()
+        })
+
+        if (userDoc) {
+            return userDoc?.townKarma <= 0
+        }
+
+        return false
+    },
+
+    showFarmingDot() {
+        let currentMoment
+        try {
+            // leverage ReactiveDict since the data in Growing isn't actually changing, so Blaze can't
+            // react to a change in the data of this collection and thus update our dot
+            currentMoment = moment(Template.instance().state.get("currentMoment"))
+        } catch (err) {
+            return false
+        }
+
+        let growingThings = FarmingSpace.find({ owner: Meteor.userId() }).fetch()
+
+        if (growingThings) {
+            growingThings = growingThings.filter((plot) => { return plot.growing != null })
+        }
+
+        const userDoc = Users.findOne({
+            _id: Meteor.userId()
+        })
+
+        if (userDoc && growingThings) {
+            const hasFarmingUpgrade = userDoc.farmingUpgradeTo && currentMoment.isBefore(userDoc.farmingUpgradeTo)
+
+            if (growingThings.length < (hasFarmingUpgrade ? 8 : 6)) {
+                return true
+            }
+            
+            let anyGrown = false
+            growingThings.forEach((crop) => {
+                try {
+                    if (currentMoment.isAfter(crop.maturityDate)) {
+                        anyGrown = true
+                    }
+                } catch (err) {
+                    // on exception, assume it's because there is no maturity date/bad crop data... needs player attention
+                    anyGrown = true
+                }
+            })
+
+            return anyGrown
+        }
+
+        return false
     },
 
     hasAttackSkill() {
@@ -352,6 +500,10 @@ Template.nav.helpers({
 
     combatDeathsDisabled() {
         return Session.get("combatDeathsDisabled")
+    },
+
+    idleFeatureDots() {
+        return Session.get("idleFeatureDots")
     },
 
     summaryListDisabled() {

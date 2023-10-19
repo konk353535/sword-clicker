@@ -38,16 +38,25 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'battle'}}active{{/if}} battle-nav-link" href="/battle">
                   Battle
-                  {{#if showPendingInvites}}
-                    <span class="red-dot"></span>
+                  {{#if showBattleAquaBlue}}
+                    <span class="aqua-dot"></span>
+                  {{else if idleFeatureDots}}
+                    {{#if showBattleDotRed}}
+                      <span class="red-dot"></span>
+                    {{/if}}
                   {{/if}}
-                </a>
+                  </a>
               </li>
             {{/if}}
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'mining'}}active{{/if}}" href="/mining">
                   Mine
-                </a>
+                  {{#if idleFeatureDots}}
+                    {{#if showMiningDot}}
+                      <span class="red-dot"></span>
+                    {{/if}}
+                  {{/if}}
+                  </a>
               </li>
             {{#if canSeeCrafting}}
               <li class="nav-item">
@@ -60,6 +69,11 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'farming'}}active{{/if}}" href="/farming">
                   Farm
+                  {{#if idleFeatureDots}}
+                    {{#if showFarmingDot}}
+                      <span class="red-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{/if}}
@@ -87,6 +101,11 @@
               <li class="nav-item">
                 <a class="nav-link {{#if $eq currentRoute 'town'}}active{{/if}}" href="/town">
                   Town
+                  {{#if idleFeatureDots}}
+                    {{#if showTownKarmaDot}}
+                      <span class="red-dot"></span>
+                    {{/if}}
+                  {{/if}}
                 </a>
               </li>
             {{/if}}
@@ -230,6 +249,9 @@
                     Enable dark mode
                   </a>
                 {{/if}}
+                
+                <div class="dropdown-divider"></div>
+
                 {{#if wantCondensedChat}}
                   <a class="dropdown-item disable-condensed-chat" style="cursor: pointer">
                     Disable condensed chat
@@ -267,6 +289,15 @@
                 {{else}}
                   <a class="dropdown-item disable-combat-deaths" style="cursor: pointer">
                     Disable combat deaths
+                  </a>
+                {{/if}}
+                {{#if idleFeatureDots}}
+                  <a class="dropdown-item disable-idle-feature-dots" style="cursor: pointer">
+                    Disable idle feature dots
+                  </a>
+                {{else}}
+                  <a class="dropdown-item enable-idle-feature-dots" style="cursor: pointer">
+                    Enable idle feature dots
                   </a>
                 {{/if}}
               </div>

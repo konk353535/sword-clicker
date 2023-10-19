@@ -41,8 +41,8 @@
           <div class="d-flex align-items-center mb-3">
             Friend request from {{firstRecievedFriendRequest.senderName}}
             <div class="d-flex flex-grow justify-content-end">
-              <button class="btn btn-primary mr-2 accept-friend-invite" data-sender={{firstRecievedFriendRequest.sender}}>Accept</button>
-              <button class="btn btn-danger decline-friend-invite" data-sender={{firstRecievedFriendRequest.sender}}>Decline</button>
+              <button type="button" class="btn btn-primary mr-2 accept-friend-invite" data-sender="{{firstRecievedFriendRequest.sender}}">Accept</button>
+              <button type="button" class="btn btn-danger decline-friend-invite" data-sender="{{firstRecievedFriendRequest.sender}}">Decline</button>
             </div>
           </div>
         {{/if}}
@@ -51,8 +51,8 @@
           <div class="d-flex align-items-center mb-3">
             Party invite from {{firstPendingInvite.leaderName}}
             <div class="d-flex flex-grow justify-content-end">
-              <button class="btn btn-primary mr-2 accept-party-invite" data-id={{firstPendingInvite._id}}>Accept</button>
-              <button class="btn btn-danger decline-party-invite" data-id={{firstPendingInvite._id}}>Decline</button>
+              <button type="button" class="btn btn-primary mr-2 accept-party-invite" data-id="{{firstPendingInvite._id}}">Accept</button>
+              <button type="button" class="btn btn-danger decline-party-invite" data-id="{{firstPendingInvite._id}}">Decline</button>
             </div>
           </div>
         {{/if}}
@@ -246,7 +246,7 @@
             {{/each}}
             {{#if showHarvestAll}}
               <div class="d-flex align-items-center mt-1 ml-1">
-                <button class="btn btn-primary collect-plants">
+                <button type="button" class="btn btn-primary collect-plants">
                   Harvest All
                 </button>
               </div>
@@ -273,7 +273,7 @@
                 <label class="sr-only" for="name">Name</label>
                 <input class="form-control typeahead" name="team" id="add-friend-input" type="text"
                   placeholder="Name"
-                  autocomplete="off" spellcheck="off"
+                  autocomplete="off" spellcheck="false"
                   data-source="search" />
               </div>
               <button type="submit" class="btn btn-primary btn-invite ml-1">Add</button>
@@ -365,19 +365,19 @@
       </a>
     </div>
     <div class="d-flex justify-content-end flex-grow">
-      <button class="btn btn-warning btn-sm mr-1 remove-friend">Remove</button>
+      <button type="button" class="btn btn-warning btn-sm mr-1 remove-friend">Remove</button>
     </div>
     <div class="d-flex justify-content-end">
       {{#if $and myGroup ($eq myGroup._id friend.partyId)}}
         <div class="badge badge-primary">In Group</div>
       {{else}}
         {{#if friend.partyId}}
-          <button class="btn btn-primary btn-sm mr-1 join-group">Join</button>
+          <button type="button" class="btn btn-primary btn-sm mr-1 join-group">Join</button>
         {{/if}}
         {{#if computedFriend.hasInvitedToMyGroup}}
-          <button class="btn btn-secondary btn-sm mr-1 badge-info" style="color: white;">Invited</button>
+          <button type="button" class="btn btn-secondary btn-sm mr-1 badge-info" style="color: white;">Invited</button>
         {{else if canInvite}}
-          <button class="btn btn-secondary btn-sm invite-to-group">Invite</button>
+          <button type="button" class="btn btn-secondary btn-sm invite-to-group">Invite</button>
         {{/if}}
       {{/if}}
     </div>

@@ -12,7 +12,8 @@ export const PAID_GLOBALBUFFS = Object.freeze({
                 "+35% Crafting XP",
                 "+35% Inscription XP",
                 "+100% Jewel Drop Rate",
-                "Failing to reforge won't reduce the rarity level"
+                "-50% Reforge Resource Costs",
+                "Reduced critical failure chance"
             ]
         },
         isServerBuff: false,
@@ -31,7 +32,8 @@ export const PAID_GLOBALBUFFS = Object.freeze({
                 "+35% Crafting XP",
                 "+35% Inscription XP",
                 "+100% Jewel Drop Rate",
-                "Failing to reforge won't reduce the rarity level"
+                "-50% Reforge Resource Costs",
+                "Reduced critical failure chance"
             ]
         },
         isServerBuff: false,

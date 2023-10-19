@@ -234,7 +234,9 @@ export const addItem = function (
         })
     }
 
-    if (newItemsList.length === 1 && !itemConstants.stats) {
+    //todo: changing this line lets daggers stack... but then they can equip an entire stack of daggers
+    //if (newItemsList.length === 1 && (!itemConstants.stats || !itemConstants.extraStats)) {
+    if (newItemsList.length === 1 && (!itemConstants.stats)) {
         if (itemConstants.extraStats) {
             const extraStats = newItemsList[0].extraStats
             const currentItem = Items.findOne({ owner, itemId, extraStats })

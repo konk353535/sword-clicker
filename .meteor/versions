@@ -71,6 +71,7 @@ mdg:validation-error@0.2.0
 meteor@1.11.3
 meteor-base@1.5.1
 meteorhacks:cluster@1.6.9
+meteorhacks:picker@1.0.3
 meteorhacks:subs-manager@1.6.4
 minifier-css@1.6.4
 minimongo@1.9.3

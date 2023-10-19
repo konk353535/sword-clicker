@@ -1,6 +1,6 @@
 import { Chats } from "meteor/cesarve:simple-chat/collections"
-import { Meteor } from "meteor/meteor"
 import { HTTP } from "meteor/http"
+import { Meteor } from "meteor/meteor"
 
 import { Combat } from "/imports/api/combat/combat"
 import { State } from "/imports/api/state/state"
@@ -16,10 +16,10 @@ import { addItem, addRealGems, consumeGems, consumeOnlyRealGems, hasGems } from 
 import { sendGlobalBuffWebhookMessage } from "/server/webhook.js"
 
 import lodash from "lodash"
-import _ from "underscore"
 import moment from "moment"
+import _ from "underscore"
 
-const stripe = require("stripe")(Meteor.settings.private.stripe)
+const stripe = require("stripe")(Meteor.settings.private.stripe.key)
 
 Meteor.methods({
     "shop.fetchGlobalBuffs"() {
@@ -64,10 +64,7 @@ Meteor.methods({
         }
 
         globalBuff = getGlobalBuff(type)
-        const remaining =
-            newBuff || !globalBuff
-                ? "1 hour"
-                : moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize()
+        const remaining = newBuff || !globalBuff ? "1 hour" : moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize()
         const activateMessage = `${userDoc.username} has ${newBuff ? "activated" : "extended"} the ${
             friendlyNames[type]
         } buff for all players (${remaining} remaining)!`
@@ -337,6 +334,43 @@ Meteor.methods({
             // Throw an err
             throw new Meteor.Error("rai blocks payment failed")
         }
+    },
+
+    "shop.createCheckoutSession"({ currentPack }) {
+        console.log("currentPack", currentPack)
+
+        if (!_.contains(["bunch", "bag", "box"], currentPack)) {
+            throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box")
+        }
+
+        const products = {
+            bunch: Meteor.settings.private.stripe.products.bunch,
+            bag: Meteor.settings.private.stripe.products.bag,
+            box: Meteor.settings.private.stripe.products.box
+        }
+
+        const handleCheckoutSession = Meteor.wrapAsync(stripe.checkout.sessions.create, stripe.checkout.sessions)
+
+        const checkoutSession = handleCheckoutSession({
+            line_items: [
+                {
+                    // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    price: products[currentPack],
+                    quantity: 1
+                }
+            ],
+            currency: "usd",
+            mode: "payment",
+            success_url: Meteor.settings.private.stripe.shopUrl,
+            cancel_url: Meteor.settings.private.stripe.shopUrl,
+            automatic_tax: { enabled: true },
+            metadata: {
+                userId: Meteor.userId(),
+                username: Meteor.user().username
+            }
+        })
+
+        return { redirect: checkoutSession.url }
     },
 
     "shop.purchase"({ token, currentPack }) {

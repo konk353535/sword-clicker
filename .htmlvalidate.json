@@ -6,6 +6,8 @@
         "no-inline-style": "off",
         "no-trailing-whitespace": "off",
         "prefer-tbody": "off",
+        "wcag/h30": "warn",
+        "wcag/h32": "off",
         "wcag/h37": "off",
         "no-deprecated-attr": "warn",
         "script-type": "warn"

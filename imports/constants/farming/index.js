@@ -150,6 +150,61 @@ export const FARMING = Object.freeze({
                 }
             ]
         },
+
+        lily_seed: {
+            id: "lily_seed",
+            itemId: "lily_seed",
+            requiredFarmingLevel: 79,
+            required: [
+                {
+                    type: "gold",
+                    amount: 100,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 79
+                }
+            ]
+        },
+
+        poeny_seed: {
+            id: "poeny_seed",
+            itemId: "poeny_seed",
+            requiredFarmingLevel: 89,
+            required: [
+                {
+                    type: "gold",
+                    amount: 150,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 89
+                }
+            ]
+        },
+
+        passionflower_seed: {
+            id: "passionflower_seed",
+            itemId: "passionflower_seed",
+            requiredFarmingLevel: 99,
+            required: [
+                {
+                    type: "gold",
+                    amount: 200,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 99
+                }
+            ]
+        },
+        
         /*
     sun_rose_seed: {
       id: 'sun_rose_seed',
@@ -217,23 +272,77 @@ export const FARMING = Object.freeze({
             ]
         },
 
-        /*
-    // Substitute crimson rose for tulip
-    tulip_seed: {
-      id: 'tulip_seed',
-      itemId: 'tulip_seed',
-      requiredFarmingLevel: 69,
-      required: [{
-        type: 'gold',
-        amount: 50,
-        consumes: true
-      }, {
-        type: 'skill',
-        name: 'farming',
-        level: 69
-      }]
-    },
-    */
+        tulip_seed: {
+            id: "tulip_seed",
+            itemId: "tulip_seed",
+            requiredFarmingLevel: 69,
+            required: [
+                {
+                    type: "gold",
+                    amount: 100,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 69
+                }
+            ]
+        },
+
+        orchid_seed: {
+            id: "orchid_seed",
+            itemId: "orchid_seed",
+            requiredFarmingLevel: 79,
+            required: [
+                {
+                    type: "gold",
+                    amount: 150,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 79
+                }
+            ]
+        },
+
+        gardenia_seed: {
+            id: "gardenia_seed",
+            itemId: "gardenia_seed",
+            requiredFarmingLevel: 89,
+            required: [
+                {
+                    type: "gold",
+                    amount: 250,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 89
+                }
+            ]
+        },
+
+        juliet_rose_seed: {
+            id: "juliet_rose_seed",
+            itemId: "juliet_rose_seed",
+            requiredFarmingLevel: 99,
+            required: [
+                {
+                    type: "gold",
+                    amount: 500,
+                    consumes: true
+                },
+                {
+                    type: "skill",
+                    name: "farming",
+                    level: 99
+                }
+            ]
+        },
 
         cactus_seed: {
             id: "cactus_seed",

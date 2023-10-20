@@ -151,7 +151,7 @@ export const FARMING_ITEMS = Object.freeze({
         description() {
             return "Valuable to sell"
         },
-        sellPrice: 775
+        sellPrice: 850
     },
 
     sunburst_hydrangea_seed: {
@@ -175,7 +175,7 @@ export const FARMING_ITEMS = Object.freeze({
         description() {
             return "Valuable to sell"
         },
-        sellPrice: 825
+        sellPrice: 1000
     },
 
     /*
@@ -225,7 +225,79 @@ export const FARMING_ITEMS = Object.freeze({
         description() {
             return "Valuable to sell"
         },
-        sellPrice: 900
+        sellPrice: 1500
+    },
+
+    lily_seed: {
+        id: "lily_seed",
+        icon: "lilySeed.svg",
+        category: "seed",
+        name: "lily Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, quick growth"
+        },
+        sellPrice: 1,
+        produces: "lily"
+    },
+
+    lily: {
+        id: "lily",
+        icon: "lily.svg",
+        category: "gold",
+        name: "lily",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 2000
+    },
+
+    poeny_seed: {
+        id: "poeny_seed",
+        icon: "poenySeed.svg",
+        category: "seed",
+        name: "poeny Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, quick growth"
+        },
+        sellPrice: 1,
+        produces: "poeny"
+    },
+
+    poeny: {
+        id: "poeny",
+        icon: "poeny.svg",
+        category: "gold",
+        name: "poeny",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 4500
+    },
+
+    passionflower_seed: {
+        id: "passionflower_seed",
+        icon: "passionflowerSeed.svg",
+        category: "seed",
+        name: "Passionflower Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, quick growth"
+        },
+        sellPrice: 1,
+        produces: "passionflower"
+    },
+
+    passionflower: {
+        id: "passionflower",
+        icon: "passionflower.svg",
+        category: "gold",
+        name: "passionflower",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 10000
     },
 
     /*
@@ -302,31 +374,101 @@ export const FARMING_ITEMS = Object.freeze({
         sellPrice: 12500
     },
 
-    /*
-  tulip_seed: {
-    id: 'tulip_seed',
-    icon: 'tulipSeed.svg',
-    category: 'seed',
-    name: 'tulip Seed',
-    seedType: 'gold',
-    description() {
-      return 'Sells for $$$'
+    tulip_seed: {
+        id: "tulip_seed",
+        icon: "tulipSeed.svg",
+        category: "seed",
+        name: "tulip Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, very slow growth"
+        },
+        sellPrice: 1,
+        produces: "tulip"
     },
-    sellPrice: 1,
-    produces: 'tulip'
-  },
 
-  tulip: {
-    id: 'tulip',
-    icon: 'tulip.svg',
-    category: 'gold',
-    name: 'tulip',
-    description() {
-      return 'Sells for $$$'
+    tulip: {
+        id: "tulip",
+        icon: "tulip.svg",
+        category: "gold",
+        name: "tulip",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 20000
     },
-    sellPrice: 575
-  },
-  */
+
+    orchid_seed: {
+        id: "orchid_seed",
+        icon: "orchidSeed.svg",
+        category: "seed",
+        name: "orchid Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, very slow growth"
+        },
+        sellPrice: 1,
+        produces: "orchid"
+    },
+
+    orchid: {
+        id: "orchid",
+        icon: "orchid.svg",
+        category: "gold",
+        name: "orchid",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 50000
+    },
+
+    gardenia_seed: {
+        id: "gardenia_seed",
+        icon: "gardeniaSeed.svg",
+        category: "seed",
+        name: "gardenia Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, very slow growth"
+        },
+        sellPrice: 1,
+        produces: "gardenia"
+    },
+
+    gardenia: {
+        id: "gardenia",
+        icon: "gardenia.svg",
+        category: "gold",
+        name: "gardenia",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 45000
+    },
+
+    juliet_rose_seed: {
+        id: "juliet_rose_seed",
+        icon: "julietRoseSeed.svg",
+        category: "seed",
+        name: "Juliet Rose Seed",
+        seedType: "gold",
+        description() {
+            return "Valuable to sell, very slow growth"
+        },
+        sellPrice: 1,
+        produces: "gardenia"
+    },
+
+    juliet_rose: {
+        id: "juliet_rose",
+        icon: "julietRose.svg",
+        category: "gold",
+        name: "Juliet Rose",
+        description() {
+            return "Valuable to sell"
+        },
+        sellPrice: 150000
+    },
 
     chrysanthemum_seed: {
         id: "chrysanthemum_seed",

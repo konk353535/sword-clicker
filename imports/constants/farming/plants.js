@@ -257,6 +257,90 @@ export const PLANTS = Object.freeze({
         ]
     },
 
+    lily: {
+        produces: "lily",
+        name: "lily",
+        id: "lily",
+        category: "farming",
+        icon: ITEMS["lily"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 15 * 60,
+        xp: 3,
+        required: [
+            {
+                type: "item",
+                itemId: "lily_seed",
+                icon: ITEMS["lily_seed"].icon,
+                name: ITEMS["lily_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 79
+            }
+        ]
+    },
+
+    poeny: {
+        produces: "poeny",
+        name: "poeny",
+        id: "poeny",
+        category: "farming",
+        icon: ITEMS["poeny"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 15 * 60,
+        xp: 3,
+        required: [
+            {
+                type: "item",
+                itemId: "poeny_seed",
+                icon: ITEMS["poeny_seed"].icon,
+                name: ITEMS["poeny_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 89
+            }
+        ]
+    },
+
+    passionflower: {
+        produces: "passionflower",
+        name: "passionflower",
+        id: "passionflower",
+        category: "farming",
+        icon: ITEMS["passionflower"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 15 * 60,
+        xp: 3,
+        required: [
+            {
+                type: "item",
+                itemId: "passionflower_seed",
+                icon: ITEMS["passionflower_seed"].icon,
+                name: ITEMS["passionflower_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 99
+            }
+        ]
+    },
+
     /*
   crimson_rose: {
     produces: 'crimson_rose',
@@ -342,33 +426,117 @@ export const PLANTS = Object.freeze({
         ]
     },
 
-    // 0.16 hr, 3450/hr
-    /*
-  tulip: {
-    produces: 'tulip',
-    name: 'tulip',
-    id: 'tulip',
-    category: 'farming',
-    icon: ITEMS['tulip'].icon,
-    waterStorage: 100,
-    initialWater: 100,
-    requiredWater: 50,
-    growthTime: 10 * 60,
-    xp: 1,
-    required: [{
-      type: 'item',
-      itemId: 'tulip_seed',
-      icon: ITEMS['tulip_seed'].icon,
-      name: ITEMS['tulip_seed'].name,
-      amount: 1,
-      consumes: true
-    }, {
-      type: 'skill',
-      name: 'farming',
-      level: 69
-    }]
-  },
-  */
+    tulip: {
+        produces: "tulip",
+        name: "tulip",
+        id: "tulip",
+        category: "farming",
+        icon: ITEMS["tulip"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 60 * 4,
+        xp: 1,
+        required: [
+            {
+                type: "item",
+                itemId: "tulip_seed",
+                icon: ITEMS["tulip_seed"].icon,
+                name: ITEMS["tulip_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 69
+            }
+        ]
+    },
+
+    orchid: {
+        produces: "orchid",
+        name: "orchid",
+        id: "orchid",
+        category: "farming",
+        icon: ITEMS["orchid"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 60 * 8,
+        xp: 1,
+        required: [
+            {
+                type: "item",
+                itemId: "orchid_seed",
+                icon: ITEMS["orchid_seed"].icon,
+                name: ITEMS["orchid_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 79
+            }
+        ]
+    },
+
+    gardenia: {
+        produces: "gardenia",
+        name: "gardenia",
+        id: "gardenia",
+        category: "farming",
+        icon: ITEMS["gardenia"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 60 * 4,
+        xp: 1,
+        required: [
+            {
+                type: "item",
+                itemId: "gardenia_seed",
+                icon: ITEMS["gardenia_seed"].icon,
+                name: ITEMS["gardenia_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 89
+            }
+        ]
+    },
+
+    juliet_rose: {
+        produces: "juliet_rose",
+        name: "juliet rose",
+        id: "juliet_rose",
+        category: "farming",
+        icon: ITEMS["juliet_rose"].icon,
+        waterStorage: 100,
+        initialWater: 100,
+        requiredWater: 50,
+        growthTime: 60 * 60 * 8,
+        xp: 1,
+        required: [
+            {
+                type: "item",
+                itemId: "juliet_rose_seed",
+                icon: ITEMS["juliet_rose_seed"].icon,
+                name: ITEMS["juliet_rose_seed"].name,
+                amount: 1,
+                consumes: true
+            },
+            {
+                type: "skill",
+                name: "farming",
+                level: 99
+            }
+        ]
+    },
 
     // 8 hours, 500g/hr
     chrysanthemum: {

@@ -634,7 +634,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
         return { error: "couldn't discover item tier or type (may not be reforgable)", errorData: { _id, itemId: currentItem.itemId, rarityId: currentItem.rarityId, itemType } }
     }
 
-    const itemAttempts = currentItem.attempts || 0
+    const itemAttempts = currentItem.reforgeAttempts || currentItem.attempts || 0
     const nextRarityIdConsts = ITEM_RARITIES[currentRarityData.nextRarity.rarityId]
     let rarityMulitplier = 1
 

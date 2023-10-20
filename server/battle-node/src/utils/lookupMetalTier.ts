@@ -51,7 +51,7 @@ export const lookupMetalTier = (tier: number) => {
         return "fairy_steel"
     }
     if (tier === 19) {
-        return "elvent_steel"
+        return "elvet_steel"
     }
     if (tier === 20) {
         return "cursed"

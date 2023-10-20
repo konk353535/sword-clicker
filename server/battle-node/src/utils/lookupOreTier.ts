@@ -51,7 +51,7 @@ export const lookupOreTier = (tier: number) => {
         return "fairy_steel"
     }
     if (tier === 19) {
-        return "elvent_steel"
+        return "elven_steel"
     }
     if (tier === 27) {
         return "purestone"

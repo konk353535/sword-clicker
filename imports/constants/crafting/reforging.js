@@ -63,7 +63,7 @@ export const reforgeLookupMetalTier = (tier) => {
         return "fairy_steel"
     }
     if (tier === 19) {
-        return "elvent_steel"
+        return "elven_steel"
     }
     if (tier >= 20) {
         return "cursed"
@@ -548,6 +548,9 @@ const calculateCraftingXPFromRecipe = function(recipeData) {
 export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
     const currentItem = lodash.cloneDeep(Items.findOne({ _id, owner: Meteor.userId() }))
     if (!currentItem) {
+        if (Meteor.isServer) {
+            console.log({ error: "item does not exist", errorData: { _id } })
+        }
         return { error: "item does not exist", errorData: { _id } }
     }
 
@@ -602,6 +605,10 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
         }
     }
 
+    if (!recipeData || !recipeData.requiredCraftingLevel) {
+        return { error: "couldn't generate recipe data", errorData: { _id, itemId: currentItem.itemId, recipeData } }
+    }
+
     if (!currentItem.rarityId) {
         if (recipeData && recipeData.isLooted) {
             currentItem.rarityId = "uncommon"
@@ -612,13 +619,19 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
 
     const currentRarityData = ITEM_RARITIES[currentItem.rarityId]
     if (!currentRarityData) {
-        return { error: "rarity does not exist", errorData: { _id, rarityId: currentItem.rarityId } }
+        if (Meteor.isServer) {
+            console.log({ error: "rarity does not exist (may not be reforgable)", errorData: { _id, itemId: currentItem.itemId, rarityId: currentItem.rarityId } })
+        }
+        return { error: "rarity does not exist (may not be reforgable)", errorData: { _id, itemId: currentItem.itemId, rarityId: currentItem.rarityId } }
     }
     
     const currentTier = reforgeMatchItemIdToTier(currentItem.itemId)
     const itemType = reforgeItemType(currentItem.itemId)
-    if (!currentTier || itemType == "unknown") {
-        return { error: "couldn't discover item tier or type", errorData: { _id, rarityId: currentItem.rarityId } }
+    if (!currentTier || currentTier == 0 || itemType == "unknown") {
+        if (Meteor.isServer) {
+            console.log({ error: "couldn't discover item tier or type (may not be reforgable)", errorData: { _id, itemId: currentItem.itemId, rarityId: currentItem.rarityId, itemType } })
+        }
+        return { error: "couldn't discover item tier or type (may not be reforgable)", errorData: { _id, itemId: currentItem.itemId, rarityId: currentItem.rarityId, itemType } }
     }
 
     const itemAttempts = currentItem.attempts || 0

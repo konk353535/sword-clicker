@@ -425,6 +425,14 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
     const rolledPretty = Math.max(((1 - userRoll - 0.0005) * 100), 0).toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1')
     const neededPretty = Math.min(((1 - reforgeData.chance) * 100), 100).toFixed(0)
 
+    // whether success or failure, give the player XP for this reforging recipe
+    if (reforgeData.reforgeRecipe?.xp) {
+        // Add crafting exp
+        if (_.isNumber(reforgeData.reforgeRecipe?.xp)) {
+            addXp("crafting", reforgeData.reforgeRecipe?.xp)
+        }
+    }
+
     if (reforgeResult == 1) {
         // success
         txSuccess = Items.insert(
@@ -437,7 +445,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                 quality: originalItem.quality,
                 rarityId: reforgeData.rarityData.rarityId,
                 enhanced: originalItem.enhanced,
-                reforgeAttempts: (originalItem.reforgeAttempts || 0) + 1
+                reforgeAttempts: 0 // reset crafting attempts upon success
             },
             { tx: { instant: true } }
         )

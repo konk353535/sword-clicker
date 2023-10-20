@@ -304,12 +304,12 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
-                <span class='use-desc'>Using this item will:<br>{{item.shiftAction.description}}</span>
+                <span class="use-desc">Using this item will:<br>{{item.shiftAction.description}}</span>
               </div>
               <div class="col-md-6">
                 How many to sell?
                 <form class="sell-form">
-                  <input class="form-control sell-amount-input" value={{sellAmount}}>
+                  <input type="text" class="form-control sell-amount-input" value="{{sellAmount}}">
                 </form>
                   +{{> formatNumber number=(totalPrice sellAmount constants.sellPrice)}} Gold
                 <br /><br />
@@ -341,14 +341,24 @@
   {{/if}}
 
   <!-- Modal -->
-  <div class="modal reforgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal reforgeModal" tabindex="-1" role="dialog" aria-labelledby="reforgeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Reforge Item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <div class="d-flex flex-column">
+            <h5 class="modal-title" id="reforgeModalLabel">Reforge Item</h5>
+            {{#if reforgeChance}}
+              <small> {{item.name}}: <b>{{reforgeChance}}</b> chance of success</small>
+            {{/if}}
+          </div>
+          <div class="d-flex flex-column align-items-end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{#if reforgeChance}}
+              <small>{{reforgeXP}} xp</small>
+            {{/if}}
+          </div>
         </div>
         <div class="modal-body">
           <div style="max-height: 200px; overflow-y: auto">

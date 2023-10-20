@@ -441,6 +441,110 @@ export const reforgeMatchItemIdToTier = (itemId) => {
     return 0
 }
 
+const materialItemWorthCraftingXP = function(materialItem, recipesArray) {
+    if (!materialItem) {
+        return 0
+    }
+
+    if (materialItem.id == "fire_shard_fragment") return 1
+    if (materialItem.id == "air_shard_fragment") return 1
+    if (materialItem.id == "earth_shard_fragment") return 1
+    if (materialItem.id == "water_shard_fragment") return 1
+    if (materialItem.id == "complete_fire_shard") return 100
+    if (materialItem.id == "complete_air_shard") return 100
+    if (materialItem.id == "complete_earth_shard") return 100
+    if (materialItem.id == "complete_water_shard") return 100
+    if (materialItem.id == "ancient_fire_shard") return 1000
+    if (materialItem.id == "ancient_air_shard") return 1000
+    if (materialItem.id == "ancient_earth_shard") return 1000
+    if (materialItem.id == "ancient_water_shard") return 1000
+
+    if (!recipesArray) {
+        recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
+            const recipeConstant = lodash.cloneDeep(CRAFTING.recipes[craftingKey])
+            const itemConstant = ITEMS[recipeConstant.produces]
+
+            recipeConstant.icon = itemConstant.icon
+            recipeConstant.description = itemConstant.description
+            recipeConstant.isTwoHanded = itemConstant.isTwoHanded
+
+            if (itemConstant.stats) {
+                recipeConstant.baseStats = itemConstant.stats
+                recipeConstant.extraStats = itemConstant.extraStats
+            }
+
+            if (itemConstant.requiredEquip) {
+                recipeConstant.requiredEquip = itemConstant.requiredEquip
+            }
+
+            return recipeConstant
+        })
+    }
+
+    let recipeData = undefined
+    recipesArray.forEach((thisRecipe) => {
+        if (thisRecipe.produces === materialItem.id) {
+            recipeData = lodash.cloneDeep(thisRecipe)
+        }
+    })
+
+    if (recipeData) {
+        return recipeData.xp
+    }
+
+    return 0
+}
+
+const calculateCraftingXPFromRecipe = function(recipeData) {
+    if (!recipeData) {
+        return 0
+    }
+
+    const requires = recipeData.requires ? recipeData.requires : recipeData
+
+    const cachedRecipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
+        const recipeConstant = lodash.cloneDeep(CRAFTING.recipes[craftingKey])
+        const itemConstant = ITEMS[recipeConstant.produces]
+
+        recipeConstant.icon = itemConstant.icon
+        recipeConstant.description = itemConstant.description
+        recipeConstant.isTwoHanded = itemConstant.isTwoHanded
+
+        if (itemConstant.stats) {
+            recipeConstant.baseStats = itemConstant.stats
+            recipeConstant.extraStats = itemConstant.extraStats
+        }
+
+        if (itemConstant.requiredEquip) {
+            recipeConstant.requiredEquip = itemConstant.requiredEquip
+        }
+
+        return recipeConstant
+    })
+
+    let xpRunningTotal = 0
+    requires.forEach((recipeRequirement) => {
+        if (recipeRequirement.consumes && recipeRequirement.type === "item") {
+            let itemIdToUse = recipeRequirement.itemId
+
+            if (itemIdToUse.indexOf("_log") == itemIdToUse.length - 4) {
+                // convert logs to bars, since bars are a crafting recipe with an XP value
+                const tier = reforgeMatchItemIdToTier(itemIdToUse)
+                if (tier > 0) {
+                    itemIdToUse = `${reforgeLookupMetalTier(tier)}_bar`
+                }
+            }
+
+            const itemConsts = ITEMS[itemIdToUse]
+            if (itemConsts) {
+                xpRunningTotal += materialItemWorthCraftingXP(itemConsts, cachedRecipesArray) * recipeRequirement.amount
+            }
+        }
+    })
+
+    return xpRunningTotal
+}
+
 export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
     const currentItem = lodash.cloneDeep(Items.findOne({ _id, owner: Meteor.userId() }))
     if (!currentItem) {
@@ -529,23 +633,13 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
         const crystalTierName_Start = currentTier >= 10 ? (currentTier >= 20 ? "ancient_" : "complete_") : ""
         const crystalTierName_End = currentTier < 10 ? "_fragment" : ""
         const crystalTier = (currentTier % 10) + 1
-        return {
-            produces: `${currentItem.itemId}_reforge`,
-            name: ITEMS[currentItem.itemId].name,
-            recipeFor: "reforging",
-            category: ITEMS[currentItem.itemId].category,
-            id: `${currentItem.itemId}_reforge`,
-            timeToCraft: recipeData.requiredCraftingLevel * 5 + 15,
-            xp: 0,
-            maxToCraft: 1,
-            tags: ["reforge"],
-            requiredCraftingLevel: recipeData.requiredCraftingLevel,
-            required: [
+
+        const recipeRequirements = [
             {
-                type: "item",
-                itemId: `${reforgeLookupMetalTier(currentTier)}_furnace`,
-                icon: ITEMS[`${reforgeLookupMetalTier(currentTier)}_furnace`].icon,
-                name: ITEMS[`${reforgeLookupMetalTier(currentTier)}_furnace`].name,
+                type: currentTier > 1 ? "item" : "skip", // hack to skip this rather than create separate array elements
+                itemId: `${reforgeLookupMetalTier(currentTier - 1)}_furnace`,
+                icon: ITEMS[`${reforgeLookupMetalTier(currentTier - 1)}_furnace`].icon,
+                name: ITEMS[`${reforgeLookupMetalTier(currentTier - 1)}_furnace`].name,
                 amount: 1,
                 consumes: false
             },
@@ -587,30 +681,38 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
                 consumes: true
             },
             {
+                type: currentTier > 1 ? "skill" : "skip", // hack to skip this rather than create separate array elements
+                name: "magic",
+                level: Math.max(1, Math.ceil((recipeData.requiredCraftingLevel - 5) * 0.75))
+            },
+            {
                 type: "skill",
                 name: "crafting",
                 level: recipeData.requiredCraftingLevel
             }
-        ]}
+        ]
+
+        return {
+            produces: `${currentItem.itemId}_reforge`,
+            name: ITEMS[currentItem.itemId].name,
+            recipeFor: "reforging",
+            category: ITEMS[currentItem.itemId].category,
+            id: `${currentItem.itemId}_reforge`,
+            timeToCraft: recipeData.requiredCraftingLevel * 5 + 15,
+            xp: calculateCraftingXPFromRecipe(recipeRequirements),
+            maxToCraft: 1,
+            tags: ["reforge"],
+            requiredCraftingLevel: recipeData.requiredCraftingLevel,
+            required: recipeRequirements
+        }
     }
 
-    return {
-        produces: `${currentItem.itemId}_reforge`,
-        name: ITEMS[currentItem.itemId].name,
-        recipeFor: "reforging",
-        category: ITEMS[currentItem.itemId].category,
-        id: `${currentItem.itemId}_reforge`,
-        timeToCraft: recipeData.requiredCraftingLevel * 5 + 15,
-        xp: 0,
-        maxToCraft: 1,
-        tags: ["reforge"],
-        requiredCraftingLevel: recipeData.requiredCraftingLevel,
-        required: [
+    const recipeRequirements = [
         {
-            type: "item",
-            itemId: `${reforgeLookupMetalTier(currentTier)}_furnace`,
-            icon: ITEMS[`${reforgeLookupMetalTier(currentTier)}_furnace`].icon,
-            name: ITEMS[`${reforgeLookupMetalTier(currentTier)}_furnace`].name,
+            type: currentTier > 1 ? "item" : "skip", // hack to skip this rather than create separate array elements
+            itemId: `${reforgeLookupMetalTier(currentTier - 1)}_furnace`,
+            icon: ITEMS[`${reforgeLookupMetalTier(currentTier - 1)}_furnace`].icon,
+            name: ITEMS[`${reforgeLookupMetalTier(currentTier - 1)}_furnace`].name,
             amount: 1,
             consumes: false
         },
@@ -640,5 +742,19 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
             name: "crafting",
             level: recipeData.requiredCraftingLevel
         }
-    ]}
+    ]
+
+    return {
+        produces: `${currentItem.itemId}_reforge`,
+        name: ITEMS[currentItem.itemId].name,
+        recipeFor: "reforging",
+        category: ITEMS[currentItem.itemId].category,
+        id: `${currentItem.itemId}_reforge`,
+        timeToCraft: recipeData.requiredCraftingLevel * 5 + 15,
+        xp: calculateCraftingXPFromRecipe(recipeRequirements),
+        maxToCraft: 1,
+        tags: ["reforge"],
+        requiredCraftingLevel: recipeData.requiredCraftingLevel,
+        required: recipeRequirements
+    }
 }

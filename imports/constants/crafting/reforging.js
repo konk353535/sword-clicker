@@ -71,7 +71,7 @@ export const reforgeLookupMetalTier = (tier) => {
     return "copper"
 }
 
-export const reforgeLookupWoodTier = (tier) => {
+export const reforgeLookupWoodTier = (tier, isLog) => {
     if (tier === 2) {
         return "beech"
     }
@@ -94,6 +94,8 @@ export const reforgeLookupWoodTier = (tier) => {
         return "mahogany"
     }
     if (tier === 9) {
+        if (isLog)
+            return "elk"
         return "elm"
     }
     if (tier === 10) {
@@ -383,7 +385,7 @@ export const reforgeItemType = (itemId) => {
         }
 
         // find wood items
-        if (itemId.indexOf(`${reforgeLookupWoodTier(tier)}_`) === 0) {
+        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false)}_`) === 0) {
             return "wood"
         }
 
@@ -415,7 +417,7 @@ export const reforgeMatchItemIdToTier = (itemId) => {
         }
 
         // find wood items
-        if (itemId.indexOf(`${reforgeLookupWoodTier(tier)}_`) === 0) {
+        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false)}_`) === 0) {
             return tier
         }
 
@@ -622,9 +624,9 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
         },
         {
             type: "item",
-            itemId: `${reforgeLookupWoodTier(currentTier)}_log`,
-            icon: ITEMS[`${reforgeLookupWoodTier(currentTier)}_log`].icon,
-            name: ITEMS[`${reforgeLookupWoodTier(currentTier)}_log`].name,
+            itemId: `${reforgeLookupWoodTier(currentTier, true)}_log`,
+            icon: ITEMS[`${reforgeLookupWoodTier(currentTier, true)}_log`].icon,
+            name: ITEMS[`${reforgeLookupWoodTier(currentTier, true)}_log`].name,
             amount: Math.ceil((itemAttempts + 1) * 3 * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
             consumes: true
         },

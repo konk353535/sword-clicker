@@ -517,8 +517,8 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
                         extraStats: originalItem.extraStats,
                         quality: originalItem.quality,
                         rarityId: prevRarityId,
-                        enhanced: originalItem.enhanced,
-                        reforgeAttempts: (originalItem.reforgeAttempts || 0) + 1
+                        enhanced: originalItem.enhanced,,
+                        reforgeAttempts: 0 // reset crafting attempts upon critical failure
                     },
                     { tx: { instant: true } }
                 )

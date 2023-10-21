@@ -102,7 +102,7 @@ export const TOWER_FLOOR_12 = {
     },
     6: {
         name: "Beach Pit",
-        enemies: ["monk", "crab", "monk", "jellyfish"],
+        enemies: ["monk", "crab", "monk", "jellyFish"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {

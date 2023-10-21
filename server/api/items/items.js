@@ -488,7 +488,7 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "items.hide"(baseItemId) {
+    "items.hide"(baseItemId, hideMode) {
         //
         const baseItem = Items.findOne({
             owner: Meteor.userId(),
@@ -499,6 +499,12 @@ Meteor.methods({
             return
         }
 
+        if (!hideMode || hideMode == null || hideMode == undefined || typeof hideMode == 'undefined') {
+            hideMode = 'toggle'
+        }
+
+        console.log("items.hide [API]", baseItemId, hideMode)
+
         Items.update(
             {
                 owner: Meteor.userId(),
@@ -506,7 +512,7 @@ Meteor.methods({
             },
             {
                 $set: {
-                    hidden: !baseItem.hidden
+                    hidden: (hideMode == 'show') ? false : ((hideMode == 'hide') ? true : !baseItem.hidden)
                 }
             }
         )
@@ -514,7 +520,7 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "items.lock"(baseItemId) {
+    "items.lock"(baseItemId, lockMode) {
         //
         const baseItem = Items.findOne({
             owner: Meteor.userId(),
@@ -525,6 +531,12 @@ Meteor.methods({
             return
         }
 
+        if (!lockMode || lockMode == null || lockMode == undefined || typeof lockMode == 'undefined') {
+            lockMode = 'toggle'
+        }
+
+        console.log("items.lock [API]", baseItemId, lockMode)
+
         Items.update(
             {
                 owner: Meteor.userId(),
@@ -532,7 +544,7 @@ Meteor.methods({
             },
             {
                 $set: {
-                    locked: !baseItem.locked
+                    locked: (lockMode == 'unlock') ? false : ((lockMode == 'lock') ? true : !baseItem.locked)
                 }
             }
         )

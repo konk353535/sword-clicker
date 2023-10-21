@@ -476,6 +476,36 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     box-shadow: inset 0 0 0 4px rgb(96, 96, 96);
   }
 
+  &.item-icon-autoActionHide {
+    box-shadow: inset 0 0 0 2px rgb(116, 152, 168);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(86, 152, 168, 0.15);
+    }
+  }
+
+  &.item-icon-autoActionLock {
+    box-shadow: inset 0 0 0 2px rgb(116, 0, 0);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(64, 24, 24, 0.15);
+    }
+  }
+
   &.item-icon-autoActionSell {
     box-shadow: inset 0 0 0 2px rgb(0, 128, 0);
     position: relative;

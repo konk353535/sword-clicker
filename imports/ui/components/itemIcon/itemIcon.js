@@ -10,13 +10,16 @@ import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { WOODCUTTING } from "/imports/constants/woodcutting/index.js"
 
 import { applyClassBonuses, applyRarities } from "/imports/api/items/items.js"
-import { getAutoActionForItem } from "/imports/api/users/users"
+import { getAutoActionForItem, wantAutoHideOfThisItem, wantAutoLockOfThisItem } from "/imports/api/users/users"
+
 import { CInt } from "/imports/utils.js"
 
 import "./itemIcon.html"
 
 const AUTO_ACTION_FLAGS = {
     normal: "Normal",
+    hide: "Hide",
+    lock: "Lock",
     sell: "Sell",
     donate: "Donate"
 }
@@ -41,11 +44,45 @@ Template.itemIcon.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
 
     this.state.set("autoActionFlag", getAutoActionForItem(this.data.item.itemId))
+
+    const thisInstance = this
+    let thisInstanceLock = false
+    if (!this.data.readOnly && this.data.autoDisplay) {
+        Meteor.setInterval(function() {
+            if (thisInstanceLock) {
+                return
+            }
+            thisInstanceLock = true
+
+            if (!thisInstance.data.item.hidden && wantAutoHideOfThisItem(thisInstance.data.item.itemId)) {
+                thisInstance.data.item.hidden = true
+                Meteor.call("items.hide", thisInstance.data.item._id, "hide")
+            }
+            if (!thisInstance.data.item.locked && wantAutoLockOfThisItem(thisInstance.data.item.itemId)) {
+                thisInstance.data.item.locked = true
+                Meteor.call("items.lock", thisInstance.data.item._id, "lock")
+            }
+
+            thisInstanceLock = false
+        }, 1000)
+    }
 })
 
 Template.itemIcon.helpers({
     autoActionFlag() {
         return AUTO_ACTION_FLAGS[Template.instance().state.get("autoActionFlag")]
+    },
+
+    autoActionHide() {
+        const instance = Template.instance()
+        const item = instance.data.item
+        return !instance.data.readOnly && instance.data.autoDisplay && getAutoActionForItem(item?.itemId) === "hide"
+    },
+
+    autoActionLock() {
+        const instance = Template.instance()
+        const item = instance.data.item
+        return !instance.data.readOnly && instance.data.autoDisplay && getAutoActionForItem(item?.itemId) === "lock"
     },
 
     autoActionSell() {

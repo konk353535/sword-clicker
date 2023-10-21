@@ -432,7 +432,7 @@ Meteor.methods({
 
         if (autoActionFlag == "normal") {
             // do nothing!
-        } else if (autoActionFlag == "sell" || autoActionFlag == "donate") {
+        } else if (autoActionFlag == "hide" || autoActionFlag == "lock" || autoActionFlag == "sell" || autoActionFlag == "donate") {
             // add a new flag for this item (any existing is guaranteed to be removed above)
             Users.update({ _id: Meteor.userId() }, { $push: { itemAutoActions: { itemId: itemId, action: autoActionFlag } } })
         }

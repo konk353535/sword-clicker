@@ -1,17 +1,19 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if autoActionSell}}item-icon-autoActionSell{{/if}} {{#if autoActionDonate}}item-icon-autoActionDonate{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative; border: {{borderStyle}};" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if autoActionHide}}item-icon-autoActionHide{{/if}} {{#if autoActionLock}}item-icon-autoActionLock{{/if}} {{#if autoActionSell}}item-icon-autoActionSell{{/if}} {{#if autoActionDonate}}item-icon-autoActionDonate{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative; border: {{borderStyle}};" data-id="{{item._id}}">
     {{#if item.locked}}
       <i class="material-icons item-locked">lock</i>
     {{/if}}
     
-    {{#if autoActionSell}}   <i class="material-icons icon-success item-autoAction">    attach_money</i>    {{/if}}
-    {{#if autoActionDonate}} <i class="material-icons icon-warning item-autoAction">    home</i>            {{/if}}
+    {{#if autoActionHide}}   <i class="material-icons icon-muted   item-autoAction">    remove_red_eye</i> {{/if}}
+    {{#if autoActionLock}}   <i class="material-icons icon-danger  item-autoAction">    lock</i>           {{/if}}
+    {{#if autoActionSell}}   <i class="material-icons icon-success item-autoAction">    attack_money</i>   {{/if}}
+    {{#if autoActionDonate}} <i class="material-icons icon-warning item-autoAction">    home</i>           {{/if}}
 
-    {{#if multiSelling}}     <i class="material-icons icon-success item-multisell">     check_circle</i>    {{/if}}
-    {{#if multiDonating}}    <i class="material-icons icon-success item-multidonate">   check_circle</i>    {{/if}}
-    {{#if multiShowing}}     <i class="material-icons icon-success item-multishow">     check_circle</i>    {{/if}}
-    {{#if multiHiding}}      <i class="material-icons icon-success item-multihide">     check_circle</i>    {{/if}}
-    {{#if multiLocking}}     <i class="material-icons icon-success item-multilock">     check_circle</i>    {{/if}}
+    {{#if multiSelling}}     <i class="material-icons icon-success item-multisell">     check_circle</i>   {{/if}}
+    {{#if multiDonating}}    <i class="material-icons icon-success item-multidonate">   check_circle</i>   {{/if}}
+    {{#if multiShowing}}     <i class="material-icons icon-success item-multishow">     check_circle</i>   {{/if}}
+    {{#if multiHiding}}      <i class="material-icons icon-success item-multihide">     check_circle</i>   {{/if}}
+    {{#if multiLocking}}     <i class="material-icons icon-success item-multilock">     check_circle</i>   {{/if}}
 
     {{#if item.quality}}
       <div class="item-quality-bubble item-quality" style="color: black; background-color: {{bubbleColor}};">{{item.quality}}%</div>    
@@ -242,6 +244,8 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkReforgeOrSell">
                       <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="hide" style="cursor: pointer" href="#">Hide</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="lock" style="cursor: pointer" href="#">Lock</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
                     </div>
@@ -314,6 +318,8 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkDonate">
                       <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="hide" style="cursor: pointer" href="#">Hide</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="lock" style="cursor: pointer" href="#">Lock</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
                     </div>
@@ -382,6 +388,8 @@
                   </button>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkUseOrSell">
                     <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                    <a class="dropdown-item item-auto-action-flag" data-flag="hide" style="cursor: pointer" href="#">Hide</a>
+                    <a class="dropdown-item item-auto-action-flag" data-flag="lock" style="cursor: pointer" href="#">Lock</a>
                     <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
                     <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
                   </div>

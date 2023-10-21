@@ -152,6 +152,14 @@ export const getAutoActionForItem = function(itemId) {
     return itemAction
 }
 
+export const wantAutoHideOfThisItem = function(itemId) {
+    return getAutoActionForItem(itemId) === "hide"
+}
+
+export const wantAutoLockOfThisItem = function(itemId) {
+    return getAutoActionForItem(itemId) === "lock"
+}
+
 export const wantAutoSaleOfThisItem = function(itemId) {
     return getAutoActionForItem(itemId) === "sell"
 }

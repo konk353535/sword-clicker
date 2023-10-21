@@ -44,10 +44,6 @@ Template.itemIcon.onCreated(function bodyOnCreated() {
 })
 
 Template.itemIcon.helpers({
-    autoActionFlagKey() {
-        return Template.instance().state.get("autoActionFlag")
-    },
-
     autoActionFlag() {
         return AUTO_ACTION_FLAGS[Template.instance().state.get("autoActionFlag")]
     },
@@ -55,13 +51,13 @@ Template.itemIcon.helpers({
     autoActionSell() {
         const instance = Template.instance()
         const item = instance.data.item
-        return getAutoActionForItem(item?.itemId) === "sell"
+        return !instance.data.readOnly && getAutoActionForItem(item?.itemId) === "sell"
     },
 
     autoActionDonate() {
         const instance = Template.instance()
         const item = instance.data.item
-        return getAutoActionForItem(item?.itemId) === "donate"
+        return !instance.data.readOnly && getAutoActionForItem(item?.itemId) === "donate"
     },
 
     totalPrice(amount, price) {
@@ -382,6 +378,19 @@ Template.itemIcon.helpers({
         }
 
         return false
+    },
+
+    reforgeAttempts() {
+        const instance = Template.instance()
+        const item = instance.data.item
+
+        if (item) {
+            if (item.reforgeAttempts) {
+                return item.reforgeAttempts.toFixed(0) + " time" + (item.reforgeAttempts == 1 ? "" : "s")
+            }
+        }
+
+        return "0 times"
     },
 
     stats() {

@@ -4,14 +4,14 @@
       <i class="material-icons item-locked">lock</i>
     {{/if}}
     
-    {{#if autoActionSell}}<i class="material-icons icon-success item-autoAction">attach_money</i>{{/if}}
-    {{#if autoActionDonate}}<i class="material-icons icon-warning item-autoAction">home</i>{{/if}}
+    {{#if autoActionSell}}   <i class="material-icons icon-success item-autoAction">    attach_money</i>    {{/if}}
+    {{#if autoActionDonate}} <i class="material-icons icon-warning item-autoAction">    home</i>            {{/if}}
 
-    {{#if multiSelling}}  <i class="material-icons icon-success item-multisell">     check_circle</i>    {{/if}}
-    {{#if multiDonating}} <i class="material-icons icon-success item-multidonate">   check_circle</i>    {{/if}}
-    {{#if multiShowing}}  <i class="material-icons icon-success item-multishow">     check_circle</i>    {{/if}}
-    {{#if multiHiding}}   <i class="material-icons icon-success item-multihide">     check_circle</i>    {{/if}}
-    {{#if multiLocking}}  <i class="material-icons icon-success item-multilock">     check_circle</i>    {{/if}}
+    {{#if multiSelling}}     <i class="material-icons icon-success item-multisell">     check_circle</i>    {{/if}}
+    {{#if multiDonating}}    <i class="material-icons icon-success item-multidonate">   check_circle</i>    {{/if}}
+    {{#if multiShowing}}     <i class="material-icons icon-success item-multishow">     check_circle</i>    {{/if}}
+    {{#if multiHiding}}      <i class="material-icons icon-success item-multihide">     check_circle</i>    {{/if}}
+    {{#if multiLocking}}     <i class="material-icons icon-success item-multilock">     check_circle</i>    {{/if}}
 
     {{#if item.quality}}
       <div class="item-quality-bubble item-quality" style="color: black; background-color: {{bubbleColor}};">{{item.quality}}%</div>    
@@ -206,11 +206,11 @@
 
   {{#if showSellModal}}
       <!-- Modal -->
-      <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="craftItemModalLabel" aria-hidden="true">
+      <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="reforgeOrSellItemModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="craftItemModalLabel">Selling Item</h5>
+              <h5 class="modal-title" id="reforgeOrSellItemModalLabel">Selling Item</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -237,10 +237,10 @@
                     <small>Automatically marked:</small>
                   </div>
                   <div class="dropdown ml-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonItemAutoMark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonItemAutoMarkReforgeOrSell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{autoActionFlag}}
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMark">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkReforgeOrSell">
                       <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
                       <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
@@ -300,12 +300,44 @@
                   {{{donateAmountMaxFormatted}}}
                 </div>
               </div>
-
               <br /><br />
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-danger donate-btn">Donate</button>
+              <div class="d-flex flex-row flex-wrap justify-content-end">
+                <div class="d-flex" style="margin: 0 0 8px 0;">
+                  <div style="line-height: 36px !important; white-space: nowrap;">
+                    <small>Automatically marked:</small>
+                  </div>
+                  <div class="dropdown ml-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonItemAutoMarkDonate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{autoActionFlag}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkDonate">
+                      <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <button type="button" class="btn btn-secondary hide-btn" style="margin: 0 4px;">
+                    {{#if item.hidden}}
+                      Show
+                    {{else}}
+                      Hide
+                    {{/if}}
+                  </button>
+                  <button type="button" class="btn btn-secondary lock-btn" style="margin: 0 4px;">
+                    {{#if item.locked}}
+                      Unlock
+                    {{else}}
+                      Lock
+                    {{/if}}
+                  </button>
+                  <button type="button" class="btn btn-secondary hide-on-mobile" style="margin: 0 4px;" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger donate-btn" style="margin: 0 0 0 4px;">Donate</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -314,11 +346,11 @@
 
   {{#if showUseModal}}
     <!-- Modal -->
-    <div class="modal useModal" tabindex="-1" role="dialog" aria-labelledby="sellModalLabel" aria-hidden="true">
+    <div class="modal useModal" tabindex="-1" role="dialog" aria-labelledby="useOrSellModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="sellModalLabel">Item Actions</h5>
+            <h5 class="modal-title" id="useOrSellModalLabel">Item Actions</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -339,23 +371,42 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success use-btn pull-left">Use</button>
-            <button type="button" class="btn btn-secondary hide-btn">
-              {{#if item.hidden}}
-                Show
-              {{else}}
-                Hide
-              {{/if}}
-            </button>
-            <button type="button" class="btn btn-secondary lock-btn">
-              {{#if item.locked}}
-                Unlock
-              {{else}}
-                Lock
-              {{/if}}
-            </button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger sell-btn">Sell</button>
+            <div class="d-flex flex-row flex-wrap justify-content-end">
+              <div class="d-flex" style="margin: 0 0 8px 0;">
+                <div style="line-height: 36px !important; white-space: nowrap;">
+                  <small>Automatically marked:</small>
+                </div>
+                <div class="dropdown ml-2">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonItemAutoMarkUseOrSell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{autoActionFlag}}
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMarkUseOrSell">
+                    <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                    <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
+                    <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex">
+                <button type="button" class="btn btn-success use-btn pull-left">Use</button>
+                <button type="button" class="btn btn-secondary hide-btn" style="margin: 0 4px;">
+                  {{#if item.hidden}}
+                    Show
+                  {{else}}
+                    Hide
+                  {{/if}}
+                </button>
+                <button type="button" class="btn btn-secondary lock-btn" style="margin: 0 4px;">
+                  {{#if item.locked}}
+                    Unlock
+                  {{else}}
+                    Lock
+                  {{/if}}
+                </button>
+                <button type="button" class="btn btn-secondary hide-on-mobile" style="margin: 0 4px;" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger sell-btn" style="margin: 0 0 0 4px;">Sell</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -370,7 +421,7 @@
           <div class="d-flex flex-column">
             <h5 class="modal-title" id="reforgeModalLabel">Reforge Item</h5>
             {{#if reforgeChance}}
-              <small> {{item.name}}: <b>{{reforgeChance}}</b> chance of success</small>
+              <small> <b>{{reforgeChance}}</b> chance of success, attempted <b>{{reforgeAttempts}}</b></small>
             {{/if}}
           </div>
           <div class="d-flex flex-column align-items-end">

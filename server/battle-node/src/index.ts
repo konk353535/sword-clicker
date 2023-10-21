@@ -82,7 +82,7 @@ let allConnections: Socket[] = []
 function getUniqueId(socket: Socket) {
     try {
         return `${socket.handshake.query.userId}#${socket.handshake.query.conSeed}`
-    } catch (err) {}
+    } catch (err) { }
     return "?"
 }
 
@@ -108,7 +108,7 @@ function getInfoFromSocket(socket: Socket) {
                 userName = uName
             }
         }
-    } catch (err) {}
+    } catch (err) { }
 
     let userId = "unknown"
     try {
@@ -122,7 +122,7 @@ function getInfoFromSocket(socket: Socket) {
                 userId = uId
             }
         }
-    } catch (err) {}
+    } catch (err) { }
 
     let ipAddr = "unknown"
     try {
@@ -137,7 +137,7 @@ function getInfoFromSocket(socket: Socket) {
                 ipAddr = ipA
             }
         }
-    } catch (err) {}
+    } catch (err) { }
     if (!ipAddr || ipAddr === "" || ipAddr === "undefined" || ipAddr === "unknown") {
         ipAddr = socket.conn.remoteAddress // use Cloudflare's or whatever other raw IP we have as a backup
     }
@@ -191,7 +191,7 @@ io.on("connection", (socket) => {
         console.log(`    !!  DENIED: no user !!`)
         try {
             dropWebsocketConnection(socket)
-        } catch (err) {}
+        } catch (err) { }
     }
 })
 

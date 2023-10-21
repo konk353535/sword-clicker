@@ -1,14 +1,14 @@
-import { Meteor } from "meteor/meteor"
 import { Accounts } from "meteor/accounts-base"
-import { Mongo } from "meteor/mongo"
 import { SimpleSchema } from "meteor/aldeed:simple-schema"
-import { SyncedCron } from "meteor/littledata:synced-cron"
 import { HTTP } from "meteor/http"
+import { SyncedCron } from "meteor/littledata:synced-cron"
+import { Meteor } from "meteor/meteor"
+import { Mongo } from "meteor/mongo"
 
-import _ from "underscore"
+import faker from "faker"
 import moment from "moment/moment"
 import uuid from "node-uuid"
-import faker from "faker"
+import _ from "underscore"
 
 import { env } from "/server/validateEnv"
 
@@ -154,12 +154,7 @@ SyncedCron.add({
                                 // buff level 5 = 1-6 items
                                 addItem(
                                     foodItemId,
-                                    CInt(
-                                        Math.ceil(
-                                            Math.random() *
-                                                Math.ceil((townBuffDwellingLevel * townBuffDwellingLevel) / 4)
-                                        )
-                                    ),
+                                    CInt(Math.ceil(Math.random() * Math.ceil((townBuffDwellingLevel * townBuffDwellingLevel) / 4))),
                                     targetUser._id
                                 )
                             }
@@ -563,18 +558,7 @@ SyncedCron.add({
         return parser.text("every 12 hours")
     },
     job: function () {
-        const stats = [
-            "mining",
-            "crafting",
-            "woodcutting",
-            "attack",
-            "defense",
-            "magic",
-            "health",
-            "farming",
-            "inscription",
-            "astronomy"
-        ]
+        const stats = ["mining", "crafting", "woodcutting", "attack", "defense", "magic", "health", "farming", "inscription", "astronomy"]
 
         Servers.find({})
             .fetch()

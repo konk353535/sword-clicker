@@ -1,5 +1,3 @@
-import "./routes.js"
-
 import { Accounts } from "meteor/accounts-base"
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter"
 import { Meteor } from "meteor/meteor"

@@ -289,52 +289,52 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "shop.purchaseWithRaiBlocks"({ token, item_id }) {
-        // Lookup itemId, confirm that its price matches what was paid
-        const ITEMS = {
-            someGems: {
-                price: 5,
-                gems: 5
-            },
-            bunchOfGems: {
-                price: 499,
-                gems: 500
-            }
-        }
+    // "shop.purchaseWithRaiBlocks"({ token, item_id }) {
+    //     // Lookup itemId, confirm that its price matches what was paid
+    //     const ITEMS = {
+    //         someGems: {
+    //             price: 5,
+    //             gems: 5
+    //         },
+    //         bunchOfGems: {
+    //             price: 499,
+    //             gems: 500
+    //         }
+    //     }
 
-        if (!ITEMS[item_id]) {
-            throw new Meteor.Error("Invalid item id given")
-        }
+    //     if (!ITEMS[item_id]) {
+    //         throw new Meteor.Error("Invalid item id given")
+    //     }
 
-        const amount = ITEMS[item_id].price
+    //     const amount = ITEMS[item_id].price
 
-        const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
-            data: {
-                payment: {
-                    amount,
-                    currency: "USD"
-                },
-                token
-            }
-        })
+    //     const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
+    //         data: {
+    //             payment: {
+    //                 amount,
+    //                 currency: "USD"
+    //             },
+    //             token
+    //         }
+    //     })
 
-        if (handleCharge && handleCharge.data && handleCharge.data.id) {
-            // Credit our account!
-            Users.update(
-                {
-                    _id: Meteor.userId()
-                },
-                {
-                    $inc: {
-                        gems: ITEMS[item_id].gems
-                    }
-                }
-            )
-        } else {
-            // Throw an err
-            throw new Meteor.Error("rai blocks payment failed")
-        }
-    },
+    //     if (handleCharge && handleCharge.data && handleCharge.data.id) {
+    //         // Credit our account!
+    //         Users.update(
+    //             {
+    //                 _id: Meteor.userId()
+    //             },
+    //             {
+    //                 $inc: {
+    //                     gems: ITEMS[item_id].gems
+    //                 }
+    //             }
+    //         )
+    //     } else {
+    //         // Throw an err
+    //         throw new Meteor.Error("rai blocks payment failed")
+    //     }
+    // },
 
     "shop.createCheckoutSession"({ currentPack }) {
         console.log("currentPack", currentPack)
@@ -373,76 +373,76 @@ Meteor.methods({
         return { redirect: checkoutSession.url }
     },
 
-    "shop.purchase"({ token, currentPack }) {
-        if (!_.contains(["bunch", "bag", "box"], currentPack)) {
-            throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box")
-        }
-        let handleCharge = Meteor.wrapAsync(stripe.charges.create, stripe.charges)
+    // "shop.purchase"({ token, currentPack }) {
+    //     if (!_.contains(["bunch", "bag", "box"], currentPack)) {
+    //         throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box")
+    //     }
+    //     let handleCharge = Meteor.wrapAsync(stripe.charges.create, stripe.charges)
 
-        let payment
-        try {
-            if (currentPack === "bunch") {
-                payment = handleCharge({
-                    amount: 499,
-                    currency: "usd",
-                    description: "Bunch Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            } else if (currentPack === "bag") {
-                payment = handleCharge({
-                    amount: 1999,
-                    currency: "usd",
-                    description: "Bag Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            } else if (currentPack === "box") {
-                payment = handleCharge({
-                    amount: 4999,
-                    currency: "usd",
-                    description: "Box Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            }
+    //     let payment
+    //     try {
+    //         if (currentPack === "bunch") {
+    //             payment = handleCharge({
+    //                 amount: 499,
+    //                 currency: "usd",
+    //                 description: "Bunch Of Gems",
+    //                 source: token,
+    //                 metadata: {
+    //                     userId: Meteor.userId(),
+    //                     username: Meteor.user().username
+    //                 }
+    //             })
+    //         } else if (currentPack === "bag") {
+    //             payment = handleCharge({
+    //                 amount: 1999,
+    //                 currency: "usd",
+    //                 description: "Bag Of Gems",
+    //                 source: token,
+    //                 metadata: {
+    //                     userId: Meteor.userId(),
+    //                     username: Meteor.user().username
+    //                 }
+    //             })
+    //         } else if (currentPack === "box") {
+    //             payment = handleCharge({
+    //                 amount: 4999,
+    //                 currency: "usd",
+    //                 description: "Box Of Gems",
+    //                 source: token,
+    //                 metadata: {
+    //                     userId: Meteor.userId(),
+    //                     username: Meteor.user().username
+    //                 }
+    //             })
+    //         }
 
-            if (payment.id) {
-                let newGems = 0
-                if (currentPack === "bunch") {
-                    newGems = 500
-                } else if (currentPack === "bag") {
-                    newGems = 2200
-                } else if (currentPack === "box") {
-                    newGems = 6000
-                }
+    //         if (payment.id) {
+    //             let newGems = 0
+    //             if (currentPack === "bunch") {
+    //                 newGems = 500
+    //             } else if (currentPack === "bag") {
+    //                 newGems = 2200
+    //             } else if (currentPack === "box") {
+    //                 newGems = 6000
+    //             }
 
-                Users.update(
-                    {
-                        _id: Meteor.userId()
-                    },
-                    {
-                        $inc: {
-                            gems: newGems
-                        }
-                    }
-                )
-            }
-        } catch (err) {
-            throw new Meteor.Error("unknown-error", "Unknown error occurred when attempting to purchase gems")
-        }
+    //             Users.update(
+    //                 {
+    //                     _id: Meteor.userId()
+    //                 },
+    //                 {
+    //                     $inc: {
+    //                         gems: newGems
+    //                     }
+    //                 }
+    //             )
+    //         }
+    //     } catch (err) {
+    //         throw new Meteor.Error("unknown-error", "Unknown error occurred when attempting to purchase gems")
+    //     }
 
-        return payment
-    }
+    //     return payment
+    // }
 })
 
 const MINUTE = 60 * 1000

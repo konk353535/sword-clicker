@@ -29,7 +29,7 @@
       </div>
       <div class="d-flex flex-wrap">
         {{#each allItems}}
-          {{> itemIcon item=this classes="small"}}
+          {{> itemIcon item=this classes="small" autoDisplay=true}}
         {{/each}}
       </div>
     </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="d-flex flex-wrap">
           {{#each visibleItems}}
-            {{> itemIcon item=this classes="small"}}
+            {{> itemIcon item=this classes="small" autoDisplay=true}}
           {{/each}}
         </div>
       </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="d-flex flex-wrap">
           {{#each hiddenItems}}
-            {{> itemIcon item=this classes="small"}}
+            {{> itemIcon item=this classes="small" autoDisplay=true}}
           {{/each}}
         </div>
       </div>

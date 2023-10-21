@@ -51,13 +51,13 @@ Template.itemIcon.helpers({
     autoActionSell() {
         const instance = Template.instance()
         const item = instance.data.item
-        return !instance.data.readOnly && getAutoActionForItem(item?.itemId) === "sell"
+        return !instance.data.readOnly && instance.data.autoDisplay && getAutoActionForItem(item?.itemId) === "sell"
     },
 
     autoActionDonate() {
         const instance = Template.instance()
         const item = instance.data.item
-        return !instance.data.readOnly && getAutoActionForItem(item?.itemId) === "donate"
+        return !instance.data.readOnly && instance.data.autoDisplay && getAutoActionForItem(item?.itemId) === "donate"
     },
 
     totalPrice(amount, price) {

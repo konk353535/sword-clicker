@@ -34,7 +34,7 @@
         </div>
         <!-- Main Hand -->
         {{#if equippedItemsMap.mainHand}}
-          {{> itemIcon item=equippedItemsMap.mainHand}}
+          {{> itemIcon item=equippedItemsMap.mainHand readOnly=true}}
         {{else}}
           <div class="icon-box">
             Main Hand
@@ -42,7 +42,7 @@
         {{/if}}
         <!-- Off Hand -->
         {{#if equippedItemsMap.offHand}}
-          {{> itemIcon item=equippedItemsMap.offHand}}
+          {{> itemIcon item=equippedItemsMap.offHand readOnly=true}}
         {{else}}
           <div class="icon-box">
             Off Hand
@@ -50,7 +50,7 @@
         {{/if}}
         <!-- Neck -->
         {{#if equippedItemsMap.neck}}
-          {{> itemIcon item=equippedItemsMap.neck}}
+          {{> itemIcon item=equippedItemsMap.neck readOnly=true}}
         {{else}}
           <div class="icon-box">
             Neck
@@ -58,7 +58,7 @@
         {{/if}}
         <!-- Head -->
         {{#if equippedItemsMap.head}}
-          {{> itemIcon item=equippedItemsMap.head}}
+          {{> itemIcon item=equippedItemsMap.head readOnly=true}}
         {{else}}
           <div class="icon-box">
             Head
@@ -66,7 +66,7 @@
         {{/if}}
         <!-- Chest -->
         {{#if equippedItemsMap.chest}}
-          {{> itemIcon item=equippedItemsMap.chest}}
+          {{> itemIcon item=equippedItemsMap.chest readOnly=true}}
         {{else}}
           <div class="icon-box">
             Chest
@@ -74,7 +74,7 @@
         {{/if}}
         <!-- Legs -->
         {{#if equippedItemsMap.legs}}
-          {{> itemIcon item=equippedItemsMap.legs}}
+          {{> itemIcon item=equippedItemsMap.legs readOnly=true}}
         {{else}}
           <div class="icon-box">
             Legs

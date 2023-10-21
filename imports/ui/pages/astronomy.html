@@ -15,7 +15,7 @@
     <h2>Astronomy Items</h2>
     <div class="d-flex flex-wrap">
       {{#each astronomyItems}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         You have no astronomy items!
       {{/each}}

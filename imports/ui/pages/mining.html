@@ -86,7 +86,7 @@
 
     <h3>Inventory</h3>
     {{#each miningPickaxes}}
-      {{> itemIcon item=this classes="small"}}
+      {{> itemIcon item=this classes="small" autoDisplay=true}}
     {{else}}
       No pickaxes in inventory
     {{/each}}
@@ -155,7 +155,7 @@
   {{else if $eq currentTab 'miners'}}
     <h3>Inventory</h3>
     {{#each miningPickaxes}}
-      {{> itemIcon item=this classes="small"}}
+      {{> itemIcon item=this classes="small" autoDisplay=true}}
     {{else}}
       No pickaxes in inventory
     {{/each}}

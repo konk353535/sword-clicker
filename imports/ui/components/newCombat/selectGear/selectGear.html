@@ -106,7 +106,7 @@
     <h4>Weapons</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.mainHand}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No main hand gear
       {{/each}}
@@ -115,7 +115,7 @@
     <h4>Off Hand</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.offHand}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No off hand gear
       {{/each}}
@@ -124,7 +124,7 @@
     <h4>Head Gear</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.head}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No head gear
       {{/each}}
@@ -133,7 +133,7 @@
     <h4>Amulets</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.neck}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No neck gear
       {{/each}}
@@ -142,7 +142,7 @@
     <h4>Chest Gear</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.chest}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No chest gear
       {{/each}}
@@ -151,7 +151,7 @@
     <h4>Leggings</h4>
     <div class="d-flex flex-wrap mb-3">
       {{#each slotsMap.legs}}
-        {{> itemIcon item=this classes="small"}}
+        {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
         No leg gear
       {{/each}}

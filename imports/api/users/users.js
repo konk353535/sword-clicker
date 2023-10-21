@@ -136,6 +136,30 @@ export const serverFromUser = function serverFromUser(userId__in = false) {
     return false
 }
 
+export const getAutoActionForItem = function(itemId) {
+    let itemAction = "normal"
+    const userDoc = Users.findOne(Meteor.userId)
+
+    if (userDoc && userDoc.itemAutoActions) {
+
+        userDoc.itemAutoActions.forEach(function(thisItemAutoAction) {
+            if (thisItemAutoAction.action && thisItemAutoAction?.itemId == itemId) {
+                itemAction = thisItemAutoAction.action
+            }
+        })
+    }
+
+    return itemAction
+}
+
+export const wantAutoSaleOfThisItem = function(itemId) {
+    return getAutoActionForItem(itemId) === "sell"
+}
+
+export const wantAutoDonateOfThisItem = function(itemId) {
+    return getAutoActionForItem(itemId) === "donate"
+}
+
 export const classFeatureUnlocked = function (userId__in = false) {
     if (userId__in == null || !userId__in || typeof userId__in === 'undefined') {
         userId__in = Meteor.userId()
@@ -268,6 +292,8 @@ const UserSchema = new SimpleSchema({
     classData: { type: Object, optional: true },
     "classData.currentClass": { type: String, optional: true },
     "classData.changeCooldown": { type: Date, optional: true },
+
+    itemAutoActions: { type: [Object], blackbox: true, defaultValue: [], optional: true },
 
     version: { type: Number, optional: true, defaultValue: 1 }
 })

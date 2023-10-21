@@ -10,9 +10,16 @@ import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { WOODCUTTING } from "/imports/constants/woodcutting/index.js"
 
 import { applyClassBonuses, applyRarities } from "/imports/api/items/items.js"
+import { getAutoActionForItem } from "/imports/api/users/users"
 import { CInt } from "/imports/utils.js"
 
 import "./itemIcon.html"
+
+const AUTO_ACTION_FLAGS = {
+    normal: "Normal",
+    sell: "Sell",
+    donate: "Donate"
+}
 
 let tooltip
 
@@ -32,9 +39,31 @@ const FriendlyNumber = function (num) {
 
 Template.itemIcon.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
+
+    this.state.set("autoActionFlag", getAutoActionForItem(this.data.item.itemId))
 })
 
 Template.itemIcon.helpers({
+    autoActionFlagKey() {
+        return Template.instance().state.get("autoActionFlag")
+    },
+
+    autoActionFlag() {
+        return AUTO_ACTION_FLAGS[Template.instance().state.get("autoActionFlag")]
+    },
+
+    autoActionSell() {
+        const instance = Template.instance()
+        const item = instance.data.item
+        return getAutoActionForItem(item?.itemId) === "sell"
+    },
+
+    autoActionDonate() {
+        const instance = Template.instance()
+        const item = instance.data.item
+        return getAutoActionForItem(item?.itemId) === "donate"
+    },
+
     totalPrice(amount, price) {
         return amount * price
     },
@@ -729,6 +758,13 @@ Template.itemIcon.events({
                 }
             }
         }
+    },
+
+    "click .item-auto-action-flag"(event, instance) {
+        const item = instance.data.item
+        const newAutoActionFlag = instance.$(event.target).closest(".item-auto-action-flag").data("flag")
+        instance.state.set("autoActionFlag", newAutoActionFlag)
+        Meteor.call("users.setItemAutoActions", item.itemId, newAutoActionFlag)
     },
 
     "submit .sell-form"(event, instance) {

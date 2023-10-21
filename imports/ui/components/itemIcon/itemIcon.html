@@ -1,9 +1,12 @@
 <template name="itemIcon">
-  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative; border: {{borderStyle}};" data-id="{{item._id}}">
+  <div class="item-icon-container item {{classes}} icon-box {{#if item.notLearnt}}not-learnt{{/if}} {{#if autoActionSell}}item-icon-autoActionSell{{/if}} {{#if autoActionDonate}}item-icon-autoActionDonate{{/if}} {{#if multiSelling}}item-icon-multiSelling{{/if}} {{#if multiDonating}}item-icon-multiDonating{{/if}} {{#if multiShowing}}item-icon-multiShowing{{/if}} {{#if multiHiding}}item-icon-multiHiding{{/if}} {{#if multiLocking}}item-icon-multiLocking{{/if}}" style="position: relative; border: {{borderStyle}};" data-id="{{item._id}}">
     {{#if item.locked}}
       <i class="material-icons item-locked">lock</i>
     {{/if}}
     
+    {{#if autoActionSell}}<i class="material-icons icon-success item-autoAction">attach_money</i>{{/if}}
+    {{#if autoActionDonate}}<i class="material-icons icon-warning item-autoAction">home</i>{{/if}}
+
     {{#if multiSelling}}  <i class="material-icons icon-success item-multisell">     check_circle</i>    {{/if}}
     {{#if multiDonating}} <i class="material-icons icon-success item-multidonate">   check_circle</i>    {{/if}}
     {{#if multiShowing}}  <i class="material-icons icon-success item-multishow">     check_circle</i>    {{/if}}
@@ -61,7 +64,7 @@
   <!-- Icon Tooltip -->
   {{#unless hideTooltip}}
     <div class="item-tooltip-content my-tooltip-inner" id="tooltip-{{item._id}}">
-      <h3 class='popover-title text-capitalize'>
+      <h3 class="popover-title text-capitalize">
         {{constants.name}}
         {{#if item.enhanced}}
           (E)
@@ -73,8 +76,8 @@
         {{/if}}
         {{amuletLevel}}
       </h3>
-      <div class='popover-content'>
-        <div style='max-width: 350px;'>
+      <div class="popover-content">
+        <div style="max-width: 350px;">
           {{#if rarity.rare}}
             <span style="color: #{{rarity.color}};"><b>{{rarity.label}}</b></span> <br />
           {{/if}}
@@ -203,11 +206,11 @@
 
   {{#if showSellModal}}
       <!-- Modal -->
-      <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal sellModal" tabindex="-1" role="dialog" aria-labelledby="craftItemModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Selling Item</h5>
+              <h5 class="modal-title" id="craftItemModalLabel">Selling Item</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -217,7 +220,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <form class="sell-form">
-                    <input class="form-control sell-amount-input" value={{sellAmount}}>
+                    <input type="text" class="form-control sell-amount-input" value="{{sellAmount}}">
                   </form>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
@@ -228,27 +231,46 @@
               <br /><br />
             </div>
             <div class="modal-footer">
-              {{#if reforgeChance}}
-                <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
-              {{else if unadjustedReforgeChance}}
-                <button type="button" class="btn btn-secondary reforge-btn">Reforge</button>
-              {{/if}}
-              <button type="button" class="btn btn-secondary hide-btn">
-                {{#if item.hidden}}
-                  Show
-                {{else}}
-                  Hide
-                {{/if}}
-              </button>
-              <button type="button" class="btn btn-secondary lock-btn">
-                {{#if item.locked}}
-                  Unlock
-                {{else}}
-                  Lock
-                {{/if}}
-              </button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-danger sell-btn">Sell</button>
+              <div class="d-flex flex-row flex-wrap justify-content-end">
+                <div class="d-flex" style="margin: 0 0 8px 0;">
+                  <div style="line-height: 36px !important; white-space: nowrap;">
+                    <small>Automatically marked:</small>
+                  </div>
+                  <div class="dropdown ml-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonItemAutoMark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{autoActionFlag}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonItemAutoMark">
+                      <a class="dropdown-item item-auto-action-flag" data-flag="normal" style="cursor: pointer" href="#">Normal</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="sell" style="cursor: pointer" href="#">Sell</a>
+                      <a class="dropdown-item item-auto-action-flag" data-flag="donate" style="cursor: pointer" href="#">Donate</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  {{#if reforgeChance}}
+                    <button type="button" class="btn btn-secondary reforge-btn" style="margin: 0 4px;">Reforge</button>
+                  {{else if unadjustedReforgeChance}}
+                    <button type="button" class="btn btn-secondary reforge-btn" style="margin: 0 4px;">Reforge</button>
+                  {{/if}}
+                  <button type="button" class="btn btn-secondary hide-btn" style="margin: 0 4px;">
+                    {{#if item.hidden}}
+                      Show
+                    {{else}}
+                      Hide
+                    {{/if}}
+                  </button>
+                  <button type="button" class="btn btn-secondary lock-btn" style="margin: 0 4px;">
+                    {{#if item.locked}}
+                      Unlock
+                    {{else}}
+                      Lock
+                    {{/if}}
+                  </button>
+                  <button type="button" class="btn btn-secondary hide-on-mobile" style="margin: 0 4px;" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger sell-btn" style="margin: 0 0 0 4px;">Sell</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -257,11 +279,11 @@
 
   {{#if showDonateModal}}
       <!-- Modal -->
-      <div class="modal donateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal donateModal" tabindex="-1" role="dialog" aria-labelledby="donateItemModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Donating Item</h5>
+              <h5 class="modal-title" id="donateItemModalLabel">Donating Item</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -271,7 +293,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <form class="donate-form">
-                    <input type="number" class="form-control donate-amount-input" value={{donateAmount}}>
+                    <input type="number" class="form-control donate-amount-input" value="{{donateAmount}}">
                   </form>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">   
@@ -292,11 +314,11 @@
 
   {{#if showUseModal}}
     <!-- Modal -->
-    <div class="modal useModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal useModal" tabindex="-1" role="dialog" aria-labelledby="sellModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Item Actions</h5>
+            <h5 class="modal-title" id="sellModalLabel">Item Actions</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

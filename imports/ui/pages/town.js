@@ -12,7 +12,7 @@ import { Items } from "/imports/api/items/items.js"
 import { Servers } from "/imports/api/servers/servers.js"
 import { Skills } from "/imports/api/skills/skills.js"
 import { calculateItemKarma, karmaLevelValues } from "/imports/api/town/town.js"
-import { Users } from "/imports/api/users/users.js"
+import { Users, wantAutoDonateOfThisItem } from "/imports/api/users/users.js"
 import { CDbl, CInt, autoPrecisionValue } from "/imports/utils.js"
 
 import { ITEMS } from "/imports/constants/items"
@@ -213,6 +213,16 @@ Template.townPage.events({
                 itemId: items[item].itemId,
                 amount: items[item].amount
             })
+        })
+
+        getDonatableItems(instance).forEach((thisItem) => {
+            if (wantAutoDonateOfThisItem(thisItem.itemId)) {
+                itemsToDonate = itemsToDonate.concat({
+                    _id: thisItem._id,
+                    itemId: thisItem.itemId,
+                    amount: thisItem.amount
+                })
+            }
         })
 
         Meteor.call("town.donateItems", itemsToDonate, Template.instance().state.get("townSection"), (err, res) => {

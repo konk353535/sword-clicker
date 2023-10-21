@@ -3,6 +3,8 @@ import { ReactiveDict } from "meteor/reactive-dict"
 import { Session } from "meteor/session"
 import { Template } from "meteor/templating"
 
+import { wantAutoSaleOfThisItem } from "/imports/api/users/users"
+
 import "./itemList.html"
 
 Template.itemList.onCreated(function bodyOnCreated() {
@@ -49,6 +51,15 @@ Template.itemList.events({
                 if (err) toastr.warning(err.reason)
             })
         })
+
+        instance.data.items.forEach((thisItem) => {
+            if (wantAutoSaleOfThisItem(thisItem.itemId)) {
+                Meteor.call("items.sellItem", thisItem._id, thisItem.itemId, thisItem.amount, (err, res) => {
+                    if (err) toastr.warning(err.reason)
+                })
+            }
+        })
+
         Session.set("multiSellItems", {})
     },
 

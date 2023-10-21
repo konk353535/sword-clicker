@@ -426,6 +426,18 @@ Meteor.methods({
         ).fetch()
     },
 
+    "users.setItemAutoActions"(itemId, autoActionFlag) {
+        // find and remove the flag
+        Users.update({ _id: Meteor.userId() }, { $pull: { itemAutoActions: { itemId: itemId } } })
+
+        if (autoActionFlag == "normal") {
+            // do nothing!
+        } else if (autoActionFlag == "sell" || autoActionFlag == "donate") {
+            // add a new flag for this item (any existing is guaranteed to be removed above)
+            Users.update({ _id: Meteor.userId() }, { $push: { itemAutoActions: { itemId: itemId, action: autoActionFlag } } })
+        }
+    },
+
     "users.setUiState"(id, value) {
         const validIds = [
             "showChat",
@@ -556,7 +568,8 @@ Meteor.publish("userData", function () {
                     isMutedExpiry: 1,
                     stats: 1,
                     townKarma: 1,
-                    classData: 1
+                    classData: 1,
+                    itemAutoActions: 1
                 }
             }
         )

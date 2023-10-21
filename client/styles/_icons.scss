@@ -382,7 +382,7 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
     font-size: 10pt;
   }
 
-  .item-multisell, .item-multidonate, .item-multishow, .item-multihide, .item-multilock {
+  .item-multisell, .item-multidonate, .item-multishow, .item-multihide, .item-multilock, .item-autoAction {
     position: absolute;
     top: 0;
     left: 0;
@@ -474,6 +474,36 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 
   &.item-icon-multiSelling, &.item-icon-multiDonating, &.item-icon-multiShowing, &.item-icon-multiHiding, &.item-icon-multiLocking {
     box-shadow: inset 0 0 0 4px rgb(96, 96, 96);
+  }
+
+  &.item-icon-autoActionSell {
+    box-shadow: inset 0 0 0 2px rgb(0, 128, 0);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 150, 0, 0.2);
+    }
+  }
+
+  &.item-icon-autoActionDonate {
+    box-shadow: inset 0 0 0 2px rgb(206, 130, 7);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(206, 130, 7, 0.2);
+    }
   }
 }
 

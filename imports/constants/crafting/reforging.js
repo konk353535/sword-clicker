@@ -542,7 +542,7 @@ const calculateCraftingXPFromRecipe = function(recipeData) {
         }
     })
 
-    return xpRunningTotal
+    return xpRunningTotal * 8
 }
 
 export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {

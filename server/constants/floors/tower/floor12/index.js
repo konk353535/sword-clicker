@@ -6,17 +6,17 @@ import { LEVEL_TWELVE_LOOT_TABLE } from "../../levels/level12"
 export const TOWER_FLOOR_12 = {
     1: {
         name: "Old Mage",
-        enemies: ["brown_mage"],
+        enemies: ["echidna", "brown_mage"],
         rewards: []
     },
     2: {
         name: "Old Log",
-        enemies: ["lizard", "rat"],
+        enemies: ["lizard", "rat", "lizard"],
         rewards: LEVEL_TWELVE_LOOT_TABLE
     },
     3: {
         name: "Village",
-        enemies: ["farmer", "bird"],
+        enemies: ["farmer", "bird", "farmer"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -39,7 +39,7 @@ export const TOWER_FLOOR_12 = {
     },
     4: {
         name: "Place of Obsidian",
-        enemies: ["obsidian_spirit"],
+        enemies: ["obsidian_spirit", "warden", "obsidian_spirit"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -66,7 +66,7 @@ export const TOWER_FLOOR_12 = {
     },
     5: {
         name: "Shivering Tree",
-        enemies: ["bird", "grasshopper"],
+        enemies: ["bird", "bird", "grasshopper", "bird" ],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -102,7 +102,7 @@ export const TOWER_FLOOR_12 = {
     },
     6: {
         name: "Beach Pit",
-        enemies: ["monk", "crab"],
+        enemies: ["monk", "crab", "monk", "jellyfish"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -143,7 +143,7 @@ export const TOWER_FLOOR_12 = {
     },
     7: {
         name: "Bloody River",
-        enemies: ["elephant", "rat", "spartan"],
+        enemies: ["elephant", "rat", "elephant", "spartan"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {

@@ -537,8 +537,7 @@ SimpleChat.configure({
 
                 if (splitMessage[0].trim().toLowerCase() == 'everything') {
                     Object.keys(ITEMS).forEach((itemId) => {
-                        console.log("skip item", itemId)
-                        //addItem(itemId, 1, userDoc._id)
+                        addItem(itemId, 1, userDoc._id)
                     })
                 } else {
                     Object.keys(ITEMS).forEach((itemId) => {

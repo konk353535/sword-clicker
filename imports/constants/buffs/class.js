@@ -2073,7 +2073,18 @@ export const CLASS_BUFFS = {
 
                     // stun all enemies
                     actualBattle.enemies.forEach((enemy) => {
-                        addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle })
+                        const stunBuff = {
+                            id: "stunned",
+                            data: {
+                                duration: 5,
+                                totalDuration: 5,
+                                icon: "warMageSpacialShift.svg",
+                                name: "Stunned",
+                                description: `You are stunned and can't take any actions or fight.`
+                            }
+                        }
+
+                        addBuff({ buff: stunBuff, target: enemy, caster: target, actualBattle })
                         enemy.tickMessage("Disoriented!", "black", "warMageSpacialShift", enemy)
                     })
                 }

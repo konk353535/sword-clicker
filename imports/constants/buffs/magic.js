@@ -1259,7 +1259,7 @@ export const MAGIC_BUFFS = {
                 const magicArmorReductionBase = constants.magicArmorReductionBase
                 const magicArmorReductionMP = constants.magicArmorReductionMPRatio * caster.stats.magicPower
                 const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower
-                const totalMagicArmorReduction = magicArmorReductionBase + magicArmorReductionMP
+                const totalMagicArmorReduction = Math.max(target.stats.magicArmor, magicArmorReductionBase + magicArmorReductionMP)
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower

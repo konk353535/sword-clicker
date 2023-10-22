@@ -75,6 +75,7 @@ export default class Unit {
     }
     set name(value) {
         this._name = value
+        this.delta("name")
     }
 
     get icon() {
@@ -82,6 +83,7 @@ export default class Unit {
     }
     set icon(value) {
         this._icon = value
+        this.delta("icon")
     }
 
     get target() {
@@ -99,11 +101,11 @@ export default class Unit {
         this._isEnemy = value
     }
 
-    delta(stat: "target") {
+    delta(stat: string) {
         const event = {
             type: "abs",
             path: `unitsMap.${this.id}.${stat}`,
-            value: this[stat]
+            value: stat == "target" ? this["target"] : stat == "name" ? this["_name"] : stat == "icon" ? this["_icon"] : ""
         }
 
         this.battleRef.deltaEvents.push(event)

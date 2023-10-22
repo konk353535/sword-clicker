@@ -13,7 +13,8 @@ import { lookupMetalTier } from "../utils/lookupMetalTier.js"
 import { lookupOreTier } from "../utils/lookupOreTier.js"
 import { lookupWoodTier } from "../utils/lookupWoodTier.js"
 import { env } from "../validateEnv"
-import { TICK_DURATION, autoAttack } from "./autoAttack.js"
+import { TICK_DURATION_ALL } from "./tickMethods/tickTimer"
+import { autoAttack } from "./autoAttack.js"
 import { castAbility } from "./castAbility.js"
 import { checkDeath } from "./checkDeath.js"
 import { dealDamage } from "./dealDamage.js"
@@ -226,7 +227,7 @@ export default class Battle {
         this.initHelpers()
         this.intervalId = setInterval(() => {
             this.tick()
-        }, TICK_DURATION)
+        }, TICK_DURATION_ALL)
     }
 
     isTower() {
@@ -403,14 +404,14 @@ export default class Battle {
                 this.initPassives()
             }
 
-            // First 4 ticks (~800ms) of every new combat and 2 ticks (~400ms) of new room transitions for full-floor explorations
+            // First 8 ticks (~800ms) of every new combat and 8 ticks (~800ms) of new room transitions for full-floor explorations
             // will deny auto-attacks and losses, giving players a chance to assess the combat and use taunts and heals.
 
             this.inactivePlayers()
 
             this.tickUnitsAndBuffs()
 
-            if (this.roomTickCount >= 4) {
+            if (this.roomTickCount >= 8) {
                 this.unitAutoAttacks(this.enemies)
                 this.unitAutoAttacks(this.units)
             }
@@ -419,7 +420,7 @@ export default class Battle {
 
             this.updateAbilityCooldowns()
 
-            if (this.tickCount >= 4) this.checkGameOverConditions()
+            if (this.tickCount >= 8) this.checkGameOverConditions()
 
             this.tickCount++
             this.roomTickCount++

@@ -44,8 +44,6 @@ export const startBattle = function ({
     const wantDebug = false
 
     console.log("method - startBattle - start", moment().format("LLL hh:mm:ss SSS"))
-    const ticksPerSecond = 1000 / BATTLES.tickDuration
-
     console.log("energyUse:", energyUse)
 
     if (!IsValid(energyUse)) {

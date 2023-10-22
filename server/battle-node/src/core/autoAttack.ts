@@ -2,9 +2,6 @@ import type Battle from "."
 import { BUFFS } from "../../../../imports/constants/buffs"
 import { autoAttackOpts } from "../types/tickOpts"
 
-export const TICK_DURATION = 200
-export const secondsElapsed = TICK_DURATION / 1000
-
 export function autoAttack(
     this: Battle,
     { attacker, defender, originalAutoAttack = true, damageModifier = 0, source }: autoAttackOpts

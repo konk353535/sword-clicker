@@ -197,6 +197,14 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   }
 }
 
+.tiny-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  pointer-events: none;
+}
+
 .extra-small-icon {
   width: 24px;
   height: 24px;

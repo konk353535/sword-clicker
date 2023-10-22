@@ -104,7 +104,7 @@ export const CLASSES = Object.freeze({
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_active_paladin__wrath", "class_passive_paladin__bulwark"],
+        exclusiveAbilities: ["class_active_paladin__guard", "class_active_paladin__wrath", "class_passive_paladin__bulwark"],
         autoBuffs: ["class_trait_paladin"],
         equipmentBonuses: {
             hammer: {

@@ -431,14 +431,14 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Paladin",
         description() {
             return `
-        A successful taunt triggers a heal for the ally the enemy was targeting.  15% faster
+        A successful taunt triggers a heal for the ally the enemy was targeting.  50% faster
         cooldowns for taunt abilities.  Longswords and shields may be equipped together.  Scream
         may be used with a longsword.  Triple Max Attack from hammers and spears.  Quadruple health
         benefit from non-magical head, chest, and leg equipment.  Your squire always follows you
         into battle; he does not fight, but can take some damage.  You automatically intercept
         half of the damage your squire receives.  If your squire dies, you will be stunned for
         60 seconds.  Entering battle with fewer than 4 player allies will reduce your damage by
-        12.5% per missing ally.<br />
+        10% per missing ally.<br />
         While you are a Paladin this is <b>always active</b>`
         },
         constants: {
@@ -450,11 +450,11 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                // lose 12.5% damage for each missing ally, up to 50% reduction when alone
-                // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
-                const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
+                // lose 10% damage for each missing ally, up to 60% reduction when alone
+                // this value will be 0.6 at 0 allies and 1.0 at 4+ allies... allies must be players
+                const damageReduction = 0.6 + Math.min(0.4, (actualBattle.units.filter((thisFriendlyUnit) => {
                     return thisFriendlyUnit.id !== target.id && !thisFriendlyUnit.isNPC && !thisFriendlyUnit.isCompanion && !thisFriendlyUnit.isSoloCompanion
-                }).length * 0.125))
+                }).length * 0.1))
 
                 if (damageReduction < 1.0) {
                     target.stats.attack *= damageReduction
@@ -697,6 +697,123 @@ export const CLASS_BUFFS = {
 
                         addBuff({ buff: newBuff, target: paladinAlly, caster: target, actualBattle })
                     }
+                }
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_active_paladin__guard: {
+        duplicateTag: "class_active_paladin__guard",
+        icon: "paladinGuard.svg",
+        name: "Guard",
+        description() {
+            return `
+        Use on an ally to redirect up to 75% of the damage the ally receives to you.  Whenever they are struck in
+        combat, you take 75% of the damage and your ally takes 25%, before armor and other damage absorption
+        effects.  You may reuse Guard at any time to place it on a different target.  Using it on yourself
+        will cancel the effect entirely.  Guard cannot affect the same ally from two different paladins.
+        Guard may not be used on another paladin.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            preventUse: function ({ buff, target, caster, actualBattle }) {
+                setTimeout(function () {
+                    caster.abilities.forEach((ability) => {
+                        if (ability.id == "class_active_paladin__guard") {
+                            ability.currentCooldown = 0
+                        }
+                    })
+
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 1)
+                return
+            }
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                let alreadyCastOnThisTarget = false
+
+                actualBattle.units.forEach((friendlyUnit) => {
+                    let buffsToRemove = []
+                    friendlyUnit.buffs.forEach((thisBuff) => {
+                        if (thisBuff.id == "class_active_paladin__guard" && thisBuff.data?.unitToSendDamageTo == caster.id) {
+                            if (friendlyUnit.id == target.id) {
+                                alreadyCastOnThisTarget = true
+                            } else {
+                                buffsToRemove.push(thisBuff)
+                            }
+                        }
+                    })
+                    buffsToRemove.forEach((thisBuff) => {
+                        setTimeout(function () {
+                            removeBuff({ buff: thisBuff, target: friendlyUnit, caster, actualBattle })
+                        }, 1)
+                    })
+                })
+
+                if (
+                    caster.id == target.id || 
+                    alreadyCastOnThisTarget || 
+                    target?.currentClass?.id === "paladin" || 
+                    target.hasBuff("paladin_trait_squire_damage_interception")
+                ) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+
+                buff.data.description = "Whenever you are struck in combat, the Paladin who is guarding you will redirect 75% of the damage you would have received to them instead."
+                buff.data.unitToSendDamageTo = caster.id
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                if (buff.data.unitToSendDamageTo) {
+                    // try fo find ally
+                    const paladinAlly = actualBattle.units.find((ally) => {
+                        return ally.id === buff.data.unitToSendDamageTo
+                    })
+
+                    if (!lodash.isUndefined(paladinAlly) && paladinAlly.stats.health > 0) {
+                        // redirect 75% of the damage from guarded self back to the paladin
+                        const redirectDamage = damageDealt * 0.75
+
+                        actualBattle.healTarget(redirectDamage, {
+                            caster: paladinAlly,
+                            target: defender,
+                            healSource: buff
+                        })
+
+                        if (redirectDamage >= 0.1) {
+                            actualBattle.dealDamage(redirectDamage, {
+                                attacker: defender,
+                                defender: paladinAlly,
+                                tickEvents: actualBattle.tickEvents,
+                                customIcon: buff.data.icon,
+                                source: `Guard: ${defender.name}`
+                            })
+                        }
+                    } else {
+                        // paladin is dead
+                        removeBuff({ buff, target: defender, caster: paladinAlly || defender, actualBattle })
+                    }
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.unitToSendDamageTo) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
                 }
             },
 
@@ -1499,7 +1616,7 @@ export const CLASS_BUFFS = {
     class_active_sage__mystic_bond: {
         duplicateTag: "class_active_sage__mystic_bond",
         icon: "sageMysticBond.svg",
-        name: "Bond",
+        name: "Mystic Bond",
         description() {
             return `
         Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain <b>1%</b> of your lost
@@ -2250,9 +2367,23 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
                 //buff.data.attackSpeedOriginal = target.stats.origStats.attackSpeed
                 //target.stats.attackSpeed += buff.data.attackSpeedOriginal
+
+                buff.data.castingWizard = caster.id
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.castingWizard) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
+                }
+
                 if (target.abilities) {
                     target.abilities.forEach((ability) => {
                         if (ability.currentCooldown && ability.currentCooldown > 0) {

@@ -655,7 +655,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
     let rarityMultiplier = 1
 
     if (nextRarityIdConsts && nextRarityIdConsts.statBonuses) {
-        rarityMultiplier = 1 + (Math.ceil(nextRarityIdConsts.statBonuses/6.5) / 100.0)
+        rarityMultiplier = 1 + (Math.ceil(nextRarityIdConsts.statBonuses/5.5) / 100.0)
     }
 
     if (itemType == "wizard") {

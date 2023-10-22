@@ -186,16 +186,18 @@ export const MAGIC_BUFFS = {
             return `
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(
                 c.attackSpeedMPRatio * 100
-            )}% of MP). <br />
+            )}% of MP). Maximum attack speed capped at 100%. <br />
         Decrease your attack speed by the same amount <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
+        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
             attackSpeedBase: 25,
             attackSpeedMPRatio: 0.2,
             healthCost: 15,
-            healthCostMPRatio: 0.2
+            healthCostMPRatio: 0.2,
+            benefitMPCap: 375
         },
         data: {
             duration: 15,
@@ -209,7 +211,7 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const attackSpeedBase = constants.attackSpeedBase
-                const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower
+                const attackSpeedMP = constants.attackSpeedMPRatio * Math.min(caster.stats.magicPower, constants.benefitMPCap)
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
@@ -260,15 +262,17 @@ export const MAGIC_BUFFS = {
             return `
         Increases all allies attack speed by ${c.attackSpeedBase}% + (${Math.round(
                 c.attackSpeedMPRatio * 100
-            )}% of MP). <br />
+            )}% of MP). Maximum attack speed capped at 400%. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
             attackSpeedBase: 200,
             attackSpeedMPRatio: 0.1,
             healthCost: 150,
-            healthCostMPRatio: 0.2
+            healthCostMPRatio: 0.2,
+            benefitMPCap: 2000
         },
         data: {
             duration: 30,
@@ -282,8 +286,8 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const attackSpeedBase = constants.attackSpeedBase
-                const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower
-                const totalAttackSpeed = attackSpeedBase + attackSpeedMP
+                const attackSpeedMP = constants.attackSpeedMPRatio * Math.min(caster.stats.magicPower, constants.benefitMPCap)
+                const totalAttackSpeed = attackSpeedBase + attackSpeedMP                
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
                 const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
@@ -548,15 +552,15 @@ export const MAGIC_BUFFS = {
             return `
         Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP).  Maximum attack speed
         and damage capped at 100%.  At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
-        This spell caps your effective MP at 400 for effect and cost <br />
+        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
             increaseBase: 20,
             increaseMPRatio: 0.2,
             benefitMPCap: 400,
-            healthCost: 15,
-            healthCostMPRatio: 0.1
+            healthCost: 30,
+            healthCostMPRatio: 0.3
         },
         data: {
             duration: 20,

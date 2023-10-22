@@ -66,7 +66,7 @@ export const TOWER_FLOOR_12 = {
     },
     5: {
         name: "Shivering Tree",
-        enemies: ["bird", "bird", "grasshopper", "bird" ],
+        enemies: ["bird", "grasshopper", "bird", "grasshopper", "bird" ],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -102,7 +102,7 @@ export const TOWER_FLOOR_12 = {
     },
     6: {
         name: "Beach Pit",
-        enemies: ["monk", "crab", "monk", "jellyFish"],
+        enemies: ["monk", "crab", "monk", "jellyFish", "crab"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -143,7 +143,7 @@ export const TOWER_FLOOR_12 = {
     },
     7: {
         name: "Bloody River",
-        enemies: ["elephant", "rat", "elephant", "spartan"],
+        enemies: ["elephant", "rat", "elephant", "spartan", "rat"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {

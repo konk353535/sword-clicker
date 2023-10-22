@@ -429,7 +429,11 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
     if (reforgeData.reforgeRecipe?.xp) {
         // Add crafting exp
         if (_.isNumber(reforgeData.reforgeRecipe?.xp)) {
-            addXp("crafting", reforgeData.reforgeRecipe?.xp)
+            if  (reforgeData.reforgeRecipe?.isMagic) {
+                addXp("magic", reforgeData.reforgeRecipe?.xp)
+            } else {
+                addXp("crafting", reforgeData.reforgeRecipe?.xp)
+            }
         }
     }
 
@@ -471,7 +475,7 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
         )
     } else if (reforgeResult == 2) {
         // failure
-        if (Math.random() <= (getActiveGlobalBuff("paid_crafting") ? 0.05 : 0.1)) {
+        if (Math.random() <= (getActiveGlobalBuff("paid_crafting") ? 0.01 : 0.05)) {
             // critical failure: reduce the quality
 
             // if the item is looted and at the lowest rarity already...

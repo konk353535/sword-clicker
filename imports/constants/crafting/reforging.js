@@ -378,6 +378,14 @@ export const reforgeLookupMagicOrbTier = (tier) => {
 }
 
 export const reforgeItemType = (itemId) => {
+    // special case items
+    if (
+        itemId == "druidic_shirt" ||
+        itemId == "druidic_pants"
+    ) {
+        return "wizard"
+    }
+    
     for (let tier = 1; tier <= 27; tier++) {
         // find metal items
         if (itemId.indexOf(`${reforgeLookupMetalTier(tier)}_`) === 0) {
@@ -410,6 +418,14 @@ export const reforgeItemType = (itemId) => {
 }
 
 export const reforgeMatchItemIdToTier = (itemId) => {
+    // special case items
+    if (
+        itemId == "druidic_shirt" ||
+        itemId == "druidic_pants"
+    ) {
+        return 4
+    }
+    
     for (let tier = 1; tier <= 27; tier++) {
         // find metal items
         if (itemId.indexOf(`${reforgeLookupMetalTier(tier)}_`) === 0) {
@@ -636,10 +652,10 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
 
     const itemAttempts = currentItem.reforgeAttempts || currentItem.attempts || 0
     const nextRarityIdConsts = ITEM_RARITIES[currentRarityData.nextRarity.rarityId]
-    let rarityMulitplier = 1
+    let rarityMultiplier = 1
 
     if (nextRarityIdConsts && nextRarityIdConsts.statBonuses) {
-        rarityMulitplier = 1 + (Math.ceil(nextRarityIdConsts.statBonuses/4) / 100.0)
+        rarityMultiplier = 1 + (Math.ceil(nextRarityIdConsts.statBonuses/6.5) / 100.0)
     }
 
     if (itemType == "wizard") {
@@ -661,7 +677,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
                 itemId: `${crystalTierName_Start}fire_shard${crystalTierName_End}`,
                 icon: ITEMS[`${crystalTierName_Start}fire_shard${crystalTierName_End}`].icon,
                 name: ITEMS[`${crystalTierName_Start}fire_shard${crystalTierName_End}`].name,
-                amount: Math.ceil((itemAttempts + 1) * 1 * crystalTier * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+                amount: Math.ceil(((itemAttempts + 1) * 0.75) * 1 * crystalTier * rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
                 consumes: true
             },
             {
@@ -669,7 +685,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
                 itemId: `${crystalTierName_Start}earth_shard${crystalTierName_End}`,
                 icon: ITEMS[`${crystalTierName_Start}earth_shard${crystalTierName_End}`].icon,
                 name: ITEMS[`${crystalTierName_Start}earth_shard${crystalTierName_End}`].name,
-                amount: Math.ceil((itemAttempts + 1) * 1 * crystalTier *rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+                amount: Math.ceil(((itemAttempts + 1) * 0.75) * 1 * crystalTier *rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
                 consumes: true
             },
             {
@@ -677,7 +693,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
                 itemId: `${crystalTierName_Start}air_shard${crystalTierName_End}`,
                 icon: ITEMS[`${crystalTierName_Start}air_shard${crystalTierName_End}`].icon,
                 name: ITEMS[`${crystalTierName_Start}air_shard${crystalTierName_End}`].name,
-                amount: Math.ceil((itemAttempts + 1) * 1 * crystalTier *rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+                amount: Math.ceil(((itemAttempts + 1) * 0.75) * 1 * crystalTier *rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
                 consumes: true
             },
             {
@@ -685,12 +701,12 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
                 itemId: `${crystalTierName_Start}water_shard${crystalTierName_End}`,
                 icon: ITEMS[`${crystalTierName_Start}water_shard${crystalTierName_End}`].icon,
                 name: ITEMS[`${crystalTierName_Start}water_shard${crystalTierName_End}`].name,
-                amount: Math.ceil((itemAttempts + 1) * 1 * crystalTier *rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+                amount: Math.ceil(((itemAttempts + 1) * 0.75) * 1 * crystalTier *rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
                 consumes: true
             },
             {
                 type: "gold",
-                amount: Math.ceil((itemAttempts + 1) * 250 * currentTier * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+                amount: Math.ceil(((itemAttempts + 1) * 0.75) * 250 * currentTier * rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
                 consumes: true
             },
             {
@@ -716,7 +732,8 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
             maxToCraft: 1,
             tags: ["reforge"],
             requiredCraftingLevel: recipeData.requiredCraftingLevel,
-            required: recipeRequirements
+            required: recipeRequirements,
+            isMagic: true
         }
     }
 
@@ -734,7 +751,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
             itemId: `${reforgeLookupMetalTier(currentTier)}_bar`,
             icon: ITEMS[`${reforgeLookupMetalTier(currentTier)}_bar`].icon,
             name: ITEMS[`${reforgeLookupMetalTier(currentTier)}_bar`].name,
-            amount: Math.ceil((itemAttempts + 1) * 5 * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+            amount: Math.ceil(((itemAttempts + 1) * 0.75) * 5 * rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
             consumes: true
         },
         {
@@ -742,12 +759,12 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
             itemId: `${reforgeLookupWoodTier(currentTier, true)}_log`,
             icon: ITEMS[`${reforgeLookupWoodTier(currentTier, true)}_log`].icon,
             name: ITEMS[`${reforgeLookupWoodTier(currentTier, true)}_log`].name,
-            amount: Math.ceil((itemAttempts + 1) * 3 * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+            amount: Math.ceil(((itemAttempts + 1) * 0.75) * 3 * rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
             consumes: true
         },
         {
             type: "gold",
-            amount: Math.ceil((itemAttempts + 1) * 250 * currentTier * rarityMulitplier * (isGlobalCraftingActive ? 0.5 : 1)),
+            amount: Math.ceil(((itemAttempts + 1) * 0.75) * 250 * currentTier * rarityMultiplier * (isGlobalCraftingActive ? 0.5 : 1)),
             consumes: true
         },
         {
@@ -768,6 +785,7 @@ export const reforgeGenerateRecipe = function reforgeGenerateRecipe(_id) {
         maxToCraft: 1,
         tags: ["reforge"],
         requiredCraftingLevel: recipeData.requiredCraftingLevel,
-        required: recipeRequirements
+        required: recipeRequirements,
+        isMagic: false
     }
 }

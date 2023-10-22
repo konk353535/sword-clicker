@@ -1,6 +1,43 @@
 <template name="updatesPage">
     <div class="updates-page">
 
+        <h2 class="my-3">Sunday 22nd October 2023</h2>
+        <ul>
+            <li><b>Feature Changes</b></li>
+            <li>
+                <ul>
+                    <li>The combat server has been adjusted to process ticks twice as fast now.  Everything has been normalized to this new tick speed so there won't be any changes to player or enemy attack speed, the auto-attack protection at the beginning of each battle and room is still 800ms (8 ticks now instead of 4), etc.  There are effectively only two things you'll notice: (1) attack speed can be theoretically buffed to 10/s now since that's 1 attack per tick instead of 5/s and (2) cooldowns and timers on buffs in battle will decrement by 0.1s instead of 0.2s.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Certain battle ticks that weren't emitting should do so -- this will allow your browser to see enemy properties immediately, such as changes to enemy name, icon, armor, magic armor, and attack speed.</li>
+                    <li>Spacial Shift should properly stun all enemies when triggered.</li>
+                    <li>Druidic shirt and pants should be reforgable again under the new Reforging v2 system.</li>
+                    <li>{{> updatesNerf}} Feeding Frenzy maximum health cost was deceptive and is fixed (it was not per target, but per party).  It will now cost between 30 HP to 150 HP depending on your MP and the strength of your spellcast.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>The combat stats icons in your gear loadout are now tooltips with basic information about how each stat works.</li>
+                    <li>Empty slots in your gear and ability loadout are now links to get you to the gear edit and ability edit pages a little faster.</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} The reforge experience earned will be given to your Magic skill instead of Craft skill if the item you're reforging is magical.</li>
+                    <li>{{> updatesBuff}} The reforge resource cost scaling for failure attempts has been reduced by 25%.</li>
+                    <li>{{> updatesBuff}} The reforge resource cost scaling for rarity tier has been reduced by 37.5%.</li>
+                    <li>{{> updatesBuff}} The reforge critical failure chance has been reduced from 10% to 5%.  During a crafting buff, it is further reduced to 1%.</li>
+                    <li>{{> updatesNerf}} Frenzied Winds is now capped at 375 MP (100% attack speed) and maximum health cost (90 HP).</li>
+                    <li>{{> updatesNerf}} Lightning Speed is now capped at 2,000 MP for (400% attack speed) and maximum health cost (550 HP for the entire party).</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Saturday 21st October 2023</h2>
         <ul>
             <li><b>New Stuff</b></li>
@@ -20,7 +57,7 @@
             <li><b>Bugfixes</b></li>
             <li>
                 <ul>
-                    <li>Time Warp will expire immediately when the casting Wizard dies, now.</li>
+                    <li>Time Warp will expire immediately when the casting Wizard dies now.</li>
                 </ul>
             </li>
         </ul>
@@ -114,7 +151,7 @@
             <li>
                 <ul>
                     <li>{{> updatesBuff}} Bonus contribution to unlocking the boss on the top floor has been significantly increased to encourage efforts to unlock the boss quicker.</li>
-                    <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effect (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
+                    <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effects (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
                     <li>{{> updatesBuff}} Pylons and walls have a karmic value when donated to the town.  Additionally, snowberries, grapes, and strawberries have had their karmic value adjusted.</li>
                 </ul>
             </li>

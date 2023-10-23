@@ -228,7 +228,7 @@ export const CLASS_BUFFS = {
             onTargetDodgedDamage({ buff, defender, attacker, actualBattle, source }) {
                 if (source == "autoattack" && buff.stacks < 20) {
                     buff.stacks = Math.min(20, buff.stacks + 1)
-                    buff.data.recalculateBonus({ buff, unit: defender })
+                    buff.data.recalculateBonus({ buff, unit: attacker })
                 }
             },
 

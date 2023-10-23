@@ -187,7 +187,7 @@ export const ASTRAL_ITEMS = {
         id: "astral_broad_sword",
         icon: "astralBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "astral broad sword",
         sellPrice: Math.round(3000 * ASTRAL_MULTIPLIER),

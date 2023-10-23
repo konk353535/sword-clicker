@@ -203,7 +203,7 @@ export const MISC_ITEMS = {
         id: "oversized_club",
         icon: "oversizedClub.svg",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "oversized club",
         sellPrice: 650,

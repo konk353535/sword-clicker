@@ -181,7 +181,7 @@ export const ADAMANTIUM_ITEMS = {
         id: "adamantium_broad_sword",
         icon: "adamantiumBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "adamantium broad sword",
         sellPrice: 1800,

@@ -181,7 +181,7 @@ export const CARBON_ITEMS = {
         id: "carbon_broad_sword",
         icon: "carbonBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "carbon broad sword",
         sellPrice: 650,

@@ -195,6 +195,14 @@ export const CLASSES = Object.freeze({
                     valueMultiply: 0.8
                 }
             },
+            broadSword: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
             battleAxe: {
                 attack: {
                     valueMultiply: 0.8

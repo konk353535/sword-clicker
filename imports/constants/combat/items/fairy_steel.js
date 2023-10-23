@@ -181,7 +181,7 @@ export const FAIRY_STEEL_ITEMS = {
         id: "fairy_steel_broad_sword",
         icon: "fairySteelBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "fairy steel broad sword",
         sellPrice: 2250,

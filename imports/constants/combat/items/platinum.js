@@ -181,7 +181,7 @@ export const PLATINUM_ITEMS = {
         id: "platinum_broad_sword",
         icon: "platinumBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "platinum broad sword",
         sellPrice: 900,

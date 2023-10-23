@@ -181,7 +181,7 @@ export const CURSED_ITEMS = {
         id: "cursed_broad_sword",
         icon: "cursedBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "cursed broad sword",
         sellPrice: 3000,

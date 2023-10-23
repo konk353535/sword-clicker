@@ -151,7 +151,7 @@ export const COPPER_ITEMS = {
         id: "copper_broad_sword",
         icon: "copperBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "copper broad sword",
         sellPrice: 75,

@@ -188,7 +188,7 @@ export const ETERNIUM_ITEMS = {
         id: "eternium_broad_sword",
         icon: "eterniumBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "eternium broad sword",
         sellPrice: Math.round(3000 * ETERNIUM_MULTIPLIER),

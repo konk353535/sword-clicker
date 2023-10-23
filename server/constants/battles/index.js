@@ -44,6 +44,13 @@ export const BATTLES = Object.freeze({
                 health: 0.5
             },
 
+            broadSword: {
+                attack: 0.5,
+                defense: 0,
+                magic: 0,
+                health: 0.5
+            },
+
             shortSword: {
                 attack: 0.25,
                 defense: 0.25,

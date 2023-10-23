@@ -181,7 +181,7 @@ export const TIN_ITEMS = {
         id: "tin_broad_sword",
         icon: "tinBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "tin broad sword",
         sellPrice: 75,

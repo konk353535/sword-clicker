@@ -181,7 +181,7 @@ export const COBALT_ITEMS = {
         id: "cobalt_broad_sword",
         icon: "cobaltBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "cobalt broad sword",
         sellPrice: 1500,

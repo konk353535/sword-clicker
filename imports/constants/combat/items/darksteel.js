@@ -187,7 +187,7 @@ export const DARKSTEEL_ITEMS = {
         id: "darksteel_broad_sword",
         icon: "darksteelBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "darksteel broad sword",
         sellPrice: Math.round(3000 * DARKSTEEL_MULTIPLIER),

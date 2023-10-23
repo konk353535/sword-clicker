@@ -181,7 +181,7 @@ export const ELVEN_STEEL_ITEMS = {
         id: "elven_steel_broad_sword",
         icon: "elvenSteelBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "elven steel broad sword",
         sellPrice: 2500,

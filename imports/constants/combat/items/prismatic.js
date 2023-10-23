@@ -212,7 +212,7 @@ export const PRISMATIC_ITEMS = {
         id: "prismatic_broad_sword",
         icon: "prismaticBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "prismatic broad sword",
         sellPrice: Math.round(3000 * PRISMATIC_MULTIPLIER),

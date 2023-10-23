@@ -181,7 +181,7 @@ export const MITHRIL_ITEMS = {
         id: "mithril_broad_sword",
         icon: "mithrilBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "mithril broad sword",
         sellPrice: 1600,

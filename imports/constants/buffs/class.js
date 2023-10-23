@@ -207,7 +207,7 @@ export const CLASS_BUFFS = {
                 // calculate new bonuses
                 buff.data.statsBuffed.attack = unit.stats.attack * buff.stacks * 0.1
                 buff.data.statsBuffed.attackMax = unit.stats.attackMax * buff.stacks * 0.1
-                buff.data.statsBuffed.absorption = buff.stacks
+                buff.data.statsBuffed.absorption = buff.stacks * 0.01
 
                 // apply new bonuses
                 unit.stats.attack += buff.data.statsBuffed.attack

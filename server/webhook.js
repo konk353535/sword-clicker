@@ -35,7 +35,7 @@ export const sendFireBrigadeWebhookMessage = (content, codeblock = false, ping =
 <Block content goes here>
 ```
 */
-export const sendFireBrigadeWebhookMessageBlock = (message, block, codeblock = true, ping = true) => {
+export const sendFireBrigadeWebhookMessageBlock = (message, block, ping = true) => {
     let content = `${message}:\n\`\`\`javascript\n${block}\`\`\``
     if (ping) {
         // add to start of message

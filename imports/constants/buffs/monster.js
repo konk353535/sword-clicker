@@ -2006,6 +2006,7 @@ export const MONSTER_BUFFS = {
         }
     },
 
+    // aka crab_armor
     crab_monster: {
         duplicateTag: "crab_monster", // Used to stop duplicate buffs
         icon: "",
@@ -2014,36 +2015,32 @@ export const MONSTER_BUFFS = {
             return `You can chip away at it slowly with each attack until you reach the vulnerable beast within.`
         },
         constants: {},
-        data: {},
+        data: {
+            hitsRequired: 40
+        },
         events: {
             // This can be rebuilt from the buff id
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.stacks = buff.data.hitsRequired = 40
+                target.stats.armor += 1000000
+        },
 
             onTookDamage({ buff, defender, attacker, actualBattle }) {
-                defender.stats.armor -= 5
-                defender.stats.magicArmor -= 5
-                buff.data.hitsRequired -= 1
-                buff.stacks = buff.data.hitsRequired
+                buff.stacks = buff.data.hitsRequired = buff.data.hitsRequired - 1
 
                 if (buff.data.hitsRequired <= 0) {
-                    defender.stats.armor -= 20000
-                    defender.stats.magicArmor -= 20000
-                    if (defender.stats.armor <= 1) {
-                        defender.stats.armor = 1
+                    defender.stats.armor -= 1000000
+                    if (defender.stats.armor < 0) {
+                        defender.stats.armor = 0
                     }
-                    if (defender.stats.magicArmor <= 1) {
-                        defender.stats.magicArmor = 1
+                    if (defender.stats.magicArmor < 0) {
+                        defender.stats.magicArmor = 0
                     }
                     removeBuff({ buff, target: defender, caster: defender, actualBattle })
                 }
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-                if (buff.data.hitsRequired == null) {
-                    buff.data.hitsRequired = 45
-                    target.stats.armor += 20000
-                    target.stats.magicArmor += 20000
-                }
             },
 
             onRemove({ buff, target, caster }) {}

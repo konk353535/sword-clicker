@@ -378,10 +378,20 @@ export const reforgeLookupMagicOrbTier = (tier) => {
 }
 
 export const reforgeItemType = (itemId) => {
+    const itemConstant = ITEMS[itemId]
+    if (itemConstant && itemConstant.isMagic) {
+        return "wizard"
+    }
+
     // special case items
     if (
         itemId == "druids_shirt" ||
-        itemId == "druids_pants"
+        itemId == "druids_pants" ||
+        itemId.indexOf("_wizard_") !== -1 ||
+        itemId.indexOf("_trident") !== -1 ||
+        itemId.indexOf("_wand") !== -1 || 
+        itemId.indexOf("_orb") !== -1 ||
+        itemId.indexOf("_tome") !== -1
     ) {
         return "wizard"
     }

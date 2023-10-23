@@ -1,6 +1,35 @@
 <template name="updatesPage">
     <div class="updates-page">
 
+        <h2 class="my-3">Monday 23rd October 2023</h2>
+        <ul>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Barbarian Brawn is now 7.5% damage and 1% absorption per stack with an increased cap of 20 stacks.  Stacks are now increased by +1 when missing with an auto-attack and +1 by being struck by an enemy auto-attack and reduced by -2 when successfully striking with an auto-attack that deals at least 10% of your damage potential.</li>
+                    <li>{{> updatesBuff}} Sage Trait intrinsic bonus to healing power from staves has been increased from double to quadruple.</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Crabs no longer have base magic armor and the hits required to break their physical armor was reduced from 45 to 40.</li>
+                    <li>{{> updatesBuff}} Fire Opal amulets apply their enchantment shield effects separately from the spell Elemental Shield now; the two effects can stack.</li>
+                    <li>{{> updatesNerf}} Furied Winds is now capped at 375 MP (250% attack speed) and maximum health cost (47.5 HP).</li>
+                    <li>{{> updatesNerf}} Spells that increase a target's attack speed may no longer be combined with each other.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Affliction will no longer remove <i>all</i> of an enemy's magical armor.</li>
+                    <li>Duelists can no longer shred armor vs. targets who are dodging or phased (since you didn't actually hit them).</li>
+                    <li>Duelists can no longer use broad swords with Twin Blades (broad swords were flagged internally in the same classification as long swords).</li>
+                    <li>Paladins can no longer use broad swords with shields (broad swords were flagged internally in the same classification as long swords).</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Sunday 22nd October 2023</h2>
         <ul>
             <li><b>Feature Changes</b></li>

@@ -1014,7 +1014,8 @@ export const MONSTER_BUFFS = {
                     }
                 }
 
-                if (target.name == originalName) {
+                // if it was already upgraded above or is a duplicate of another enemy that's already greater (like rabbits multiplying)
+                if (target.name == originalName && target.name.indexOf("greater ") === -1) {
                     if (actualBattle.isExplorationRun && actualBattle.currentCommunityFloor == actualBattle.floor) {
                         const rand_chance_stronger = Math.random()
 

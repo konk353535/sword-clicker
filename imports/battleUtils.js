@@ -178,3 +178,39 @@ export const forceEnemiesToTargetRandomFromList = function(qualifiedUnitsList, a
         })
     }
 }
+
+export const targetCantBeHit = function(target) {
+    try {
+        return target.hasBuff("evasive_maneuvers") || target.hasBuff("full_damage_immunity")
+    }
+    catch (err) {}
+    return true
+}
+
+export const targetIsImmune = function(target) {
+    try {
+        return target.stats?.absorption >= 99.99 || target.hasBuff("full_damage_immunity")
+    }
+    catch (err) {}
+    return true
+}
+
+export const targetHasAttackSpeedMagicBuff = function(target) {
+    try {
+        return target.hasBuff("furied_winds") || target.hasBuff("frenzied_winds") || target.hasBuff("feeding_frenzy") || target.hasBuff("lightning_speed")
+    }
+    catch (err) {}
+    return true
+}
+
+export const anyUnitAffectedBy = function(targetList, fnToTest) {
+    try {
+        let affectedTargetCount = 0
+        targetList.forEach(function(target) {
+            affectedTargetCount += fnToTest(target) ? 1 : 0
+        })
+        return affectedTargetCount > 0
+    }
+    catch (err) {}
+    return false
+}

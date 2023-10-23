@@ -37,19 +37,39 @@ Meteor.methods({
         const user = Users.findOne({ _id: Meteor.userId() })
 
         if (user) {
-            return Mining.find({
+            const passiveUserCount = Mining.find({
                 server: user.server,
                 lastGameUpdated: {
+                    $gte: moment().subtract(15, "minutes").toDate()
+                }
+            }).count()
+
+            const activeUserCount = Users.find({
+                server: user.server,
+                lastActivity: {
                     $gte: moment().subtract(5, "minutes").toDate()
                 }
             }).count()
+
+            return { passive: passiveUserCount, active: activeUserCount }
+            
+        } else {
+            const passiveUserCount =  Mining.find({
+                lastGameUpdated: {
+                    $gte: moment().subtract(15, "minutes").toDate()
+                }
+            }).count()
+
+            const activeUserCount = Users.find({
+                lastActivity: {
+                    $gte: moment().subtract(5, "minutes").toDate()
+                }
+            }).count()
+
+            return { passive: passiveUserCount, active: activeUserCount }
         }
 
-        return Mining.find({
-            lastGameUpdated: {
-                $gte: moment().subtract(5, "minutes").toDate()
-            }
-        }).count()
+        return { passive: 0, active: 0}
     },
 
     "users.createGuest"(serverId) {

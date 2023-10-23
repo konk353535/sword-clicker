@@ -11,13 +11,18 @@ Template.homePage.onCreated(function bodyOnCreated() {
 
     // Fetch active users count
     Meteor.call("users.activeUsers", (err, res) => {
-        this.state.set("activeUsers", res)
+        this.state.set("passiveUsers", res?.passive)
+        this.state.set("activeUsers", res?.active)
     })
 })
 
 Template.homePage.helpers({
     creatingGuest() {
         return Template.instance().state.get("creatingGuest")
+    },
+
+    passiveUsers() {
+        return Template.instance().state.get("passiveUsers")
     },
 
     activeUsers() {

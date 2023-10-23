@@ -15,7 +15,8 @@ Template.rankingsPage.onCreated(function bodyOnCreated() {
 
     // Fetch active users count
     Meteor.call("users.activeUsers", (err, res) => {
-        this.state.set("activeUsers", res)
+        this.state.set("passiveUsers", res?.passive)
+        this.state.set("activeUsers", res?.active)
     })
 
     this.autorun(() => {
@@ -95,6 +96,10 @@ Template.rankingsPage.helpers({
             { type: "woodcutting" },
             { type: "astronomy" }
         ]
+    },
+
+    passiveUsers() {
+        return Template.instance().state.get("passiveUsers")
     },
 
     activeUsers() {

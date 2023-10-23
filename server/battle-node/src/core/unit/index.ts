@@ -148,22 +148,55 @@ export default class Unit {
         return []
     }
 
+    get targetIsValid(): boolean {
+        return this.findTarget(false, false) != null
+    }
+
     get targetUnit(): Unit | false {
         try {
-            const currentUnit = this
-            const oppositionList = currentUnit.opposition
-            const oppositionDefault = _.sample(oppositionList)
-            if (oppositionDefault != null) {
-                let targetUnitFound = oppositionList.findLast((potentialTarget) => {
-                    return potentialTarget.id === currentUnit.target
-                })
-                if (targetUnitFound) {
-                    return targetUnitFound
-                }
-                return oppositionDefault
+            const currentUnitTargeted = this.findTarget(true, false)
+            if (currentUnitTargeted != null) {
+                return currentUnitTargeted
             }
         } catch (err) {}
         return false
+    }
+
+    findTarget(changeTarget: boolean = true, forced: boolean = false): Unit | null {
+        let targetUnit: Unit | null = null
+
+        if (forced) {
+            this.target = ""
+        }
+
+        this.opposition.forEach((opposingUnit) => {
+            if (opposingUnit.id == this._target) {
+                if (opposingUnit.stats.health > 0) {
+                    targetUnit = opposingUnit
+                }
+            }
+        })
+
+        if (changeTarget) {
+            if (!targetUnit || targetUnit == null) {
+                const nonSageList = this.opposition.filter((opposingUnit) => {
+                    return opposingUnit?.currentClass?.id !== "sage"
+                })
+                targetUnit = _.sample(nonSageList) || null
+                if (targetUnit && targetUnit != null) {
+                    this.target = targetUnit.id
+                }
+            }
+
+            if (!targetUnit || targetUnit == null) {
+                targetUnit = _.sample(this.opposition) || null
+                if (targetUnit && targetUnit != null) {
+                    this.target = targetUnit.id
+                }
+            }
+        }
+
+        return targetUnit
     }
 
     get leftSideAlly(): Unit | false {

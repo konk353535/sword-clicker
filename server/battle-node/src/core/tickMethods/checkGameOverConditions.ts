@@ -86,6 +86,8 @@ export function checkGameOverConditions(this: Battle) {
                         type: "push",
                         value: newUnit.raw()
                     })
+
+                    newUnit.findTarget(true, true) // force a more careful selection of targets
                 })
 
                 this.updateUnitMaps()

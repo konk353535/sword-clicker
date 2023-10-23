@@ -1810,15 +1810,15 @@ export const ENCHANTMENT_BUFFS = {
                     const curHealthMax = defender.stats.healthMax
 
                     const newBuff = {
-                        id: "elemental_shield",
+                        id: "fireopal_shield",
                         data: {
                             duration: 3,
                             totalDuration: 3,
                             icon: "elementalShield.svg",
-                            description: `Temporary elemental shield.`,
-                            name: "elemental shield"
+                            description: `Temporary fire opal magical shield.`,
+                            name: "fire opal shield"
                         },
-                        constants: lookupBuff("elemental_shield")
+                        constants: lookupBuff("fireopal_shield")
                     }
 
                     newBuff.constants.constants = {

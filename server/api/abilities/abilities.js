@@ -418,6 +418,10 @@ Meteor.methods({
         return { ability: ABILITIES[abilityId], description: ABILITIES[abilityId].description(level) }
     },
 
+    "abilities.getCount"() {
+        return Object.keys(ABILITIES).length
+    },
+
     "abilities.fetchLibraryExtra"() {
         const userAbilities = Abilities.findOne({
             owner: Meteor.userId()

@@ -6,6 +6,7 @@ import uuid from "node-uuid"
 import _ from "underscore"
 
 import { BlackList } from "/imports/api/blacklist/blacklist"
+import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { Combat } from "/imports/api/combat/combat"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Mining } from "/imports/api/mining/mining"
@@ -156,7 +157,19 @@ Meteor.methods({
         } catch (err) {}
 
         // Update username
+        const existingUsername = Meteor.user().username
         Accounts.setUsername(Meteor.userId(), username)
+
+        Chats.insert({
+            message: `${existingUsername} is now ${username}!`,
+            username: "SERVER",
+            name: "SERVER",
+            date: new Date(),
+            custom: {
+                roomType: "Announcements"
+            },
+            roomId: `Announcements`
+       })
 
         // NOTE: new players are not announced during creation anymore, but instead are announced when the tutorial is completed or skipped
         /*
@@ -246,16 +259,16 @@ Meteor.methods({
             return false
         }
 
-        // Chats.insert({
-        //     message: `Welcome new player ${userDoc.username} to the game!`,
-        //     username: "GAME",
-        //     name: "GAME",
-        //     date: new Date(),
-        //     custom: {
-        //         roomType: "General"
-        //     },
-        //     roomId: `General`
-        // })
+        Chats.insert({
+             message: `Welcome new player ${userDoc.username} to the game!`,
+             username: "SERVER",
+             name: "SERVER",
+             date: new Date(),
+             custom: {
+                 roomType: "Announcements"
+             },
+             roomId: `Announcements`
+        })
 
         return Users.update(
             {
@@ -270,21 +283,21 @@ Meteor.methods({
     },
 
     "users.completedTutorial"() {
-        const userDoc = Users.findOne({})
+        const userDoc = Users.findOne({ _id: Meteor.userId() })
         if (!userDoc || !userDoc.tutorial) {
             return false
         }
 
-        // return Chats.insert({
-        //     message: `Welcome new player ${userDoc.username} to the game!`,
-        //     username: "GAME",
-        //     name: "GAME",
-        //     date: new Date(),
-        //     custom: {
-        //         roomType: "General"
-        //     },
-        //     roomId: `General`
-        // })
+        return Chats.insert({
+            message: `Welcome new player ${userDoc.username} to the game!`,
+            username: "SERVER",
+            name: "SERVER",
+            date: new Date(),
+            custom: {
+                roomType: "Announcements"
+            },
+            roomId: `Announcements`
+        })
     },
 
     "users.tutorialUpdate"(updateObject) {

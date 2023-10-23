@@ -1,6 +1,6 @@
 import moment from "moment"
 
-import { addBuff, lookupBuff, removeBuff } from "../../battleUtils"
+import { addBuff, lookupBuff, removeBuff, anyUnitAffectedBy, targetHasAttackSpeedMagicBuff } from "../../battleUtils"
 
 export const MAGIC_BUFFS = {
     /* BUFFS */
@@ -116,8 +116,10 @@ export const MAGIC_BUFFS = {
             return `
         Increases targets attack speed by ${c.attackSpeedBase}% + (${Math.round(
                 c.attackSpeedMPRatio * 100
-            )}% of MP). <br />
+            )}% of MP).  Maximum attack speed capped at 250%.  <br />
         For ${c.attacksCount} auto-attacks. <br />
+        Cannot be combined with any other spells that increase attack speed <br />
+        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `
         },
         constants: {
@@ -125,11 +127,24 @@ export const MAGIC_BUFFS = {
             attackSpeedBase: 25,
             attackSpeedMPRatio: 0.6,
             healthCost: 10,
-            healthCostMPRatio: 0.1
+            healthCostMPRatio: 0.1,
+            benefitMPCap: 375
         },
         data: {
             duration: 15,
-            totalDuration: 15
+            totalDuration: 15,
+            preventUse: function ({ buff, target, caster, actualBattle }) {
+                setTimeout(function () {
+                    caster.abilities.forEach((ability) => {
+                        if (ability.id == "furied_winds") {
+                            ability.currentCooldown = 0
+                        }
+                    })
+
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 1)
+                return
+            }
         },
         events: {
             // This can be rebuilt from the buff id
@@ -139,12 +154,18 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const attackSpeedBase = constants.attackSpeedBase
-                const attackSpeedMP = constants.attackSpeedMPRatio * caster.stats.magicPower
+                const attackSpeedMP = constants.attackSpeedMPRatio * Math.min(caster.stats.magicPower, constants.benefitMPCap)
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
                 const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
+                // Prevent use if the target is already affected by a spell that increases attack speed
+                if (targetHasAttackSpeedMagicBuff(target)) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+            
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
                     caster.stats.health -= totalHealth
@@ -189,6 +210,7 @@ export const MAGIC_BUFFS = {
             )}% of MP). Maximum attack speed capped at 100%. <br />
         Decrease your attack speed by the same amount <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
+        Cannot be combined with any other spells that increase attack speed <br />
         This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
@@ -201,7 +223,19 @@ export const MAGIC_BUFFS = {
         },
         data: {
             duration: 15,
-            totalDuration: 15
+            totalDuration: 15,
+            preventUse: function ({ buff, target, caster, actualBattle }) {
+                setTimeout(function () {
+                    caster.abilities.forEach((ability) => {
+                        if (ability.id == "frenzied_winds") {
+                            ability.currentCooldown = 0
+                        }
+                    })
+
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 1)
+                return
+            }
         },
         events: {
             // This can be rebuilt from the buff id
@@ -217,6 +251,12 @@ export const MAGIC_BUFFS = {
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
                 const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
+                // Prevent use if the target is already affected by a spell that increases attack speed
+                if (targetHasAttackSpeedMagicBuff(target)) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+                
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
                     caster.stats.health -= totalHealth
@@ -264,6 +304,7 @@ export const MAGIC_BUFFS = {
                 c.attackSpeedMPRatio * 100
             )}% of MP). Maximum attack speed capped at 400%. <br />
         At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        Cannot be combined with any other spells that increase attack speed <br />
         This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
@@ -291,6 +332,11 @@ export const MAGIC_BUFFS = {
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
                 const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+
+                // Skip this target if the target is already affected by a spell that increases attack speed
+                if (targetHasAttackSpeedMagicBuff(target)) {
+                    return
+                }
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -467,6 +513,92 @@ export const MAGIC_BUFFS = {
         }
     },
 
+    fireopal_shield: {
+        duplicateTag: "fireopal_shield", // Used to stop duplicate buffs
+        icon: "elementalShield.svg",
+        name: "fire opal shield",
+        description({ buff, level }) {
+            const c = buff.constants
+            return `
+        Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
+        Target gains ${c.damageBase}% damage while the shield is active.`
+        },
+        constants: {
+            damageBase: 25,
+            baseShield: 50,
+            shieldMPRatio: 0.7,
+            healthCost: 50,
+            healthCostMPRatio: 0.3
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity
+        },
+        events: {
+            // This can be rebuilt from the buff id
+            onApply({ buff, target, caster, actualBattle }) {
+                const constants =
+                    buff.constants && buff.constants.constants
+                        ? buff.constants.constants
+                        : lookupBuff(buff.id).constants
+                const baseShield = constants.baseShield
+                const shieldMP = constants.shieldMPRatio * caster.stats.magicPower
+                const totalShield = baseShield + shieldMP
+                const damageDecimal = constants.damageBase / 100
+                const healthBase = constants.healthCost
+                const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
+                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+
+                // Make sure we have target health
+                if (caster.stats.health >= totalHealth) {
+                    caster.stats.health -= totalHealth
+                    caster.stats.healthMax -= totalHealth
+
+                    buff.data.damageDecimal = damageDecimal
+                    buff.data.shieldHp = totalShield
+                    buff.data.attack = target.stats.attack * buff.data.damageDecimal
+                    buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal
+                    target.stats.attack += buff.data.attack
+                    target.stats.attackMax += buff.data.attackMax
+                } else {
+                    buff.data.shieldHp = 0
+                }
+            },
+
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (buff.totalDuration !== Infinity) {
+                    buff.duration -= secondsElapsed
+                    if (buff.duration <= 0) {
+                        removeBuff({ target, buff, caster: target })
+                    } else {
+                        buff.stacks = Math.round(buff.duration)
+                    }
+                }
+            },
+
+            onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
+                if (buff.data.shieldHp >= damageDealt) {
+                    buff.data.shieldHp -= damageDealt
+                    defender.stats.health += damageDealt
+                } else {
+                    defender.stats.health += buff.data.shieldHp
+                    buff.data.shieldHp = 0
+                }
+
+                if (buff.data.shieldHp <= 0) {
+                    removeBuff({ buff, target: defender, caster: defender })
+                }
+            },
+
+            onRemove({ buff, target, caster, actualBattle }) {
+                if (buff.data.damageDecimal) {
+                    target.stats.attack -= buff.data.attack
+                    target.stats.attackMax -= buff.data.attackMax
+                }
+            }
+        }
+    },
+
     diamond_skin: {
         duplicateTag: "diamond_skin", // Used to stop duplicate buffs
         icon: "diamondSkin.svg",
@@ -552,6 +684,7 @@ export const MAGIC_BUFFS = {
             return `
         Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP).  Maximum attack speed
         and damage capped at 100%.  At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        Cannot be combined with any other spells that increase attack speed <br />
         This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
         Lasts for ${buff.data.totalDuration}s`
         },
@@ -579,6 +712,11 @@ export const MAGIC_BUFFS = {
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
                 const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+
+                // Skip this target if the target is already affected by a spell that increases attack speed
+                if (targetHasAttackSpeedMagicBuff(target)) {
+                    return
+                }
 
                 // Make sure we have target health
                 if (caster.stats.health >= totalHealth) {
@@ -1263,7 +1401,7 @@ export const MAGIC_BUFFS = {
                 const magicArmorReductionBase = constants.magicArmorReductionBase
                 const magicArmorReductionMP = constants.magicArmorReductionMPRatio * caster.stats.magicPower
                 const magicDamageTotal = constants.damageMPRatio * caster.stats.magicPower
-                const totalMagicArmorReduction = Math.max(target.stats.magicArmor, magicArmorReductionBase + magicArmorReductionMP)
+                const totalMagicArmorReduction = Math.min(target.stats.magicArmor, magicArmorReductionBase + magicArmorReductionMP)
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower

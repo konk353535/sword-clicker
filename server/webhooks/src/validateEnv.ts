@@ -3,7 +3,7 @@ import { cleanEnv, port, str } from "envalid"
 
 export const env = cleanEnv(process.env, {
     NODE_ENV: str({ default: "development" }),
-    HTTP_PORT: port({ default: 8443 }),
+    PORT: port({ default: 8443 }),
     STRIPE_SECRET_KEY: str(),
     STRIPE_WEBHOOK_SECRET: str(),
     GEM_BUNCH: str(),

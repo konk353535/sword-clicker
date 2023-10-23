@@ -1,6 +1,10 @@
 import express from "express"
-import { MongoClient, ObjectId } from "mongodb"
+import http from "http"
+import https from "https"
+import { ObjectId } from "mongodb"
+import fs from "node:fs"
 import { Stripe } from "stripe"
+import { client, connect, fulfillmentCollection, usersCollection } from "./db"
 import { env } from "./validateEnv"
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: "2023-10-16" })
@@ -14,35 +18,22 @@ const validItems = {
 
 const validItemKeys = Object.keys(validItems)
 
-const client = new MongoClient(env.MONGO_URI)
-const db = client.db(env.MONGO_DB)
-const usersCollection = db.collection("users")
-const fulfillmentCollection = db.collection("fulfillment")
-
-db.listCollections({ name: "fulfillment" })
-    .toArray()
-    .then(async (result) => {
-        if (result.length === 0) {
-            // create the collection
-            const newCollection = await db.createCollection("fulfillment")
-        }
-    })
-
 // List from https://stripe.com/docs/ips#webhook-notifications
-const validStripeWebhookIps = [
-    "3.18.12.63",
-    "3.130.192.231",
-    "13.235.14.237",
-    "13.235.122.149",
-    "18.211.135.69",
-    "35.154.171.200",
-    "52.15.183.38",
-    "54.88.130.119",
-    "54.88.130.237",
-    "54.187.174.169",
-    "54.187.205.235",
-    "54.187.216.72"
-]
+// TODO: validate incoming IP address (proxied by CF) is from this list
+// const validStripeWebhookIps = [
+//     "3.18.12.63",
+//     "3.130.192.231",
+//     "13.235.14.237",
+//     "13.235.122.149",
+//     "18.211.135.69",
+//     "35.154.171.200",
+//     "52.15.183.38",
+//     "54.88.130.119",
+//     "54.88.130.237",
+//     "54.187.174.169",
+//     "54.187.205.235",
+//     "54.187.216.72"
+// ]
 
 // Match the raw body to content type application/json
 // If you are using Express v4 - v4.16 you need to use body-parser, not express, to retrieve the request body
@@ -138,9 +129,38 @@ app.post("/webhook/stripe", express.raw({ type: "application/json" }), async (re
     response.json({ received: true })
 })
 
-app.listen(env.HTTP_PORT, "0.0.0.0", () => console.log(`Running on port ${env.HTTP_PORT}`))
+let server: ReturnType<typeof https.createServer> | ReturnType<typeof http.createServer>
+
+if (env.NODE_ENV === "production") {
+    const options = {
+        key: fs.readFileSync("/ssl/privkey1.pem"),
+        cert: fs.readFileSync("/ssl/cert1.pem")
+    }
+
+    server = https.createServer(options, app)
+
+    // also set up a server to listen on port 80 and redirect to 443
+    http.createServer(function (req, res) {
+        res.setHeader("location", "https://battle.eternitytower.net")
+        res.statusCode = 302
+        res.end()
+    }).listen(80)
+} else {
+    server = http.createServer(app)
+}
+
+const run = async () => {
+    let hasConnected = false
+    while (!hasConnected) {
+        hasConnected = await connect()
+    }
+
+    server.listen(env.PORT, "0.0.0.0", () => console.log(`Running on port ${env.PORT}`))
+}
 
 process.on("SIGINT", function () {
     client.close()
     process.exit(0)
 })
+
+run()

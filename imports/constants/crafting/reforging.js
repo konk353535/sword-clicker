@@ -380,8 +380,8 @@ export const reforgeLookupMagicOrbTier = (tier) => {
 export const reforgeItemType = (itemId) => {
     // special case items
     if (
-        itemId == "druidic_shirt" ||
-        itemId == "druidic_pants"
+        itemId == "druids_shirt" ||
+        itemId == "druids_pants"
     ) {
         return "wizard"
     }
@@ -420,8 +420,8 @@ export const reforgeItemType = (itemId) => {
 export const reforgeMatchItemIdToTier = (itemId) => {
     // special case items
     if (
-        itemId == "druidic_shirt" ||
-        itemId == "druidic_pants"
+        itemId == "druids_shirt" ||
+        itemId == "druids_pants"
     ) {
         return 4
     }

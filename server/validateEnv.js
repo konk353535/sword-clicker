@@ -22,9 +22,11 @@ if (process.env.MAX_FLOOR == null) {
 if (process.env.ENABLE_DISCORD_WEBHOOKS == null) {
     process.env.ENABLE_DISCORD_WEBHOOKS = Meteor.settings?.private?.ENABLE_DISCORD_WEBHOOKS ?? false
 }
+if (process.env.DISCORD_DEV_ROLE_ID == null) {
+    process.env.DISCORD_DEV_ROLE_ID = Meteor.settings?.private?.DISCORD_DEV_ROLE_ID ?? ""
+}
 if (process.env.ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS == null) {
-    process.env.ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS =
-        Meteor.settings?.private?.ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS ?? false
+    process.env.ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS = Meteor.settings?.private?.ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS ?? false
 }
 if (process.env.DISCORD_GLOBAL_BUFF_WEBHOOK_ID == null) {
     process.env.DISCORD_GLOBAL_BUFF_WEBHOOK_ID = Meteor.settings?.private?.DISCORD_GLOBAL_BUFF_WEBHOOK_ID ?? ""
@@ -34,6 +36,15 @@ if (process.env.DISCORD_GLOBAL_BUFF_ROLE_ID == null) {
 }
 if (process.env.DISCORD_GLOBAL_BUFF_WEBHOOK_TOKEN == null) {
     process.env.DISCORD_GLOBAL_BUFF_WEBHOOK_TOKEN = Meteor.settings?.private?.DISCORD_GLOBAL_BUFF_WEBHOOK_TOKEN ?? ""
+}
+if (process.env.ENABLE_DISCORD_FIRE_BRIGADE_WEBHOOKS == null) {
+    process.env.ENABLE_DISCORD_FIRE_BRIGADE_WEBHOOKS = Meteor.settings?.private?.ENABLE_DISCORD_FIRE_BRIGADE_WEBHOOKS ?? false
+}
+if (process.env.DISCORD_FIRE_BRIGADE_WEBHOOK_ID == null) {
+    process.env.DISCORD_FIRE_BRIGADE_WEBHOOK_ID = Meteor.settings?.private?.DISCORD_FIRE_BRIGADE_WEBHOOK_ID ?? ""
+}
+if (process.env.DISCORD_FIRE_BRIGADE_WEBHOOK_TOKEN == null) {
+    process.env.DISCORD_FIRE_BRIGADE_WEBHOOK_TOKEN = Meteor.settings?.private?.DISCORD_FIRE_BRIGADE_WEBHOOK_TOKEN ?? ""
 }
 
 export const env = cleanEnv(process.env, {
@@ -45,10 +56,14 @@ export const env = cleanEnv(process.env, {
     METRIC_BASIC_AUTH_PASS: str({ default: "efgh" }),
     MAX_FLOOR: num({ default: 25 }),
     ENABLE_DISCORD_WEBHOOKS: bool({ default: false }),
+    DISCORD_DEV_ROLE_ID: str({ default: "" }),
     ENABLE_DISCORD_GLOBAL_BUFF_WEBHOOKS: bool({ default: false }),
     DISCORD_GLOBAL_BUFF_ROLE_ID: str({ default: "" }),
     DISCORD_GLOBAL_BUFF_WEBHOOK_ID: str({ default: "" }),
-    DISCORD_GLOBAL_BUFF_WEBHOOK_TOKEN: str({ default: "" })
+    DISCORD_GLOBAL_BUFF_WEBHOOK_TOKEN: str({ default: "" }),
+    ENABLE_DISCORD_FIRE_BRIGADE_WEBHOOKS: bool({ default: false }),
+    DISCORD_FIRE_BRIGADE_WEBHOOK_ID: str({ default: "" }),
+    DISCORD_FIRE_BRIGADE_WEBHOOK_TOKEN: str({ default: "" })
 })
 
 export const validateEnv = () => env

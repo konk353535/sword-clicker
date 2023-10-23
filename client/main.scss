@@ -151,13 +151,19 @@ body {
 }
 
 .battle-unit-name {
+    font-size: 14px;
     display: inline-block;
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
     text-align: center;
-    height: 50px;
+    text-overflow: ellipsis;
+}
+
+div.battle-unit-name {
+    vertical-align: bottom;
+    height: 60px;
 }
 
 .battle-unit-border-red {

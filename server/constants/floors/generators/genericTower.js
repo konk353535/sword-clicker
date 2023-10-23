@@ -89,7 +89,18 @@ export const genericTowerMonsterGenerator = function (floor, room) {
 
 // increased difficulty based on combatant stats
 export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloorLevel, extraData_in) {
-    const allMonsters = FLOORS[floor][room].enemies
+    const allMonstersBase = FLOORS[floor][room].enemies
+
+    let allMonsters = []
+    
+    for (let iPass = 1; iPass <= 3; iPass++) {
+        allMonstersBase.forEach((selectedMonsterId) => {
+            if (iPass == 1 || Math.random() <= 0.7/iPass) {
+                allMonsters.push(selectedMonsterId)
+            }
+        })
+    }
+    
     const totalUnits = allMonsters.length
     const newMonsters = []
     const extraData = Object.assign({}, extraData_in)

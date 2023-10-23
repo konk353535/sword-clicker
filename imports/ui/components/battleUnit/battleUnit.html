@@ -2,24 +2,26 @@
   <div class="d-flex flex-column">
     <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
       {{#if unit.name}}
-        {{#if viewProfile}}
-          <a href="/profile/{{unit.name}}">
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
-          </a>
-        {{else}}
-          {{#if unit.targettingPlayer}}
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.targettingName}}<br />{{unit.name}}</span>
+        <div class="battle-unit-name">
+          {{#if viewProfile}}
+            <a href="/profile/{{unit.name}}">
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+            </a>
           {{else}}
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}"><img src="/icons/{{unit.targettingIcon}}" width="20" height="20" stlye="height: 20px !important; width: 20px !important; border: none;" /><br >{{unit.name}}</span>
+            {{#if unit.targettingPlayer}}
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.targettingName}}<br />{{unit.name}}</span>
+            {{else}}
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}"><img src="/icons/{{unit.targettingIcon}}" width="20" height="20" stlye="height: 20px !important; width: 20px !important; border: none;" /><br >{{unit.name}}</span>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        </div>
       {{/if}}
       {{#if viewProfile}}
         <a href="/profile/{{unit.name}}">
           <img
               src="/icons/{{unit.icon}}"
-              id={{unit.id}}
-              data-unit-id={{unit.id}}
+              id="{{unit.id}}"
+              data-unit-id="{{unit.id}}"
               class="icon-box battle-unit
                 {{#if unit.leader}}leader-icon{{/if}}
                 {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
@@ -29,14 +31,14 @@
         </a>
       {{else}}
         <img
-            src="/icons/{{unit.icon}}"
-            id={{unit.id}}
-            data-unit-id={{unit.id}}
-            class="icon-box battle-unit
-              {{#if unit.isThisMyTarget}}my-target{{/if}}
-              {{#if unit.leader}}leader-icon{{/if}}
-              {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
-              {{#if small}}item-icon-container small{{/if}}"
+          src="/icons/{{unit.icon}}"
+          id={{unit.id}}
+          data-unit-id={{unit.id}}
+          class="icon-box battle-unit
+            {{#if unit.isThisMyTarget}}my-target{{/if}}
+            {{#if unit.leader}}leader-icon{{/if}}
+            {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
+            {{#if small}}item-icon-container small{{/if}}"
         >
       {{/if}}
       <div class="health-bar d-flex justify-content-center" style="white-space: nowrap;">

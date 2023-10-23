@@ -63,6 +63,8 @@ export const MONSTER_BUFFS = {
                 // enemies not handled:
                 // bee, ice giant, warden, spartan, unicorn, dwarf, octopus, all spirits, butterfly, dragonfly, wasp, snail, echidna, wombat, rabbit, jellyfish, gorilla, gelatinous cube
 
+                const originalName = target.name
+
                 if (target.name === "crab") {
                     if (rand < 0.1) {
                         // 10% chance to upgrade to citizen snips
@@ -1009,6 +1011,24 @@ export const MONSTER_BUFFS = {
                                 buff.data.level = 5
                             }
                         })
+                    }
+                }
+
+                if (target.name == originalName) {
+                    if (actualBattle.isExplorationRun && actualBattle.currentCommunityFloor == actualBattle.floor) {
+                        const rand_chance_stronger = Math.random()
+
+                        if (rand_chance_stronger < 0.5) {
+                            target.name = `greater ${target.name}`
+                            target.stats.health *= 3
+                            target.stats.healthMax *= 3
+                            target.stats.attackSpeed += 0.2
+                            target.stats.attack *= 1.35
+                            target.stats.attackMax *= 1.55
+                            target.stats.defense *= 1.2
+                            target.stats.armor *= 1.2
+                            target.stats.accuracy *= 1.15
+                        }
                     }
                 }
 

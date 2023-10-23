@@ -11,12 +11,12 @@ export const TOWER_FLOOR_12 = {
     },
     2: {
         name: "Old Log",
-        enemies: ["lizard", "rat", "lizard"],
+        enemies: ["lizard", "rat"],
         rewards: LEVEL_TWELVE_LOOT_TABLE
     },
     3: {
         name: "Village",
-        enemies: ["farmer", "bird", "farmer"],
+        enemies: ["farmer", "bird"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -39,7 +39,7 @@ export const TOWER_FLOOR_12 = {
     },
     4: {
         name: "Place of Obsidian",
-        enemies: ["obsidian_spirit", "warden", "obsidian_spirit"],
+        enemies: ["obsidian_spirit", "warden"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -66,7 +66,7 @@ export const TOWER_FLOOR_12 = {
     },
     5: {
         name: "Shivering Tree",
-        enemies: ["bird", "grasshopper", "bird", "grasshopper", "bird" ],
+        enemies: ["bird", "grasshopper" ],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -102,7 +102,7 @@ export const TOWER_FLOOR_12 = {
     },
     6: {
         name: "Beach Pit",
-        enemies: ["monk", "crab", "monk", "jellyFish", "crab"],
+        enemies: ["monk", "crab"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {
@@ -143,7 +143,7 @@ export const TOWER_FLOOR_12 = {
     },
     7: {
         name: "Bloody River",
-        enemies: ["elephant", "rat", "elephant", "spartan", "rat"],
+        enemies: ["elephant", "rat", "spartan"],
         rewards: orderLootTable(
             LEVEL_TWELVE_LOOT_TABLE.concat([
                 {

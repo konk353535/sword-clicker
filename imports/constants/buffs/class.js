@@ -848,6 +848,7 @@ export const CLASS_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
+                    customIcon: "paladinWrath.svg",
                     source: "Wrath"
                 })
             },

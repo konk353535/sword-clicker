@@ -275,6 +275,11 @@ export const CLASS_BUFFS = {
 
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
                 if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes" || formattedSource == "twin blades") {
+                    // can't shred armor vs. targets that are dodging or phased
+                    if (defender.hasBuff("evasive_maneuvers") || defender.hasBuff("full_damage_immunity")) {
+                        return
+                    }
+
                     // when debugging
                     //console.log(actualBattle.tickCount, formattedSource, "- SHREDDING!")
 

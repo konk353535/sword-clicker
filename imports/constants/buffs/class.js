@@ -188,55 +188,68 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Passive class ability<br />
-        Any time you miss with an auto-attack, you add 4 stacks of <i>Brawn</i> that increases all of your damage by
-        +10% per stack (to a maximum of +150%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
-        to a minimum of 0 stacks.<br />
+        Any time you miss with an auto-attack or are struck by an enemy's auto-attack, you add a stack of <i>Brawn</i>
+        that increases all of your damage by <b>+7.5%</b> and <b>+1%</b> damage absorption per stack (to a maximum of
+        +150% damage and 20% damage absorption).  Stacks are reduced by 2 when you successfully hit with an auto-attack
+        that deals at least 10% of your damage potential to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
         },
         constants: {},
         data: {
             duration: Infinity,
-            totalDuration: Infinity
+            totalDuration: Infinity,
+            recalculateBonus({ buff, unit }) {
+                // undo existing bonuses
+                unit.stats.attack -= buff.data.statsBuffed.attack
+                unit.stats.attackMax -= buff.data.statsBuffed.attackMax
+                unit.stats.absorption -= buff.data.statsBuffed.absorption
+
+                // calculate new bonuses
+                buff.data.statsBuffed.attack = unit.stats.attack * buff.stacks * 0.1
+                buff.data.statsBuffed.attackMax = unit.stats.attackMax * buff.stacks * 0.1
+                buff.data.statsBuffed.absorption = buff.stacks
+
+                // apply new bonuses
+                unit.stats.attack += buff.data.statsBuffed.attack
+                unit.stats.attackMax += buff.data.statsBuffed.attackMax
+                unit.stats.absorption += buff.data.statsBuffed.absorption
+            }
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 buff.stacks = 0
-                buff.data.damageBoosted = {
+                buff.data.statsBuffed = {
                     attack: 0,
-                    attackMax: 0
+                    attackMax: 0,
+                    absorption: 0
                 }
             },
 
             onTargetDodgedDamage({ buff, defender, attacker, actualBattle, source }) {
-                if (source == "autoattack") {
-                    if (buff.stacks < 15) {
-                        buff.stacks += 4
-                    }
+                if (source == "autoattack" && buff.stacks < 20) {
+                    buff.stacks = Math.min(20, buff.stacks + 1)
+                    buff.data.recalculateBonus({ buff, unit: defender })
+                }
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                if (damageDealt >= 0.1 && attacker.id != defender.id && buff.stacks < 20) {
+                    buff.stacks = Math.min(20, buff.stacks + 1)
+                    buff.data.recalculateBonus({ buff, unit: defender })
                 }
             },
 
             onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
-                if (source == "autoattack") {
-                    buff.stacks -= 1
-                    if (buff.stacks < 0) {
-                        buff.stacks = 0
+                if (source == "autoattack" && buff.stacks > 0) {
+                    const damagePotential = attacker.stats.attack + (attacker.stats.attackMax / 2)
+                    if (damageDealt >= damagePotential * 0.1) {
+                        buff.stacks = Math.max(0, buff.stacks - 2)
+                        buff.data.recalculateBonus({ buff, unit: attacker })
                     }
                 }
             },
 
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                // undo existing bonuses
-                target.stats.attack -= buff.data.damageBoosted.attack
-                target.stats.attackMax -= buff.data.damageBoosted.attackMax
-
-                // calculate new bonuses
-                buff.data.damageBoosted.attack = target.stats.attack * buff.stacks * 0.1
-                buff.data.damageBoosted.attackMax = target.stats.attackMax * buff.stacks * 0.1
-
-                // apply new bonuses
-                target.stats.attack += buff.data.damageBoosted.attack
-                target.stats.attackMax += buff.data.damageBoosted.attackMax
-            }
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {}
         }
     },
 

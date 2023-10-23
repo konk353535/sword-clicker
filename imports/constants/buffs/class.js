@@ -1574,7 +1574,7 @@ export const CLASS_BUFFS = {
             return `
         Healing a target reduces all of your active ability cooldowns by 2 seconds and places a protective blessing
         upon them for 2 seconds that reduces the damage they take by 35%.  You cannot receive your own blessing.
-        Double Healing Power benefit from staves Can reforge most magical clothing.  Cannot auto-attack when in combat
+        Quadruple Healing Power benefit from staves Can reforge most magical clothing.  Cannot auto-attack when in combat
         with allies.<br />
         While you are a Sage this is <b>always active</b>`
         },

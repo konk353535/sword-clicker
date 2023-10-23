@@ -23,6 +23,11 @@ export function unitAutoAttacks(this: Battle, units: Unit[]) {
                     canAutoAttack = false
                 }
 
+                // Check if they're trying to use a broad sword with a shield (old Paladin bug)
+                if (unit.mainHandType === "broadSword" && (unit.offHandType === "shield" || unit.offHandType === "buckler")) {
+                    canAutoAttack = false
+                }
+
                 if (this.units.length > 1) {
                     if (unit.currentClass?.id === "sage") {
                         canAutoAttack = false

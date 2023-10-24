@@ -298,7 +298,7 @@ export const CLASSES = Object.freeze({
         equipmentBonuses: {
             staff: {
                 healingPower: {
-                    valueMultiply: 2
+                    valueMultiply: 4
                 }
             }
         },

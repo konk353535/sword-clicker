@@ -22,6 +22,8 @@ import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS } from "/imports/constants/shop/index.js"
 import { CInt } from "/imports/utils.js"
 
+import { sendDevDiscordAlert } from "/server/webhook.js"
+
 import { addGold, addItem } from "/server/api/items/items.js"
 import { addXp } from "/server/api/skills/skills.js"
 
@@ -247,7 +249,7 @@ const getReforgeData = function getReforgeData(_id) {
 
     const currentItem = Items.findOne({ _id, owner: Meteor.userId() })
     if (!currentItem) {
-        return { isError: true, chance: -2, unadjustedChance: -1000, rarityData: undefined, buffAt }
+        return { isError: true, chance: -2, unadjustedChance: -1000, rarityData: undefined }
     }
 
     const recipesArray = Object.keys(CRAFTING.recipes).map((craftingKey) => {
@@ -686,6 +688,15 @@ Meteor.methods({
                 console.log(userCurrentClass(Meteor.userId()))
                 console.log(reforgeData)
                 console.log("**************************************")
+
+                sendDevDiscordAlert
+                (`
+                    **REFORGE ERROR**\n
+                    **${Meteor.user().username}** is trying to reforge **${currentItem.itemId}**\n
+                    \`\`\`json\n
+                    ${reforgeData}\n
+                    \`\`\`
+                `)
             }
 
             if (reforgeData.chance === -3 || reforgeData.chance === -5) {
@@ -694,6 +705,11 @@ Meteor.methods({
             if (reforgeData.chance === -6) {
                 throw new Meteor.Error("cant-reforge", "You don't have enough crafting skill to reforge this item.")
             }
+
+            sendDevDiscordAlert
+            (`
+                <@155725485786005504> *see above*
+            `)
             throw new Meteor.Error("cant-reforge", `Internal error during reforging: ${-reforgeData.chance}.`)
         }
 

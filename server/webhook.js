@@ -28,6 +28,12 @@ export const sendFireBrigadeWebhookMessage = (content, codeblock = false, ping =
     }
 }
 
+export const sendDevDiscordAlert = function(content) {
+    if (typeof content === "string") {
+        sendFireBrigadeWebhookMessage(content.trim(), false, false)
+    }
+}
+
 /* Constructs a message like:
 @dev:
 <Message content goes here>

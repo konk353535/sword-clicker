@@ -678,7 +678,7 @@ Template.currentBattleUi.helpers({
             name: "Attack Target",
             slot: "changeTarget",
             hotkey: "t",
-            target: "singleEnemy",
+            target: "anyUnit",
             currentCooldown: 0,
             targettable: true
         }

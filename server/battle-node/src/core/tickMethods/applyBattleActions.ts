@@ -16,12 +16,13 @@ export function applyBattleActions(this: Battle) {
             if (!casterUnit.isAbleToChangeTargets) {
                 return
             }
-
             const targetId = action.targets?.[0]
 
             if (targetId == null) {
                 return
             }
+
+            const originalTarget = casterUnit.target
 
             if (this.enemiesMap[targetId]) {
                 // Modify casters preferred target
@@ -29,6 +30,19 @@ export function applyBattleActions(this: Battle) {
 
                 // if this unit is actively targeting another unit, then they're clearly not inactive
                 casterUnit.inactiveMinutes = 0
+            } else if (this.unitsMap[targetId]) {
+                // Modify casters preferred target
+                const targetOfTarget:false|Unit|undefined = this.unitsMap[targetId]?.targetUnit
+                if (targetOfTarget) {
+                    casterUnit.target = targetOfTarget.id
+                }
+
+                // if this unit is actively targeting another unit, then they're clearly not inactive
+                casterUnit.inactiveMinutes = 0
+            }
+
+            if (!casterUnit.target || casterUnit.target?.trim()?.length === 0) {
+                casterUnit.target = originalTarget
             }
         } else if (abilityId === "forfeit") {
             this.forfitters[casterId] = true
@@ -53,25 +67,28 @@ export function applyBattleActions(this: Battle) {
                 return
             }
 
-            if (!this.enemiesMap[targetId]) {
+            // sorry bud, you can't change targets right now and you sure can't click-target an enemy you're not targeting
+            if (targetId !== casterUnit.target && !casterUnit.isAbleToChangeTargets) {
                 return
             }
 
-            // sorry bud, you can't change targets right now and you sure can't click-target an enemy you're not targeting
-            if (targetId !== casterUnit.target) {
-                if (!casterUnit.isAbleToChangeTargets) {
-                    return
-                }
-
+            if (this.enemiesMap[targetId]) {
                 // change target and then proceed with the amulet click damage
                 casterUnit.target = targetId
+            } else if (this.unitsMap[targetId]) {
+                // change target and then proceed with the amulet click damage
+                const targetOfTarget:false|Unit|undefined = this.unitsMap[targetId]?.targetUnit
+                if (targetOfTarget) {
+                    casterUnit.target = targetOfTarget.id
+                }
             }
 
+            // Don't proceed with amulet click damage if the caster unit can't harm others
             if (casterUnit.isPacifist) {
                 return
             }
 
-            const targetUnit = this.enemiesMap[targetId]
+            const targetUnit = this.enemiesMap[casterUnit.target]
 
             // Ensure caster unit has sufficient energy
             if (targetUnit && casterUnit && casterUnit.amulet && casterUnit.amulet.energy >= 1) {

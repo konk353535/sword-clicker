@@ -1014,7 +1014,7 @@ export const MONSTER_BUFFS = {
                     }
                 }
 
-                // if it was already upgraded above or is a duplicate of another enemy that's already greater (like rabbits multiplying)
+                // don't become greater if it is already an elite or is a duplicate of another enemy that's already greater (like rabbits multiplying)
                 if (target.name == originalName && target.name.indexOf("greater ") === -1) {
                     if (actualBattle.isExplorationRun && actualBattle.currentCommunityFloor == actualBattle.floor) {
                         const rand_chance_stronger = Math.random()
@@ -1043,7 +1043,18 @@ export const MONSTER_BUFFS = {
                 }
             },
 
-            onRemove({ buff, target }) {}
+            onRemove({ buff, target }) {
+                // Force deltas, even if there's nothing to change
+                //
+                // Because of a race condition, setting 'abs' for a new unit and setting 'abs' for deltas in
+                // the same tick can sometimes not cause that delta to be received in the correct order.
+
+                setTimeout(function() {
+                    target.delta("name")
+                    target.delta("icon")
+                    target.delta("target")
+                }), 50
+            }
         }
     },
 

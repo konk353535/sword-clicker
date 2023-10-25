@@ -101,11 +101,15 @@ export default class Unit {
         this._isEnemy = value
     }
 
-    delta(stat: string) {
+    delta(prop: string) {
         const event = {
             type: "abs",
-            path: `unitsMap.${this.id}.${stat}`,
-            value: stat == "target" ? this["target"] : stat == "name" ? this["_name"] : stat == "icon" ? this["_icon"] : ""
+            path: `unitsMap.${this.id}.${prop}`,
+            value: 
+                prop == "name" ? this.name : 
+                prop == "icon" ? this.icon : 
+                prop == "target" ? this.target : 
+                ""
         }
 
         this.battleRef.deltaEvents.push(event)
@@ -113,39 +117,41 @@ export default class Unit {
 
     get team() {
         try {
-            if (this.isEnemy) {
-                if (this.battleRef.enemies) {
-                    return this.battleRef.enemies
-                }
-            } else {
-                if (this.battleRef.units) {
-                    return this.battleRef.units
-                }
+            if (!this.isEnemy && this.battleRef.units) {
+                return this.battleRef.units
+            }
+
+            if (this.isEnemy && this.battleRef.enemies) {
+                return this.battleRef.enemies
             }
         } catch (err) {}
-        return []
-    }
 
-    get allies() {
-        const currentUnit = this
-        return currentUnit.team.filter((unit) => {
-            return unit.id !== currentUnit.id
-        })
+        // error: couldn't find team list!!
+        return []
     }
 
     get opposition() {
         try {
-            if (!this.isEnemy) {
-                if (this.battleRef.enemies) {
-                    return this.battleRef.enemies
-                }
-            } else {
-                if (this.battleRef.units) {
-                    return this.battleRef.units
-                }
+            if (!this.isEnemy && this.battleRef.enemies) {
+                return this.battleRef.enemies
+            }
+            
+            if (this.isEnemy && this.battleRef.units) {
+                return this.battleRef.units
             }
         } catch (err) {}
+
+        // error: couldn't find opposition list!!
         return []
+    }
+
+    // allies = team with this unit filtered out
+    get allies() {
+        const currentUnit = this
+
+        return currentUnit.team.filter((unit) => {
+            return unit.id !== currentUnit.id
+        })
     }
 
     get targetIsValid(): boolean {
@@ -167,6 +173,7 @@ export default class Unit {
 
         if (forced) {
             this.target = ""
+            changeTarget = true
         }
 
         this.opposition.forEach((opposingUnit) => {
@@ -241,7 +248,7 @@ export default class Unit {
     set isAbleToChangeTargets(value) {
         this._isAbleToChangeTargets = value
 
-        if (!value) {
+        if (!this._isAbleToChangeTargets) {
             if (!this.hasBuff("cant_change_targets")) {
                 this.applyBuff({
                     buff: this.generateBuff({
@@ -253,15 +260,17 @@ export default class Unit {
                 })
             }
         } else {
-            const targetBuff = this.findBuff("cant_change_targets")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            while (this.findBuffs("cant_change_targets").length > 0) {
+                const targetBuff = this.findBuff("cant_change_targets")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
             }
         }
     }
@@ -271,7 +280,8 @@ export default class Unit {
     }
     set isAbleToUseAbilities(value) {
         this._isAbleToUseAbilities = value
-        if (!value) {
+
+        if (!this._isAbleToChangeTargets) {
             if (!this.hasBuff("cast_use_abilities")) {
                 this.applyBuff({
                     buff: this.generateBuff({
@@ -283,15 +293,17 @@ export default class Unit {
                 })
             }
         } else {
-            const targetBuff = this.findBuff("cast_use_abilities")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            while (this.findBuffs("cast_use_abilities").length > 0) {
+                const targetBuff = this.findBuff("cast_use_abilities")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
             }
         }
     }
@@ -316,15 +328,17 @@ export default class Unit {
                 }
             }
         } else {
-            const targetBuff = this.findBuff("cant_use_spells")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            while (this.findBuffs("cast_use_abilities").length > 0) {
+                const targetBuff = this.findBuff("cant_use_spells")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
             }
         }
     }
@@ -393,10 +407,6 @@ export default class Unit {
 
         this._icon = unit.icon
         this.tickOffset = unit.tickOffset || 0
-        // is target optional?
-        if (unit.target != null) {
-            this._target = unit.target
-        }
 
         this.attackIn = this.tickOffset || 1
         this.bonusLoot = 0.0
@@ -481,6 +491,12 @@ export default class Unit {
 
     findBuff(buffId: string) {
         return this.buffs.findLast((buff) => buff.id == buffId)
+    }
+
+    findBuffs(buffId: string) {
+        return this.buffs.filter((buff) => {
+            return buff.id == buffId
+        })
     }
 
     hasBuff(buffId: string): boolean {

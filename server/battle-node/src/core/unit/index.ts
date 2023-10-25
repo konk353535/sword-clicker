@@ -260,7 +260,9 @@ export default class Unit {
                 })
             }
         } else {
+            let attempts:number = 0
             while (this.findBuffs("cant_change_targets").length > 0) {
+                attempts++
                 const targetBuff = this.findBuff("cant_change_targets")
                 if (targetBuff && !targetBuff.data.beingRemoved) {
                     targetBuff.data.beingRemoved = true
@@ -271,6 +273,8 @@ export default class Unit {
                         actualBattle: this.battleRef
                     })
                 }
+                if (attempts > 10)
+                    break
             }
         }
     }
@@ -282,10 +286,10 @@ export default class Unit {
         this._isAbleToUseAbilities = value
 
         if (!this._isAbleToChangeTargets) {
-            if (!this.hasBuff("cast_use_abilities")) {
+            if (!this.hasBuff("cant_use_abilities")) {
                 this.applyBuff({
                     buff: this.generateBuff({
-                        buffId: "cast_use_abilities",
+                        buffId: "cant_use_abilities",
                         buffData: {
                             duration: Infinity
                         }
@@ -293,8 +297,10 @@ export default class Unit {
                 })
             }
         } else {
-            while (this.findBuffs("cast_use_abilities").length > 0) {
-                const targetBuff = this.findBuff("cast_use_abilities")
+            let attempts:number = 0
+            while (this.findBuffs("cant_use_abilities").length > 0) {
+                attempts++
+                const targetBuff = this.findBuff("cant_use_abilities")
                 if (targetBuff && !targetBuff.data.beingRemoved) {
                     targetBuff.data.beingRemoved = true
                     removeBuff({
@@ -304,6 +310,8 @@ export default class Unit {
                         actualBattle: this.battleRef
                     })
                 }
+                if (attempts > 10)
+                    break
             }
         }
     }
@@ -328,7 +336,9 @@ export default class Unit {
                 }
             }
         } else {
-            while (this.findBuffs("cast_use_abilities").length > 0) {
+            let attempts:number = 0
+            while (this.findBuffs("cant_use_spells").length > 0) {
+                attempts++
                 const targetBuff = this.findBuff("cant_use_spells")
                 if (targetBuff && !targetBuff.data.beingRemoved) {
                     targetBuff.data.beingRemoved = true
@@ -339,6 +349,8 @@ export default class Unit {
                         actualBattle: this.battleRef
                     })
                 }
+                if (attempts > 10)
+                    break
             }
         }
     }

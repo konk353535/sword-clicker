@@ -713,6 +713,15 @@ export const CLASS_BUFFS = {
                             }
                         }
 
+                        // make it obvious that they're stunned
+                        if (paladinAlly.abilities) {
+                            paladinAlly.abilities.forEach((ability) => {
+                                if (ability.currentCooldown <= 60.0 && !ability.isPassive()) {
+                                    ability.currentCooldown = 60.0
+                                }
+                            })
+                        }
+
                         addBuff({ buff: newBuff, target: paladinAlly, caster: target, actualBattle })
                     }
                 }

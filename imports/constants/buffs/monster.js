@@ -1053,6 +1053,22 @@ export const MONSTER_BUFFS = {
                     target.delta("name")
                     target.delta("icon")
                     target.delta("target")
+                    target.stats.delta("health")
+                    target.stats.delta("healthMax")
+                    target.stats.delta("attack")
+                    target.stats.delta("attackMax")
+                    target.stats.delta("accuracy")
+                    target.stats.delta("attackSpeed")
+                    target.stats.delta("defense")
+                    target.stats.delta("armor")
+                    target.stats.delta("magicArmor")
+                    target.stats.delta("healingPower")
+                    target.stats.delta("criticalChance")
+                    target.stats.delta("criticalDamage")
+                    target.stats.delta("force")
+                    target.stats.delta("shred")
+                    target.stats.delta("focus")
+                    target.stats.delta("absorption")
                 }), 50
             }
         }

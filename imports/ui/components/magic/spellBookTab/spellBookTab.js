@@ -4,12 +4,16 @@ import { ReactiveDict } from "meteor/reactive-dict"
 import { ReactiveMethod } from "meteor/simple:reactive-method"
 
 import _ from "underscore"
+import Numeral from "numeral"
 
 import { Abilities } from "/imports/api/abilities/abilities.js"
+import { Skills } from "/imports/api/skills/skills.js"
 
+import { autoPrecisionValue } from "/imports/utils.js"
 import { determineRequiredItems } from "/imports/ui/utils.js"
 
 import { BUFFS } from "/imports/constants/buffs/index.js"
+import { MAGIC_TYPES } from "/imports/constants/magic/index.js"
 
 import "./spellBookTab.html"
 
@@ -18,138 +22,67 @@ Template.spellBookTab.onCreated(function bodyOnCreated() {
     const anAbility = Abilities.findOne()
 
     this.autorun(() => {
-        const results = ReactiveMethod.call("abilities.fetchSpellCrafting", anAbility)
+        const results = ReactiveMethod.call("abilities.fetchSpells", anAbility)
 
         if (results) {
-            this.state.set("spellCrafting", results)
+            this.state.set("spellList", results)
         }
     })
 })
 
-Template.spellBookTab.events({
-    "keyup .craft-amount-input"(event, instance) {
-        let newValue = parseInt($(event.target).val())
-        if (newValue && !isNaN(newValue)) {
-            if (newValue > instance.state.get("maxCraftableAmount")) {
-                newValue = instance.state.get("maxCraftableAmount")
-            }
-            instance.state.set("craftAmount", newValue)
-        }
-    },
-
-    "submit .craft-amount-form"(event, instance) {
-        event.preventDefault()
-
-        const abilityId = instance.state.get("multiCraftAbilityId")
-        const amountToCraft = instance.state.get("craftAmount")
-
-        const spellCrafting = instance.state.get("spellCrafting")
-        const spellConstants = _.findWhere(spellCrafting, { abilityId })
-
-        instance.$(".multiCraftModal").modal("hide")
-        Meteor.call("abilities.craftSpell", abilityId, amountToCraft, (err) => {
-            if (err) {
-                toastr.warning(err.reason)
-            } else {
-                toastr.success(`Crafted ${spellConstants.name}`)
-            }
-        })
-    },
-
-    "click .craft-btn"(event, instance) {
-        const abilityId = instance.state.get("multiCraftAbilityId")
-        const amountToCraft = parseInt($(event.target).closest(".craft-btn")[0].getAttribute("data-amount"))
-
-        const spellCrafting = instance.state.get("spellCrafting")
-        const spellConstants = _.findWhere(spellCrafting, { abilityId })
-        instance.$(".multiCraftModal").modal("hide")
-
-        Meteor.call("abilities.craftSpell", abilityId, amountToCraft, (err) => {
-            if (err) {
-                toastr.warning(err.reason)
-            } else {
-                toastr.success(`Crafting ${spellConstants.name}`)
-            }
-        })
-    },
-
-    "click .craft-spell"(event, instance) {
-        const abilityId = $(event.target).closest(".craft-spell")[0].getAttribute("data-spell")
-        const spellCrafting = instance.state.get("spellCrafting")
-
-        const spellConstants = _.findWhere(spellCrafting, { abilityId })
-
-        let { maxCraftable, notMet } = determineRequiredItems(spellConstants)
-
-        if (notMet) {
-            return toastr.warning("Not enough resources to craft")
-        }
-
-        if (spellConstants.maxToCraft > 1) {
-            instance.state.set("maxCraftableAmount", maxCraftable)
-            instance.state.set("maxCraftAmount", 10000)
-            instance.state.set("craftAmount", Math.ceil(maxCraftable / 2))
-            instance.state.set("multiCraftAbilityId", abilityId)
-            instance.$(".multiCraftModal").modal("show")
-            instance.$(".craft-amount-input").focus()
-        }
-    }
-})
-
 Template.spellBookTab.helpers({
-    spellCrafting() {
-        const instance = Template.instance()
-        return instance.state.get("spellCrafting")
+    requiredCosts() {
+        const required = this.required
+        const costs = this.costs
+        return Object.keys(costs).map((key) => { return Object.assign({}, { type: key, items: required }, costs[key]) })
     },
 
-    abilityLibrary() {
-        const instance = Template.instance()
-        const myAbilities = Abilities.findOne({})
+    totalCastXp() {
+        const costs = this.costs
 
-        if (!instance.state.get("abilityLibrary") || !myAbilities) {
-            return []
-        }
+        let total = 0
+        Object.keys(costs).map((key) => { return Object.assign({}, { type: key }, costs[key]) }).forEach(function(element) {
+            if (element.type && element.xp) {
+                total += element.xp
+            }
+        })
 
-        return instance.state
-            .get("abilityLibrary")
-            .map((ability) => {
-                ability.primaryAction = {}
+        return total
+    },
 
-                const targetAbility = _.findWhere(myAbilities.learntAbilities, { abilityId: ability.id })
-                if (targetAbility) {
-                    ability.notLearnt = false
-                    if (BUFFS && BUFFS[ability.id]) {
-                        ability.scaledCooldown = BUFFS[ability.id].scaledCooldown
-                    }
-                    ability.isSpell = targetAbility.isSpell
-                    ability.casts = targetAbility.casts
-                    ability.primaryAction = {
-                        description: "equip",
-                        ability,
-                        method() {
-                            Meteor.call("abilities.equip", this.ability.id)
+    requiredCost() {
+        if (this.type && this.cost && this.items) {
+            const thisType = this.type
+
+            if (this.cost.units > 0 && MAGIC_TYPES[thisType]) {
+                /*
+                const thisTypeToItem = thisType.replace("necrotic", "poison")
+                let itemIcons = ""
+                this.items.forEach(function(itemRequirement) {
+                    //console.log(itemRequirement)
+                    if (itemRequirement.itemId.indexOf(`${thisTypeToItem}_`) !== -1) {
+                        if (itemRequirement.amount > 1) {
+                            itemIcons += `<img src="/icons/${itemRequirement.icon}" class="tiny-icon" /><sup>x${itemRequirement.amount}</sup>`
+                        } else {
+                            itemIcons += `<img src="/icons/${itemRequirement.icon}" class="tiny-icon" />`
                         }
                     }
-                } else {
-                    ability.notLearnt = true
-                }
+                })
+                return `${this.cost.units} ${MAGIC_TYPES[this.type].unitName} <span class="text-muted">(${itemIcons})</span>&nbsp; &nbsp; `
+                */
 
-                return ability
-            })
-            .filter((ability) => {
-                return ability.isSpell
-            })
+                return `${Numeral(this.cost.units).format("0,0")} ${MAGIC_TYPES[this.type].unitName} <img src="/icons/${MAGIC_TYPES[this.type].icon}" class="extra-small-icon" style="margin-top: -6px" />&nbsp; &nbsp; `
+            }
+        }
+        return false
     },
 
-    maxCraftAmount() {
-        return Template.instance().state.get("maxCraftAmount")
+    magicSkill() {
+        return Skills.findOne({ type: "magic" })
     },
 
-    craftAmount() {
-        return Template.instance().state.get("craftAmount")
-    },
-
-    maxCraftableAmount() {
-        return Template.instance().state.get("maxCraftableAmount")
+    spellList() {
+        const instance = Template.instance()
+        return instance.state.get("spellList")
     }
 })

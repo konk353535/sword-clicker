@@ -5,6 +5,7 @@ import { addBuff, lookupBuff, removeBuff, anyUnitAffectedBy, targetHasAttackSpee
 export const MAGIC_BUFFS = {
     /* BUFFS */
 
+    /*
     summon_skeleton: {
         duplicateTag: "summon_skeleton", // Used to stop duplicate buffs
         icon: "summonSkeleton.svg",
@@ -32,16 +33,16 @@ export const MAGIC_BUFFS = {
                 const magicPowerBase = constants.magicPowerBase
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.magicPowerBase = 1 + magicPowerBase / 100
                     target.stats.magicPower *= buff.data.magicPowerBase
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -51,6 +52,7 @@ export const MAGIC_BUFFS = {
             onRemove({ buff, target, caster, actualBattle }) {}
         }
     },
+    */
 
     magic_wisdom: {
         duplicateTag: "magic_wisdom", // Used to stop duplicate buffs
@@ -81,16 +83,16 @@ export const MAGIC_BUFFS = {
                 const magicPowerBase = constants.magicPowerBase
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.magicPowerBase = 1 + magicPowerBase / 100
-                    target.stats.magicPower *= buff.data.magicPowerBase
-                }
+                //    target.stats.magicPower *= buff.data.magicPowerBase
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -119,8 +121,7 @@ export const MAGIC_BUFFS = {
             )}% of MP).  Maximum attack speed capped at 250%.  <br />
         For ${c.attacksCount} auto-attacks. <br />
         Cannot be combined with any other spells that increase attack speed <br />
-        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `
+        This spell caps your effective MP at ${c.benefitMPCap}`
         },
         constants: {
             attacksCount: 10,
@@ -158,7 +159,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Prevent use if the target is already affected by a spell that increases attack speed
                 if (targetHasAttackSpeedMagicBuff(target)) {
@@ -167,17 +168,17 @@ export const MAGIC_BUFFS = {
                 }
             
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalAttackSpeedDecimal = 1 + totalAttackSpeed / 100
 
                     target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal
                     buff.stacks = constants.attacksCount + 0
-                } else {
-                    buff.stacks = 0
-                }
+                //} else {
+                //    buff.stacks = 0
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
@@ -209,9 +210,8 @@ export const MAGIC_BUFFS = {
                 c.attackSpeedMPRatio * 100
             )}% of MP). Maximum attack speed capped at 100%. <br />
         Decrease your attack speed by the same amount <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Cannot be combined with any other spells that increase attack speed <br />
-        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
+        This spell caps your effective MP at ${c.benefitMPCap}<br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -249,7 +249,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Prevent use if the target is already affected by a spell that increases attack speed
                 if (targetHasAttackSpeedMagicBuff(target)) {
@@ -258,16 +258,16 @@ export const MAGIC_BUFFS = {
                 }
                 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalAttackSpeedDecimal = 1 + totalAttackSpeed / 100
                     buff.data.originalCaster = caster.id
 
                     target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal
                     caster.stats.attackSpeed /= buff.data.totalAttackSpeedDecimal
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -303,9 +303,8 @@ export const MAGIC_BUFFS = {
         Increases all allies attack speed by ${c.attackSpeedBase}% + (${Math.round(
                 c.attackSpeedMPRatio * 100
             )}% of MP). Maximum attack speed capped at 400%. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
         Cannot be combined with any other spells that increase attack speed <br />
-        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
+        This spell caps your effective MP at ${c.benefitMPCap}<br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -331,7 +330,7 @@ export const MAGIC_BUFFS = {
                 const totalAttackSpeed = attackSpeedBase + attackSpeedMP                
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Skip this target if the target is already affected by a spell that increases attack speed
                 if (targetHasAttackSpeedMagicBuff(target)) {
@@ -339,14 +338,14 @@ export const MAGIC_BUFFS = {
                 }
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalAttackSpeedDecimal = 1 + totalAttackSpeed / 100
 
                     target.stats.attackSpeed *= buff.data.totalAttackSpeedDecimal
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -373,7 +372,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Increases targets armor by ${c.armorBase} + (${Math.round(c.armorMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -398,16 +396,16 @@ export const MAGIC_BUFFS = {
                 const totalArmor = armorBase + armorMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalArmor = totalArmor
                     target.stats.armor += totalArmor
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -434,8 +432,7 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
-        Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. `
+        Target gains ${c.damageBase}% damage while the shield is active.`
         },
         constants: {
             damageBase: 25,
@@ -461,12 +458,12 @@ export const MAGIC_BUFFS = {
                 const damageDecimal = constants.damageBase / 100
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.damageDecimal = damageDecimal
                     buff.data.shieldHp = totalShield
@@ -474,9 +471,9 @@ export const MAGIC_BUFFS = {
                     buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal
                     target.stats.attack += buff.data.attack
                     target.stats.attackMax += buff.data.attackMax
-                } else {
-                    buff.data.shieldHp = 0
-                }
+                //} else {
+                //    buff.data.shieldHp = 0
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -547,12 +544,12 @@ export const MAGIC_BUFFS = {
                 const damageDecimal = constants.damageBase / 100
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.damageDecimal = damageDecimal
                     buff.data.shieldHp = totalShield
@@ -560,9 +557,9 @@ export const MAGIC_BUFFS = {
                     buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal
                     target.stats.attack += buff.data.attack
                     target.stats.attackMax += buff.data.attackMax
-                } else {
-                    buff.data.shieldHp = 0
-                }
+                //} else {
+                //    buff.data.shieldHp = 0
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -607,8 +604,7 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Apply a (${c.baseShield} + ${Math.round(c.shieldMPRatio * 100)}%MP) health shield to the target. <br />
-        Target gains ${c.damageBase}% damage while the shield is active. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). `
+        Target gains ${c.damageBase}% damage while the shield is active. `
         },
         constants: {
             damageBase: 25,
@@ -634,12 +630,12 @@ export const MAGIC_BUFFS = {
                 const damageDecimal = constants.damageBase / 100
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.damageDecimal = damageDecimal
                     buff.data.shieldHp = totalShield
@@ -647,9 +643,9 @@ export const MAGIC_BUFFS = {
                     buff.data.attackMax = target.stats.attackMax * buff.data.damageDecimal
                     target.stats.attack += buff.data.attack
                     target.stats.attackMax += buff.data.attackMax
-                } else {
-                    buff.data.shieldHp = 0
-                }
+                //} else {
+                //    buff.data.shieldHp = 0
+                //}
             },
 
             onTookDamage({ secondsElapsed, buff, defender, attacker, actualBattle, damageDealt }) {
@@ -683,9 +679,9 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Increases all ally attack damage and attack speed by ${c.increaseBase}% + (${Math.round(c.increaseMPRatio * 100)}% of MP).  Maximum attack speed
-        and damage capped at 100%.  At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
+        and damage capped at 100%. <br />
         Cannot be combined with any other spells that increase attack speed <br />
-        This spell caps your effective MP at ${buff.data.benefitMPCap} for effect and cost <br />
+        This spell caps your effective MP at ${c.benefitMPCap}<br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -711,7 +707,7 @@ export const MAGIC_BUFFS = {
                 const totalIncrease = increaseBase + increaseMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Skip this target if the target is already affected by a spell that increases attack speed
                 if (targetHasAttackSpeedMagicBuff(target)) {
@@ -719,9 +715,9 @@ export const MAGIC_BUFFS = {
                 }
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.increaseDecimal = totalIncrease / 100
                     target.stats.attackSpeed *= 1 + buff.data.increaseDecimal
@@ -729,7 +725,7 @@ export const MAGIC_BUFFS = {
                     buff.data.attackMax = target.stats.attack * buff.data.increaseDecimal
                     target.stats.attack += buff.data.attack
                     target.stats.attackMax += buff.data.attackMax
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -759,8 +755,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff && buff.constants ? buff.constants : lookupBuff("water_wave").constants
             return `
-        Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per ally).`
+        Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). `
         },
         constants: {
             healBase: 15,
@@ -786,12 +781,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.healTarget(totalHeal, {
                         caster,
@@ -800,7 +795,7 @@ export const MAGIC_BUFFS = {
                         historyStats: actualBattle.historyStats,
                         healSource: buff
                     })
-                }
+                //}
 
                 buff.data.didHeal = true
             },
@@ -823,8 +818,7 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        Increases targets armor by 20 + (${Math.round(c.armorMPRatio * 100)}% of MP) for ${c.duration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Increases targets armor by 20 + (${Math.round(c.armorMPRatio * 100)}% of MP) for ${c.duration}s. `
         },
         constants: {
             healBase: 3,
@@ -853,12 +847,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.healTarget(totalHeal, {
                         caster,
@@ -874,9 +868,9 @@ export const MAGIC_BUFFS = {
                     buff.data.totalArmor = totalArmor
                     buff.duration = constants.duration
                     buff.data.totalDuration = constants.duration
-                } else {
-                    buff.duration = buff.data.duration = buff.data.totalDuration = 0
-                }
+                //} else {
+                //    buff.duration = buff.data.duration = buff.data.totalDuration = 0
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -902,8 +896,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). `
         },
         constants: {
             healBase: 3,
@@ -929,12 +922,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.healTarget(totalHeal, {
                         caster,
@@ -943,7 +936,7 @@ export const MAGIC_BUFFS = {
                         historyStats: actualBattle.historyStats,
                         healSource: buff
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -961,8 +954,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). `
         },
         constants: {
             healBase: 10,
@@ -988,12 +980,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.healTarget(totalHeal, {
                         caster,
@@ -1002,7 +994,7 @@ export const MAGIC_BUFFS = {
                         historyStats: actualBattle.historyStats,
                         healSource: buff
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1020,8 +1012,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP). `
         },
         constants: {
             healBase: 50,
@@ -1047,12 +1038,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.healTarget(totalHeal, {
                         caster,
@@ -1061,7 +1052,7 @@ export const MAGIC_BUFFS = {
                         historyStats: actualBattle.historyStats,
                         healSource: buff
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1080,7 +1071,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Heals target for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 4 seconds. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -1106,12 +1096,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalHeal = totalHeal
                     buff.data.healingPower = caster.stats.healingPower
@@ -1124,7 +1114,7 @@ export const MAGIC_BUFFS = {
                         healSource: buff
                     })
                     buff.data.timeTillHeal = 4
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1159,7 +1149,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Heals all allies for ${c.healBase} + (${Math.round(c.healMPRatio * 100)}% of MP) every 4 seconds. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per ally). <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -1185,12 +1174,12 @@ export const MAGIC_BUFFS = {
                 const totalHeal = healBase + healMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+               //     caster.stats.healthMax -= totalHealth
 
                     buff.data.totalHeal = totalHeal
                     buff.data.healingPower = caster.stats.healingPower
@@ -1203,7 +1192,7 @@ export const MAGIC_BUFFS = {
                         healSource: buff
                     })
                     buff.data.timeTillHeal = 4
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1237,8 +1226,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Resurrects all fallen allies. Heals all allies to full hp<br />
-        At a cost of ${c.healthCost} max health.`
+        Resurrects all fallen allies. Heals all allies to full hp`
         },
         constants: {
             healthCost: 1000
@@ -1255,12 +1243,12 @@ export const MAGIC_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
                 const healthBase = constants.healthCost
-                const totalHealth = healthBase / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = healthBase / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     // Interface with actual battle, mutate all deadUnits into units
                     actualBattle.units = actualBattle.deadUnits.concat(actualBattle.units)
@@ -1268,7 +1256,7 @@ export const MAGIC_BUFFS = {
                     actualBattle.units.forEach((unit) => {
                         unit.stats.health = unit.stats.healthMax
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1290,8 +1278,7 @@ export const MAGIC_BUFFS = {
 
             return `
         Poisons the enemy dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage every 5 seconds.<br />
-        Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Lasts for ${c.totalDuration}s. `
         },
         constants: {
             damageMPRatio: 0.4,
@@ -1314,12 +1301,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     // Add poisoned debuff to enemy
                     let newBuff = target.addBuff({
@@ -1336,7 +1323,7 @@ export const MAGIC_BUFFS = {
                     newBuff.data.casterUnit = caster.id
 
                     newBuff.onApply({ buff: newBuff, target, caster, actualBattle })
-                }
+                //}
                 buff.duration = 0
             },
 
@@ -1376,8 +1363,7 @@ export const MAGIC_BUFFS = {
         Deals (${Math.round(c.damageMPRatio * 100)}% of MP) damage at the start and end of affliction. <br />
         Reduces enemy magic armor by (${c.magicArmorReductionBase} + ${Math.round(
                 c.magicArmorReductionMPRatio * 100
-            )}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+            )}% of MP) for ${c.totalDuration}s`
         },
         constants: {
             magicArmorReductionBase: 35,
@@ -1405,12 +1391,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.magicDamageTotal = magicDamageTotal
                     buff.data.totalMagicArmorReduction = totalMagicArmorReduction
@@ -1426,10 +1412,10 @@ export const MAGIC_BUFFS = {
                         customIcon: "affliction.svg",
                         source: "Affliction"                        
                     })
-                } else {
-                    buff.data.totalMagicArmorReduction = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.totalMagicArmorReduction = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1466,8 +1452,7 @@ export const MAGIC_BUFFS = {
             return `
         Reduces enemy armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${
                 c.totalDuration
-            }s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+            }s`
         },
         constants: {
             armorReductionBase: 2,
@@ -1493,19 +1478,19 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalArmorReduction = totalArmorReduction
                     target.stats.armor -= totalArmorReduction
-                } else {
-                    buff.data.totalArmorReduction = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.totalArmorReduction = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1535,8 +1520,7 @@ export const MAGIC_BUFFS = {
         Strikes the target with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage. <br />
         And reducing their armor by (${c.armorReductionBase} + ${Math.round(
                 c.armorReductionMPRatio * 100
-            )}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+            )}% of MP) for ${c.totalDuration}s`
         },
         constants: {
             armorReductionBase: 2,
@@ -1564,12 +1548,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(damage, {
                         attacker: caster,
@@ -1583,10 +1567,10 @@ export const MAGIC_BUFFS = {
 
                     buff.data.totalArmorReduction = totalArmorReduction
                     target.stats.armor -= totalArmorReduction
-                } else {
-                    buff.data.totalArmorReduction = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.totalArmorReduction = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1616,8 +1600,7 @@ export const MAGIC_BUFFS = {
         Strikes all enemies with lightning, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage. <br />
         And reducing their armor by (${c.armorReductionBase} + ${Math.round(
                 c.armorReductionMPRatio * 100
-            )}% of MP) for ${c.totalDuration}s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target)`
+            )}% of MP) for ${c.totalDuration}s`
         },
         constants: {
             armorReductionBase: 2,
@@ -1645,12 +1628,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(damage, {
                         attacker: caster,
@@ -1664,10 +1647,10 @@ export const MAGIC_BUFFS = {
 
                     buff.data.totalArmorReduction = totalArmorReduction
                     target.stats.armor -= totalArmorReduction
-                } else {
-                    buff.data.totalArmorReduction = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.totalArmorReduction = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1696,8 +1679,7 @@ export const MAGIC_BUFFS = {
             return `
         Reduces enemy armor by (${c.armorReductionBase} + ${Math.round(c.armorReductionMPRatio * 100)}% of MP) for ${
                 c.totalDuration
-            }s<br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+            }s`
         },
         constants: {
             armorReductionBase: 10,
@@ -1723,19 +1705,19 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalArmorReduction = totalArmorReduction
                     target.stats.armor -= totalArmorReduction
-                } else {
-                    buff.data.totalArmorReduction = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.totalArmorReduction = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1764,8 +1746,7 @@ export const MAGIC_BUFFS = {
             return `
         Freezes all enemies, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
         and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
-        Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Lasts for ${c.totalDuration}s. `
         },
         constants: {
             damageMPRatio: 0.2,
@@ -1789,12 +1770,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(damage, {
                         attacker: caster,
@@ -1822,7 +1803,7 @@ export const MAGIC_BUFFS = {
                     }
 
                     addBuff({ buff: newBuff, target, caster })
-                }
+                //}
 
                 buff.duration = -1
             },
@@ -1849,8 +1830,7 @@ export const MAGIC_BUFFS = {
             return `
         Freezes current target, dealing (${Math.round(c.damageMPRatio * 100)}% MP) magic damage 
         and slowing attack speed by ${Math.round(c.attackSpeedDecrease * 100)}%. <br />
-        Lasts for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Lasts for ${c.totalDuration}s. `
         },
         constants: {
             damageMPRatio: 1.0,
@@ -1874,12 +1854,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(damage, {
                         attacker: caster,
@@ -1907,7 +1887,7 @@ export const MAGIC_BUFFS = {
                     }
 
                     addBuff({ buff: newBuff, target, caster })
-                }
+                //}
 
                 buff.duration = -1
             },
@@ -1933,8 +1913,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. `
         },
         constants: {
             damageBase: 2,
@@ -1958,12 +1937,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -1973,7 +1952,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "earthDart.svg",
                         source: "Earth Dart"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -1991,8 +1970,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as physical damage. `
         },
         constants: {
             damageBase: 10,
@@ -2016,12 +1994,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -2031,7 +2009,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "earthBall.svg",
                         source: "Earth Ball"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2051,8 +2029,7 @@ export const MAGIC_BUFFS = {
 
             return `
         Strikes the target with earth, dealing (${Math.round(c.damageMPRatio * 100)}% MP) damage 
-        and stunning them for ${c.totalDuration}s. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        and stunning them for ${c.totalDuration}s. `
         },
         constants: {
             damageMPRatio: 1,
@@ -2075,12 +2052,12 @@ export const MAGIC_BUFFS = {
 
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(damage, {
                         attacker: caster,
@@ -2094,10 +2071,10 @@ export const MAGIC_BUFFS = {
 
                     buff.data.attackSpeedDecrease = 99
                     target.stats.attackSpeed *= 1 - buff.data.attackSpeedDecrease / 100
-                } else {
-                    buff.data.attackSpeedDecrease = 0
-                    buff.duration = -1
-                }
+                //} else {
+                //    buff.data.attackSpeedDecrease = 0
+                //    buff.duration = -1
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2203,7 +2180,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Damages target for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) every second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -2237,12 +2213,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     const newBuff = {
                         id: "ignite_proper",
@@ -2263,7 +2239,7 @@ export const MAGIC_BUFFS = {
 
                     // Add ignite debuff
                     addBuff({ buff: newBuff, target: target, caster: caster })
-                }
+                //}
 
                 // remove stub debuff
                 removeBuff({ buff, target, caster, actualBattle })
@@ -2338,7 +2314,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Damages target for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) every second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health. <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -2457,7 +2432,6 @@ export const MAGIC_BUFFS = {
             const c = buff.constants
             return `
         Damages all enemies for ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) twice a second. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per target). <br />
         Lasts for ${buff.data.totalDuration}s`
         },
         constants: {
@@ -2482,12 +2456,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     buff.data.totalDamage = totalDamage
                     buff.data.sourceId = caster.id
@@ -2501,7 +2475,7 @@ export const MAGIC_BUFFS = {
                         source: "Inferno"
                     })
                     buff.data.timeTillDamage = 0.5
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2537,8 +2511,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage to all enemies. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health (per enemy).`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage to all enemies. `
         },
         constants: {
             damageBase: 2,
@@ -2562,12 +2535,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -2578,7 +2551,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "fireWave.svg",
                         source: "Fire Wave"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2596,8 +2569,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. `
         },
         constants: {
             damageBase: 2,
@@ -2621,12 +2593,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -2637,7 +2609,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "fireDart.svg",
                         source: "Fire Dart"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2655,8 +2627,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. `
         },
         constants: {
             damageBase: 20,
@@ -2680,12 +2651,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -2696,7 +2667,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "fireBall.svg",
                         source: "Fire Ball"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
@@ -2714,8 +2685,7 @@ export const MAGIC_BUFFS = {
         description({ buff, level }) {
             const c = buff.constants
             return `
-        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. <br />
-        At a cost of ${c.healthCost} + (${Math.round(c.healthCostMPRatio * 100)}% of MP) max health.`
+        Deals ${c.damageBase} + (${Math.round(c.damageMPRatio * 100)}% of MP) as magic damage. `
         },
         constants: {
             damageBase: 20,
@@ -2739,12 +2709,12 @@ export const MAGIC_BUFFS = {
                 const totalDamage = damageBase + damageMP
                 const healthBase = constants.healthCost
                 const healthMP = constants.healthCostMPRatio * caster.stats.magicPower
-                const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
+                //const totalHealth = (healthBase + healthMP) / (caster?.currentClass?.id === "wizard" ? 2.0 : 1.0)
 
                 // Make sure we have target health
-                if (caster.stats.health >= totalHealth) {
-                    caster.stats.health -= totalHealth
-                    caster.stats.healthMax -= totalHealth
+                //if (caster.stats.health >= totalHealth) {
+                //    caster.stats.health -= totalHealth
+                //    caster.stats.healthMax -= totalHealth
 
                     actualBattle.dealDamage(totalDamage, {
                         attacker: caster,
@@ -2755,7 +2725,7 @@ export const MAGIC_BUFFS = {
                         customIcon: "meteorStrike.svg",
                         source: "Meteor Strike"
                     })
-                }
+                //}
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {

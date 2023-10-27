@@ -384,8 +384,8 @@ Meteor.methods({
                                 level: 1,
                                 equipped: false,
                                 currentCooldown: 0,
-                                isSpell: true,
-                                casts: 0
+                                //casts: 0,
+                                isSpell: true
                             }
                         }
                     }

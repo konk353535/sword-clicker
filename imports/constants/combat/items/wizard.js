@@ -26,7 +26,8 @@ export const WIZARD_ITEMS = {
                 level: 20
             }
         ],
-        enchantments: ["phoenix_hat"]
+        enchantments: ["phoenix_hat"],
+        tier: 5
     },
 
     eternal_flame: {
@@ -56,7 +57,8 @@ export const WIZARD_ITEMS = {
                 level: 60
             }
         ],
-        enchantments: ["eternal_flame"]
+        enchantments: ["eternal_flame"],
+        tier: 13
     },
 
     druids_hat: {
@@ -89,7 +91,8 @@ export const WIZARD_ITEMS = {
                 level: 10
             }
         ],
-        enchantments: ["druidic_hat"]
+        enchantments: ["druidic_hat"],
+        tier: 3
     },
 
     druids_shirt: {
@@ -128,7 +131,8 @@ export const WIZARD_ITEMS = {
                 name: "magic",
                 level: 15
             }
-        ]
+        ],
+        tier: 4
     },
 
     druids_pants: {
@@ -167,7 +171,8 @@ export const WIZARD_ITEMS = {
                 name: "magic",
                 level: 15
             }
-        ]
+        ],
+        tier: 4
     },
 
     brown_wizard_hat: {

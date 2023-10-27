@@ -105,15 +105,25 @@
             Cooldown <b>{{item.cooldown}}s</b><br />
           {{/if}}
 
+          <!--
           {{#if item.isSpell}}
             <b>{{> formatNumber number=item.casts}}</b> casts remaining.<br /><br />
           {{/if}}
+          -->
 
           {{#unless item.hideStats}}
             {{#if stats}}
               {{> displayCombatStats stats=stats slot=item.slot}}
             {{/if}}
           {{/unless}}
+
+          {{#if magicPoolCapacity}}
+            {{{magicPoolCapacity}}}<br />
+          {{/if}}
+
+          {{#if magicUnitInfo}}
+            {{{magicUnitInfo}}}<br />
+          {{/if}}
 
           {{#if item.required}}
             <b>Requires</b><br />

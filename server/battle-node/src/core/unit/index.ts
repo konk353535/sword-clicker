@@ -14,6 +14,8 @@ import { enemy } from "../../types/enemy"
 import { skill } from "../../types/skill"
 import { unit } from "../../types/unit"
 
+import { ticksPerSecondAll } from "../tickMethods/tickTimer"
+
 export const isUnit = (value: any): value is unit => {
     return value != null && value.hasOwnProperty("owner") && value.owner
 }
@@ -69,6 +71,7 @@ export default class Unit {
     effectFlipDamageTypeDefense?: boolean
     cantMiss?: boolean
     cantBeHit?: boolean
+    broughtMagic: boolean
 
     get name() {
         return this._name
@@ -359,6 +362,8 @@ export default class Unit {
         this.id = unit.id
         this.isUnitClass = true
 
+        this.broughtMagic = false
+
         if (isUnit(unit)) {
             this.battleSecret = unit.battleSecret
             this.amulet = unit.amulet
@@ -384,6 +389,17 @@ export default class Unit {
                     this.abilitiesMap[rawAbility.id] = ability
                     return ability
                 })
+
+                if (unit.currentClass?.id !== "barbarian") {
+                    let hasMagic:boolean = this.broughtMagic
+                    this.abilities.forEach((ability) => {
+                        if (ability.magic && !ability.magic.error) {
+                            hasMagic = true
+                        }
+                    })
+
+                    this.broughtMagic = hasMagic
+                }
             }
 
             if (unit.skills) {
@@ -427,6 +443,16 @@ export default class Unit {
 
     tick() {
         this.attackIn--
+
+        // Regenerate magic pools
+        if (this.broughtMagic) {
+            const magicSkillLevel = this.magicSkill()
+
+            if (magicSkillLevel > 0) {
+                const regenAmount = magicSkillLevel * 2 / 60.0 / ticksPerSecondAll
+                this.stats.magic.regenerateAll(regenAmount)
+            }
+        }
     }
 
     checkDeath() {
@@ -646,7 +672,8 @@ export default class Unit {
             bonusLoot: this.bonusLoot || 0.0,
             isNPC: this.isNPC,
             isCompanion: this.isCompanion,
-            isSoloCompanion: this.isSoloCompanion
+            isSoloCompanion: this.isSoloCompanion,
+            broughtMagic: this.broughtMagic
         }
     }
 }

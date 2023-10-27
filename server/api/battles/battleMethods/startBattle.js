@@ -6,6 +6,8 @@ import { BATTLES } from "/server/constants/battles/index.js" // List of encounte
 import { ABILITIES, COMBAT } from "/server/constants/combat/index.js" // List of available combat stats
 import { ENEMIES } from "/server/constants/enemies/index.js" // List of enemies
 import { FLOORS } from "/server/constants/floors/index.js" // List of floor details
+import { ITEMS } from "/imports/constants/items/index.js"
+import { spellData } from "/server/constants/magic"
 
 import lodash from "lodash"
 import moment from "moment"
@@ -27,6 +29,124 @@ import { fixupBuffText } from "/server/battleUtils"
 
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { CInt, IsValid } from "/imports/utils.js"
+import { addItem } from "../../items/items"
+
+const calculateMagicStatsAndConsumeItems = function(uid, magicPools) {
+    const userDoc = Users.findOne({ _id: uid })
+    if (!userDoc) {
+        return {
+            magic: {
+                firePool: 0,
+                fireReserve: 0,
+                earthPool: 0,
+                earthReserve: 0,
+                airPool: 0,
+                airReserve: 0,
+                waterPool: 0,
+                waterReserve: 0,
+                necroticPool: 0,
+                necroticReserve: 0
+            }
+        }
+    }
+
+    let magicReserves = {
+        fire: 0,
+        earth: 0,
+        air: 0,
+        water: 0,
+        necrotic: 0
+    }
+
+    /*
+    const itemList = [
+        "poison_shard_fragment",
+        "fire_shard_fragment", "complete_fire_shard", "ancient_fire_shard",
+        "earth_shard_fragment", "complete_earth_shard", "ancient_earth_shard",
+        "air_shard_fragment", "complete_air_shard", "ancient_air_shard",
+        "water_shard_fragment", "complete_water_shard", "ancient_water_shard"
+    ]
+
+    itemList.forEach((itemId) => {
+        const itemConsts = ITEMS[itemId]
+        if (itemConsts && itemConsts.magic && itemConsts.magic.type) {
+            const itemDoc = Items.findOne({
+                owner: uid,
+                itemId
+            })
+
+            if (itemDoc && itemDoc.amount > 0) {
+                const quantity = itemDoc.amount
+
+                magicReserves[itemConsts.magic.type] += itemConsts.magic.unitValue * quantity
+
+                Items.remove(
+                    {
+                        itemId,
+                        owner: uid
+                    }
+                )
+
+                const tempItemDoc = Items.findOne({
+                    owner: uid,
+                    itemId: `${itemId}_magic_reserve`
+                })
+
+                if (!tempItemDoc) {
+                    Items.insert(
+                        {
+                            itemId: `${itemId}_magic_reserve`,
+                            amount: quantity,
+                            owner: uid,
+                            category: itemConsts.category,
+                            equipped: false
+                        }
+                    )
+                } else {
+                    Items.update(
+                        {
+                            itemId: `${itemId}_magic_reserve`,
+                            owner: uid
+                        },
+                        {
+                            $inc: {
+                                amount: quantity
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    })
+    */
+
+    const combatDoc = Combat.findOne({ owner: uid })
+
+    magicReserves.fire = combatDoc.stats.fireReserve
+    magicReserves.earth = combatDoc.stats.earthReserve
+    magicReserves.air = combatDoc.stats.airReserve
+    magicReserves.water = combatDoc.stats.waterReserve
+    magicReserves.necrotic = combatDoc.stats.necroticReserve
+
+    const finalData = {
+        magic: {
+            firePool: Math.min(magicPools, magicReserves.fire),
+            fireReserve: magicReserves.fire - Math.min(magicPools, magicReserves.fire),
+            earthPool: Math.min(magicPools, magicReserves.earth),
+            earthReserve: magicReserves.earth - Math.min(magicPools, magicReserves.earth),
+            airPool: Math.min(magicPools, magicReserves.air),
+            airReserve: magicReserves.air - Math.min(magicPools, magicReserves.air),
+            waterPool: Math.min(magicPools, magicReserves.water),
+            waterReserve: magicReserves.water - Math.min(magicPools, magicReserves.water),
+            necroticPool: Math.min(magicPools, magicReserves.necrotic),
+            necroticReserve: magicReserves.necrotic - Math.min(magicPools, magicReserves.necrotic)
+        }
+    }
+
+    console.log(finalData, magicPools, combatDoc, magicReserves)
+
+    return finalData
+}
 
 export const startBattle = function ({
     floor,
@@ -241,7 +361,7 @@ export const startBattle = function ({
                 }
 
                 // get some constants
-                const abilityConstants = ABILITIES[ability.abilityId]
+                const abilityConstants = Object.freeze(Object.assign({}, ABILITIES[ability.abilityId], { magic: spellData(ability.abilityId) }))
                 if (!abilityConstants) {
                     return false
                 }
@@ -291,10 +411,11 @@ export const startBattle = function ({
                     id: ability.abilityId,
                     level: ability.level,
                     currentCooldown: 0, // ability.currentCooldown || 0,  /* note: set this to 0 in case they 'go too fast' */
-                    casts: ability.casts,
+                    //casts: ability.casts,
                     totalCasts: 0,
                     isSpell: ability.isSpell,
-                    isPacifist: ability.isPacifist
+                    isPacifist: ability.isPacifist,
+                    magic: spellData(ability.abilityId)
                 }
             })
     })
@@ -379,10 +500,11 @@ export const startBattle = function ({
                     id: ability.abilityId,
                     level: ability.level,
                     currentCooldown: 0, // ability.currentCooldown || 0,  /* note: set this to 0 in case they 'go too fast' */
-                    casts: ability.casts,
+                    //casts: ability.casts,
                     totalCasts: 0,
                     isSpell: ability.isSpell,
-                    isPacifist: ability.isPacifist
+                    isPacifist: ability.isPacifist,
+                    magic: spellData(ability.abilityId)
                 }
             })
 
@@ -433,6 +555,9 @@ export const startBattle = function ({
 
         if (thisUnitClass?.id === "barbarian") {
             userCombatStats.magicPower = 0
+            userCombatStats = Object.assign({}, userCombatStats, calculateMagicStatsAndConsumeItems(targetUser._id, 0))
+        } else {
+            userCombatStats = Object.assign({}, userCombatStats, calculateMagicStatsAndConsumeItems(targetUser._id, userCombatStats.magicPools))
         }
 
         const newUnit = {
@@ -456,7 +581,7 @@ export const startBattle = function ({
             skills: usersSkillsArray,
             inactiveMinutes: inactiveMinutes,
             enchantmentsList: [],
-            currentClass: thisUnitClass
+            currentClass: thisUnitClass,
         }
 
         // apply enchantment effects (these will be collected, removed, and re-applied at the start of combat so that they are applied after passives

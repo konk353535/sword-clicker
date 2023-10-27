@@ -9,18 +9,23 @@
   {{else if astronomySkill}}
 
     <ul class="nav nav-tabs my-3">
-      <li class="nav-item astronomyTabLink">
-        <a class="nav-link {{#if showAstronomyTab}}active{{/if}}" href="#">Astronomy</a>
-      </li>
       <li class="nav-item spellBookTabLink">
         <a class="nav-link {{#if showSpellBookTab}}active{{/if}}" href="#">Spell Book</a>
       </li>
+      <li class="nav-item castingTabLink">
+        <a class="nav-link {{#if showCastingTab}}active{{/if}}" href="#">Casting</a>
+      </li>
+      <li class="nav-item astronomyTabLink">
+        <a class="nav-link {{#if showAstronomyTab}}active{{/if}}" href="#">Astronomy</a>
+      </li>
     </ul>
 
-    {{#if showAstronomyTab}}
-      {{> astronomyTab}}
-    {{else if showSpellBookTab}}
+    {{#if showSpellBookTab}}
       {{> spellBookTab}}
+    {{else if showCastingTab}}
+      {{> castingTab}}
+    {{else if showAstronomyTab}}
+      {{> astronomyTab}}
     {{/if}}
 
   {{else}}
@@ -33,9 +38,9 @@
         {{> requiredItems requiredItems=learnRequirements requirementsMet=learnRequirementsMet}}
       </div>
       {{#if hasLearnRequirements}}
-        <button class="btn btn-primary learn-now">Learn Now</button>
+        <button type="button" class="btn btn-primary learn-now">Learn Now</button>
       {{else}}
-        <button class="btn btn-primary learn-now" disabled>Learn Now</button>
+        <button type="button" class="btn btn-primary learn-now" disabled>Learn Now</button>
       {{/if}}        
     </div>
     

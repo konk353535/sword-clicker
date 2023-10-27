@@ -1,12 +1,12 @@
 <template name="ability">
   <div class="ability-icon-container">
     <div class="ability-hotkey">{{ability.hotkey}}</div>
-    {{#if ability.isSpell}}
+    {{#if $and (ability.isSpell) ($lt ability.casts 0)}}
       <div class="ability-casts">{{> formatNumber number=ability.casts decimal=0}}</div>
     {{/if}}
     <div class="ability-icon
       {{#if $gt ability.currentCooldown 0}}disabled{{/if}}
-      {{#if $and (ability.isSpell) ($lte ability.casts 0)}}disabled{{/if}}
+      {{#if $and (ability.isSpell) ($lt ability.casts 0)}}disabled{{/if}}
     ">
       <img src="/icons/{{ability.icon}}">
     </div>

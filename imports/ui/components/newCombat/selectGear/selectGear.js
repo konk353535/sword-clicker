@@ -93,6 +93,13 @@ Template.selectGearPage.helpers({
                     value: combat.stats.shred,
                     tooltipTitle: "Shred",
                     tooltipContent: "Your shred is a measure of your armor bypass, letting you ignore some of your enemy's armor when dealing physical damage."
+                },
+                {
+                    name: "magic armor",
+                    icon: "magicArmor.svg",
+                    value: combat.stats.magicArmor,
+                    tooltipTitle: "Armor (Magical)",
+                    tooltipContent: "Magical armor reduces damage from any magic attack.  The amount of magic armor you have gives you diminishing returns the more you have, although enemies can ignore some of your armor with Focus."
                 }
             ])
         }
@@ -159,6 +166,13 @@ Template.selectGearPage.helpers({
                     tooltipContent: "The strength of your magic damage and effects is directly related to your magic power.  Each ability and effect should indicate in what way Magic Power (MP) affects the strength of the spell."
                 },
                 {
+                    name: "magic pool",
+                    icon: "magicPool.svg",
+                    value: combat.stats.magicPools,
+                    tooltipTitle: "Magic Pools",
+                    tooltipContent: "The total size of each of your magic pools when you enter battle.  Magic pools will slowly regenerate from magic reserves during battle and are supplied by your astronomy crystals."
+                },
+                {
                     name: "focus",
                     icon: "focus.svg",
                     value: combat.stats.focus,
@@ -171,13 +185,6 @@ Template.selectGearPage.helpers({
                     value: combat.stats.healingPower,
                     tooltipTitle: "Healing Power",
                     tooltipContent: "Amplifies the strength of any healing effect, ability, or spell by a percent equal to your healing power."
-                },
-                {
-                    name: "magic armor",
-                    icon: "magicArmor.svg",
-                    value: combat.stats.magicArmor,
-                    tooltipTitle: "Armor (Magical)",
-                    tooltipContent: "Magical armor reduces damage from any magic attack.  The amount of magic armor you have gives you diminishing returns the more you have, although enemies can ignore some of your armor with Focus."
                 }
             ])
         }

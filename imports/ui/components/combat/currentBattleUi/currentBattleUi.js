@@ -456,6 +456,7 @@ window.reconnectionTrigger = function (this_template) {
 
                 deltaEvents.forEach(({ type, path, value }) => {
                     //if (path.indexOf('_brawn.') !== -1) {
+                    //if (path.indexOf('.magic.') !== -1) {
                     //    console.log('received deltaEvent', type, path, value);
                     //    console.log(currentBattle)
                     //}
@@ -714,7 +715,7 @@ Template.currentBattleUi.helpers({
             myUnit.abilities.forEach((ability) => {
                 abilityMap[ability.id] = {
                     currentCooldown: ability.currentCooldown,
-                    casts: ability.casts,
+                    //casts: ability.casts,
                     id: ability.id
                 }
             })
@@ -743,7 +744,7 @@ Template.currentBattleUi.helpers({
             .filter((ability) => {
                 if (abilityMap[ability.abilityId]) {
                     ability.currentCooldown = abilityMap[ability.abilityId].currentCooldown
-                    ability.casts = abilityMap[ability.abilityId].casts
+                    //ability.casts = abilityMap[ability.abilityId].casts
                 }
                 return ability.equipped
             })

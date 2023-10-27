@@ -4,7 +4,7 @@ import { Battles } from "/imports/api/battles/battles"
 import { userCurrentClass } from "/imports/api/classes/classes"
 import { Combat, userAverageCombat } from "/imports/api/combat/combat"
 import { Groups } from "/imports/api/groups/groups"
-import { Items, applyClassBonuses, applyRarities } from "/imports/api/items/items"
+import { Items, applyClassBonuses, applyRarities, calculateMagicPoolTotalOfItem } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { Users } from "/imports/api/users/users"
 
@@ -12,6 +12,7 @@ import lodash from "lodash"
 import moment from "moment"
 import _ from "underscore"
 import { flattenObjectForMongo } from "/server/utils"
+import { spellData } from "/server/constants/magic"
 
 import { getActiveGlobalBuff } from "/imports/api/globalbuffs/globalbuffs.js"
 import { updateUserActivity } from "/imports/api/users/users.js"
@@ -19,6 +20,7 @@ import { CInt, IsValid } from "/imports/utils.js"
 
 import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { Floors } from "/imports/api/floors/floors"
+import { ABILITIES, ABILITY } from "/server/constants/combat/index"
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS } from "/imports/constants/items/index.js"
 import { DONATORS_BENEFITS, getAvailablePlayerIcons } from "/imports/constants/shop/index.js"
@@ -32,9 +34,10 @@ const isAmuletNoncombatStats = (slot, statKey) => {
     return slot === "neck" && amuletNoncomatStats.includes(statKey)
 }
 
+
 export const updateCombatStats = function (userId, username, amuletChanged = false, newClass = undefined) {
     // Build up our object of skills
-    const playerData = {
+    let playerData = {
         stats: {
             attack: 0,
             attackMax: 0,
@@ -53,7 +56,8 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
             force: 0,
             shred: 0,
             focus: 0,
-            absorption: 0
+            absorption: 0,
+            magicPools: 0
         },
         enchantments: [],
         mainHandWeapon: "",
@@ -77,9 +81,60 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         return
     }
 
-    const currentCombat = Combat.findOne({
+    let currentCombat = Combat.findOne({
         owner: userId
     })
+
+    // convert old Abilities spellcasts into reserves
+    let magicReserves = {
+        fire: currentCombat.stats.fireReserve || 0,
+        earth: currentCombat.stats.earthReserve || 0,
+        air: currentCombat.stats.airReserve || 0,
+        water: currentCombat.stats.waterReserve || 0,
+        necrotic: currentCombat.stats.necroticReserve || 0
+    }
+
+    const playerAbilities = Abilities.findOne({ owner: Meteor.userId() })
+    const playerSpellAbilities = playerAbilities.learntAbilities
+        .filter((ability) => {
+            return ability.isSpell
+        })
+        .map((ability) => {
+            ability.icon = ABILITIES[ability.abilityId].icon
+            ability.name = ABILITIES[ability.abilityId].name
+            return ability
+        })
+    if (playerSpellAbilities) {
+        let convertedOldSpells = false
+
+        playerSpellAbilities.forEach((abilityData) => {
+            if (abilityData.casts && abilityData.casts > 0) {
+                const abilitySpellData = spellData(abilityData.abilityId)
+
+                magicReserves.fire += abilitySpellData.fire.cost.units * abilityData.casts
+                magicReserves.earth += abilitySpellData.earth.cost.units * abilityData.casts
+                magicReserves.air += abilitySpellData.air.cost.units * abilityData.casts
+                magicReserves.water += abilitySpellData.water.cost.units * abilityData.casts
+                magicReserves.necrotic += abilitySpellData.necrotic.cost.units * abilityData.casts
+
+                convertedOldSpells = true
+            }
+        })
+
+        if (convertedOldSpells) {
+            Abilities.update(
+                { owner: Meteor.userId() },
+                { $set: { "learntAbilities.$[].casts": 0 } },
+                { multi: true, bypassCollection2: true }
+            )
+        }
+    }
+
+    playerData.stats.fireReserve = magicReserves.fire
+    playerData.stats.earthReserve = magicReserves.earth
+    playerData.stats.airReserve = magicReserves.air
+    playerData.stats.waterReserve = magicReserves.water
+    playerData.stats.necroticReserve = magicReserves.necrotic
 
     const healthBeforeRecalc = currentCombat.stats.health
 
@@ -90,10 +145,14 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         equipped: true
     }).fetch()
 
+    let magicPools = 0
+
     // Apply combat items
     for (let i = 0; i < combatItems.length; i++) {
         const combatItem = combatItems[i]
         combatItem.constants = ITEMS[combatItem.itemId]
+
+        magicPools += calculateMagicPoolTotalOfItem(combatItem)
 
         if (combatItem.constants.slot === "mainHand") {
             playerData.mainHandWeapon = combatItem.itemId
@@ -150,6 +209,8 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
             }
         }
     }
+
+    playerData.stats.magicPools = magicPools
 
     // Apply combat items with % stat bonuses after flat bonuses
     for (let i = 0; i < combatItems.length; i++) {

@@ -227,7 +227,7 @@ Meteor.methods({
                                 level: 1,
                                 equipped: false,
                                 isSpell: abilityConstants.isMagic,
-                                casts: abilityConstants.isMagic ? 1 : undefined,
+                                //casts: abilityConstants.isMagic ? 1 : undefined,
                                 currentCooldown: 0
                             }
                         }
@@ -306,7 +306,7 @@ Meteor.methods({
                                     level: 1,
                                     equipped: false,
                                     isSpell: abilityConstants.isMagic,
-                                    casts: abilityConstants.isMagic ? 1 : undefined,
+                                    //casts: abilityConstants.isMagic ? 1 : undefined,
                                     currentCooldown: 0
                                 }
                             }

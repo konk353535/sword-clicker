@@ -1,4 +1,5 @@
 import Battle from ".."
+import Magic from "./magic"
 import { BATTLES } from "../../../../constants/battles"
 import { stats } from "../../types/stats"
 import { ticksPerSecondAll } from "../tickMethods/tickTimer"
@@ -44,6 +45,8 @@ export default class Stats {
 
     attackSpeedTicks: number
     minimumHitChance?: number
+
+    magic: Magic
 
     getDamageReduction(armor: number) {
         let damageReduction = BATTLES.dmgReduction(armor)
@@ -184,6 +187,8 @@ export default class Stats {
         this.absorption = stats.absorption || 0
         this.damageOutput = 1.0
 
+        this.magic = new Magic(stats.magic, unitId, battleRef)
+
         // initialize other bits
         this._attackSpeed = this.attackSpeed
         this.attackSpeedTicks = this.getAttackSpeedTicks(this.attackSpeed)
@@ -219,7 +224,8 @@ export default class Stats {
             force: this.force,
             shred: this.shred,
             focus: this.focus,
-            absorption: this.absorption
+            absorption: this.absorption,
+            magic: this.magic.raw()
         }
     }
 }

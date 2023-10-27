@@ -8,6 +8,7 @@ import { Users } from "/imports/api/users/users.js"
 
 // Component used in the template
 import "/imports/ui/components/magic/astronomyTab/astronomyTab.js"
+import "/imports/ui/components/magic/castingTab/castingTab.js"
 import "/imports/ui/components/magic/spellBookTab/spellBookTab.js"
 
 import "./magic.html"
@@ -78,17 +79,17 @@ Template.magicPage.events({
         }
     },
 
+    "click .castingTabLink"(event, instance) {
+        if (instance.state.get("currentTab") !== "casting") {
+            instance.state.set("currentTab", "casting")
+            Meteor.call("users.setUiState", "magicTab", "casting")
+        }
+    },
+
     "click .astronomyTabLink"(event, instance) {
         if (instance.state.get("currentTab") !== "astronomy") {
             instance.state.set("currentTab", "astronomy")
             Meteor.call("users.setUiState", "magicTab", "astronomy")
-        }
-    },
-
-    "click .abilitiesTabLink"(event, instance) {
-        if (instance.state.get("currentTab") !== "abilities") {
-            instance.state.set("currentTab", "abilities")
-            Meteor.call("users.setUiState", "magicTab", "abilities")
         }
     }
 })
@@ -130,11 +131,11 @@ Template.magicPage.helpers({
         return Template.instance().state.get("currentTab") === "astronomy"
     },
 
-    showSpellBookTab() {
-        return Template.instance().state.get("currentTab") === "spellBook"
+    showCastingTab() {
+        return Template.instance().state.get("currentTab") === "casting"
     },
 
-    showAbilitiesTab() {
-        return Template.instance().state.get("currentTab") === "abilities"
+    showSpellBookTab() {
+        return Template.instance().state.get("currentTab") === "spellBook"
     }
 })

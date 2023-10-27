@@ -143,7 +143,8 @@ const calculateMagicStatsAndConsumeItems = function(uid, magicPools) {
         }
     }
 
-    console.log(finalData, magicPools, combatDoc, magicReserves)
+    // debug
+    //console.log(finalData, magicPools, combatDoc, magicReserves)
 
     return finalData
 }

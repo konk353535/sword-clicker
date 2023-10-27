@@ -71,7 +71,7 @@ Template.spellBookTab.helpers({
                 return `${this.cost.units} ${MAGIC_TYPES[this.type].unitName} <span class="text-muted">(${itemIcons})</span>&nbsp; &nbsp; `
                 */
 
-                return `${Numeral(this.cost.units).format("0,0")} ${MAGIC_TYPES[this.type].unitName} <img src="/icons/${MAGIC_TYPES[this.type].icon}" class="extra-small-icon" style="margin-top: -6px" />&nbsp; &nbsp; `
+                return `<span style="display: inline-block">${Numeral(this.cost.units).format("0,0")}<span class="hide-on-mobile"> ${MAGIC_TYPES[this.type].unitName} </span><img src="/icons/${MAGIC_TYPES[this.type].icon}" class="extra-small-icon" style="margin-top: -6px" />&nbsp; <span class="hide-on-mobile>&nbsp; </span></span>`
             }
         }
         return false

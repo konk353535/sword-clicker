@@ -2240,7 +2240,7 @@ export const CLASS_BUFFS = {
         Speeds up time for you and your allies, lowering ability cooldowns for as long as
         you channel this spell.  Does not modify effects that last over time such as Mending
         Waters or Poison.  As long as you channel this spell, will lose 1.33% of your Health
-        and 0.4% of your Maximum Health per second.<br />
+        per second.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.`
         },
         constants: {

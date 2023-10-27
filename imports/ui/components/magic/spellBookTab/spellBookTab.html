@@ -8,16 +8,16 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col" class="hidden-xs-down" style="text-align: left;">Name</th>
-          <th scope="col" style="text-align: left;">Each Cast Costs</th>
-          <th scope="col" style="text-align: left;">Magic XP Per Cast</th>
+          <th scope="col" style="text-align: left;">Spell</th>
+          <th scope="col" style="text-align: left;"><span class="hide-on-mobile">Each Cast Costs</span><span class="hide-on-desktop">Cost</span></th>
+          <th scope="col" style="text-align: left;"><span class="hide-on-mobile">Magic XP Per Cast</span><span class="hide-on-desktop">XP</span></th>
         </tr>  
       </thead>
       <tbody>
         {{#each spellList}}
           <tr>
             <td>{{> abilityLibraryIcon classes='tiny' item=this}}</td>
-            <td class="text-capitalize hidden-xs-down" style="text-align: left;">{{this.name}}</td>
+            <td class="text-capitalize" style="text-align: left;">{{this.name}}</td>
             <td style="text-align: left;">
               {{#each requiredCosts}}
                 {{{requiredCost}}}

@@ -14,22 +14,22 @@
       <table class="table table-bordered table-centered table-responsive" style="width: auto">
         <thead>
           <tr>
-            <th scope="col" class="hidden-xs-down" style="text-align: left;">Type</th>
-            <th scope="col">Pool Capacity</th>
+            <th scope="col" style="text-align: left;">Type</th>
+            <th scope="col">Pool<span class="hide-on-mobile"> Capacity</span></th>
             <th scope="col">Reserves</th>
-            <th scope="col">Regeneration</th>
+            <th scope="col" class="hidden-xs-down">Regeneration</th>
           </tr>  
         </thead>
         <tbody>
           {{#each castingPool}}
             <tr>
-              <td class="text-capitalize hidden-xs-down" style="text-align: left;">
+              <td class="text-capitalize" style="text-align: left;">
                 <img src="/icons/{{this.icon}}" class="extra-small-icon" style="margin-top: -6px" />
                 {{this.unitName}}
               </td>
               <td>{{> formatNumber number=this.pool}}</td>
               <td>{{> formatNumber number=this.reserve}}</td>
-              <td>{{> formatNumber number=this.regeneration}}/minute</td>
+              <td class="hidden-xs-down">{{> formatNumber number=this.regeneration}}/minute</td>
             </tr>
           {{/each}}
         </tbody>
@@ -44,49 +44,50 @@
       traits and various effects.  Your pool sizes are determined by the equipment you are using.  Click or tap on any
       of your casting items for options to convert them into your reserves; converting items is a one-way process, so
       be sure you have enough for anything else you may want to do with your casting items.<br />
+      <br />
     </div>
 
     <!-- Convert Astronomy Item Modal -->
     <div class="modal convertToReservesModal" tabindex="-1" role="dialog" aria-labelledby="convertToReservesModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-                <div class="d-flex flex-column">
-                    <h5 class="modal-title" id="convertToReservesModalLabel">Convert to Reserve</h5>
-                    <small> conversion is a <b>one-way</b> and permanent process </small>
-                </div>
-                <div class="d-flex flex-column align-items-end">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-            <div class="modal-body">
-              How many to convert?
-              <div class="row">
-                <div class="col-md-6">
-                  <form class="convert-form">
-                    <input type="text" class="form-control convert-amount-input" value="">
-                  </form>
-                </div>
-                <div class="col-md-6 d-flex align-items-center justify-content-end">
-                  <span id="modalConvertToReservesGain"></span>
-                </div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <div class="d-flex flex-column">
+                  <h5 class="modal-title" id="convertToReservesModalLabel">Convert to Reserve</h5>
+                  <small> conversion is a <b>one-way</b> and permanent process </small>
               </div>
-
-              <br /><br />
+              <div class="d-flex flex-column align-items-end">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+          <div class="modal-body">
+            How many to convert?
+            <div class="row">
+              <div class="col-md-6">
+                <form class="convert-form">
+                  <input type="text" class="form-control convert-amount-input" value="">
+                </form>
+              </div>
+              <div class="col-md-6 d-flex align-items-center justify-content-end">
+                <span id="modalConvertToReservesGain"></span>
+              </div>
             </div>
-            <div class="modal-footer">
-              <div class="d-flex flex-row flex-wrap justify-content-end">
-                <div class="d-flex">
-                  <button type="button" class="btn btn-secondary hide-on-mobile" style="margin: 0 4px;" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-danger convert-btn" style="margin: 0 0 0 4px;">Convert</button>
-                </div>
+
+            <br /><br />
+          </div>
+          <div class="modal-footer">
+            <div class="d-flex flex-row flex-wrap justify-content-end">
+              <div class="d-flex">
+                <button type="button" class="btn btn-secondary hide-on-mobile" style="margin: 0 4px;" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger convert-btn" style="margin: 0 0 0 4px;">Convert</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   
   </template>
   

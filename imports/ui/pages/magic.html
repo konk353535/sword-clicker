@@ -8,9 +8,9 @@
     
   {{else if astronomySkill}}
 
-    <ul class="nav nav-tabs my-3">
+    <ul class="nav nav-tabs my-3" style="overflow: hidden">
       <li class="nav-item spellBookTabLink">
-        <a class="nav-link {{#if showSpellBookTab}}active{{/if}}" href="#">Spell Book</a>
+        <a class="nav-link {{#if showSpellBookTab}}active{{/if}}" href="#"><span class="hide-on-mobile">Spell Book</span><span class="hide-on-desktop">Spells</span></a>
       </li>
       <li class="nav-item castingTabLink">
         <a class="nav-link {{#if showCastingTab}}active{{/if}}" href="#">Casting</a>

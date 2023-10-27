@@ -1097,8 +1097,12 @@ Meteor.methods({
             throw new Meteor.Error("not-casting-item", `${itemConstants.name} can't be converted into your reserves`)
         }
 
+        if (amount <= 0) {
+            throw new Meteor.Error("invalid-amount", `You can't convert less than a single ${itemConstants.name}`)
+        }
+
         if (targetItem.amount < amount) {
-            throw new Meteor.Error("not-casting-item", `You can only convert ${targetItem.amount} ${itemConstants.name}s`)
+            throw new Meteor.Error("invalid-amount", `You can only convert ${targetItem.amount} ${itemConstants.name}s`)
         }
 
         if (itemConstants.magic.type === "fire") {

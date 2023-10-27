@@ -396,7 +396,7 @@ export const ENCHANTMENT_BUFFS = {
         name: "opal chest plate",
         description() {
             return `
-        Your your magic regeneration rate increases by your Magic skill level for all pools.`
+        Your magic regeneration rate increases by your Magic skill level for all pools.`
         },
         constants: {},
         data: {

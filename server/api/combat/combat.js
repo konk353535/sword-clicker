@@ -94,7 +94,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
         necrotic: currentCombat.stats.necroticReserve || 0
     }
 
-    const playerAbilities = Abilities.findOne({ owner: Meteor.userId() })
+    const playerAbilities = Abilities.findOne({ owner: userId })
     const playerSpellAbilities = playerAbilities.learntAbilities
         .filter((ability) => {
             return ability.isSpell
@@ -123,7 +123,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
         if (convertedOldSpells) {
             Abilities.update(
-                { owner: Meteor.userId() },
+                { owner: userId },
                 { $set: { "learntAbilities.$[].casts": 0 } },
                 { multi: true, bypassCollection2: true }
             )

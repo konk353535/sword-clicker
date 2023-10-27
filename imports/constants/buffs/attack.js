@@ -849,11 +849,15 @@ export const ATTACK_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
 
+                buff.data.gotApplied = false
+
                 // War Mage prevention
                 if (caster?.currentClass?.id === "warmage") {
                     buff.data.preventUse({ buff, target, caster, actualBattle})
                     return
                 }
+
+                buff.data.gotApplied = true
 
                 // Barbarian version
                 if (caster?.currentClass?.id === "barbarian" && constants?.barbarian) {
@@ -892,6 +896,10 @@ export const ATTACK_BUFFS = {
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.gotApplied) {
+                    return
+                }
+
                 let localSecondsElapsed = secondsElapsed
 
                 const damageToTake = localSecondsElapsed * buff.data.healthLost
@@ -915,6 +923,10 @@ export const ATTACK_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {
+                if (!buff.data.gotApplied) {
+                    return
+                }
+
                 target.stats.attack -= buff.data.extraAttack
                 target.stats.attackMax -= buff.data.extraAttackMax
                 target.stats.attackSpeed /= 1 + buff.data.damageIncrease / 100
@@ -1381,7 +1393,7 @@ export const ATTACK_BUFFS = {
             preventUse: function ({ buff, target, caster, actualBattle }) {
                 setTimeout(function () {
                     caster.abilities.forEach((ability) => {
-                        if (ability.id == "berserk") {
+                        if (ability.id == "blade_frenzy") {
                             ability.currentCooldown = 0
                         }
                     })
@@ -1399,11 +1411,15 @@ export const ATTACK_BUFFS = {
                         ? buff.constants.constants
                         : lookupBuff(buff.id).constants
 
+                buff.data.gotApplied = false
+
                 // War Mage prevention
                 if (caster?.currentClass?.id === "warmage") {
                     buff.data.preventUse({ buff, target, caster, actualBattle})
                     return
                 }
+
+                buff.data.gotApplied = true
                 
                 buff.data.endDate = moment().add(buff.duration, "seconds").toDate()
                 const attackSpeedGain = constants.attackSpeedBase + constants.attackSpeedPerLevel * buff.data.level
@@ -1414,6 +1430,10 @@ export const ATTACK_BUFFS = {
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                if (!buff.data.gotApplied) {
+                    return
+                }
+
                 if (buff.duration !== Infinity) {
                     buff.duration -= secondsElapsed
                     if (buff.duration <= 0) {
@@ -1423,6 +1443,10 @@ export const ATTACK_BUFFS = {
             },
 
             onRemove({ buff, target, caster }) {
+                if (!buff.data.gotApplied) {
+                    return
+                }
+
                 target.stats.attackSpeed /= 1 + buff.data.attackSpeedGain / 100
             }
         }

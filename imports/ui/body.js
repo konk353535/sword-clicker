@@ -189,13 +189,13 @@ Template.body.onCreated(function () {
                                 xpGained = Math.round(xpGained)
                             }
                             const element = $(`
-                <p
-                  class='floating-text'
-                  data-count=1
-                  style='top: 100px; right: 25px; opacity: 1.0;'>
-                  +${xpGained} <i class="lilIcon-${skill.type}"></i>
-                </p>
-              `)
+                                <p
+                                class='floating-text'
+                                data-count=1
+                                style='top: 100px; right: 25px; opacity: 1.0;'>
+                                +${xpGained} <i class="lilIcon-${skill.type}"></i>
+                                </p>
+                            `)
 
                             $("body").append(element)
                             $(element).animateCss("fadeOutUp")
@@ -203,15 +203,15 @@ Template.body.onCreated(function () {
                     } else {
                         for (let i = 0; i < 2; i++) {
                             const element = $(`
-                <p
-                  class='floating-text text-white bg-primary'
-                  data-count=-50
-                  style='top: 150px; right: 50px; opacity: 1.0;'>
-                  <span class='text-capitalize'>
-                    ${skill.type}
-                  </span> Level Up <i class="lilIcon-${skill.type}"></i>
-                </p>
-              `)
+                                <p
+                                class='floating-text text-white bg-primary'
+                                data-count=-50
+                                style='top: 150px; right: 50px; opacity: 1.0;'>
+                                <span class='text-capitalize'>
+                                    ${skill.type}
+                                </span> Level Up <i class="lilIcon-${skill.type}"></i>
+                                </p>
+                            `)
 
                             $("body").append(element)
                             $(element).animateCss("fadeOutUp")

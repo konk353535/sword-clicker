@@ -106,6 +106,14 @@ export default class Magic {
         ["fire", "earth", "air", "water", "necrotic"].forEach((magicType) => {
             if (magicType == "fire") {
                 this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraFire) / 60.0 / ticksPerSecondAll)
+            } else if (magicType == "earth") {
+                this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraEarth) / 60.0 / ticksPerSecondAll)
+            } else if (magicType == "air") {
+                this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraAir) / 60.0 / ticksPerSecondAll)
+            } else if (magicType == "water") {
+                this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraWater) / 60.0 / ticksPerSecondAll)
+            } else if (magicType == "necrotic") {
+                this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraNecrotic) / 60.0 / ticksPerSecondAll)
             }
         })
     }

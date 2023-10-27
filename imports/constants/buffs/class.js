@@ -2215,14 +2215,14 @@ export const CLASS_BUFFS = {
                 target.stats.magic.airPoolMax *= 2
                 target.stats.magic.necroticPoolMax *= 2
                 target.stats.magic.regenerate("fire", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
-                target.stats.magic.regenerate("earth", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
-                target.stats.magic.regenerate("air", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
-                target.stats.magic.regenerate("necrotiic", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("earth", target.stats.magic.earthPoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("air", target.stats.magic.airPoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("necrotic", target.stats.magic.necroticPoolMax) // start of battle, so refill the extra amount
                 target.stats.magic.deltaPools() // signal a change in pool sizes
-                target.stats.magic.fireRegenerationBonus += target.stats.magic.regenerationBase * 0.5
-                target.stats.magic.earthRegenerationBonus += target.stats.magic.regenerationBase * 0.5
-                target.stats.magic.airRegenerationBonus += target.stats.magic.regenerationBase * 0.5
-                target.stats.magic.necroticRegenerationBonus += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraFire += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraEarth += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraAir += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraNecrotic += target.stats.magic.regenerationBase * 0.5
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},

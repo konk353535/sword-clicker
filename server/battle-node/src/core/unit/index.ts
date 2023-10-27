@@ -14,8 +14,6 @@ import { enemy } from "../../types/enemy"
 import { skill } from "../../types/skill"
 import { unit } from "../../types/unit"
 
-import { ticksPerSecondAll } from "../tickMethods/tickTimer"
-
 export const isUnit = (value: any): value is unit => {
     return value != null && value.hasOwnProperty("owner") && value.owner
 }
@@ -431,7 +429,6 @@ export default class Unit {
         this._isAbleToCastSpells = true // can cast spells in combat (distinct from abilities)
 
         this.buffs = unit.buffs.map((buff) => new Buff(buff, this, this.battleRef))
-        this.stats = new Stats(unit.stats, unit.id, battleRef)
 
         this._icon = unit.icon
         this.tickOffset = unit.tickOffset || 0
@@ -439,6 +436,8 @@ export default class Unit {
         this.attackIn = this.tickOffset || 1
         this.bonusLoot = 0.0
         this.extraLootTable = []
+
+        this.stats = new Stats(unit.stats, this, battleRef)
     }
 
     tick() {
@@ -446,12 +445,7 @@ export default class Unit {
 
         // Regenerate magic pools
         if (this.broughtMagic) {
-            const magicSkillLevel = this.magicSkill()
-
-            if (magicSkillLevel > 0) {
-                const regenAmount = magicSkillLevel * 2 / 60.0 / ticksPerSecondAll
-                this.stats.magic.regenerateAll(regenAmount)
-            }
+            this.stats.magic.regenerateAll()
         }
     }
 

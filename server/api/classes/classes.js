@@ -43,7 +43,7 @@ const setClass = function(uid, newClass) {
     // set the user's cooldown
     const newCooldown = (newClass == CLASSES.default().id)
         ? moment().add(-1, "seconds").toDate()
-        : moment().add(12, "hours").toDate()
+        : moment().add(15, "minutes").toDate()
 
     // update user record with new class details
     Users.update(

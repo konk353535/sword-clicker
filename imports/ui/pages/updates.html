@@ -1,6 +1,67 @@
 <template name="updatesPage">
     <div class="updates-page">
 
+        <h2 class="my-3">Friday 27th October 2023</h2>
+        <ul>
+            <li><b>Feature Update: Magic v2</b></li>
+            <li>
+                <ul>
+                    <li>The magic and spellcasting system has been reworked: we now present to you <b>Magic v2</b>!</li>
+                    <li>Each of the type of crystal shards can now be converted into reserves for different pools of magic:
+                        <ul>
+                            <li style="list-style: georgian inside url('/icons/magicFireUnit.svg');">fire converts to energy <img src="/icons/magicFireUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicEarthUnit.svg');">earth converts to thaum <img src="/icons/magicEarthUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicAirUnit.svg');">air converts to aether <img src="/icons/magicAirUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicWaterUnit.svg');">water converts to vis <img src="/icons/magicWaterUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicNecroticUnit.svg');">poison converts to entropy <img src="/icons/magicNecroticUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                        </ul>
+                    </li>
+                    <li>When entering battle, you will have a pool of magic and a reserve of magic for each of the five types of magic.  You cast spells out of your pool and your pool is slowly refilled from your reserves (affected by your magic regeneration rate).</li>
+                    <li>Your <u>base</u> magic regeneration is double your Magic skill level.  Some classes and effects may alter this rate.</li>
+                    <li>Most equipment items (excluding amulets) increase your magic pool sizes, which you can preview by reviewing their item tooltip text.  Magic gear generally has much bigger capacities, but experiment with what works best for you and the spells you want to cast.</li>
+                    <li class="text-muted"><i>NOTE: maximum health stats on magic gear may be lowered in the future since spellcasting is no longer tied to maximum health.</i></li>
+                    <li>Spellcasting no longer requires crafted spellcasts.  Spellcrafts from the old Magic system have been converted into reserves in the new Magic v2 system.</li>
+                    <li>Additionally, spellcasting no longer consumes any maximum health.</li>
+                    <li>Just like before with spellcast crafts, once crystal shard items are converted into magic reserves, they cannot be returned back into items; it is a one-way conversion.</li>
+                    <li class="text-muted"><i>NOTE: the dev. team will be monitoring this new Magic v2 system for any necessary balance changes.</i></li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} The Magic skill experience value of spellcasting has been significantly increased.</li>
+                    <li>{{> updatesBuff}} the cooldown for every spell has been lowered by 67%.</li>
+                    <li>{{> updatesBuff}} the Class change cooldown has been lowered from 12 hours to 15 minutes (at least for now, this may change later for different servers).  If you are still in your cooldown and would like a reset, simply ask the dev. team.</li>
+                    <li>{{> updatesMixed}} opal chest plate's effect no longer increases the maximum health of the wearer nor restores the wearer's maximum health.  Instead, it increases the in-battle magic regeneration rate of all magic pools by your Magic skill level (+50% for most classes).</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesMixed}} Sage Mystic Bond ability now restores 3% of the Sage's Vis magic pool when their Bond target is struck (it no longer restores maximum health).</li>
+                    <li>{{> updatesBuff}} War Mage Trait intrinsic loss to maximum health when struck has been removed.</li>
+                    <li>{{> updatesMixed}} War Mage Glorious Destiny passive ability dealing magic damage now restores 1% of War Mage's Energy and Entropy magic pools (it no longer restores maximum health).</li>
+                    <li>{{> updatesNerf}} War Mage Trait intrinsic bonus to attack speed has been lowered from 50% to 35%.</li>
+                    <li>{{> updatesNerf}} War Mage Trait intrinsic gains a new penalty: cannot use <i>Berserk</i> or <i>Blade Frenzy</i>.</li>
+                    <li>{{> updatesBuff}} Wizard Time Warp no longer reduces the Wizard's maximum health when channeled (it still reduces their actual health).</li>
+                    <li>{{> updatesBuff}} Wizard Trait intrinsic now doubles the size of the Wizard's non-Vis magic pools and grants 50% bonus magic regeneration to non-Vis magic pools (it no longer reduces spellcasting maximum health costs by half).</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>The health, armor, and other stats for elites and variants should be transmitted to your browser correctly now instead of requiring a refresh.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>The icon for Scream has been updated.</li>
+                    <li>When Paladins are stunned from the Mourning loss of their squire, all of their ability cooldowns will be increased up to 60 seconds as a visual aid to their stun.</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Tuesday 24th October 2023</h2>
         <ul>
             <li><b>Balance Changes</b></li>
@@ -917,6 +978,14 @@
     </div>
 
     <style type="text/css">
+        /* remove indent padding from top list items (categories in bold), only on mobile */
+        @media (max-width: 768px) {
+            div.updates-page > ul
+            {
+                padding: 0;
+            }
+        }
+
         /* remove bubbles from top list items (categories in bold) */
         div.updates-page > ul > li,
         div.updates-page ul ul li:has(span.balance-update-note),

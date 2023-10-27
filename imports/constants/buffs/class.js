@@ -1647,9 +1647,9 @@ export const CLASS_BUFFS = {
         name: "Mystic Bond",
         description() {
             return `
-        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain <b>1%</b> of your lost
-        Maximum Health.  If the bonded ally is under 50% health, you will lose 10% of your original maximum health as
-        Health to automatically heal the struck ally for 10% of their original Maximum Health.  These effects can only
+        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you instantly refill <b>3%</b> of
+        your Vis pool from your reserves.  If the bonded ally is under 50% health, you will lose 10% of your maximum
+        health as to automatically heal the struck ally for 10% of their maximum health.  These effects can only
         occur once every <b>3</b> seconds.  You may reuse this ability at any time to place it on a different target.
         You may not use this on yourself and the bond cannot be broken without transferring it to another ally.`
         },
@@ -1728,12 +1728,8 @@ export const CLASS_BUFFS = {
                 }
 
                 if (!buff.stacksTimer || buff.stacksTimer === 0) {
-                    const amountToIncreaseMaxHealthBy = 0.01 * casterUnit.stats.healthMaxOrig
-
-                    casterUnit.stats.healthMax += amountToIncreaseMaxHealthBy
-                    if (casterUnit.stats.healthMax > casterUnit.stats.healthMaxOrig) {
-                        casterUnit.stats.healthMax = casterUnit.stats.healthMaxOrig
-                    }
+                    // This automatically considers how much remains in reserves, depleting reserves, if they don't have enough, and not wasting when they're full
+                    casterUnit.stats.magic.regenerate("water", this.waterPoolMax * 0.03)
 
                     if ((defender.stats.health + 1) / (defender.stats.healthMax + 1) <= 0.5) {
                         const totalHeal = defender.stats.origStats.healthMax * 0.1
@@ -2038,11 +2034,11 @@ export const CLASS_BUFFS = {
         name: "Class Trait: War Mage",
         description() {
             return `
-        Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.  May cast hostile
-        spells while wielding any style of weapon. Once per battle when you would otherwise die, you unleash a powerful
-        blast through a Special Shift that stuns you and all enemies for 5 seconds and restores 20% of your health.
-        Can reforge tridents.  You attack with tridents 50% quicker and deal <b>133%</b> of your auto-attack damage as
-        additional magic damage instead of the usual 25%.  Double all stat benefits from amulets.<br />
+        May cast hostile spells while wielding any style of weapon. Once per battle when you would otherwise die,
+        you unleash a powerful blast through a Special Shift that stuns you and all enemies for 5 seconds and
+        restores 20% of your health.  Can reforge tridents.  You attack with tridents <b>35%</b> quicker and deal
+        <b>133%</b> of your auto-attack damage as additional magic damage instead of the usual 25%.  Double all
+        stat benefits from amulets.  Can not use Berserk or Blade Frenzy.<br />
         While you are a War Mage this is <b>always active</b>`
         },
         constants: {
@@ -2057,24 +2053,7 @@ export const CLASS_BUFFS = {
                 buff.data.deathPrevent = 1
             },
 
-            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-                if (damageDealt > 0) {
-                    // reduce max health by 1%
-
-                    const amountToReduceHealthBy = 0.01 * defender.stats.healthMaxOrig
-
-                    if (amountToReduceHealthBy < defender.stats.healthMax) {
-                        defender.stats.healthMax -= amountToReduceHealthBy
-                    } else {
-                        // to a minimum of 1%
-                        defender.stats.healthMax = amountToReduceHealthBy
-                    }
-
-                    if (defender.stats.health > defender.stats.healthMax) {
-                        defender.stats.health = defender.stats.healthMax
-                    }
-                }
-            },
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {},
 
             onBeforeDeath({ buff, target, actualBattle }) {
                 if (buff?.data?.deathPrevent === 1) {
@@ -2165,7 +2144,7 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Passive class ability<br />
-        Dealing magic damage restores 0.5% of your maximum health.<br />
+        Dealing magic damage restores <b>1%</b> of your Energy and Entropy magic pools.<br />
         While equipped when you are a War Mage this is <b>always active</b>`
         },
         constants: {},
@@ -2179,14 +2158,9 @@ export const CLASS_BUFFS = {
             // for abilities and spells, including the 'magic_blade' proc from tridents -- does not include auto-attack (that's 'onDidDamage'), which can't hit for magic damage
             onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
                 if (magic && damageDealt > 0) {
-                    // increase max health by 0.5%
-
-                    const amountToIncreaseHealthBy = 0.005 * attacker.stats.healthMaxOrig
-
-                    attacker.stats.healthMax += amountToIncreaseHealthBy
-                    if (attacker.stats.healthMax > attacker.stats.healthMaxOrig) {
-                        attacker.stats.healthMax = attacker.stats.healthMaxOrig
-                    }
+                    // This automatically considers how much remains in reserves, depleting reserves, if they don't have enough, and not wasting when they're full
+                    attacker.stats.magic.regenerate("fire", this.firePoolMax * 0.01)
+                    attacker.stats.magic.regenerate("necrotic", this.necroticPoolMax * 0.01)
                 }
             },
 
@@ -2204,15 +2178,18 @@ export const CLASS_BUFFS = {
                 Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
                 codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is
                 increased by half of your Magic Power (your Focus is now <b>${casterStats.focus}</b>).  Maximum Health
-                is reduced by half.  The Maximum Health cost of all spells is reduced by half.<br />
+                is reduced by half.  The size of your non-Vis magic pools are doubled and your magic regeneration rate
+                is increased by 50%.  Magic XP earned from spellcasting and consuming codexes is increased by
+                <b>25%</b>. <br />
                 While you are a Wizard this is <b>always active</b>`
             }
             
             return `
                 Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
                 codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is set to
-                half of your Magic Power.  Maximum Health is reduced by half.  The Maximum Health cost of all spells is
-                reduced by half.<br />
+                half of your Magic Power.  Maximum Health is reduced by half.  The size of your non-Vis magic pools are
+                doubled and your magic regeneration rate is increased by 50%.  Magic XP earned from spellcasting and
+                consuming codexes is increased by <b>25%</b>.
                 While you are a Wizard this is <b>always active</b>`
         },
         constants: {
@@ -2232,6 +2209,20 @@ export const CLASS_BUFFS = {
                 if (buffBase) {
                     buff.description = buffBase.description({ active: true, casterStats: caster.stats })
                 }
+
+                target.stats.magic.firePoolMax *= 2
+                target.stats.magic.earthPoolMax *= 2
+                target.stats.magic.airPoolMax *= 2
+                target.stats.magic.necroticPoolMax *= 2
+                target.stats.magic.regenerate("fire", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("earth", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("air", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("necrotiic", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.deltaPools() // signal a change in pool sizes
+                target.stats.magic.fireRegenerationBonus += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.earthRegenerationBonus += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.airRegenerationBonus += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.necroticRegenerationBonus += target.stats.magic.regenerationBase * 0.5
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
@@ -2364,7 +2355,7 @@ export const CLASS_BUFFS = {
                 //}
 
                 caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.01333
-                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.004
+                //caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.004
                 if (caster.stats.health > caster.stats.healthMax) {
                     caster.stats.health = caster.stats.healthMax
                 }

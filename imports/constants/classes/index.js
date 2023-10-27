@@ -542,7 +542,7 @@ export const CLASSES = Object.freeze({
         equipmentBonuses: {
             trident: {
                 attackSpeed: {
-                    valueAdd: 0.25
+                    valueAdd: 0.175
                 }
             },
             neck: {

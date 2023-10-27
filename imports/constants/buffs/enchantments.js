@@ -396,8 +396,7 @@ export const ENCHANTMENT_BUFFS = {
         name: "opal chest plate",
         description() {
             return `
-        Converts 250% of magic armor into health.  Whenever you take damage, 3% of your original maximum health reduced from spellcasting is restored. This will not restore any of your current missing health.<br />
-        This effect can only occur once every 5 seconds.`
+        Your your magic regeneration rate increases by your Magic skill level for all pools.`
         },
         constants: {},
         data: {
@@ -408,49 +407,13 @@ export const ENCHANTMENT_BUFFS = {
         events: {
             // This can be rebuilt from the buff id
             onApply({ buff, target, caster, actualBattle }) {
-                buff.data.extraStat = target.stats.magicArmor * 2.5
-                //target.stats.health += buff.data.extraStat;
-                target.stats.healthMax += buff.data.extraStat
-                target.stats.healthMaxOrig += buff.data.extraStat
+                target.stats.magicRegenerationExtra += target.stats.origStats.magicPower
             },
 
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                if (buff.stacksTimer > 0) {
-                    buff.stacksTimer -= secondsElapsed
-                }
-                if (buff.stacksTimer <= 0) {
-                    buff.stacksTimer = undefined
-                    buff.stacks = undefined
-                } else {
-                    buff.stacks = Math.ceil(buff.stacksTimer)
-                }
-            },
-
-            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-                try {
-                    if (!buff.stacksTimer || buff.stacksTimer === 0) {
-                        let hpMaxHealth = defender.stats.healthMaxOrig
-                        let hpFivePct = 0.03 * hpMaxHealth
-
-                        if (defender.stats.healthMax + hpFivePct > hpMaxHealth) {
-                            defender.stats.healthMax = hpMaxHealth
-                        } else {
-                            defender.stats.healthMax += hpFivePct
-                        }
-
-                        buff.stacksTimer = 5.0
-                        buff.stacks = Math.ceil(buff.stacksTimer)
-                    }
-                } catch (err) {}
-            },
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
 
             onRemove({ buff, target, caster }) {
-                //target.stats.health -= buff.data.extraStat;
-                target.stats.healthMax -= buff.data.extraStat
-                target.stats.healthMaxOrig -= buff.data.extraStat
-                if (target.stats.health > target.stats.healthMax) {
-                    target.stats.health = target.stats.healthMax
-                }
+                target.stats.magicRegenerationExtra -= target.stats.origStats.magicPower
             }
         }
     },

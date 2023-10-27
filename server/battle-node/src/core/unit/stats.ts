@@ -1,4 +1,5 @@
 import Battle from ".."
+import Unit from "../unit"
 import Magic from "./magic"
 import { BATTLES } from "../../../../constants/battles"
 import { stats } from "../../types/stats"
@@ -161,8 +162,8 @@ export default class Stats {
         this.absorption = this.origStats.absorption || 0
     }
 
-    constructor(stats: stats, unitId: string, battleRef: Battle) {
-        this.unitId = unitId
+    constructor(stats: stats, unitRef: Unit, battleRef: Battle) {
+        this.unitId = unitRef.id
         this.battleRef = battleRef
 
         this.attack = stats.attack
@@ -187,7 +188,7 @@ export default class Stats {
         this.absorption = stats.absorption || 0
         this.damageOutput = 1.0
 
-        this.magic = new Magic(stats.magic, unitId, battleRef)
+        this.magic = new Magic(stats.magic, unitRef, battleRef)
 
         // initialize other bits
         this._attackSpeed = this.attackSpeed

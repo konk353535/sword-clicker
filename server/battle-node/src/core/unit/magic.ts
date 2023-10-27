@@ -1,4 +1,7 @@
+import { ticksPerSecondAll } from "../tickMethods/tickTimer"
+
 import Battle from ".."
+import Unit from "../unit"
 
 import { magic } from "../../types/magic"
 
@@ -21,6 +24,13 @@ export default class Magic {
     _necroticPool: number
     necroticPoolMax: number
     necroticReserve: number
+    
+    regenerationExtra: number
+    regenerationBase: number
+
+    get magicRegeneration() {
+        return this.regenerationBase + this.regenerationExtra
+    }
 
     get firePool() {
         return this._firePool
@@ -86,9 +96,17 @@ export default class Magic {
         }
     }
 
-    regenerateAll(amount:number) {
+    regenerationExtraFire: number
+    regenerationExtraEarth: number
+    regenerationExtraAir: number
+    regenerationExtraWater: number
+    regenerationExtraNecrotic: number
+
+    regenerateAll() {
         ["fire", "earth", "air", "water", "necrotic"].forEach((magicType) => {
-            this.regenerate(magicType, amount)
+            if (magicType == "fire") {
+                this.regenerate(magicType, (this.magicRegeneration + this.regenerationExtraFire) / 60.0 / ticksPerSecondAll)
+            }
         })
     }
 
@@ -116,8 +134,8 @@ export default class Magic {
         }
     }
 
-    constructor(magic: magic, unitId: string, battleRef: Battle) {
-        this.unitId = unitId
+    constructor(magic: magic, unitRef: Unit, battleRef: Battle) {
+        this.unitId = unitRef.id
         this.battleRef = battleRef
 
         this.firePoolMax = this._firePool = 0
@@ -130,6 +148,13 @@ export default class Magic {
         this.waterReserve = 0
         this.necroticPoolMax = this._necroticPool = 0
         this.necroticReserve = 0
+        this.regenerationBase = 0
+        this.regenerationExtra = 0
+        this.regenerationExtraFire = 0
+        this.regenerationExtraEarth = 0
+        this.regenerationExtraAir = 0
+        this.regenerationExtraWater = 0
+        this.regenerationExtraNecrotic = 0
 
         if (magic) {
             this.firePoolMax = this._firePool = magic.firePool
@@ -143,9 +168,14 @@ export default class Magic {
             this.necroticPoolMax =  this._necroticPool = magic.necroticPool
             this.necroticReserve = magic.necroticReserve
         }
+
+        const magicSkillLevel = unitRef.magicSkill()
+        if (magicSkillLevel > 0) {
+            this.regenerationBase = magicSkillLevel * 2
+        }
     }
 
-    delta(magicKey: keyof magic) {
+    delta(magicKey: keyof Magic) {
         const event = {
             type: "abs",
             path: `unitsMap.${this.unitId}.stats.magic.${magicKey}`,
@@ -153,6 +183,19 @@ export default class Magic {
         }
 
         this.battleRef.deltaEvents.push(event)
+    }
+
+    deltaPools() {
+        this.delta("firePoolMax")
+        this.delta("firePool")
+        this.delta("earthPoolMax")
+        this.delta("earthPool")
+        this.delta("airPoolMax")
+        this.delta("airPool")
+        this.delta("waterPoolMax")
+        this.delta("waterPool")
+        this.delta("necroticPoolMax")
+        this.delta("necroticPool")
     }
 
     raw() {

@@ -70,7 +70,12 @@ export const addXp = function (
     if (specificUserId) {
         owner = specificUserId
     } else {
-        owner = Meteor.userId()
+        try {
+            owner = Meteor.userId()
+        }
+        catch (err) {
+            return
+        }
     }
     const skill = Skills.findOne({ owner, type: skillType })
 

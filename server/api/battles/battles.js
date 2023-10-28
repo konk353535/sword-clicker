@@ -102,6 +102,14 @@ Meteor.methods({
         console.log("battles.findPersonalBattle", moment().format("LLL hh:mm:ss SSS"))
         const userDoc = Meteor.user()
 
+        if (!energyUse || energyUse == null || energyUse == undefined || typeof energyUse === "undefined" || !_.isFinite(energyUse)) {
+            energyUse = 1
+        }        
+
+        if (energyUse < 1) {
+            energyUse = 1
+        }
+
         if (energyUse > getMaxEnergyUse()) {
             energyUse = getMaxEnergyUse()
         }
@@ -160,7 +168,11 @@ Meteor.methods({
         console.log("battles.findTowerBattle", moment().format("LLL hh:mm:ss SSS"))
         const userDoc = Meteor.user()
 
-        if (energyUse == null) {
+        if (!energyUse || energyUse == null || energyUse == undefined || typeof energyUse === "undefined" || !_.isFinite(energyUse)) {
+            energyUse = 1
+        }        
+
+        if (energyUse < 1) {
             energyUse = 1
         }
 

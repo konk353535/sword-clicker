@@ -162,7 +162,6 @@ export const CLASS_BUFFS = {
         data: {
             duration: 30,
             totalDuration: 30,
-            allowDuplicates: true,
             stunResilience: true
         },
         events: {

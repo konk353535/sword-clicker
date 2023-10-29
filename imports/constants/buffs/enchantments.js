@@ -2393,6 +2393,7 @@ export const ENCHANTMENT_BUFFS = {
                                             duration: 10,
                                             dps: opponent.stats.healthMax / 10,
                                             timeTillDamage: 1,
+                                            allowDuplicates: true,
                                             name: "Covered in Acid",
                                             description: `You are covered in horrible acid!`,
                                             icon: "potionAcid.svg"

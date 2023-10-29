@@ -1549,7 +1549,8 @@ export const ATTACK_BUFFS = {
         },
         data: {
             duration: 12,
-            totalDuration: 12
+            totalDuration: 12,
+            allowDuplicates: true
         },
         events: {
             // This can be rebuilt from the buff id

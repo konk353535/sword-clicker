@@ -540,7 +540,8 @@ export default class Unit {
         try {
             const buffLevel = buffData && buffData.level ? buffData.level : 1
             const newBuffConstants = BUFFS[buffId]
-            const newBuff = {
+
+            let newBuff = {
                 id: buffId,
                 data: Object.assign({}, /*newBuffConstants.data, */ buffData || {}, {
                     name: buffData && buffData.name ? buffData.name : newBuffConstants.name,
@@ -555,9 +556,17 @@ export default class Unit {
                     caster: this.id,
                     //level: buffLevel // intentionally omitted (let it be supplied by 'buffData' if we want it, i.e.: no default)
                     allowDuplicates: buffData && buffData.allowDuplicates ? buffData.allowDuplicates : false,
-                    duplicateCap: buffData && buffData.duplicateCap ? buffData.duplicateCap : 1
+                    duplicateCap: buffData && buffData.duplicateCap ? buffData.duplicateCap : -1
                 }),
                 constants: newBuffConstants
+            }
+
+            if (newBuff.data.duplicateCap == -1) {
+                if (newBuff.data.allowDuplicates) {
+                    newBuff.data.duplicateCap = 9999
+                } else {
+                    newBuff.data.duplicateCap = 1
+                }
             }
 
             const fixedBuff = fixupBuffText(newBuff, undefined)

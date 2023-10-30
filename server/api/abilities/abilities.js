@@ -163,7 +163,7 @@ Meteor.methods({
                 ability.name = ABILITIES[ability.abilityId].name
                 ability.required = MAGIC.spells[ability.abilityId].required
                 //ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft
-                //ability.magic = spellData(ability.abilityId) // handled on startup now
+                ability.costs = ABILITIES[ability.abilityId].magic // spellData(ability.abilityId) // handled on startup now
 
                 if (BUFFS && BUFFS[ability.abilityId]) {
                     if (_.isFunction(BUFFS[ability.abilityId]?.description)) {

@@ -646,7 +646,7 @@ export const completeBattle = function (actualBattle) {
         const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room)
         // Inject into battle
         newMonsters.forEach((monster) => {
-            actualBattle.totalXpGain -= BATTLES.xpGain(monster.stats, monster.buffs)
+            actualBattle.totalXpGain -= BATTLES.xpGain(monster.baseStats ? monster.baseStats : monster.stats, monster.buffs)
         })
     }
 

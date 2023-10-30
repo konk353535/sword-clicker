@@ -66,9 +66,10 @@ export function checkGameOverConditions(this: Battle) {
                 // Inject into battle
                 newMonsters.forEach((monster: any) => {
                     const randomUnitTarget = _.sample(this.units)!
-                    this.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs)
+                    this.totalXpGain += BATTLES.xpGain(monster.baseStats ? monster.baseStats : monster.stats, monster.buffs)
                     const enemyParams: enemy = {
                         id: uuid.v4(),
+                        baseStats: monster.baseStats,
                         stats: monster.stats,
                         icon: monster.icon,
                         buffs: monster.buffs || [],

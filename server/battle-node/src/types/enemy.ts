@@ -2,6 +2,7 @@ export type enemy = {
     id: string
     name: string
     buffs: any[]
+    baseStats: any
     stats: any
     tickOffset: number
     icon: string

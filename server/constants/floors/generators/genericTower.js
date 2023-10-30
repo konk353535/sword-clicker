@@ -147,6 +147,33 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             monster.stats.focus = (room / 2) * 25 * (tweakedFloor / 3) // magic armor formula
         }
 
+        if (selectedMonster.statBuffs) {
+            selectedMonster.statBuffs.forEach((statBuff) => {
+                if (statBuff.type === "plus") {
+                    monster.stats[statBuff.key] += statBuff.amount
+                } else if (statBuff.type === "times") {
+                    monster.stats[statBuff.key] *= statBuff.amount
+                }
+            })
+        }
+
+        let unitCount = 1
+
+        // Is this a swarm mob?
+        if (selectedMonster.swarmRange) {
+            unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1])
+            // Divide monsters health
+            monster.stats.health /= unitCount // Divide health evenly
+            monster.stats.health *= 1.2 // To account for aoe
+            monster.stats.attack /= unitCount
+            monster.stats.attackMax /= unitCount
+            monster.stats.attack *= 1.2
+            monster.stats.attackMax *= 1.2
+            monster.stats.healthMax = monster.stats.health
+        }
+
+        monster.baseStats = monster.stats
+
         // more buffing from Pete
         if (extraData && extraData.hasPlayers) {
             // enemies gets a bonus to damage = 50% the average of all player units' average damage
@@ -189,28 +216,8 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             }
         }
 
-        if (selectedMonster.statBuffs) {
-            selectedMonster.statBuffs.forEach((statBuff) => {
-                if (statBuff.type === "plus") {
-                    monster.stats[statBuff.key] += statBuff.amount
-                } else if (statBuff.type === "times") {
-                    monster.stats[statBuff.key] *= statBuff.amount
-                }
-            })
-        }
-
         // Is this a swarm mob?
         if (selectedMonster.swarmRange) {
-            const unitCount = _.random(selectedMonster.swarmRange[0], selectedMonster.swarmRange[1])
-            // Divide monsters health
-            monster.stats.health /= unitCount // Divide health evenly
-            monster.stats.health *= 1.2 // To account for aoe
-            monster.stats.attack /= unitCount
-            monster.stats.attackMax /= unitCount
-            monster.stats.attack *= 1.2
-            monster.stats.attackMax *= 1.2
-
-            monster.stats.healthMax = monster.stats.health
             for (let i = 0; i < unitCount; i++) {
                 const monsterClone = lodash.cloneDeep(monster)
                 monsterClone.id = uuid.v4()

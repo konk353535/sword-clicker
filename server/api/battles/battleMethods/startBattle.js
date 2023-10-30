@@ -868,6 +868,7 @@ export const startBattle = function ({
             newBattle.enemies.push({
                 id: uuid.v4(),
                 monsterType: enemy.id,
+                baseStats: enemy.baseStats ? enemy.baseStats : enemy.stats,
                 stats: enemyStats,
                 icon: enemyConstants.icon,
                 buffs: enemyConstants.buffs || [],

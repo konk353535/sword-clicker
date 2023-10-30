@@ -362,7 +362,7 @@ export const startBattle = function ({
                 }
 
                 // get some constants
-                const abilityConstants = Object.freeze(Object.assign({}, ABILITIES[ability.abilityId], { magic: spellData(ability.abilityId) }))
+                const abilityConstants = Object.freeze(Object.assign({}, ABILITIES[ability.abilityId] /*, { magic: spellData(ability.abilityId) } */))
                 if (!abilityConstants) {
                     return false
                 }
@@ -404,6 +404,12 @@ export const startBattle = function ({
                 return true
             })
             .map((ability) => {
+                // get some constants
+                const abilityConstants = Object.freeze(Object.assign({}, ABILITIES[ability.abilityId] /*, { magic: spellData(ability.abilityId) } */))
+                if (!abilityConstants) {
+                    return false
+                }
+
                 if (ability.currentCooldown > 0) {
                     ability.currentCooldown -= secondsElapsed
                 }
@@ -416,7 +422,7 @@ export const startBattle = function ({
                     totalCasts: 0,
                     isSpell: ability.isSpell,
                     isPacifist: ability.isPacifist,
-                    magic: spellData(ability.abilityId)
+                    magic: abilityConstants.magic //spellData(ability.abilityId)
                 }
             })
     })
@@ -493,6 +499,13 @@ export const startBattle = function ({
                 return true
             })
             .map((ability) => {
+                // get some constants
+                const abilityConstants = Object.freeze(Object.assign({}, ABILITIES[ability.abilityId] /*, { magic: spellData(ability.abilityId) } */))
+                if (!abilityConstants) {
+                    return false
+                }
+                
+                
                 if (ability.currentCooldown > 0) {
                     ability.currentCooldown -= secondsElapsed
                 }
@@ -505,7 +518,7 @@ export const startBattle = function ({
                     totalCasts: 0,
                     isSpell: ability.isSpell,
                     isPacifist: ability.isPacifist,
-                    magic: spellData(ability.abilityId)
+                    magic: abilityConstants.magic // spellData(ability.abilityId)
                 }
             })
 

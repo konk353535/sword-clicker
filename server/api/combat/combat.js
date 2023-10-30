@@ -109,7 +109,7 @@ export const updateCombatStats = function (userId, username, amuletChanged = fal
 
         playerSpellAbilities.forEach((abilityData) => {
             if (abilityData.casts && abilityData.casts > 0) {
-                const abilitySpellData = spellData(abilityData.abilityId)
+                const abilitySpellData = ABILITIES[abilityData.abilityId].magic // spellData(abilityData.abilityId)
 
                 magicReserves.fire += abilitySpellData.fire.cost.units * abilityData.casts
                 magicReserves.earth += abilitySpellData.earth.cost.units * abilityData.casts

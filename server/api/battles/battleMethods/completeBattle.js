@@ -11,6 +11,8 @@ import { ITEMS } from "/imports/constants/items/index"
 import { NEED_GREED_ITEMS } from "/imports/constants/items/needgreed"
 import { PLAYER_ICONS } from "/imports/constants/shop/index"
 import { STATE_BUFFS } from "/imports/constants/state"
+
+import { ABILITIES } from "/server/constants/combat/abilities"
 import { BATTLES } from "/server/constants/battles/index" // List of encounters
 import { FLOORS } from "/server/constants/floors/index"
 import { MAGIC } from "/server/constants/magic/index"
@@ -1350,12 +1352,13 @@ export const completeBattle = function (actualBattle) {
 
         unit.abilities.forEach((ability) => {
             if (ability.isSpell) {
-                const spellConstants = MAGIC.spells[ability.id]
-                if (spellConstants) {
+                //const spellConstants = MAGIC.spells[ability.id]
+                //if (spellConstants) {
                     //totalMagicXp += ability.totalCasts * spellConstants.xp
                     spellsCastCount += ability.totalCasts
                     
-                    const magicData = spellData(ability.id)
+                    //const magicData = spellData(ability.id)
+                    const magicData = ABILITIES[ability.id]?.magic // startup sets this
 
                     if (magicData && !magicData.error) {
                         totalMagicXp += ability.totalCasts * (magicData.fire.xp + magicData.earth.xp + magicData.air.xp + magicData.water.xp + magicData.necrotic.xp)
@@ -1374,7 +1377,7 @@ export const completeBattle = function (actualBattle) {
                         powerSpent.water += magicData.water.cost.units * ability.totalCasts
                         powerSpent.necrotic += magicData.necrotic.cost.units * ability.totalCasts
                     }
-                }
+                //}
             }
             if (!ability.isPassive && !ability.isEnchantment) {
                 // if this unit used any non-passive/non-enchantment abilities or spells, then they're clearly not inactive

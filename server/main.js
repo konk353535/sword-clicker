@@ -35,6 +35,12 @@ import { Woodcutting } from "/imports/api/woodcutting/woodcutting"
 import { createNewServer } from "/imports/api/servers/servers"
 import { getIPFromConnection, updateUserIP } from "/imports/api/users/users.js"
 
+import { ITEMS } from "../imports/constants/items"
+
+// as long as we only use these from `Meteor.isServer`, this is fine
+import { spellData } from "/server/constants/magic"
+import { ABILITIES } from "/server/constants/combat/abilities"
+
 /*
 Meteor.onConnection((connection) => {
   console.log("Meteor.onConnection");
@@ -199,8 +205,8 @@ Meteor.startup(() => {
     Town.createIndex({ server: 1 })
     FloorLoot.createIndex({ server: 1, floor: 1 })
 
+    /* 
     // Re-sync town buffs 1s and 10s after startup (works around a weird issue with State on startup)
-    /*
   for (let i = 1; i <= 2; i++) {
     Meteor.setTimeout(function() {
       deleteKarmaBuffs();  
@@ -220,5 +226,37 @@ Meteor.startup(() => {
                 $in: validDeployFlags
             }
         })
+
+        function deepFreeze(o) {
+            if (!Object.isFrozen(o)) {
+                Object.freeze(o)
+            }
+
+            Object.getOwnPropertyNames(o).forEach(function(prop) {
+                if (
+                    o.hasOwnProperty(prop) &&
+                    o[prop] !== null &&
+                    (typeof o[prop] === "object" || typeof o[prop] === "function") &&
+                    !Object.isFrozen(o[prop])
+                ) {
+                    deepFreeze(o[prop])
+                }
+            })
+
+            return o;
+        }
+
+        // let's cook up some data!
+        Object.keys(ABILITIES).forEach((key) => {
+            const abilitySpellData = spellData(key)
+            if (abilitySpellData && !abilitySpellData.error) {
+                ABILITIES[key].magic = abilitySpellData
+                //console.log(ABILITIES[key])
+            }
+        })
+
+        // this freezes everything
+        deepFreeze(ABILITIES)
+        deepFreeze(ITEMS)
     }
 })

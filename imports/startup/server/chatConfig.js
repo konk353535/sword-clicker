@@ -652,9 +652,9 @@ SimpleChat.configure({
                 let targetUsername, targetSkill, targetAmount
 
                 if (splitMessage.length === 3) {
-                    targetUsername = userDoc.username
-                    targetSkill = splitMessage[1]
-                    targetAmount = CInt(splitMessage[2])
+                    targetUsername = splitMessage[1]
+                    targetSkill = splitMessage[2]
+                    targetAmount = CInt(splitMessage[3])
                 } else {
                     sendUserChatMessage({ userId: userDoc._id, message: `Usage: /giveXp player skill amount` })
                     return
@@ -695,9 +695,9 @@ SimpleChat.configure({
                 let targetUsername, targetSkill, targetLevel
 
                 if (splitMessage.length === 3) {
-                    targetUsername = userDoc.username
-                    targetSkill = splitMessage[1]
-                    targetLevel = CInt(splitMessage[2])
+                    targetUsername = splitMessage[1]
+                    targetSkill = splitMessage[2]
+                    targetLevel = CInt(splitMessage[3])
                 } else {
                     sendUserChatMessage({ userId: userDoc._id, message: "Usage: /setLevel <player> <skill> <level>" })
                     return

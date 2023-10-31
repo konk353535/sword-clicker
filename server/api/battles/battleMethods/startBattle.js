@@ -164,6 +164,10 @@ export const startBattle = function ({
 }) {
     const wantDebug = false
 
+    if (floor != null && currentCommunityFloor != null && floor === currentCommunityFloor) {
+        //throw new Meteor.Error("offline", "The live combat server on the top floor is temporarily offline for maintenance.")
+    }
+
     console.log("method - startBattle - start", moment().format("LLL hh:mm:ss SSS"))
     console.log("energyUse:", energyUse)
 
@@ -864,11 +868,16 @@ export const startBattle = function ({
 
         for (let i = 0; i < enemy.amount; i++) {
             const randomUnitTarget = _.sample(newBattle.units)
-            totalXpGain += BATTLES.xpGain(enemyStats, enemyConstants.buffs)
+            const local_XpGain = BATTLES.xpGain(enemy.baseStats ? enemy.baseStats : enemyStats, enemyConstants.buffs)
+
+//todo: log 'local_XpGain'
+//console.log("Monster value:", newBattle.level ? `PQ L${newBattle.level}` : `T F${newBattle.floor}`, newBattle.room ? `R${newBattle.room}` : `W${newBattle.wave}`, `${enemy.id} =`, `${local_XpGain} XP`)
+
+            totalXpGain += local_XpGain
             newBattle.enemies.push({
                 id: uuid.v4(),
                 monsterType: enemy.id,
-                baseStats: enemy.baseStats ? enemy.baseStats : enemy.stats,
+                baseStats: enemy.baseStats ? enemy.baseStats : enemyStats,
                 stats: enemyStats,
                 icon: enemyConstants.icon,
                 buffs: enemyConstants.buffs || [],

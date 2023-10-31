@@ -172,7 +172,7 @@ export const topFloorTowerMonsterGenerator = function (floor, room, adjustedFloo
             monster.stats.healthMax = monster.stats.health
         }
 
-        monster.baseStats = monster.stats
+        monster.baseStats = Object.freeze(Object.assign({}, monster.stats))
 
         // more buffing from Pete
         if (extraData && extraData.hasPlayers) {

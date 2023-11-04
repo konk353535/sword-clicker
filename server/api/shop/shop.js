@@ -289,8 +289,6 @@ Meteor.methods({
     },
 
     "shop.createCheckoutSession"({ currentPack }) {
-        console.log("currentPack", currentPack)
-
         if (!_.contains(["bunch", "bag", "box"], currentPack)) {
             throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box")
         }

@@ -83,10 +83,11 @@ app.post("/webhook/stripe", express.raw({ type: "application/json" }), async (re
             }
 
             const userId = event.data.object.metadata?.userId
+            const username = event.data.object.metadata?.username
 
-            if (userId == null) {
+            if (userId == null || username == null) {
                 // also bad
-                response.status(400).send(`Webhook Error: metadata.userId cannot be null`)
+                response.status(400).send(`Webhook Error: metadata.userId or metadata.username cannot be null`)
                 return
             }
 
@@ -118,6 +119,8 @@ app.post("/webhook/stripe", express.raw({ type: "application/json" }), async (re
                 createdAt: new Date()
             })
 
+            console.log(`Granted ${gemsToGrant} gems to ${username} (id: ${userId})`)
+
             break
         }
         default: {
@@ -138,13 +141,6 @@ if (env.NODE_ENV === "production") {
     }
 
     server = https.createServer(options, app)
-
-    // also set up a server to listen on port 80 and redirect to 443
-    http.createServer(function (req, res) {
-        res.setHeader("location", "https://battle.eternitytower.net")
-        res.statusCode = 302
-        res.end()
-    }).listen(80)
 } else {
     server = http.createServer(app)
 }

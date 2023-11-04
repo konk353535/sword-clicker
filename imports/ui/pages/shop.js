@@ -13,9 +13,6 @@ import moment from "moment"
 
 import "./shop.html"
 
-// stripe is loaded from main.html
-// const stripe = Stripe(Meteor.settings.public.stripe)
-
 Template.shopPage.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict()
 
@@ -316,66 +313,6 @@ Template.shopPage.events({
         })
     }
 })
-
-Template.shopPage.rendered = function () {
-    const instance = Template.instance()
-
-    // document.getElementById("purchaseButtonBunch").addEventListener("click", function (e) {
-    //     // // Open Checkout with further options:
-    //     // handler.open({
-    //     //     name: "Eternity Tower",
-    //     //     image: "https://eternitytower.net/icons/tower.svg",
-    //     //     description: "Bunch Of Gems (500)",
-    //     //     currency: "usd",
-    //     //     amount: 499
-    //     // })
-    //     // instance.state.set("currentPack", "bunch")
-    //     // instance.state.set("processing", true)
-    //     // e.preventDefault()
-    //     const currentPack = instance.state.get("currentPack")
-    //     Meteor.apply("shop.createCheckoutSession", { currentPack: "bunch" }, (err, data) => {
-    //         console.log("err", err, "data", data)
-    //         if (err) {
-    //             // instance.state.set("lastMeteorCallResult", prepText(err))
-    //         } else {
-    //             window.location.href = data.redirect
-    //         }
-    //     })
-    // })
-
-    document.getElementById("purchaseButtonBag").addEventListener("click", function (e) {
-        // Open Checkout with further options:
-        handler.open({
-            name: "Eternity Tower",
-            image: "https://eternitytower.net/icons/tower.svg",
-            description: "Bag Of Gems (2,200)",
-            currency: "usd",
-            amount: 1999
-        })
-        instance.state.set("currentPack", "bag")
-        instance.state.set("processing", true)
-        e.preventDefault()
-    })
-
-    document.getElementById("purchaseButtonBox").addEventListener("click", function (e) {
-        // Open Checkout with further options:
-        handler.open({
-            name: "Eternity Tower",
-            image: "https://eternitytower.net/icons/tower.svg",
-            description: "Box Of Gems (6,000)",
-            currency: "usd",
-            amount: 4999
-        })
-        instance.state.set("currentPack", "box")
-        instance.state.set("processing", true)
-        e.preventDefault()
-    })
-
-    // Close Checkout on page navigation:
-    window.addEventListener("popstate", function () {
-        handler.close()
-    })
-}
 
 Template.shopPage.helpers({
     processing() {

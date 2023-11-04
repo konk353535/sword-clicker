@@ -1,5 +1,5 @@
 services:
-  node:
+  webhooks:
     command: npm run prod
     build:
       context: ./

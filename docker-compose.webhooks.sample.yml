@@ -1,0 +1,29 @@
+services:
+  webhooks:
+    command: npm run prod
+    build:
+      context: ./
+      dockerfile: webhooks.dockerfile
+      args:
+        PORT: 8443
+    environment:
+        NODE_ENV: "production"
+        PORT: 8443
+        STRIPE_SECRET_KEY: "sk_key"
+        STRIPE_WEBHOOK_SECRET: "whsec_key"
+        GEM_BUNCH: "price_1O0bw1JvpGht5bmpkYSUOT49"
+        GEM_BAG: "price_1O0bxcJvpGht5bmp5MmmIQR1"
+        GEM_BOX: "price_1O0by2JvpGht5bmpThsbwMfF"
+        MONGO_URI: "mongodb_uri"
+        MONGO_DB: "meteor"
+    volumes:
+      - /etc/letsencrypt/archive/eternitytower.net:/ssl:ro
+    ports:
+        - 8443:8443
+    networks:
+        - app
+
+
+networks:
+  app:
+    driver: bridge

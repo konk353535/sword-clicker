@@ -29,6 +29,34 @@ Template.shopPage.onCreated(function bodyOnCreated() {
 })
 
 Template.shopPage.events({
+    "click .purchaseButtonBunch"() {
+        Meteor.call("shop.createCheckoutSession", { currentPack: "bunch" }, (err, data) => {
+            if (err) {
+                alert("There was an error creating the checkout session.")
+                // instance.state.set("lastMeteorCallResult", prepText(err))
+            } else {
+                window.location.href = data.redirect
+            }
+        })
+    },
+    "click .purchaseButtonBag"() {
+        Meteor.call("shop.createCheckoutSession", { currentPack: "bag" }, (err, data) => {
+            if (err) {
+                alert("There was an error creating the checkout session.")
+            } else {
+                window.location.href = data.redirect
+            }
+        })
+    },
+    "click .purchaseButtonBox"() {
+        Meteor.call("shop.createCheckoutSession", { currentPack: "box" }, (err, data) => {
+            if (err) {
+                alert("There was an error creating the checkout session.")
+            } else {
+                window.location.href = data.redirect
+            }
+        })
+    },
     "click .buy-icon"(event, instance) {
         // Get the type we are buying
         const iconId = instance.$(event.target).closest(".buy-icon").data("icon-id")
@@ -285,79 +313,6 @@ Template.shopPage.events({
         })
     }
 })
-
-Template.shopPage.rendered = function () {
-    const instance = Template.instance()
-    const handler = StripeCheckout.configure({
-        key: Meteor.settings.public.stripe,
-        image: "https://stripe.com/img/documentation/checkout/marketplace.png",
-        locale: "auto",
-        token: function (token) {
-            const currentPack = instance.state.get("currentPack")
-            Meteor.call("shop.purchase", { token: token.id, currentPack }, (err, res) => {
-                if (err) {
-                    console.log("err", err)
-                    toastr.error("An error occurred while purchasing gems.")
-                } else {
-                    toastr.success("Successfully purchased")
-                }
-                instance.state.set("processing", false)
-            })
-        },
-        closed: function () {
-            Meteor.setTimeout(() => {
-                instance.state.set("processing", false)
-            }, 1500)
-        }
-    })
-
-    document.getElementById("purchaseButtonBunch").addEventListener("click", function (e) {
-        // Open Checkout with further options:
-        handler.open({
-            name: "Eternity Tower",
-            image: "https://eternitytower.net/icons/tower.svg",
-            description: "Bunch Of Gems (500)",
-            currency: "usd",
-            amount: 499
-        })
-        instance.state.set("currentPack", "bunch")
-        instance.state.set("processing", true)
-        e.preventDefault()
-    })
-
-    document.getElementById("purchaseButtonBag").addEventListener("click", function (e) {
-        // Open Checkout with further options:
-        handler.open({
-            name: "Eternity Tower",
-            image: "https://eternitytower.net/icons/tower.svg",
-            description: "Bag Of Gems (2,200)",
-            currency: "usd",
-            amount: 1999
-        })
-        instance.state.set("currentPack", "bag")
-        instance.state.set("processing", true)
-        e.preventDefault()
-    })
-
-    document.getElementById("purchaseButtonBox").addEventListener("click", function (e) {
-        // Open Checkout with further options:
-        handler.open({
-            name: "Eternity Tower",
-            image: "https://eternitytower.net/icons/tower.svg",
-            description: "Box Of Gems (6,000)",
-            currency: "usd",
-            amount: 4999
-        })
-        instance.state.set("currentPack", "box")
-        instance.state.set("processing", true)
-        e.preventDefault()
-    })
-
-    // Close Checkout on page navigation:
-    window.addEventListener("popstate", function () {
-        handler.close()
-    })
-}
 
 Template.shopPage.helpers({
     processing() {

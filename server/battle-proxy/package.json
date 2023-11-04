@@ -8,16 +8,6 @@
         "dev": "cross-env NODE_ENV=development tsx watch --clear-screen=false src/index.ts",
         "build": "tsc --build"
     },
-    "nodemonConfig": {
-        "execMap": {
-            "ts": "ts-node-esm --experimental-specifier-resolution=node"
-        },
-        "ext": "ts,js,json",
-        "ignore": [
-            "node_modules/**/node_modules"
-        ],
-        "restartable": "rs"
-    },
     "author": "",
     "license": "ISC",
     "dependencies": {

@@ -1,6 +1,5 @@
 import { Chats } from "meteor/cesarve:simple-chat/collections"
 import { Meteor } from "meteor/meteor"
-import { HTTP } from "meteor/http"
 
 import { Combat } from "/imports/api/combat/combat"
 import { State } from "/imports/api/state/state"
@@ -16,10 +15,10 @@ import { addItem, addRealGems, consumeGems, consumeOnlyRealGems, hasGems } from 
 import { sendGlobalBuffWebhookMessage } from "/server/webhook.js"
 
 import lodash from "lodash"
-import _ from "underscore"
 import moment from "moment"
+import _ from "underscore"
 
-const stripe = require("stripe")(Meteor.settings.private.stripe)
+const stripe = require("stripe")(Meteor.settings.private.stripe.key)
 
 Meteor.methods({
     "shop.fetchGlobalBuffs"() {
@@ -64,10 +63,7 @@ Meteor.methods({
         }
 
         globalBuff = getGlobalBuff(type)
-        const remaining =
-            newBuff || !globalBuff
-                ? "1 hour"
-                : moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize()
+        const remaining = newBuff || !globalBuff ? "1 hour" : moment.duration(moment(globalBuff.value.activeTo).diff(moment())).humanize()
         const activateMessage = `${userDoc.username} has ${newBuff ? "activated" : "extended"} the ${
             friendlyNames[type]
         } buff for all players (${remaining} remaining)!`
@@ -292,122 +288,39 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
-    "shop.purchaseWithRaiBlocks"({ token, item_id }) {
-        // Lookup itemId, confirm that its price matches what was paid
-        const ITEMS = {
-            someGems: {
-                price: 5,
-                gems: 5
-            },
-            bunchOfGems: {
-                price: 499,
-                gems: 500
-            }
-        }
-
-        if (!ITEMS[item_id]) {
-            throw new Meteor.Error("Invalid item id given")
-        }
-
-        const amount = ITEMS[item_id].price
-
-        const handleCharge = HTTP.post("https://arrowpay.io/api/payment/handle", {
-            data: {
-                payment: {
-                    amount,
-                    currency: "USD"
-                },
-                token
-            }
-        })
-
-        if (handleCharge && handleCharge.data && handleCharge.data.id) {
-            // Credit our account!
-            Users.update(
-                {
-                    _id: Meteor.userId()
-                },
-                {
-                    $inc: {
-                        gems: ITEMS[item_id].gems
-                    }
-                }
-            )
-        } else {
-            // Throw an err
-            throw new Meteor.Error("rai blocks payment failed")
-        }
-    },
-
-    "shop.purchase"({ token, currentPack }) {
+    "shop.createCheckoutSession"({ currentPack }) {
         if (!_.contains(["bunch", "bag", "box"], currentPack)) {
             throw new Meteor.Error("invalid-pack-type", "Pack type can only be bunch, bag or box")
         }
-        let handleCharge = Meteor.wrapAsync(stripe.charges.create, stripe.charges)
 
-        let payment
-        try {
-            if (currentPack === "bunch") {
-                payment = handleCharge({
-                    amount: 499,
-                    currency: "usd",
-                    description: "Bunch Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            } else if (currentPack === "bag") {
-                payment = handleCharge({
-                    amount: 1999,
-                    currency: "usd",
-                    description: "Bag Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            } else if (currentPack === "box") {
-                payment = handleCharge({
-                    amount: 4999,
-                    currency: "usd",
-                    description: "Box Of Gems",
-                    source: token,
-                    metadata: {
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username
-                    }
-                })
-            }
-
-            if (payment.id) {
-                let newGems = 0
-                if (currentPack === "bunch") {
-                    newGems = 500
-                } else if (currentPack === "bag") {
-                    newGems = 2200
-                } else if (currentPack === "box") {
-                    newGems = 6000
-                }
-
-                Users.update(
-                    {
-                        _id: Meteor.userId()
-                    },
-                    {
-                        $inc: {
-                            gems: newGems
-                        }
-                    }
-                )
-            }
-        } catch (err) {
-            throw new Meteor.Error("unknown-error", "Unknown error occurred when attempting to purchase gems")
+        const products = {
+            bunch: Meteor.settings.private.stripe.products.bunch,
+            bag: Meteor.settings.private.stripe.products.bag,
+            box: Meteor.settings.private.stripe.products.box
         }
 
-        return payment
+        const handleCheckoutSession = Meteor.wrapAsync(stripe.checkout.sessions.create, stripe.checkout.sessions)
+
+        const checkoutSession = handleCheckoutSession({
+            line_items: [
+                {
+                    // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    price: products[currentPack],
+                    quantity: 1
+                }
+            ],
+            currency: "usd",
+            mode: "payment",
+            success_url: Meteor.settings.private.stripe.shopUrl,
+            cancel_url: Meteor.settings.private.stripe.shopUrl,
+            automatic_tax: { enabled: true },
+            metadata: {
+                userId: Meteor.userId(),
+                username: Meteor.user().username
+            }
+        })
+
+        return { redirect: checkoutSession.url }
     }
 })
 

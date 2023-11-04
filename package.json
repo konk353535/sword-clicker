@@ -81,7 +81,7 @@
     "simpl-schema": "^3.4.1",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
-    "stripe": "^4.17.1",
+    "stripe": "^13.10.0",
     "tsx": "^3.12.10",
     "underscore": "^1.9.1",
     "utf-8-validate": "^6.0.3",

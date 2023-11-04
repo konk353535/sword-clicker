@@ -1,7 +1,7 @@
-import { Meteor } from "meteor/meteor"
 import { Accounts } from "meteor/accounts-base"
-import { Random } from "meteor/random"
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter"
+import { Meteor } from "meteor/meteor"
+import { Random } from "meteor/random"
 
 import moment from "moment"
 import uuid from "node-uuid"
@@ -530,10 +530,7 @@ Accounts.validateNewUser((user) => {
             isInvalidName = isInvalidName || nameScreener2.indexOf(thisWord) !== -1
         })
         if (isInvalidName) {
-            throw new Meteor.Error(
-                403,
-                "The username you entered is likely offensive to other people and in violation of our rules."
-            )
+            throw new Meteor.Error(403, "The username you entered is likely offensive to other people and in violation of our rules.")
         }
 
         ;["konk", "aess", "sedai", "wraith", "game", "server", "root", "admin"].forEach((thisWord) => {
@@ -556,7 +553,7 @@ Accounts.onCreateUser((options, user) => {
         showChat: false,
         showSummaryList: false,
         craftingFilter: "mining",
-        darkMode: true,         // default
+        darkMode: true, // default
         largeChatEnabled: false // deafult
     }
 

@@ -16,6 +16,8 @@ services:
         GEM_BOX: "price_1O0by2JvpGht5bmpThsbwMfF"
         MONGO_URI: "mongodb_uri"
         MONGO_DB: "meteor"
+    volumes:
+      - /etc/letsencrypt/archive/eternitytower.net:/ssl:ro
     ports:
         - 8443:8443
     networks:

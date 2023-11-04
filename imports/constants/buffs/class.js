@@ -162,7 +162,6 @@ export const CLASS_BUFFS = {
         data: {
             duration: 30,
             totalDuration: 30,
-            allowDuplicates: true,
             stunResilience: true
         },
         events: {
@@ -188,55 +187,68 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Passive class ability<br />
-        Any time you miss with an auto-attack, you add 4 stacks of <i>Brawn</i> that increases all of your damage by
-        +10% per stack (to a maximum of +150%).  Stacks are reduced by 1 when you successfully hit with an auto-attack
-        to a minimum of 0 stacks.<br />
+        Any time you miss with an auto-attack or are struck by an enemy's auto-attack, you add a stack of <i>Brawn</i>
+        that increases all of your damage by <b>+7.5%</b> and <b>+1%</b> damage absorption per stack (to a maximum of
+        +150% damage and 20% damage absorption).  Stacks are reduced by 2 when you successfully hit with an auto-attack
+        that deals at least 10% of your damage potential to a minimum of 0 stacks.<br />
         While equipped when you are a Barbarian this is <b>always active</b>`
         },
         constants: {},
         data: {
             duration: Infinity,
-            totalDuration: Infinity
+            totalDuration: Infinity,
+            recalculateBonus({ buff, unit }) {
+                // undo existing bonuses
+                unit.stats.attack -= buff.data.statsBuffed.attack
+                unit.stats.attackMax -= buff.data.statsBuffed.attackMax
+                unit.stats.absorption -= buff.data.statsBuffed.absorption
+
+                // calculate new bonuses
+                buff.data.statsBuffed.attack = unit.stats.attack * buff.stacks * 0.1
+                buff.data.statsBuffed.attackMax = unit.stats.attackMax * buff.stacks * 0.1
+                buff.data.statsBuffed.absorption = buff.stacks * 0.01
+
+                // apply new bonuses
+                unit.stats.attack += buff.data.statsBuffed.attack
+                unit.stats.attackMax += buff.data.statsBuffed.attackMax
+                unit.stats.absorption += buff.data.statsBuffed.absorption
+            }
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
                 buff.stacks = 0
-                buff.data.damageBoosted = {
+                buff.data.statsBuffed = {
                     attack: 0,
-                    attackMax: 0
+                    attackMax: 0,
+                    absorption: 0
                 }
             },
 
             onTargetDodgedDamage({ buff, defender, attacker, actualBattle, source }) {
-                if (source == "autoattack") {
-                    if (buff.stacks < 15) {
-                        buff.stacks += 4
-                    }
+                if (source == "autoattack" && buff.stacks < 20) {
+                    buff.stacks = Math.min(20, buff.stacks + 1)
+                    buff.data.recalculateBonus({ buff, unit: attacker })
+                }
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                if (damageDealt >= 0.1 && attacker.id != defender.id && buff.stacks < 20) {
+                    buff.stacks = Math.min(20, buff.stacks + 1)
+                    buff.data.recalculateBonus({ buff, unit: defender })
                 }
             },
 
             onDidDamage({originalAutoAttack, buff, defender, attacker, actualBattle, damageDealt, rawDamage, source, customIcon}) {
-                if (source == "autoattack") {
-                    buff.stacks -= 1
-                    if (buff.stacks < 0) {
-                        buff.stacks = 0
+                if (source == "autoattack" && buff.stacks > 0) {
+                    const damagePotential = attacker.stats.attack + (attacker.stats.attackMax / 2)
+                    if (damageDealt >= damagePotential * 0.1) {
+                        buff.stacks = Math.max(0, buff.stacks - 2)
+                        buff.data.recalculateBonus({ buff, unit: attacker })
                     }
                 }
             },
 
-            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
-                // undo existing bonuses
-                target.stats.attack -= buff.data.damageBoosted.attack
-                target.stats.attackMax -= buff.data.damageBoosted.attackMax
-
-                // calculate new bonuses
-                buff.data.damageBoosted.attack = target.stats.attack * buff.stacks * 0.1
-                buff.data.damageBoosted.attackMax = target.stats.attackMax * buff.stacks * 0.1
-
-                // apply new bonuses
-                target.stats.attack += buff.data.damageBoosted.attack
-                target.stats.attackMax += buff.data.damageBoosted.attackMax
-            }
+            onTick({ secondsElapsed, buff, target, caster, actualBattle }) {}
         }
     },
 
@@ -275,6 +287,11 @@ export const CLASS_BUFFS = {
 
                 // hitting with an autoattack reduce's the enemy's defense and armor by 1%
                 if (formattedSource == "volley" || formattedSource == "autoattack" || formattedSource == "phantom strikes" || formattedSource == "twin blades") {
+                    // can't shred armor vs. targets that are dodging or phased
+                    if (defender.hasBuff("evasive_maneuvers") || defender.hasBuff("full_damage_immunity")) {
+                        return
+                    }
+
                     // when debugging
                     //console.log(actualBattle.tickCount, formattedSource, "- SHREDDING!")
 
@@ -431,14 +448,14 @@ export const CLASS_BUFFS = {
         name: "Class Trait: Paladin",
         description() {
             return `
-        A successful taunt triggers a heal for the ally the enemy was targeting.  15% faster
+        A successful taunt triggers a heal for the ally the enemy was targeting.  50% faster
         cooldowns for taunt abilities.  Longswords and shields may be equipped together.  Scream
         may be used with a longsword.  Triple Max Attack from hammers and spears.  Quadruple health
         benefit from non-magical head, chest, and leg equipment.  Your squire always follows you
         into battle; he does not fight, but can take some damage.  You automatically intercept
         half of the damage your squire receives.  If your squire dies, you will be stunned for
         60 seconds.  Entering battle with fewer than 4 player allies will reduce your damage by
-        12.5% per missing ally.<br />
+        10% per missing ally.<br />
         While you are a Paladin this is <b>always active</b>`
         },
         constants: {
@@ -450,11 +467,11 @@ export const CLASS_BUFFS = {
         },
         events: {
             onApply({ buff, target, caster, actualBattle }) {
-                // lose 12.5% damage for each missing ally, up to 50% reduction when alone
-                // this value will be 0.5 at 0 allies and 1.0 at 4+ allies... allies must be players
-                const damageReduction = 0.5 + Math.min(0.5, (actualBattle.units.filter((thisFriendlyUnit) => {
+                // lose 10% damage for each missing ally, up to 60% reduction when alone
+                // this value will be 0.6 at 0 allies and 1.0 at 4+ allies... allies must be players
+                const damageReduction = 0.6 + Math.min(0.4, (actualBattle.units.filter((thisFriendlyUnit) => {
                     return thisFriendlyUnit.id !== target.id && !thisFriendlyUnit.isNPC && !thisFriendlyUnit.isCompanion && !thisFriendlyUnit.isSoloCompanion
-                }).length * 0.125))
+                }).length * 0.1))
 
                 if (damageReduction < 1.0) {
                     target.stats.attack *= damageReduction
@@ -695,8 +712,134 @@ export const CLASS_BUFFS = {
                             }
                         }
 
+                        // make it obvious that they're stunned
+                        if (paladinAlly.abilities) {
+                            paladinAlly.abilities.forEach((ability) => {
+                                if (ability.currentCooldown <= 60.0 && !ability.isPassive) {
+                                    ability.currentCooldown = 60.0
+                                }
+                            })
+                        }
+
                         addBuff({ buff: newBuff, target: paladinAlly, caster: target, actualBattle })
                     }
+                }
+            },
+
+            onRemove({ buff, target, caster }) {}
+        }
+    },
+
+    class_active_paladin__guard: {
+        duplicateTag: "class_active_paladin__guard",
+        icon: "paladinGuard.svg",
+        name: "Guard",
+        description() {
+            return `
+        Use on an ally to redirect up to 75% of the damage the ally receives to you.  Whenever they are struck in
+        combat, you take 75% of the damage and your ally takes 25%, before armor and other damage absorption
+        effects.  You may reuse Guard at any time to place it on a different target.  Using it on yourself
+        will cancel the effect entirely.  Guard cannot affect the same ally from two different paladins.
+        Guard may not be used on another paladin.`
+        },
+        constants: {
+        },
+        data: {
+            duration: Infinity,
+            totalDuration: Infinity,
+            preventUse: function ({ buff, target, caster, actualBattle }) {
+                setTimeout(function () {
+                    caster.abilities.forEach((ability) => {
+                        if (ability.id == "class_active_paladin__guard") {
+                            ability.currentCooldown = 0
+                        }
+                    })
+
+                    removeBuff({ buff, target, caster, actualBattle })
+                }, 1)
+                return
+            }
+        },
+        events: {
+            onApply({ buff, target, caster, actualBattle }) {
+                let alreadyCastOnThisTarget = false
+
+                actualBattle.units.forEach((friendlyUnit) => {
+                    let buffsToRemove = []
+                    friendlyUnit.buffs.forEach((thisBuff) => {
+                        if (thisBuff.id == "class_active_paladin__guard" && thisBuff.data?.unitToSendDamageTo == caster.id) {
+                            if (friendlyUnit.id == target.id) {
+                                alreadyCastOnThisTarget = true
+                            } else {
+                                buffsToRemove.push(thisBuff)
+                            }
+                        }
+                    })
+                    buffsToRemove.forEach((thisBuff) => {
+                        setTimeout(function () {
+                            removeBuff({ buff: thisBuff, target: friendlyUnit, caster, actualBattle })
+                        }, 1)
+                    })
+                })
+
+                if (
+                    caster.id == target.id || 
+                    alreadyCastOnThisTarget || 
+                    target?.currentClass?.id === "paladin" || 
+                    target.hasBuff("paladin_trait_squire_damage_interception")
+                ) {
+                    buff.data.preventUse({ buff, target, caster, actualBattle })
+                    return
+                }
+
+                buff.data.description = "Whenever you are struck in combat, the Paladin who is guarding you will redirect 75% of the damage you would have received to them instead."
+                buff.data.unitToSendDamageTo = caster.id
+            },
+
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
+                if (buff.data.unitToSendDamageTo) {
+                    // try fo find ally
+                    const paladinAlly = actualBattle.units.find((ally) => {
+                        return ally.id === buff.data.unitToSendDamageTo
+                    })
+
+                    if (!lodash.isUndefined(paladinAlly) && paladinAlly.stats.health > 0) {
+                        // redirect 75% of the damage from guarded self back to the paladin
+                        const redirectDamage = damageDealt * 0.75
+
+                        actualBattle.healTarget(redirectDamage, {
+                            caster: paladinAlly,
+                            target: defender,
+                            healSource: buff
+                        })
+
+                        if (redirectDamage >= 0.1) {
+                            actualBattle.dealDamage(redirectDamage, {
+                                attacker: defender,
+                                defender: paladinAlly,
+                                tickEvents: actualBattle.tickEvents,
+                                customIcon: buff.data.icon,
+                                source: `Guard: ${defender.name}`
+                            })
+                        }
+                    } else {
+                        // paladin is dead
+                        removeBuff({ buff, target: defender, caster: paladinAlly || defender, actualBattle })
+                    }
+                }
+            },
+
+            onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.unitToSendDamageTo) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
                 }
             },
 
@@ -731,6 +874,7 @@ export const CLASS_BUFFS = {
                     defender: target,
                     tickEvents: actualBattle.tickEvents,
                     historyStats: actualBattle.historyStats,
+                    customIcon: "paladinWrath.svg",
                     source: "Wrath"
                 })
             },
@@ -1438,7 +1582,7 @@ export const CLASS_BUFFS = {
             return `
         Healing a target reduces all of your active ability cooldowns by 2 seconds and places a protective blessing
         upon them for 2 seconds that reduces the damage they take by 35%.  You cannot receive your own blessing.
-        Double Healing Power benefit from staves Can reforge most magical clothing.  Cannot auto-attack when in combat
+        Quadruple Healing Power benefit from staves Can reforge most magical clothing.  Cannot auto-attack when in combat
         with allies.<br />
         While you are a Sage this is <b>always active</b>`
         },
@@ -1499,12 +1643,12 @@ export const CLASS_BUFFS = {
     class_active_sage__mystic_bond: {
         duplicateTag: "class_active_sage__mystic_bond",
         icon: "sageMysticBond.svg",
-        name: "Bond",
+        name: "Mystic Bond",
         description() {
             return `
-        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you regain <b>1%</b> of your lost
-        Maximum Health.  If the bonded ally is under 50% health, you will lose 10% of your original maximum health as
-        Health to automatically heal the struck ally for 10% of their original Maximum Health.  These effects can only
+        Use on an ally to form a mystical bond.  Whenever they are struck in combat, you instantly refill <b>3%</b> of
+        your Vis pool from your reserves.  If the bonded ally is under 50% health, you will lose 10% of your maximum
+        health as to automatically heal the struck ally for 10% of their maximum health.  These effects can only
         occur once every <b>3</b> seconds.  You may reuse this ability at any time to place it on a different target.
         You may not use this on yourself and the bond cannot be broken without transferring it to another ally.`
         },
@@ -1583,12 +1727,8 @@ export const CLASS_BUFFS = {
                 }
 
                 if (!buff.stacksTimer || buff.stacksTimer === 0) {
-                    const amountToIncreaseMaxHealthBy = 0.01 * casterUnit.stats.healthMaxOrig
-
-                    casterUnit.stats.healthMax += amountToIncreaseMaxHealthBy
-                    if (casterUnit.stats.healthMax > casterUnit.stats.healthMaxOrig) {
-                        casterUnit.stats.healthMax = casterUnit.stats.healthMaxOrig
-                    }
+                    // This automatically considers how much remains in reserves, depleting reserves, if they don't have enough, and not wasting when they're full
+                    casterUnit.stats.magic.regenerate("water", this.waterPoolMax * 0.03)
 
                     if ((defender.stats.health + 1) / (defender.stats.healthMax + 1) <= 0.5) {
                         const totalHeal = defender.stats.origStats.healthMax * 0.1
@@ -1893,11 +2033,11 @@ export const CLASS_BUFFS = {
         name: "Class Trait: War Mage",
         description() {
             return `
-        Whenever you are struck in combat, your maximum health is reduced by 1% of its original amount.  May cast hostile
-        spells while wielding any style of weapon. Once per battle when you would otherwise die, you unleash a powerful
-        blast through a Special Shift that stuns you and all enemies for 5 seconds and restores 20% of your health.
-        Can reforge tridents.  You attack with tridents 50% quicker and deal <b>133%</b> of your auto-attack damage as
-        additional magic damage instead of the usual 25%.  Double all stat benefits from amulets.<br />
+        May cast hostile spells while wielding any style of weapon. Once per battle when you would otherwise die,
+        you unleash a powerful blast through a Special Shift that stuns you and all enemies for 5 seconds and
+        restores 20% of your health.  Can reforge tridents.  You attack with tridents <b>35%</b> quicker and deal
+        <b>133%</b> of your auto-attack damage as additional magic damage instead of the usual 25%.  Double all
+        stat benefits from amulets.  Can not use Berserk or Blade Frenzy.<br />
         While you are a War Mage this is <b>always active</b>`
         },
         constants: {
@@ -1912,24 +2052,7 @@ export const CLASS_BUFFS = {
                 buff.data.deathPrevent = 1
             },
 
-            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {
-                if (damageDealt > 0) {
-                    // reduce max health by 1%
-
-                    const amountToReduceHealthBy = 0.01 * defender.stats.healthMaxOrig
-
-                    if (amountToReduceHealthBy < defender.stats.healthMax) {
-                        defender.stats.healthMax -= amountToReduceHealthBy
-                    } else {
-                        // to a minimum of 1%
-                        defender.stats.healthMax = amountToReduceHealthBy
-                    }
-
-                    if (defender.stats.health > defender.stats.healthMax) {
-                        defender.stats.health = defender.stats.healthMax
-                    }
-                }
-            },
+            onTookDamage({ buff, attacker, defender, actualBattle, secondsElapsed, damageDealt }) {},
 
             onBeforeDeath({ buff, target, actualBattle }) {
                 if (buff?.data?.deathPrevent === 1) {
@@ -1956,7 +2079,18 @@ export const CLASS_BUFFS = {
 
                     // stun all enemies
                     actualBattle.enemies.forEach((enemy) => {
-                        addBuff({ buff: newBuff, target: enemy, caster: target, actualBattle })
+                        const stunBuff = {
+                            id: "stunned",
+                            data: {
+                                duration: 5,
+                                totalDuration: 5,
+                                icon: "warMageSpacialShift.svg",
+                                name: "Stunned",
+                                description: `You are stunned and can't take any actions or fight.`
+                            }
+                        }
+
+                        addBuff({ buff: stunBuff, target: enemy, caster: target, actualBattle })
                         enemy.tickMessage("Disoriented!", "black", "warMageSpacialShift", enemy)
                     })
                 }
@@ -2009,7 +2143,7 @@ export const CLASS_BUFFS = {
         description() {
             return `
         Passive class ability<br />
-        Dealing magic damage restores 0.5% of your maximum health.<br />
+        Dealing magic damage restores <b>1%</b> of your Energy and Entropy magic pools.<br />
         While equipped when you are a War Mage this is <b>always active</b>`
         },
         constants: {},
@@ -2023,14 +2157,9 @@ export const CLASS_BUFFS = {
             // for abilities and spells, including the 'magic_blade' proc from tridents -- does not include auto-attack (that's 'onDidDamage'), which can't hit for magic damage
             onDidRawDamage({ buff, defender, attacker, actualBattle, rawDamage, damageDealt, source, magic }) {
                 if (magic && damageDealt > 0) {
-                    // increase max health by 0.5%
-
-                    const amountToIncreaseHealthBy = 0.005 * attacker.stats.healthMaxOrig
-
-                    attacker.stats.healthMax += amountToIncreaseHealthBy
-                    if (attacker.stats.healthMax > attacker.stats.healthMaxOrig) {
-                        attacker.stats.healthMax = attacker.stats.healthMaxOrig
-                    }
+                    // This automatically considers how much remains in reserves, depleting reserves, if they don't have enough, and not wasting when they're full
+                    attacker.stats.magic.regenerate("fire", this.firePoolMax * 0.01)
+                    attacker.stats.magic.regenerate("necrotic", this.necroticPoolMax * 0.01)
                 }
             },
 
@@ -2048,15 +2177,18 @@ export const CLASS_BUFFS = {
                 Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
                 codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is
                 increased by half of your Magic Power (your Focus is now <b>${casterStats.focus}</b>).  Maximum Health
-                is reduced by half.  The Maximum Health cost of all spells is reduced by half.<br />
+                is reduced by half.  The size of your non-Vis magic pools are doubled and your magic regeneration rate
+                is increased by 50%.  Magic XP earned from spellcasting and consuming codexes is increased by
+                <b>25%</b>. <br />
                 While you are a Wizard this is <b>always active</b>`
             }
             
             return `
                 Can reforge wands, tomes, and orbs.  Receive 25% additional Magic XP from spellcasting and reading
                 codexes.  Double Magic Power benefit from tomes and orbs.  When entering battle, your Focus is set to
-                half of your Magic Power.  Maximum Health is reduced by half.  The Maximum Health cost of all spells is
-                reduced by half.<br />
+                half of your Magic Power.  Maximum Health is reduced by half.  The size of your non-Vis magic pools are
+                doubled and your magic regeneration rate is increased by 50%.  Magic XP earned from spellcasting and
+                consuming codexes is increased by <b>25%</b>.
                 While you are a Wizard this is <b>always active</b>`
         },
         constants: {
@@ -2076,6 +2208,20 @@ export const CLASS_BUFFS = {
                 if (buffBase) {
                     buff.description = buffBase.description({ active: true, casterStats: caster.stats })
                 }
+
+                target.stats.magic.firePoolMax *= 2
+                target.stats.magic.earthPoolMax *= 2
+                target.stats.magic.airPoolMax *= 2
+                target.stats.magic.necroticPoolMax *= 2
+                target.stats.magic.regenerate("fire", target.stats.magic.firePoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("earth", target.stats.magic.earthPoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("air", target.stats.magic.airPoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.regenerate("necrotic", target.stats.magic.necroticPoolMax) // start of battle, so refill the extra amount
+                target.stats.magic.deltaPools() // signal a change in pool sizes
+                target.stats.magic.regenerationExtraFire += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraEarth += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraAir += target.stats.magic.regenerationBase * 0.5
+                target.stats.magic.regenerationExtraNecrotic += target.stats.magic.regenerationBase * 0.5
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {},
@@ -2093,7 +2239,7 @@ export const CLASS_BUFFS = {
         Speeds up time for you and your allies, lowering ability cooldowns for as long as
         you channel this spell.  Does not modify effects that last over time such as Mending
         Waters or Poison.  As long as you channel this spell, will lose 1.33% of your Health
-        and 0.4% of your Maximum Health per second.<br />
+        per second.<br />
         This is a <b>channeled</b> spell and will last for as long as you maintain it.`
         },
         constants: {
@@ -2208,7 +2354,7 @@ export const CLASS_BUFFS = {
                 //}
 
                 caster.stats.health -= caster.stats.origStats.healthMax * secondsElapsed * 0.01333
-                caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.004
+                //caster.stats.healthMax -= caster.stats.origStats.healthMax * secondsElapsed * 0.004
                 if (caster.stats.health > caster.stats.healthMax) {
                     caster.stats.health = caster.stats.healthMax
                 }
@@ -2250,9 +2396,23 @@ export const CLASS_BUFFS = {
             onApply({ buff, target, caster, actualBattle }) {
                 //buff.data.attackSpeedOriginal = target.stats.origStats.attackSpeed
                 //target.stats.attackSpeed += buff.data.attackSpeedOriginal
+
+                buff.data.castingWizard = caster.id
             },
 
             onTick({ secondsElapsed, buff, target, caster, actualBattle }) {
+                let casterUnit
+                actualBattle.units.forEach((friendlyUnit) => {
+                    if (friendlyUnit.id == buff.data.castingWizard) {
+                        casterUnit = friendlyUnit
+                    }
+                })
+
+                if (!casterUnit || casterUnit?.stats?.health <= 0) {
+                    removeBuff({ buff, target, caster, actualBattle })
+                    return
+                }
+
                 if (target.abilities) {
                     target.abilities.forEach((ability) => {
                         if (ability.currentCooldown && ability.currentCooldown > 0) {

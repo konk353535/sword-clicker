@@ -6,19 +6,11 @@ export function unitAutoAttacks(this: Battle, units: Unit[]) {
     units.forEach((unit) => {
         if (unit.attackIn <= 0) {
             unit.attackIn = unit.stats.attackSpeedTicks
-            let defender = unit.target ? this.allUnitsMap[unit.target] : false
+            
+            const defender = unit.targetUnit
 
-            if (!defender || defender.stats.health <= 0) {
-                if (unit.isEnemy) {
-                    defender = _.sample(this.units)
-                } else {
-                    defender = this.enemies[0]
-                }
-
-                if (!defender) {
-                    return
-                }
-                unit.target = defender.id
+            if (!defender) {
+                return
             }
 
             if (!unit.isCharmed && !unit.isStunned && !unit.isPacifist) {
@@ -28,6 +20,11 @@ export function unitAutoAttacks(this: Battle, units: Unit[]) {
                 if (unit.mainHandType === "bow" && unit.offHandType !== "quiver") {
                     canAutoAttack = false
                 } else if (unit.mainHandType !== "bow" && unit.offHandType === "quiver") {
+                    canAutoAttack = false
+                }
+
+                // Check if they're trying to use a broad sword with a shield (old Paladin bug)
+                if (unit.mainHandType === "broadSword" && (unit.offHandType === "shield" || unit.offHandType === "buckler")) {
                     canAutoAttack = false
                 }
 

@@ -3,52 +3,64 @@
     <!-- Main CTA -->
     <div class="container">
       <div class="col-12 text-center">
-        <h1 class="heading" style="margin-top: 100px; margin-bottom: 10px">
+        <h1 class="heading" style="margin-top: 40px; margin-bottom: 10px">
           Gather, Craft, Battle and Progress
         </h1>
-        {{#if activeUsers}}
-          <div style="margin-bottom: 50px">{{activeUsers}} players online now</div>
+        <div style="margin-bottom: 20px">
+          Eternity Tower is a hybrid mix of idle and incremental game features with realtime, multiplayer combat.<br />
+          <br class="hide-on-desktop" />
+          Work together to progress through the tower and defeat each boss, accumulating power and rewards in the process!<br />
+        </div>
+        {{#if passiveUsers}}
+          <div style="margin-bottom: 20px">
+            {{passiveUsers}} players online now
+          </div>
         {{/if}}
-        <div>
-          <button class="btn btn-secondary play-as-guest-btn {{#if creatingGuest}}disabled{{/if}}">
+        <div style="margin-top: 20px">
+          <a class="btn btn-primary ml-2" style="margin-bottom: 6px" href="/signin">
+            Sign In
+          </a>
+          <a class="btn btn-primary ml-2" style="margin-bottom: 6px" href="/join">
+            Create Account
+          </a>
+          <button type="button" style="margin-bottom: 6px" class="btn btn-secondary play-as-guest-btn {{#if creatingGuest}}disabled{{/if}}">
             {{#if creatingGuest}}
-              Creating account
+              Creating Guest Account...
             {{else}}
-              Play as guest
+              Play As Guest
             {{/if}}
           </button>
-          <a class="btn btn-primary ml-2" href="/join">
-            Register
-          </a>
         </div>
         <div class="mt-3">
-          By clicking play as guest, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
+          By clicking <b>Play As Guest</b>, you still agree to the <a taret="_blank" href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
         </div>
       </div>
     </div>
     <!-- Main Game Image -->
-    <div class="container" style="margin-top: 100px;">
+    <div class="container" style="margin-top: 50px;">
       <div class="row">
         <div class="col-md-4">
-          <h1>Gather</h1>
+          <h2>Mine, Gather, Discover</h2>
           <a data-fancybox="gallery" href="/images/newMiningScreenshot.png">
-            <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
+            <div style="max-width: 100%; padding: 0px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
               <img class="img-fluid" src="/images/newMiningScreenshot.png">
             </div>
           </a>
         </div>
         <div class="col-md-4">
-          <h1>Craft</h1>
+          <br class="hide-on-desktop" />
+          <h2>Craft, Inscribe, Reforge</h2>
           <a data-fancybox="gallery" href="/images/newCraftingScreenshot.png">
-            <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
+            <div style="max-width: 100%; padding: 0px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
               <img class="img-fluid" src="/images/newCraftingScreenshot.png">
             </div>
           </a>
         </div>
         <div class="col-md-4">
-          <h1>Battle</h1>
+          <br class="hide-on-desktop" />
+          <h2>Multiplayer Combat</h2>
           <a data-fancybox="gallery" href="/images/newCombatScreenshot.png">
-            <div style="max-width: 100%; padding: 20px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
+            <div style="max-width: 100%; padding: 0px; margin-top: 10px; border: 1px solid #DFDFDF; border-radius: 4px;">
               <img class="img-fluid" src="/images/newCombatScreenshot.png">
             </div>
           </a>
@@ -58,20 +70,28 @@
   </header>
 
   <!-- Stats -->
-  <div class="template" style="padding: 90px 0; margin-top: 100px; border-top: 1px solid #DFDFDF; border-bottom: 1px solid #DFDFDF">
+  <div class="template" style="padding: 40px 0 20px 0; margin-top: 40px; border-top: 1px solid #DFDFDF; border-bottom: 1px solid #DFDFDF">
     <div class="container">
       <div class="flex text-center row">
-        <div class="col-md-4">
+        <div class="col-md-3" style="margin-bottom: 20px">
+          <h1 class="heading">8</h1>
+          <span>Character Classes</span>
+        </div>
+        <div class="col-md-3" style="margin-bottom: 20px">
+          <h1 class="heading">
+            {{> formatNumber number=itemCount}}
+          </h1>
+          <span>Unique Items</span>
+        </div>
+        <div class="col-md-3" style="margin-bottom: 20px">
+          <h1 class="heading">
+            {{> formatNumber number=abilityCount}}
+          </h1>
+          <span>Abilities &amp; Spells</span>
+        </div>
+        <div class="col-md-3" style="margin-bottom: 20px">
           <h1 class="heading">10</h1>
-          <span>Skills</span>
-        </div>
-        <div class="col-md-4">
-          <h1 class="heading">1,300+</h1>
-          <span>Items</span>
-        </div>
-        <div class="col-md-4">
-          <h1 class="heading">80+</h1>
-          <span>Abilities</span>
+          <span>Skills To Level</span>
         </div>
       </div>
     </div>

@@ -134,12 +134,14 @@ export function healTarget(
         }
     }
 
-    if (tickEvents) {
+    const healAmountVisual:string = healAmount.toFixed(1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1')
+    
+    if (tickEvents && healAmountVisual != "0") {
         tickEvents.push({
             from: caster ? caster.id : "",
             to: target ? target.id : "",
             eventType: "heal",
-            label: healAmount.toFixed(1).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0*$)/,'$1'),
+            label: healAmountVisual,
             customColor: customColor || "#cc2266",
             customIcon: customIcon || "heal"
         })

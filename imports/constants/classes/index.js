@@ -104,7 +104,7 @@ export const CLASSES = Object.freeze({
         eligible: function () {
             return true
         },
-        exclusiveAbilities: ["class_active_paladin__wrath", "class_passive_paladin__bulwark"],
+        exclusiveAbilities: ["class_active_paladin__guard", "class_active_paladin__wrath", "class_passive_paladin__bulwark"],
         autoBuffs: ["class_trait_paladin"],
         equipmentBonuses: {
             hammer: {
@@ -188,6 +188,14 @@ export const CLASSES = Object.freeze({
                 }
             },
             longSword: {
+                attack: {
+                    valueMultiply: 0.8
+                },
+                attackMax: {
+                    valueMultiply: 0.8
+                }
+            },
+            broadSword: {
                 attack: {
                     valueMultiply: 0.8
                 },
@@ -290,7 +298,7 @@ export const CLASSES = Object.freeze({
         equipmentBonuses: {
             staff: {
                 healingPower: {
-                    valueMultiply: 2
+                    valueMultiply: 4
                 }
             }
         },
@@ -534,7 +542,7 @@ export const CLASSES = Object.freeze({
         equipmentBonuses: {
             trident: {
                 attackSpeed: {
-                    valueAdd: 0.25
+                    valueAdd: 0.175
                 }
             },
             neck: {

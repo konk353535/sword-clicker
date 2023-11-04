@@ -322,7 +322,7 @@ export const ATTACK_ABILITIES = {
         requires: [
             {
                 type: "weaponType",
-                weaponTypes: ["battleAxe", "longSword"]
+                weaponTypes: ["battleAxe", "longSword", "broadSword"]
             }
         ],
         target: "currentEnemy", // The current enemy who we are auto-attacking

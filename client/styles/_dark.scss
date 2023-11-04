@@ -148,6 +148,22 @@ html.dark {
         background-color: #005cbf !important;
     }
 
+    .progress-bar.magic-fire {
+        background-color: #da4210 !important;
+    }
+    .progress-bar.magic-earth {
+        background-color: #7b4e20 !important;
+    }
+    .progress-bar.magic-air {
+        background-color: #c0c0c0 !important;
+    }
+    .progress-bar.magic-water {
+        background-color: #4fb2d9 !important;
+    }
+    .progress-bar.magic-necrotic {
+        background-color: #357333 !important;
+    }
+
     /* chat */
     .chat-container {
         background-color: #212121 !important;
@@ -304,6 +320,7 @@ html.dark {
     img[src*="icons/doubleEdgedSword.svg"],
     img[src*="icons/dragon.svg"],
     img[src*="icons/dragonfly.svg"],
+    img[src*="icons/broadSword.svg"],
     img[src*="icons/duration.svg"],
     img[src*="icons/echidna.svg"],
     img[src*="icons/evasiveManeuvers.svg"],

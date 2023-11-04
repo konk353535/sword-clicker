@@ -652,7 +652,7 @@ SimpleChat.configure({
                 let targetUsername, targetSkill, targetAmount
 
                 if (splitMessage.length === 3) {
-                    targetUsername = userDoc.username
+                    targetUsername = splitMessage[0]
                     targetSkill = splitMessage[1]
                     targetAmount = CInt(splitMessage[2])
                 } else {
@@ -695,7 +695,7 @@ SimpleChat.configure({
                 let targetUsername, targetSkill, targetLevel
 
                 if (splitMessage.length === 3) {
-                    targetUsername = userDoc.username
+                    targetUsername = splitMessage[0]
                     targetSkill = splitMessage[1]
                     targetLevel = CInt(splitMessage[2])
                 } else {

@@ -187,7 +187,7 @@ export const RADIANT_ITEMS = {
         id: "radiant_broad_sword",
         icon: "radiantBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "radiant broad sword",
         sellPrice: Math.round(3000 * RADIANT_MULTIPLIER),

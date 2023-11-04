@@ -1,7 +1,7 @@
 import type Battle from "../"
 import { BUFFS } from "../../../../../imports/constants/buffs"
 import { fixupBuffText } from "../../../../battleUtils"
-import { secondsElapsed } from "./../autoAttack"
+import { secondsElapsedBuffs } from "./../tickMethods/tickTimer"
 
 export function tickUnitsAndBuffs(this: Battle) {
     this.allAliveUnits.forEach((aliveUnit) => {
@@ -9,7 +9,8 @@ export function tickUnitsAndBuffs(this: Battle) {
             aliveUnit.tick()
         }
 
-        if (aliveUnit.buffs) {
+        // only tick buffs every 2 ticks (200ms)
+        if (aliveUnit.buffs && (this.tickCount % 2 == 0)) {
             // Buffs can do things on tick, will collect them in the form of combatEvents
             aliveUnit.buffs.forEach((buff) => {
                 if (!buff.constants) {
@@ -54,7 +55,7 @@ export function tickUnitsAndBuffs(this: Battle) {
 
                 try {
                     if (buff._isBuffClass && buff.onTick) {
-                        buff.onTick({ secondsElapsed, buff, caster: caster, target: aliveUnit, actualBattle: this })
+                        buff.onTick({ secondsElapsed: secondsElapsedBuffs, buff, caster: caster, target: aliveUnit, actualBattle: this })
                     }
                 } catch (err) {
                     console.log("Couldn't buff.onTick()")

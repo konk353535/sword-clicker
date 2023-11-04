@@ -3,6 +3,7 @@ import { MEDIUM_SPEED, SLOW_SPEED, VERY_FAST_SPEED } from "../attackSpeeds"
 const RADIANT_MULTIPLIER = 1.2
 
 export const MISC_ITEMS = {
+    /*
     thirsting_saber: {
         id: "thirsting_saber",
         icon: "thirstingSaber.svg",
@@ -36,7 +37,9 @@ export const MISC_ITEMS = {
             }
         ]
     },
+    */
 
+    /*
     enchanted_long_sword: {
         id: "enchanted_long_sword",
         icon: "enchantedLongsword.svg",
@@ -71,7 +74,9 @@ export const MISC_ITEMS = {
             }
         ]
     },
+    */
 
+    /*
     spartan_shield: {
         id: "spartan_shield",
         icon: "spartanShield.svg",
@@ -101,6 +106,7 @@ export const MISC_ITEMS = {
             }
         ]
     },
+    */
 
     snake_skin_chest: {
         id: "snake_skin_chest",
@@ -128,7 +134,8 @@ export const MISC_ITEMS = {
                 name: "defense",
                 level: 20
             }
-        ]
+        ],
+        tier: 2
     },
 
     bone_kings_axe: {
@@ -162,7 +169,8 @@ export const MISC_ITEMS = {
                 level: 30
             }
         ],
-        enchantments: ["axe_cleave"]
+        enchantments: ["axe_cleave"],
+        tier: 3
     },
 
     spartan_spear: {
@@ -196,14 +204,15 @@ export const MISC_ITEMS = {
                 name: "defense",
                 level: 25
             }
-        ]
+        ],
+        tier: 6
     },
 
     oversized_club: {
         id: "oversized_club",
         icon: "oversizedClub.svg",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "oversized club",
         sellPrice: 650,
@@ -232,6 +241,7 @@ export const MISC_ITEMS = {
             }
         ],
         enchantments: ["oversized_club"]
+        // no tier set: does not hold magic pool
     },
 
     dev_sword: {
@@ -252,7 +262,8 @@ export const MISC_ITEMS = {
             accuracy: 100000
         },
         extraStats: {},
-        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }],
+        tier: 30
     },
 
     dev_shield: {
@@ -269,7 +280,8 @@ export const MISC_ITEMS = {
             absorption: 1
         },
         extraStats: {},
-        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }],
+        tier: 30
     },
 
     dev_legs: {
@@ -285,7 +297,8 @@ export const MISC_ITEMS = {
             absorption: 1
         },
         extraStats: {},
-        upgradeRarity: [{ chance: 100, rarityId: "developer" }]
+        upgradeRarity: [{ chance: 100, rarityId: "developer" }],
+        tier: 30
     },
 
     /* Kite Shield +70% armor, +15% defense, -Attack Speed, -Accuracy */
@@ -6779,7 +6792,8 @@ export const MISC_ITEMS = {
                 level: 60
             }
         ],
-        enchantments: ["demons_heart"]
+        enchantments: ["demons_heart"],
+        tier: 11
     },
 
     smoke_dagger: {
@@ -6807,7 +6821,8 @@ export const MISC_ITEMS = {
                 level: 50
             }
         ],
-        enchantments: ["smoke_dagger"]
+        enchantments: ["smoke_dagger"],
+        tier: 12
     },
 
     shadow_knife: {
@@ -6839,7 +6854,8 @@ export const MISC_ITEMS = {
                 level: 50
             }
         ],
-        enchantments: ["shadow_knife"]
+        enchantments: ["shadow_knife"],
+        tier: 12
     },
 
     living_helmet: {
@@ -6871,7 +6887,8 @@ export const MISC_ITEMS = {
                 level: 55
             }
         ],
-        enchantments: ["living_helmet"]
+        enchantments: ["living_helmet"],
+        tier: 13
     },
 
     bloody_plate_legs: {
@@ -6901,7 +6918,8 @@ export const MISC_ITEMS = {
                 name: "defense",
                 level: 60
             }
-        ]
+        ],
+        tier: 14
     },
 
     /* Defensive Magic Armor */
@@ -6944,9 +6962,11 @@ export const MISC_ITEMS = {
                 level: 30
             }
         ],
-        enchantments: ["opal_chest_plate"]
+        enchantments: ["opal_chest_plate"],
+        tier: 6
     },
 
+    /*
     opal_pants: {
         id: "opal_pants",
         icon: "opalPants.svg",
@@ -6973,6 +6993,7 @@ export const MISC_ITEMS = {
             }
         ]
     },
+    */
 
     bamboo_roof: {
         id: "bamboo_roof",
@@ -7028,7 +7049,8 @@ export const MISC_ITEMS = {
                 level: 75
             }
         ],
-        enchantments: ["frankensteins_heart"]
+        enchantments: ["frankensteins_heart"],
+        tier: 15
     },
 
     rich_snake_skin: {
@@ -7058,7 +7080,8 @@ export const MISC_ITEMS = {
                 level: 75
             }
         ],
-        enchantments: ["rich_snake_skin"]
+        enchantments: ["rich_snake_skin"],
+        tier: 16
     },
 
     krakens_tentacle: {
@@ -7089,7 +7112,8 @@ export const MISC_ITEMS = {
                 level: 75
             }
         ],
-        enchantments: ["krakens_tentacle"]
+        enchantments: ["krakens_tentacle"],
+        tier: 18
     },
 
     bison_axe: {
@@ -7124,6 +7148,7 @@ export const MISC_ITEMS = {
             }
         ],
         enchantments: ["bison_axe"]
+        // no tier: weapon intentionally does not hold magic pool
     },
 
     baby_fox: {
@@ -7149,9 +7174,11 @@ export const MISC_ITEMS = {
                 level: 90
             }
         ],
-        enchantments: ["baby_fox"]
+        enchantments: ["baby_fox"],
+        tier: 21
     },
 
+    /*
     winged_shield: {
         id: "winged_shield",
         icon: "winged_shield.svg",
@@ -7181,7 +7208,9 @@ export const MISC_ITEMS = {
         ],
         enchantments: ["winged_shield"]
     },
+    */
 
+    /*
     orb_blue: {
         id: "orb_blue",
         icon: "orbBlue.png",
@@ -7227,6 +7256,7 @@ export const MISC_ITEMS = {
             magicArmor: 2
         }
     },
+    */
 
     diminished_orb: {
         id: "diminished_orb",
@@ -9639,7 +9669,8 @@ export const MISC_ITEMS = {
                 level: 75
             }
         ],
-        enchantments: ["honeycomb"]
+        enchantments: ["honeycomb"],
+        tier: 24
     },
 
     holy_plate: {
@@ -9669,7 +9700,8 @@ export const MISC_ITEMS = {
                 level: 100
             }
         ],
-        enchantments: ["holy_plate"]
+        enchantments: ["holy_plate"],
+        tier: 23
     },
 
     witchs_cauldron: {
@@ -9698,7 +9730,8 @@ export const MISC_ITEMS = {
                 level: 75
             }
         ],
-        enchantments: ["witchs_cauldron"]
+        enchantments: ["witchs_cauldron"],
+        tier: 26
     },
 
     event_spd_jeweled_greaves: {

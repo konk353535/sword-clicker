@@ -11,15 +11,15 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
 }
 
 .targetting-item .item:hover {
-  border-color: $red;
+  border: 3px dotted $red !important;
 }
 
 .targetting-enemies .enemy-icon:hover {
-  border-color: $red;
+  border: 3px dotted $red !important;
 }
 
 .targetting-friendlies .friendly-icon:hover {
-  border-color: $red;
+  border: 3px dotted $red !important;
 }
 
 .recipe-container {
@@ -195,6 +195,14 @@ body.targetting-enemies, body.targetting-friendlies, body.targetting-item {
   img {
     opacity: 0.4;
   }
+}
+
+.tiny-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  pointer-events: none;
 }
 
 .extra-small-icon {

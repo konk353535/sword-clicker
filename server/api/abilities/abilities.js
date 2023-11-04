@@ -12,6 +12,7 @@ import { Items } from "/imports/api/items/items"
 import { Skills } from "/imports/api/skills/skills"
 import { requirementsUtility } from "/server/api/crafting/crafting"
 
+import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS } from "/imports/constants/items/index"
 import { ABILITIES, ABILITY } from "/server/constants/combat/index"
 import { MAGIC } from "/server/constants/magic/index"
@@ -19,6 +20,7 @@ import { MAGIC } from "/server/constants/magic/index"
 import { getBuffLevel } from "/imports/api/globalbuffs/globalbuffs.js"
 import { userUnequipAllAbilities } from "/server/api/classes/classes.js"
 import { consumeItem } from "/server/api/items/items"
+import { spellData } from "/server/constants/magic"
 
 export const updateAbilityCooldowns = function updateAbilityCooldowns(userId, callback) {
     let owner = userId
@@ -94,7 +96,7 @@ Meteor.methods({
         }
     },
 
-    "abilities.craftSpell"(abilityId, amount) {
+    /* "abilities.craftSpell"(abilityId, amount) {
         const currentBattle = BattlesList.findOne({ owners: Meteor.userId() })
         if (currentBattle) {
             throw new Meteor.Error("in-battle", "You cannot craft spells while in a battle")
@@ -128,9 +130,9 @@ Meteor.methods({
                 }
             }
         )
-    },
+    }, */
 
-    "abilities.fetchSpellCrafting"() {
+    /* "abilities.fetchSpellCrafting"() {
         // Get my abilities
         const myAbilities = Abilities.findOne({ owner: Meteor.userId() })
         const mySpellAbilities = myAbilities.learntAbilities
@@ -142,6 +144,37 @@ Meteor.methods({
                 ability.name = ABILITIES[ability.abilityId].name
                 ability.required = MAGIC.spells[ability.abilityId].required
                 ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft
+                return ability
+            })
+
+        // Merge with required items to craft said abilities
+        return mySpellAbilities
+    }, */
+
+    "abilities.fetchSpells"() {
+        // Get my abilities
+        const myAbilities = Abilities.findOne({ owner: Meteor.userId() })
+        const mySpellAbilities = myAbilities.learntAbilities
+            .filter((ability) => {
+                return ability.isSpell
+            })
+            .map((ability) => {
+                ability.icon = ABILITIES[ability.abilityId].icon
+                ability.name = ABILITIES[ability.abilityId].name
+                ability.required = MAGIC.spells[ability.abilityId].required
+                //ability.maxToCraft = MAGIC.spells[ability.abilityId].maxToCraft
+                ability.costs = ABILITIES[ability.abilityId].magic // spellData(ability.abilityId) // handled on startup now
+
+                if (BUFFS && BUFFS[ability.abilityId]) {
+                    if (_.isFunction(BUFFS[ability.abilityId]?.description)) {
+                        ability.description = BUFFS[ability.abilityId].description({
+                            buff: BUFFS[ability.abilityId],
+                            level: 1,
+                            characterClass: userCurrentClass()
+                        })
+                    }
+                }
+
                 return ability
             })
 
@@ -416,6 +449,10 @@ Meteor.methods({
     "abilities.getAbilityInfo"(abilityId, level) {
         level = level || 1
         return { ability: ABILITIES[abilityId], description: ABILITIES[abilityId].description(level) }
+    },
+
+    "abilities.getCount"() {
+        return Object.keys(ABILITIES).length
     },
 
     "abilities.fetchLibraryExtra"() {

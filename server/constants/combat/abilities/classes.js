@@ -67,6 +67,24 @@ export const CLASS_ABILITIES = {
             const BUFF = BUFFS.class_passive_duelist__driven
             return BUFF.description({ buff: BUFF, level })
         }
+    },    
+
+    class_active_paladin__guard: {
+        icon: "paladinGuard.svg",
+        name: "Guard",
+        id: "class_active_paladin__guard",
+        buffs: ["class_active_paladin__guard"],
+        cooldown: 5,
+        slot: "any",
+        target: "singleFriendly",
+        isPacifist: true,
+        targettable: true,
+        isHidden: true,
+        isClass: true,
+        description(level) {
+            const BUFF = BUFFS.class_active_paladin__guard
+            return BUFF.description({ buff: BUFF, level })
+        }
     },
 
     class_active_paladin__wrath: {
@@ -188,7 +206,7 @@ export const CLASS_ABILITIES = {
 
     class_active_sage__mystic_bond: {
         icon: "sageMysticBond.svg",
-        name: "Bond",
+        name: "Mystic Bond",
         id: "class_active_sage__mystic_bond",
         buffs: ["class_active_sage__mystic_bond"],
         cooldown: 5,

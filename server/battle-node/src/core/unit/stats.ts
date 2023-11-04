@@ -1,52 +1,62 @@
 import Battle from ".."
+import Unit from "../unit"
+import Magic from "./magic"
 import { BATTLES } from "../../../../constants/battles"
 import { stats } from "../../types/stats"
-import { TICK_DURATION } from "../autoAttack"
-
-const ticksPerSecond = 1000 / TICK_DURATION
+import { ticksPerSecondAll } from "../tickMethods/tickTimer"
 
 export default class Stats {
-    attack: number
+    unitId: string
+    battleRef: Battle
+
     origStats: any
+
+    attack: number
     attackMax: number
+
     criticalChance: number
-    healingPower: number
     criticalDamage: number
+
     accuracy: number
+
+    _attackSpeed: number
+
+    _health: number
+    _healthMax: number
+    _healthMaxOrig: number
+
     defense: number
+    _armor: number
+    _magicArmor: number
+
     magicPower: number
-    healingReduction: number
+
     force: number
     shred: number
     focus: number
     absorption: number
-    _attackSpeed: number
-    attackSpeedTicks: number
-    _armor: number
+
+    healingPower: number
+
     damageReduction: number
-    _magicArmor: number
     magicDamageReduction: number
-    _healthMax: number
-    _healthMaxOrig: number
-    _health: number
-    unitId: string
-    battleRef: Battle
+    healingReduction: number
     damageTaken: number
     damageOutput: number
+
+    attackSpeedTicks: number
     minimumHitChance?: number
+
+    magic: Magic
 
     getDamageReduction(armor: number) {
         let damageReduction = BATTLES.dmgReduction(armor)
 
-        if (damageReduction < 0) {
-            damageReduction = 0
-        } else if (damageReduction > 1) {
-            damageReduction = 1
-        } else if (damageReduction == null) {
+        if (damageReduction == null || damageReduction == undefined || typeof damageReduction === 'undefined') {
             damageReduction = 0
         }
 
-        return damageReduction
+        return Math.max(0, Math.min(1, damageReduction))
     }
 
     getAttackSpeedTicks(attackSpeedLocal: number) {
@@ -56,13 +66,13 @@ export default class Stats {
                 attackSpeedLocal = 0.001
             }
      
-            // Fixes a bug where attack speeds beyond 5x yield an effective attack speed of
-            //  0 because you can't attack more than once per tick (1x/0.2s = 5x attack speed).
+            // Fixes a bug where attack speeds beyond 10x yield an effective attack speed of
+            // 0 because you can't attack more than once per tick (1x/0.1s = 10x attack speed).
             //
-            // Caps attack speed at 5x (5/sec = 500% attack speed).
-            attackSpeedLocal = Math.min(attackSpeedLocal, ticksPerSecond)
+            // Caps attack speed at 10x (10/sec = 1,000% attack speed).
+            attackSpeedLocal = Math.min(attackSpeedLocal, ticksPerSecondAll)
 
-            return Math.round(ticksPerSecond / attackSpeedLocal)
+            return Math.round(ticksPerSecondAll / attackSpeedLocal)
         }
 
         console.log("[WARN] UNIT HAS NO ATTACK SPEED!", this.unitId)
@@ -75,6 +85,7 @@ export default class Stats {
     set attackSpeed(value) {
         this._attackSpeed = value
         this.attackSpeedTicks = this.getAttackSpeedTicks(this._attackSpeed)
+        this.delta("attackSpeed")
     }
 
     get armor() {
@@ -83,6 +94,7 @@ export default class Stats {
     set armor(value) {
         this._armor = value
         this.damageReduction = this.getDamageReduction(value)
+        this.delta("armor")
     }
 
     get magicArmor() {
@@ -91,6 +103,7 @@ export default class Stats {
     set magicArmor(value) {
         this._magicArmor = value
         this.magicDamageReduction = this.getDamageReduction(value)
+        this.delta("magicArmor")
     }
 
     get healthMax() {
@@ -149,8 +162,8 @@ export default class Stats {
         this.absorption = this.origStats.absorption || 0
     }
 
-    constructor(stats: stats, unitId: string, battleRef: Battle) {
-        this.unitId = unitId
+    constructor(stats: stats, unitRef: Unit, battleRef: Battle) {
+        this.unitId = unitRef.id
         this.battleRef = battleRef
 
         this.attack = stats.attack
@@ -174,6 +187,8 @@ export default class Stats {
         this.focus = stats.focus || 0
         this.absorption = stats.absorption || 0
         this.damageOutput = 1.0
+
+        this.magic = new Magic(stats.magic, unitRef, battleRef)
 
         // initialize other bits
         this._attackSpeed = this.attackSpeed
@@ -210,7 +225,8 @@ export default class Stats {
             force: this.force,
             shred: this.shred,
             focus: this.focus,
-            absorption: this.absorption
+            absorption: this.absorption,
+            magic: this.magic.raw()
         }
     }
 }

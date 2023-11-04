@@ -2,7 +2,7 @@
   <div class="container mt-2">
     <h4 class="d-flex align-items-center">
       Equipped Gear
-      <button class="btn btn-secondary remove-all-gear-btn" style="margin-left: 20px;">Remove All</button>
+      <button type="button" class="btn btn-secondary remove-all-gear-btn" style="margin-left: 20px;">Remove All</button>
     </h4>
     <div class="d-flex flex-wrap mb-1">
       <!-- Main Hand -->
@@ -58,12 +58,12 @@
     <div class="mb-3">
       <div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: 600px">
         {{#each offenseStats}}
-          <div class="d-flex flex-row mr-1">
-            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
-              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+          <div class="d-flex flex-row mr-1" style="min-width: 145px; max-width: 145px;">
+            <div class="d-flex align-items-start {{this.icon}}-tooltip-container">
+              {{> helpIcon title=this.tooltipTitle content=tooltipContent icon=this.icon tiny=true}}
             </div>
-            <div class="d-flex align-items-center ml-1" style="max-width: 150px">
-              {{> formatNumber number=this.value}}{{#if $eq this.name 'attack speed'}}/s{{/if}}{{#if $eq this.name 'critical chance'}}%{{/if}}{{#if $eq this.name 'critical damage'}}x{{/if}}
+            <div class="d-flex align-items-start ml-1" style="text-overflow: ellipsis;">
+              {{> formatNumber number=this.value decimal=1 trimDecimal=true}}{{#if $eq this.name 'attack speed'}}/s{{/if}}{{#if $eq this.name 'critical chance'}}%{{/if}}{{#if $eq this.name 'critical damage'}}x{{/if}}
               {{#if this.maxValue}}
                 - {{> formatNumber number=this.maxValue}}
               {{/if}}
@@ -73,27 +73,51 @@
       </div>
       <div class="d-flex flex-wrap justify-content-between mb-2" style="max-width: 600px">
         {{#each offenseStats2}}
-          <div class="d-flex flex-row mr-1">
-            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
-              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+          <div class="d-flex flex-row mr-1" style="min-width: 145px; max-width: 145px;">
+            <div class="d-flex align-items-start {{this.icon}}-tooltip-container">
+              {{> helpIcon title=this.tooltipTitle content=tooltipContent icon=this.icon tiny=true}}
             </div>
-            <div class="d-flex align-items-center ml-1" style="max-width: 150px">
-              {{> formatNumber number=this.value}}{{#if $eq this.name 'attack speed'}}/s{{/if}}{{#if $eq this.name 'critical chance'}}%{{/if}}{{#if $eq this.name 'critical damage'}}x{{/if}}
+            <div class="d-flex align-items-start ml-1" style="text-overflow: ellipsis;">
+              {{> formatNumber number=this.value decimal=1 trimDecimal=true}}{{#if $eq this.name 'force'}}%{{/if}}
               {{#if this.maxValue}}
                 - {{> formatNumber number=this.maxValue}}
               {{/if}}
             </div>
           </div>
         {{/each}}
+        <!--
+        <div class="d-flex flex-row mr-1" style="min-width: 145px; max-width: 145px;">
+          <div class="d-flex align-items-start">
+            <img src="/icons/invis.gif" class="tiny-icon">
+          </div>
+          <div class="d-flex align-items-start ml-1" style="text-overflow: ellipsis;">
+          </div>
+        </div>
+        -->
       </div>
       <div class="d-flex flex-wrap justify-content-between" style="max-width: 600px">
         {{#each defenseStats}}
-          <div class="d-flex flex-row mr-1">
-            <div class="d-flex align-items-center {{this.icon}}-tooltip-container">
-              <img src="/icons/{{this.icon}}" class="extra-small-icon">
+          <div class="d-flex flex-row mr-1" style="min-width: 145px; max-width: 145px;">
+            <div class="d-flex align-items-start {{this.icon}}-tooltip-container">
+              {{> helpIcon title=this.tooltipTitle content=tooltipContent icon=this.icon tiny=true}}
             </div>
-            <div class="d-flex align-items-center ml-1" style="max-width: 150px">
-              {{> formatNumber number=this.value}}{{#if $eq this.name 'healing power'}}%{{/if}}
+            <div class="d-flex align-items-start ml-1" style="text-overflow: ellipsis;">
+              {{> formatNumber number=this.value}}{{#if $eq this.name 'absorption'}}%{{/if}}
+              {{#if this.maxValue}}
+                / {{> formatNumber number=this.maxValue}}
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="d-flex flex-wrap justify-content-between" style="max-width: 600px">
+        {{#each magicStats}}
+          <div class="d-flex flex-row mr-1" style="min-width: 145px; max-width: 145px;">
+            <div class="d-flex align-items-start {{this.icon}}-tooltip-container">
+              {{> helpIcon title=this.tooltipTitle content=tooltipContent icon=this.icon tiny=true}}
+            </div>
+            <div class="d-flex align-items-start ml-1" style="text-overflow: ellipsis;">
+              {{> formatNumber number=this.value decimal=1 trimDecimal=true}}{{#if $eq this.name 'healing power'}}%{{/if}}
               {{#if this.maxValue}}
                 / {{> formatNumber number=this.maxValue}}
               {{/if}}
@@ -117,7 +141,9 @@
       {{#each slotsMap.offHand}}
         {{> itemIcon item=this classes="small" autoDisplay=true}}
       {{else}}
-        No off hand gear
+        <div>
+          No off hand gear
+        </div>
       {{/each}}
     </div>
 
@@ -162,7 +188,7 @@
     </p>
 
     <div class="select-battle-container">
-      <button class="btn btn-primary back-to-loadout-btn">Back to loadout</button>
+      <button type="button" class="btn btn-primary back-to-loadout-btn">Back to loadout</button>
     </div>
   </div>
 </template>

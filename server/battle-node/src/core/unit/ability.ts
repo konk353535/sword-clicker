@@ -7,7 +7,7 @@ export default class Ability {
     constants: any
     scaledCooldown: any
     _currentCooldown: any
-    _casts: any
+    //_casts: any
     unit: Unit
     id: string
     battleRef: Battle
@@ -19,6 +19,7 @@ export default class Ability {
     cdAdjust?: ((abil: Ability) => number) | undefined
     allowedWhileDead?: boolean
     isEnchantment?: boolean
+    magic?: any
 
     get isPassive() {
         return this.constants.isPassive
@@ -53,6 +54,7 @@ export default class Ability {
         this.delta("currentCooldown")
     }
 
+    /*
     get casts() {
         return this._casts
     }
@@ -60,8 +62,9 @@ export default class Ability {
         this._casts = value
         this.delta("casts")
     }
+    */
 
-    delta(key: "currentCooldown" | "casts") {
+    delta(key: "currentCooldown" /* | "casts" */) {
         const event = {
             type: "abs",
             path: `unitsMap.${this.unit.id}.abilitiesMap.${this.id}.${key}`,
@@ -81,16 +84,19 @@ export default class Ability {
         this.level = ability.level
         this.totalCasts = ability.totalCasts
         this._currentCooldown = ability.currentCooldown
-        this._casts = ability.casts
+        //this._casts = ability.casts
         this.isSpell = ability.isSpell || this.constants.isSpell || false
         this.isPacifist = ability.isPacifist || this.constants.isPacifist || false
         this.isTaunt = ability.isTaunt || this.constants.isTaunt || false
+        this.magic = ability.magic || {}
     }
 
     cast(targets: Unit[]) {
         if (this.currentCooldown > 0) {
             return false
-        } else if (this.isSpell && this.casts <= 0) {
+        //} else if (this.isSpell && this.casts <= 0) {
+        //    return false
+        } else if (this.isSpell && !this.canAffordToCast) {
             return false
         } else if (this.isPassive && this.battleRef.tickCount > 1) {
             return false
@@ -103,12 +109,40 @@ export default class Ability {
         })
     }
 
+    get canAffordToCast() {
+        if (!this.unit.broughtMagic) {
+            return false
+        }
+
+        if (this.magic.fire.cost.units > this.unit.stats.magic.firePool) {
+            return false
+        }
+
+        if (this.magic.earth.cost.units > this.unit.stats.magic.earthPool) {
+            return false
+        }
+
+        if (this.magic.air.cost.units > this.unit.stats.magic.airPool) {
+            return false
+        }
+
+        if (this.magic.water.cost.units > this.unit.stats.magic.waterPool) {
+            return false
+        }
+
+        if (this.magic.necrotic.cost.units > this.unit.stats.magic.necroticPool) {
+            return false
+        }
+
+        return true
+    }
+
     raw() {
         return {
             id: this.id,
             level: this.level,
             currentCooldown: this.currentCooldown,
-            casts: this.casts,
+            //casts: this.casts,
             totalCasts: this.totalCasts,
             isSpell: this.isSpell,
             isPacifist: this.isPacifist,

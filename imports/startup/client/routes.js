@@ -193,7 +193,7 @@ Router.route("/achievements", {
 ;["magic", "astro", "astrology", "astronomy", "spells", "spellBook"].forEach((pageAlias) => {
     Router.route(`/${pageAlias}`, {
         name: pageAlias,
-        title: "Astronomy & Spell Book",
+        title: "Magic & Astronomy",
         template: "magicPage",
         yieldRegions: {
             nav: { to: "nav" },

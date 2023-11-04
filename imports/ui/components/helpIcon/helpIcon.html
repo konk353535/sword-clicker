@@ -1,14 +1,14 @@
 <template name="helpIcon">
-  <div class="help-icon-container">
-    <img src="/icons/help.svg" class="extra-small-icon skill">
+  <div class="help-icon-container" style="{{#if tiny}}line-height: 18px;{{/if}}">
+    <img src="/icons/{{icon}}" class="{{#if tiny}}tiny{{else}}extra-small{{/if}}-icon">
   </div>
 
   <div class="help-tooltip-content my-tooltip-inner">
-    <h3 class='popover-title text-capitalize'>
+    <h3 class="popover-title text-capitalize">
       {{title}}
     </h3>
-    <div class='popover-content'>
-      <div style='max-width: 350px;'>
+    <div class="popover-content">
+      <div style="max-width: 350px;">
         {{{content}}}
       </div>
     </div>

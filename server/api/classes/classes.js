@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter"
 
+import _ from "underscore"
 import moment from "moment"
 
 import { Abilities } from "/imports/api/abilities/abilities"
@@ -42,7 +43,7 @@ const setClass = function(uid, newClass) {
     // set the user's cooldown
     const newCooldown = (newClass == CLASSES.default().id)
         ? moment().add(-1, "seconds").toDate()
-        : moment().add(12, "hours").toDate()
+        : moment().add(15, "minutes").toDate()
 
     // update user record with new class details
     Users.update(
@@ -170,6 +171,72 @@ Meteor.methods({
         return { equipped: false, reason: "Ineligible for class change." }
     },
 
+    "classes.checkAbilities"(uid) {
+        if (uid == null || !uid || typeof uid === 'undefined') {
+            uid = Meteor.userId()
+        }
+
+        const userCurrentClassEquipped = userCurrentClass(uid).data
+        if (!userCurrentClassEquipped || !userCurrentClassEquipped.exclusiveAbilities) {
+            return
+        }
+
+        const userAbilities = Abilities.findOne({ owner: uid })
+
+        // but unlearn all class abilities not belonging to this class (in case a dev removed or renamed an ability)
+        CLASSES.list().forEach((classId) => {
+            try {
+                const classVal = CLASSES.lookup(classId)
+
+                if (classVal && classVal.exclusiveAbilities) {
+                    classVal.exclusiveAbilities.forEach((thisAbility) => {
+
+                        let abilityInOurClass = false
+                        userCurrentClassEquipped.exclusiveAbilities.forEach((classAbility) => {
+                            if (thisAbility == classAbility) {
+                                abilityInOurClass = true
+                            }
+                        })
+
+                        if (!abilityInOurClass) {
+                            Abilities.update(userAbilities._id, {
+                                $pull: {
+                                    learntAbilities: {
+                                        abilityId: thisAbility
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            } catch (err) {}
+        })
+
+        // learn new abilities from class if they don't know it yet
+        userCurrentClassEquipped.exclusiveAbilities.forEach((thisAbility) => {
+            const ablilityAlreadyLearned = _.findWhere(userAbilities.learntAbilities, { thisAbility })
+            if (!ablilityAlreadyLearned) {
+                const abilityConstants = ABILITIES[thisAbility]
+
+                Abilities.update(
+                    userAbilities._id,
+                    {
+                        $push: {
+                            learntAbilities: {
+                                abilityId: thisAbility,
+                                level: 1,
+                                equipped: false,
+                                isSpell: abilityConstants.isMagic,
+                                //casts: abilityConstants.isMagic ? 1 : undefined,
+                                currentCooldown: 0
+                            }
+                        }
+                    }
+                )
+            }
+        })
+    },
+
     "classes.equipClass"(uid, newClass) {
         if (uid == null || !uid || typeof uid === 'undefined') {
             uid = Meteor.userId()
@@ -239,7 +306,7 @@ Meteor.methods({
                                     level: 1,
                                     equipped: false,
                                     isSpell: abilityConstants.isMagic,
-                                    casts: abilityConstants.isMagic ? 1 : undefined,
+                                    //casts: abilityConstants.isMagic ? 1 : undefined,
                                     currentCooldown: 0
                                 }
                             }

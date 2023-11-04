@@ -1,6 +1,188 @@
 <template name="updatesPage">
     <div class="updates-page">
 
+        <h2 class="my-3">Saturday 28th October 2023</h2>
+        <ul>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Bleed, Poison, Ignite, and other effects should stack correctly now instead of seemingly disappearing.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 class="my-3">Friday 27th October 2023</h2>
+        <ul>
+            <li><b>Feature Update: Magic v2</b></li>
+            <li>
+                <ul>
+                    <li>The magic and spellcasting system has been reworked: we now present to you <b>Magic v2</b>!</li>
+                    <li>Each of the type of crystal shards can now be converted into reserves for different pools of magic:
+                        <ul>
+                            <li style="list-style: georgian inside url('/icons/magicFireUnit.svg');">fire converts to energy <img src="/icons/magicFireUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicEarthUnit.svg');">earth converts to thaum <img src="/icons/magicEarthUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicAirUnit.svg');">air converts to aether <img src="/icons/magicAirUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicWaterUnit.svg');">water converts to vis <img src="/icons/magicWaterUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                            <li style="list-style: georgian inside url('/icons/magicNecroticUnit.svg');">poison converts to entropy <img src="/icons/magicNecroticUnit.svg" width="20" height="20" style="margin-top: -4px; width: 20px; height: 20px;" /></li>
+                        </ul>
+                    </li>
+                    <li>When entering battle, you will have a pool of magic and a reserve of magic for each of the five types of magic.  You cast spells out of your pool and your pool is slowly refilled from your reserves (affected by your magic regeneration rate).</li>
+                    <li>Your <u>base</u> magic regeneration is double your Magic skill level.  Some classes and effects may alter this rate.</li>
+                    <li>Most equipment items (excluding amulets) increase your magic pool sizes, which you can preview by reviewing their item tooltip text.  Magic gear generally has much bigger capacities, but experiment with what works best for you and the spells you want to cast.</li>
+                    <li class="text-muted"><i>NOTE: maximum health stats on magic gear may be lowered in the future since spellcasting is no longer tied to maximum health.</i></li>
+                    <li>Spellcasting no longer requires crafted spellcasts.  Spellcrafts from the old Magic system have been converted into reserves in the new Magic v2 system.</li>
+                    <li>Additionally, spellcasting no longer consumes any maximum health.</li>
+                    <li>Just like before with spellcast crafts, once crystal shard items are converted into magic reserves, they cannot be returned back into items; it is a one-way conversion.</li>
+                    <li class="text-muted"><i>NOTE: the dev. team will be monitoring this new Magic v2 system for any necessary balance changes.</i></li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} The Magic skill experience value of spellcasting has been significantly increased.</li>
+                    <li>{{> updatesBuff}} the cooldown for every spell has been lowered by 67%.</li>
+                    <li>{{> updatesBuff}} the Class change cooldown has been lowered from 12 hours to 15 minutes (at least for now, this may change later for different servers).  If you are still in your cooldown and would like a reset, simply ask the dev. team.</li>
+                    <li>{{> updatesMixed}} opal chest plate's effect no longer increases the maximum health of the wearer nor restores the wearer's maximum health.  Instead, it increases the in-battle magic regeneration rate of all magic pools by your Magic skill level (+50% for most classes).</li>
+                </ul>
+            </li>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesMixed}} Sage Mystic Bond ability now restores 3% of the Sage's Vis magic pool when their Bond target is struck (it no longer restores maximum health).</li>
+                    <li>{{> updatesBuff}} War Mage Trait intrinsic loss to maximum health when struck has been removed.</li>
+                    <li>{{> updatesMixed}} War Mage Glorious Destiny passive ability dealing magic damage now restores 1% of War Mage's Energy and Entropy magic pools (it no longer restores maximum health).</li>
+                    <li>{{> updatesNerf}} War Mage Trait intrinsic bonus to attack speed has been lowered from 50% to 35%.</li>
+                    <li>{{> updatesNerf}} War Mage Trait intrinsic gains a new penalty: cannot use <i>Berserk</i> or <i>Blade Frenzy</i>.</li>
+                    <li>{{> updatesBuff}} Wizard Time Warp no longer reduces the Wizard's maximum health when channeled (it still reduces their actual health).</li>
+                    <li>{{> updatesBuff}} Wizard Trait intrinsic now doubles the size of the Wizard's non-Vis magic pools and grants 50% bonus magic regeneration to non-Vis magic pools (it no longer reduces spellcasting maximum health costs by half).</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>The health, armor, and other stats for elites and variants should be transmitted to your browser correctly now instead of requiring a refresh.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>The icon for Scream has been updated.</li>
+                    <li>When Paladins are stunned from the Mourning loss of their squire, all of their ability cooldowns will be increased up to 60 seconds as a visual aid to their stun.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 class="my-3">Tuesday 24th October 2023</h2>
+        <ul>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Reforging failure expenses cap at 5 failures.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 class="my-3">Monday 23rd October 2023</h2>
+        <ul>
+            <li><b>Feature Changes</b></li>
+            <li>
+                <ul>
+                    <li>You can now target a friendly unit when changing targets or clicking to automatically select their target (implicit targeting).  This works for target changing as well as amulet click damage.</li>
+                </ul>
+            </li>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Barbarian Brawn is now 7.5% damage and 1% absorption per stack with an increased cap of 20 stacks.  Stacks are now increased by +1 when missing with an auto-attack and +1 by being struck by an enemy auto-attack and reduced by -2 when successfully striking with an auto-attack that deals at least 10% of your damage potential.</li>
+                    <li>{{> updatesBuff}} Sage Trait intrinsic bonus to healing power from staves has been increased from double to quadruple.</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Crabs no longer have base magic armor and the hits required to break their physical armor was reduced from 45 to 40.</li>
+                    <li>{{> updatesBuff}} Fire Opal amulets apply their enchantment shield effects separately from the spell Elemental Shield now; the two effects can stack.</li>
+                    <li>{{> updatesNerf}} Furied Winds is now capped at 375 MP (250% attack speed) and maximum health cost (47.5 HP).</li>
+                    <li>{{> updatesNerf}} Spells that increase a target's attack speed may no longer be combined with each other.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Affliction will no longer remove <i>all</i> of an enemy's magical armor.</li>
+                    <li>Duelists can no longer shred armor vs. targets who are dodging or phased (since you didn't actually hit them).</li>
+                    <li>Duelists can no longer use broad swords with Twin Blades (broad swords were flagged internally in the same classification as long swords).</li>
+                    <li>Execute should be working using broad swords again (broken because of the weapon type reclassification).</li>
+                    <li>Paladins can no longer use broad swords with shields (broad swords were flagged internally in the same classification as long swords).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 class="my-3">Sunday 22nd October 2023</h2>
+        <ul>
+            <li><b>Feature Changes</b></li>
+            <li>
+                <ul>
+                    <li>The combat server has been adjusted to process ticks twice as fast now.  Everything has been normalized to this new tick speed so there won't be any changes to player or enemy attack speed, the auto-attack protection at the beginning of each battle and room is still 800ms (8 ticks now instead of 4), etc.  There are effectively only two things you'll notice: (1) attack speed can be theoretically buffed to 10/s now since that's 1 attack per tick instead of 5/s and (2) cooldowns and timers on buffs in battle will decrement by 0.1s instead of 0.2s.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Certain battle ticks that weren't emitting should do so -- this will allow your browser to see enemy properties immediately, such as changes to enemy name, icon, armor, magic armor, and attack speed.</li>
+                    <li>Spacial Shift should properly stun all enemies when triggered.</li>
+                    <li>Druidic shirt and pants should be reforgable again under the new Reforging v2 system.</li>
+                    <li>{{> updatesNerf}} Feeding Frenzy maximum health cost was deceptive and is fixed (it was not per target, but per party).  It will now cost between 30 HP to 150 HP depending on your MP and the strength of your spellcast.</li>
+                    <li>Sages should be less prone to momentary targeting when an ally dies.</li>
+                    <li>Wands are now considered magical for the sake of reforging.</li>
+                </ul>
+            </li>
+            <li><b>UI Changes</b></li>
+            <li>
+                <ul>
+                    <li>The combat stats icons in your gear loadout are now tooltips with basic information about how each stat works.</li>
+                    <li>Empty slots in your gear and ability loadout are now links to get you to the gear edit and ability edit pages a little faster.</li>
+                    <li>Combat heals for an amount of 0 will no longer show ticking above units in battle.</li>
+                </ul>
+            </li>
+            <li><b>Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} The reforge experience earned will be given to your Magic skill instead of Craft skill if the item you're reforging is magical.</li>
+                    <li>{{> updatesBuff}} The reforge resource cost scaling for failure attempts has been reduced by 25%.</li>
+                    <li>{{> updatesBuff}} The reforge resource cost scaling for rarity tier has been reduced by 37.5%.</li>
+                    <li>{{> updatesBuff}} The reforge critical failure chance has been reduced from 10% to 5%.  During a crafting buff, it is further reduced to 1%.</li>
+                    <li>{{> updatesNerf}} Frenzied Winds is now capped at 375 MP (100% attack speed) and maximum health cost (90 HP).</li>
+                    <li>{{> updatesNerf}} Lightning Speed is now capped at 2,000 MP for (400% attack speed) and maximum health cost (550 HP for the entire party).</li>
+                    <li>{{> updatesMixed}} Difficulty in the tower's top floor has been shifted in a new direction: instead of the dev. team manually adding enemies to inflate the challenge, some enemies will spawn in duplicate (and sometimes triplicate) and additionally, some enemies can spawn a greater version of themselves.  Any previous additions to enemies in floor 12 have been removed.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 class="my-3">Saturday 21st October 2023</h2>
+        <ul>
+            <li><b>New Stuff</b></li>
+            <li>
+                <ul>
+                    <li>You can now mark items to always be automatically hidden or automatically locked now from the popup window in the Craft tab.</li>
+                </ul>
+            </li>
+            <li><b>Class Balance Changes</b></li>
+            <li>
+                <ul>
+                    <li>{{> updatesBuff}} Paladin Trait intrinsic 15% reduction to taunting ability cooldowns increased to 50%.</li>
+                    <li>{{> updatesBuff}} Paladin Trait intrinsic -12.5% damage potential per missing ally (cap -50%) reduced to -10% (cap -40%).</li>
+                    <li>{{> updatesBuff}} Paladins gain a new active ability: <b>Guard</b>.  Guard can be placed on an ally in battle to intercept some of the damage intended for that ally.  See <a href="#" class="view-class-details-link">the Class Info page</a> for full details.</li>
+                </ul>
+            </li>
+            <li><b>Bugfixes</b></li>
+            <li>
+                <ul>
+                    <li>Time Warp will expire immediately when the casting Wizard dies now.</li>
+                </ul>
+            </li>
+        </ul>
+
         <h2 class="my-3">Friday 20th October 2023</h2>
         <ul>
             <li><b>New Stuff</b></li>
@@ -90,7 +272,7 @@
             <li>
                 <ul>
                     <li>{{> updatesBuff}} Bonus contribution to unlocking the boss on the top floor has been significantly increased to encourage efforts to unlock the boss quicker.</li>
-                    <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effect (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
+                    <li>{{> updatesNerf}} Feeding Frenzy is now capped at 400 MP for both effects (100% attack speed and damage) and maximum health cost (55 HP per effected target).</li>
                     <li>{{> updatesBuff}} Pylons and walls have a karmic value when donated to the town.  Additionally, snowberries, grapes, and strawberries have had their karmic value adjusted.</li>
                 </ul>
             </li>
@@ -806,6 +988,14 @@
     </div>
 
     <style type="text/css">
+        /* remove indent padding from top list items (categories in bold), only on mobile */
+        @media (max-width: 768px) {
+            div.updates-page > ul
+            {
+                padding: 0;
+            }
+        }
+
         /* remove bubbles from top list items (categories in bold) */
         div.updates-page > ul > li,
         div.updates-page ul ul li:has(span.balance-update-note),

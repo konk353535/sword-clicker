@@ -63,6 +63,8 @@ export const MONSTER_BUFFS = {
                 // enemies not handled:
                 // bee, ice giant, warden, spartan, unicorn, dwarf, octopus, all spirits, butterfly, dragonfly, wasp, snail, echidna, wombat, rabbit, jellyfish, gorilla, gelatinous cube
 
+                const originalName = target.name
+
                 if (target.name === "crab") {
                     if (rand < 0.1) {
                         // 10% chance to upgrade to citizen snips
@@ -1012,6 +1014,25 @@ export const MONSTER_BUFFS = {
                     }
                 }
 
+                // don't become greater if it is already an elite or is a duplicate of another enemy that's already greater (like rabbits multiplying)
+                if (target.name == originalName && target.name.indexOf("greater ") === -1) {
+                    if (actualBattle.isExplorationRun && actualBattle.currentCommunityFloor == actualBattle.floor) {
+                        const rand_chance_stronger = Math.random()
+
+                        if (rand_chance_stronger < 0.5) {
+                            target.name = `greater ${target.name}`
+                            target.stats.health *= 3
+                            target.stats.healthMax *= 3
+                            target.stats.attackSpeed += 0.2
+                            target.stats.attack *= 1.35
+                            target.stats.attackMax *= 1.55
+                            target.stats.defense *= 1.2
+                            target.stats.armor *= 1.2
+                            target.stats.accuracy *= 1.15
+                        }
+                    }
+                }
+
                 buff.data.done = true
                 removeBuff({ buff, target, caster, actualBattle })
             },
@@ -1022,7 +1043,34 @@ export const MONSTER_BUFFS = {
                 }
             },
 
-            onRemove({ buff, target }) {}
+            onRemove({ buff, target }) {
+                // Force deltas, even if there's nothing to change
+                //
+                // Because of a race condition, setting 'abs' for a new unit and setting 'abs' for deltas in
+                // the same tick can sometimes not cause that delta to be received in the correct order.
+
+                setTimeout(function() {
+                    target.delta("name")
+                    target.delta("icon")
+                    target.delta("target")
+                    target.stats.delta("health")
+                    target.stats.delta("healthMax")
+                    target.stats.delta("attack")
+                    target.stats.delta("attackMax")
+                    target.stats.delta("accuracy")
+                    target.stats.delta("attackSpeed")
+                    target.stats.delta("defense")
+                    target.stats.delta("armor")
+                    target.stats.delta("magicArmor")
+                    target.stats.delta("healingPower")
+                    target.stats.delta("criticalChance")
+                    target.stats.delta("criticalDamage")
+                    target.stats.delta("force")
+                    target.stats.delta("shred")
+                    target.stats.delta("focus")
+                    target.stats.delta("absorption")
+                }), 50
+            }
         }
     },
 
@@ -1985,6 +2033,7 @@ export const MONSTER_BUFFS = {
         }
     },
 
+    // aka crab_armor
     crab_monster: {
         duplicateTag: "crab_monster", // Used to stop duplicate buffs
         icon: "",
@@ -1993,36 +2042,32 @@ export const MONSTER_BUFFS = {
             return `You can chip away at it slowly with each attack until you reach the vulnerable beast within.`
         },
         constants: {},
-        data: {},
+        data: {
+            hitsRequired: 40
+        },
         events: {
             // This can be rebuilt from the buff id
-            onApply({ buff, target, caster, actualBattle }) {},
+            onApply({ buff, target, caster, actualBattle }) {
+                buff.stacks = buff.data.hitsRequired = 40
+                target.stats.armor += 1000000
+        },
 
             onTookDamage({ buff, defender, attacker, actualBattle }) {
-                defender.stats.armor -= 5
-                defender.stats.magicArmor -= 5
-                buff.data.hitsRequired -= 1
-                buff.stacks = buff.data.hitsRequired
+                buff.stacks = buff.data.hitsRequired = buff.data.hitsRequired - 1
 
                 if (buff.data.hitsRequired <= 0) {
-                    defender.stats.armor -= 20000
-                    defender.stats.magicArmor -= 20000
-                    if (defender.stats.armor <= 1) {
-                        defender.stats.armor = 1
+                    defender.stats.armor -= 1000000
+                    if (defender.stats.armor < 0) {
+                        defender.stats.armor = 0
                     }
-                    if (defender.stats.magicArmor <= 1) {
-                        defender.stats.magicArmor = 1
+                    if (defender.stats.magicArmor < 0) {
+                        defender.stats.magicArmor = 0
                     }
                     removeBuff({ buff, target: defender, caster: defender, actualBattle })
                 }
             },
 
             onTick({ buff, target, caster, secondsElapsed, actualBattle }) {
-                if (buff.data.hitsRequired == null) {
-                    buff.data.hitsRequired = 45
-                    target.stats.armor += 20000
-                    target.stats.magicArmor += 20000
-                }
             },
 
             onRemove({ buff, target, caster }) {}

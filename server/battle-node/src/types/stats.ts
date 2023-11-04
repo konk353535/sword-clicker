@@ -19,4 +19,5 @@ export type stats = {
     shred?: number
     focus?: number
     absorption?: number
+    magic?: any
 }

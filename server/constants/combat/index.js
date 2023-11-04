@@ -42,6 +42,12 @@ export const COMBAT = Object.freeze({
         "force",
         "shred",
         "focus",
-        "absorption"
+        "absorption",
+        "magicPools",
+        "fireReserve",
+        "earthReserve",
+        "airReserve",
+        "waterReserve",
+        "necroticReserve"
     ]
 })

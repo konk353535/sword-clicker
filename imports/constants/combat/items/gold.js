@@ -181,7 +181,7 @@ export const GOLD_ITEMS = {
         id: "gold_broad_sword",
         icon: "goldBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "gold broad sword",
         sellPrice: 500,

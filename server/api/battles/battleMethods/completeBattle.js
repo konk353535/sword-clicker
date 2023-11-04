@@ -1,17 +1,22 @@
 import { Meteor } from "meteor/meteor"
 import { JsonRoutes } from "meteor/simple:json-routes"
 
-import moment from "moment/moment"
 import lodash from "lodash"
+import moment from "moment/moment"
 import _ from "underscore"
+
+import { flattenObjectForMongo } from "/server/utils"
 
 import { ITEMS } from "/imports/constants/items/index"
 import { NEED_GREED_ITEMS } from "/imports/constants/items/needgreed"
 import { PLAYER_ICONS } from "/imports/constants/shop/index"
 import { STATE_BUFFS } from "/imports/constants/state"
+
 import { BATTLES } from "/server/constants/battles/index" // List of encounters
+import { ABILITIES } from "/server/constants/combat/abilities"
 import { FLOORS } from "/server/constants/floors/index"
-import { MAGIC } from "/server/constants/magic/index"
+//import { MAGIC } from "/server/constants/magic/index"
+//import { spellData } from "/server/constants/magic"
 
 import { CDbl, CInt } from "/imports/utils"
 import { updateAbilityCooldowns } from "/server/api/abilities/abilities"
@@ -30,6 +35,7 @@ import { FloorLoot } from "/imports/api/floors/floorLoot"
 import { FloorWaveScores } from "/imports/api/floors/floorWaveScores"
 import { Floors } from "/imports/api/floors/floors"
 import { Groups } from "/imports/api/groups/groups"
+//import { Items } from "/imports/api/items/items"
 import { Users } from "/imports/api/users/users"
 
 import { State } from "/imports/api/state/state"
@@ -118,10 +124,7 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
 
     // Fetch top 10 by tower score
     try {
-        let topFloorContributors = FloorWaveScores.find(
-            { floor: floor, server: server },
-            { sort: { points: -1 }, limit: 10 }
-        ).fetch()
+        let topFloorContributors = FloorWaveScores.find({ floor: floor, server: server }, { sort: { points: -1 }, limit: 10 }).fetch()
         if (topFloorContributors) {
             topFloorContributors.forEach((floorContributor) => {
                 console.log(`TOP CONTRIBUTOR: awarding 1 enhancer key to ${floorContributor.username}`)
@@ -160,34 +163,39 @@ export const distributeRewards = function distributeRewards({ floor, server }) {
     let gold = _.findWhere(rewards, { type: "gold" })
 
     // create a new list of players who got rewards
-    let playerList = {}
+    let playerList = sortedFloorWaveScores.reduce((acc, curr) => {
+        acc[curr.owner] = []
+        return acc
+    }, {})
 
-    // log and award gold
-    try {
-        sortedFloorWaveScores.forEach((waveScore) => {
-            let goldAmount = Math.floor(gold.amount / totalContributors)
-            playerList[waveScore.owner] = [
-                {
-                    type: "gold",
-                    amount: goldAmount
-                }
-            ]
-            console.log(`awarding ${goldAmount} gold to ${waveScore.username}`)
-            addGold(waveScore.owner, goldAmount)
-            Chats.insert({
-                message: `You have been awarded ${goldAmount} gold.`,
-                username: "Game",
-                name: "Game",
-                date: new Date(),
-                custom: {
-                    roomType: "Game"
-                },
-                roomId: `Game-${waveScore.owner}`
+    if (gold != null) {
+        // log and award gold
+        try {
+            sortedFloorWaveScores.forEach((waveScore) => {
+                let goldAmount = Math.floor(gold.amount / totalContributors)
+                playerList[waveScore.owner] = [
+                    {
+                        type: "gold",
+                        amount: goldAmount
+                    }
+                ]
+                console.log(`awarding ${goldAmount} gold to ${waveScore.username}`)
+                addGold(waveScore.owner, goldAmount)
+                Chats.insert({
+                    message: `You have been awarded ${goldAmount} gold.`,
+                    username: "Game",
+                    name: "Game",
+                    date: new Date(),
+                    custom: {
+                        roomType: "Game"
+                    },
+                    roomId: `Game-${waveScore.owner}`
+                })
             })
-        })
-    } catch (err) {
-        console.log("Error trying to award gold to players:")
-        console.log(err)
+        } catch (err) {
+            console.log("Error trying to award gold to players:")
+            console.log(err)
+        }
     }
 
     // remove gold from rewards
@@ -606,9 +614,7 @@ export const completeBattle = function (actualBattle) {
         }
     }
 
-    const hasCombatGlobalBuff = !_.isUndefined(
-        State.findOne({ name: STATE_BUFFS.combat, "value.activeTo": { $gte: moment().toDate() } })
-    )
+    const hasCombatGlobalBuff = !_.isUndefined(State.findOne({ name: STATE_BUFFS.combat, "value.activeTo": { $gte: moment().toDate() } }))
 
     // How much energy they wanted to use
     const energyUse = battleEnergyUse(actualBattle.id)
@@ -640,7 +646,7 @@ export const completeBattle = function (actualBattle) {
         const newMonsters = FLOORS.genericTowerMonsterGenerator(actualBattle.floor, actualBattle.room)
         // Inject into battle
         newMonsters.forEach((monster) => {
-            actualBattle.totalXpGain -= BATTLES.xpGain(monster.stats, monster.buffs)
+            actualBattle.totalXpGain -= BATTLES.xpGain(monster.baseStats ? monster.baseStats : monster.stats, monster.buffs)
         })
     }
 
@@ -807,10 +813,7 @@ export const completeBattle = function (actualBattle) {
                     //if (rewardsGained >= allPlayerUnits.length) { // note: psouza4 2018-11-07 faulty logic, should be rewardsGained.length here, but we don't want to restrict this anyway
                     //  break;
                     //}
-                } else if (
-                    hasCombatGlobalBuff &&
-                    rewardTable.chance * extraChance * bonusLootMultiplier * 1.5 >= diceRoll
-                ) {
+                } else if (hasCombatGlobalBuff && rewardTable.chance * extraChance * bonusLootMultiplier * 1.5 >= diceRoll) {
                     rewardsGained.push(
                         Object.assign({}, _.sample(rewardTable.rewards), {
                             affectedGlobalBuff: true
@@ -1050,14 +1053,7 @@ export const completeBattle = function (actualBattle) {
                         }
 
                         if (overDailyPoints === 0) {
-                            const possibleStats = [
-                                "mining",
-                                "crafting",
-                                "woodcutting",
-                                "farming",
-                                "inscription",
-                                "astronomy"
-                            ]
+                            const possibleStats = ["mining", "crafting", "woodcutting", "farming", "inscription", "astronomy"]
 
                             const targetStat = _.sample(possibleStats)
                             addXp(targetStat, Math.round(actualPointsGained * 50 * actualBattle.floor), owner)
@@ -1323,21 +1319,110 @@ export const completeBattle = function (actualBattle) {
         }
 
         let totalMagicXp = 0
-        let spellsCast = []
         let spellsCastCount = 0
         let userUsedAbility = false
 
+        /*
+        let castItemsUsed = {
+            poison_shard_fragment: 0,
+            fire_shard_fragment: 0, complete_fire_shard: 0, ancient_fire_shard: 0,
+            earth_shard_fragment: 0, complete_earth_shard: 0, ancient_earth_shard: 0,
+            air_shard_fragment: 0, complete_air_shard: 0, ancient_air_shard: 0,
+            water_shard_fragment: 0, complete_water_shard: 0, ancient_water_shard: 0
+        }
+        */
+
+        let powerSpent = {
+            fire: 0,
+            earth: 0,
+            air: 0,
+            water: 0,
+            necrotic: 0
+        }
+
         unit.abilities.forEach((ability) => {
             if (ability.isSpell) {
-                const spellConstants = MAGIC.spells[ability.id]
-                totalMagicXp += ability.totalCasts * spellConstants.xp
-                spellsCastCount += ability.totalCasts
-                spellsCast[ability.id] = 1
+                //const spellConstants = MAGIC.spells[ability.id]
+                //if (spellConstants) {
+                    //totalMagicXp += ability.totalCasts * spellConstants.xp
+                    spellsCastCount += ability.totalCasts
+                    
+                    //const magicData = spellData(ability.id)
+                    const magicData = ABILITIES[ability.id]?.magic // startup sets this
+
+                    if (magicData && !magicData.error) {
+                        totalMagicXp += ability.totalCasts * (magicData.fire.xp + magicData.earth.xp + magicData.air.xp + magicData.water.xp + magicData.necrotic.xp)
+                        
+                        /*
+                        spellConstants.required.forEach((itemRequired) => {
+                            if (itemRequired.type == "item") {
+                                castItemsUsed[itemRequired.itemId] += ability.totalCasts
+                            }
+                        })
+                        */
+                        
+                        powerSpent.fire += magicData.fire.cost.units * ability.totalCasts
+                        powerSpent.earth += magicData.earth.cost.units * ability.totalCasts
+                        powerSpent.air += magicData.air.cost.units * ability.totalCasts
+                        powerSpent.water += magicData.water.cost.units * ability.totalCasts
+                        powerSpent.necrotic += magicData.necrotic.cost.units * ability.totalCasts
+                    }
+                //}
             }
             if (!ability.isPassive && !ability.isEnchantment) {
                 // if this unit used any non-passive/non-enchantment abilities or spells, then they're clearly not inactive
                 userUsedAbility = true
             }
+        })
+
+        /*
+        const itemList = [
+            "poison_shard_fragment",
+            "fire_shard_fragment", "complete_fire_shard", "ancient_fire_shard",
+            "earth_shard_fragment", "complete_earth_shard", "ancient_earth_shard",
+            "air_shard_fragment", "complete_air_shard", "ancient_air_shard",
+            "water_shard_fragment", "complete_water_shard", "ancient_water_shard"
+        ]
+    
+        itemList.forEach((itemId) => {
+            const itemConsts = ITEMS[itemId]
+            if (itemConsts && itemConsts.magic && itemConsts.magic.type) {
+                const itemDoc = Items.findOne({
+                    owner: unit.owner,
+                    itemId: `${itemId}_magic_reserve`
+                })
+    
+                if (itemDoc && itemDoc.amount > 0) {
+                    const quantity = itemDoc.amount - castItemsUsed[itemId]
+
+                    if (quantity > 0) {
+                        addItem(itemId, quantity, unit.owner)
+                    }
+    
+                    Items.remove(
+                        {
+                            itemId: `${itemId}_magic_reserve`,
+                            owner: unit.owner
+                        }
+                    )
+                }
+            }
+        })
+        */
+
+        const combatDoc = Combat.findOne({ owner: unit.owner })
+        combatDoc.stats.fireReserve -= powerSpent.fire
+        combatDoc.stats.earthReserve -= powerSpent.earth
+        combatDoc.stats.airReserve -= powerSpent.air
+        combatDoc.stats.waterReserve -= powerSpent.water
+        combatDoc.stats.necroticReserve -= powerSpent.necrotic
+
+        Combat.update(combatDoc._id, {
+            $set: flattenObjectForMongo({
+                owner: unit.owner,
+                stats: combatDoc.stats,
+                lastGameUpdated: new Date()
+            })
         })
 
         if (totalMagicXp > 0) {
@@ -1364,13 +1449,11 @@ export const completeBattle = function (actualBattle) {
                 totalMagicXp *= 1.2
             }
 
-            let totalSpellsCast = spellsCastCount // Object.keys(spellsCast).length;
-
             //
             // Record total number of unique spells cast per battle
             Users.update(unit.owner, {
                 $inc: {
-                    "stats.spellsCast": totalSpellsCast
+                    "stats.spellsCast": spellsCastCount
                 }
             })
 
@@ -1402,7 +1485,8 @@ export const completeBattle = function (actualBattle) {
                             const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId })
                             if (abilityToUpdate) {
                                 if (abilityToUpdate.isSpell) {
-                                    ability.casts = abilityToUpdate.casts
+                                    //ability.casts = abilityToUpdate.casts
+                                    ability.cost
                                 }
                                 ability.currentCooldown = 0 // abilityToUpdate.currentCooldown; // we don't track cooldowns anymore
                             }

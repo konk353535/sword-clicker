@@ -181,7 +181,7 @@ export const OBSIDIAN_ITEMS = {
         id: "obsidian_broad_sword",
         icon: "obsidianBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "obsidian broad sword",
         sellPrice: 1350,

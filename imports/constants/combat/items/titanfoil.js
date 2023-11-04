@@ -188,7 +188,7 @@ export const TITANFOIL_ITEMS = {
         id: "titanfoil_broad_sword",
         icon: "titanfoilBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "titanfoil broad sword",
         sellPrice: Math.round(3000 * TITANFOIL_MULTIPLIER),

@@ -4,17 +4,20 @@ import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 
 import _ from "underscore"
+import Numeral from "numeral"
 
 import { BUFFS } from "/imports/constants/buffs/index.js"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
+import { MAGIC_TYPES } from "/imports/constants/magic/index.js"
 import { WOODCUTTING } from "/imports/constants/woodcutting/index.js"
 
-import { applyClassBonuses, applyRarities } from "/imports/api/items/items.js"
+import { applyClassBonuses, applyRarities, calculateMagicPoolTotalOfItem } from "/imports/api/items/items.js"
 import { getAutoActionForItem, wantAutoHideOfThisItem, wantAutoLockOfThisItem } from "/imports/api/users/users"
 
 import { CInt } from "/imports/utils.js"
 
 import "./itemIcon.html"
+import { Items } from "../../../api/items/items"
 
 const AUTO_ACTION_FLAGS = {
     normal: "Normal",
@@ -69,6 +72,38 @@ Template.itemIcon.onCreated(function bodyOnCreated() {
 })
 
 Template.itemIcon.helpers({
+    magicUnitInfo() {
+        const instance = Template.instance()
+        if (instance) {
+            const item = instance.data.item
+            if (item) {
+                const itemConsts = ITEMS[item.itemId]
+                if (itemConsts && itemConsts.magic) {
+                    const magicConst = MAGIC_TYPES[itemConsts.magic.type]
+                    if (magicConst) {
+                        return `${Numeral(itemConsts.magic.unitValue).format("0,0")} ${magicConst.unitName} <img src="/icons/${magicConst.icon}" class="tiny-icon" style="margin-top: -4px" /> <span class="text-muted"><i>each</i></span>`
+                    }
+                }
+            }
+        }
+        return false
+    },
+
+    magicPoolCapacity() {
+        const instance = Template.instance()
+        if (instance) {
+            const item = instance.data.item
+            if (item) {
+                const magicPoolSize = calculateMagicPoolTotalOfItem(item)
+                if (magicPoolSize > 0) {
+                    return `<img src="/icons/magicPool.svg" width="23" height="20" style="border: none; width: 23px; height: 20px; margin-right: 4px;" />${Numeral(magicPoolSize).format("0,0")} magic pool`
+                }
+            }
+        }
+
+        return false
+    },
+
     autoActionFlag() {
         return AUTO_ACTION_FLAGS[Template.instance().state.get("autoActionFlag")]
     },

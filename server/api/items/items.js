@@ -1064,6 +1064,81 @@ Meteor.methods({
         return { success: "Done." }
     },
 
+    "items.convertCastingItem"(id, itemId, amount) {
+        // Check we have the item
+
+        const targetItem = Items.findOne({ _id: id, owner: Meteor.userId(), itemId })
+
+        if (!targetItem || targetItem.amount < 1) {
+            throw new Meteor.Error("internal-error", `${itemId} (doesn't exist)`)
+        }
+
+        // Check this is an item we can pull data for
+        const itemConstants = ITEMS[itemId]
+        if (!itemConstants || !itemConstants.magic) {
+            throw new Meteor.Error("internal-error", `${itemId} (no constants/magic)`)
+        }
+
+        const combatDoc = Combat.findOne({ owner: Meteor.userId() })
+        if (!combatDoc || !combatDoc.stats) {
+            throw new Meteor.Error("internal-error", `${itemId} (no player combat data)`)
+        }
+
+        // if ItemId in an approved list
+        var validItemIds = [
+            "poison_shard_fragment",
+            "fire_shard_fragment", "complete_fire_shard", "ancient_fire_shard",
+            "earth_shard_fragment", "complete_earth_shard", "ancient_earth_shard",
+            "air_shard_fragment", "complete_air_shard", "ancient_air_shard",
+            "water_shard_fragment", "complete_water_shard", "ancient_water_shard"
+        ]
+
+        if (!validItemIds.includes(itemId)) {
+            throw new Meteor.Error("not-casting-item", `${itemConstants.name} can't be converted into your reserves`)
+        }
+
+        if (amount <= 0) {
+            throw new Meteor.Error("invalid-amount", `You can't convert less than a single ${itemConstants.name}`)
+        }
+
+        if (targetItem.amount < amount) {
+            throw new Meteor.Error("invalid-amount", `You can only convert ${targetItem.amount} ${itemConstants.name}s`)
+        }
+
+        if (itemConstants.magic.type === "fire") {
+            combatDoc.stats.fireReserve += itemConstants.magic.unitValue * amount
+        }
+        else if (itemConstants.magic.type === "earth") {
+            combatDoc.stats.earthReserve += itemConstants.magic.unitValue * amount
+        }
+        else if (itemConstants.magic.type === "air") {
+            combatDoc.stats.airReserve += itemConstants.magic.unitValue * amount
+        }
+        else if (itemConstants.magic.type === "water") {
+            combatDoc.stats.waterReserve += itemConstants.magic.unitValue * amount
+        }
+        else if (itemConstants.magic.type === "necrotic") {
+            combatDoc.stats.necroticReserve += itemConstants.magic.unitValue * amount
+        } else {
+            throw new Meteor.Error("bad-magic-type", `Not sure what magic type ${itemConstants.magic.type} is`)
+        }
+
+        Combat.update(combatDoc._id, {
+            $set: flattenObjectForMongo({
+                owner: Meteor.userId(),
+                stats: combatDoc.stats,
+                lastGameUpdated: new Date()
+            })
+        })
+
+        // Remove X of the item
+        consumeItem(targetItem, amount)
+
+        updateUserActivity({ userId: Meteor.userId() })
+
+        return "success"
+    },
+
     "items.unequipAllCombat"() {
         userUnequipAllItems(Meteor.userId())
     },

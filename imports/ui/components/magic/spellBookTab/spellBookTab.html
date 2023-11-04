@@ -1,32 +1,30 @@
 <template name="spellBookTab">
-  <div class="p-1">
-    <h1>Spell Book</h1>
+  {{> skillHeader skill=magicSkill}}
 
-    <table class="table table-bordered table-centered table-responsive">
+  <div class="p-1">
+    <h2>Spell Book</h2>
+
+    <table class="table table-bordered table-centered table-responsive" style="width: auto">
       <thead>
         <tr>
-          <th class="hidden-xs-down">Name</th>
-          <th>Icon</th>
-          <th>Requirements</th>
-          <th>Casts Left</th>
-          <th>Action</th>
+          <th scope="col"></th>
+          <th scope="col" style="text-align: left;">Spell</th>
+          <th scope="col" style="text-align: left;"><span class="hide-on-mobile">Each Cast Costs</span><span class="hide-on-desktop">Cost</span></th>
+          <th scope="col" style="text-align: left;"><span class="hide-on-mobile">Magic XP Per Cast</span><span class="hide-on-desktop">XP</span></th>
         </tr>  
       </thead>
       <tbody>
-        {{#each spellCrafting}}
+        {{#each spellList}}
           <tr>
-            <td class="text-capitalize hidden-xs-down">{{this.name}}</td>
-            <td>
-              <img src="/icons/{{this.icon}}" class="small-icon">
+            <td>{{> abilityLibraryIcon classes='tiny' item=this}}</td>
+            <td class="text-capitalize" style="text-align: left;">{{this.name}}</td>
+            <td style="text-align: left;">
+              {{#each requiredCosts}}
+                {{{requiredCost}}}
+              {{/each}}
             </td>
-            <td>
-              {{ > requiredItems requiredItems=this.required recipeName=this.name}}
-            </td>
-            <td>{{this.casts}}</td>
-            <td>
-              <button class="btn btn-primary craft-spell" data-spell={{this.abilityId}}>
-                Craft
-              </button>
+            <td style="text-align: left;">
+              {{> formatNumber number=totalCastXp}}
             </td>
           </tr>
         {{/each}}
@@ -34,35 +32,4 @@
     </table>
   </div>
 
-  <!-- Modal -->
-  <div class="modal multiCraftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Multi Crafting</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form class="craft-amount-form">
-          <div class="modal-body">
-            How many to craft?<br />
-            Max: {{maxCraftAmount}}
-            <input class="form-control craft-amount-input" value={{craftAmount}}><br />
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary craft-btn" data-amount='1'>
-              Craft 1
-            </button>          
-            <button type="button" class="btn btn-secondary craft-btn" data-amount={{craftAmount}}>
-              Craft X ({{craftAmount}})
-            </button>
-            <button type="button" class="btn btn-danger craft-btn" data-amount={{maxCraftableAmount}}>
-              Craft All ({{maxCraftableAmount}})
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 </template>

@@ -66,9 +66,21 @@ export function checkGameOverConditions(this: Battle) {
                 // Inject into battle
                 newMonsters.forEach((monster: any) => {
                     const randomUnitTarget = _.sample(this.units)!
-                    this.totalXpGain += BATTLES.xpGain(monster.stats, monster.buffs)
+
+                    if (!monster.baseStats) {
+                        console.log("ERROR: no base stats for monster enemy:", monster.name, monster.id)
+                    }
+
+                    const local_XpGain = BATTLES.xpGain(monster.baseStats ? monster.baseStats : monster.stats, monster.buffs)
+
+//todo: log 'local_XpGain'
+//console.log("Monster value:", this.level ? `PQ L${this.level}` : `T F${this.floor}`, this.room ? `R${this.room}` : `W${this.wave}`, `${monster.name} =`, `${local_XpGain} XP`)
+
+
+                    this.totalXpGain += local_XpGain
                     const enemyParams: enemy = {
                         id: uuid.v4(),
+                        baseStats: monster.baseStats,
                         stats: monster.stats,
                         icon: monster.icon,
                         buffs: monster.buffs || [],
@@ -86,6 +98,8 @@ export function checkGameOverConditions(this: Battle) {
                         type: "push",
                         value: newUnit.raw()
                     })
+
+                    newUnit.findTarget(true, true) // force a more careful selection of targets
                 })
 
                 this.updateUnitMaps()

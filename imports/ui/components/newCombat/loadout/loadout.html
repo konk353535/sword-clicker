@@ -9,10 +9,10 @@
         <div class="mr-2 hidden-sm-down" style="line-height: 2.33em;">Active Class</div>
         <div class="dropdown">
           <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
-            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            id="dropDownClassPCButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{currentClass}}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropDownClassPCButton">
             <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
             <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
             <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
@@ -26,8 +26,8 @@
         </div>
         <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;">
           <img width="56" height="56" src="/icons/{{currentClassIcon}}" style="border: none; width: 56px; height: 56px;" />
-          <button class="btn btn-primary view-classes-btn" style="width: 120px; margin-left: 10px;">Classes info</button>
-          <button class="btn btn-warning reset-cooldown-btn" style="width: 195px; margin-left: 10px;">Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">{{resetTokenCount}}</button>
+          <button type="button" class="btn btn-primary view-classes-btn" style="width: 120px; margin-left: 10px;">Classes info</button>
+          <button type="button" class="btn btn-warning reset-cooldown-btn" style="width: 195px; margin-left: 10px;">Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">{{resetTokenCount}}</button>
         </div>
       </div>
       {{#if classChangeCooldown}}
@@ -40,10 +40,10 @@
       <div class="d-flex flex-wrap mb-3">
         <div class="dropdown">
           <button class="btn btn-secondary mr-3 dropdown-toggle text-capitalize" type="button"
-            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            id="dropDownClassMobileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{currentClass}}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropDownClassMobileButton">
             <a class="dropdown-item select-class" data-class="wanderer" href="#">Wanderer</a>
             <a class="dropdown-item select-class" data-class="barbarian" href="#">Barbarian</a>
             <a class="dropdown-item select-class" data-class="duelist" href="#">Duelist</a>
@@ -57,11 +57,11 @@
         </div>
         <div class="mr-2" style="line-height: 2.33em; margin-top: -10px;">
           <img width="56" height="56" src="/icons/{{currentClassIcon}}" style="border: none; width: 56px; height: 56px;" />
-          <button class="btn btn-primary view-classes-btn" style="width: 50px; margin-left: 10px;">?</button>
+          <button type="button" class="btn btn-primary view-classes-btn" style="width: 50px; margin-left: 10px;">?</button>
         </div>
       </div>
       <div class="d-flex flex-grow justify-content-center" style="line-height: 2.33em; margin-top: -10px;">
-        <button class="btn btn-warning reset-cooldown-btn" style="width: 195px; margin-left: 10px;">Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">{{resetTokenCount}}</button>
+        <button type="button" class="btn btn-warning reset-cooldown-btn" style="width: 195px; margin-left: 10px;">Reset cooldown <img src="/icons/classCooldownResetToken.svg" style="width: 20px; height: 20px; margin-top: -4px;">{{resetTokenCount}}</button>
       </div>
       {{#if classChangeCooldown}}
         <div style="margin-top: 8px; margin-bottom: 24px;" class="{{classChangeCooldownStyle}}">
@@ -80,49 +80,61 @@
       {{#if equippedItemsMap.mainHand}}
         {{> itemIcon item=equippedItemsMap.mainHand}}
       {{else}}
-        <div class="icon-box">
-          Main Hand
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Main Hand
+          </div>
+        </a>
       {{/if}}
       <!-- Off Hand -->
       {{#if equippedItemsMap.offHand}}
         {{> itemIcon item=equippedItemsMap.offHand}}
       {{else}}
-        <div class="icon-box">
-          Off Hand
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Off Hand
+          </div>
+        </a>
       {{/if}}
       <!-- Neck -->
       {{#if equippedItemsMap.neck}}
         {{> itemIcon item=equippedItemsMap.neck}}
       {{else}}
-        <div class="icon-box">
-          Neck
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Neck
+          </div>
+        </a>
       {{/if}}
       <!-- Head -->
       {{#if equippedItemsMap.head}}
         {{> itemIcon item=equippedItemsMap.head}}
       {{else}}
-        <div class="icon-box">
-          Head
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Head
+          </div>
+        </a>
       {{/if}}
       <!-- Chest -->
       {{#if equippedItemsMap.chest}}
         {{> itemIcon item=equippedItemsMap.chest}}
       {{else}}
-        <div class="icon-box">
-          Chest
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Chest
+          </div>
+        </a>
       {{/if}}
       <!-- Legs -->
       {{#if equippedItemsMap.legs}}
         {{> itemIcon item=equippedItemsMap.legs}}
       {{else}}
-        <div class="icon-box">
-          Legs
-        </div>
+        <a href="#" class="edit-gear-btn">
+          <div class="icon-box">
+            Legs
+          </div>
+        </a>
       {{/if}}
     </div>
     <h4 class="d-flex align-items-center">
@@ -134,141 +146,169 @@
       {{#if classFeatureUnlocked}}
         <!-- Main Hand -->
         {{#if equippedAbilitiesMap.mainHand}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                1
-                {{#if $neq isTactician true}}
-                    <br />Active
-                {{/if}}
+              1
+              {{#if $neq isTactician true}}
+                <br />Active
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- Off Hand -->
         {{#if equippedAbilitiesMap.offHand}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                2
-                {{#if $neq isTactician true}}
-                    <br />Active
-                {{/if}}
+              2
+              {{#if $neq isTactician true}}
+                <br />Active
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- Head -->
         {{#if equippedAbilitiesMap.head}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                3
-                {{#if $neq isTactician true}}
-                    <br />Active
-                {{/if}}
+              3
+              {{#if $neq isTactician true}}
+                <br />Active
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- Chest -->
         {{#if equippedAbilitiesMap.chest}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                4
-                {{#if $neq isTactician true}}
-                    <br />Active
-                {{/if}}
+              4
+              {{#if $neq isTactician true}}
+                <br />Active
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- Legs -->
         {{#if equippedAbilitiesMap.legs}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                5
-                {{#if $neq isTactician true}}
-                    <br />Active
-                {{/if}}
+              5
+              {{#if $neq isTactician true}}
+                <br />Active
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- classAbil1 -->
         {{#if equippedAbilitiesMap.classAbil1}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil1}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                6
-                {{#if $neq isTactician true}}
-                    <br />Passive
-                {{/if}}
+              6
+              {{#if $neq isTactician true}}
+                <br />Passive
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- classAbil2 -->
         {{#if equippedAbilitiesMap.classAbil2}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil2}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                7
-                {{#if $neq isTactician true}}
-                    <br />Passive
-                {{/if}}
+              7
+              {{#if $neq isTactician true}}
+                <br />Passive
+              {{/if}}
             </div>
+          </a>
         {{/if}}
         <!-- classAbil3 -->
         {{#if equippedAbilitiesMap.classAbil3}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.classAbil3}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box" style="text-align: center;">
-                8
-                {{#if $neq isTactician true}}
-                    <br />Passive
-                {{/if}}
+              8
+              {{#if $neq isTactician true}}
+                <br />Passive
+              {{/if}}
             </div>
+          </a>
         {{/if}}
       {{else}}
         <!-- Main Hand -->
         {{#if equippedAbilitiesMap.mainHand}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.mainHand}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box">
-                1
+              1
             </div>
+          </a>
         {{/if}}
         <!-- Off Hand -->
         {{#if equippedAbilitiesMap.offHand}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.offHand}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box">
-                2
+              2
             </div>
+          </a>
         {{/if}}
         <!-- Head -->
         {{#if equippedAbilitiesMap.head}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.head}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box">
-                3
+              3
             </div>
+          </a>
         {{/if}}
         <!-- Chest -->
         {{#if equippedAbilitiesMap.chest}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.chest}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box">
-                4
+              4
             </div>
+          </a>
         {{/if}}
         <!-- Legs -->
         {{#if equippedAbilitiesMap.legs}}
-            {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
+          {{> abilityLibraryIcon item=equippedAbilitiesMap.legs}}
         {{else}}
+          <a href="#" class="edit-abilities-btn">
             <div class="icon-box">
-                5
+              5
             </div>
+          </a>
         {{/if}}
       {{/if}}
       <!-- Companion -->
       {{#if equippedAbilitiesMap.companion}}
-          {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
+        {{> abilityLibraryIcon item=equippedAbilitiesMap.companion}}
       {{else}}
+        <a href="#" class="edit-abilities-btn">
           <div class="icon-box">
-              Companion
+            Companion
           </div>
+        </a>
       {{/if}}
     </div>
     <h4>Skins</h4>
@@ -279,7 +319,7 @@
     </div>
 
     <div class="d-flex flex-grow justify-content-center" style="margin-top: 30px">
-      <button class="btn btn-primary back-to-lobby-btn" style="width: 150px">Back to lobby</button>
+      <button type="button" class="btn btn-primary back-to-lobby-btn" style="width: 150px">Back to lobby</button>
     </div>
   </div>
 
@@ -307,7 +347,7 @@
           
           {{#if $neq classChangeSelectionChoice 'Wanderer'}}
             <br />
-            You will not be able change your class selection again for the next 12 hours.<br />
+            You will not be able change your class selection again for the next 15 minutes.<br />
           {{/if}}
         </div>
         <div class="modal-footer">
@@ -342,11 +382,11 @@
 
   <!-- Icon Tooltip -->
   <div class="skin-tooltip-content my-tooltip-inner">
-    <h3 class='popover-title text-capitalize'>
+    <h3 class="popover-title text-capitalize">
       {{skin.name}}
     </h3>
-    <div class='popover-content'>
-      <div style='max-width: 350px;'>
+    <div class="popover-content">
+      <div style="max-width: 350px;">
         {{{description}}}
       </div>
     </div>

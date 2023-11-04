@@ -181,7 +181,7 @@ export const METEORITE_ITEMS = {
         id: "meteorite_broad_sword",
         icon: "meteoriteBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "meteorite broad sword",
         sellPrice: 2000,

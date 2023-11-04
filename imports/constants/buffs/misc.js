@@ -203,7 +203,7 @@ export const MISC_BUFFS = {
         }
     },
 
-    cast_use_abilities: {
+    cant_use_abilities: {
         duplicateTag: "cant_use_abilities",
         icon: "stunned.svg",
         name: "Can't Use Abilities",

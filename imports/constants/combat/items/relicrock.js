@@ -188,7 +188,7 @@ export const RELICROCK_ITEMS = {
         id: "relicrock_broad_sword",
         icon: "relicrockBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "relicrock broad sword",
         sellPrice: Math.round(3000 * RELICROCK_MULTIPLIER),

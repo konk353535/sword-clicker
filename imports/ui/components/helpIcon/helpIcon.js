@@ -19,3 +19,10 @@ Template.helpIcon.rendered = function () {
         constrainToScrollParent: false
     })
 }
+
+Template.helpIcon.helpers({
+    icon() {
+        const instance = Template.instance()
+        return instance.data.icon || "help.svg"
+    }
+})

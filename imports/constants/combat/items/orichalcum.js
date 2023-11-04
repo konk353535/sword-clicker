@@ -181,7 +181,7 @@ export const ORICHALCUM_ITEMS = {
         id: "orichalcum_broad_sword",
         icon: "orichalcumBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "orichalcum broad sword",
         sellPrice: 1800,

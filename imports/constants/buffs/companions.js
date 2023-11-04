@@ -2109,7 +2109,7 @@ export const COMPANION_BUFFS = {
                         return
                     }
                     const targetIsArmored = ourTargetUnit.hasBuff("crab_monster")
-                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers")
+                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers") || ourTargetUnit.hasBuff("full_damage_immunity")
                     // END: logic for targets
 
                     try {
@@ -2254,7 +2254,7 @@ export const COMPANION_BUFFS = {
                         return
                     }
                     const targetIsArmored = ourTargetUnit.hasBuff("crab_monster")
-                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers")
+                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers") || ourTargetUnit.hasBuff("full_damage_immunity")
                     // END: logic for targets
 
                     try {
@@ -2739,7 +2739,7 @@ export const COMPANION_BUFFS = {
                     }
                     const targetIsAired = ourTargetUnit.hasBuff("air_ball")
                     const targetIsArmored = ourTargetUnit.hasBuff("crab_monster")
-                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers")
+                    const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers") || ourTargetUnit.hasBuff("full_damage_immunity")
                     // END: logic for targets
 
                     // START: logic Air Ball
@@ -2931,7 +2931,7 @@ export const COMPANION_BUFFS = {
                 }
                 const targetIsAired = ourTargetUnit.hasBuff("air_ball")
                 const targetIsArmored = ourTargetUnit.hasBuff("crab_monster")
-                const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers")
+                const targetIsDodging = ourTargetUnit.hasBuff("evasive_maneuvers") || ourTargetUnit.hasBuff("full_damage_immunity")
                 // END: logic for targets
 
                 // START: logic mass charm every ~15 seconds

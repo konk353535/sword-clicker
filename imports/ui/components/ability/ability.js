@@ -14,12 +14,12 @@ const castAbility = function (instance) {
     if (instance && instance.data && instance.data.ability && instance.data.ability.targettable) {
         targetType = instance.data.ability.target
 
-        if (instance.data.ability.target === "singleEnemy") {
+        if (targetType === "singleEnemy") {
             icons = $("body").find(".enemy-icon")
             if (icons.length === 1) {
                 targetType = "autoEnemy"
             }
-        } else if (instance.data.ability.target === "singleFriendly") {
+        } else if (targetType === "singleFriendly") {
             icons = $("body").find(".friendly-icon")
             if (icons.length === 1) {
                 targetType = "autoSelf"
@@ -126,6 +126,36 @@ const castAbility = function (instance) {
                         }
 
                         body.removeClass("targetting-friendlies")
+                        body.off(`click.${instance.data.ability.id}`)
+                    })
+                }, 1)
+            }
+        } else if (targetType === "anyUnit" || targetType === "any") {
+            const body = $("body")
+            if (!body.hasClass("targetting-friendlies") || !body.hasClass("targetting-enemies")) {
+                body.addClass("targetting-friendlies")
+                body.addClass("targetting-enemies")
+                Meteor.setTimeout(() => {
+                    // Add body listener for when you want to click out
+                    body.on(`click.${instance.data.ability.id}`, function (event) {
+                        if ($(event.target).hasClass("friendly-icon") || $(event.target).hasClass("enemy-icon")) {
+                            const targetId = $(event.target).attr("data-unit-id")
+                            const battleId = currentBattleId
+                            const abilityId = instance.data.ability.id
+
+                            if (window.battleSocket && window.battleSocket.connected && window.battleSocket.emit) {
+                                // Gonna require the socket here
+                                window.battleSocket.emit("action", {
+                                    battleSecret: Meteor.user().battleSecret,
+                                    abilityId,
+                                    targets: [targetId],
+                                    caster: Meteor.userId()
+                                })
+                            }
+                        }
+
+                        body.removeClass("targetting-friendlies")
+                        body.removeClass("targetting-enemies")
                         body.off(`click.${instance.data.ability.id}`)
                     })
                 }, 1)

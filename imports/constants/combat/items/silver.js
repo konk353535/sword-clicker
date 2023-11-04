@@ -181,7 +181,7 @@ export const SILVER_ITEMS = {
         id: "silver_broad_sword",
         icon: "silverBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "silver broad sword",
         sellPrice: 400,

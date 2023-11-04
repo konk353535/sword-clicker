@@ -5,6 +5,7 @@ import { Mongo } from "meteor/mongo"
 import { ITEMS, ITEM_RARITIES } from "/imports/constants/items/index.js"
 
 import { userCurrentClass } from "/imports/api/classes/classes.js"
+import { reforgeMatchItemIdToTier } from "/imports/constants/crafting/reforging.js"
 import { CDbl } from "/imports/utils.js"
 
 export const Items = new Mongo.Collection("items")
@@ -142,4 +143,36 @@ export const combineStatsMap = function combineStatsMap(origStats, origExtraStat
         console.log(err)
     }
     return []
+}
+
+export const calculateMagicPoolTotalOfItem = function(itemDoc) {
+    let magicPool = 0
+
+    if (itemDoc && !itemDoc.constants) {
+        itemDoc.constants = ITEMS[itemDoc.itemId]
+        if (!itemDoc.constants) {
+            return magicPool
+        }
+    }
+
+    const itemTier = itemDoc.constants.tier || reforgeMatchItemIdToTier(itemDoc.itemId)
+    if (itemTier > 0) {
+        let itemSlotValue = 0
+        let twohandMultiplier = 1
+        if (itemDoc.constants.slot === "mainHand") {
+            itemSlotValue = 10
+            if (itemDoc.constants.isTwoHanded) {
+                twohandMultiplier = 2
+            }
+        } else if (itemDoc.constants.slot === "offHand" || itemDoc.constants.slot === "head") {
+            itemSlotValue = 10
+        } else if (itemDoc.constants.slot === "chest" || itemDoc.constants.slot === "legs") {
+            itemSlotValue = 5
+        }
+        
+        magicPool = (((itemSlotValue * 2) + (itemTier * itemSlotValue)) * twohandMultiplier) * (itemDoc.constants.isMagic ? 3 : 1)
+        //console.log(itemDoc.itemId, magicPool)
+    }
+
+    return magicPool
 }

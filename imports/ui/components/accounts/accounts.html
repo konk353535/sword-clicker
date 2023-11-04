@@ -49,13 +49,13 @@
 <template name="playAsGuestBtn">
   <button type="button" class="btn btn-secondary btn-block play-as-guest-btn mt-3 {{#if creatingGuest}}disabled{{/if}}">
     {{#if creatingGuest}}
-      Creating guest account...
+     Creating Guest Account...
     {{else}}
-      Play as guest
+      Play As Guest
     {{/if}}
   </button>
   <div class="mt-1">
-    By clicking play as guest, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
+    By clicking <b>Play As Guest</b>, you still agree to the <a target="_blank" href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
   </div>
   <br />
 </template>
@@ -77,7 +77,7 @@
         {{else}}
           {{> serverSelector}}
           <div class="mt-1">
-            By clicking register, you agree to the <a href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
+            By clicking register, you agree to the <a target="_blank" href="https://termsfeed.com/terms-conditions/b98f2c54772bbdad930ef49ca134b8f7">Terms of Service</a>
           </div>
           <div class="mt-3">
             Your email address is only used for account registration and recovery. 

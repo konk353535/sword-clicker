@@ -184,7 +184,7 @@ export const TITANIUM_ITEMS = {
         id: "titanium_broad_sword",
         icon: "titaniumBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "titanium broad sword",
         sellPrice: 1000,

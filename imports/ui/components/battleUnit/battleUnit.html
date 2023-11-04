@@ -2,24 +2,26 @@
   <div class="d-flex flex-column">
     <div class="d-flex battle-unit-container flex-column align-items-center flex-wrap justify-content-center px-2">
       {{#if unit.name}}
-        {{#if viewProfile}}
-          <a href="/profile/{{unit.name}}">
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
-          </a>
-        {{else}}
-          {{#if unit.targettingPlayer}}
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.targettingName}}<br />{{unit.name}}</span>
+        <div class="battle-unit-name">
+          {{#if viewProfile}}
+            <a href="/profile/{{unit.name}}">
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.name}}</span>
+            </a>
           {{else}}
-            <span class="{{#if isEnemy}}text-capitalize {{/if}}battle-unit-name {{#if unit.targettingPlayer}}battle-unit-red{{/if}}"><img src="/icons/{{unit.targettingIcon}}" width="20" height="20" stlye="height: 20px !important; width: 20px !important; border: none;" /><br >{{unit.name}}</span>
+            {{#if unit.targettingPlayer}}
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}">{{unit.targettingName}}<br />{{unit.name}}</span>
+            {{else}}
+              <span class="{{#if isEnemy}}text-capitalize {{/if}} {{#if unit.targettingPlayer}}battle-unit-red{{/if}}"><img src="/icons/{{unit.targettingIcon}}" width="20" height="20" stlye="height: 20px !important; width: 20px !important; border: none;" /><br >{{unit.name}}</span>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        </div>
       {{/if}}
       {{#if viewProfile}}
         <a href="/profile/{{unit.name}}">
           <img
               src="/icons/{{unit.icon}}"
-              id={{unit.id}}
-              data-unit-id={{unit.id}}
+              id="{{unit.id}}"
+              data-unit-id="{{unit.id}}"
               class="icon-box battle-unit
                 {{#if unit.leader}}leader-icon{{/if}}
                 {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
@@ -29,22 +31,39 @@
         </a>
       {{else}}
         <img
-            src="/icons/{{unit.icon}}"
-            id={{unit.id}}
-            data-unit-id={{unit.id}}
-            class="icon-box battle-unit
-              {{#if unit.isThisMyTarget}}my-target{{/if}}
-              {{#if unit.leader}}leader-icon{{/if}}
-              {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
-              {{#if small}}item-icon-container small{{/if}}"
+          src="/icons/{{unit.icon}}"
+          id={{unit.id}}
+          data-unit-id={{unit.id}}
+          class="icon-box battle-unit
+            {{#if unit.isThisMyTarget}}my-target{{/if}}
+            {{#if unit.leader}}leader-icon{{/if}}
+            {{#if isEnemy}}enemy-icon{{else}}friendly-icon{{/if}}
+            {{#if small}}item-icon-container small{{/if}}"
         >
       {{/if}}
       <div class="health-bar d-flex justify-content-center" style="white-space: nowrap;">
         {{> formatNumber number=unit.stats.health noDecimal=true}} / {{> formatNumber number=unit.stats.healthMax noDecimal=true}}
-      </div>      
+      </div>
       <div class="progress health-bar">
         <div class="progress-bar bg-danger" role="progressbar" style="width: {{healthPercentage}}%" aria-valuenow="{{healthPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
+    {{#if spellCasting}}
+        <div class="progress" style="height: 6px; width: 96px; margin-top: 1px;">
+          <div class="progress-bar magic-fire" role="progressbar" style="width: {{firePool}}%" aria-valuenow="{{firePool}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress" style="height: 6px; width: 96px; margin-top: 1px;">
+          <div class="progress-bar magic-earth" role="progressbar" style="width: {{earthPool}}%" aria-valuenow="{{earthPool}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress" style="height: 6px; width: 96px; margin-top: 1px;">
+          <div class="progress-bar magic-air" role="progressbar" style="width: {{airPool}}%" aria-valuenow="{{airPool}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress" style="height: 6px; width: 96px; margin-top: 1px;">
+          <div class="progress-bar magic-water" role="progressbar" style="width: {{waterPool}}%" aria-valuenow="{{waterPool}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress" style="height: 6px; width: 96px; margin-top: 1px;">
+          <div class="progress-bar magic-necrotic" role="progressbar" style="width: {{necroticPool}}%" aria-valuenow="{{necroticPool}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      {{/if}}
       {{#if showEnergy}}
         <div class="progress health-bar mt-1" style="height: 5px">
           <div class="progress-bar bg-warning" role="progressbar" style="width: {{energyPercentage}}%" aria-valuenow="{{energyPercentage}}" aria-valuemin="0" aria-valuemax="100"></div>

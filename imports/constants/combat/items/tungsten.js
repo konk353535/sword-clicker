@@ -181,7 +181,7 @@ export const TUNGSTEN_ITEMS = {
         id: "tungsten_broad_sword",
         icon: "tungstenBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "tungsten broad sword",
         sellPrice: 1200,

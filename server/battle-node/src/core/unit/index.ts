@@ -69,12 +69,14 @@ export default class Unit {
     effectFlipDamageTypeDefense?: boolean
     cantMiss?: boolean
     cantBeHit?: boolean
+    broughtMagic: boolean
 
     get name() {
         return this._name
     }
     set name(value) {
         this._name = value
+        this.delta("name")
     }
 
     get icon() {
@@ -82,6 +84,7 @@ export default class Unit {
     }
     set icon(value) {
         this._icon = value
+        this.delta("icon")
     }
 
     get target() {
@@ -99,11 +102,15 @@ export default class Unit {
         this._isEnemy = value
     }
 
-    delta(stat: "target") {
+    delta(prop: string) {
         const event = {
             type: "abs",
-            path: `unitsMap.${this.id}.${stat}`,
-            value: this[stat]
+            path: `unitsMap.${this.id}.${prop}`,
+            value: 
+                prop == "name" ? this.name : 
+                prop == "icon" ? this.icon : 
+                prop == "target" ? this.target : 
+                ""
         }
 
         this.battleRef.deltaEvents.push(event)
@@ -111,57 +118,93 @@ export default class Unit {
 
     get team() {
         try {
-            if (this.isEnemy) {
-                if (this.battleRef.enemies) {
-                    return this.battleRef.enemies
-                }
-            } else {
-                if (this.battleRef.units) {
-                    return this.battleRef.units
-                }
+            if (!this.isEnemy && this.battleRef.units) {
+                return this.battleRef.units
+            }
+
+            if (this.isEnemy && this.battleRef.enemies) {
+                return this.battleRef.enemies
             }
         } catch (err) {}
+
+        // error: couldn't find team list!!
         return []
     }
 
+    get opposition() {
+        try {
+            if (!this.isEnemy && this.battleRef.enemies) {
+                return this.battleRef.enemies
+            }
+            
+            if (this.isEnemy && this.battleRef.units) {
+                return this.battleRef.units
+            }
+        } catch (err) {}
+
+        // error: couldn't find opposition list!!
+        return []
+    }
+
+    // allies = team with this unit filtered out
     get allies() {
         const currentUnit = this
+
         return currentUnit.team.filter((unit) => {
             return unit.id !== currentUnit.id
         })
     }
 
-    get opposition() {
-        try {
-            if (!this.isEnemy) {
-                if (this.battleRef.enemies) {
-                    return this.battleRef.enemies
-                }
-            } else {
-                if (this.battleRef.units) {
-                    return this.battleRef.units
-                }
-            }
-        } catch (err) {}
-        return []
+    get targetIsValid(): boolean {
+        return this.findTarget(false, false) != null
     }
 
     get targetUnit(): Unit | false {
         try {
-            const currentUnit = this
-            const oppositionList = currentUnit.opposition
-            const oppositionDefault = _.sample(oppositionList)
-            if (oppositionDefault != null) {
-                let targetUnitFound = oppositionList.findLast((potentialTarget) => {
-                    return potentialTarget.id === currentUnit.target
-                })
-                if (targetUnitFound) {
-                    return targetUnitFound
-                }
-                return oppositionDefault
+            const currentUnitTargeted = this.findTarget(true, false)
+            if (currentUnitTargeted != null) {
+                return currentUnitTargeted
             }
         } catch (err) {}
         return false
+    }
+
+    findTarget(changeTarget: boolean = true, forced: boolean = false): Unit | null {
+        let targetUnit: Unit | null = null
+
+        if (forced) {
+            this.target = ""
+            changeTarget = true
+        }
+
+        this.opposition.forEach((opposingUnit) => {
+            if (opposingUnit.id == this._target) {
+                if (opposingUnit.stats.health > 0) {
+                    targetUnit = opposingUnit
+                }
+            }
+        })
+
+        if (changeTarget) {
+            if (!targetUnit || targetUnit == null) {
+                const nonSageList = this.opposition.filter((opposingUnit) => {
+                    return opposingUnit?.currentClass?.id !== "sage"
+                })
+                targetUnit = _.sample(nonSageList) || null
+                if (targetUnit && targetUnit != null) {
+                    this.target = targetUnit.id
+                }
+            }
+
+            if (!targetUnit || targetUnit == null) {
+                targetUnit = _.sample(this.opposition) || null
+                if (targetUnit && targetUnit != null) {
+                    this.target = targetUnit.id
+                }
+            }
+        }
+
+        return targetUnit
     }
 
     get leftSideAlly(): Unit | false {
@@ -206,7 +249,7 @@ export default class Unit {
     set isAbleToChangeTargets(value) {
         this._isAbleToChangeTargets = value
 
-        if (!value) {
+        if (!this._isAbleToChangeTargets) {
             if (!this.hasBuff("cant_change_targets")) {
                 this.applyBuff({
                     buff: this.generateBuff({
@@ -218,15 +261,21 @@ export default class Unit {
                 })
             }
         } else {
-            const targetBuff = this.findBuff("cant_change_targets")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            let attempts:number = 0
+            while (this.findBuffs("cant_change_targets").length > 0) {
+                attempts++
+                const targetBuff = this.findBuff("cant_change_targets")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
+                if (attempts > 10)
+                    break
             }
         }
     }
@@ -236,11 +285,12 @@ export default class Unit {
     }
     set isAbleToUseAbilities(value) {
         this._isAbleToUseAbilities = value
-        if (!value) {
-            if (!this.hasBuff("cast_use_abilities")) {
+
+        if (!this._isAbleToChangeTargets) {
+            if (!this.hasBuff("cant_use_abilities")) {
                 this.applyBuff({
                     buff: this.generateBuff({
-                        buffId: "cast_use_abilities",
+                        buffId: "cant_use_abilities",
                         buffData: {
                             duration: Infinity
                         }
@@ -248,15 +298,21 @@ export default class Unit {
                 })
             }
         } else {
-            const targetBuff = this.findBuff("cast_use_abilities")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            let attempts:number = 0
+            while (this.findBuffs("cant_use_abilities").length > 0) {
+                attempts++
+                const targetBuff = this.findBuff("cant_use_abilities")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
+                if (attempts > 10)
+                    break
             }
         }
     }
@@ -281,15 +337,21 @@ export default class Unit {
                 }
             }
         } else {
-            const targetBuff = this.findBuff("cant_use_spells")
-            if (targetBuff && !targetBuff.data.beingRemoved) {
-                targetBuff.data.beingRemoved = true
-                removeBuff({
-                    buff: targetBuff,
-                    target: this,
-                    caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
-                    actualBattle: this.battleRef
-                })
+            let attempts:number = 0
+            while (this.findBuffs("cant_use_spells").length > 0) {
+                attempts++
+                const targetBuff = this.findBuff("cant_use_spells")
+                if (targetBuff && !targetBuff.data.beingRemoved) {
+                    targetBuff.data.beingRemoved = true
+                    removeBuff({
+                        buff: targetBuff,
+                        target: this,
+                        caster: this, // todo: is this worth looking up from buff.casterUnit (an ID) ?
+                        actualBattle: this.battleRef
+                    })
+                }
+                if (attempts > 10)
+                    break
             }
         }
     }
@@ -297,6 +359,8 @@ export default class Unit {
     constructor(unit: unit | enemy, battleRef: any) {
         this.id = unit.id
         this.isUnitClass = true
+
+        this.broughtMagic = false
 
         if (isUnit(unit)) {
             this.battleSecret = unit.battleSecret
@@ -323,6 +387,17 @@ export default class Unit {
                     this.abilitiesMap[rawAbility.id] = ability
                     return ability
                 })
+
+                if (unit.currentClass?.id !== "barbarian") {
+                    let hasMagic:boolean = this.broughtMagic
+                    this.abilities.forEach((ability) => {
+                        if (ability.magic && !ability.magic.error) {
+                            hasMagic = true
+                        }
+                    })
+
+                    this.broughtMagic = hasMagic
+                }
             }
 
             if (unit.skills) {
@@ -354,22 +429,24 @@ export default class Unit {
         this._isAbleToCastSpells = true // can cast spells in combat (distinct from abilities)
 
         this.buffs = unit.buffs.map((buff) => new Buff(buff, this, this.battleRef))
-        this.stats = new Stats(unit.stats, unit.id, battleRef)
 
         this._icon = unit.icon
         this.tickOffset = unit.tickOffset || 0
-        // is target optional?
-        if (unit.target != null) {
-            this._target = unit.target
-        }
 
         this.attackIn = this.tickOffset || 1
         this.bonusLoot = 0.0
         this.extraLootTable = []
+
+        this.stats = new Stats(unit.stats, this, battleRef)
     }
 
     tick() {
         this.attackIn--
+
+        // Regenerate magic pools
+        if (this.broughtMagic) {
+            this.stats.magic.regenerateAll()
+        }
     }
 
     checkDeath() {
@@ -448,6 +525,12 @@ export default class Unit {
         return this.buffs.findLast((buff) => buff.id == buffId)
     }
 
+    findBuffs(buffId: string) {
+        return this.buffs.filter((buff) => {
+            return buff.id == buffId
+        })
+    }
+
     hasBuff(buffId: string): boolean {
         const foundBuff = this.findBuff(buffId)
         return foundBuff !== undefined
@@ -457,7 +540,8 @@ export default class Unit {
         try {
             const buffLevel = buffData && buffData.level ? buffData.level : 1
             const newBuffConstants = BUFFS[buffId]
-            const newBuff = {
+
+            let newBuff = {
                 id: buffId,
                 data: Object.assign({}, /*newBuffConstants.data, */ buffData || {}, {
                     name: buffData && buffData.name ? buffData.name : newBuffConstants.name,
@@ -472,9 +556,17 @@ export default class Unit {
                     caster: this.id,
                     //level: buffLevel // intentionally omitted (let it be supplied by 'buffData' if we want it, i.e.: no default)
                     allowDuplicates: buffData && buffData.allowDuplicates ? buffData.allowDuplicates : false,
-                    duplicateCap: buffData && buffData.duplicateCap ? buffData.duplicateCap : 1
+                    duplicateCap: buffData && buffData.duplicateCap ? buffData.duplicateCap : -1
                 }),
                 constants: newBuffConstants
+            }
+
+            if (newBuff.data.duplicateCap == -1) {
+                if (newBuff.data.allowDuplicates) {
+                    newBuff.data.duplicateCap = 9999
+                } else {
+                    newBuff.data.duplicateCap = 1
+                }
             }
 
             const fixedBuff = fixupBuffText(newBuff, undefined)
@@ -583,7 +675,8 @@ export default class Unit {
             bonusLoot: this.bonusLoot || 0.0,
             isNPC: this.isNPC,
             isCompanion: this.isCompanion,
-            isSoloCompanion: this.isSoloCompanion
+            isSoloCompanion: this.isSoloCompanion,
+            broughtMagic: this.broughtMagic
         }
     }
 }

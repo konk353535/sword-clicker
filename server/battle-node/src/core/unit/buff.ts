@@ -47,10 +47,15 @@ export default class Buff {
     }
 
     get allowDuplicates() {
+        let bAllow:boolean = false
         try {
-            return this.data.allowDuplicates || BUFFS[this.id].data && BUFFS[this.id].data.allowDuplicates
+            // check this version of the buff first
+            bAllow ||= this.data.allowDuplicates
+
+            // otherwise, check the constants for this buff
+            bAllow ||= BUFFS[this.id].data && BUFFS[this.id].data.allowDuplicates
         } catch (err) {}
-        return false
+        return bAllow
     }
     set allowDuplicates(value) {
         if (this.data) {

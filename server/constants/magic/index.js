@@ -1,5 +1,11 @@
+console.log("importing [server] combat/index.js ABILITIES")
+import { ABILITIES } from "/server/constants/combat/index.js"
+console.log("importing astronomy/index.js ASTRONOMY_ITEMS")
+import { ASTRONOMY_ITEMS } from "/imports/constants/astronomy/items.js"
+console.log("importing items/index.js ITEMS")
+import { ITEMS } from "/imports/constants/items/index.js"
 console.log("importing magic/index.js ITEMS")
-import { ITEMS } from "/imports/constants/items/index"
+import { MAGIC_TYPES } from "/imports/constants/magic/index.js"
 
 console.log("exporting magic/index.js MAGIC")
 export const MAGIC = Object.freeze({
@@ -17,11 +23,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["earth_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 1
                 }
             ]
         },
@@ -55,16 +56,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["earth_shard_fragment"].name,
                     amount: 5,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 33
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 33
                 }
             ]
         },
@@ -90,16 +81,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_fire_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 15
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 15
                 }
             ]
         },
@@ -125,16 +106,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["fire_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 5
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -160,16 +131,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 3
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 3
                 }
             ]
         },
@@ -187,16 +148,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["earth_shard_fragment"].name,
                     amount: 10,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 14
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 14
                 }
             ]
         },
@@ -214,11 +165,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 1
                 }
             ]
         },
@@ -244,16 +190,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["fire_shard_fragment"].name,
                     amount: 7,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 31
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 31
                 }
             ]
         },
@@ -279,16 +215,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["fire_shard_fragment"].name,
                     amount: 20,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 29
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 29
                 }
             ]
         },
@@ -314,16 +240,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 20,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 27
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 27
                 }
             ]
         },
@@ -341,16 +257,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 10,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 19
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 19
                 }
             ]
         },
@@ -376,16 +282,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_water_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 10
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 10
                 }
             ]
         },
@@ -411,16 +307,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_water_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 10
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 10
                 }
             ]
         },
@@ -446,16 +332,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 25,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 10
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 10
                 }
             ]
         },
@@ -481,16 +357,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_water_shard"].name,
                     amount: 2,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 15
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 15
                 }
             ]
         },
@@ -516,16 +382,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 10,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 17
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 17
                 }
             ]
         },
@@ -543,16 +399,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["poison_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 5
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -570,11 +416,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 1
                 }
             ]
         },
@@ -592,16 +433,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 10,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 20
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 20
                 }
             ]
         },
@@ -619,11 +450,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["fire_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 1
                 }
             ]
         },
@@ -649,16 +475,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["earth_shard_fragment"].name,
                     amount: 5,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 25
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 25
                 }
             ]
         },
@@ -676,16 +492,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["fire_shard_fragment"].name,
                     amount: 10,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 17
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 17
                 }
             ]
         },
@@ -711,16 +517,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["earth_shard_fragment"].name,
                     amount: 2,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 5
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -746,16 +542,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 10
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -781,16 +567,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 2,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 15
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -816,16 +592,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["air_shard_fragment"].name,
                     amount: 5,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 15
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 5
                 }
             ]
         },
@@ -851,16 +617,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["water_shard_fragment"].name,
                     amount: 3,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 20
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 10
                 }
             ]
         },
@@ -886,16 +642,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_fire_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 20
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 15
                 }
             ]
         },
@@ -937,16 +683,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["complete_earth_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 20
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 15
                 }
             ]
         },
@@ -965,16 +701,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["ancient_water_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 30
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 25
                 }
             ]
         },
@@ -993,16 +719,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["ancient_air_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 30
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 25
                 }
             ]
         },
@@ -1021,16 +737,6 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["ancient_earth_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 30
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 25
                 }
             ]
         },
@@ -1049,18 +755,106 @@ export const MAGIC = Object.freeze({
                     name: ITEMS["ancient_fire_shard"].name,
                     amount: 1,
                     consumes: true
-                },
-                {
-                    type: "skill",
-                    name: "astronomy",
-                    level: 30
-                },
-                {
-                    type: "skill",
-                    name: "magic",
-                    level: 25
                 }
             ]
         }
     }
 })
+
+export const spellData = function(abilityId) {
+    const spellAbilityInfo = ABILITIES[abilityId]
+
+    if (!spellAbilityInfo || !spellAbilityInfo.name) {
+        return { error: true, reason: `ability ${abilityId} does not exist`, ability: abilityId }
+    }
+
+    if (!spellAbilityInfo.isMagic) {
+        return { error: true, reason: `ability ${spellAbilityInfo.name} is not a spell`, ability: abilityId }
+    }
+
+    // only look at MAGIC crafts from above
+    const spellCraftInfo = MAGIC.spells[abilityId]
+    
+    if (!spellCraftInfo) {
+        return { error: true, reason: `spell ${spellAbilityInfo.name} has no magic data`, ability: abilityId }
+    }
+
+    try {
+        let calculatedData = {
+            fire: {
+                cost: {
+                    items: 0,
+                    units: 0
+                },
+                xp: 0
+            },
+            earth: {
+                cost: {
+                    items: 0,
+                    units: 0
+                },
+                xp: 0
+            },
+            air: {
+                cost: {
+                    items: 0,
+                    units: 0
+                },
+                xp: 0
+            },
+            water: {
+                cost: {
+                    items: 0,
+                    units: 0
+                },
+                xp: 0
+            },
+            necrotic: {
+                cost: {
+                    items: 0,
+                    units: 0
+                },
+                xp: 0
+            },
+            error: false,
+            ability: abilityId
+        }
+
+        spellCraftInfo.required.forEach(function(requirementData) {
+            if (requirementData.type === "item") {
+                const itemCost = ASTRONOMY_ITEMS[requirementData.itemId]
+                if (!itemCost && !itemCost.magic && !itemCost.magic.type) {
+                    calculatedData.error = true
+                    calculatedData.reason = `missing magic data for ${requirementData.itemId} in spell ${spellAbilityInfo.name}`
+                } else {
+                    const magicInfo = MAGIC_TYPES[itemCost.magic.type]
+                    if (!magicInfo) {
+                        calculatedData.error = true
+                        calculatedData.reason = `invalid magic type ${itemCost.magic.type} for ${requirementData.itemId} in spell ${spellAbilityInfo.name}`
+                    } else {
+                        calculatedData[itemCost.magic.type].cost.items += Math.ceil(itemCost.magic.itemValue * (requirementData?.amount || 0))
+                        calculatedData[itemCost.magic.type].cost.units += Math.ceil(itemCost.magic.unitValue * (requirementData?.amount || 0))
+                        calculatedData[itemCost.magic.type].xp += Math.ceil(itemCost.magic.unitXp * (requirementData?.amount || 0))
+                    }
+                }
+            }
+        })
+
+        if (
+            calculatedData.fire.cost.units + 
+            calculatedData.earth.cost.units + 
+            calculatedData.air.cost.units + 
+            calculatedData.water.cost.units + 
+            calculatedData.necrotic.cost.units == 0 
+        ) {
+            return { error: true, reason: `no apparent cost for spell ${spellAbilityInfo.name}` }
+        }
+
+        return calculatedData
+    } catch (err) {
+        console.log(err)
+        return { error: true, reason: `internal server error, exception thrown in spell ${spellAbilityInfo.name}`, ability: abilityId }
+    }
+
+    return { error: true, reason: `internal server error, unreachable code in spell ${spellAbilityInfo.name}`, ability: abilityId }
+}

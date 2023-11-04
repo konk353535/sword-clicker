@@ -181,7 +181,7 @@ export const STEEL_ITEMS = {
         id: "steel_broad_sword",
         icon: "steelBroadsword.png",
         category: "combat",
-        weaponType: "longSword",
+        weaponType: "broadSword",
         slot: "mainHand",
         name: "steel broad sword",
         sellPrice: 750,

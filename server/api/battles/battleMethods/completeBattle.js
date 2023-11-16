@@ -1021,7 +1021,7 @@ export const completeBattle = function (actualBattle) {
                     ) {
                         ownerObject.newContribution = pointsEarnt
                         let actualPointsGained = pointsEarnt
-                        let overDailyPoints = 0
+                        let overDailyPoints = -1
                         if (ownerObject.towerContributions.length >= 3) {
                             if (pointsEarnt > ownerObject.towerContributions[0]) {
                                 actualPointsGained -= ownerObject.towerContributions[0]
@@ -1035,6 +1035,7 @@ export const completeBattle = function (actualBattle) {
                         } else {
                             ownerObject.towerContributions.push(pointsEarnt)
                             ownerObject.towerContributions = ownerObject.towerContributions.sort((a, b) => a - b)
+                            overDailyPoints = 0
                         }
 
                         totalPointsForGroup += actualPointsGained + overDailyPoints
@@ -1052,7 +1053,7 @@ export const completeBattle = function (actualBattle) {
                             }
                         }
 
-                        if (overDailyPoints === 0) {
+                        if (overDailyPoints === 0 && !wasTotalPointsExtra) {
                             const possibleStats = ["mining", "crafting", "woodcutting", "farming", "inscription", "astronomy"]
 
                             const targetStat = _.sample(possibleStats)
@@ -1068,6 +1069,10 @@ export const completeBattle = function (actualBattle) {
                                 skill: targetStat,
                                 owner
                             })
+                        }
+
+                        if (overDailyPoints < 0) {
+                            overDailyPoints = 0
                         }
 
                         finalTickEvents.push({

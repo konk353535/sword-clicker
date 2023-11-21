@@ -423,12 +423,6 @@ const floorContributionScaler = function (actualBattle) {
 }
 
 const battleHandler_DealBossDamage = function (actualBattle) {
-    actualBattle.units.forEach((unit, idx) => {
-        if (actualBattle.units[idx].skills.length === 0) {
-            actualBattle.units[idx].isCompanion = true
-        }
-    })
-
     let temp_totalXpGain = 0
 
     const floorDetails = currentFloorDetails(actualBattle)
@@ -485,12 +479,6 @@ const battleHandler_DealBossDamage = function (actualBattle) {
 }
 
 const battleHandler_RecordBossDamage = function (actualBattle) {
-    actualBattle.units.forEach((unit, idx) => {
-        if (actualBattle.units[idx].skills.length === 0) {
-            actualBattle.units[idx].isCompanion = true
-        }
-    })
-
     // Is this a current boss battle?
     //console.log(actualBattle.startingBossHp);
     if (wasThisABossFight(actualBattle)) {
@@ -1302,7 +1290,7 @@ export const completeBattle = function (actualBattle) {
         }
     }
 
-    // Update all player units healths
+    // Update all player units healths and magic pools/reserves
 
     allPlayerUnits.forEach((unit) => {
         const combatModifier = {
@@ -1323,48 +1311,41 @@ export const completeBattle = function (actualBattle) {
             combatModifier["$set"]["amulet.energy"] = unit.amulet.energy
         }
 
-        let totalMagicXp = 0
-        let spellsCastCount = 0
         let userUsedAbility = false
 
-        /*
-        let castItemsUsed = {
-            poison_shard_fragment: 0,
-            fire_shard_fragment: 0, complete_fire_shard: 0, ancient_fire_shard: 0,
-            earth_shard_fragment: 0, complete_earth_shard: 0, ancient_earth_shard: 0,
-            air_shard_fragment: 0, complete_air_shard: 0, ancient_air_shard: 0,
-            water_shard_fragment: 0, complete_water_shard: 0, ancient_water_shard: 0
-        }
-        */
-
-        let powerSpent = {
-            fire: 0,
-            earth: 0,
-            air: 0,
-            water: 0,
-            necrotic: 0
-        }
-
         unit.abilities.forEach((ability) => {
-            if (ability.isSpell) {
-                //const spellConstants = MAGIC.spells[ability.id]
-                //if (spellConstants) {
-                    //totalMagicXp += ability.totalCasts * spellConstants.xp
+            if (!ability.isPassive && !ability.isEnchantment) {
+                // if this unit used any non-passive/non-enchantment abilities or spells, then they're clearly not inactive
+                userUsedAbility = true
+            }
+        })
+
+        const userClass = userCurrentClass(unit.owner)
+        
+        if (userClass?.unlocked && userClass?.equipped !== "barbarian") {
+
+            let powerSpent = {
+                fire: 0,
+                earth: 0,
+                air: 0,
+                water: 0,
+                necrotic: 0
+            }
+
+            let broughtMagic = false
+            let totalMagicXp = 0
+            let spellsCastCount = 0
+    
+            unit.abilities.forEach((ability) => {
+                if (ability.isSpell) {
+                    broughtMagic = true
+
                     spellsCastCount += ability.totalCasts
-                    
-                    //const magicData = spellData(ability.id)
-                    const magicData = ABILITIES[ability.id]?.magic // startup sets this
+                        
+                    const magicData = ABILITIES[ability.id]?.magic // game startup will set this
 
                     if (magicData && !magicData.error) {
                         totalMagicXp += ability.totalCasts * (magicData.fire.xp + magicData.earth.xp + magicData.air.xp + magicData.water.xp + magicData.necrotic.xp)
-                        
-                        /*
-                        spellConstants.required.forEach((itemRequired) => {
-                            if (itemRequired.type == "item") {
-                                castItemsUsed[itemRequired.itemId] += ability.totalCasts
-                            }
-                        })
-                        */
                         
                         powerSpent.fire += magicData.fire.cost.units * ability.totalCasts
                         powerSpent.earth += magicData.earth.cost.units * ability.totalCasts
@@ -1372,101 +1353,63 @@ export const completeBattle = function (actualBattle) {
                         powerSpent.water += magicData.water.cost.units * ability.totalCasts
                         powerSpent.necrotic += magicData.necrotic.cost.units * ability.totalCasts
                     }
-                //}
-            }
-            if (!ability.isPassive && !ability.isEnchantment) {
-                // if this unit used any non-passive/non-enchantment abilities or spells, then they're clearly not inactive
-                userUsedAbility = true
-            }
-        })
+                }
+            })
 
-        /*
-        const itemList = [
-            "poison_shard_fragment",
-            "fire_shard_fragment", "complete_fire_shard", "ancient_fire_shard",
-            "earth_shard_fragment", "complete_earth_shard", "ancient_earth_shard",
-            "air_shard_fragment", "complete_air_shard", "ancient_air_shard",
-            "water_shard_fragment", "complete_water_shard", "ancient_water_shard"
-        ]
-    
-        itemList.forEach((itemId) => {
-            const itemConsts = ITEMS[itemId]
-            if (itemConsts && itemConsts.magic && itemConsts.magic.type) {
-                const itemDoc = Items.findOne({
-                    owner: unit.owner,
-                    itemId: `${itemId}_magic_reserve`
+            if (broughtMagic) {
+                const combatDoc = Combat.findOne({ owner: unit.owner })
+                combatDoc.stats.fireReserve -= powerSpent.fire
+                combatDoc.stats.earthReserve -= powerSpent.earth
+                combatDoc.stats.airReserve -= powerSpent.air
+                combatDoc.stats.waterReserve -= powerSpent.water
+                combatDoc.stats.necroticReserve -= powerSpent.necrotic
+
+                Combat.update(combatDoc._id, {
+                    $set: flattenObjectForMongo({
+                        owner: unit.owner,
+                        stats: combatDoc.stats,
+                        lastGameUpdated: new Date()
+                    })
                 })
-    
-                if (itemDoc && itemDoc.amount > 0) {
-                    const quantity = itemDoc.amount - castItemsUsed[itemId]
 
-                    if (quantity > 0) {
-                        addItem(itemId, quantity, unit.owner)
+                if (totalMagicXp > 0) {
+                    if (userClass?.unlocked && userClass?.equipped === "wizard") {
+                        totalMagicXp *= 1.25
                     }
-    
-                    Items.remove(
-                        {
-                            itemId: `${itemId}_magic_reserve`,
-                            owner: unit.owner
+
+                    finalTickEvents.push({
+                        type: "xp",
+                        amount: totalMagicXp,
+                        skill: "magic",
+                        owner: unit.owner
+                    })
+
+                    if (hasCombatGlobalBuff) {
+                        finalTickEvents.push({
+                            type: "xp",
+                            amount: (totalMagicXp * 0.2).toFixed(1),
+                            skill: "magic",
+                            owner: unit.owner,
+                            affectedGlobalBuff: true
+                        })
+                        totalMagicXp *= 1.2
+                    }
+
+                    //
+                    // Record total number of unique spells cast per battle
+                    Users.update(unit.owner, {
+                        $inc: {
+                            "stats.spellsCast": spellsCastCount
                         }
-                    )
+                    })
+
+                    addXp("magic", totalMagicXp, unit.owner)
                 }
             }
-        })
-        */
+        }
 
-        const combatDoc = Combat.findOne({ owner: unit.owner })
-        combatDoc.stats.fireReserve -= powerSpent.fire
-        combatDoc.stats.earthReserve -= powerSpent.earth
-        combatDoc.stats.airReserve -= powerSpent.air
-        combatDoc.stats.waterReserve -= powerSpent.water
-        combatDoc.stats.necroticReserve -= powerSpent.necrotic
-
-        Combat.update(combatDoc._id, {
-            $set: flattenObjectForMongo({
-                owner: unit.owner,
-                stats: combatDoc.stats,
-                lastGameUpdated: new Date()
-            })
-        })
-
-        if (totalMagicXp > 0) {
-            const userClass = userCurrentClass(unit.owner)
-            if (userClass?.unlocked && userClass?.equipped === "wizard") {
-                totalMagicXp *= 1.25
-            }
-
-            finalTickEvents.push({
-                type: "xp",
-                amount: totalMagicXp,
-                skill: "magic",
-                owner: unit.owner
-            })
-
-            if (hasCombatGlobalBuff) {
-                finalTickEvents.push({
-                    type: "xp",
-                    amount: (totalMagicXp * 0.2).toFixed(1),
-                    skill: "magic",
-                    owner: unit.owner,
-                    affectedGlobalBuff: true
-                })
-                totalMagicXp *= 1.2
-            }
-
-            //
-            // Record total number of unique spells cast per battle
-            Users.update(unit.owner, {
-                $inc: {
-                    "stats.spellsCast": spellsCastCount
-                }
-            })
-
-            addXp("magic", totalMagicXp, unit.owner)
-
-            if (userUsedAbility) {
-                markUserAsActive(unit.owner)
-            }
+        if (userUsedAbility) {
+            markUserAsActive(unit.owner)
         }
 
         // Update relevant stuff, use callback so this is non blocking
@@ -1474,38 +1417,7 @@ export const completeBattle = function (actualBattle) {
             {
                 owner: unit.owner
             },
-            combatModifier,
-            (err, res) => {
-                // This is intentionally empty
-                // As providing a callback means this will not block the loop from continuing
-                updateAbilityCooldowns(unit.owner, (err, res) => {
-                    // Update ability cooldowns ect
-                    const userAbilities = Abilities.findOne({
-                        owner: unit.owner
-                    })
-
-                    if (userAbilities) {
-                        // Modify relevant ability id cooldowns and update
-                        userAbilities.learntAbilities.forEach((ability) => {
-                            const abilityToUpdate = _.findWhere(unit.abilities, { id: ability.abilityId })
-                            if (abilityToUpdate) {
-                                if (abilityToUpdate.isSpell) {
-                                    //ability.casts = abilityToUpdate.casts
-                                    ability.cost
-                                }
-                                ability.currentCooldown = 0 // abilityToUpdate.currentCooldown; // we don't track cooldowns anymore
-                            }
-                        })
-
-                        Abilities.update(userAbilities._id, {
-                            $set: {
-                                learntAbilities: userAbilities.learntAbilities,
-                                lastGameUpdated: new Date()
-                            }
-                        })
-                    }
-                })
-            }
+            combatModifier
         )
     })
 
@@ -1546,7 +1458,9 @@ export const completeBattle = function (actualBattle) {
         }, 30000)
     }
 
-    delete actualBattle // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
+    delete actualBattle
+    
+    // javascript 'delete' keyword does nothing on variables, it only unsets properties on an object (try it in console)
     // see https://www.w3schools.com/js/js_object_properties.asp
 
     //console.log(" ####  completeBattle()  #### ");

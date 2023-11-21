@@ -62,6 +62,8 @@ Accounts.onLogin((accountConnection) => {
             //console.log(accountConnection.connection.httpHeaders);
 
             updateUserIP({ userId: accountConnection.user._id, ipAddress: userIPReal })
+
+            Meteor.call("items.emergencyCleanup")
         }
     }
 })

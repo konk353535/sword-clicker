@@ -563,6 +563,20 @@ Meteor.methods({
             return
         }
 
+        const baseItemConstants = ITEMS[baseItem.itemId]
+
+        if (baseItem.category === "magic_book") {
+            UseMagicBook(baseItem, baseItemConstants)
+        }
+
+        if (baseItem.category === "item_box") {
+            UseItemBox(baseItem, baseItemConstants)
+        }
+
+        if (baseItem.category === "class_cooldown_reset_token") {
+            useClassCooldownResetToken(baseItem, baseItemConstants)
+        }
+
         let targetItemConstants
         let targetItem
         if (targetItemId) {
@@ -576,20 +590,6 @@ Meteor.methods({
             }
 
             targetItemConstants = ITEMS[targetItem.itemId]
-        }
-
-        const baseItemConstants = ITEMS[baseItem.itemId]
-
-        if (baseItem.category === "magic_book") {
-            UseMagicBook(baseItem, baseItemConstants, targetItem, targetItemConstants)
-        }
-
-        if (baseItem.category === "item_box") {
-            UseItemBox(baseItem, baseItemConstants, targetItem, targetItemConstants)
-        }
-
-        if (baseItem.category === "class_cooldown_reset_token") {
-            useClassCooldownResetToken(baseItem, baseItemConstants, targetItem, targetItemConstants)
         }
 
         if (baseItem.itemId === "jade") {
@@ -1367,6 +1367,97 @@ Meteor.methods({
         updateUserActivity({ userId: Meteor.userId() })
     },
 
+    "items.emergencyCleanup"() {
+        const itemsFound = Items.find({ owner: Meteor.userId() })
+
+        if (!itemsFound) {
+            return
+        }
+
+        const ITEM_LIMIT = 500
+
+        let itemCount = itemsFound?.count()
+
+        if (itemCount > ITEM_LIMIT) {
+            console.log(`[ITEM CLEAN]  ${Meteor.user().username} has more than ${ITEM_LIMIT} item stacks`)
+
+            itemsFound.forEach((item) => {
+                const itemConsts = ITEMS[item.itemId]
+
+                // stop when we reach the max number of item stacks
+                if (itemCount <= ITEM_LIMIT) {
+                    return
+                }
+
+                // don't sell locked items
+                if (item.locked) {
+                    return
+                }
+
+                // don't sell enhanced items
+                if (item.enhanced) {
+                    return
+                }
+
+                // don't sell equipped items
+                if (item.equipped) {
+                    return
+                }
+
+                // don't sell food items
+                if (item.category === "food") {
+                    return
+                }
+
+                // don't sell amulets
+                if (item.slot === "neck") {
+                    return
+                }
+
+                // don't sell furnaces
+                if (item.itemId.indexOf('_furnace') !== -1) {
+                    return
+                }
+
+                // don't sell tome items
+                if (item.category === "magic_book") {
+                    // but do use them
+                    UseMagicBook(item, itemConsts)
+                    console.log(`[ITEM CLEAN]  ! ! auto-used ${item.itemId} for ${Meteor.user().username}`)
+                    itemCount--
+                    return
+                }
+
+                // don't sell xp items (donate them)
+                if (item.category === "xp") {
+                    // any xp items in the player's inventory are crafted xp items that can be donated to the 'dwellings' section of town
+                    Meteor.call("town.donateItems", [ item ], "dwellings")
+                    console.log(`[ITEM CLEAN]  ! ! auto--donated ${item.itemId} for ${Meteor.user().username}`)
+                    itemCount--
+                    return
+                }
+
+                // don't sell stacks of items (usually resources like crystals, ore, wood, essence, seeds, food, etc.)
+                if (item.amount > 1) {
+
+                    // except spell scrolls, gold items, or recipe scrolls (we do auto-sell them)
+                    if (item.category !== "tome" && item.category !== "gold" && !itemConsts?.isCraftingScroll) {
+                        return
+                    }
+                } else {
+                    // don't sell item stacks with a single item amount that have non-base rarities
+                    if (item.rarityId !== "" && item.rarityId !== undefined && item.rarityId !== null) {
+                        return
+                    }
+                }
+
+                Meteor.call("items.sellItem", item._id, item.itemId, item.amount)
+                console.log(`[ITEM CLEAN]  ! ! auto--sold ${item.itemId} for ${Meteor.user().username}`)
+                itemCount--
+            })
+        }
+    },
+
     "items.sellItem"(_id, itemId, amount) {
         if (Meteor.user().logEvents) {
             Events.insert(
@@ -1402,7 +1493,15 @@ Meteor.methods({
             )
         }
 
+        let itemValue = 0
+        let itemCategory = "unknown"
+
         const itemConstants = ITEMS[currentItem.itemId]
+        if (itemConstants && itemConstants.sellPrice) {
+            itemValue = itemConstants.sellPrice
+            itemCategory = itemConstants.category
+        }
+
         let amountToSell = amount
 
         if (amountToSell >= currentItem.amount) {
@@ -1420,7 +1519,7 @@ Meteor.methods({
                         id: currentItem._id,
                         baseItem: currentItem.owner,
                         quantity: amountToSell,
-                        goldGained: amountToSell * itemConstants.sellPrice
+                        goldGained: amountToSell * itemValue
                     }
                 },
                 () => {}
@@ -1429,9 +1528,9 @@ Meteor.methods({
                 return
             }
 
-            if (itemConstants.category === "combat" && currentItem.equipped) {
+            if (itemCategory === "combat" && currentItem.equipped) {
                 updateCombatStats(Meteor.userId(), Meteor.user().username)
-            } else if (itemConstants.category === "mining" && currentItem.equipped) {
+            } else if (itemCategory === "mining" && currentItem.equipped) {
                 updateMiningStats(Meteor.userId(), currentItem.slot)
             }
         } else {
@@ -1449,7 +1548,7 @@ Meteor.methods({
                         id: currentItem._id,
                         baseItem: currentItem.owner,
                         quantity: amountToSell,
-                        goldGained: amountToSell * itemConstants.sellPrice
+                        goldGained: amountToSell * itemValue
                     }
                 },
                 () => {}
@@ -1465,7 +1564,7 @@ Meteor.methods({
                 _id: Meteor.userId()
             },
             {
-                $inc: { gold: amountToSell * itemConstants.sellPrice }
+                $inc: { gold: Math.ceil(amountToSell * itemValue) }
             }
         )
 
@@ -1522,7 +1621,7 @@ Meteor.publish("items", function () {
     self.ready()
 })
 
-export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseMagicBook = function (baseItem, baseItemConstants) {
     // Validation
     if (baseItem.category !== "magic_book") {
         return
@@ -1546,7 +1645,7 @@ export const UseMagicBook = function (baseItem, baseItemConstants, targetItem, t
     ConsumeItem(baseItem)
 }
 
-export const useClassCooldownResetToken = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const useClassCooldownResetToken = function (baseItem, baseItemConstants) {
     // Validation
     if (baseItem.category !== "class_cooldown_reset_token") {
         return
@@ -1559,7 +1658,7 @@ export const useClassCooldownResetToken = function (baseItem, baseItemConstants,
     ConsumeItem(baseItem)
 }
 
-export const UseItemBox = function (baseItem, baseItemConstants, targetItem, targetItemConstants) {
+export const UseItemBox = function (baseItem, baseItemConstants) {
     // Validation
     if (baseItem.category !== "item_box") {
         return

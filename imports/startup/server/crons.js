@@ -135,7 +135,7 @@ SyncedCron.add({
                                 foodList.push("banana") // farming level 40
                                 foodList.push("rockmelon") // farming level 50
                                 foodList.push("agrimony") // farming level 12 (valuable)
-                                foodList.push("sorrel") // floors 17 and 20
+                                foodList.push("sorrell") // floors 17 and 20
                                 foodList.push("lemon_honey") // floor 18
                             }
 

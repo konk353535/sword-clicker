@@ -20,6 +20,17 @@ import { addXp } from "/server/api/skills/skills"
 
 Meteor.methods({
     "woodcutting.fireWoodcutter"(index) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mwoodcutting.fireWoodcutter\x1b[22m"(${index})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const woodcutting = Woodcutting.findOne({ owner: this.userId })
         const targetWoodcutter = woodcutting.woodcutters[index]
 
@@ -221,6 +232,17 @@ Meteor.methods({
     },
 
     "woodcutting.hireWoodcutter"(woodcutterId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mwoodcutting.hireWoodcutter\x1b[22m"("${woodcutterId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const woodcutting = Woodcutting.findOne({ owner: Meteor.userId() })
 
         // Do we have room for more woodcutters?

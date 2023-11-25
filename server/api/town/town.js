@@ -287,6 +287,17 @@ Meteor.methods({
     },
 
     "town.donateItems"(arrayOfItems, building) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mtown.donateItems\x1b[22m"([${arrayOfItems.length} .. length]], "${building}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (
             !arrayOfItems ||
             typeof arrayOfItems !== "object" ||
@@ -313,6 +324,17 @@ Meteor.methods({
     },
 
     "town.donateItem"(_id, itemId, amount, building) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mtown.donateItem\x1b[22m"("${_id}", "${itemId}", ${amount}, "${building}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (!_id || !itemId || !amount || amount <= 0 || !building || typeof building !== "string") {
             return
         }

@@ -19,6 +19,17 @@ import { addXp } from "/server/api/skills/skills"
 Meteor.methods({
     // Upgrade the main mages stats
     "astronomy.upgradeMage"(stat) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.upgradeMage\x1b[22m"("${stat}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (!_.contains(["attackSpeed", "criticalChance", "ancientShard", "completeShard"], stat)) {
             throw new Meteor.Error("invalid-stat", "Not a valid mage stat")
         }
@@ -102,6 +113,17 @@ Meteor.methods({
     },
     // Hire a specific type of mage
     "astronomy.hireMage"(type) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.hireMage\x1b[22m"("${type}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (!_.contains(["fire", "water", "air", "earth"], type)) {
             throw new Meteor.Error("missed-requirements", "invalid mage type")
         }
@@ -150,6 +172,17 @@ Meteor.methods({
     },
     // Deposit gold to mage
     "astronomy.depositMageGold"(index, amount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.depositMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (amount <= 0) {
             return
         }
@@ -201,6 +234,17 @@ Meteor.methods({
     },
     // Withdraw gold from mage
     "astronomy.withdrawMageGold"(index, amount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.withdrawMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (amount <= 0) {
             return
         }

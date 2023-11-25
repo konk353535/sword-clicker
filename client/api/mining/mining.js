@@ -8,6 +8,17 @@ import { DONATORS_BENEFITS } from "/imports/constants/shop/index.js"
 
 Meteor.methods({
     "mining.clickedMineSpace"(mineSpaceId, multiplier = 1) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mmining.clickedMineSpace\x1b[22m"("${mineSpaceId}", ${multiplier})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         const mining = Mining.findOne({ owner: Meteor.userId() })
         const mineSpace = MiningSpace.findOne({ _id: mineSpaceId, owner: Meteor.userId() })
         let damage = mining.stats.attack * multiplier

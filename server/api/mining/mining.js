@@ -228,6 +228,17 @@ const attackMineSpace = function (id, mining, multiplier = 1) {
 
 Meteor.methods({
     "mining.clickedMineSpace"(mineSpaceId, multiplier = 1) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mmining.clickedMineSpace\x1b[22m"("${mineSpaceId}", ${multiplier})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (multiplier < 1 || multiplier > 10) {
             return
         }

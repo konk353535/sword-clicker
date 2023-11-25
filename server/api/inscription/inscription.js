@@ -85,6 +85,17 @@ const craftItem = function (recipeId, amountToCraft) {
 
 Meteor.methods({
     "inscription.craftItem"(recipeId, amount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1minscription.craftItem\x1b[22m"("${recipeId}", ${amount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
@@ -107,6 +118,17 @@ Meteor.methods({
     },
 
     "inscription.cancelCraft"(targetEndDate) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1minscription.craftItem\x1b[22m"("${targetEndDate}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // If existing crafts done, remove from crafting table
         const inscription = Inscription.findOne({ owner: Meteor.userId() })
 

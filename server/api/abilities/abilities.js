@@ -74,6 +74,17 @@ const allAbilitiesCooledDown = function (userId) {
 
 Meteor.methods({
     "abilities.unequip"(slot) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mabilities.unequip\x1b[22m"(${slot})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Make sure this is a valid slot
         if (_.contains(ABILITY.slots, slot)) {
             // Unequip specified slot
@@ -183,10 +194,32 @@ Meteor.methods({
     },
 
     "abilities.unequipAll"() {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mabilities.unequipall\x1b[22m"()\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         userUnequipAllAbilities(Meteor.userId())
     },
 
     "abilities.equip"(abilityId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mabilities.equip\x1b[22m"("${abilityId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         tx.start("Equip ability")
 
         // Make sure the user actually has the specified ability
@@ -299,6 +332,17 @@ Meteor.methods({
     },
 
     "abilities.learn"(_id, itemId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mabilities.learn\x1b[22m"("${_id}", "${itemId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         //tx.start("Learn ability" /*, {rethrowCommitError: true} */);
 
         // Make sure we have this item
@@ -476,9 +520,11 @@ Meteor.methods({
 
         // Build up abilities id to level map
         const abilitiesMap = {}
-        userAbilities.learntAbilities.forEach((ability) => {
-            abilitiesMap[ability.abilityId] = ability.level
-        })
+        if (userAbilities.learntAbilities) {
+            userAbilities.learntAbilities.forEach((ability) => {
+                abilitiesMap[ability.abilityId] = ability.level
+            })
+        }
 
         const townArmoryBuffLevel = getBuffLevel("town_armory")
 

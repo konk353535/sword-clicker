@@ -12,6 +12,17 @@ import { ACHIEVEMENTS } from "/server/constants/achievement/index.js"
 Meteor.methods({
     // Collect a specific achievement
     "achievements.collect"(id) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1machievements.collect\x1b[22m"("${id}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         Events.insert(
             {
                 owner: Meteor.userId(),

@@ -220,6 +220,17 @@ const processCompleteAdventure = function processCompleteAdventure(adventure) {
 
 Meteor.methods({
     "adventures.cancelAdventure"(adventureId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cancelAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Queue up an adventure
         const myAdventures = Adventures.findOne({ owner: this.userId })
 
@@ -276,6 +287,17 @@ Meteor.methods({
     },
 
     "adventures.collectAdventure"(adventureId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.collectAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Queue up an adventure
         const myAdventures = Adventures.findOne({ owner: this.userId })
 
@@ -328,6 +350,17 @@ Meteor.methods({
     },
 
     "adventures.cycleAdventure"(isGems = false) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cycleAdventure\x1b[22m"(${isGems})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         let adventureTokens
 
         if (isGems) {
@@ -418,6 +451,17 @@ Meteor.methods({
     },
 
     "adventures.startAdventure"(adventureId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.startAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Make sure user isn't in combat
         const currentBattle = BattlesList.findOne({ owners: Meteor.userId() })
         if (currentBattle) {

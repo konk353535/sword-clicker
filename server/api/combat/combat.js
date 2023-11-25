@@ -338,6 +338,17 @@ Meteor.methods({
     },
 
     "combat.changeClass"(classId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcombat.changeClass\x1b[22m"("${classId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // read combat root data
         const myCombat = Combat.findOne({ owner: Meteor.userId() })
 
@@ -397,6 +408,17 @@ Meteor.methods({
     },
 
     "combat.updateCharacterIcon"(id) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcombat.updateCharacterIcon\x1b[22m"("${id}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const myCombat = Combat.findOne({
             owner: Meteor.userId()
         })

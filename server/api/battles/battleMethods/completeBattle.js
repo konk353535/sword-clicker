@@ -582,6 +582,14 @@ export const completeBattle = function (actualBattle) {
         (unit) => unit.stats.health > 0 && !unit.isEnemy && !unit.isNPC && !unit.isCompanion && !unit.isSoloCompanion
     )
 
+    allPlayerUnits.forEach((unit) => {
+        const userDoc = Users.findOne({ _id: unit.id })
+
+        if (userDoc) {
+            console.log("battles.completeBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
+        }
+    })
+
     let win = aliveUnits.length > 0
     let ngRewards = []
 
@@ -916,23 +924,27 @@ export const completeBattle = function (actualBattle) {
                         luckyOwnerCombat.bonusIcons = []
                     }
 
-                    if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
-                        finalTickEvents.push({
-                            type: "icon",
-                            iconId: rewardGained.iconId,
-                            icon: PLAYER_ICONS[rewardGained.iconId].icon,
-                            owner: luckyOwner
-                        })
-                        Combat.update(
-                            {
+                    try {
+                        if (!_.contains(luckyOwnerCombat.boughtIcons, rewardGained.iconId)) {
+                            finalTickEvents.push({
+                                type: "icon",
+                                iconId: rewardGained.iconId,
+                                icon: PLAYER_ICONS[rewardGained.iconId].icon,
                                 owner: luckyOwner
-                            },
-                            {
-                                $set: {
-                                    boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+                            })
+                            Combat.update(
+                                {
+                                    owner: luckyOwner
+                                },
+                                {
+                                    $set: {
+                                        boughtIcons: luckyOwnerCombat.boughtIcons.concat([rewardGained.iconId])
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
+                    } catch (err) {
+                        console.log("Exception in completeBattle with 'rewardGained'", err, rewardGained)
                     }
                 }
             } catch (err) {

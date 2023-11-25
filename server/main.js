@@ -53,11 +53,11 @@ Accounts.onLogin((accountConnection) => {
         if (accountConnection.user.username) {
             const userIPRaw = accountConnection.connection.clientAddress
             const userIPReal = getIPFromConnection(accountConnection.connection)
-            console.log(`Account login from ${accountConnection.user.username} (${accountConnection.user._id}):`)
+            console.log(`\x1b[36mAccount login from ${accountConnection.user.username} (${accountConnection.user._id}):\x1b[0m`)
             if (userIPReal !== userIPRaw) {
-                console.log(`. . . . . IP address: ${userIPReal}  (from gateway/proxy ${userIPRaw})`)
+                console.log(`\x1b[36m. . . . . IP address: ${userIPReal}  (from gateway/proxy ${userIPRaw})\x1b[0m`)
             } else {
-                console.log(`. . . . . IP address: ${userIPReal}`)
+                console.log(`\x1b[36m. . . . . IP address: ${userIPReal}\x1b[0m`)
             }
             //console.log(accountConnection.connection.httpHeaders);
 

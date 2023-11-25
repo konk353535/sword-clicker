@@ -120,6 +120,17 @@ const classMayChange = function(uid, newClass) {
 
 Meteor.methods({
     "classes.clearCooldown"(targetUid) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.clearCooldown\x1b[22m"("${targetUid}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (targetUid == null || !targetUid || typeof targetUid === 'undefined') {
             return false
         }
@@ -238,6 +249,17 @@ Meteor.methods({
     },
 
     "classes.equipClass"(uid, newClass) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.equipClass\x1b[22m"("${uid}", "${newClass}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (uid == null || !uid || typeof uid === 'undefined') {
             uid = Meteor.userId()
         }

@@ -144,6 +144,17 @@ Meteor.methods({
   },*/
 
     "farming.harvest"(index) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.harvest\x1b[22m"(${index})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Harvest whatever is in the specified index
         const targetToHarvest = FarmingSpace.findOne({
             owner: Meteor.userId(),
@@ -182,6 +193,17 @@ Meteor.methods({
     },
 
     "farming.harvestAll"() {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.harvestAll\x1b[22m"()\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         FarmingSpace.find({
             owner: Meteor.userId()
         })
@@ -218,6 +240,17 @@ Meteor.methods({
     },
 
     "farming.killPlant"(index) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.killPlant\x1b[22m"(${index})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Choose whatever is in the specified index
         FarmingSpace.update(
             {
@@ -239,6 +272,17 @@ Meteor.methods({
     },
 
     "farming.plant"(plantId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.plant\x1b[22m"("${plantId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const userDoc = Meteor.user()
 
         if (Meteor.user().logEvents) {
@@ -320,6 +364,17 @@ Meteor.methods({
     },
 
     "farming.plantAll"(plantId, specifiedAmount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.plantAll\x1b[22m"("${plantId}", ${specifiedAmount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (specifiedAmount < 0) {
             return
         } else if (specifiedAmount > 8) {
@@ -431,6 +486,17 @@ Meteor.methods({
     },
 
     "farming.buyShopItem"(seedId, amountToBuy = 1) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.buyShopItem\x1b[22m"("${seedId}", ${amountToBuy})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (amountToBuy < 1 || amountToBuy > 100 || !_.isFinite(amountToBuy)) {
             return
         }

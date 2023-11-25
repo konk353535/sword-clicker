@@ -77,6 +77,21 @@ const serverMaxFloor = function serverMaxFloor() {
 
 Meteor.methods({
     "battles.killBattle"() {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mbattles.killBattle\x1b[22m"()\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        const userDoc = Meteor.user()
+
+        console.log("... battles.killBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
+
         // Find existing battle
         const existingBattle = BattlesList.findOne({
             owners: Meteor.userId(),
@@ -99,8 +114,20 @@ Meteor.methods({
     },
 
     "battles.findPersonalBattle"(level, energyUse) {
-        console.log("battles.findPersonalBattle", moment().format("LLL hh:mm:ss SSS"))
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mbattles.findPersonalBattle\x1b[22m"(${level}, ${energyUse})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const userDoc = Meteor.user()
+
+        console.log("battles.findPersonalBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
 
         if (!energyUse || energyUse == null || energyUse == undefined || typeof energyUse === "undefined" || !_.isFinite(energyUse)) {
             energyUse = 1
@@ -159,14 +186,28 @@ Meteor.methods({
 
         const server = userDoc.server
 
-        startBattle({ level, wave, server, energyUse })
+        if (!startBattle({ level, wave, server, energyUse })) {
+            console.log("... [FAIL]  battles.findPersonalBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
+        }
 
         updateUserActivity({ userId: Meteor.userId() })
     },
 
     "battles.findTowerBattle"(floor, room, energyUse) {
-        console.log("battles.findTowerBattle", moment().format("LLL hh:mm:ss SSS"))
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mbattles.findTowerBattle\x1b[22m"(${floor}, ${room}, ${energyUse})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const userDoc = Meteor.user()
+
+        console.log("battles.findTowerBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
 
         if (!energyUse || energyUse == null || energyUse == undefined || typeof energyUse === "undefined" || !_.isFinite(energyUse)) {
             energyUse = 1
@@ -184,7 +225,7 @@ Meteor.methods({
             throw new Meteor.Error("no-sir", "The tower doesn't have that many floors!")
         }
 
-        if (Meteor.user().logEvents) {
+        if (userDoc.logEvents) {
             Events.insert(
                 {
                     owner: Meteor.userId(),
@@ -202,7 +243,7 @@ Meteor.methods({
         }
 
         // Ensure the floor specified is currently open
-        const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: Meteor.user().server })
+        const currentCommunityFloor = Floors.findOne({ floorComplete: false, server: userDoc.server })
 
         if (floor > currentCommunityFloor.floor) {
             throw new Meteor.Error("no-sir", "Don't have access to that floor!")
@@ -296,7 +337,7 @@ Meteor.methods({
         }
 
         // Eventually select a random battle appropriate to users level
-        startBattle({
+        if (!startBattle({
             floor,
             room,
             server,
@@ -304,7 +345,9 @@ Meteor.methods({
             isExplorationRun,
             energyUse,
             currentCommunityFloor: currentCommunityFloor.floor
-        })
+        })) {
+            console.log("... [FAIL]  battles.findTowerBattle", moment().format("LLL hh:mm:ss SSS"), userDoc.clientIp, userDoc.username)
+        }
 
         updateUserActivity({ userId: Meteor.userId() })
     },

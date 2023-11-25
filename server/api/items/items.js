@@ -64,7 +64,7 @@ export const addItem = function (
     const itemConstants = ITEMS[itemId]
 
     if (!itemConstants) {
-        console.log(`Failed - ${itemId}`)
+        console.log(`Failed to addItem() because no constants - ${itemId}`)
         return
     }
 
@@ -453,6 +453,17 @@ export const consumeItem = function (itemObject, amount) {
 
 Meteor.methods({
     "items.unequip"(_id, itemId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.unequip\x1b[22m"("${_id}", "${itemId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const item = Items.findOne({
             owner: Meteor.userId(),
             _id: _id
@@ -553,6 +564,17 @@ Meteor.methods({
     },
 
     "items.use"({ baseItemId, targetItemId }) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.use\x1b[22m"("${baseItemId}", "${targetItemId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Fetch both items
         const baseItem = Items.findOne({
             owner: Meteor.userId(),
@@ -915,6 +937,17 @@ Meteor.methods({
     },
 
     "items.eat"(_id, itemId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.eat\x1b[22m"("${_id}", "${itemId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
@@ -1030,6 +1063,17 @@ Meteor.methods({
     },
 
     "items.findAndConsume"(uid, itemId) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.findAndConsume\x1b[22m"("${uid}", "${itemId}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Check we have the item
 
         const targetItem = Items.findOne({ owner: uid, itemId })
@@ -1140,10 +1184,32 @@ Meteor.methods({
     },
 
     "items.unequipAllCombat"() {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.unequipAllCombat\x1b[22m"()\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         userUnequipAllItems(Meteor.userId())
     },
 
     "items.equip"(_id) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.equip\x1b[22m"("${_id}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         const item = Items.findOne({
             owner: Meteor.userId(),
             _id: _id
@@ -1379,7 +1445,7 @@ Meteor.methods({
         let itemCount = itemsFound?.count()
 
         if (itemCount > ITEM_LIMIT) {
-            console.log(`[ITEM CLEAN]  ${Meteor.user().username} has more than ${ITEM_LIMIT} item stacks`)
+            console.log(`[ITEM CLEAN]  ${Meteor.user().username} has more than ${ITEM_LIMIT} item stacks (has ${itemCount})`)
 
             itemsFound.forEach((item) => {
                 const itemConsts = ITEMS[item.itemId]
@@ -1432,7 +1498,7 @@ Meteor.methods({
                 if (item.category === "xp") {
                     // any xp items in the player's inventory are crafted xp items that can be donated to the 'dwellings' section of town
                     Meteor.call("town.donateItems", [ item ], "dwellings")
-                    console.log(`[ITEM CLEAN]  ! ! auto--donated ${item.itemId} for ${Meteor.user().username}`)
+                    console.log(`[ITEM CLEAN]  ! ! auto-donated ${item.itemId} for ${Meteor.user().username}`)
                     itemCount--
                     return
                 }
@@ -1452,13 +1518,24 @@ Meteor.methods({
                 }
 
                 Meteor.call("items.sellItem", item._id, item.itemId, item.amount)
-                console.log(`[ITEM CLEAN]  ! ! auto--sold ${item.itemId} for ${Meteor.user().username}`)
+                console.log(`[ITEM CLEAN]  ! ! auto-sold ${item.itemId} for ${Meteor.user().username}`)
                 itemCount--
             })
         }
     },
 
     "items.sellItem"(_id, itemId, amount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mitems.sellItem\x1b[22m"("${_id}", "${itemId}", ${amount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         if (Meteor.user().logEvents) {
             Events.insert(
                 {

@@ -999,4 +999,6 @@ export const startBattle = function ({
             )
         }
     )
+
+    return true
 }

@@ -656,6 +656,17 @@ const reforgeThisItem = function (craftingData, originalItem, reforgeData, itemE
 
 Meteor.methods({
     "crafting.reforgeItem"(_id) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.reforgeItem\x1b[22m"("${_id}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         const user = Meteor.user()
         if (!user) {
             return false
@@ -811,6 +822,17 @@ Meteor.methods({
     },
 
     "crafting.cancelReforgeAll"() {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforgeAll\x1b[22m"()\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         const crafting = Crafting.findOne({
             owner: Meteor.userId()
         })
@@ -892,6 +914,17 @@ Meteor.methods({
     },
 
     "crafting.cancelReforge"(targetEndDate) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforge\x1b[22m"("${targetEndDate}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         const crafting = Crafting.findOne({
             owner: Meteor.userId()
         })
@@ -1000,6 +1033,17 @@ Meteor.methods({
     },
 
     "crafting.craftItem"(recipeId, amount) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.craftItem\x1b[22m"("${recipeId}", ${amount})\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         if (Meteor.user().logEvents) {
             Events.insert(
                 {
@@ -1059,7 +1103,7 @@ Meteor.methods({
                 const itemConstant = ITEMS[recipeConstant.produces]
 
                 if (!itemConstant) {
-                    console.log(`Failed - ${recipeConstant.produces} missing constants`)
+                    console.log(`Failed to crafting.fetchRecipes because no constants - ${recipeConstant.produces}`)
                 }
 
                 recipeConstant.icon = itemConstant.icon
@@ -1101,6 +1145,17 @@ Meteor.methods({
     },
 
     "crafting.cancelCraft"(targetEndDate) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        //  Big ol' debug thing
+        //
+        try {
+            const logUserDoc = Meteor.user()
+            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelCraft\x1b[22m"("${targetEndDate}")\x1b[0m`) }
+        } catch (err) {}
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
         const userDoc = Meteor.user()
         // If existing crafts done, remove from crafting table
         const crafting = Crafting.findOne({ owner: Meteor.userId() })

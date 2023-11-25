@@ -342,6 +342,43 @@ export const PLAYER_ICONS = Object.freeze({
                 level: 80
             }
         ]
+    },
+    falcon_t1: {
+        name: "falcon T1",
+        icon: "falconT1.png"
+    },
+    falcon_t1_color: {
+        name: "falcon T1 Rare",
+        icon: "falconT1Color.png",
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 30
+            }
+        ]
+    },
+    falcon_t2: {
+        name: "falcon T2",
+        icon: "falconT2.png",
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 60
+            }
+        ]
+    },
+    falcon_t2_color: {
+        name: "falcon T2 Rare",
+        icon: "falconT2Color.png",
+        requiredEquip: [
+            {
+                type: "skill",
+                name: "attack",
+                level: 100
+            }
+        ]
     }
 })
 

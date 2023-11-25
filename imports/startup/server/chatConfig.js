@@ -405,6 +405,38 @@ SimpleChat.configure({
 
                 sendUserChatMessage({ userId: userDoc._id, message: `Banned ${targetUser.username} forever.` })
                 return
+            } else if (/\/unban/.test(message) && userDoc.isSuperMod) {
+                const targetUser = Users.findOne({
+                    username: message.split("/unban")[1].toLowerCase().trim()
+                })
+
+                Users.update(
+                    {
+                        _id: targetUser._id
+                    },
+                    {
+                        $set: {
+                            banned: false
+                        }
+                    }
+                )
+
+                Skills.update(
+                    {
+                        owner: targetUser._id
+                    },
+                    {
+                        $set: {
+                            banned: false
+                        }
+                    },
+                    {
+                        multi: true
+                    }
+                )
+
+                sendUserChatMessage({ userId: userDoc._id, message: `Unbanned ${targetUser.username}.` })
+                return
             } else if (/\/giveItem/.test(message) && userDoc.isSuperMod) {
                 const splitMessage = message.trim().split(" ")
 

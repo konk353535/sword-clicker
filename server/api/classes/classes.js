@@ -380,7 +380,9 @@ Meteor.methods({
 
         const defaultClass = CLASSES.default()
 
-        Meteor.call("classes.equipClass", uid, defaultClass.id)
+        if (classFeatureUnlocked(uid)) {
+            Meteor.call("classes.equipClass", uid, defaultClass.id)
+        }
 
         return { unlocked: classFeatureUnlocked(uid), equipped: defaultClass.id, data: defaultClass, cooldown: undefined }
     }

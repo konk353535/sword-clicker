@@ -62,7 +62,9 @@
     "core-js": "^2.5.7",
     "discord.js": "^12.5.3",
     "envalid": "^7.3.1",
+    "erlpack": "^0.1.4",
     "faker": "^4.1.0",
+    "ffmpeg-static": "^5.2.0",
     "jquery": "^3.7.1",
     "jquery-typeahead": "^2.11.1",
     "js-object-parser": "^1.0.1",
@@ -85,7 +87,8 @@
     "tsx": "^3.12.10",
     "underscore": "^1.9.1",
     "utf-8-validate": "^6.0.3",
-    "weighted-random": "^0.1.0"
+    "weighted-random": "^0.1.0",
+    "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.3",

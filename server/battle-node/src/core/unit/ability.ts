@@ -7,7 +7,6 @@ export default class Ability {
     constants: any
     scaledCooldown: any
     _currentCooldown: any
-    //_casts: any
     unit: Unit
     id: string
     battleRef: Battle
@@ -54,16 +53,6 @@ export default class Ability {
         this.delta("currentCooldown")
     }
 
-    /*
-    get casts() {
-        return this._casts
-    }
-    set casts(value) {
-        this._casts = value
-        this.delta("casts")
-    }
-    */
-
     delta(key: "currentCooldown" /* | "casts" */) {
         const event = {
             type: "abs",
@@ -84,7 +73,6 @@ export default class Ability {
         this.level = ability.level
         this.totalCasts = ability.totalCasts
         this._currentCooldown = ability.currentCooldown
-        //this._casts = ability.casts
         this.isSpell = ability.isSpell || this.constants.isSpell || false
         this.isPacifist = ability.isPacifist || this.constants.isPacifist || false
         this.isTaunt = ability.isTaunt || this.constants.isTaunt || false
@@ -94,8 +82,6 @@ export default class Ability {
     cast(targets: Unit[]) {
         if (this.currentCooldown > 0) {
             return false
-        //} else if (this.isSpell && this.casts <= 0) {
-        //    return false
         } else if (this.isSpell && !this.canAffordToCast) {
             return false
         } else if (this.isPassive && this.battleRef.tickCount > 1) {
@@ -109,28 +95,32 @@ export default class Ability {
         })
     }
 
+    get castingCostMultiplier() {
+        return Math.max(1, this.unit.stats.magicPower / 30)
+    }
+
     get canAffordToCast() {
         if (!this.unit.broughtMagic) {
             return false
         }
 
-        if (this.magic.fire.cost.units > this.unit.stats.magic.firePool) {
+        if (this.magic.fire.cost.units * this.castingCostMultiplier > this.unit.stats.magic.firePool) {
             return false
         }
 
-        if (this.magic.earth.cost.units > this.unit.stats.magic.earthPool) {
+        if (this.magic.earth.cost.units * this.castingCostMultiplier > this.unit.stats.magic.earthPool) {
             return false
         }
 
-        if (this.magic.air.cost.units > this.unit.stats.magic.airPool) {
+        if (this.magic.air.cost.units * this.castingCostMultiplier > this.unit.stats.magic.airPool) {
             return false
         }
 
-        if (this.magic.water.cost.units > this.unit.stats.magic.waterPool) {
+        if (this.magic.water.cost.units * this.castingCostMultiplier > this.unit.stats.magic.waterPool) {
             return false
         }
 
-        if (this.magic.necrotic.cost.units > this.unit.stats.magic.necroticPool) {
+        if (this.magic.necrotic.cost.units * this.castingCostMultiplier > this.unit.stats.magic.necroticPool) {
             return false
         }
 
@@ -142,7 +132,6 @@ export default class Ability {
             id: this.id,
             level: this.level,
             currentCooldown: this.currentCooldown,
-            //casts: this.casts,
             totalCasts: this.totalCasts,
             isSpell: this.isSpell,
             isPacifist: this.isPacifist,

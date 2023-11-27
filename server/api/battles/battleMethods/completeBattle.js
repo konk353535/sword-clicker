@@ -1336,6 +1336,7 @@ export const completeBattle = function (actualBattle) {
         
         if (userClass?.unlocked && userClass?.equipped !== "barbarian") {
 
+            /*
             let powerSpent = {
                 fire: 0,
                 earth: 0,
@@ -1343,6 +1344,7 @@ export const completeBattle = function (actualBattle) {
                 water: 0,
                 necrotic: 0
             }
+            */
 
             let broughtMagic = false
             let totalMagicXp = 0
@@ -1359,22 +1361,34 @@ export const completeBattle = function (actualBattle) {
                     if (magicData && !magicData.error) {
                         totalMagicXp += ability.totalCasts * (magicData.fire.xp + magicData.earth.xp + magicData.air.xp + magicData.water.xp + magicData.necrotic.xp)
                         
+                        /*
                         powerSpent.fire += magicData.fire.cost.units * ability.totalCasts
                         powerSpent.earth += magicData.earth.cost.units * ability.totalCasts
                         powerSpent.air += magicData.air.cost.units * ability.totalCasts
                         powerSpent.water += magicData.water.cost.units * ability.totalCasts
                         powerSpent.necrotic += magicData.necrotic.cost.units * ability.totalCasts
+                        */
                     }
                 }
             })
 
             if (broughtMagic) {
                 const combatDoc = Combat.findOne({ owner: unit.owner })
+                
+                /*
                 combatDoc.stats.fireReserve -= powerSpent.fire
                 combatDoc.stats.earthReserve -= powerSpent.earth
                 combatDoc.stats.airReserve -= powerSpent.air
                 combatDoc.stats.waterReserve -= powerSpent.water
                 combatDoc.stats.necroticReserve -= powerSpent.necrotic
+                */
+
+                // since costs scale dynamically with live combat MP, we need to just rely on the combat server to tell us what's left in the pool+reserve
+                combatDoc.stats.fireReserve = unit.stats.magic.firePool + unit.stats.magic.fireReserve
+                combatDoc.stats.earthReserve = unit.stats.magic.earthPool + unit.stats.magic.earthReserve
+                combatDoc.stats.airReserve = unit.stats.magic.airPool + unit.stats.magic.airReserve
+                combatDoc.stats.waterReserve = unit.stats.magic.waterPool + unit.stats.magic.waterReserve
+                combatDoc.stats.necroticReserve = unit.stats.magic.necroticPool + unit.stats.magic.necroticReserve
 
                 Combat.update(combatDoc._id, {
                     $set: flattenObjectForMongo({

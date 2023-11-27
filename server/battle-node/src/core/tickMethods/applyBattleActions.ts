@@ -135,15 +135,14 @@ export function applyBattleActions(this: Battle) {
 
             const castSuccess = targetAbility.cast(actionTargets)
             if (castSuccess) {
-                //targetAbility.casts -= 1
                 targetAbility.totalCasts += 1
                 if (targetAbility.isSpell && casterUnit.broughtMagic) {
                     if (targetAbility.magic && !targetAbility.magic?.error) {
-                        casterUnit.stats.magic.spend("fire", targetAbility.magic.fire.cost.units)
-                        casterUnit.stats.magic.spend("earth", targetAbility.magic.earth.cost.units)
-                        casterUnit.stats.magic.spend("air", targetAbility.magic.air.cost.units)
-                        casterUnit.stats.magic.spend("water", targetAbility.magic.water.cost.units)
-                        casterUnit.stats.magic.spend("necrotic", targetAbility.magic.necrotic.cost.units)
+                        casterUnit.stats.magic.spend("fire", targetAbility.magic.fire.cost.units * targetAbility.castingCostMultiplier)
+                        casterUnit.stats.magic.spend("earth", targetAbility.magic.earth.cost.units * targetAbility.castingCostMultiplier)
+                        casterUnit.stats.magic.spend("air", targetAbility.magic.air.cost.units * targetAbility.castingCostMultiplier)
+                        casterUnit.stats.magic.spend("water", targetAbility.magic.water.cost.units * targetAbility.castingCostMultiplier)
+                        casterUnit.stats.magic.spend("necrotic", targetAbility.magic.necrotic.cost.units * targetAbility.castingCostMultiplier)
                     }
                 }
 

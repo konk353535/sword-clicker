@@ -156,6 +156,9 @@ export const calculateMagicPoolTotalOfItem = function(itemDoc) {
     }
 
     const itemTier = itemDoc.constants.tier || reforgeMatchItemIdToTier(itemDoc.itemId)
+
+    //console.log(itemDoc.itemId, `tier`, itemTier)
+
     if (itemTier > 0) {
         let itemSlotValue = 0
         let twohandMultiplier = 1
@@ -171,7 +174,17 @@ export const calculateMagicPoolTotalOfItem = function(itemDoc) {
         }
         
         magicPool = (((itemSlotValue * 2) + (itemTier * itemSlotValue)) * twohandMultiplier) * (itemDoc.constants.isMagic ? 3 : 1)
-        //console.log(itemDoc.itemId, magicPool)
+
+        if (itemDoc.rarityId && typeof itemDoc.rarityId === "string") {
+            const rarityIdConsts = ITEM_RARITIES[itemDoc.rarityId]
+            if (rarityIdConsts && rarityIdConsts.statBonuses) {
+                magicPool *= (100.0 + rarityIdConsts.statBonuses) / 100.0
+            }
+        }
+
+        magicPool = Math.ceil(magicPool)
+
+        //console.log(itemDoc.itemId, `magicPool`, magicPool)
     }
 
     return magicPool

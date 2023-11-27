@@ -449,16 +449,6 @@ export const reforgeItemType = (itemId) => {
     }
     
     for (let tier = 1; tier <= 27; tier++) {
-        // find metal items
-        if (itemId.indexOf(`${reforgeLookupMetalTier(tier, true)}_`) === 0) {
-            return "metal"
-        }
-
-        // find wood items
-        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false, true)}_`) === 0) {
-            return "wood"
-        }
-
         // find wizard clothing and tridents
         if (itemId.indexOf(`${reforgeLookupMagicColorTier(tier)}_wizard_`) === 0 ||
             itemId == `${reforgeLookupMagicColorTier(tier)}_trident`) {
@@ -475,6 +465,18 @@ export const reforgeItemType = (itemId) => {
             return "wizard"
         }
     }
+    
+    for (let tier = 1; tier <= 27; tier++) {
+        // find metal items
+        if (itemId.indexOf(`${reforgeLookupMetalTier(tier, true)}_`) === 0) {
+            return "metal"
+        }
+
+        // find wood items
+        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false, true)}_`) === 0) {
+            return "wood"
+        }
+    }
 
     return "unknown"
 }
@@ -489,16 +491,6 @@ export const reforgeMatchItemIdToTier = (itemId) => {
     }
     
     for (let tier = 1; tier <= 27; tier++) {
-        // find metal items
-        if (itemId.indexOf(`${reforgeLookupMetalTier(tier, true)}_`) === 0) {
-            return tier
-        }
-
-        // find wood items
-        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false, true)}_`) === 0) {
-            return tier
-        }
-
         // find magic clothing and tridents
         if (itemId.indexOf(`${reforgeLookupMagicColorTier(tier)}_wizard_`) === 0 ||
             itemId == `${reforgeLookupMagicColorTier(tier)}_trident`) {
@@ -512,6 +504,18 @@ export const reforgeMatchItemIdToTier = (itemId) => {
 
         // find magic orbs
         if (itemId == `${reforgeLookupMagicOrbTier(tier)}_orb`) {
+            return tier
+        }
+    }
+    
+    for (let tier = 1; tier <= 27; tier++) {
+        // find metal items
+        if (itemId.indexOf(`${reforgeLookupMetalTier(tier, true)}_`) === 0) {
+            return tier
+        }
+
+        // find wood items
+        if (itemId.indexOf(`${reforgeLookupWoodTier(tier, false, true)}_`) === 0) {
             return tier
         }
     }

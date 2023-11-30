@@ -21,6 +21,7 @@ import { CDbl, CInt } from "/imports/utils.js"
 import { requirementsUtility } from "/server/api/crafting/crafting"
 import { addFakeGems, addItem } from "/server/api/items/items"
 import { addXp } from "/server/api/skills/skills"
+import { DiagConsoleLogger } from "@opentelemetry/api"
 
 export const updateMiningStats = function (userId, slot = "pickaxe", isNewUser = false) {
     let owner
@@ -237,12 +238,15 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mmining.clickedMineSpace\x1b[22m"("${mineSpaceId}", ${multiplier})\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
         if (multiplier < 1 || multiplier > 10) {
             return

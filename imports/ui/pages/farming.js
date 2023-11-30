@@ -76,7 +76,11 @@ Template.farmingPage.onCreated(function bodyOnCreated() {
 
 Template.farmingPage.events({
     "click .collect-plants"(event, instance) {
-        Meteor.call("farming.harvestAll")
+        Meteor.call("farming.harvestAll", (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
     },
 
     "click .destroy-plants"(event, instance) {

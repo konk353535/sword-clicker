@@ -585,7 +585,11 @@ Template.overviewPage.events({
     },
 
     "click .collect-plants"(event, instance) {
-        Meteor.call("farming.harvestAll")
+        Meteor.call("farming.harvestAll", (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
     },
 
     "click .accept-party-invite"(event, instance) {

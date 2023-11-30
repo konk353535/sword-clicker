@@ -141,7 +141,11 @@ Template.selectAbilitiesPage.helpers({
                 description: "unequip",
                 ability,
                 method() {
-                    Meteor.call("abilities.unequip", this.ability.slot)
+                    Meteor.call("abilities.unequip", this.ability.slot, (err, res) => {
+                        if (err) {
+                            toastr.error(err.reason)
+                        }
+                    })
                 }
             }
 
@@ -201,7 +205,11 @@ Template.selectAbilitiesPage.helpers({
                     description: "equip",
                     ability,
                     method() {
-                        Meteor.call("abilities.equip", this.ability.id)
+                        Meteor.call("abilities.equip", this.ability.id, (err, res) => {
+                            if (err) {
+                                toastr.error(err.reason)
+                            }
+                        })
                     }
                 }
 

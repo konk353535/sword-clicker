@@ -61,15 +61,21 @@ Template.farmSpace.events({
                 Meteor.call("farming.harvest", instance.data.farmSpace.index, (err, res) => {
                     if (err) {
                         TimeSync.resync()
+                        toastr.error(err.reason)
                     } else {
                         instance.state.set("finishedGrowing", false)
                     }
                 })
+                
             }
         } else {
             if (shiftKey) {
                 // Send kill event for this plant
-                Meteor.call("farming.killPlant", instance.data.farmSpace.index)
+                Meteor.call("farming.killPlant", instance.data.farmSpace.index, (err, res) => {
+                    if (err) {
+                        toastr.error(err.reason)
+                    }
+                })
             }
         }
     }

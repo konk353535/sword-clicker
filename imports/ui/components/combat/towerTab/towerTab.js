@@ -56,7 +56,7 @@ Template.towerTab.onCreated(function bodyOnCreated() {
 
 const findBattleHandler = function (err, res) {
     if (err) {
-        toastr.warning(err.reason)
+        toastr.error(err.reason)
     }
 }
 

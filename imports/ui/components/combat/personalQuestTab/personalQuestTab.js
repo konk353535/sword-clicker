@@ -39,7 +39,7 @@ Template.personalQuestTab.events({
         const targetWave = instance.state.get("maxLevelCurrentWave")
         Meteor.call("battles.findPersonalBattle", targetLevel, targetWave, (err, res) => {
             if (err) {
-                toastr.warning(err.reason)
+                toastr.error(err.reason)
             }
         })
     },
@@ -56,7 +56,7 @@ Template.personalQuestTab.events({
         // Battle a random wave in the current level
         Meteor.call("battles.findPersonalBattle", instance.state.get("currentLevel"), (err, res) => {
             if (err) {
-                toastr.warning(err.reason)
+                toastr.error(err.reason)
             }
         })
     }

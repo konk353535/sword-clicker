@@ -59,7 +59,11 @@ Template.astronomyTab.events({
     "click .buy-mage-type"(event, instance) {
         const type = instance.$(event.target).closest(".buy-mage-type").data("type")
 
-        Meteor.call("astronomy.hireMage", type)
+        Meteor.call("astronomy.hireMage", type, (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
     },
 
     "click .buy-mage"(event, instance) {
@@ -70,7 +74,11 @@ Template.astronomyTab.events({
         event.preventDefault()
         const mage = instance.state.get("selectedMage")
         const amount = parseInt($(".deposit-amount-input").val())
-        Meteor.call("astronomy.depositMageGold", mage.index, amount)
+        Meteor.call("astronomy.depositMageGold", mage.index, amount, (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
         instance.$(".depositMageModal").modal("hide")
     },
 
@@ -78,7 +86,11 @@ Template.astronomyTab.events({
         event.preventDefault()
         const mage = instance.state.get("selectedMage")
         const amount = parseInt($(".withdraw-amount-input").val())
-        Meteor.call("astronomy.withdrawMageGold", mage.index, amount)
+        Meteor.call("astronomy.withdrawMageGold", mage.index, amount, (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
         instance.$(".depositMageModal").modal("hide")
     },
 

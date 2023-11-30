@@ -606,7 +606,11 @@ Template.currentBattleUi.onDestroyed(function () {
 Template.currentBattleUi.events({
     "click .forfeit-battle"(event, instance) {
         // Mark battle as stale.
-        Meteor.call("battles.killBattle", Meteor.userId())
+        Meteor.call("battles.killBattle", Meteor.userId(), (err, res) => {
+            if (err) {
+                toastr.error(err.reason)
+            }
+        })
     }
 })
 

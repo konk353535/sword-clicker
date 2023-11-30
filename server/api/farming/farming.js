@@ -153,10 +153,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.harvest\x1b[22m"(${index})\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -207,10 +211,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.harvestAll\x1b[22m"()\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -259,10 +267,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.killPlant\x1b[22m"(${index})\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -296,10 +308,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.plant\x1b[22m"("${plantId}")\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -393,10 +409,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.plantAll\x1b[22m"("${plantId}", ${specifiedAmount})\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -520,10 +540,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mfarming.buyShopItem\x1b[22m"("${seedId}", ${amountToBuy})\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

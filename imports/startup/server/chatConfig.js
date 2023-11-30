@@ -457,7 +457,7 @@ SimpleChat.configure({
                 return
             } else if (/\/xpActionsUnblock/.test(message) && userDoc.isSuperMod) {
                 const targetUser = Users.findOne({
-                    username: message.split("/xpActionsBlock")[1].toLowerCase().trim()
+                    username: message.split("/xpActionsUnblock")[1].toLowerCase().trim()
                 })
 
                 if (!targetUser) {

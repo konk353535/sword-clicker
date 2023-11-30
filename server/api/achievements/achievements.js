@@ -21,10 +21,14 @@ Meteor.methods({
             if (logUserDoc) {
                 console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1machievements.collect\x1b[22m"("${id}")\x1b[0m`)
                 if (logUserDoc.xpActionsBlocked) {
-                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                    throw new Meteor.Error("action-blocked", "That action is blocked; please contact support.")
                 }
             }
-        } catch (err) {}
+        } catch (err) {
+            if (err?.error === "action-blocked") {
+                throw err
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

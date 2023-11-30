@@ -58,7 +58,11 @@ Template.equipmentTab.helpers({
                 description: "eat",
                 item,
                 method() {
-                    Meteor.call("items.eat", this.item._id, this.item.itemId)
+                    Meteor.call("items.eat", this.item._id, this.item.itemId, (err, res) => {
+                        if (err) {
+                            toastr.error(err.reason)
+                        }
+                    })
                 }
             }
             return item
@@ -75,7 +79,11 @@ Template.equipmentTab.helpers({
                 description: "unequip",
                 item,
                 method() {
-                    Meteor.call("items.unequip", this.item._id, this.item.itemId)
+                    Meteor.call("items.unequip", this.item._id, this.item.itemId, (err, res) => {
+                        if (err) {
+                            toastr.error(err.reason)
+                        }
+                    })
                 }
             }
             return item

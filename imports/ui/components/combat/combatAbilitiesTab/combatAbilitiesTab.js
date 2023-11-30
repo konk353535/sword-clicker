@@ -68,7 +68,11 @@ Template.combatAbilitiesTab.helpers({
                 description: "unequip",
                 ability,
                 method() {
-                    Meteor.call("abilities.unequip", this.ability.slot)
+                    Meteor.call("abilities.unequip", this.ability.slot, (err, res) => {
+                        if (err) {
+                            toastr.error(err.reason)
+                        }
+                    })
                 }
             }
 
@@ -112,7 +116,11 @@ Template.combatAbilitiesTab.helpers({
                     description: "equip",
                     ability,
                     method() {
-                        Meteor.call("abilities.equip", this.ability.id)
+                        Meteor.call("abilities.equip", this.ability.id, (err, res) => {
+                            if (err) {
+                                toastr.error(err.reason)
+                            }
+                        })
                     }
                 }
             } else {

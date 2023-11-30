@@ -55,7 +55,11 @@ Template.mineSpace.events({
 
         if (instance.data.mineSpace.oreId) {
             if (myMining.stats.energy >= myMining.stats.energyPerHit * multiplier) {
-                Meteor.call("mining.clickedMineSpace", instance.data.mineSpace._id, multiplier)
+                Meteor.call("mining.clickedMineSpace", instance.data.mineSpace._id, multiplier, (err, res) => {
+                    if (err) {
+                        toastr.error(err.reason)
+                    }
+                })
                 // Show mining damage in UI
                 const offset = instance.$(event.target).offset()
                 const color = "red"

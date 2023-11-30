@@ -437,6 +437,47 @@ SimpleChat.configure({
 
                 sendUserChatMessage({ userId: userDoc._id, message: `Unbanned ${targetUser.username}.` })
                 return
+            }  else if (/\/xpActionsBlock/.test(message) && userDoc.isSuperMod) {
+                const targetUser = Users.findOne({
+                    username: message.split("/xpActionsBlock")[1].toLowerCase().trim()
+                })
+
+                Users.update(
+                    {
+                        _id: targetUser._id
+                    },
+                    {
+                        $set: {
+                            xpActionsBlocked: true
+                        }
+                    }
+                )
+
+                sendUserChatMessage({ userId: userDoc._id, message: `xpActionsBlocked = true now for ${targetUser.username}.` })
+                return
+            } else if (/\/xpActionsUnblock/.test(message) && userDoc.isSuperMod) {
+                const targetUser = Users.findOne({
+                    username: message.split("/xpActionsBlock")[1].toLowerCase().trim()
+                })
+
+                if (!targetUser) {
+                    sendUserChatMessage({ userId: userDoc._id, message: `Player not found.` })
+                    return
+                }
+
+                Users.update(
+                    {
+                        _id: targetUser._id
+                    },
+                    {
+                        $set: {
+                            xpActionsBlocked: false
+                        }
+                    }
+                )
+
+                sendUserChatMessage({ userId: userDoc._id, message: `xpActionsBlocked = false now for ${targetUser.username}.` })
+                return
             } else if (/\/giveItem/.test(message) && userDoc.isSuperMod) {
                 const splitMessage = message.trim().split(" ")
 

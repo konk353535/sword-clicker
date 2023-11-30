@@ -662,7 +662,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.reforgeItem\x1b[22m"("${_id}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.reforgeItem\x1b[22m"("${_id}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -828,7 +833,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforgeAll\x1b[22m"()\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforgeAll\x1b[22m"()\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -920,7 +930,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforge\x1b[22m"("${targetEndDate}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelReforge\x1b[22m"("${targetEndDate}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -1039,7 +1054,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.craftItem\x1b[22m"("${recipeId}", ${amount})\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.craftItem\x1b[22m"("${recipeId}", ${amount})\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -1151,7 +1171,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelCraft\x1b[22m"("${targetEndDate}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mcrafting.cancelCraft\x1b[22m"("${targetEndDate}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         

@@ -226,7 +226,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cancelAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cancelAdventure\x1b[22m"("${adventureId}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -293,7 +298,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.collectAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.collectAdventure\x1b[22m"("${adventureId}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -356,7 +366,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cycleAdventure\x1b[22m"(${isGems})\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.cycleAdventure\x1b[22m"(${isGems})\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -457,7 +472,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.startAdventure\x1b[22m"("${adventureId}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1madventures.startAdventure\x1b[22m"("${adventureId}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

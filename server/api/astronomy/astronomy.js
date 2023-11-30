@@ -25,7 +25,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.upgradeMage\x1b[22m"("${stat}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.upgradeMage\x1b[22m"("${stat}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,7 +124,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.hireMage\x1b[22m"("${type}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.hireMage\x1b[22m"("${type}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,7 +188,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.depositMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.depositMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -240,7 +255,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.withdrawMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mastronomy.withdrawMageGold\x1b[22m"(${index}, ${amount})\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

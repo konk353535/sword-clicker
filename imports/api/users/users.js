@@ -197,6 +197,7 @@ const UserSchema = new SimpleSchema({
     battleSecret: { type: String },
     server: { type: String },
     banned: { type: Boolean, optional: true },
+    xpActionsBlocked: { type: Boolean, optional: true },
 
     lastActivity: { type: Date, optional: true },
 

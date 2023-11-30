@@ -126,7 +126,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.clearCooldown\x1b[22m"("${targetUid}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.clearCooldown\x1b[22m"("${targetUid}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -255,7 +260,12 @@ Meteor.methods({
         //
         try {
             const logUserDoc = Meteor.user()
-            if (logUserDoc) { console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.equipClass\x1b[22m"("${uid}", "${newClass}")\x1b[0m`) }
+            if (logUserDoc) {
+                console.log(`\x1b[33m[API] ${logUserDoc.username} ${logUserDoc.clientIp} "\x1b[1mclasses.equipClass\x1b[22m"("${uid}", "${newClass}")\x1b[0m`)
+                if (logUserDoc.xpActionsBlocked) {
+                    throw new Meteor.Error("action-locked", "That action is blocked; please contact support.")
+                }
+            }
         } catch (err) {}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

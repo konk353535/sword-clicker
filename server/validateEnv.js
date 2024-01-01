@@ -17,7 +17,7 @@ if (process.env.METRIC_BASIC_AUTH_PASS == null) {
     process.env.METRIC_BASIC_AUTH_PASS = Meteor.settings?.private?.METRIC_BASIC_AUTH_PASS ?? "efgh"
 }
 if (process.env.MAX_FLOOR == null) {
-    process.env.MAX_FLOOR = Meteor.settings?.shared?.maxFloor ?? 25
+    process.env.MAX_FLOOR = Meteor.settings?.shared?.maxFloor ?? 27
 }
 if (process.env.ENABLE_DISCORD_WEBHOOKS == null) {
     process.env.ENABLE_DISCORD_WEBHOOKS = Meteor.settings?.private?.ENABLE_DISCORD_WEBHOOKS ?? false

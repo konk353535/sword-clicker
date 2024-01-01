@@ -4,7 +4,7 @@
         "stripe": "-or-this"
     },
     "shared": {
-        "maxFloor": 25
+        "maxFloor": 27
     },
     "private": {
         "stripe": "-or-this",

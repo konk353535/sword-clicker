@@ -84,9 +84,7 @@
     "stripe": "^13.10.0",
     "tsx": "^3.12.10",
     "underscore": "^1.9.1",
-    "utf-8-validate": "^6.0.3",
-    "weighted-random": "^0.1.0",
-    "zlib-sync": "^0.1.9"
+    "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.3",

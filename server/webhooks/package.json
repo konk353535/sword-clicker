@@ -23,7 +23,7 @@
         "request": "^2.83.0",
         "request-promise": "^4.2.2",
         "stripe": "^14.1.0",
-        "tsx": "^3.12.8",
+        "tsx": "^4.7.0",
         "underscore": "^1.8.3"
     },
     "devDependencies": {

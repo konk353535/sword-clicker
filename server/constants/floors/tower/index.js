@@ -18,6 +18,7 @@ import { TOWER_FLOOR_24 } from "./floor24/index"
 import { TOWER_FLOOR_25 } from "./floor25/index"
 import { TOWER_FLOOR_26 } from "./floor26/index"
 import { TOWER_FLOOR_27 } from "./floor27/index"
+import { TOWER_FLOOR_28 } from "./floor28/index"
 import { TOWER_FLOOR_3 } from "./floor3/index"
 import { TOWER_FLOOR_4 } from "./floor4/index"
 import { TOWER_FLOOR_5 } from "./floor5/index"
@@ -55,5 +56,6 @@ export const TOWER_FLOORS = Object.freeze({
     24: TOWER_FLOOR_24,
     25: TOWER_FLOOR_25,
     26: TOWER_FLOOR_26,
-    27: TOWER_FLOOR_27
+    27: TOWER_FLOOR_27,
+    28: TOWER_FLOOR_28
 })
